@@ -599,6 +599,8 @@ $(document).on('click', '#add_employee', function(){
               location.reload(true);
           }
 
+
+
         function validateData() {
         var flag = 'N';
         var fullname=document.getElementById("fullname").value;
