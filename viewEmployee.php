@@ -4,7 +4,7 @@ session_start();
 
 include 'adminviewapplicant1.php';
 if (isset($_POST['view'])) {
-
+var_dump($_POST['id']);
 
     $tin = $_POST['tin'];
 
@@ -18,37 +18,7 @@ if (isset($_POST['view'])) {
         $_SESSION["fname"] = $row["fname"];
         $_SESSION["mname"] = $row["mname"];
         $_SESSION["lname"] = $row["lname"];
-        $_SESSION["nationality"] = $row["nationality"];
-        $_SESSION["gender"] = $row["gender"];
-        $_SESSION["marital_status"] = $row["marital_status"];
-        $_SESSION["tin"] = $row["tin"];
-        $_SESSION["b_date"] = $row["b_date"];
-        $_SESSION["place_of_birth"] = $row["place_of_birth"];
-        $_SESSION["application_type"] = $row["application_type"];
-        $_SESSION["passport_no"] = $row["passport_no"];
-        $_SESSION["place_issuance"] = $row["place_issuance"];
-        $_SESSION["date_issuance"] = $row["date_issuance"];
-        $_SESSION["expiration_date"] = $row["expiration_date"];
-        $_SESSION["visa"] = $row["visa"];
-        $_SESSION["visa_validity"] = $row["visa_validity"];
-        $_SESSION["highest_educ"] = $row["highest_educ"];
-        $_SESSION["course"] = $row["course"];
-        $_SESSION["address_ph"] = $row["address_ph"];
-        $_SESSION["contact_no"] = $row["contact_no"];
-        $_SESSION["email_add"] = $row["contact_no"];
-        $_SESSION["permanent_add_abroad"] = $row["permanent_add_abroad"];
-        $_SESSION["position"] = $row["position"];
-        $_SESSION["assignment"] = $row["assignment"];
-        $_SESSION["name_of_company"] = $row["name_of_company"];
-        $_SESSION["company_address"] = $row["company_address"];
-        $_SESSION["company_contact"] = $row["company_contact"];
-        $_SESSION["company_email"] = $row["company_email"];
-        $_SESSION["gdrive_link"] = $row["gdrive_link"];
-        $_SESSION["nature"] = $row["nature"];
-        $_SESSION["aep_number"] = $row["aep_number"];
-        $_SESSION["user_status"] = $row["user_status"];
-        $_SESSION["date_created"] = $row["date_created"];
-        $_SESSION["date_approved"] = $row["date_approved"];
+    
 
 
 
@@ -83,13 +53,18 @@ include 'adminlogout.php';
     <link href="assets/img/AEP_icon.png" rel="icon">
     <title>AEP - Admin Applicant Viewer</title>
 
-    <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template-->
-    <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css" rel="stylesheet">
 
-    <link href="assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this page -->
+  <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <link rel="icon" href="img/dolelogogs.png">
+  <script type="text/javascript" src = "js/date_time.js"></script>
+
 </head>
 
 <body id="page-top">
@@ -105,7 +80,7 @@ include 'adminlogout.php';
                 <div class="sidebar-brand-icon">
                     <img src="assets/img/AEP_icon.png" alt="" width="35px" height="35px">
                 </div>
-                <div class="sidebar-brand-text mx-3">ADMIN</div>
+                <div class="sidebar-brand-text mx-3"><?php echo $_GET['id']; ?>  - ADMIN</div>
             </a>
 
             <!-- Divider -->
@@ -234,7 +209,7 @@ include 'adminlogout.php';
                     <div class="row">
 
                         <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
+                        <div class="col-xl-12 col-lg-7">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -320,10 +295,10 @@ include 'adminlogout.php';
                             </div>
                         </div>
 
-                        <!-- Pie Chart -->
+                  <!--
                         <div class="col-xl-4 col-lg-5">
                             <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
+     
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">Application Details</h6>
                                     <div class="dropdown no-arrow">
@@ -339,7 +314,7 @@ include 'adminlogout.php';
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Card Body -->
+                         
                                 <div class="card-body">
 
                                     <div class="col-md-12">
@@ -388,7 +363,7 @@ include 'adminlogout.php';
 
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="col-xl-8 col-lg-7">
                             <div class="card shadow mb-4">
@@ -397,42 +372,18 @@ include 'adminlogout.php';
                                     <h6 class="m-0 font-weight-bold text-primary">II. Present Employment</h6>
 
                                 </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="col-md-12">
-
+                                <nav>
+                                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
+                                        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
+                                        <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</button>
                                     </div>
-                                    <div class="col-md-12">
-
-                                        <table class=" table">
-
-                                            <tr>
-                                                <td style="width: 10%;"><b>Position:</b> </td>
-                                                <td style="width: 20%;"><?php echo $_SESSION['position'];  ?></td>
-                                                <td style="width: 15%;"><b>Place/s of Assignment:</b></td>
-                                                <td style="width: 30%;"><?php echo $_SESSION['assignment']; ?></td>
-
-                                            </tr>
-                                            <tr>
-                                                <td colspan="2" style="width: 20%;"><b>Name of Compnany/Employer</b></td>
-                                                <td colspan="2" style="width: 80%;"><?php echo $_SESSION['name_of_company']; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="2" style="width: 20%;"><b>Address of Company/Employer:</b></td>
-                                                <td colspan="2" style="width: 80%;"><?php echo $_SESSION['company_address']; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td style="width: 15%;"><b>Contact Number:</b> </td>
-                                                <td style="width: 20%;"><?php echo $_SESSION['position'];  ?></td>
-                                                <td style="width: 15%;"><b>Email Address:</b></td>
-                                                <td style="width: 30%;"><?php echo $_SESSION['assignment']; ?></td>
-
-                                            </tr>
-
-
-                                        </table>
+                                    </nav>
+                                    <div class="tab-content" id="nav-tabContent">
+                                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">...</div>
+                                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+                                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
                                     </div>
-                                </div>
                             </div>
                         </div>
 

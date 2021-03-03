@@ -71,6 +71,7 @@ while($row = mysqli_fetch_array($result)){
   $sub_array[] = $row["FIRSTNAME"];
   $sub_array[] = $row["MIDDLENAME"];
   $sub_array[] = $row["LASTNAME"];
+
   //$sub_array[] = $row["EMPLOYEEID"];
   /*$sub_array[] = 
   "<form action='adminviewapplicant.php' method='POST'>
@@ -78,8 +79,8 @@ while($row = mysqli_fetch_array($result)){
                       <input type='hidden' name='id' value='" . $row["ID"] . "'>
 					  <input type='submit' class ='btn btn-sm btn-info btn-block' name ='view' id = 'submit' value ='VIEW (?)'>
 					</form> ";*/
-
-          $sub_array[] = "<a href='#viewEmployeeForm'  id='ID' data-toggle='modal' data-id='".$row['ID']."'>View</a> / 
+// $sub_array[] = "<a href='employee_detail.php'  id='ID' data-toggle='modal' data-id='".$row['ID']."'>View</a> / 
+          $sub_array[] = "<a href='viewEmployee.php?id=".$row['ID']."' data-id='".$row['ID']."'> HERE</a> / 
           <a href='#addEmployeeForm'  id='custId' data-toggle='modal' data-id='".$row['ID']."'>Edit</a> / 
           <a href='#addEmployeeForm'  id='custId' data-toggle='modal' data-id='".$row['ID']."'>Delete</a>";  
       

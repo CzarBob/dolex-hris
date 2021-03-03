@@ -530,7 +530,56 @@ if ($_SESSION['username'] == ""){
 }); 
 
 
+$(document).on('click', '#viewEmployee2', function(){
+          var add_employee = "Success";
+          //validateData();
+          //var answer = validateData();
+ 
+      alert('pota ka');
+       //if(answer == 'N'){ //COMMENTED, USED FOR VALIDATION
+              $.ajax({
+                url:"viewEmployee",
+                method:"POST",
+                data:{
+                  add_employee:add_employee,
+                  empid:empid, 
+                  firstname:firstname, 
+                  middlename:middlename, 
+                  lastname:lastname/*,
+                  email:email,
+                  position:position,
+                  datehired:datehired,
+                  slcredit:slcredit,
+                  vlcredit:vlcredit,*/
+                },
+                success:function(data){
+                 // $('#add_employee').modal('hide');
+                 /* $('#empid').val('');
+                  $('#firstname').val('');
+                  $('#middlename').val('');
+                  $('#lastname').val('');
+                  $('#email').val('');
+                  $('#position').val('');
+                  $('#datehired').val('');
+                  $('#slcredit').val('');
+                  $('#vlcredit').val('');*/
 
+                
+                  //COMMENTED FOR THE MEAN TIME
+                // $('#user_data').DataTable().destroy();
+                  //fetch_data();
+                 /* alert("Data Added");
+                  
+                  $('#addEmployeeForm').modal('hide');
+                  
+                  setInterval('refreshPage()', 5000);*/
+                 
+                }     
+              }); 
+            //}
+            
+
+        });
 
 $(document).on('click', '#add_employee', function(){
           var add_employee = "Success";
@@ -599,6 +648,9 @@ $(document).on('click', '#add_employee', function(){
               location.reload(true);
           }
 
+
+
+ 
 
 
         function validateData() {
