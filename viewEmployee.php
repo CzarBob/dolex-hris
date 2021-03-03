@@ -2,26 +2,23 @@
 
 session_start();
 
-include 'adminviewapplicant1.php';
-if (isset($_POST['view'])) {
-var_dump($_POST['id']);
+//include 'adminviewapplicant1.php';
+if (isset($_POST['id'])) {
 
-    $tin = $_POST['tin'];
 
-    $connect = mysqli_connect("localhost", "root", "", "d0l310_aep");
-    $viewquery = "SELECT * FROM `aep_user_details` JOIN aep_user_details_2 ON aep_user_details.tin = aep_user_details_2.tin JOIN aep_user_details_3 ON aep_user_details_2.tin = aep_user_details_3.tin JOIN aep_user_employment on aep_user_details_3.tin = aep_user_employment.tin JOIN aep_user_status ON aep_user_status.tin = aep_user_employment.tin WHERE aep_user_details.tin = '" . $tin . "'";
+    $id = $_POST['id'];
+
+    $connect = mysqli_connect("localhost", "root", "", "citizens_charter");
+    //$viewquery = "SELECT * FROM `aep_user_details` JOIN aep_user_details_2 ON aep_user_details.tin = aep_user_details_2.tin JOIN aep_user_details_3 ON aep_user_details_2.tin = aep_user_details_3.tin JOIN aep_user_employment on aep_user_details_3.tin = aep_user_employment.tin JOIN aep_user_status ON aep_user_status.tin = aep_user_employment.tin WHERE aep_user_details.tin = '" . $tin . "'";
+    $viewquery = "SELECT * FROM `citizen_charter`  WHERE ID = '" . $id . "'";
     $viewresults = mysqli_query($connect, $viewquery);
 
     while ($row = mysqli_fetch_assoc($viewresults)) {
 
-        $_SESSION["tin"] = $row["tin"];
-        $_SESSION["fname"] = $row["fname"];
-        $_SESSION["mname"] = $row["mname"];
-        $_SESSION["lname"] = $row["lname"];
-    
-
-
-
+        $_SESSION["id"] = $row["ID"];
+        $_SESSION["firstname"] = $row["FIRSTNAME"];
+        $_SESSION["middlename"] = $row["MIDDLENAME"];
+        $_SESSION["lastname"] = $row["LASTNAME"];
 
 
         # code...
@@ -29,17 +26,7 @@ var_dump($_POST['id']);
 }
 
 
-
-
-
-
-
-
-include 'adminlogout.php';
-
-
-
-
+//include 'adminlogout.php';
 
 
 ?>
@@ -51,13 +38,14 @@ include 'adminlogout.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="assets/img/AEP_icon.png" rel="icon">
-    <title>AEP - Admin Applicant Viewer</title>
+    <title>Employee View</title>
 
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
   <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css" rel="stylesheet">
+
 
 
   <!-- Custom styles for this page -->
@@ -222,17 +210,17 @@ include 'adminlogout.php';
 
                                     </div>
                                     <div class="col-md-12">
-
-                                        <table class=" table">
+    
+                                       <table class=" table">
 
                                             <tr>
                                                 <td colspan="1" style="width: 10%;"><b>Full Name:</b> </td>
-                                                <td colspan="3" style="width: 30%;"><?php echo $_SESSION['fname'];  ?></td>
-                                                <td colspan="2" style="width: 30%;"><?php echo $_SESSION['mname']; ?></td>
-                                                <td colspan="2" style="width: 30%;"><?php echo $_SESSION['lname']; ?></td>
-
+                                                <td colspan="2" style="width: 30%;"><input type="text" name="firstname" id = "firstname" class="form-control validate" required></td> 
+                                                <td style="width: 20%;"><input type="text" name="firstname" id = "firstname" class="form-control validate" required></td> 
+                                                <td colspan="2" style="width: 25%;"><input type="text" name="firstname" id = "firstname" class="form-control validate" required></td>
+                                                <td style="width: 15%;"><input type="text" name="firstname" id = "firstname" class="form-control validate" required></td> 
                                             </tr>
-                                            <tr>
+                                           <!-- <tr>
                                                 <td style="width: 10%;"><b>Nationality:</b> </td>
                                                 <td style="width: 10%;"><?php echo $_SESSION['nationality']; ?></td>
                                                 <td style="width: 10%;"><b>Sex:</b></td>
@@ -242,58 +230,34 @@ include 'adminlogout.php';
                                                 <td style="width: 5%;"><b>TIN:</b></td>
                                                 <td style="width: 15%;"><?php echo $_SESSION['tin']; ?></td>
 
-                                            </tr>
+                                            </tr> -->
                                             <tr>
-                                                <td colspan="2"><b>Date of Birth:</b></td>
-                                                <td colspan="2"><?php echo $_SESSION['b_date']; ?></td>
-                                                <td colspan="2"><b>Place of Birth:</b></td>
-                                                <td colspan="2"><?php echo $_SESSION['place_of_birth']; ?></td>
-                                            </tr>
+                                                <td colspan="2"></td>
+                                                <td colspan="2"></td>
+                                                <td colspan="2"></td>
+                                                <td colspan="2" style = "align: left"><button class="btn btn-primary" id = "update_employee">     Update Employee Details  </button></td>
 
-                                            <tr>
-                                                <td><b>Passport No.:</b></td>
-                                                <td colspan="2"><?php echo $_SESSION['passport_no']; ?></td>
-                                                <td colspan="2"><b>Place of Issuance:</b></td>
-                                                <td><?php echo $_SESSION['place_issuance']; ?></td>
-                                                <td><b>Issuance Date:</b></td>
-                                                <td><?php echo $_SESSION['date_issuance']; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="2"><b>Expiration Date: </b></td>
-                                                <td><?php echo $_SESSION['expiration_date']; ?></td>
-                                                <td><b>Visa:</b></td>
-                                                <td><?php echo $_SESSION['visa']; ?></td>
-                                                <td colspan="2"><b>Visa Validity:</b></td>
-                                                <td><?php echo $_SESSION['visa_validity']; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="3"><b>Highest Educational Attainment: </b></td>
-                                                <td><?php echo $_SESSION['highest_educ']; ?></td>
-                                                <td colspan="1"><b>Course of Study:</b></td>
-                                                <td colspan="3"><?php echo $_SESSION['course']; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="2" style="width: 20%;"><b>Address in the Philippines: </b> </td>
-                                                <td colspan="6" style="width: 80%;"><?php echo $_SESSION['address_ph']; ?></td>
 
-                                            </tr>
-                                            <tr>
-                                                <td colspan="2"><b>Contact Number:</b></td>
-                                                <td colspan="2"><?php echo $_SESSION['contact_no']; ?></td>
-                                                <td colspan="2"><b>Email Address:</b></td>
-                                                <td colspan="2"><?php echo $_SESSION['email_add']; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="2" style="width: 20%;"><b>Permanent Address Abroad: </b> </td>
-                                                <td colspan="6" style="width: 80%;"><?php echo $_SESSION['permanent_add_abroad']; ?></td>
 
-                                            </tr>
 
-                                        </table>
+                                                
+                                            </tr> 
+
+                                           
+
+                                        </table> 
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+
+
+                            
+
+
+
+
 
                   <!--
                         <div class="col-xl-4 col-lg-5">
@@ -369,21 +333,34 @@ include 'adminlogout.php';
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">II. Present Employment</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Additional Details</h6>
 
                                 </div>
-                                <nav>
-                                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
-                                        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
-                                        <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</button>
-                                    </div>
-                                    </nav>
-                                    <div class="tab-content" id="nav-tabContent">
-                                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">...</div>
-                                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
-                                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
-                                    </div>
+                
+
+
+                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Children (if Applicable)</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Work Experience</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Trainings</a>
+                                </li>
+                                </ul>
+                                <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">.asdasdasd..</div>
+                                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...asdasdasd</div>
+                                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">.asdasdasd..</div>
+                                </div>
+                            
+
+
+
+
+                          
                             </div>
                         </div>
 
@@ -580,6 +557,28 @@ include 'adminlogout.php';
 
     <!-- Page level custom scripts -->
     <script src="assets/js/demo/datatables-demo.js"></script>
+
+    <script>
+            $(document).ready(function(){
+    
+                fetch_data();
+            
+                function fetch_data(){
+                //alert('pota');
+                var dataTable = $('#user_data').DataTable({
+                /* "processing" : true,
+                "serverSide" : true,
+                "columnDefs": [{ "orderable": false, "targets":[0,1] }],
+                "order" : [],*/
+                "ajax" : {
+                url:"dashboard_query.php",
+                type:"POST"
+                }
+                });
+                }  
+            });
+
+    </script>
 
 </body>
 

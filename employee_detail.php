@@ -346,7 +346,7 @@ if ($_SESSION['username'] == ""){
           </div>
           <div class="modal-body mx-3">
        
-          <div class="md-form mb-5">
+            <div class="md-form mb-5">
        
               <label data-error="wrong" data-success="right" for="form29">*Employee ID</label>
               <input type="test" name="empid" id = "empid" class="form-control validate" required>
@@ -375,7 +375,7 @@ if ($_SESSION['username'] == ""){
            
             </div>
 
-<!--
+              <!--
             
             <div class="md-form mb-5">
             
