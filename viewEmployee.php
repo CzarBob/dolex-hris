@@ -20,7 +20,6 @@ if (isset($_POST['id'])) {
         $_SESSION["middlename"] = $row["MIDDLENAME"];
         $_SESSION["lastname"] = $row["LASTNAME"];
 
-
         # code...
     }
 }
@@ -68,7 +67,7 @@ if (isset($_POST['id'])) {
                 <div class="sidebar-brand-icon">
                     <img src="assets/img/AEP_icon.png" alt="" width="35px" height="35px">
                 </div>
-                <div class="sidebar-brand-text mx-3"><?php echo $_GET['id']; ?>  - ADMIN</div>
+                <div class="sidebar-brand-text mx-3">ADMIN</div>
             </a>
 
             <!-- Divider -->
@@ -184,7 +183,8 @@ if (isset($_POST['id'])) {
 
                     <!-- Content Row -->
                     <div class="row">
-                        <input type="hidden" name="tin" value="<?php echo $_SESSION["tin"]; ?>">
+                        <!-- Employee ID database-->
+                        <input type="hidden" name="empID" id="empID" value="<?php echo $_GET['id']; ?>">
 
 
 
@@ -202,23 +202,20 @@ if (isset($_POST['id'])) {
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">I. Personal Data</h6>
-
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <div class="col-md-12">
-
                                     </div>
                                     <div class="col-md-12">
     
                                        <table class=" table">
-
                                             <tr>
                                                 <td colspan="1" style="width: 10%;"><b>Full Name:</b> </td>
-                                                <td colspan="2" style="width: 30%;"><input type="text" name="firstname" id = "firstname" class="form-control validate" required></td> 
+                                                <td colspan="2" style="width: 30%;"><input type="text" name="employeeid" id = "employeeid" class="form-control validate" required></td> 
                                                 <td style="width: 20%;"><input type="text" name="firstname" id = "firstname" class="form-control validate" required></td> 
-                                                <td colspan="2" style="width: 25%;"><input type="text" name="firstname" id = "firstname" class="form-control validate" required></td>
-                                                <td style="width: 15%;"><input type="text" name="firstname" id = "firstname" class="form-control validate" required></td> 
+                                                <td colspan="2" style="width: 25%;"><input type="text" name="middlename" id = "middlename" class="form-control validate" required></td>
+                                                <td style="width: 15%;"><input type="text" name="lastname" id = "lastname" class="form-control validate" required></td> 
                                             </tr>
                                            <!-- <tr>
                                                 <td style="width: 10%;"><b>Nationality:</b> </td>
@@ -229,23 +226,14 @@ if (isset($_POST['id'])) {
                                                 <td style="width: 10%;"><?php echo $_SESSION['marital_status']; ?></td>
                                                 <td style="width: 5%;"><b>TIN:</b></td>
                                                 <td style="width: 15%;"><?php echo $_SESSION['tin']; ?></td>
-
                                             </tr> -->
                                             <tr>
                                                 <td colspan="2"></td>
                                                 <td colspan="2"></td>
                                                 <td colspan="2"></td>
-                                                <td colspan="2" style = "align: left"><button class="btn btn-primary" id = "update_employee">     Update Employee Details  </button></td>
-
-
-
-
-                                                
-                                            </tr> 
-
-                                           
-
-                                        </table> 
+                                                <td colspan="2" style = "align: left"><button class="btn btn-primary" id = "update_employee">     Update Employee Details  </button></td>                                                
+                                            </tr>    
+                                      </table> 
                                     </div>
                                 </div>
                             </div>
@@ -329,7 +317,7 @@ if (isset($_POST['id'])) {
                             </div>
                         </div> -->
 
-                        <div class="col-xl-8 col-lg-7">
+                        <div class="col-xl-12 col-lg-7">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -351,9 +339,42 @@ if (isset($_POST['id'])) {
                                 </li>
                                 </ul>
                                 <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">.asdasdasd..</div>
-                                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...asdasdasd</div>
-                                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">.asdasdasd..</div>
+                                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                    <div class="container-fluid">
+                                        <div class="card shadow mb-4">
+                                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                                <h6 class="m-0 font-weight-bold text-primary"></h6> 
+                                                
+                                                <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#addEmployeeForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Employee</a>
+                                                <!--<a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#dateRangeModal" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Generate Report</a> -->
+                                                </div>
+                                                <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="children_data" width="100%" cellspacing="0">
+                                                    <thead class = "text-primary">
+                                                    <tr>
+                                                        <th>FULL NAME</th>
+                                                        <th>DATE OF BIRTH</th>
+                                                        <th>ACTION</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tfoot class = "text-primary">
+                                                        <tr>
+                                                        <th>FULL NAME</th>
+                                                        <th>DATE OF BIRTH</th>
+                                                        <th>ACTION</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                    </table>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...asdasdasd</div>
+                                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">.asdasdasd..</div>
                                 </div>
                             
 
@@ -561,21 +582,102 @@ if (isset($_POST['id'])) {
     <script>
             $(document).ready(function(){
     
-                fetch_data();
-            
-                function fetch_data(){
-                //alert('pota');
-                var dataTable = $('#user_data').DataTable({
-                /* "processing" : true,
-                "serverSide" : true,
-                "columnDefs": [{ "orderable": false, "targets":[0,1] }],
-                "order" : [],*/
-                "ajax" : {
-                url:"dashboard_query.php",
-                type:"POST"
+                //fetch_data();
+                fetch_single();
+                
+                function fetch_children_data(){
+                    //alert('pota');
+                    var employeeiddb = document.getElementById("empID").value;
+                    var dataTable = $('#children_data').DataTable({
+                    /* "processing" : true,
+                    "serverSide" : true,*/
+                    "columnDefs": [{ "orderable": false, "targets":[0,2] }],
+                   // "order" : [],
+                    "ajax" : {
+                    url:"view_employee_action.php",
+                    type:"POST",
+                    data:{
+                                    employeeiddb:employeeiddb, 
+                                    action:'fetch_children'},
+                    }
+                    });
                 }
-                });
-                }  
+
+                
+                function fetch_single() {
+
+                        var employeeiddb = document.getElementById("empID").value;
+                        //alert(employeeid);
+                        //var email_hidden = $(this).data('email_hidden'); //data id in database
+                        //var admin_id = $(this).data('id');
+                        //$('#user_form').parsley().reset();
+                        $.ajax({
+                                url:"view_employee_action.php",
+                                method:"POST",
+                                data:{
+                                    employeeiddb:employeeiddb, 
+                                    action:'fetch_single'},
+                                dataType:'JSON',
+                                success:function(data)
+                                {
+                                    $('#employeeid').val(data.employeeid);
+                                    $('#firstname').val(data.firstname);
+                                    $('#middlename').val(data.middlename);
+                                    $('#lastname').val(data.lastname);
+                                    //fetch_children_data();
+                                    //alert(data);
+                                    //$('#action').val('Edit');
+                                    //$('#submit_button').val('Edit');
+                                    //$('#hidden_id').val(hidden_id);
+                                }
+                            });
+
+                            fetch_children_data();
+                    }  
+            });
+
+
+            $(document).on('click', '#update_employee', function(){
+                    var employeeiddb = document.getElementById("empID").value;
+                    var add_employee = "Success";
+                //validateData();
+                //var answer = validateData();
+                    var empid = $('#employeeid').val();
+                    var firstname = $('#firstname').val();
+                    var middlename = $('#middlename').val();
+                    var lastname = $('#lastname').val();
+
+                    
+
+                
+
+            //if(answer == 'N'){ //COMMENTED, USED FOR VALIDATION
+                    $.ajax({
+                        url:"update_employee",
+                        method:"POST",
+                        data:{
+                            add_employee:add_employee,
+                            empid:empid, 
+                            firstname:firstname, 
+                            middlename:middlename, 
+                            lastname:lastname,
+                            employeeiddb:employeeiddb,
+                            action:'update_employee'
+
+                        },
+                        success:function(data){
+                        // $('#add_employee').modal('hide');
+                        
+                        //COMMENTED FOR THE MEAN TIME
+                        // $('#user_data').DataTable().destroy();
+                        //fetch_data();
+                        alert("Data Updated");
+
+                        //$('#addEmployeeForm').modal('hide');
+                        }     
+                    }); 
+                    //}
+              
             });
 
     </script>

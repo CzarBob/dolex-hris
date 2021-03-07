@@ -375,7 +375,7 @@ if ($_SESSION['username'] == ""){
            
             </div>
 
-              <!--
+            <!--
             
             <div class="md-form mb-5">
             
@@ -473,6 +473,8 @@ if ($_SESSION['username'] == ""){
   <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
   <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
   <script>
+
+
   $(document).ready(function(){
     
     fetch_data();
@@ -495,6 +497,10 @@ if ($_SESSION['username'] == ""){
 
 
   $(document).ready(function(){
+
+
+
+
   $('#generateReport').click(function(){
      var fromDate = $('#fromDate').val();
      var toDate = $('#toDate').val();
@@ -533,9 +539,7 @@ if ($_SESSION['username'] == ""){
 $(document).on('click', '#viewEmployee2', function(){
           var add_employee = "Success";
           //validateData();
-          //var answer = validateData();
- 
-      alert('pota ka');
+          //var answer = validateData();  
        //if(answer == 'N'){ //COMMENTED, USED FOR VALIDATION
               $.ajax({
                 url:"viewEmployee",
@@ -616,7 +620,7 @@ $(document).on('click', '#add_employee', function(){
                   vlcredit:vlcredit,*/
                 },
                 success:function(data){
-                 // $('#add_employee').modal('hide');
+                 //$('#add_employee').modal('hide');
                   $('#empid').val('');
                   $('#firstname').val('');
                   $('#middlename').val('');

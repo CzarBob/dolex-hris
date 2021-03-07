@@ -599,6 +599,9 @@ if ($_SESSION['username'] == ""){
 
 
   $(document).ready(function(){
+  
+  
+  
   $('#generateReport').click(function(){
      var fromDate = $('#fromDate').val();
      var toDate = $('#toDate').val();
@@ -631,6 +634,11 @@ if ($_SESSION['username'] == ""){
     $('#error_blank').modal('show');
    }
   }); 
+
+
+
+
+
 }); 
 
 
@@ -720,6 +728,10 @@ $(document).on('click', '#add_employee', function(){
         return flag;
         
       }
+
+
+
+
   </script>
 
 </body>
