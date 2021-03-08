@@ -345,7 +345,8 @@ if (isset($_POST['id'])) {
                                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                                 <h6 class="m-0 font-weight-bold text-primary"></h6> 
                                                 
-                                                <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#addEmployeeForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Employee</a>
+                                                <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#modalChildrenForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Employee</a>
+                                                
                                                 <!--<a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#dateRangeModal" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Generate Report</a> -->
                                                 </div>
                                                 <div class="card-body">
@@ -353,9 +354,9 @@ if (isset($_POST['id'])) {
                                                     <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="children_data" width="100%" cellspacing="0">
                                                     <thead class = "text-primary">
                                                     <tr>
-                                                        <th>FULL NAME</th>
-                                                        <th>DATE OF BIRTH</th>
-                                                        <th>ACTION</th>
+                                                        <th data-column-id="fullName">FULL NAME</th>
+                                                        <th data-column-id="dob">DATE OF BIRTH</th>
+                                                        <th >ACTION</th>
                                                         </tr>
                                                     </thead>
                                                     <tfoot class = "text-primary">
@@ -423,95 +424,41 @@ if (isset($_POST['id'])) {
 
 
 
-    <!-- Modal -->
-    <div class="modal fade" id="deny" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle"><b>Deny Applicant?</b></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="admindashboard.php" method="post">
-                    <div class="modal-body">
+    <!-- ADD CHILDREN FORM -->
+    <div class="modal fade" id="modalChildrenForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold">Add Children</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-3">
 
-                        <div class="form-group">
-                            <label for="exampleFormControlTextarea1"><b>State Remarks:</b></label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="remarks1" placeholder="State Here"></textarea>
-                        </div>
 
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <input type="hidden" name="tin" value="<?php echo $_SESSION['tin']; ?>">
-
-                        <input type="submit" class="btn btn-danger" value="YES" name="deny">
-                    </div>
-                </form>
+            <div class="md-form mb-5">
+            
+              <label data-error="wrong" data-success="right" for="form34">Full name</label>
+              <input type="text" name="fullname" id = "fullname" class="form-control validate" required>
+           
             </div>
-        </div>
-    </div>
-    <div class="modal fade" id="approve" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle"><b>Approve Applicant?</b></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="admindashboard.php" method="post">
-                    <div class="modal-body">
-                        <b>Update AEP Number:</b>
-                        <input type="text" class="form-control" placeholder="update AEP Number" name="aep">
-                        <br>
-                        <div class="form-group">
-                            <label for="exampleFormControlTextarea1"><b>State Remarks:</b></label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="remarks1" placeholder="State Here"></textarea>
-                        </div>
-                    </div>
 
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <input type="hidden" name="tin" value="<?php echo $_SESSION['tin']; ?>">
-
-                        <input type="submit" class="btn btn-primary" value="YES" name="approved">
-                    </div>
-                </form>
+            <div class="md-form mb-5">
+       
+              <label data-error="wrong" data-success="right" for="form29">Date of Birth</label>
+              <input type="text" name="dob" id = "dob" class="form-control validate" required>
+             
             </div>
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+          <button class="btn btn-primary" id = "add_children">Add data</button>
+          <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
+          </div>
         </div>
+      </div>
     </div>
-    <div class="modal fade" id="foreval" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle"><b>FOR EVALUATION</b></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="admindashboard.php" method="post">
-                    <div class="modal-body">
-
-                        <br>
-                        <div class="form-group">
-                            <label for="exampleFormControlTextarea1"><b>State Remarks:</b></label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="remarks1" placeholder="State Here"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <input type="hidden" name="tin" value="<?php echo $_SESSION['tin']; ?>">
-
-                        <input type="submit" class="btn btn-primary" value="submit" name="foreval">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+  
     <div class="modal fade" id="remarks" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -580,6 +527,48 @@ if (isset($_POST['id'])) {
     <script src="assets/js/demo/datatables-demo.js"></script>
 
     <script>
+        //FUNCTION FOR READING HTML TABLE ROWS
+       /* function myFunction() {
+        //alert(document.getElementById("children_data").rows[1].cells[0].innerHTML);
+        var children_data = document.getElementById('children_data');
+        var employeeiddb = document.getElementById("empID").value;
+        var TableData = new Array();
+
+        $('#children_data tr').each(function(row, tr){
+            TableData[row]={
+                "fullName" : $(tr).find('td:eq(0)').text()
+                , "dob" :$(tr).find('td:eq(1)').text()
+               
+            }
+        }); 
+        TableData.shift();
+
+        $.ajax({
+                url: 'view_employee_action.php',
+                type: 'post',
+                data: 
+                {
+                children_data:TableData,
+                employeeiddb:employeeiddb, 
+                action:'update_children'},
+
+                dataType: 'json',
+                success:function(response){
+
+                    var len = response.length;
+
+                    if(len > 0){
+
+                    alert("Exito");
+
+                    }
+
+                }
+            });
+
+            return false;
+
+        }*/
             $(document).ready(function(){
     
                 //fetch_data();
@@ -662,7 +651,7 @@ if (isset($_POST['id'])) {
                             middlename:middlename, 
                             lastname:lastname,
                             employeeiddb:employeeiddb,
-                            action:'update_employee'
+                            action:'add_children'
 
                         },
                         success:function(data){
@@ -674,6 +663,50 @@ if (isset($_POST['id'])) {
                         alert("Data Updated");
 
                         //$('#addEmployeeForm').modal('hide');
+                        }     
+                    }); 
+                    //}
+              
+            });
+
+
+
+
+            $(document).on('click', '#add_children', function(){
+                    var employeeiddb = document.getElementById("empID").value;
+                    var add_employee = "Success";
+                //validateData();
+                //var answer = validateData();
+                    var fullname = $('#fullname').val();
+                    var dob = $('#dob').val();
+
+
+                    
+
+                
+
+            //if(answer == 'N'){ //COMMENTED, USED FOR VALIDATION
+                    $.ajax({
+                        url:"view_employee_action",
+                        method:"POST",
+                        data:{
+
+                            fullname:fullname, 
+                            dob:dob, 
+                            employeeiddb:employeeiddb,
+                            action:'add_children'
+
+                        },
+                        success:function(data){
+                        // $('#add_employee').modal('hide');
+                        
+                        //COMMENTED FOR THE MEAN TIME
+                        // $('#user_data').DataTable().destroy();
+                        //fetch_data();
+                        alert("Data Added");
+
+                        $('#modalChildrenForm').modal('hide');
+                        fetch_children_data();
                         }     
                     }); 
                     //}

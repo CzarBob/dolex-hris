@@ -2,6 +2,8 @@
 //session_start();
 include "dbConnection.php";
 $columns = array('process', 'rating','fullname', 'email', 'comment',  'date_submitted');
+session_start();
+//$_SESSION['query2'] = '';
 //var_dump($_POST['action']);
 
 /*if($_POST["length"] != -1){
@@ -182,6 +184,8 @@ if (isset($_POST['action'])){
        return mysqli_num_rows($result);
       }*/
       
+      $_SESSION['query2'] = $data;
+      //var_dump($_SESSION['query2']);
       $output = array(
        //"draw"    => intval($_POST["draw"]),
        //"recordsTotal"  =>  get_all_data($connect),
@@ -196,9 +200,66 @@ if (isset($_POST['action'])){
 
 
 
-  }}
+    }
+  }
+
+
+  if (isset($_POST['action'])){
+    if ($_POST['action'] == 'add_children'){
+
+        /*if($_POST['track_num'] != ''){
+          $track_num = $_POST['track_num'];
+          $prov = $_POST['prov'];
+        }
+        else{
+          $track_num = $_POST['track_num2'];
+          $prov = "External";
+        }*/
+
+        //var_dump($_SESSION['query2']);
+        $fullname = $_POST['fullname'];
+        $dob = $_POST['dob'];
+        $empid  = $_POST['employeeiddb'];
+       
+        /*$email = $_POST['email'];
+        $position = $_POST['position'];
+        $datehired = $_POST['datehired'];
+        $slcredit = $_POST['slcredit'];
+        $vlcredit = $_POST['vlcredit'];*/
+      
+        $email = 'X';
+        $position = 'X';
+        $datehired = 'X';
+        $slcredit = 'X';
+        $vlcredit = 'X';
+      
+      
+       // echo $fullName;
+        /*if ($fullName == 'BAM') {
+              echo "success"; //anything on success
+          } else {
+            die("<div>Error: ".$fullName."</div>");
+           
+          }*/
+        $dateAdded = date("Y-m-d H:i:s");
+        $que = "INSERT INTO `tbl_employee_CHILDREN` SET 
+        EMPID = '".$empid."',
+        FULLNAME = '".$fullname."',
+        DOB = '".$dob."',
+        CANCELLED = 'N'
+        "; 
+      
+
+      
+        $query = $connect->query($que) or die($connect->error); 
+
+    }
+  }
+
 
 }
+
+
 
 
 ?>
