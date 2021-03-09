@@ -576,6 +576,7 @@ if (isset($_POST['id'])) {
                 
                 function fetch_children_data(){
                     //alert('pota');
+                    
                     var employeeiddb = document.getElementById("empID").value;
                     var dataTable = $('#children_data').DataTable({
                     /* "processing" : true,
@@ -622,8 +623,51 @@ if (isset($_POST['id'])) {
                             });
 
                             fetch_children_data();
-                    }  
+                }  
+
+
+
+                
+
+
+                $(document).on('click', '#add_children', function(){
+                    var employeeiddb = document.getElementById("empID").value;
+                    var add_employee = "Success";
+                        //validateData();
+                        //var answer = validateData();
+                            var fullname = $('#fullname').val();
+                            var dob = $('#dob').val();    
+
+          
+                            $.ajax({
+                                url:"view_employee_action",
+                                method:"POST",
+                                data:{
+                                    fullname:fullname, 
+                                    dob:dob, 
+                                    employeeiddb:employeeiddb,
+                                    action:'add_children'
+                                },
+                                success:function(data){
+                                alert("Data Added");
+                                //setInterval('refreshPage()', 5000);
+                                $('#children_data').DataTable().ajax.reload();
+                                $('#modalChildrenForm').modal('hide');
+                               
+                                }     
+                            }); 
+                });
+            
+            
+            
+            
+            
+            
             });
+
+            function refreshPage() {
+                    location.reload(true);
+                }
 
 
             $(document).on('click', '#update_employee', function(){
@@ -672,46 +716,7 @@ if (isset($_POST['id'])) {
 
 
 
-            $(document).on('click', '#add_children', function(){
-                    var employeeiddb = document.getElementById("empID").value;
-                    var add_employee = "Success";
-                //validateData();
-                //var answer = validateData();
-                    var fullname = $('#fullname').val();
-                    var dob = $('#dob').val();
-
-
-                    
-
-                
-
-            //if(answer == 'N'){ //COMMENTED, USED FOR VALIDATION
-                    $.ajax({
-                        url:"view_employee_action",
-                        method:"POST",
-                        data:{
-
-                            fullname:fullname, 
-                            dob:dob, 
-                            employeeiddb:employeeiddb,
-                            action:'add_children'
-
-                        },
-                        success:function(data){
-                        // $('#add_employee').modal('hide');
-                        
-                        //COMMENTED FOR THE MEAN TIME
-                        // $('#user_data').DataTable().destroy();
-                        //fetch_data();
-                        alert("Data Added");
-
-                        $('#modalChildrenForm').modal('hide');
-                        fetch_children_data();
-                        }     
-                    }); 
-                    //}
-              
-            });
+           
 
     </script>
 
