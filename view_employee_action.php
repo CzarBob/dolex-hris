@@ -206,7 +206,7 @@ if (isset($_POST['action'])){
 
   if (isset($_POST['action'])){
     if ($_POST['action'] == 'add_children'){
-
+        //
         /*if($_POST['track_num'] != ''){
           $track_num = $_POST['track_num'];
           $prov = $_POST['prov'];
@@ -248,10 +248,7 @@ if (isset($_POST['action'])){
         DOB = '".$dob."',
         CANCELLED = 'N'
         "; 
-      
-
-      
-        $query = $connect->query($que) or die($connect->error); 
+       // $query = $connect->query($que) or die($connect->error); 
 
     }
   }

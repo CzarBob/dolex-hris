@@ -153,7 +153,7 @@ if (isset($_POST['id'])) {
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Welcome, AEP</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Welcome, User</span>
                                 <img class="img-profile rounded-circle" src="assets/img/lglogo.png">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -226,13 +226,13 @@ if (isset($_POST['id'])) {
                                                 <td style="width: 10%;"><?php echo $_SESSION['marital_status']; ?></td>
                                                 <td style="width: 5%;"><b>TIN:</b></td>
                                                 <td style="width: 15%;"><?php echo $_SESSION['tin']; ?></td>
-                                            </tr> -->
+                                            </tr> 
                                             <tr>
                                                 <td colspan="2"></td>
                                                 <td colspan="2"></td>
                                                 <td colspan="2"></td>
                                                 <td colspan="2" style = "align: left"><button class="btn btn-primary" id = "update_employee">     Update Employee Details  </button></td>                                                
-                                            </tr>    
+                                            </tr>    -->
                                       </table> 
                                     </div>
                                 </div>
@@ -385,6 +385,35 @@ if (isset($_POST['id'])) {
                           
                             </div>
                         </div>
+
+
+
+
+                        <!-- UPDATE OR CANCEL SECTION -->
+
+                        <div class="col-xl-12 col-lg-7">
+                            <div class="card shadow mb-4">
+                                
+                                <!-- Card Body -->
+                               
+                                   
+                                    <div class="col-md-12">
+    
+                                       <table class=" table">
+                                            <tr>
+                                                <td style="width: 100%;" colspan="2" style = "align: center"><button  style="width: 100%;" class="btn btn-primary" id = "update_employee">     Update Employee Details  </button></td> 
+                                                                                       
+                                            </tr>  
+                                            <tr>
+                                           
+                                                <td style="width: 100%;"  colspan="2" style = "align: left"><button  style="width: 100%;" class="btn btn-primary" id = "update_employee">     Cancel  </button></td>                                               
+                                            </tr>  
+                                      </table> 
+                                    </div>
+                         
+                            </div>
+                        </div>
+
 
 
 
@@ -684,7 +713,7 @@ if (isset($_POST['id'])) {
 
                 
 
-            //if(answer == 'N'){ //COMMENTED, USED FOR VALIDATION
+                 //if(answer == 'N'){ //COMMENTED, USED FOR VALIDATION
                     $.ajax({
                         url:"update_employee",
                         method:"POST",
