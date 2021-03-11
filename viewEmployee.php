@@ -406,7 +406,7 @@ if (isset($_POST['id'])) {
                                             </tr>  
                                             <tr>
                                            
-                                                <td style="width: 100%;"  colspan="2" style = "align: left"><button  style="width: 100%;" class="btn btn-primary" id = "update_employee">     Cancel  </button></td>                                               
+                                                <td style="width: 100%;"  colspan="2" style = "align: left"><button  style="width: 100%;" class="btn btn-primary" id = "cancel_employee">     Cancel  </button></td>                                               
                                             </tr>  
                                       </table> 
                                     </div>
@@ -725,6 +725,50 @@ if (isset($_POST['id'])) {
                             lastname:lastname,
                             employeeiddb:employeeiddb,
                             action:'add_children'
+
+                        },
+                        success:function(data){
+                        // $('#add_employee').modal('hide');
+                        
+                        //COMMENTED FOR THE MEAN TIME
+                        // $('#user_data').DataTable().destroy();
+                        //fetch_data();
+                        alert("Data Updated");
+
+                        //$('#addEmployeeForm').modal('hide');
+                        }     
+                    }); 
+                    //}
+              
+            });
+
+
+            $(document).on('click', '#cancel_employee', function(){
+                    var employeeiddb = document.getElementById("empID").value;
+                    var cancel_employee = "Success";
+                //validateData();
+                //var answer = validateData();
+                    var empid = $('#employeeid').val();
+                    var firstname = $('#firstname').val();
+                    var middlename = $('#middlename').val();
+                    var lastname = $('#lastname').val();
+
+                    
+
+                
+
+                 //if(answer == 'N'){ //COMMENTED, USED FOR VALIDATION
+                    $.ajax({
+                        url:"view_employee_action",
+                        method:"POST",
+                        data:{
+                            add_employee:add_employee,
+                            empid:empid, 
+                            firstname:firstname, 
+                            middlename:middlename, 
+                            lastname:lastname,
+                            employeeiddb:employeeiddb,
+                            action:'cancel_update'
 
                         },
                         success:function(data){

@@ -254,6 +254,57 @@ if (isset($_POST['action'])){
   }
 
 
+
+  if (isset($_POST['action'])){
+    if ($_POST['action'] == 'cancel_update'){
+
+
+        var_dump($_SESSION['query2']);
+        $fullname = $_POST['fullname'];
+        $dob = $_POST['dob'];
+        $empid  = $_POST['employeeiddb'];
+       
+        /*$email = $_POST['email'];
+        $position = $_POST['position'];
+        $datehired = $_POST['datehired'];
+        $slcredit = $_POST['slcredit'];
+        $vlcredit = $_POST['vlcredit'];*/
+      
+        $email = 'X';
+        $position = 'X';
+        $datehired = 'X';
+        $slcredit = 'X';
+        $vlcredit = 'X';
+      
+      
+       // echo $fullName;
+        /*if ($fullName == 'BAM') {
+              echo "success"; //anything on success
+          } else {
+            die("<div>Error: ".$fullName."</div>");
+           
+          }*/
+        $dateAdded = date("Y-m-d H:i:s");
+        $que = "INSERT INTO `tbl_employee_children` SET 
+        
+        CANCELLED = 'N'
+        "; 
+
+
+        $query = 'UPDATE tbl_employee_children 
+        SET CANCELLED = "N"
+         WHERE EMPLOYEEID = "'.$empid.'"';
+
+          $result = mysqli_query($connect, $query);                     
+          // $query = $connect->query($que) or die($connect->error); 
+
+
+          
+
+    }
+  }
+
+
 }
 
 
