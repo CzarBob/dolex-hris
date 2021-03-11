@@ -247,6 +247,7 @@ if (isset($_POST['action'])){
 
 
 
+<<<<<<< HEAD
 
   if (isset($_POST['action'])){
     if ($_POST['action'] == 'cancel_employee'){
@@ -254,12 +255,29 @@ if (isset($_POST['action'])){
         $children_data = $_SESSION['query2'];
         //var_dump($_SESSION['query2']);
         $empid  = $_POST['employeeiddb'];
+=======
+  if (isset($_POST['action'])){
+    if ($_POST['action'] == 'cancel_update'){
+
+
+        var_dump($_SESSION['query2']);
+        $fullname = $_POST['fullname'];
+        $dob = $_POST['dob'];
+        $empid  = $_POST['employeeiddb'];
+       
+        /*$email = $_POST['email'];
+        $position = $_POST['position'];
+        $datehired = $_POST['datehired'];
+        $slcredit = $_POST['slcredit'];
+        $vlcredit = $_POST['vlcredit'];*/
+>>>>>>> 7419c5008ca14f17674ae85ea27228438af1bed6
       
         $email = 'X';
         $position = 'X';
         $datehired = 'X';
         $slcredit = 'X';
         $vlcredit = 'X';
+<<<<<<< HEAD
         $i = 0;
 
         $dateAdded = date("Y-m-d H:i:s");
@@ -326,6 +344,33 @@ if (isset($_POST['action'])){
 
 
 
+=======
+      
+      
+       // echo $fullName;
+        /*if ($fullName == 'BAM') {
+              echo "success"; //anything on success
+          } else {
+            die("<div>Error: ".$fullName."</div>");
+           
+          }*/
+        $dateAdded = date("Y-m-d H:i:s");
+        $que = "INSERT INTO `tbl_employee_children` SET 
+        
+        CANCELLED = 'N'
+        "; 
+
+
+        $query = 'UPDATE tbl_employee_children 
+        SET CANCELLED = "N"
+         WHERE EMPLOYEEID = "'.$empid.'"';
+
+          $result = mysqli_query($connect, $query);                     
+          // $query = $connect->query($que) or die($connect->error); 
+
+
+          
+>>>>>>> 7419c5008ca14f17674ae85ea27228438af1bed6
 
     }
   }

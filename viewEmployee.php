@@ -733,13 +733,25 @@ if (isset($_POST['id'])) {
 
             $(document).on('click', '#cancel_employee', function(){
                     var employeeiddb = document.getElementById("empID").value;
+<<<<<<< HEAD
                     var add_employee = "Success";
+=======
+                    var cancel_employee = "Success";
+>>>>>>> 7419c5008ca14f17674ae85ea27228438af1bed6
                 //validateData();
                 //var answer = validateData();
                     var empid = $('#employeeid').val();
                     var firstname = $('#firstname').val();
                     var middlename = $('#middlename').val();
                     var lastname = $('#lastname').val();
+<<<<<<< HEAD
+=======
+
+                    
+
+                
+
+>>>>>>> 7419c5008ca14f17674ae85ea27228438af1bed6
                  //if(answer == 'N'){ //COMMENTED, USED FOR VALIDATION
                     $.ajax({
                         url:"view_employee_action",
@@ -751,7 +763,11 @@ if (isset($_POST['id'])) {
                             middlename:middlename, 
                             lastname:lastname,
                             employeeiddb:employeeiddb,
+<<<<<<< HEAD
                             action:'cancel_employee'
+=======
+                            action:'cancel_update'
+>>>>>>> 7419c5008ca14f17674ae85ea27228438af1bed6
 
                         },
                         success:function(data){
@@ -766,6 +782,7 @@ if (isset($_POST['id'])) {
                         }     
                     }); 
                     //}
+<<<<<<< HEAD
             });
 
 
@@ -793,6 +810,9 @@ if (isset($_POST['id'])) {
                         }     
                     }); 
 
+=======
+              
+>>>>>>> 7419c5008ca14f17674ae85ea27228438af1bed6
             });
 
 
