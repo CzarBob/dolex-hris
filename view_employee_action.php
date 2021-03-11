@@ -163,8 +163,8 @@ if (isset($_POST['action'])){
       // $sub_array[] = "<a href='employee_detail.php'  id='ID' data-toggle='modal' data-id='".$row['ID']."'>View</a> / 
                 $sub_array[] = "<a href='viewEmployee.php?id=".$row['ID']."' data-id='".$row['ID']."'> HERE</a> / 
                 <a href='#addEmployeeForm'  id='custId' data-toggle='modal' data-id='".$row['ID']."'>Edit</a> / 
-                <a href='#addEmployeeForm'  id='custId' data-toggle='modal' data-id='".$row['ID']."'>Delete</a>";  
-            
+                <button type='button' name='delete_children' class='btn btn-danger btn-sm delete_children' data-id='".$row['ID']."'>Delete</button>";  
+              //<a data-toggle='modal' id = 'delete-children' data-id='".$row['ID']."'>Delete</a>
       
                 
       /*
@@ -233,14 +233,6 @@ if (isset($_POST['action'])){
         $slcredit = 'X';
         $vlcredit = 'X';
       
-      
-       // echo $fullName;
-        /*if ($fullName == 'BAM') {
-              echo "success"; //anything on success
-          } else {
-            die("<div>Error: ".$fullName."</div>");
-           
-          }*/
         $dateAdded = date("Y-m-d H:i:s");
         $que = "INSERT INTO `tbl_employee_CHILDREN` SET 
         EMPID = '".$empid."',
@@ -249,6 +241,91 @@ if (isset($_POST['action'])){
         CANCELLED = 'N'
         "; 
        // $query = $connect->query($que) or die($connect->error); 
+
+    }
+  }
+
+
+
+
+  if (isset($_POST['action'])){
+    if ($_POST['action'] == 'cancel_employee'){
+
+        $children_data = $_SESSION['query2'];
+        //var_dump($_SESSION['query2']);
+        $empid  = $_POST['employeeiddb'];
+      
+        $email = 'X';
+        $position = 'X';
+        $datehired = 'X';
+        $slcredit = 'X';
+        $vlcredit = 'X';
+        $i = 0;
+
+        $dateAdded = date("Y-m-d H:i:s");
+        $query = 'UPDATE tbl_employee_children
+        SET CANCELLED = "Y", 
+        WHERE ID = "'.$_POST["employeeiddb"].'"';
+        $result = mysqli_query($connect, $query);
+
+
+        foreach($children_data as $x ) {
+
+          //echo "$x[0] + $x[1]<br>";
+          $que = "INSERT INTO `tbl_employee_children` SET 
+          EMPID = '".$empid."',
+          FULLNAME = '".$x[0]."',
+          DOB = '".$x[1]."',
+          CANCELLED = 'N'
+          "; 
+
+          //echo $que;
+          $result = mysqli_query($connect, $que);
+          $i++; 
+
+        }
+
+   
+         //$result = mysqli_query($connect, $query);
+    }
+  }
+
+
+
+
+  if (isset($_POST['action'])){
+    if ($_POST['action'] == 'delete_children'){
+
+      $query = 'UPDATE tbl_employee_children
+        SET CANCELLED = "Y", 
+        WHERE ID = "'.$_POST["id"].'" AND CANCELLED = "N" ';
+
+      echo $query;
+      //$number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
+      
+      $result = mysqli_query($connect, $query );
+      
+      $data = array();
+       
+     
+      
+
+      
+      //$_SESSION['query2'] = $data;
+      //var_dump($_SESSION['query2']);
+      $output = array(
+       //"draw"    => intval($_POST["draw"]),
+       //"recordsTotal"  =>  get_all_data($connect),
+       //"recordsFiltered" => $number_filter_row,
+       "data"    => $data
+      );
+      
+      echo json_encode($output);
+
+
+
+
+
 
     }
   }
