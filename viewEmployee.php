@@ -1,33 +1,33 @@
 <?php
-
+include "dbConnection.php";
 session_start();
 
 //include 'adminviewapplicant1.php';
-if (isset($_POST['id'])) {
+if (isset($_GET['id'])) {
 
+    $id = $_GET['id'];
 
-    $id = $_POST['id'];
+    $query = 'SELECT * FROM tbl_employee_children WHERE EMPID = "'.$id.'" AND CANCELLED = "N" ';
 
-    $connect = mysqli_connect("localhost", "root", "", "citizens_charter");
-    //$viewquery = "SELECT * FROM `aep_user_details` JOIN aep_user_details_2 ON aep_user_details.tin = aep_user_details_2.tin JOIN aep_user_details_3 ON aep_user_details_2.tin = aep_user_details_3.tin JOIN aep_user_employment on aep_user_details_3.tin = aep_user_employment.tin JOIN aep_user_status ON aep_user_status.tin = aep_user_employment.tin WHERE aep_user_details.tin = '" . $tin . "'";
-    $viewquery = "SELECT * FROM `citizen_charter`  WHERE ID = '" . $id . "'";
-    $viewresults = mysqli_query($connect, $viewquery);
-
-    while ($row = mysqli_fetch_assoc($viewresults)) {
-
-        $_SESSION["id"] = $row["ID"];
-        $_SESSION["firstname"] = $row["FIRSTNAME"];
-        $_SESSION["middlename"] = $row["MIDDLENAME"];
-        $_SESSION["lastname"] = $row["LASTNAME"];
-
-        # code...
-    }
+     // var_dump($query);
+      $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
+      
+      $result = mysqli_query($connect, $query );
+      
+      $data = array();
+       
+      while($row = mysqli_fetch_array($result)){
+         
+        $sub_array = array();
+        $sub_array[] = $row["FULLNAME"];
+        $sub_array[] = $row["DOB"];
+        $data[] = $sub_array;
+      }
+      $_SESSION['query3'] = $data;
+      
 }
 
-
 //include 'adminlogout.php';
-
-
 ?>
 
 <!DOCTYPE html>
@@ -212,10 +212,18 @@ if (isset($_POST['id'])) {
                                        <table class=" table">
                                             <tr>
                                                 <td colspan="1" style="width: 10%;"><b>Full Name:</b> </td>
-                                                <td colspan="2" style="width: 30%;"><input type="text" name="employeeid" id = "employeeid" class="form-control validate" required></td> 
-                                                <td style="width: 20%;"><input type="text" name="firstname" id = "firstname" class="form-control validate" required></td> 
-                                                <td colspan="2" style="width: 25%;"><input type="text" name="middlename" id = "middlename" class="form-control validate" required></td>
-                                                <td style="width: 15%;"><input type="text" name="lastname" id = "lastname" class="form-control validate" required></td> 
+                                                <td colspan="2" style="width: 30%;"><input type="text" name="employeeid" id = "employeeid"  placeholder="First Name" class="form-control validate" required></td> 
+                                                <td style="width: 20%;"><input type="text" name="firstname" id = "firstname" class="form-control validate" required placeholder="Middle Name"></td> 
+                                                <td colspan="2" style="width: 25%;"><input type="text" name="middlename" id = "middlename" class="form-control validate" required placeholder="Last Name"></td>
+                                                <td style="width: 15%;"><input type="text" name="lastname" id = "lastname" class="form-control validate" required placeholder="Extension"></td> 
+                                            </tr>
+                                            <tr>
+                                                <td colspan="1" style="width: 10%;"><b>Username</b> </td>
+                                                <td colspan="2" style="width: 30%;"><input type="text" name="username" id = "username"  placeholder="User Name" class="form-control validate" required></td> 
+                                                <td colspan="2" style="width: 30%;"><input type="text" name="username" id = "username"  placeholder="User Name" class="form-control validate" required></td> 
+                                                <td style="width: 20%;"><input type="text" name="firstname" id = "firstname" class="form-control validate" required placeholder="Middle Name"></td> 
+                                                <td colspan="2" style="width: 25%;"><input type="text" name="middlename" id = "middlename" class="form-control validate" required placeholder="Last Name"></td>
+                                                <td style="width: 15%;"><input type="text" name="lastname" id = "lastname" class="form-control validate" required placeholder="Extension"></td> 
                                             </tr>
                                            <!-- <tr>
                                                 <td style="width: 10%;"><b>Nationality:</b> </td>
@@ -458,7 +466,7 @@ if (isset($_POST['id'])) {
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header text-center">
-            <h4 class="modal-title w-100 font-weight-bold">Add Children</h4>
+            <h4 class="modal-title w-100 font-weight-bold" id="modal_title">Add Children</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -481,42 +489,56 @@ if (isset($_POST['id'])) {
             </div>
           </div>
           <div class="modal-footer d-flex justify-content-center">
+         
           <button class="btn btn-primary" id = "add_children">Add data</button>
           <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
           </div>
         </div>
       </div>
     </div>
-  
-    <div class="modal fade" id="remarks" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle"><b>Remarks</b></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="admindashboard.php" method="post">
-                    <div class="modal-body">
 
-                        <br>
-                        <div class="form-group">
-                            <label for="exampleFormControlTextarea1"><b>State Remarks:</b></label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="remarks1" placeholder="State Here"></textarea>
-                        </div>
-                    </div>
+    <!-- EDIT CHILDREN FORM -->
+    <div class="modal fade" id="modalEditChildrenForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold" id="modal_title">Update Children Details</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-3">
 
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <input type="hidden" name="tin" value="<?php echo $_SESSION['tin']; ?>">
 
-                        <input type="submit" class="btn btn-primary" value="submit" name="foreval">
-                    </div>
-                </form>
+            <div class="md-form mb-5">
+            
+              <label data-error="wrong" data-success="right" for="form34">Full name</label>
+              <input type="text" name="fullname_update" id = "fullname_update" class="form-control validate" required>
+           
             </div>
+
+            <div class="md-form mb-5">
+       
+              <label data-error="wrong" data-success="right" for="form29">Date of Birth</label>
+              <input type="text" name="dob_update" id = "dob_update" class="form-control validate" required>
+             
+            </div>
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+          <input type="hidden" name="hidden_id" id="hidden_id" />
+          <button class="btn btn-primary" id = "submit_update_children">Update data</button>
+          <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
+          </div>
         </div>
+      </div>
     </div>
+  
+    
+
+
+    
+  
+    
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -598,6 +620,9 @@ if (isset($_POST['id'])) {
             return false;
 
         }*/
+
+            
+
             $(document).ready(function(){
     
                 //fetch_data();
@@ -678,9 +703,42 @@ if (isset($_POST['id'])) {
                                 },
                                 success:function(data){
                                 alert("Data Added");
-                                //setInterval('refreshPage()', 5000);
+
                                 $('#children_data').DataTable().ajax.reload();
                                 $('#modalChildrenForm').modal('hide');
+                               
+                                }     
+                            }); 
+                });
+
+
+
+
+                $(document).on('click', '#submit_update_children', function(){
+                    var employeeiddb = document.getElementById("empID").value;
+                    var add_employee = "Success";
+                        //validateData();
+                        //var answer = validateData();
+                            var fullname = $('#fullname_update').val();
+                            var hidden_id = $('#hidden_id').val();
+                            var dob = $('#dob_update').val();    
+
+          
+                            $.ajax({
+                                url:"view_employee_action",
+                                method:"POST",
+                                data:{
+                                    fullname:fullname, 
+                                    dob:dob, 
+                                    employeeiddb:employeeiddb,
+                                    id:hidden_id,
+                                    action:'submit_update_children'
+                                },
+                                success:function(data){
+                                alert("Data Updated");
+
+                                $('#children_data').DataTable().ajax.reload();
+                                $('#modalEditChildrenForm').modal('hide');
                                
                                 }     
                             }); 
@@ -733,41 +791,26 @@ if (isset($_POST['id'])) {
 
             $(document).on('click', '#cancel_employee', function(){
                     var employeeiddb = document.getElementById("empID").value;
-<<<<<<< HEAD
-                    var add_employee = "Success";
-=======
                     var cancel_employee = "Success";
->>>>>>> 7419c5008ca14f17674ae85ea27228438af1bed6
-                //validateData();
-                //var answer = validateData();
+
                     var empid = $('#employeeid').val();
                     var firstname = $('#firstname').val();
                     var middlename = $('#middlename').val();
                     var lastname = $('#lastname').val();
-<<<<<<< HEAD
-=======
 
                     
 
                 
 
->>>>>>> 7419c5008ca14f17674ae85ea27228438af1bed6
                  //if(answer == 'N'){ //COMMENTED, USED FOR VALIDATION
                     $.ajax({
                         url:"view_employee_action",
                         method:"POST",
                         data:{
-                            add_employee:add_employee,
+                            
                             empid:empid, 
-                            firstname:firstname, 
-                            middlename:middlename, 
-                            lastname:lastname,
                             employeeiddb:employeeiddb,
-<<<<<<< HEAD
-                            action:'cancel_employee'
-=======
                             action:'cancel_update'
->>>>>>> 7419c5008ca14f17674ae85ea27228438af1bed6
 
                         },
                         success:function(data){
@@ -776,13 +819,13 @@ if (isset($_POST['id'])) {
                         //COMMENTED FOR THE MEAN TIME
                         // $('#user_data').DataTable().destroy();
                         //fetch_data();
-                        alert("Data Updated");
+                        //alert("Data Updated");
 
                         //$('#addEmployeeForm').modal('hide');
+                        window.location.href="employee_detail";
                         }     
                     }); 
                     //}
-<<<<<<< HEAD
             });
 
 
@@ -805,14 +848,51 @@ if (isset($_POST['id'])) {
                         success:function(data){
                        
                         alert("Data Deleted");
+                        $('#children_data').DataTable().ajax.reload();
 
                         
                         }     
                     }); 
 
-=======
-              
->>>>>>> 7419c5008ca14f17674ae85ea27228438af1bed6
+            });
+
+
+            $(document).on('click', '.update_children', function(){
+                     var id = $(this).data('id');
+                    // alert(id);
+                    var employeeiddb = document.getElementById("empID").value;
+                    var add_employee = "Success";
+                    //
+                   
+
+                    $.ajax({
+                        url:"view_employee_action",
+                        method:"POST",
+                        data:{
+                            id:id, 
+                            employeeiddb:employeeiddb, //THIS IS AN ID FROM tbl_employee
+                            action:'fetch_single_children'
+
+                        },
+                        success:function(data){
+                            var values = $.parseJSON(data)
+                        //$('#modal_title').text('Edit Children Data');
+                        //$('#add_children').text('Update Children Data');
+                        //alert(values.fullname);
+                        $('#employeeid_update').val(values.employeeid);
+                        $('#fullname_update').val(values.fullname);
+                        $('#hidden_id').val(values.hidden_id);
+                        $('#dob_update').val(values.dob);
+                    
+                        $('#modalEditChildrenForm').modal('show');
+
+                        //alert("Children Data Updated");
+                       
+
+                        
+                        }     
+                    }); 
+
             });
 
 

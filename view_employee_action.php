@@ -15,8 +15,6 @@ $query = '';
 if (isset($_POST['action'])){
   if ($_POST['action'] == 'fetch_single'){
     $query = 'SELECT * FROM tbl_employee WHERE ID = "'.$_POST["employeeiddb"].'" ';
-
-
     $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
 
     $result = mysqli_query($connect, $query);
@@ -161,8 +159,12 @@ if (isset($_POST['action'])){
                   <input type='submit' class ='btn btn-sm btn-info btn-block' name ='view' id = 'submit' value ='VIEW (?)'>
                 </form> ";*/
       // $sub_array[] = "<a href='employee_detail.php'  id='ID' data-toggle='modal' data-id='".$row['ID']."'>View</a> / 
-                $sub_array[] = "<a href='viewEmployee.php?id=".$row['ID']."' data-id='".$row['ID']."'> HERE</a> / 
-                <a href='#addEmployeeForm'  id='custId' data-toggle='modal' data-id='".$row['ID']."'>Edit</a> / 
+                //$sub_array[] = "<a href='viewEmployee.php?id=".$row['ID']."' data-id='".$row['ID']."'> HERE</a> /  
+
+                //<button type='button' name='update_children' class='btn btn-warning btn-sm update_children' data-toggle='modal' data-target='#modalChildrenForm' data-id='".$row['ID']."'>Update</button>  
+                $sub_array[] = "
+                
+                <button type='button' name='update_children' class='btn btn-warning btn-sm update_children'  data-id='".$row['ID']."'><i class='fas fa-edit'></i></button>
                 <button type='button' name='delete_children' class='btn btn-danger btn-sm delete_children' data-id='".$row['ID']."'>Delete</button>";  
               //<a data-toggle='modal' id = 'delete-children' data-id='".$row['ID']."'>Delete</a>
       
@@ -185,6 +187,7 @@ if (isset($_POST['action'])){
       }*/
       
       $_SESSION['query2'] = $data;
+      
       //var_dump($_SESSION['query2']);
       $output = array(
        //"draw"    => intval($_POST["draw"]),
@@ -240,29 +243,19 @@ if (isset($_POST['action'])){
         DOB = '".$dob."',
         CANCELLED = 'N'
         "; 
-       // $query = $connect->query($que) or die($connect->error); 
+        $query = $connect->query($que) or die($connect->error); 
 
     }
   }
 
 
 
-<<<<<<< HEAD
-
-  if (isset($_POST['action'])){
-    if ($_POST['action'] == 'cancel_employee'){
-
-        $children_data = $_SESSION['query2'];
-        //var_dump($_SESSION['query2']);
-        $empid  = $_POST['employeeiddb'];
-=======
   if (isset($_POST['action'])){
     if ($_POST['action'] == 'cancel_update'){
 
 
-        var_dump($_SESSION['query2']);
-        $fullname = $_POST['fullname'];
-        $dob = $_POST['dob'];
+        //var_dump($_SESSION['query2']);
+       
         $empid  = $_POST['employeeiddb'];
        
         /*$email = $_POST['email'];
@@ -270,21 +263,25 @@ if (isset($_POST['action'])){
         $datehired = $_POST['datehired'];
         $slcredit = $_POST['slcredit'];
         $vlcredit = $_POST['vlcredit'];*/
->>>>>>> 7419c5008ca14f17674ae85ea27228438af1bed6
       
         $email = 'X';
         $position = 'X';
         $datehired = 'X';
         $slcredit = 'X';
         $vlcredit = 'X';
-<<<<<<< HEAD
+      
+      
         $i = 0;
 
         $dateAdded = date("Y-m-d H:i:s");
         $query = 'UPDATE tbl_employee_children
-        SET CANCELLED = "Y", 
-        WHERE ID = "'.$_POST["employeeiddb"].'"';
+        SET CANCELLED = "Y" 
+        WHERE EMPID = "'.$_POST["employeeiddb"].'"';
+
+        //var_dump($query);
         $result = mysqli_query($connect, $query);
+
+        $children_data =  $_SESSION['query3'];
 
 
         foreach($children_data as $x ) {
@@ -303,76 +300,108 @@ if (isset($_POST['action'])){
 
         }
 
-   
-         //$result = mysqli_query($connect, $query);
+          
+
     }
   }
 
 
+  if (isset($_POST['action'])){
+    if ($_POST['action'] == 'submit_update_children'){
+
+      
+
+      $fullname = $_POST['fullname'];
+      $dob = $_POST['dob'];
+      //$empid  = $_POST['employeeiddb'];
+      $empid  = $_POST['id'];
+     
+     
+    
+      $i = 0;
+
+      $dateAdded = date("Y-m-d H:i:s");
+      $query = 'UPDATE tbl_employee_children
+      SET FULLNAME =  "'.$fullname.'",
+      DOB = "'.$dob.'"
+
+      WHERE ID = "'.$_POST["id"].'"';
+
+      //var_dump($query);
+      $result = mysqli_query($connect, $query);
+
+
+    }
+  }
 
 
   if (isset($_POST['action'])){
     if ($_POST['action'] == 'delete_children'){
 
       $query = 'UPDATE tbl_employee_children
-        SET CANCELLED = "Y", 
+        SET CANCELLED = "Y" 
         WHERE ID = "'.$_POST["id"].'" AND CANCELLED = "N" ';
 
       echo $query;
       //$number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
       
       $result = mysqli_query($connect, $query );
-      
-      $data = array();
-       
-     
-      
-
-      
-      //$_SESSION['query2'] = $data;
-      //var_dump($_SESSION['query2']);
-      $output = array(
-       //"draw"    => intval($_POST["draw"]),
-       //"recordsTotal"  =>  get_all_data($connect),
-       //"recordsFiltered" => $number_filter_row,
-       "data"    => $data
-      );
-      
-      echo json_encode($output);
-
-
-
-
-
-=======
-      
-      
-       // echo $fullName;
-        /*if ($fullName == 'BAM') {
-              echo "success"; //anything on success
-          } else {
-            die("<div>Error: ".$fullName."</div>");
-           
-          }*/
-        $dateAdded = date("Y-m-d H:i:s");
-        $que = "INSERT INTO `tbl_employee_children` SET 
-        
-        CANCELLED = 'N'
-        "; 
-
-
-        $query = 'UPDATE tbl_employee_children 
-        SET CANCELLED = "N"
-         WHERE EMPLOYEEID = "'.$empid.'"';
-
-          $result = mysqli_query($connect, $query);                     
-          // $query = $connect->query($que) or die($connect->error); 
-
-
-          
->>>>>>> 7419c5008ca14f17674ae85ea27228438af1bed6
 
     }
+  }
+
+
+
+
+
+  if ($_POST['action'] == 'fetch_single_children'){
+      $query = 'SELECT * FROM tbl_employee_children WHERE ID = "'.$_POST["id"].'" AND CANCELLED != "Y" ';
+
+      //var_dump($query);
+
+      $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
+
+      $result = mysqli_query($connect, $query);
+
+      $data = array();
+      
+      while($row = mysqli_fetch_array($result)){
+        
+      /*  $sub_array = array();
+
+        $sub_array['employeeid'] = $row['EMPID'];
+        $sub_array['fullname'] = $row['FULLNAME'];
+        $sub_array['dob'] = $row['DOB'];
+
+
+        $data[] = $sub_array;*/
+
+
+        $sub_array = array();
+        $sub_array['hidden_id'] = $row['ID'];
+        $sub_array['employeeid'] = $row['EMPID'];
+        $sub_array['fullname'] = $row['FULLNAME'];
+        $sub_array['dob'] = $row['DOB'];
+
+
+        $data[] = $sub_array;
+      }
+
+
+
+    $output = array(
+      //"draw"    => intval($_POST["draw"]),
+      //"recordsTotal"  =>  get_all_data($connect),
+      //"recordsFiltered" => $number_filter_row,
+      "data"    => $sub_array
+      );
+      //var_dump($data[]);
+
+    echo json_encode($sub_array);
+    //var_dump($sub_array[0]);
+    //echo json_encode($data);
+
+
   }
 
 
