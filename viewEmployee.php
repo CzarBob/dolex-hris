@@ -207,47 +207,346 @@ if (isset($_GET['id'])) {
                                 <div class="card-body">
                                     <div class="col-md-12">
                                     </div>
-                                    <div class="col-md-12">
+                                     <!-- <div class="col-md-12">
     
-                                       <table class=" table">
-                                            <tr>
-                                                <td colspan="1" style="width: 10%;"><b>Full Name:</b> </td>
-                                                <td colspan="2" style="width: 30%;"><input type="text" name="employeeid" id = "employeeid"  placeholder="First Name" class="form-control validate" required></td> 
-                                                <td style="width: 20%;"><input type="text" name="firstname" id = "firstname" class="form-control validate" required placeholder="Middle Name"></td> 
-                                                <td colspan="2" style="width: 25%;"><input type="text" name="middlename" id = "middlename" class="form-control validate" required placeholder="Last Name"></td>
-                                                <td style="width: 15%;"><input type="text" name="lastname" id = "lastname" class="form-control validate" required placeholder="Extension"></td> 
-                                            </tr>
-                                            <tr>
-                                                <td colspan="1" style="width: 10%;"><b>Username</b> </td>
-                                                <td colspan="2" style="width: 30%;"><input type="text" name="username" id = "username"  placeholder="User Name" class="form-control validate" required></td> 
-                                                <td colspan="2" style="width: 30%;"><input type="text" name="username" id = "username"  placeholder="User Name" class="form-control validate" required></td> 
-                                                <td style="width: 20%;"><input type="text" name="firstname" id = "firstname" class="form-control validate" required placeholder="Middle Name"></td> 
-                                                <td colspan="2" style="width: 25%;"><input type="text" name="middlename" id = "middlename" class="form-control validate" required placeholder="Last Name"></td>
-                                                <td style="width: 15%;"><input type="text" name="lastname" id = "lastname" class="form-control validate" required placeholder="Extension"></td> 
-                                            </tr>
-                                           <!-- <tr>
-                                                <td style="width: 10%;"><b>Nationality:</b> </td>
-                                                <td style="width: 10%;"><?php echo $_SESSION['nationality']; ?></td>
-                                                <td style="width: 10%;"><b>Sex:</b></td>
-                                                <td style="width: 3%;"><?php echo $_SESSION['gender']; ?></td>
-                                                <td style="width: 12%;"><b>Marital Status:</b></td>
-                                                <td style="width: 10%;"><?php echo $_SESSION['marital_status']; ?></td>
-                                                <td style="width: 5%;"><b>TIN:</b></td>
-                                                <td style="width: 15%;"><?php echo $_SESSION['tin']; ?></td>
-                                            </tr> 
-                                            <tr>
-                                                <td colspan="2"></td>
-                                                <td colspan="2"></td>
-                                                <td colspan="2"></td>
-                                                <td colspan="2" style = "align: left"><button class="btn btn-primary" id = "update_employee">     Update Employee Details  </button></td>                                                
-                                            </tr>    -->
-                                      </table> 
+                    
+                                    </div> -->
+
+                                    <div class="form-group">
+                                        <label for="inputAddress">Employee ID</label>
+                                        <input style="width: 25%;" type="text" class="form-control" id="employeeid" placeholder="Ex. CBTZ200116">
                                     </div>
+                                    <!-- Grid row -->
+                                    <div class="form-row">
+                                        <!-- Default input -->
+                                        <div class="form-group col-md-3">
+                                        <label for="inputEmail4">First Name</label>
+                                        <input type="text" name="firstname" id = "firstname"  placeholder="Ex. Enrico" class="form-control validate" required>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                        <label for="inputEmail4">Middle Name</label>
+                                        <input type="text" name="middlename" id = "middlename"  placeholder="Ex. Santos" class="form-control validate" required>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                        <label for="inputEmail4">Last Name</label>
+                                        <input type="text" name="lastname" id = "lastname"  placeholder="Ex. Cruz" class="form-control validate" required>
+                                        </div>
+                                        <div class="form-group col-md-1">
+                                        <label for="inputEmail4">Extension</label>
+                                        <input type="text" name="nameExtension" id = "nameExtension"  placeholder="Ex. Jr, II, III" class="form-control validate" required>
+                                        </div>
+                                      
+                                    </div>
+                                    <div class="form-row">
+                                        <!-- Default input -->
+                                        <div class="form-group col-md-3">
+                                        <label for="inputEmail4">User Name</label>
+                                        <input type="text" name="username" id = "username"  placeholder="Ex. CBTZ200116" class="form-control validate" required>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                        <label for="inputEmail4">Password</label>
+                                        <input type="password" name="password" id = "password"  placeholder="Password" class="form-control validate" required>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                        <label for="inputEmail4">Confirm Password</label>
+                                        <input type="password" name="confirmpassword" id = "confirmpassword"  placeholder="Password" class="form-control validate" required>
+                                        </div>       
+                                    </div>
+                                    <!-- Grid row -->
+                                    <div class="form-row">
+                                        <!-- Default input -->
+                                        <div class="form-group col-md-2">
+                                        <label for="inputCity">Date of Birth</label>
+                                        <input type="date" class="form-control" id="dob" >
+                                        </div>
+                                        <!-- Default input -->
+                                        <div class="form-group col-md-8">
+                                        <label for="inputZip">Place of Birth</label>
+                                        <input type="text" class="form-control" id="inputZip" placeholder="Ex. 1234 Main Street">
+                                        </div>
+                                    </div>
+                                    <!-- Grid row -->
+                                    <div class="form-row">
+                                        <!-- Default input -->
+                                        <div class="form-group col-md-2">
+                                        <label for="inputCity">Sex</label>
+                                        <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                            <option selected>Choose...</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                           
+                                        </select>
+                                        </div>
+                                        <!-- Default input -->
+                                        <div class="form-group col-md-2">
+                                            <label for="inputZip">Civil Status</label>
+                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                                <option selected>Choose...</option>
+                                                <option value="Single">Single</option>
+                                                <option value="Married">Married</option>
+                                                <option value="Widowed">Widowed</option>
+                                                <option value="Separated">Separated</option>
+                                                <option value="Others">Others</option>
+
+                                            </select>
+                                        </div>
+                                        <!-- Default input -->
+                                        <div class="form-group col-md-1">
+                                            <label for="inputZip">Weight (Kg)</label>
+                                            <input type="text" class="form-control" id="inputZip" placeholder="Ex. 67">
+                                        </div>
+                                         <!-- Default input -->
+                                         <div class="form-group col-md-2">
+                                            <label for="inputZip">Height (cm)</label>
+                                            <input type="text" class="form-control" id="inputZip" placeholder="Ex. 163">
+                                        </div>
+                                         <!-- Default input -->
+                                         <div class="form-group col-md-1">
+                                            <label for="inputZip">Blood Type</label>
+                                            <input type="text" class="form-control" id="inputZip" placeholder="Ex. B+">
+                                        </div>                                   
+                                    </div>
+                                    <!-- Grid row -->
+                                    <div class="form-row">
+                                        <!-- Default input -->
+                                        <div class="form-group col-md-2">
+                                        <label for="inputCity">GSIS ID No.</label>
+                                        <input type="text" class="form-control" id="dob" >
+                                        </div>
+                                        <!-- Default input -->
+                                        <div class="form-group col-md-2">
+                                        <label for="inputZip">Pagibig No.</label>
+                                        <input type="text" class="form-control" id="inputZip" placeholder="Ex. 1234 Main Street">
+                                        </div>
+                                         <!-- Default input -->
+                                        <div class="form-group col-md-2">
+                                        <label for="inputZip">Philhealth No.</label>
+                                        <input type="text" class="form-control" id="inputZip" placeholder="Ex. 1234 Main Street">
+                                        </div>
+                                        <!-- Default input -->
+                                        <div class="form-group col-md-2">
+                                        <label for="inputZip">SSS No.</label>
+                                        <input type="text" class="form-control" id="inputZip" placeholder="Ex. 1234 Main Street">
+                                        </div>
+                                        <!-- Default input -->
+                                        <div class="form-group col-md-2">
+                                        <label for="inputZip">Agency Employee No.</label>
+                                        <input type="text" class="form-control" id="inputZip" placeholder="Ex. 1234 Main Street">
+                                        </div>
+                                    </div>
+                                    <!-- Grid row -->
+                                    <div class="form-row">
+                                        <!-- Default input -->
+                                        <div class="form-group col-md-2">
+                                            <label for="inputCity">Citizenship</label>                                    
+                                            <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="gridRadios1st" id="gridRadios1" value="option1" checked>
+                                            <label class="form-check-label" for="gridRadios1">
+                                                Filipino
+                                            </label>
+                                            </div>
+                                            <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="gridRadios1st" id="gridRadios2" value="option2">
+                                            <label class="form-check-label" for="gridRadios2">
+                                                Dual Citizenship
+                                            </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-2">
+                                        <label for="inputCity"></label>                                            
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                                                <label class="form-check-label" for="gridRadios1">
+                                                    By Birth
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                                                <label class="form-check-label" for="gridRadios2">
+                                                    By Naturalization
+                                                </label>
+                                            </div> <br>
+                                            <div class="form-group col-md-10">
+                                                <label for="inputZip">Please Indicate Country</label>
+                                                <input type="text" class="form-control" id="inputZip" placeholder="Ex. China">
+                                            </div>
+                                        </div>
+                                       
+                                    </div>
+
+
+                                    <!-- Grid row -->
+                                    <div class="form-row">
+                                        <!-- Default input -->
+                                        <div class="form-group col-md-10">
+                                        <label for="inputCity">Residential Address</label>
+                                        <input type="text" class="form-control" id="dob" >
+                                        </div>
+                                        
+                                    </div>
+
+                                    <!-- Grid row -->
+                                    <div class="form-row">
+                                        <!-- Default input -->
+                                        <div class="form-group col-md-10">
+                                        <label for="inputCity">Permanent Address</label><br>
+                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
+                                        <label class="form-check-label" for="gridCheck1">
+                                            Same with Residential Address
+                                        </label>
+                                        <input type="text" class="form-control" id="dob" >
+                                        </div>
+                                        
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
 
+                           <!-- Area Chart -->
+                           <div class="col-xl-12 col-lg-7">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">II. Family Background</h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="col-md-12">
+                                    </div>
+                                     <!-- <div class="col-md-12">
+    
+                    
+                                    </div> -->
 
+                                    <div class="form-group">
+                                        <label for="inputAddress">Employee ID</label>
+                                        <input style="width: 25%;" type="text" class="form-control" id="employeeid" placeholder="Ex. CBTZ200116">
+                                    </div>
+                                    <!-- Grid row -->
+                                    <div class="form-row">
+                                        <!-- Default input -->
+                                        <div class="form-group col-md-3">
+                                        <label for="inputEmail4">First Name</label>
+                                        <input type="text" name="firstname" id = "firstname"  placeholder="Ex. Enrico" class="form-control validate" required>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                        <label for="inputEmail4">Middle Name</label>
+                                        <input type="text" name="middlename" id = "middlename"  placeholder="Ex. Santos" class="form-control validate" required>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                        <label for="inputEmail4">Last Name</label>
+                                        <input type="text" name="lastname" id = "lastname"  placeholder="Ex. Cruz" class="form-control validate" required>
+                                        </div>
+                                        <div class="form-group col-md-1">
+                                        <label for="inputEmail4">Extension</label>
+                                        <input type="text" name="nameExtension" id = "nameExtension"  placeholder="Ex. Jr, II, III" class="form-control validate" required>
+                                        </div>
+                                      
+                                    </div>
+                                   
+                                  
+                                   
+                                    <!-- Grid row -->
+                                    <div class="form-row">
+                                        <!-- Default input -->
+                                        <div class="form-group col-md-2">
+                                        <label for="inputCity">GSIS ID No.</label>
+                                        <input type="text" class="form-control" id="dob" >
+                                        </div>
+                                        <!-- Default input -->
+                                        <div class="form-group col-md-2">
+                                        <label for="inputZip">Pagibig No.</label>
+                                        <input type="text" class="form-control" id="inputZip" placeholder="Ex. 1234 Main Street">
+                                        </div>
+                                         <!-- Default input -->
+                                        <div class="form-group col-md-2">
+                                        <label for="inputZip">Philhealth No.</label>
+                                        <input type="text" class="form-control" id="inputZip" placeholder="Ex. 1234 Main Street">
+                                        </div>
+                                        <!-- Default input -->
+                                        <div class="form-group col-md-2">
+                                        <label for="inputZip">SSS No.</label>
+                                        <input type="text" class="form-control" id="inputZip" placeholder="Ex. 1234 Main Street">
+                                        </div>
+                                        <!-- Default input -->
+                                        <div class="form-group col-md-2">
+                                        <label for="inputZip">Agency Employee No.</label>
+                                        <input type="text" class="form-control" id="inputZip" placeholder="Ex. 1234 Main Street">
+                                        </div>
+                                    </div>
+                                    <!-- Grid row -->
+                                    <div class="form-row">
+                                        <!-- Default input -->
+                                        <div class="form-group col-md-2">
+                                            <label for="inputCity">Citizenship</label>                                    
+                                            <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="gridRadios1st" id="gridRadios1" value="option1" checked>
+                                            <label class="form-check-label" for="gridRadios1">
+                                                Filipino
+                                            </label>
+                                            </div>
+                                            <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="gridRadios1st" id="gridRadios2" value="option2">
+                                            <label class="form-check-label" for="gridRadios2">
+                                                Dual Citizenship
+                                            </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-2">
+                                        <label for="inputCity"></label>                                            
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                                                <label class="form-check-label" for="gridRadios1">
+                                                    By Birth
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                                                <label class="form-check-label" for="gridRadios2">
+                                                    By Naturalization
+                                                </label>
+                                            </div> <br>
+                                            <div class="form-group col-md-10">
+                                                <label for="inputZip">Please Indicate Country</label>
+                                                <input type="text" class="form-control" id="inputZip" placeholder="Ex. China">
+                                            </div>
+                                        </div>
+                                       
+                                    </div>
+
+
+                                    <!-- Grid row -->
+                                    <div class="form-row">
+                                        <!-- Default input -->
+                                        <div class="form-group col-md-10">
+                                        <label for="inputCity">Residential Address</label>
+                                        <input type="text" class="form-control" id="dob" >
+                                        </div>
+                                        
+                                    </div>
+
+                                    <!-- Grid row -->
+                                    <div class="form-row">
+                                        <!-- Default input -->
+                                        <div class="form-group col-md-10">
+                                        <label for="inputCity">Permanent Address</label><br>
+                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
+                                        <label class="form-check-label" for="gridCheck1">
+                                            Same with Residential Address
+                                        </label>
+                                        <input type="text" class="form-control" id="dob" >
+                                        </div>
+                                        
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    <!-- END OF FAMILY BACKGROUND FORM -->
 
                             
 
@@ -255,75 +554,7 @@ if (isset($_GET['id'])) {
 
 
 
-                  <!--
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
-     
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Application Details</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-700"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
-                                </div>
-                         
-                                <div class="card-body">
-
-                                    <div class="col-md-12">
-                                        <table class=" table">
-                                            <tr>
-                                                <td style="width: 50%;"><b>Date Created :</b></td>
-                                                <td style="width: 50%;"><?php echo $_SESSION['date_created']; ?></td>
-                                            </tr>
-                                            <tr>
-
-                                                <td style="width: 50%;"><b>Application Type:</b></td>
-                                                <td style="width: 50%;"><?php echo $_SESSION['application_type']; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td style="width: 50%;"><b>Application Status:</b></td>
-                                                <td style="width: 50%;"><?php echo $_SESSION['user_status']; ?></td>
-
-                                            </tr>
-                                            <tr>
-                                                <td style="width: 50%;"><b>Application Status:</b></td>
-                                                <td style="width: 50%;"><a href="<?php echo $_SESSION['gdrive_link']; ?>" target="_blank">GOOGLE DRIVE LINK</a></td>
-
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center" colspan="2"><button class="btn btn-block btn-info btn-sm" data-toggle="modal" data-target="#remarks">Remarks</button></td>
-
-
-                                            </tr>
-                                            <tr>
-
-                                                <td class="text-center" colspan="2"><button class="btn btn-block btn-warning btn-sm" data-toggle="modal" data-target="#foreval">For Evaluation</button></td>
-
-
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center" colspan="2"><button class="btn btn-block btn-primary btn-sm" data-toggle="modal" data-target="#approve">Approve</button></td>
-
-
-
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center" colspan="2"><button class="btn btn-block btn-danger btn-sm" data-toggle="modal" data-target="#deny">Reject</button></td>
-                                            </tr>
-                                        </table>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div> -->
+                 
 
                         <div class="col-xl-12 col-lg-7">
                             <div class="card shadow mb-4">
