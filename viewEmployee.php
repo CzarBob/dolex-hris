@@ -420,13 +420,13 @@ if (isset($_GET['id'])) {
                     
                                     </div> -->
 
-                                    <div class="form-group">
-                                        <label for="inputAddress">Employee ID</label>
-                                        <input style="width: 25%;" type="text" class="form-control" id="employeeid" placeholder="Ex. CBTZ200116">
-                                    </div>
                                     <!-- Grid row -->
                                     <div class="form-row">
                                         <!-- Default input -->
+                                        <div class="form-group col-md-3">
+                                        <label for="inputEmail4">Spouse's Surname</label>
+                                        <input type="text" name="lastname" id = "lastname"  placeholder="Ex. Cruz" class="form-control validate" required>
+                                        </div>
                                         <div class="form-group col-md-3">
                                         <label for="inputEmail4">First Name</label>
                                         <input type="text" name="firstname" id = "firstname"  placeholder="Ex. Enrico" class="form-control validate" required>
@@ -435,10 +435,7 @@ if (isset($_GET['id'])) {
                                         <label for="inputEmail4">Middle Name</label>
                                         <input type="text" name="middlename" id = "middlename"  placeholder="Ex. Santos" class="form-control validate" required>
                                         </div>
-                                        <div class="form-group col-md-3">
-                                        <label for="inputEmail4">Last Name</label>
-                                        <input type="text" name="lastname" id = "lastname"  placeholder="Ex. Cruz" class="form-control validate" required>
-                                        </div>
+                                        
                                         <div class="form-group col-md-1">
                                         <label for="inputEmail4">Extension</label>
                                         <input type="text" name="nameExtension" id = "nameExtension"  placeholder="Ex. Jr, II, III" class="form-control validate" required>
@@ -446,101 +443,93 @@ if (isset($_GET['id'])) {
                                       
                                     </div>
                                    
-                                  
+                                   <!-- Grid row -->
+                                   <div class="form-row">
+                                        <!-- Default input -->
+                                        <div class="form-group col-md-10">
+                                        <label for="inputCity">Occupation</label>
+                                        <input type="text" class="form-control" id="dob" >
+                                        </div>
+                                        
+                                    </div>
+                                    <!-- Grid row -->
+                                    <div class="form-row">
+                                        <!-- Default input -->
+                                        <div class="form-group col-md-10">
+                                        <label for="inputCity">Employer/Business Name</label>
+                                        <input type="text" class="form-control" id="dob" >
+                                        </div>
+                                        
+                                    </div>
+
+                                    <!-- Grid row -->
+                                    <div class="form-row">
+                                        <!-- Default input -->
+                                        <div class="form-group col-md-10">
+                                        <label for="inputCity">Business Address</label>
+                                        <input type="text" class="form-control" id="dob" >
+                                        </div>
+                                        
+                                    </div>
+
+                                    <!-- Grid row -->
+                                    <div class="form-row">
+                                        <!-- Default input -->
+                                        <div class="form-group col-md-2">
+                                        <label for="inputCity">Telephone No.</label>
+                                        <input type="text" class="form-control" id="dob" >
+                                        </div>
+                                        
+                                    </div>
+                                   
                                    
                                     <!-- Grid row -->
                                     <div class="form-row">
                                         <!-- Default input -->
-                                        <div class="form-group col-md-2">
-                                        <label for="inputCity">GSIS ID No.</label>
-                                        <input type="text" class="form-control" id="dob" >
+                                        <div class="form-group col-md-3">
+                                        <label for="inputEmail4">Father's Surname</label>
+                                        <input type="text" name="lastname" id = "lastname"  placeholder="Ex. Cruz" class="form-control validate" required>
                                         </div>
-                                        <!-- Default input -->
-                                        <div class="form-group col-md-2">
-                                        <label for="inputZip">Pagibig No.</label>
-                                        <input type="text" class="form-control" id="inputZip" placeholder="Ex. 1234 Main Street">
+                                        <div class="form-group col-md-3">
+                                        <label for="inputEmail4">First Name</label>
+                                        <input type="text" name="firstname" id = "firstname"  placeholder="Ex. Enrico" class="form-control validate" required>
                                         </div>
-                                         <!-- Default input -->
-                                        <div class="form-group col-md-2">
-                                        <label for="inputZip">Philhealth No.</label>
-                                        <input type="text" class="form-control" id="inputZip" placeholder="Ex. 1234 Main Street">
-                                        </div>
-                                        <!-- Default input -->
-                                        <div class="form-group col-md-2">
-                                        <label for="inputZip">SSS No.</label>
-                                        <input type="text" class="form-control" id="inputZip" placeholder="Ex. 1234 Main Street">
-                                        </div>
-                                        <!-- Default input -->
-                                        <div class="form-group col-md-2">
-                                        <label for="inputZip">Agency Employee No.</label>
-                                        <input type="text" class="form-control" id="inputZip" placeholder="Ex. 1234 Main Street">
-                                        </div>
-                                    </div>
-                                    <!-- Grid row -->
-                                    <div class="form-row">
-                                        <!-- Default input -->
-                                        <div class="form-group col-md-2">
-                                            <label for="inputCity">Citizenship</label>                                    
-                                            <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="gridRadios1st" id="gridRadios1" value="option1" checked>
-                                            <label class="form-check-label" for="gridRadios1">
-                                                Filipino
-                                            </label>
-                                            </div>
-                                            <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="gridRadios1st" id="gridRadios2" value="option2">
-                                            <label class="form-check-label" for="gridRadios2">
-                                                Dual Citizenship
-                                            </label>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group col-md-2">
-                                        <label for="inputCity"></label>                                            
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-                                                <label class="form-check-label" for="gridRadios1">
-                                                    By Birth
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-                                                <label class="form-check-label" for="gridRadios2">
-                                                    By Naturalization
-                                                </label>
-                                            </div> <br>
-                                            <div class="form-group col-md-10">
-                                                <label for="inputZip">Please Indicate Country</label>
-                                                <input type="text" class="form-control" id="inputZip" placeholder="Ex. China">
-                                            </div>
-                                        </div>
-                                       
-                                    </div>
-
-
-                                    <!-- Grid row -->
-                                    <div class="form-row">
-                                        <!-- Default input -->
-                                        <div class="form-group col-md-10">
-                                        <label for="inputCity">Residential Address</label>
-                                        <input type="text" class="form-control" id="dob" >
+                                        <div class="form-group col-md-3">
+                                        <label for="inputEmail4">Middle Name</label>
+                                        <input type="text" name="middlename" id = "middlename"  placeholder="Ex. Santos" class="form-control validate" required>
                                         </div>
                                         
+                                        <div class="form-group col-md-1">
+                                        <label for="inputEmail4">Extension</label>
+                                        <input type="text" name="nameExtension" id = "nameExtension"  placeholder="Ex. Jr, II, III" class="form-control validate" required>
+                                        </div>
+                                      
                                     </div>
 
-                                    <!-- Grid row -->
-                                    <div class="form-row">
+                                     <!-- Grid row -->
+                                     <div class="form-row">
                                         <!-- Default input -->
-                                        <div class="form-group col-md-10">
-                                        <label for="inputCity">Permanent Address</label><br>
-                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                        <label class="form-check-label" for="gridCheck1">
-                                            Same with Residential Address
-                                        </label>
-                                        <input type="text" class="form-control" id="dob" >
+                                        <div class="form-group col-md-3">
+                                        <label for="inputEmail4">Mother's Maiden Name</label>
+                                        <input type="text" name="lastname" id = "lastname"  placeholder="Ex. Cruz" class="form-control validate" required>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                        <label for="inputEmail4">First Name</label>
+                                        <input type="text" name="firstname" id = "firstname"  placeholder="Ex. Enrico" class="form-control validate" required>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                        <label for="inputEmail4">Middle Name</label>
+                                        <input type="text" name="middlename" id = "middlename"  placeholder="Ex. Santos" class="form-control validate" required>
                                         </div>
                                         
+                                      
+                                      
                                     </div>
+                                    
+
+            
+
+                   
 
                                 </div>
                             </div>
@@ -548,11 +537,7 @@ if (isset($_GET['id'])) {
 
                     <!-- END OF FAMILY BACKGROUND FORM -->
 
-                            
-
-
-
-
+                        
 
                  
 
@@ -571,10 +556,16 @@ if (isset($_GET['id'])) {
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Children (if Applicable)</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Work Experience</a>
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Educational Background</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Trainings</a>
+                                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Civil Service Eligibility</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Work Experience</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Civil Service Eligibility</a>
                                 </li>
                                 </ul>
                                 <div class="tab-content" id="myTabContent">
