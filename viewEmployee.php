@@ -885,15 +885,13 @@ if (isset($_GET['id'])) {
                                 dataType:'JSON',
                                 success:function(data)
                                 {
-                                    $('#employeeid').val(data.employeeid);
-                                    $('#firstname').val(data.firstname);
-                                    $('#middlename').val(data.middlename);
-                                    $('#lastname').val(data.lastname);
-                                    //fetch_children_data();
-                                    //alert(data);
-                                    //$('#action').val('Edit');
-                                    //$('#submit_button').val('Edit');
-                                    //$('#hidden_id').val(hidden_id);
+                                    $('#employeeid').val(data.data.employeeid);
+                                    $('#firstname').val(data.data.firstname);
+                                    $('#middlename').val(data.data.middlename);
+                                    $('#lastname').val(data.data.lastname);
+                                   // alert(data.data.firstname);
+                                   
+                                    
                                 }
                             });
 
@@ -1085,8 +1083,7 @@ if (isset($_GET['id'])) {
                     var employeeiddb = document.getElementById("empID").value;
                     var add_employee = "Success";
                     //
-                   
-
+                
                     $.ajax({
                         url:"view_employee_action",
                         method:"POST",

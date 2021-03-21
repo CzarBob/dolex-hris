@@ -15,6 +15,23 @@ $query = '';
 if (isset($_POST['action'])){
   if ($_POST['action'] == 'fetch_single'){
     $query = 'SELECT * FROM tbl_employee WHERE ID = "'.$_POST["employeeiddb"].'" ';
+
+    /**SELECT 
+tbl_employee.EMPLOYEEID as EMPLOYEEID,
+tbl_employee.FIRSTNAME as FIRSTNAME,
+tbl_employee.MIDDLENAME as MIDDLENAME,
+tbl_employee.LASTNAME as LASTNAME,
+tbl_employee.EXTENSION as PROFILE_EXTENSION,
+tbl_employee.POSITION as POSITION,
+tbl_employee.DATEHIRED as DATEHIRED,
+tbl_employee.DATEHIRED as DATEHIRED,
+tbl_employee.PASSWORD as PASSWORD_ACCOUNT,
+tbl_employee.USERNAME as USERNAME,
+tbl_employee.SLCREDIT as SLCREDIT,
+tbl_employee.VLCREDIT as VLCREDIT
+FROM tbl_employee
+INNER JOIN tbl_employee_profile  ON tbl_employee.ID = tbl_employee_profile.EMPID
+INNER JOIN tbl_employee_family ON tbl_employee.ID = tbl_employee_family.EMPID  WHERE tbl_employee.ID = "2" */
     $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
 
     $result = mysqli_query($connect, $query);
@@ -82,21 +99,64 @@ if (isset($_POST['action'])){
       $data[] = $sub_array;
     }
 
-    /*function get_all_data($connect){
-    $query = "SELECT * FROM updates where receiver = '".$_SESSION['received_by']."'";
-    $result = mysqli_query($connect, $query);
-    return mysqli_num_rows($result);
-    }*/
+
+    $query_profile = 'SELECT * FROM tbl_employee_profile WHERE EMPID = "'.$_POST["employeeiddb"].'" ';
+    $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
+
+    $result_query_profile = mysqli_query($connect, $query_profile);
+
+    $data = array();
+    
+    while($row = mysqli_fetch_array($result_query_profile)){
+  
+      $sub_array_query_profile = array();
+
+
+        $sub_array_query_profile['employeeid'] = $row['EMPLOYEEID'];
+        $sub_array_query_profile['firstname'] = $row['FIRSTNAME'];
+        $sub_array_query_profile['middlename'] = $row['MIDDLENAME'];
+        $sub_array_query_profile['lastname'] = $row['LASTNAME'];
+
+     
+      $data[] = $sub_array_query_profile;
+    }
+
+
+    $query_family = 'SELECT * FROM tbl_employee_family WHERE EMPID = "'.$_POST["employeeiddb"].'" ';
+    $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query_family));
+
+    $result_query_family = mysqli_query($connect, $query_family);
+
+    $data = array();
+    
+    while($row = mysqli_fetch_array($result_query_profile)){
+  
+      $sub_array_query_family = array();
+
+
+        $sub_array_query_family['employeeid'] = $row['EMPLOYEEID'];
+        $sub_array_query_family['firstname'] = $row['FIRSTNAME'];
+        $sub_array_query_family['middlename'] = $row['MIDDLENAME'];
+        $sub_array_query_family['lastname'] = $row['LASTNAME'];
+
+     
+      $data[] = $sub_array_query_family;
+    }
+
+
+
 
     $output = array(
     //"draw"    => intval($_POST["draw"]),
     //"recordsTotal"  =>  get_all_data($connect),
     //"recordsFiltered" => $number_filter_row,
-    "data"    => $sub_array
+    "data"    => $sub_array,
+    "data_profile"    => $sub_array_query_profile,
+    "data_family"    => $sub_array_query_family
     );
 
-    //echo json_encode($output);
-    echo json_encode($sub_array);
+    echo json_encode($output);
+    //cho json_encode($sub_array);
 
 
   }
@@ -197,12 +257,6 @@ if (isset($_POST['action'])){
       );
       
       echo json_encode($output);
-
-
-
-
-
-
     }
   }
 
