@@ -233,7 +233,7 @@ if (isset($_GET['id'])) {
                                         </div>
                                         <div class="form-group col-md-1">
                                         <label for="inputEmail4">Extension</label>
-                                        <input type="text" name="nameExtension" id = "nameExtension"  placeholder="Ex. Jr, II, III" class="form-control validate" required>
+                                        <input type="text" name="extension" id = "extension"  placeholder="Ex. Jr, II, III" class="form-control validate" required>
                                         </div>
                                       
                                     </div>
@@ -245,65 +245,67 @@ if (isset($_GET['id'])) {
                                         </div>
                                         <div class="form-group col-md-3">
                                         <label for="inputEmail4">Password</label>
-                                        <input type="password" name="password" id = "password"  placeholder="Password" class="form-control validate" required>
+                                        <input type="password" name="password" id = "password"  placeholder="Please provide password" class="form-control validate" required>
                                         </div>
                                         <div class="form-group col-md-3">
                                         <label for="inputEmail4">Confirm Password</label>
-                                        <input type="password" name="confirmpassword" id = "confirmpassword"  placeholder="Password" class="form-control validate" required>
+                                        <input type="password" name="confirmpassword" id = "confirmpassword"  placeholder="Please provide password" class="form-control validate" required>
                                         </div>       
                                     </div>
                                     <!-- Grid row -->
                                     <div class="form-row">
+                                    <input type="hidden" name="profileid" id="profileid" >
                                         <!-- Default input -->
                                         <div class="form-group col-md-2">
+                                        
                                         <label for="inputCity">Date of Birth</label>
                                         <input type="date" class="form-control" id="dob" >
                                         </div>
                                         <!-- Default input -->
                                         <div class="form-group col-md-8">
                                         <label for="inputZip">Place of Birth</label>
-                                        <input type="text" class="form-control" id="inputZip" placeholder="Ex. 1234 Main Street">
+                                        <input type="text" class="form-control"  name="placeofbirth" id="placeofbirth" placeholder="Ex. 1234 Main Street">
                                         </div>
                                     </div>
                                     <!-- Grid row -->
                                     <div class="form-row">
                                         <!-- Default input -->
                                         <div class="form-group col-md-2">
-                                        <label for="inputCity">Sex</label>
-                                        <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                            <option selected>Choose...</option>
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
+                                        <label for="inputCity">Gender</label>
+                                        <select class="custom-select my-1 mr-sm-2" id="gender" name="gender">
+                                            <option value='NA' selected >Choose...</option>
+                                            <option value="MALE">Male</option>
+                                            <option value="FEMALE">Female</option>
                                            
                                         </select>
                                         </div>
                                         <!-- Default input -->
                                         <div class="form-group col-md-2">
                                             <label for="inputZip">Civil Status</label>
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Choose...</option>
-                                                <option value="Single">Single</option>
-                                                <option value="Married">Married</option>
-                                                <option value="Widowed">Widowed</option>
-                                                <option value="Separated">Separated</option>
-                                                <option value="Others">Others</option>
+                                            <select class="custom-select my-1 mr-sm-2" id="civilstatus" name="civilstatus">
+                                                <option  value="NA" selected>Choose...</option>
+                                                <option value="SINGLE">Single</option>
+                                                <option value="MARRIED">Married</option>
+                                                <option value="WIDOWED">Widowed</option>
+                                                <option value="SEPARATED">Separated</option>
+                                                <option value="OTHERS">Others</option>
 
                                             </select>
                                         </div>
                                         <!-- Default input -->
                                         <div class="form-group col-md-1">
                                             <label for="inputZip">Weight (Kg)</label>
-                                            <input type="text" class="form-control" id="inputZip" placeholder="Ex. 67">
+                                            <input type="text" class="form-control" id="weight" name="weight" placeholder="Ex. 67">
                                         </div>
                                          <!-- Default input -->
                                          <div class="form-group col-md-2">
                                             <label for="inputZip">Height (cm)</label>
-                                            <input type="text" class="form-control" id="inputZip" placeholder="Ex. 163">
+                                            <input type="text" class="form-control" id="height"  name="height" placeholder="Ex. 163">
                                         </div>
                                          <!-- Default input -->
                                          <div class="form-group col-md-1">
                                             <label for="inputZip">Blood Type</label>
-                                            <input type="text" class="form-control" id="inputZip" placeholder="Ex. B+">
+                                            <input type="text" class="form-control" id="bloodtype"  name="bloodtype"  placeholder="Ex. B+">
                                         </div>                                   
                                     </div>
                                     <!-- Grid row -->
@@ -311,27 +313,32 @@ if (isset($_GET['id'])) {
                                         <!-- Default input -->
                                         <div class="form-group col-md-2">
                                         <label for="inputCity">GSIS ID No.</label>
-                                        <input type="text" class="form-control" id="dob" >
+                                        <input type="text" class="form-control" id="gsisno" name="gsisno">
                                         </div>
                                         <!-- Default input -->
                                         <div class="form-group col-md-2">
                                         <label for="inputZip">Pagibig No.</label>
-                                        <input type="text" class="form-control" id="inputZip" placeholder="Ex. 1234 Main Street">
+                                        <input type="text" class="form-control" id="pagibigno" name="pagibigno" placeholder="Ex. 1234 Main Street">
                                         </div>
                                          <!-- Default input -->
                                         <div class="form-group col-md-2">
                                         <label for="inputZip">Philhealth No.</label>
-                                        <input type="text" class="form-control" id="inputZip" placeholder="Ex. 1234 Main Street">
+                                        <input type="text" class="form-control" id="phicno" name="phicno" placeholder="Ex. 1234 Main Street">
                                         </div>
                                         <!-- Default input -->
                                         <div class="form-group col-md-2">
                                         <label for="inputZip">SSS No.</label>
-                                        <input type="text" class="form-control" id="inputZip" placeholder="Ex. 1234 Main Street">
+                                        <input type="text" class="form-control" id="sssno" name="sssno" placeholder="Ex. 1234 Main Street">
+                                        </div>
+                                        <!-- Default input -->
+                                        <div class="form-group col-md-2">
+                                        <label for="inputZip">TIN No.</label>
+                                        <input type="text" class="form-control" id="tinno" name="tinno" placeholder="Ex. 1234 Main Street">
                                         </div>
                                         <!-- Default input -->
                                         <div class="form-group col-md-2">
                                         <label for="inputZip">Agency Employee No.</label>
-                                        <input type="text" class="form-control" id="inputZip" placeholder="Ex. 1234 Main Street">
+                                        <input type="text" class="form-control" id="agencyemployeeno" name="agencyemployeeno" placeholder="Ex. 1234 Main Street">
                                         </div>
                                     </div>
                                     <!-- Grid row -->
@@ -340,14 +347,14 @@ if (isset($_GET['id'])) {
                                         <div class="form-group col-md-2">
                                             <label for="inputCity">Citizenship</label>                                    
                                             <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="gridRadios1st" id="gridRadios1" value="option1" checked>
-                                            <label class="form-check-label" for="gridRadios1">
+                                            <input class="form-check-input" type="radio" name="citizenship" id="citizenship1" value="option1" checked>
+                                            <label class="form-check-label" for="citizenship1">
                                                 Filipino
                                             </label>
                                             </div>
                                             <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="gridRadios1st" id="gridRadios2" value="option2">
-                                            <label class="form-check-label" for="gridRadios2">
+                                            <input class="form-check-input" type="radio" name="citizenship" id="citizenship2" value="option2">
+                                            <label class="form-check-label" for="citizenship2">
                                                 Dual Citizenship
                                             </label>
                                             </div>
@@ -383,7 +390,6 @@ if (isset($_GET['id'])) {
                                         <label for="inputCity">Residential Address</label>
                                         <input type="text" class="form-control" id="dob" >
                                         </div>
-                                        
                                     </div>
 
                                     <!-- Grid row -->
@@ -872,10 +878,11 @@ if (isset($_GET['id'])) {
                 
                 function fetch_single() {
                         var employeeiddb = document.getElementById("empID").value;
-                        //alert(employeeid);
+                        
                         //var email_hidden = $(this).data('email_hidden'); //data id in database
                         //var admin_id = $(this).data('id');
                         //$('#user_form').parsley().reset();
+
                         $.ajax({
                                 url:"view_employee_action.php",
                                 method:"POST",
@@ -889,7 +896,45 @@ if (isset($_GET['id'])) {
                                     $('#firstname').val(data.data.firstname);
                                     $('#middlename').val(data.data.middlename);
                                     $('#lastname').val(data.data.lastname);
-                                   // alert(data.data.firstname);
+                                    $('#extension').val(data.data.extension);
+                                    $('#position').val(data.data.position);
+                                    $('#datehired').val(data.data.datehired);
+                                    $('#username').val(data.data.username);
+                                    $('#password').val(data.data.password);
+                                    $('#confirmpassword').val(data.data.password);
+
+                                    /*$('#slcredit').val(data.data.slcredit);
+                                    $('#vlcredit').val(data.data.vlcredit);*/
+                                    //console.log(data.data_profile.gender); 
+                                    var genderValue =  data.data_profile.gender;
+
+                                    if (genderValue == 'MALE'){
+                                        $("#gender").val("MALE").change();
+                                    } else if (genderValue == "") {
+                                        $("#gender").val('NA').change();
+                                    }
+                                    var civilStatusValue =  data.data_profile.civilstatus;
+
+                                    if (civilStatusValue == 'SINGLE'){
+                                        $("#civilstatus").val("SINGLE").change();
+                                    } else if (civilStatusValue == 'MARRIED') {
+                                        $("#civilstatus").val('MARRIED').change();
+                                    } else if (civilStatusValue == 'WIDOWED') {
+                                        $("#civilstatus").val('WIDOWED').change();
+                                    } else if (civilStatusValue == 'SEPARATED') {
+                                        $("#civilstatus").val('SEPARATED').change();
+                                    } else if (civilStatusValue == 'OTHERS') {
+                                        $("#civilstatus").val('OTHERS').change();
+                                    } else {
+                                        $("#civilstatus").val('NA').change();
+                                    }
+                               
+                                    
+                                    $('#profileid').val(data.data_profile.employeeid);
+                                    $('#dob').val(data.data_profile.dob);
+                                    $('#placeofbirth').val(data.data_profile.placeofbirth);
+                                    $('#height').val(data.data_profile.height);
+                                    $('#weight').val(data.data_profile.weight);
                                    
                                     
                                 }
