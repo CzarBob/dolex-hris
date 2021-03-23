@@ -347,13 +347,13 @@ if (isset($_GET['id'])) {
                                         <div class="form-group col-md-2">
                                             <label for="inputCity">Citizenship</label>                                    
                                             <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="citizenship" id="citizenship1" value="option1" checked>
+                                            <input class="form-check-input" type="radio" name="citizenship" id="filipino" value="filipino" checked>
                                             <label class="form-check-label" for="citizenship1">
                                                 Filipino
                                             </label>
                                             </div>
                                             <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="citizenship" id="citizenship2" value="option2">
+                                            <input class="form-check-input" type="radio" name="citizenship" id="dual" value="dual">
                                             <label class="form-check-label" for="citizenship2">
                                                 Dual Citizenship
                                             </label>
@@ -363,21 +363,21 @@ if (isset($_GET['id'])) {
                                         <div class="form-group col-md-2">
                                         <label for="inputCity"></label>                                            
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                                                <input class="form-check-input" type="radio" name="dualchoice" id="birth" value="birth"  checked>
                                                 <label class="form-check-label" for="gridRadios1">
                                                     By Birth
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                                                <input class="form-check-input" type="radio" name="dualchoice" id="naturalization" value="naturalization">
                                                 <label class="form-check-label" for="gridRadios2">
                                                     By Naturalization
                                                 </label>
                                             </div> <br>
-                                            <div class="form-group col-md-10">
+                                           <!-- <div class="form-group col-md-10">
                                                 <label for="inputZip">Please Indicate Country</label>
-                                                <input type="text" class="form-control" id="inputZip" placeholder="Ex. China">
-                                            </div>
+                                                <input type="text" class="form-control" id="dualcountry" placeholder="Ex. China">
+                                            </div> -->
                                         </div>
                                        
                                     </div>
@@ -385,10 +385,11 @@ if (isset($_GET['id'])) {
 
                                     <!-- Grid row -->
                                     <div class="form-row">
+                                    
                                         <!-- Default input -->
                                         <div class="form-group col-md-10">
                                         <label for="inputCity">Residential Address</label>
-                                        <input type="text" class="form-control" id="dob" >
+                                        <input type="text" class="form-control" id="residentialaddress" >
                                         </div>
                                     </div>
 
@@ -396,16 +397,31 @@ if (isset($_GET['id'])) {
                                     <div class="form-row">
                                         <!-- Default input -->
                                         <div class="form-group col-md-10">
-                                        <label for="inputCity">Permanent Address</label><br>
-                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                        <label class="form-check-label" for="gridCheck1">
-                                            Same with Residential Address
-                                        </label>
-                                        <input type="text" class="form-control" id="dob" >
+                                            <label for="inputCity">Permanent Address</label><br>
+                                            <input class="form-check-input" type="checkbox" id="addressCheck"  name="addressCheck">
+                                            <label class="form-check-label" for="gridCheck1">
+                                                Same with Residential Address
+                                            </label>
+                                            <input type="text" class="form-control" id="permanentaddress" >
                                         </div>
-                                        
                                     </div>
 
+                                    <!-- Grid row -->
+                                    <div class="form-row">
+                                        <!-- Default input -->
+                                        <div class="form-group col-md-2">
+                                            <label for="inputCity">Telephone No.</label><br>
+                                            <input type="text" class="form-control" id="telephoneno" name="telephoneno" placeholder="Ex. 1234 Main Street">
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label for="inputZip">Mobile No.</label>
+                                            <input type="text" class="form-control" id="mobileno" name="mobileno" placeholder="Ex. 1234 Main Street">
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label for="inputZip">Email Address</label>
+                                            <input type="text" class="form-control" id="emailprofile" name="emailprofile" placeholder="Ex. 1234 Main Street">
+                                        </div>  
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -430,21 +446,22 @@ if (isset($_GET['id'])) {
                                     <div class="form-row">
                                         <!-- Default input -->
                                         <div class="form-group col-md-3">
+                                        <input type="hidden" name="familyid" id="familyid" >
                                         <label for="inputEmail4">Spouse's Surname</label>
-                                        <input type="text" name="lastname" id = "lastname"  placeholder="Ex. Cruz" class="form-control validate" required>
+                                        <input type="text" name="spouselastname" id = "spouselastname"  placeholder="Ex. Cruz" class="form-control validate" required>
                                         </div>
                                         <div class="form-group col-md-3">
                                         <label for="inputEmail4">First Name</label>
-                                        <input type="text" name="firstname" id = "firstname"  placeholder="Ex. Enrico" class="form-control validate" required>
+                                        <input type="text" name="spousefirstname" id = "spousefirstname"  placeholder="Ex. Enrico" class="form-control validate" required>
                                         </div>
                                         <div class="form-group col-md-3">
                                         <label for="inputEmail4">Middle Name</label>
-                                        <input type="text" name="middlename" id = "middlename"  placeholder="Ex. Santos" class="form-control validate" required>
+                                        <input type="text" name="spousemiddlename" id = "spousemiddlename"  placeholder="Ex. Santos" class="form-control validate" required>
                                         </div>
                                         
                                         <div class="form-group col-md-1">
                                         <label for="inputEmail4">Extension</label>
-                                        <input type="text" name="nameExtension" id = "nameExtension"  placeholder="Ex. Jr, II, III" class="form-control validate" required>
+                                        <input type="text" name="spouseextension" id = "spouseextension"  placeholder="Ex. Jr, II, III" class="form-control validate" required>
                                         </div>
                                       
                                     </div>
@@ -454,7 +471,7 @@ if (isset($_GET['id'])) {
                                         <!-- Default input -->
                                         <div class="form-group col-md-10">
                                         <label for="inputCity">Occupation</label>
-                                        <input type="text" class="form-control" id="dob" >
+                                        <input type="text" class="form-control" id="occupation" >
                                         </div>
                                         
                                     </div>
@@ -463,7 +480,7 @@ if (isset($_GET['id'])) {
                                         <!-- Default input -->
                                         <div class="form-group col-md-10">
                                         <label for="inputCity">Employer/Business Name</label>
-                                        <input type="text" class="form-control" id="dob" >
+                                        <input type="text" class="form-control" id="employername" >
                                         </div>
                                         
                                     </div>
@@ -473,7 +490,7 @@ if (isset($_GET['id'])) {
                                         <!-- Default input -->
                                         <div class="form-group col-md-10">
                                         <label for="inputCity">Business Address</label>
-                                        <input type="text" class="form-control" id="dob" >
+                                        <input type="text" class="form-control" id="businessaddress" >
                                         </div>
                                         
                                     </div>
@@ -483,7 +500,7 @@ if (isset($_GET['id'])) {
                                         <!-- Default input -->
                                         <div class="form-group col-md-2">
                                         <label for="inputCity">Telephone No.</label>
-                                        <input type="text" class="form-control" id="dob" >
+                                        <input type="text" class="form-control" id="spousetelno" >
                                         </div>
                                         
                                     </div>
@@ -494,20 +511,20 @@ if (isset($_GET['id'])) {
                                         <!-- Default input -->
                                         <div class="form-group col-md-3">
                                         <label for="inputEmail4">Father's Surname</label>
-                                        <input type="text" name="lastname" id = "lastname"  placeholder="Ex. Cruz" class="form-control validate" required>
+                                        <input type="text" name="fathersurname" id = "fathersurname"  placeholder="Ex. Cruz" class="form-control validate" required>
                                         </div>
                                         <div class="form-group col-md-3">
                                         <label for="inputEmail4">First Name</label>
-                                        <input type="text" name="firstname" id = "firstname"  placeholder="Ex. Enrico" class="form-control validate" required>
+                                        <input type="text" name="fatherfirstname" id = "fatherfirstname"  placeholder="Ex. Enrico" class="form-control validate" required>
                                         </div>
                                         <div class="form-group col-md-3">
                                         <label for="inputEmail4">Middle Name</label>
-                                        <input type="text" name="middlename" id = "middlename"  placeholder="Ex. Santos" class="form-control validate" required>
+                                        <input type="text" name="fathermiddlename" id = "fathermiddlename"  placeholder="Ex. Santos" class="form-control validate" required>
                                         </div>
                                         
                                         <div class="form-group col-md-1">
                                         <label for="inputEmail4">Extension</label>
-                                        <input type="text" name="nameExtension" id = "nameExtension"  placeholder="Ex. Jr, II, III" class="form-control validate" required>
+                                        <input type="text" name="fatherext" id = "fatherext"  placeholder="Ex. Jr, II, III" class="form-control validate" required>
                                         </div>
                                       
                                     </div>
@@ -517,15 +534,19 @@ if (isset($_GET['id'])) {
                                         <!-- Default input -->
                                         <div class="form-group col-md-3">
                                         <label for="inputEmail4">Mother's Maiden Name</label>
-                                        <input type="text" name="lastname" id = "lastname"  placeholder="Ex. Cruz" class="form-control validate" required>
+                                        <input type="text" name="mothermaidenname" id = "mothermaidenname"  placeholder="Ex. Cruz" class="form-control validate" required>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                        <label for="inputEmail4">Mother's Surname</label>
+                                        <input type="text" name="mothersurname" id = "mothersurname"  placeholder="Ex. Cruz" class="form-control validate" required>
                                         </div>
                                         <div class="form-group col-md-3">
                                         <label for="inputEmail4">First Name</label>
-                                        <input type="text" name="firstname" id = "firstname"  placeholder="Ex. Enrico" class="form-control validate" required>
+                                        <input type="text" name="motherfirstname" id = "motherfirstname"  placeholder="Ex. Enrico" class="form-control validate" required>
                                         </div>
                                         <div class="form-group col-md-3">
                                         <label for="inputEmail4">Middle Name</label>
-                                        <input type="text" name="middlename" id = "middlename"  placeholder="Ex. Santos" class="form-control validate" required>
+                                        <input type="text" name="mothermiddlename" id = "mothermiddlename"  placeholder="Ex. Santos" class="form-control validate" required>
                                         </div>
                                         
                                       
@@ -905,7 +926,7 @@ if (isset($_GET['id'])) {
 
                                     /*$('#slcredit').val(data.data.slcredit);
                                     $('#vlcredit').val(data.data.vlcredit);*/
-                                    //console.log(data.data_profile.gender); 
+
                                     var genderValue =  data.data_profile.gender;
 
                                     if (genderValue == 'MALE'){
@@ -913,39 +934,103 @@ if (isset($_GET['id'])) {
                                     } else if (genderValue == "") {
                                         $("#gender").val('NA').change();
                                     }
+                                    //var civilStatusValue =  'NA';
                                     var civilStatusValue =  data.data_profile.civilstatus;
-
-                                    if (civilStatusValue == 'SINGLE'){
-                                        $("#civilstatus").val("SINGLE").change();
-                                    } else if (civilStatusValue == 'MARRIED') {
-                                        $("#civilstatus").val('MARRIED').change();
-                                    } else if (civilStatusValue == 'WIDOWED') {
-                                        $("#civilstatus").val('WIDOWED').change();
-                                    } else if (civilStatusValue == 'SEPARATED') {
-                                        $("#civilstatus").val('SEPARATED').change();
-                                    } else if (civilStatusValue == 'OTHERS') {
-                                        $("#civilstatus").val('OTHERS').change();
-                                    } else {
-                                        $("#civilstatus").val('NA').change();
-                                    }
+                                    
+                                    $("#civilstatus").val(civilStatusValue).change();
+         
                                
                                     
-                                    $('#profileid').val(data.data_profile.employeeid);
+                                    $('#profileid').val(data.data_profile.id);
                                     $('#dob').val(data.data_profile.dob);
                                     $('#placeofbirth').val(data.data_profile.placeofbirth);
                                     $('#height').val(data.data_profile.height);
                                     $('#weight').val(data.data_profile.weight);
                                    
-                                    
+                                    //$('#citizenship').prop("dual", true)
+                                    var citizenValueDB = data.data_profile.citizenship;
+                                    //$('#citizenship').attr('checked','checked');
+                                    //alert(citizenValueDB);
+                                    if (citizenValueDB == 'dual'){
+                                        $('#dual').attr('checked','checked');
+                                    } else if (citizenValueDB == 'filipino'){
+                                        $('#filipino').attr('checked','checked');
+                                    }
+                                   
+                                    var citizenValue = $('input[name="citizenship"]:checked').val();
+                                    if (citizenValue == 'dual'){
+                                            
+                                            document.getElementById("birth").disabled=false;
+                                            document.getElementById("naturalization").disabled=false;
+                                            //document.getElementById("dualcountry").disabled=false;
+                                        } else {
+                                           
+                                            document.getElementById("birth").disabled=true;
+                                            document.getElementById("naturalization").disabled=true;
+                                            //document.getElementById("dualcountry").disabled=true;
+                                        }
+
+
+                                    var dualchoiceDB = data.data_profile.dualcitizen;
+
+                                    if (dualchoiceDB == 'dual'){
+                                        $('#birth').attr('checked','checked');
+                                    } else if (dualchoiceDB == 'filipino'){
+                                        $('#naturalization').attr('checked','checked');
+                                    }
+
+                                    $('#residentialaddress').val(data.data_profile.residentialaddress);
+                                    $('#permanentaddress').val(data.data_profile.permanentaddress);
+                                    $('#telephoneno').val(data.data_profile.telephoneno);
+                                    $('#mobileno').val(data.data_profile.mobileno);
+                                    $('#emailprofile').val(data.data_profile.email);
+
+
+                                    $('#familyid').val(data.data_family.id);
+                                    $('#spouselastname').val(data.data_family.spouselastname);
+                                    $('#spousemiddlename').val(data.data_family.spousemiddlename);
+                                    $('#spousefirstname').val(data.data_family.spousefirstname);
+                                    $('#spouseextension').val(data.data_family.spouseextension);
+                                    $('#occupation').val(data.data_family.occupation);
+                                    $('#employername').val(data.data_family.employername);
+                                    $('#businessaddress').val(data.data_family.businessaddress);
+                                    $('#spousetelno').val(data.data_family.spousetelno);
+                                    $('#fathersurname').val(data.data_family.fathersurname);
+                                    $('#fatherfirstname').val(data.data_family.fatherfirstname);
+                                    $('#fathermiddlename').val(data.data_family.fathermiddlename);
+                                    $('#fatherext').val(data.data_family.fatherext);
+                                    $('#mothermaidenname').val(data.data_family.mothermaidenname);
+                                    $('#mothersurname').val(data.data_family.mothersurname);
+                                    $('#motherfirstname').val(data.data_family.motherfirstname);
+                                    $('#mothermiddlename').val(data.data_family.mothermiddlename);
                                 }
                             });
 
                             fetch_children_data();
+
+                            $('input[type=radio][name="citizenship"]').change(function() {
+                                //alert($(this).val()); // or this.value
+                                if ($(this).val() == 'dual'){
+                                        document.getElementById("birth").disabled=false;
+                                        document.getElementById("naturalization").disabled=false;
+                                        document.getElementById("dualcountry").disabled=false;
+                                } else {
+                                        document.getElementById("birth").disabled=true;
+                                        document.getElementById("naturalization").disabled=true;
+                                        document.getElementById("dualcountry").disabled=true;
+                                }
+                               
+                            });
+
+                            $("input[type=checkbox][name='addressCheck']").change(function() {
+                                
+                                var text1 = document.getElementById("residentialaddress").value;
+                                var text2 = document.getElementById("permanentaddress").value;
+                                if(this.checked) {
+                                    document.getElementById("permanentaddress").value = text1;
+                                } 
+                            });
                 }  
-
-
-
-                
 
 
                 $(document).on('click', '#add_children', function(){
@@ -954,9 +1039,7 @@ if (isset($_GET['id'])) {
                         //validateData();
                         //var answer = validateData();
                             var fullname = $('#fullname').val();
-                            var dob = $('#dob').val();    
-
-          
+                            var dob = $('#dob').val();              
                             $.ajax({
                                 url:"view_employee_action",
                                 method:"POST",
@@ -1158,11 +1241,6 @@ if (isset($_GET['id'])) {
                     }); 
 
             });
-
-
-
-
-           
 
     </script>
 
