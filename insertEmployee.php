@@ -15,11 +15,7 @@ if(isset($_POST['add_employee'])) {
   $firstname = $_POST['firstname'];
   $middlename = $_POST['middlename'];
   $lastname = $_POST['lastname'];
-  /*$email = $_POST['email'];
-  $position = $_POST['position'];
-  $datehired = $_POST['datehired'];
-  $slcredit = $_POST['slcredit'];
-  $vlcredit = $_POST['vlcredit'];*/
+
 
   $email = 'X';
   $position = 'X';
@@ -49,9 +45,11 @@ if(isset($_POST['add_employee'])) {
   CANCELLED = 'N'
   "; 
 
-  //var_dump($que);
-
   $query = $connect->query($que) or die($connect->error); 
+
+
+    
+
 
 
 }

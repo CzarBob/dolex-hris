@@ -212,9 +212,35 @@ if (isset($_GET['id'])) {
                     
                                     </div> -->
 
-                                    <div class="form-group">
+                                    <!--<div class="form-group">
                                         <label for="inputAddress">Employee ID</label>
                                         <input style="width: 25%;" type="text" class="form-control" id="employeeid" placeholder="Ex. CBTZ200116">
+                                        <label for="inputAddress">Position</label>
+                                        <input style="width: 25%;" type="text" class="form-control" id="position" placeholder="Ex. Labor Employment Officer I">
+                                        <label for="inputAddress">Date Hired</label>
+                                        <input style="width: 25%;" type="date" class="form-control" id="datehired" >
+                                        
+                                    </div> -->
+
+                                    <!-- Grid row -->
+                                    <div class="form-row">
+                                        <!-- Default input -->
+                                        <div class="form-group col-md-4">
+                                        <label for="inputAddress">Employee ID</label>
+                                        <input type="text" class="form-control" id="employeeid" placeholder="Ex. CBTZ200116">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                        <label for="inputAddress">Position</label>
+                                        <input  type="text" class="form-control" id="position" placeholder="Ex. Labor Employment Officer I">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                        <label for="inputAddress">Date Hired</label>
+                                        <input type="date" class="form-control" id="datehired" >
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                      <hr>
+                                       
                                     </div>
                                     <!-- Grid row -->
                                     <div class="form-row">
@@ -733,7 +759,7 @@ if (isset($_GET['id'])) {
             <div class="md-form mb-5">
        
               <label data-error="wrong" data-success="right" for="form29">Date of Birth</label>
-              <input type="text" name="dob" id = "dob" class="form-control validate" required>
+              <input type="date" name="dob" id = "dob" class="form-control validate" required>
              
             </div>
           </div>
@@ -769,7 +795,7 @@ if (isset($_GET['id'])) {
             <div class="md-form mb-5">
        
               <label data-error="wrong" data-success="right" for="form29">Date of Birth</label>
-              <input type="text" name="dob_update" id = "dob_update" class="form-control validate" required>
+              <input type="date" name="dob_update" id = "dob_update" class="form-control validate" required>
              
             </div>
           </div>
@@ -946,6 +972,12 @@ if (isset($_GET['id'])) {
                                     $('#placeofbirth').val(data.data_profile.placeofbirth);
                                     $('#height').val(data.data_profile.height);
                                     $('#weight').val(data.data_profile.weight);
+                                    $('#gsisno').val(data.data_profile.gsisno);
+                                    $('#pagibigno').val(data.data_profile.pagibigno);
+                                    $('#phicno').val(data.data_profile.phicno);
+                                    $('#sssno').val(data.data_profile.sssno);
+                                    $('#tinno').val(data.data_profile.tinno);
+                                    $('#agencyemployeeno').val(data.data_profile.agencyemployeeno);
                                    
                                     //$('#citizenship').prop("dual", true)
                                     var citizenValueDB = data.data_profile.citizenship;
@@ -1100,25 +1132,113 @@ if (isset($_GET['id'])) {
 
             $(document).on('click', '#update_employee', function(){
                     var employeeiddb = document.getElementById("empID").value;
-                    var add_employee = "Success";
-                //validateData();
-                //var answer = validateData();
-                    var empid = $('#employeeid').val();
-                    var firstname = $('#firstname').val();
-                    var middlename = $('#middlename').val();
-                    var lastname = $('#lastname').val();
+
+                    var empid                   = $('#employeeid').val();
+                    var firstname               = $('#firstname').val();
+                    var middlename              = $('#middlename').val();
+                    var lastname                = $('#lastname').val();
+                    var extension               = $('#extension').val();
+                    var position                = $('#position').val();
+                    var datehired               = $('#datehired').val();
+                    var username                = $('#username').val();
+                    var password                = $('#password').val();
+                    var gender                  = $('#gender').val();
+                    var civilstatus             = $('#civilstatus').val();
+
+                    var profileid               = $('#profileid').val();
+                    var dob                     = $('#dob').val();
+                    var placeofbirth            = $('#placeofbirth').val();
+                    var height                  = $('#height').val();
+                    var weight                  = $('#weight').val();
+                    var gsisno                  = $('#gsisno').val();
+                    var pagibigno               = $('#pagibigno').val();
+                    var phicno                  = $('#phicno').val();
+                    var sssno                   = $('#sssno').val();
+                    var tinno                   = $('#tinno').val();
+                    var agencyemployeeno        = $('#agencyemployeeno').val();
+                    var dual                    = $('#dual').val();
+                    var filipino                = $('#filipino').val();
+                    var birth                   = $('#birth').val();
+                    var naturalization          = $('#naturalization').val();
+                    var residentialaddress      = $('#residentialaddress').val();
+                    var permanentaddress        = $('#permanentaddress').val();
+                    var telephoneno             = $('#telephoneno').val();
+                    var mobileno                = $('#mobileno').val();
+                    var emailprofile            = $('#emailprofile').val();
+
+                    var familyid                = $('#familyid').val();
+                    var spouselastname          = $('#spouselastname').val();
+                    var spousemiddlename        = $('#spousemiddlename').val();
+                    var spousefirstname         = $('#spousefirstname').val();
+                    var spouseextension         = $('#spouseextension').val();
+                    var occupation              = $('#occupation').val();
+                    var employername            = $('#employername').val(); 
+                    var businessaddress         = $('#businessaddress').val();
+                    var spousetelno             = $('#spousetelno').val();
+                    var fathersurname           = $('#fathersurname').val();
+                    var fatherfirstname         = $('#fatherfirstname').val();
+                    var fathermiddlename        = $('#fathermiddlename').val();
+                    var fatherext               = $('#fatherext').val();
+                    var mothermaidenname        = $('#mothermaidenname').val();
+                    var mothersurname           = $('#mothersurname').val();
+                    var motherfirstname         = $('#motherfirstname').val(); 
+                    var mothermiddlename        = $('#mothermiddlename').val();
+
                  //if(answer == 'N'){ //COMMENTED, USED FOR VALIDATION
                     $.ajax({
-                        url:"update_employee",
+                        url:"view_employee_action",
                         method:"POST",
                         data:{
-                            add_employee:add_employee,
-                            empid:empid, 
-                            firstname:firstname, 
-                            middlename:middlename, 
-                            lastname:lastname,
                             employeeiddb:employeeiddb,
-                            action:'add_children'
+                            empid:empid,        
+                            firstname:firstname,       
+                            middlename:middlename,      
+                            lastname:lastname,       
+                            extension:extension,       
+                            position:position,        
+                            datehired:datehired,       
+                            username:username,       
+                            password:password,        
+                            gender:gender,          
+                            civilstatus:civilstatus,     
+                            profileid:profileid,       
+                            dob:dob,             
+                            placeofbirth:placeofbirth,    
+                            height:height,          
+                            weight:weight,          
+                            gsisno:gsisno,          
+                            pagibigno:pagibigno,       
+                            phicno:phicno,          
+                            sssno:sssno,          
+                            tinno:tinno,           
+                            agencyemployeeno:agencyemployeeno,
+                            dual:dual,            
+                            filipino:filipino,        
+                            birth:birth,           
+                            naturalization:naturalization,  
+                            residentialaddress:residentialaddress,
+                            permanentaddress:permanentaddress,
+                            telephoneno:telephoneno,     
+                            mobileno:mobileno,       
+                            emailprofile:emailprofile,    
+                            familyid:familyid,        
+                            spouselastname:spouselastname,  
+                            spousemiddlename:spousemiddlename,
+                            spousefirstname:spousefirstname, 
+                            spouseextension:spouseextension,
+                            occupation:occupation,      
+                            employername:employername,    
+                            businessaddress:businessaddress, 
+                            spousetelno:spousetelno,     
+                            fathersurname:fathersurname,   
+                            fatherfirstname:fatherfirstname, 
+                            fathermiddlename:fathermiddlename,
+                            fatherext:fatherext,       
+                            mothermaidenname:mothermaidenname,
+                            mothersurname:mothersurname,   
+                            motherfirstname:motherfirstname, 
+                            mothermiddlename:mothermiddlename,
+                            action:'update_employee'
 
                         },
                         success:function(data){
@@ -1145,10 +1265,6 @@ if (isset($_GET['id'])) {
                     var firstname = $('#firstname').val();
                     var middlename = $('#middlename').val();
                     var lastname = $('#lastname').val();
-
-                    
-
-                
 
                  //if(answer == 'N'){ //COMMENTED, USED FOR VALIDATION
                     $.ajax({
