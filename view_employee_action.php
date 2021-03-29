@@ -114,8 +114,15 @@ if (isset($_POST['action'])){
   */
 
     $query_profile = 'SELECT * FROM tbl_employee_profile WHERE EMPID = "'.$_POST["employeeiddb"].'" ';
-    $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
-
+    $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query_profile));
+    //var_dump($number_filter_row);
+    if($number_filter_row == 0){
+      $queProfile = "INSERT INTO `tbl_employee_profile` SET 
+      EMPID = '".$_POST["employeeiddb"]."'
+      "; 
+      //var_dump($queProfile);
+      $query = $connect->query($queProfile) or die($connect->error); 
+    }
 
 
     $result_query_profile = mysqli_query($connect, $query_profile);
@@ -156,7 +163,15 @@ if (isset($_POST['action'])){
 
     $query_family = 'SELECT * FROM tbl_employee_family WHERE EMPID = "'.$_POST["employeeiddb"].'" ';
     $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query_family));
-    //var_dump($query_family);
+
+    if ($number_filter_row == 0){
+      $queProfile = "INSERT INTO `tbl_employee_family` SET 
+      EMPID = '".$_POST["employeeiddb"]."'
+      "; 
+    
+      $query = $connect->query($queProfile) or die($connect->error); 
+    }
+
 
     $result_query_family = mysqli_query($connect, $query_family);
 
@@ -471,7 +486,7 @@ if (isset($_POST['action'])){
         //var_dump($_SESSION['query2']);
        
         $empid  = $_POST['employeeiddb'];
-       
+
         /*$email = $_POST['email'];
         $position = $_POST['position'];
         $datehired = $_POST['datehired'];
@@ -520,7 +535,7 @@ if (isset($_POST['action'])){
     if ($_POST['action'] == 'update_employee'){
        
         $empid  = $_POST['employeeiddb'];
-      
+
         $employeeid              = $_POST['empid'];
         $firstname               = $_POST['firstname'];
         $middlename              = $_POST['middlename'];
@@ -585,42 +600,45 @@ if (isset($_POST['action'])){
         POSITION                = "'.$position.'", 
         DATEHIRED               = "'.$datehired.'", 
         USERNAME                = "'.$username.'", 
-        PASSWORD                = "'.$password.'", 
-        GENDER                  = "'.$gender.'", 
-        CIVILSTATUS             = "'.$civilstatus.'"
+        PASSWORD                = "'.$password.'"
+        
+       
         WHERE ID = "'.$empid.'" ';
         $result = mysqli_query($connect, $sqlProfile);
 
-        //var_dump($sqlProfile);
+        //var_dump($sqlProfile); 
+        /** */
         
-        $sqlEmployee = 'UPDATE tbl_employee_profile
+        $sqlProfile = 'UPDATE tbl_employee_profile
         SET DOB                 = "'.$dob.'", 
         PLACEOFBIRTH            = "'.$placeofbirth.'", 
-        HEIGHT                  = "'.$height.'", 
+        HEIGHT                  = "'.$height.'",
         WEIGHT                  = "'.$weight.'", 
+        GENDER                  = "'.$gender.'", 
+        CIVILSTATUS             = "'.$civilstatus.'",
         GSISNO                  = "'.$gsisno.'", 
         PAGIBIGNO               = "'.$pagibigno.'", 
         PHICNO                  = "'.$phicno.'", 
         SSSNO                   = "'.$sssno.'", 
         TINNO                   = "'.$tinno.'", 
         AGENCYEMPLOYEENO        = "'.$agencyemployeeno.'", 
-        DUAL                    = "'.$dual.'", 
-        BIRTH                   = "'.$birth.'", 
-        NATURALIZATION          = "'.$naturalization.'", 
+        CITIZENSHIP                    = "'.$dual.'", 
+        DUALCITIZEN                   = "'.$birth.'", 
         RESIDENTIALADDRESS      = "'.$residentialaddress.'", 
         PERMANENTADDRESS        = "'.$permanentaddress.'", 
         TELEPHONENO             = "'.$telephoneno.'", 
         MOBILENO                = "'.$mobileno.'", 
-        EMAILPROFILE            = "'.$emailprofile.'"
+        EMAIL            = "'.$emailprofile.'"
+        
         WHERE 
         ID = "'.$profileid.'" AND 
         EMPID = "'.$empid.'"';
-        $result = mysqli_query($connect, $sqlEmployee);
+        $result = mysqli_query($connect, $sqlProfile);
 
-        //var_dump($sqlEmployee);
+        //var_dump($sqlProfile);
 
         $sqlFamily = 'UPDATE tbl_employee_family
-        SET DOB                 = "'.$dob.'", 
+        SET 
         SPOUSELASTNAME            = "'.$spouselastname.'", 
         SPOUSEFIRSTNAME           = "'.$spousefirstname.'", 
         SPOUSEMIDDLENAME          = "'.$spousemiddlename.'", 
@@ -635,8 +653,8 @@ if (isset($_POST['action'])){
         FATHEREXT          = "'.$fatherext.'", 
         MOTHERMAIDENNAME      = "'.$mothermaidenname.'", 
         MOTHERSURNAME        = "'.$mothersurname.'", 
-        MOTEHRFIRSTNAME             = "'.$motherfirstname.'", 
-        MOTHERMIDDLENAME                = "'.$mothermiddlename.'", 
+        MOTHERFIRSTNAME             = "'.$motherfirstname.'", 
+        MOTHERMIDDLENAME                = "'.$mothermiddlename.'" 
        
         WHERE EMPID = "'.$_POST["employeeiddb"].'" AND ID = "'.$_POST["familyid"].'" ';
         
@@ -644,24 +662,8 @@ if (isset($_POST['action'])){
 
         $result = mysqli_query($connect, $sqlFamily);
 
-        $children_data =  $_SESSION['query3'];
 
 
-        foreach($children_data as $x ) {
-
-
-          $que = "INSERT INTO `tbl_employee_children` SET 
-          EMPID = '".$empid."',
-          FULLNAME = '".$x[0]."',
-          DOB = '".$x[1]."',
-          CANCELLED = 'N'
-          "; 
-
-
-          $result = mysqli_query($connect, $que);
-          $i++; 
-
-        }
     }
   }
 

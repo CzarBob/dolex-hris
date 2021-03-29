@@ -5,6 +5,7 @@ session_start();
 //include 'adminviewapplicant1.php';
 if (isset($_GET['id'])) {
 
+    unset($_SESSION['query3']);
     $id = $_GET['id'];
 
     $query = 'SELECT * FROM tbl_employee_children WHERE EMPID = "'.$id.'" AND CANCELLED = "N" ';

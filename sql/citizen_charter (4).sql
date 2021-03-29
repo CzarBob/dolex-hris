@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 24, 2021 at 03:14 PM
+-- Generation Time: Mar 30, 2021 at 01:09 AM
 -- Server version: 10.4.16-MariaDB
 -- PHP Version: 7.4.12
 
@@ -144,7 +144,9 @@ CREATE TABLE `tbl_employee` (
 INSERT INTO `tbl_employee` (`ID`, `FIRSTNAME`, `MIDDLENAME`, `LASTNAME`, `EXTENSION`, `EMPLOYEEID`, `POSITION`, `ADDRESS`, `DATEHIRED`, `SLCREDIT`, `VLCREDIT`, `UPDATEDDATETIME`, `UPDATEDBY`, `CREATEDDATETIME`, `CANCELLED`, `CANCELLEDBY`, `CANCELLEDDATETIME`, `ENABLED`, `FIELDOFFICEID`, `DIVISIONID`, `BUREAUID`, `UNITID`, `EMAIL`, `USERNAME`, `PASSWORD`) VALUES
 (1, 'CZAR', 'TEJANO', 'ZAMBRANO', '', 'CBTZ116200', 'ISA II', 'NHA KAUSWAGAN', '2020-01-06', 12, 12, '2021-02-09 08:30:59', '0', '2021-02-09 08:30:59', 'N', '0', '2021-02-09 08:30:59', 'Y', '1', '1', '1', '1', '', '', ''),
 (2, 'sdasd', 'hhh', 'asdasd', '', 'N', 'ds', '', '2021-02-10', 2, 3, '2021-02-12 12:40:35', '', '2021-02-12 12:40:35', 'N', '', '2021-02-12 12:40:35', '', '', '', '', '', 'aasd', '', ''),
-(3, 'sdasd', 'sdasd', 'asdasd', '', '323', 'X', '', '0000-00-00', 0, 0, '2021-03-06 14:50:18', '', '2021-03-06 14:50:18', 'N', '', '2021-03-06 14:50:18', '', '', '', '', '', 'X', '', '');
+(3, 'sdasd', 'sdasd', 'asdasd', '', '323', 'X', '', '0000-00-00', 0, 0, '2021-03-06 14:50:18', '', '2021-03-06 14:50:18', 'N', '', '2021-03-06 14:50:18', '', '', '', '', '', 'X', '', ''),
+(4, 'BOB', 'TEJ', 'ZAMBRAFF', '', '44444', 'X', '', '0000-00-00', 0, 0, '2021-03-28 04:44:16', '', '2021-03-28 04:44:16', 'N', '', '2021-03-28 04:44:16', '', '', '', '', '', 'X', '', ''),
+(5, 'SAMPLE NAME', 'SAMPLE MID', 'SAMPLE LAST', '', 'SAMPLE1', 'fFF', '', '0000-00-00', 0, 0, '2021-03-28 04:46:02', '', '2021-03-28 04:46:02', 'N', '', '2021-03-28 04:46:02', '', '', '', '', '', 'X', '', '');
 
 -- --------------------------------------------------------
 
@@ -165,38 +167,29 @@ CREATE TABLE `tbl_employee_children` (
 --
 
 INSERT INTO `tbl_employee_children` (`ID`, `EMPID`, `FULLNAME`, `DOB`, `CANCELLED`) VALUES
-(1, 2, 'ASDggjdsjjfsdgsd sdgfsdgsdg sdgsdgwegfegwe ', '2021-03-04', 'Y'),
-(2, 2, 'evevqwvwqvqwvqwvevwevwevwvwevewvewev osas', '2021-03-17', 'Y'),
-(3, 0, 'jjj', '0000-00-00', 'Y'),
-(4, 2, 'f', '0000-00-00', 'Y'),
-(5, 2, 'ADDED', '0000-00-00', 'Y'),
-(6, 2, '1', '0000-00-00', 'Y'),
-(7, 2, 'jjhjg', '0000-00-00', 'Y'),
-(8, 2, 'zomm', '0000-00-00', 'Y'),
-(9, 2, 'uu', '0000-00-00', 'Y'),
-(10, 2, 'kkkko', '0000-00-00', 'Y'),
-(11, 2, 'ggg', '0000-00-00', 'Y'),
-(12, 2, '123', '0000-00-00', 'Y'),
-(13, 2, 'qqq', '0000-00-00', 'Y'),
-(14, 2, 'zzzz', '0000-00-00', 'Y'),
-(15, 2, 'lllyyy', '0000-00-00', 'Y'),
-(16, 2, 'ghhhhh', '0000-00-00', 'Y'),
-(17, 2, '321', '0000-00-00', 'Y'),
-(23, 3, '13', '0000-00-00', 'Y'),
-(24, 3, '3', '0000-00-00', 'Y'),
-(25, 3, '3', '0000-00-00', 'Y'),
-(26, 3, '4', '0000-00-00', 'Y'),
-(27, 3, '25346326324', '0000-00-00', 'Y'),
-(28, 3, '2', '0000-00-00', 'N'),
-(29, 2, 'ASDggjdsjjfsdgsd sdgfsdgsdg sdgsdgwegfegwe ', '2021-03-04', 'N'),
-(30, 2, 'ADDED', '0000-00-00', 'N'),
-(31, 2, 'jjhjg', '0000-00-00', 'N'),
-(32, 2, 'zomm', '0000-00-00', 'N'),
-(33, 2, 'kkkko', '0000-00-00', 'N'),
-(34, 2, 'ggg', '0000-00-00', 'N'),
-(35, 2, 'zzzz', '0000-00-00', 'N'),
-(36, 2, 'lllyyy', '0000-00-00', 'N'),
-(37, 2, '321', '0000-00-00', 'N');
+(1, 5, 'CZAR', '2021-03-09', 'Y'),
+(2, 5, 's', '0000-00-00', 'Y'),
+(4, 5, 'f', '0000-00-00', 'Y'),
+(5, 5, 'CZAR', '2021-03-09', 'N'),
+(6, 5, 'f', '0000-00-00', 'Y');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_employee_civil_service`
+--
+
+CREATE TABLE `tbl_employee_civil_service` (
+  `ID` int(100) NOT NULL,
+  `EMPID` int(100) NOT NULL,
+  `ELIGIBILITY` varchar(255) NOT NULL,
+  `RATING` int(10) NOT NULL,
+  `DATEOFEXAM` date NOT NULL,
+  `PLACEOFEXAM` varchar(255) NOT NULL,
+  `LICENSENUMBER` int(100) NOT NULL,
+  `LICENSEDATEOFVALIDITY` date NOT NULL,
+  `CANCELLED` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -244,6 +237,57 @@ CREATE TABLE `tbl_employee_family` (
   `MOTHERMIDDLENAME` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `tbl_employee_family`
+--
+
+INSERT INTO `tbl_employee_family` (`ID`, `EMPID`, `SPOUSELASTNAME`, `SPOUSEFIRSTNAME`, `SPOUSEMIDDLENAME`, `SPOUSEEXTENSION`, `OCCUPATION`, `EMPLOYERNAME`, `BUSINESSADDRESS`, `SPOUSETELNO`, `FATHERSURNAME`, `FATHERFIRSTNAME`, `FATHERMIDDLENAME`, `FATHEREXT`, `MOTHERMAIDENNAME`, `MOTHERSURNAME`, `MOTHERFIRSTNAME`, `MOTHERMIDDLENAME`) VALUES
+(1, 2, 'MSFKKALL', 'MEKAKAK', 'OHFMD', 'II', 'HR', 'CEROBRO', 'CUGMAN', '09389583', 'ABRHANS', 'TALGAOTM', 'KJJWIIW', 'JR', 'rrrF', 'KSKCMWJ', 'KFAKSKWI', 'GAWG'),
+(3, 5, 'fff', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_employee_ld`
+--
+
+CREATE TABLE `tbl_employee_ld` (
+  `ID` int(100) DEFAULT NULL,
+  `EMPID` int(100) NOT NULL,
+  `PROGRAM` varchar(255) NOT NULL,
+  `DATEFROM` date NOT NULL,
+  `DATETO` date NOT NULL,
+  `NOOFHOURS` int(20) NOT NULL,
+  `TYPE` varchar(100) NOT NULL,
+  `SPONSOREDBY` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_employee_other_recognition`
+--
+
+CREATE TABLE `tbl_employee_other_recognition` (
+  `ID` int(100) NOT NULL,
+  `EMPID` int(100) NOT NULL,
+  `RECOGNITION` varchar(255) NOT NULL,
+  `CANCELLED` char(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_employee_other_skills`
+--
+
+CREATE TABLE `tbl_employee_other_skills` (
+  `ID` int(100) NOT NULL,
+  `EMPID` int(100) NOT NULL,
+  `SKILLS` varchar(255) NOT NULL,
+  `CANCELLED` char(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 -- --------------------------------------------------------
 
 --
@@ -273,6 +317,50 @@ CREATE TABLE `tbl_employee_profile` (
   `TELEPHONENO` varchar(100) NOT NULL,
   `MOBILENO` varchar(100) NOT NULL,
   `EMAIL` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_employee_profile`
+--
+
+INSERT INTO `tbl_employee_profile` (`ID`, `EMPID`, `DOB`, `PLACEOFBIRTH`, `GENDER`, `CIVILSTATUS`, `HEIGHT`, `WEIGHT`, `BLOODTYPE`, `GSISNO`, `PAGIBIGNO`, `PHICNO`, `SSSNO`, `TINNO`, `AGENCYEMPLOYEENO`, `CITIZENSHIP`, `DUALCITIZEN`, `RESIDENTIALADDRESS`, `PERMANENTADDRESS`, `TELEPHONENO`, `MOBILENO`, `EMAIL`) VALUES
+(1, 2, '2021-03-10', 'CDO', 'M', 'SINGLE', 163, 67, 'B', 353253426, 3423423, 2342343, 34324, 342345236, 'CBTZ200116', 'FILIPINO', '', 'FJ SKMWFKK W', 'CDO SWOOR', '2512612', '352362351', 'dole10.czarbobzambrano@gmail.com'),
+(6, 5, '0000-00-00', 'zz', 'NA', '', 0, 0, '', 0, 0, 0, 0, 0, '', 'dual', 'bi', '', '', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_employee_voluntary_work`
+--
+
+CREATE TABLE `tbl_employee_voluntary_work` (
+  `ID` int(100) NOT NULL,
+  `EMPID` int(100) NOT NULL,
+  `ORGANIZATION` varchar(255) NOT NULL,
+  `DATEFROM` date NOT NULL,
+  `DATETO` date NOT NULL,
+  `NOOFHOURS` int(11) NOT NULL,
+  `POSITION` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_employee_work_experience`
+--
+
+CREATE TABLE `tbl_employee_work_experience` (
+  `ID` int(100) NOT NULL,
+  `EMPID` int(100) NOT NULL,
+  `DATEFROM` date NOT NULL,
+  `DATETO` date NOT NULL,
+  `POSITION` varchar(255) NOT NULL,
+  `COMPANY` varchar(255) NOT NULL,
+  `MONTHLYSALARY` int(100) NOT NULL,
+  `GRADE` varchar(100) NOT NULL,
+  `STATUS` varchar(100) NOT NULL,
+  `GOVTSERVICE` char(2) NOT NULL,
+  `CANCELLED` char(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -341,6 +429,12 @@ ALTER TABLE `tbl_employee_children`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `tbl_employee_civil_service`
+--
+ALTER TABLE `tbl_employee_civil_service`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `tbl_employee_educ_background`
 --
 ALTER TABLE `tbl_employee_educ_background`
@@ -353,9 +447,27 @@ ALTER TABLE `tbl_employee_family`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `tbl_employee_other_recognition`
+--
+ALTER TABLE `tbl_employee_other_recognition`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `tbl_employee_profile`
 --
 ALTER TABLE `tbl_employee_profile`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `tbl_employee_voluntary_work`
+--
+ALTER TABLE `tbl_employee_voluntary_work`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `tbl_employee_work_experience`
+--
+ALTER TABLE `tbl_employee_work_experience`
   ADD PRIMARY KEY (`ID`);
 
 --
@@ -396,13 +508,19 @@ ALTER TABLE `tbl_division`
 -- AUTO_INCREMENT for table `tbl_employee`
 --
 ALTER TABLE `tbl_employee`
-  MODIFY `ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbl_employee_children`
 --
 ALTER TABLE `tbl_employee_children`
-  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `tbl_employee_civil_service`
+--
+ALTER TABLE `tbl_employee_civil_service`
+  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_employee_educ_background`
@@ -414,12 +532,30 @@ ALTER TABLE `tbl_employee_educ_background`
 -- AUTO_INCREMENT for table `tbl_employee_family`
 --
 ALTER TABLE `tbl_employee_family`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `tbl_employee_other_recognition`
+--
+ALTER TABLE `tbl_employee_other_recognition`
+  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_employee_profile`
 --
 ALTER TABLE `tbl_employee_profile`
+  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `tbl_employee_voluntary_work`
+--
+ALTER TABLE `tbl_employee_voluntary_work`
+  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tbl_employee_work_experience`
+--
+ALTER TABLE `tbl_employee_work_experience`
   MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT;
 
 --
