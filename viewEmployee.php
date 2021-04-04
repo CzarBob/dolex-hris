@@ -2,15 +2,15 @@
 include "dbConnection.php";
 session_start();
 
-//include 'adminviewapplicant1.php';
-if (isset($_GET['id'])) {
+include 'view_employee_load_query.php';
+/*if (isset($_GET['id'])) {
 
     unset($_SESSION['query3']);
     $id = $_GET['id'];
 
     $query = 'SELECT * FROM tbl_employee_children WHERE EMPID = "'.$id.'" AND CANCELLED = "N" ';
 
-     // var_dump($query);
+    
       $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
       
       $result = mysqli_query($connect, $query );
@@ -26,7 +26,7 @@ if (isset($_GET['id'])) {
       }
       $_SESSION['query3'] = $data;
       
-}
+}*/
 
 //include 'adminlogout.php';
 ?>
@@ -464,9 +464,7 @@ if (isset($_GET['id'])) {
                                 <div class="card-body">
                                     <div class="col-md-12">
                                     </div>
-                                     <!-- <div class="col-md-12">
-    
-                    
+                                     <!-- <div class="col-md-12">                  
                                     </div> -->
 
                                     <!-- Grid row -->
@@ -579,21 +577,12 @@ if (isset($_GET['id'])) {
                                       
                                       
                                     </div>
-                                    
-
-            
-
-                   
-
                                 </div>
                             </div>
                         </div>
 
                     <!-- END OF FAMILY BACKGROUND FORM -->
-
-                        
-
-                 
+                
 
                         <div class="col-xl-12 col-lg-7">
                             <div class="card shadow mb-4">
@@ -610,63 +599,201 @@ if (isset($_GET['id'])) {
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Children (if Applicable)</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Educational Background</a>
+                                    <a class="nav-link" id="educ-tab" data-toggle="tab" href="#eductab" role="tab" aria-controls="profile" aria-selected="false">Educational Background</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Civil Service Eligibility</a>
+                                    <a class="nav-link" id="civil-tab" data-toggle="tab" href="#civiltab" role="tab" aria-controls="contact" aria-selected="false">Civil Service Eligibility</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Work Experience</a>
+                                    <a class="nav-link" id="work-tab" data-toggle="tab" href="#worktab" role="tab" aria-controls="contact" aria-selected="false">Work Experience</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Civil Service Eligibility</a>
+                                    <a class="nav-link" id="voluntary-tab" data-toggle="tab" href="#voluntarytab" role="tab" aria-controls="contact" aria-selected="false">Voluntary Work</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="lad-tab" data-toggle="tab" href="#ladtab" role="tab" aria-controls="contact" aria-selected="false">Learning and Development</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Other Information</a>
                                 </li>
                                 </ul>
                                 <div class="tab-content" id="myTabContent">
                                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                    <div class="container-fluid">
-                                        <div class="card shadow mb-4">
-                                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                                <h6 class="m-0 font-weight-bold text-primary"></h6> 
-                                                
-                                                <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#modalChildrenForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Employee</a>
-                                                
-                                                <!--<a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#dateRangeModal" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Generate Report</a> -->
+                                        <div class="container-fluid">
+                                            <div class="card shadow mb-4">
+                                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                                    <h6 class="m-0 font-weight-bold text-primary"></h6> 
+                                                    
+                                                    <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#modalChildrenForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Employee</a>
+                                                    
+                                                    <!--<a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#dateRangeModal" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Generate Report</a> -->
                                                 </div>
                                                 <div class="card-body">
-                                                <div class="table-responsive">
-                                                    <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="children_data" width="100%" cellspacing="0">
-                                                    <thead class = "text-primary">
-                                                    <tr>
-                                                        <th data-column-id="fullName">FULL NAME</th>
-                                                        <th data-column-id="dob">DATE OF BIRTH</th>
-                                                        <th >ACTION</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tfoot class = "text-primary">
-                                                        <tr>
-                                                        <th>FULL NAME</th>
-                                                        <th>DATE OF BIRTH</th>
-                                                        <th>ACTION</th>
-                                                        </tr>
-                                                    </tfoot>
-                                                    </table>
-                                                </div>
+                                                        <div class="table-responsive">
+                                                            <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="children_data" width="100%" cellspacing="0">
+                                                                <thead class = "text-primary">
+                                                                    <tr>
+                                                                        <th data-column-id="fullName">FULL NAME</th>
+                                                                        <th data-column-id="dob">DATE OF BIRTH</th>
+                                                                        <th >ACTION</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tfoot class = "text-primary">
+                                                                    <tr>
+                                                                    <th>FULL NAME</th>
+                                                                    <th>DATE OF BIRTH</th>
+                                                                    <th>ACTION</th>
+                                                                    </tr>
+                                                                </tfoot>
+                                                            </table>
+                                                        </div>
+                                                   
                                                 </div>
                                             </div>
                                         </div>
 
 
                                     </div>
-                                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...asdasdasd</div>
-                                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">.asdasdasd..</div>
+                                    <div class="tab-pane fade" id="eductab" role="tabpanel" aria-labelledby="educ-tab">
+                                        <div class="container-fluid">
+                                            <div class="card shadow mb-4">
+                                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                                    <h6 class="m-0 font-weight-bold text-primary"></h6> 
+                                                    
+                                                    <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#modalEducationForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Educational Background</a>
+                                                    
+                                                    <!--<a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#dateRangeModal" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Generate Report</a> -->
+                                                </div>
+                                                <div class="card-body">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="educ_data" width="100%" cellspacing="0">
+                                                                <thead class = "text-primary">
+                                                                    <tr>
+                                                                        <th data-column-id="educ_level">LEVEL</th>
+                                                                        <th data-column-id="school_name">NAME OF SCHOOL</th>
+                                                                        <th data-column-id="basic_educ">BASIC EDUCATION/DEGREE/COURSE</th>
+                                                                        <th data-column-id="period_from">ATTENDED FROM</th>
+                                                                        <th data-column-id="period_to">ATTENDED UNTIL</th>
+                                                                        <th data-column-id="highest_level">HIGHEST LEVEL/UNITS EARNED</th>
+                                                                        <th data-column-id="year_grad">YEAR GRADUATED</th>
+                                                                        <th data-column-id="honor_received">ACADEMIC HONORS RECEIVED</th>
+                                                                        <th >ACTION</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tfoot class = "text-primary">
+                                                                    <tr>
+                                                                        <th>LEVEL</th>
+                                                                        <th>NAME OF SCHOOL</th>
+                                                                        <th>BASIC EDUCATION/DEGREE/COURSE</th>
+                                                                        <th>ATTEND FROM</th>
+                                                                        <th>ATTENDED UNTIL</th>
+                                                                        <th>HIGHEST LEVEL/UNITS EARNED</th>
+                                                                        <th>YEAR GRADUATED</th>
+                                                                        <th>ACADEMIC HONORS RECEIVED</th>
+                                                                        <th>ACTION</th>
+                                                                    </tr>
+                                                                </tfoot>
+                                                            </table>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                        </div>                                                                                                                          
+                                    </div>
+                                    
+                                    <div class="tab-pane fade" id="civiltab" role="tabpanel" aria-labelledby="civil-tab">
+                                        <div class="container-fluid">
+                                            <div class="card shadow mb-4">
+                                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                                    <h6 class="m-0 font-weight-bold text-primary"></h6> 
+                                                    
+                                                    <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#modalEligibilityForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Eligibility</a>
+                                                    
+                                                    <!--<a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#dateRangeModal" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Generate Report</a> -->
+                                                </div>
+                                                <div class="card-body">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="civil_data" width="100%" cellspacing="0">
+                                                                <thead class = "text-primary">
+                                                                    <tr>
+                                                                        <th data-column-id="eligibility">ELIGIBILITY</th>
+                                                                        <th data-column-id="rating">RATING</th>
+                                                                        <th data-column-id="date_of_exam">DATE OF EXAM</th>
+                                                                        <th data-column-id="place_of_exam">PLACE OF EXAM</th>
+                                                                        <th data-column-id="license_no">LICENSE NUMBER</th>
+                                                                        <th data-column-id="license_date">LICENSE DATE OF VALIDITY</th>
+                                                                        <th >ACTION</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tfoot class = "text-primary">
+                                                                    <tr>
+                                                                        <th>ELIGIBILITY</th>
+                                                                        <th>RATING</th>
+                                                                        <th>DATE OF EXAM</th>
+                                                                        <th>PLACE OF EXAM</th>
+                                                                        <th>LICENSE NUMBER</th>
+                                                                        <th>LICENSE DATE OF VALIDITY</th>
+                                                                        <th>ACTION</th>
+                                                                    </tr>
+                                                                </tfoot>
+                                                            </table>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                                                          
+                                    </div>
+
+                                    <!-- WORK TAB-->
+                                    <div class="tab-pane fade" id="worktab" role="tabpanel" aria-labelledby="work-tab">
+                                        <div class="container-fluid">
+                                            <div class="card shadow mb-4">
+                                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                                    <h6 class="m-0 font-weight-bold text-primary"></h6> 
+                                                    
+                                                    <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#modalWorkForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Work Experience</a>
+                                                    
+                                                    <!--<a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#dateRangeModal" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Generate Report</a> -->
+                                                </div>
+                                                <div class="card-body">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="work_data" width="100%" cellspacing="0">
+                                                                <thead class = "text-primary">
+                                                                    <tr>
+                                                                        <th data-column-id="work_date_from">DATE FROM</th>
+                                                                        <th data-column-id="work_date_to">DATE TO</th>
+                                                                        <th data-column-id="work_positon">POSTION</th>
+                                                                        <th data-column-id="work_company">COMPANY</th>
+                                                                        <th data-column-id="work_salary">MONTHLY SALARY</th>
+                                                                        <th data-column-id="work_salary_grade">SALARY GRADE (If Applicable)</th>
+                                                                        <th data-column-id="work_appointment_status">STATUS OF APPOINTMENT</th>
+                                                                        <th data-column-id="work_govt">GOV'T SERVICE</th>
+                                                                        <th >ACTION</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tfoot class = "text-primary">
+                                                                    <tr>
+                                                                        <th >DATE FROM</th>
+                                                                        <th >DATE TO</th>
+                                                                        <th >POSTION</th>
+                                                                        <th >COMPANY</th>
+                                                                        <th >MONTHLY SALARY</th>
+                                                                        <th >SALARY GRADE (If Applicable)</th>
+                                                                        <th >STATUS OF APPOINTMENT</th>
+                                                                        <th >GOV'T SERVICE</th>
+                                                                        <th >ACTION</th>
+                                                                    </tr>
+                                                                </tfoot>
+                                                            </table>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                                                          
+                                    </div> <!--END OF WORK TAB -->
+
+                                    </div>
                                 </div>
-                            
-
-
-
-
-                          
+                                <!-- END OF TAB CONTENT -->
                             </div>
                         </div>
 
@@ -676,11 +803,8 @@ if (isset($_GET['id'])) {
                         <!-- UPDATE OR CANCEL SECTION -->
 
                         <div class="col-xl-12 col-lg-7">
-                            <div class="card shadow mb-4">
-                                
-                                <!-- Card Body -->
-                               
-                                   
+                            <div class="card shadow mb-4">                                
+                                <!-- Card Body -->                               
                                     <div class="col-md-12">
     
                                        <table class=" table">
@@ -693,22 +817,16 @@ if (isset($_GET['id'])) {
                                                 <td style="width: 100%;"  colspan="2" style = "align: left"><button  style="width: 100%;" class="btn btn-primary" id = "cancel_employee">     Cancel  </button></td>                                               
                                             </tr>  
                                       </table> 
-                                    </div>
-                         
+                                    </div>                        
                             </div>
                         </div>
-
-
-
-
-
                     </div>
 
 
 
                 </div>
                 <!-- /.container-fluid -->
-
+            </div>
             </div>
             <!-- End of Main Content -->
 
@@ -760,7 +878,7 @@ if (isset($_GET['id'])) {
             <div class="md-form mb-5">
        
               <label data-error="wrong" data-success="right" for="form29">Date of Birth</label>
-              <input type="date" name="dob" id = "dob" class="form-control validate" required>
+              <input type="date" name="dob_add" id = "dob_add" class="form-control validate" required>
              
             </div>
           </div>
@@ -809,10 +927,417 @@ if (isset($_GET['id'])) {
       </div>
     </div>
   
-    
+  
+
+    <!-- UPDATE EDUC FORM -->
+    <div class="modal fade" id="modalEditEducationForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold" id="modal_title">Update Educational Background</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-3">
 
 
+            <div class="md-form mb-5">
+                <input type="hidden" name="educid" id = "educid" class="form-control validate" required>  
+              <label data-error="wrong" data-success="right" for="form34">Level</label>
+              <input type="text" name="level_update" id = "level_update" class="form-control validate" required>
+           
+            </div>
+
+            <div class="md-form mb-5">
+       
+              <label data-error="wrong" data-success="right" for="form29">Name of School (Write in full)</label>
+              <input type="text" name="school_name_update" id = "school_name_update" class="form-control validate" required>
+             
+            </div>
+            <div class="md-form mb-5">
+       
+              <label data-error="wrong" data-success="right" for="form29">Basic Education/Degree/Course</label>
+              <input type="text" name="educ_update" id = "educ_update" class="form-control validate" required>
+             
+            </div>
+            <div class="md-form mb-5">
+       
+              <label data-error="wrong" data-success="right" for="form29">Period from </label>
+              <input type="text" name="attended_from_update" id = "attended_from_update" class="form-control validate" required>
+             
+            </div>
+            <div class="md-form mb-5">
+       
+              <label data-error="wrong" data-success="right" for="form29">Period to</label>
+              <input type="text" name="attended_to_update" id = "attended_to_update" class="form-control validate" required>
+             
+            </div>
+            <div class="md-form mb-5">
+       
+              <label data-error="wrong" data-success="right" for="form29">Highest Level/Units Earned</label>
+              <input type="text" name="highest_level_update" id = "highest_level_update" class="form-control validate" required>
+             
+            </div>
+            <div class="md-form mb-5">
+       
+              <label data-error="wrong" data-success="right" for="form29">Year Graduated</label>
+              <input type="text" name="year_grad_update" id = "year_grad_update" class="form-control validate" required>
+             
+            </div>
+            <div class="md-form mb-5">
+       
+              <label data-error="wrong" data-success="right" for="form29">Scholarship/Academic Honors Received</label>
+              <input type="text" name="honor_received_update" id = "honor_received_update" class="form-control validate" required>
+             
+            </div>
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+         
+          <button class="btn btn-primary" id = "submit_educ">Update data</button>
+          <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- ADD EDUC FORM -->
+    <div class="modal fade" id="modalEducationForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold" id="modal_title">Add Educational Background</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-3">
+
+
+            <div class="md-form mb-5">
+            
+              <label data-error="wrong" data-success="right" for="form34">Level</label>
+              <input type="text" name="level" id = "level" class="form-control validate" required>
+           
+            </div>
+
+            <div class="md-form mb-5">
+       
+              <label data-error="wrong" data-success="right" for="form29">Name of School (Write in full)</label>
+              <input type="text" name="school_name" id = "school_name" class="form-control validate" required>
+             
+            </div>
+            <div class="md-form mb-5">
+       
+              <label data-error="wrong" data-success="right" for="form29">Basic Education/Degree/Course</label>
+              <input type="text" name="educ" id = "educ" class="form-control validate" required>
+             
+            </div>
+            <div class="md-form mb-5">
+       
+              <label data-error="wrong" data-success="right" for="form29">Period from </label>
+              <input type="text" name="attended_from" id = "attended_from" class="form-control validate" required>
+             
+            </div>
+            <div class="md-form mb-5">
+       
+              <label data-error="wrong" data-success="right" for="form29">Period to</label>
+              <input type="text" name="attended_to" id = "attended_to" class="form-control validate" required>
+             
+            </div>
+            <div class="md-form mb-5">
+       
+              <label data-error="wrong" data-success="right" for="form29">Highest Level/Units Earned</label>
+              <input type="text" name="highest_level" id = "highest_level" class="form-control validate" required>
+             
+            </div>
+            <div class="md-form mb-5">
+       
+              <label data-error="wrong" data-success="right" for="form29">Year Graduated</label>
+              <input type="text" name="year_grad" id = "year_grad" class="form-control validate" required>
+             
+            </div>
+            <div class="md-form mb-5">
+       
+              <label data-error="wrong" data-success="right" for="form29">Scholarship/Academic Honors Received</label>
+              <input type="text" name="honor_received" id = "honor_received" class="form-control validate" required>
+             
+            </div>
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+         
+          <button class="btn btn-primary" id = "add_educ">Add data</button>
+          <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
     
+
+    <!-- ADD ELIGIBILITY FORM -->
+    <div class="modal fade" id="modalEligibilityForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold" id="modal_title">Add Eligibility</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-3">
+          <div class="md-form mb-5">
+            <input type="hidden" name="eligibilityid" id = "eligibilityid" class="form-control validate" required>  
+            <label data-error="wrong" data-success="right" for="form34">Eligibility</label>
+            <input type="text" name="eligibility" id = "eligibility" class="form-control validate" required>
+         
+          </div>
+
+          <div class="md-form mb-5">
+     
+            <label data-error="wrong" data-success="right" for="form29">rating</label>
+            <input type="text" name="rating" id = "rating" class="form-control validate" required>
+           
+          </div>
+          <div class="md-form mb-5">
+     
+            <label data-error="wrong" data-success="right" for="form29">Date of Exam</label>
+            <input type="text" name="date_of_exam" id = "date_of_exam" class="form-control validate" required>
+           
+          </div>
+          <div class="md-form mb-5">
+     
+            <label data-error="wrong" data-success="right" for="form29">Place of Exam</label>
+            <input type="text" name="place_of_exam" id = "place_of_exam" class="form-control validate" required>
+           
+          </div>
+          <div class="md-form mb-5">
+     
+            <label data-error="wrong" data-success="right" for="form29">License Number</label>
+            <input type="text" name="license_no" id = "license_no" class="form-control validate" required>
+           
+          </div>
+          <div class="md-form mb-5">
+     
+            <label data-error="wrong" data-success="right" for="form29">License Date of Validity</label>
+            <input type="text" name="license_date" id = "license_date" class="form-control validate" required>
+           
+          </div>
+          
+          
+ 
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+          <input type="hidden" name="eligibility_action_id" id = "eligibility_action_id" class="form-control validate" >  
+          <button class="btn btn-primary" id = "add_eligibility">Submit data</button>
+          <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <!-- UPDATE ELIGIBILITY FORM -->
+    <div class="modal fade" id="modalUpdateEligibilityForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold" id="modal_title">Update Eligibility</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-3">
+          <div class="md-form mb-5">
+            <input type="hidden" name="eligibilityid" id = "eligibilityid" class="form-control validate" required>  
+            <label data-error="wrong" data-success="right" for="form34">Eligibility</label>
+            <input type="text" name="eligibility_update" id = "eligibility_update" class="form-control validate" required>
+         
+          </div>
+
+          <div class="md-form mb-5">
+     
+            <label data-error="wrong" data-success="right" for="form29">rating</label>
+            <input type="text" name="rating_update" id = "rating_update" class="form-control validate" required>
+           
+          </div>
+          <div class="md-form mb-5">
+     
+            <label data-error="wrong" data-success="right" for="form29">Date of Exam</label>
+            <input type="text" name="date_of_exam_update" id = "date_of_exam_update" class="form-control validate" required>
+           
+          </div>
+          <div class="md-form mb-5">
+     
+            <label data-error="wrong" data-success="right" for="form29">Place of Exam</label>
+            <input type="text" name="place_of_exam_update" id = "place_of_exam_update" class="form-control validate" required>
+           
+          </div>
+          <div class="md-form mb-5">
+     
+            <label data-error="wrong" data-success="right" for="form29">License Number</label>
+            <input type="text" name="license_no_update" id = "license_no_update" class="form-control validate" required>
+           
+          </div>
+          <div class="md-form mb-5">
+     
+            <label data-error="wrong" data-success="right" for="form29">License Date of Validity</label>
+            <input type="text" name="license_date_update" id = "license_date_update" class="form-control validate" required>
+           
+          </div>
+          
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+          <input type="hidden" name="eligibility_action_id" id = "eligibility_action_id" class="form-control validate" >  
+          <button class="btn btn-primary" id = "submit_eligibility">Submit data</button>
+          <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- ADD WORK FORM -->
+    <div class="modal fade" id="modalWorkForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold" id="modal_title">Add Work Experience</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-3">
+          <div class="md-form mb-5">
+            <input type="hidden" name="workid" id = "workid" class="form-control validate" required> -->  
+            <label data-error="wrong" data-success="right" for="form34">Inclusive Date</label>
+            <input type="date" name="work_date_from" id = "work_date_from" class="form-control validate" required> - 
+            <input type="date" name="work_date_to" id = "work_date_to" class="form-control validate" required>
+         
+          </div>
+
+         
+          <div class="md-form mb-5">
+     
+            <label data-error="wrong" data-success="right" for="form29">Positon Title (Write in Full)</label>
+            <input type="text" name="work_position" id = "work_position" class="form-control validate" required>
+           
+          </div>
+          <div class="md-form mb-5">
+     
+            <label data-error="wrong" data-success="right" for="form29">Department/Agency/Office/Company</label>
+            <input type="text" name="work_company" id = "work_company" class="form-control validate" required>
+           
+          </div>
+          <div class="md-form mb-5">
+     
+            <label data-error="wrong" data-success="right" for="form29">Monthly Salary</label>
+            <input type="text" name="work_salary" id = "work_salary" class="form-control validate" required>
+           
+          </div>
+          <div class="md-form mb-5">
+     
+            <label data-error="wrong" data-success="right" for="form29">Salary/Job/Pat Grade (If applicable)</label>
+            <input type="text" name="work_salary_grade" id = "work_salary_grade" class="form-control validate" required>
+           
+          </div>
+          <div class="md-form mb-5">
+     
+            <label data-error="wrong" data-success="right" for="form29">Status of Appointment</label>
+            <input type="text" name="work_status" id = "work_status" class="form-control validate" required>
+           
+          </div>
+          <div class="md-form mb-5">
+     
+            <label data-error="wrong" data-success="right" for="form29">Government Service</label>
+            <input type="text" name="work_govt_service" id = "work_govt_service" class="form-control validate" required>
+           
+          </div>
+          
+          
+ 
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+          <!--<input type="hidden" name="eligibility_action_id" id = "eligibility_action_id" class="form-control validate" > --> 
+          <button class="btn btn-primary" id = "add_work">Submit data</button>
+          <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <!-- UPDATE WORK FORM -->
+    <div class="modal fade" id="modalUpdateWorkForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold" id="modal_title">Add Work Experience</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-3">
+          <div class="md-form mb-5">
+            <input type="hidden" name="workid" id = "workid" class="form-control validate" required>  
+            <label data-error="wrong" data-success="right" for="form34">Inclusive Dates</label>
+            <input type="date" name="work_date_from_update" id = "work_date_from_update" class="form-control validate" required> - 
+            <input type="date" name="work_date_to_update" id = "work_date_to_update" class="form-control validate" required>
+         
+          </div>
+
+         
+          <div class="md-form mb-5">
+     
+            <label data-error="wrong" data-success="right" for="form29">Positon Title (Write in Full)</label>
+            <input type="text" name="work_position_update" id = "work_position_update" class="form-control validate" required>
+           
+          </div>
+          <div class="md-form mb-5">
+     
+            <label data-error="wrong" data-success="right" for="form29">Department/Agency/Office/Company</label>
+            <input type="text" name="work_company_update" id = "work_company_update" class="form-control validate" required>
+           
+          </div>
+          <div class="md-form mb-5">
+     
+            <label data-error="wrong" data-success="right" for="form29">Monthly Salary</label>
+            <input type="text" name="work_salary_update" id = "work_salary_update" class="form-control validate" required>
+           
+          </div>
+          <div class="md-form mb-5">
+     
+            <label data-error="wrong" data-success="right" for="form29">Salary/Job/Pat Grade (If applicable)</label>
+            <input type="text" name="work_salary_grade_update" id = "work_salary_grade_update" class="form-control validate" required>
+           
+          </div>
+          <div class="md-form mb-5">
+     
+            <label data-error="wrong" data-success="right" for="form29">Status of Appointment</label>
+            <input type="text" name="work_status_update" id = "work_status_update" class="form-control validate" required>
+           
+          </div>
+          <div class="md-form mb-5">
+     
+            <label data-error="wrong" data-success="right" for="form29">Government Service</label>
+            <input type="text" name="work_govt_service_update" id = "work_govt_service_update" class="form-control validate" required>
+           
+          </div>
+          
+          
+ 
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+          <!--<input type="hidden" name="eligibility_action_id" id = "eligibility_action_id" class="form-control validate" > --> 
+          <button class="btn btn-primary" id = "submit_work">Submit data</button>
+          <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   
     
 
@@ -903,7 +1428,7 @@ if (isset($_GET['id'])) {
     
                 //fetch_data();
                 fetch_single();
-                
+                //document.getElementById("update_eligibility").style.visibility='hidden';
                 function fetch_children_data(){
                     //alert('pota');
                     
@@ -921,6 +1446,60 @@ if (isset($_GET['id'])) {
                                     action:'fetch_children'},
                     }
                     });
+                }
+
+                function fetch_educ_data(){
+                    //alert('pota');
+                    var employeeiddb = document.getElementById("empID").value;
+                    
+                    //alert('s');
+                    var dataTable = $('#educ_data').DataTable({
+                    "columnDefs": [{ "orderable": false, "targets":[1,8] }],
+                    "ajax" : {
+                    url:"view_employee_action.php",
+                    type:"POST",
+                    data:{
+                                    employeeiddb:employeeiddb, 
+                                    action:'fetch_educ'},
+                    }
+                    });
+                    //alert(dataTable);
+                }
+
+                function fetch_civil_data(){
+                    //alert('pota');
+                    var employeeiddb = document.getElementById("empID").value;
+                    
+                    //alert('s');
+                    var dataTable = $('#civil_data').DataTable({
+                    "columnDefs": [{ "orderable": false, "targets":[1,6] }],
+                    "ajax" : {
+                    url:"view_employee_action.php",
+                    type:"POST",
+                    data:{
+                                    employeeiddb:employeeiddb, 
+                                    action:'fetch_eligibility'},
+                    }
+                    });
+                    //alert(dataTable);
+                } 
+
+                function fetch_civil_data(){
+                    //alert('pota');
+                    var employeeiddb = document.getElementById("empID").value;
+                    
+                    //alert('s');
+                    var dataTable = $('#work_data').DataTable({
+                    "columnDefs": [{ "orderable": false, "targets":[1,6] }],
+                    "ajax" : {
+                    url:"view_employee_action.php",
+                    type:"POST",
+                    data:{
+                                    employeeiddb:employeeiddb, 
+                                    action:'fetch_work'},
+                    }
+                    });
+                    //alert(dataTable);
                 }
 
                 
@@ -1040,6 +1619,8 @@ if (isset($_GET['id'])) {
                             });
 
                             fetch_children_data();
+                            fetch_educ_data();
+                            fetch_civil_data();
 
                             $('input[type=radio][name="citizenship"]').change(function() {
                                 //alert($(this).val()); // or this.value
@@ -1072,7 +1653,7 @@ if (isset($_GET['id'])) {
                         //validateData();
                         //var answer = validateData();
                             var fullname = $('#fullname').val();
-                            var dob = $('#dob').val();              
+                            var dob = $('#dob_add').val();              
                             $.ajax({
                                 url:"view_employee_action",
                                 method:"POST",
@@ -1093,12 +1674,48 @@ if (isset($_GET['id'])) {
                 });
 
 
+                $(document).on('click', '#add_educ', function(){
+                    var employeeiddb = document.getElementById("empID").value;
+                    var add_employee = "Success";
+                        //validateData();
+                        //var answer = validateData();
+                            var level = $('#level').val();
+                            var school_name = $('#school_name').val(); 
+                            var educ = $('#educ').val();
+                            var attended_from = $('#attended_from').val();       
+                            var attended_to = $('#attended_to').val();
+                            var highest_level = $('#highest_level').val();       
+                            var year_grad = $('#year_grad').val();
+                            var honor_received = $('#honor_received').val();                    
+                            $.ajax({
+                                url:"view_employee_action",
+                                method:"POST",
+                                data:{
+                                    employeeiddb:employeeiddb,
+                                    level:level, 
+                                    school_name:school_name, 
+                                    educ:educ,
+                                    attended_from:attended_from,
+                                    attended_to:attended_to,
+                                    highest_level:highest_level,
+                                    year_grad:year_grad,
+                                    honor_received:honor_received,
+                                    action:'add_educ'
+                                },
+                                success:function(data){
+                                alert("Data Added");
 
+                                $('#educ_data').DataTable().ajax.reload();
+                                $('#modalEducationForm').modal('hide');
+                               
+                                }     
+                            }); 
+                });
 
                 $(document).on('click', '#submit_update_children', function(){
                     var employeeiddb = document.getElementById("empID").value;
                     var add_employee = "Success";
-                        //validateData();
+                        //validateData(); submit_update_educ
                         //var answer = validateData();
                             var fullname = $('#fullname_update').val();
                             var hidden_id = $('#hidden_id').val();
@@ -1124,6 +1741,48 @@ if (isset($_GET['id'])) {
                                 }     
                             }); 
                 });
+
+
+
+                $(document).on('click', '#submit_educ', function(){
+                    var educid = $('#educid').val();
+                    var level = $('#level_update').val();
+                    var school_name = $('#school_name_update').val(); 
+                    var educ = $('#educ_update').val();
+                    var attended_from = $('#attended_from_update').val();       
+                    var attended_to = $('#attended_to_update').val();
+                    var highest_level = $('#highest_level_update').val();       
+                    var year_grad = $('#year_grad_update').val();
+                    var honor_received = $('#honor_received_update').val();
+                    var employeeiddb = document.getElementById("empID").value;
+
+                    $.ajax({
+                        url:"view_employee_action",
+                        method:"POST",
+                        data:{
+                            educid:educid,
+                            employeeiddb:employeeiddb,
+                            level:level, 
+                            school_name:school_name, 
+                            educ:educ,
+                            attended_from:attended_from,
+                            attended_to:attended_to,
+                            highest_level:highest_level,
+                            year_grad:year_grad,
+                            honor_received:honor_received,
+                            action:'submit_educ'
+                        },
+                        success:function(data){
+                        alert("Data Updated");
+
+                        $('#educ_data').DataTable().ajax.reload();
+                        //$('#modalEducationForm').modal('hide');
+                        
+                        }     
+                    }); 
+            
+                });
+
             });
 
             function refreshPage() {
@@ -1263,9 +1922,7 @@ if (isset($_GET['id'])) {
                     var cancel_employee = "Success";
 
                     var empid = $('#employeeid').val();
-                    var firstname = $('#firstname').val();
-                    var middlename = $('#middlename').val();
-                    var lastname = $('#lastname').val();
+
 
                  //if(answer == 'N'){ //COMMENTED, USED FOR VALIDATION
                     $.ajax({
@@ -1314,8 +1971,31 @@ if (isset($_GET['id'])) {
                        
                         alert("Data Deleted");
                         $('#children_data').DataTable().ajax.reload();
+                        }     
+                    }); 
 
-                        
+            });
+
+
+            $(document).on('click', '.delete_educ', function(){
+                     var id = $(this).data('id');
+                    // alert(id);
+                    var employeeiddb = document.getElementById("empID").value;
+                    var add_employee = "Success";
+
+                    $.ajax({
+                        url:"view_employee_action",
+                        method:"POST",
+                        data:{
+                            id:id, 
+                            employeeiddb:employeeiddb,
+                            action:'delete_education'
+
+                        },
+                        success:function(data){
+                       
+                        alert("Data Deleted");
+                        $('#educ_data').DataTable().ajax.reload();
                         }     
                     }); 
 
@@ -1339,11 +2019,11 @@ if (isset($_GET['id'])) {
 
                         },
                         success:function(data){
-                            var values = $.parseJSON(data)
+                        var values = $.parseJSON(data);
                         //$('#modal_title').text('Edit Children Data');
                         //$('#add_children').text('Update Children Data');
                         //alert(values.fullname);
-                        $('#employeeid_update').val(values.employeeid);
+                       $('#employeeid_update').val(values.employeeid);
                         $('#fullname_update').val(values.fullname);
                         $('#hidden_id').val(values.hidden_id);
                         $('#dob_update').val(values.dob);
@@ -1358,6 +2038,266 @@ if (isset($_GET['id'])) {
                     }); 
 
             });
+
+
+
+            $(document).on('click', '.update_educ', function(){
+                    var id = $(this).data('id');
+                    // alert(id);
+                    var employeeiddb = document.getElementById("empID").value;
+                    var add_employee = "Success";
+                    //
+                
+                    $.ajax({
+                        url:"view_employee_action",
+                        method:"POST",
+                        data:{
+                            id:id, 
+                            employeeiddb:employeeiddb, //THIS IS AN ID FROM tbl_employee
+                            action:'fetch_single_educ'
+
+                        },
+                        success:function(data){
+                            var values = $.parseJSON(data);
+                            $('#modal_title').text('Update Educational Background Data');
+                            $('#add_education').text('Update Educational Background Children Data');
+                            
+                            //alert(values.fullname);
+                            $('#educid').val(values.educid);
+                            $('#level_update').val(values.level);
+                            $('#school_name_update').val(values.school_name);
+                            $('#educ_update').val(values.educ);
+                            $('#attended_from_update').val(values.attended_from);
+                            $('#attended_to_update').val(values.attended_to);
+                            $('#highest_level_update').val(values.year_grad);
+                            $('#year_grad_update').val(values.year_grad);
+                            $('#honor_received_update').val(values.honor_received);
+
+                            $('#modalEducationForm').modal('show');
+                        
+                        }     
+                    }); 
+
+            });
+
+            //ELIGIBITILY UPDATE FRORM
+            $(document).on('click', '.update_eligibility', function(){
+                var id = $(this).data('id');
+                var action_val =  document.getElementById('eligibility_action_id').value = 'UPDATE';
+                var employeeiddb = document.getElementById("empID").value;
+                
+                $.ajax({
+                    url:"view_employee_action",
+                    method:"POST",
+                    data:{
+                        id:id, 
+                        employeeiddb:employeeiddb, //THIS IS AN ID FROM tbl_employee
+                        action:'fetch_single_eligibility'
+
+                    },
+                    success:function(data){
+                        var values = $.parseJSON(data);
+                        //$('#modal_title').text('Update Educational Background Data');
+                        //$('#add_education').text('Update Educational Background Children Data');
+                        
+
+                        $('#eligibilityid').val(values.eligibilityid);
+                        $('#eligibility_update').val(values.eligibility);
+                        $('#rating_update').val(values.rating);
+                        $('#date_of_exam_update').val(values.date_of_exam);
+                        $('#place_of_exam_update').val(values.place_of_exam);
+                        $('#license_no_update').val(values.license_no);
+                        $('#license_date_update').val(values.license_date);
+
+
+                        $('#modalUpdateEligibilityForm').modal('show');
+                    
+                    }     
+                }); 
+
+            });
+
+            $(document).on('click', '#add_eligibility', function(){
+                    var employeeiddb = document.getElementById("empID").value;
+
+                        //validateData();
+                        //var answer = validateData();
+                            var eligibility = $('#eligibility').val();
+                            var rating = $('#rating').val(); 
+                            var date_of_exam = $('#date_of_exam').val();
+                            var place_of_exam = $('#place_of_exam').val();       
+                            var license_no = $('#license_no').val();
+                            var license_date = $('#license_date').val();                        
+                            $.ajax({
+                                url:"view_employee_action",
+                                method:"POST",
+                                data:{
+                                    employeeiddb:employeeiddb,
+                                    eligibility:eligibility, 
+                                    rating:rating, 
+                                    date_of_exam:date_of_exam,
+                                    place_of_exam:place_of_exam,
+                                    license_no:license_no,
+                                    license_date:license_date,
+                                    action:'add_eligibility'
+                                },
+                                success:function(data){
+                                alert("Data Added");
+
+                                $('#civil_data').DataTable().ajax.reload();
+                                $('#modalEligibilityForm').modal('hide');
+                               
+                                }     
+                            }); 
+                });
+
+
+                $(document).on('click', '#submit_eligibility', function(){
+                    var eligibilityid = $('#eligibilityid').val();
+                    var eligibility = $('#eligibility_update').val();
+                    var rating = $('#rating_update').val(); 
+                    var date_of_exam = $('#date_of_exam_update').val();
+                    var place_of_exam = $('#place_of_exam_update').val();       
+                    var license_no = $('#license_no_update').val();
+                    var license_date = $('#license_date_update').val();   
+
+                    $.ajax({
+                        url:"view_employee_action",
+                        method:"POST",
+                        data:{
+                            eligibilityid:eligibilityid,
+                            employeeiddb:employeeiddb,
+                            eligibility:eligibility, 
+                            rating:rating, 
+                            date_of_exam:date_of_exam,
+                            place_of_exam:place_of_exam,
+                            license_no:license_no,
+                            license_date:license_date,
+                            action:'submit_eligibility'
+                        },
+                        success:function(data){
+                        alert("Data Updated");
+
+                        $('#civil_data').DataTable().ajax.reload();
+                        //$('#modalEducationForm').modal('hide');
+                        
+                        }     
+                    }); 
+            
+                });
+
+
+                // UPDATE WORK FRORM
+            $(document).on('click', '.update_work', function(){
+                var id = $(this).data('id');
+                //var action_val =  document.getElementById('eligibility_action_id').value = 'UPDATE';
+                var employeeiddb = document.getElementById("empID").value;
+                
+                $.ajax({
+                    url:"view_employee_action",
+                    method:"POST",
+                    data:{
+                        id:id, 
+                        employeeiddb:employeeiddb, //THIS IS AN ID FROM tbl_employee
+                        action:'fetch_single_work'
+
+                    },
+                    success:function(data){
+                        var values = $.parseJSON(data);
+
+
+                        $('#workid').val(values.workid);
+                        $('#work_date_from_update').val(values.eligibility);
+                        $('#work_date_to_update').val(values.rating);
+                        $('#work_position_update').val(values.date_of_exam);
+                        $('#work_company_update').val(values.place_of_exam);
+                        $('#work_salary_update').val(values.license_no);
+                        $('#work_salary_grade_update').val(values.license_date);
+                        $('#work_status_update').val(values.license_no);
+                        $('#work_govt_service_update').val(values.license_date);
+
+
+                        $('#modalUpdateWorkForm').modal('show');
+                    
+                    }     
+                }); 
+
+            });
+
+            $(document).on('click', '#add_work', function(){
+                    var employeeiddb = document.getElementById("empID").value;
+                    var work_date_from = $('#work_date_from').val();
+                    var work_date_to = $('#work_date_to').val();
+                    var work_position = $('#work_position').val(); 
+                    var work_company = $('#work_company').val();
+                    var work_salary = $('#work_salary').val();       
+                    var work_salary_grade = $('#work_salary_grade').val();
+                    var work_status = $('#work_status').val();  
+                    var work_govt_service = $('#work_govt_service').val();                     
+                            $.ajax({
+                                url:"view_employee_action",
+                                method:"POST",
+                                data:{
+                                    employeeiddb:employeeiddb,
+                                    work_date_from:work_date_from, 
+                                    work_date_to:work_date_to, 
+                                    work_position:work_position,
+                                    work_company:work_company,
+                                    work_salary:work_salary,
+                                    work_salary_grade:work_salary_grade,
+                                    work_status:work_status,
+                                    work_govt_service:work_govt_service,
+                                    action:'add_work'
+                                },
+                                success:function(data){
+                                alert("Data Added");
+
+                                $('#work_data').DataTable().ajax.reload();
+                                $('#modalWorkForm').modal('hide');
+                               
+                                }     
+                            }); 
+                });
+
+
+                $(document).on('click', '#submit_work', function(){
+                    var employeeiddb = document.getElementById("empID").value;
+                    var workid = $('#workid').val();
+                    var work_date_from = $('#work_date_from_update').val();
+                    var work_date_to = $('#work_date_to_update').val();
+                    var work_position = $('#work_position_update').val(); 
+                    var work_company = $('#work_company_update').val();
+                    var work_salary = $('#work_salary_update').val();       
+                    var work_salary_grade = $('#work_salary_grade_update').val();
+                    var work_status = $('#work_status_update').val();  
+                    var work_govt_service = $('#work_govt_service_update').val();   
+
+                    $.ajax({
+                        url:"view_employee_action",
+                        method:"POST",
+                        data:{
+                            workid:workid,
+                            employeeiddb:employeeiddb,
+                            work_date_from:work_date_from, 
+                            work_date_to:work_date_to, 
+                            work_position:work_position,
+                            work_company:work_company,
+                            work_salary:work_salary,
+                            work_salary_grade:work_salary_grade,
+                            work_status:work_status,
+                            work_govt_service:work_govt_service,
+                            action:'submit_work'
+                        },
+                        success:function(data){
+                        alert("Data Updated");
+
+                        $('#work_data').DataTable().ajax.reload();
+                        //$('#modalEducationForm').modal('hide');
+                        
+                        }     
+                    }); 
+            
+                });
 
     </script>
 
