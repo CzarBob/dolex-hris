@@ -608,7 +608,7 @@ include 'view_employee_load_query.php';
                                     <a class="nav-link" id="work-tab" data-toggle="tab" href="#worktab" role="tab" aria-controls="contact" aria-selected="false">Work Experience</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="voluntary-tab" data-toggle="tab" href="#voluntarytab" role="tab" aria-controls="contact" aria-selected="false">Voluntary Work</a>
+                                    <a class="nav-link" id="voluntary-tab" data-toggle="tab" href="#volworktab" role="tab" aria-controls="contact" aria-selected="false">Voluntary Work</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="lad-tab" data-toggle="tab" href="#ladtab" role="tab" aria-controls="contact" aria-selected="false">Learning and Development</a>
@@ -790,6 +790,49 @@ include 'view_employee_load_query.php';
                                         </div>
                                                                           
                                     </div> <!--END OF WORK TAB -->
+
+
+                                    <!-- WORK TAB-->
+                                    <div class="tab-pane fade" id="volworktab" role="tabpanel" aria-labelledby="work-tab">
+                                        <div class="container-fluid">
+                                            <div class="card shadow mb-4">
+                                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                                    <h6 class="m-0 font-weight-bold text-primary"></h6> 
+                                                    
+                                                    <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#modalWorkForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Work Experience</a>
+                                                    
+                                                    <!--<a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#dateRangeModal" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Generate Report</a> -->
+                                                </div>
+                                                <div class="card-body">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="volwork_data" width="100%" cellspacing="0">
+                                                                <thead class = "text-primary">
+                                                                    <tr>
+                                                                        <th data-column-id="volwork_organization">COMPANY</th>
+                                                                        <th data-column-id="volwork_date_from">DATE FROM</th>
+                                                                        <th data-column-id="volwork_date_to">DATE TO</th>
+                                                                        <th data-column-id="volwork_nohours">NUMBER OF HOURS</th>
+                                                                        <th data-column-id="volwork_positon">POSTION</th>
+                                                                        <th >ACTION</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tfoot class = "text-primary">
+                                                                    <tr>
+                                                                        <th>COMPANY</th>
+                                                                        <th>DATE FROM</th>
+                                                                        <th>DATE TO</th>
+                                                                        <th>NUMBER OF HOURS</th>
+                                                                        <th>POSTION</th>
+                                                                        <th>ACTION</th>
+                                                                    </tr>
+                                                                </tfoot>
+                                                            </table>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                                                          
+                                    </div> <!--END OFVOLUNTARY WORK TAB -->
 
                                     </div>
                                 </div>
@@ -1338,7 +1381,208 @@ include 'view_employee_load_query.php';
       </div>
     </div>
 
-  
+    <!-- ADD VOLUNTARY WORK FORM -->
+    <div class="modal fade" id="modalVolWorkForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold" id="modal_title">Add Voluntary Work</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-3">
+          <div class="md-form mb-5">
+            <!--<input type="hidden" name="volWorkid" id = "volWorkid" class="form-control validate" required> -->  
+            <label data-error="wrong" data-success="right" for="form34">Organization</label>
+            <input type="text" name="volwork_organization" id = "volwork_organization" class="form-control validate" required> -        
+          </div>
+   
+          <div class="md-form mb-5">
+            <input type="hidden" name="workid" id = "workid" class="form-control validate" required>  
+            <label data-error="wrong" data-success="right" for="form34">Inclusive Dates</label>
+            <input type="date" name="volwork_date_from" id = "volwork_date_from" class="form-control validate" required> - 
+            <input type="date" name="volwork_date_to" id = "volwork_date_to" class="form-control validate" required>
+         
+          </div>
+
+          <div class="md-form mb-5">
+     
+            <label data-error="wrong" data-success="right" for="form29">Number of Hours</label>
+            <input type="text" name="volwork_nohours" id = "volwork_nohours" class="form-control validate" required>
+           
+          </div>
+          <div class="md-form mb-5">
+     
+            <label data-error="wrong" data-success="right" for="form29">Position</label>
+            <input type="text" name="volwork_position" id = "volwork_position" class="form-control validate" required>
+           
+          </div>
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+          <!--<input type="hidden" name="eligibility_action_id" id = "eligibility_action_id" class="form-control validate" > --> 
+          <button class="btn btn-primary" id = "add_volwork">Submit data</button>
+          <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UPDATE VOLUNTARY WORK FORM -->
+    <div class="modal fade" id="modalUpdateVolWorkForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold" id="modal_title">Update Voluntary Work</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-3">
+          <div class="md-form mb-5">
+            <input type="hidden" name="volWorkid" id = "volWorkid" class="form-control validate" required> 
+            <label data-error="wrong" data-success="right" for="form34">Organization</label>
+            <input type="text" name="volwork_organization_update" id = "volwork_organization_update" class="form-control validate" required> -        
+          </div>
+   
+          <div class="md-form mb-5">
+            <label data-error="wrong" data-success="right" for="form34">Inclusive Dates</label>
+            <input type="date" name="volwork_date_from_update" id = "volwork_date_from_update" class="form-control validate" required> - 
+            <input type="date" name="volwork_date_to_update" id = "volwork_date_to_update" class="form-control validate" required>
+         
+          </div>
+
+          <div class="md-form mb-5">
+     
+            <label data-error="wrong" data-success="right" for="form29">Number of Hours</label>
+            <input type="text" name="volwork_nohours_update" id = "volwork_nohours_update" class="form-control validate" required>
+           
+          </div>
+          <div class="md-form mb-5">
+     
+            <label data-error="wrong" data-success="right" for="form29">Position</label>
+            <input type="text" name="volwork_position_update" id = "volwork_position_update" class="form-control validate" required>
+           
+          </div>
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+          <!--<input type="hidden" name="eligibility_action_id" id = "eligibility_action_id" class="form-control validate" > --> 
+          <button class="btn btn-primary" id = "add_volwork">Submit data</button>
+          <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- ADD L & D FORM -->
+    <div class="modal fade" id="modalLanddForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold" id="modal_title">Add Learning and Development</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-3">
+          <div class="md-form mb-5">
+            <!--<input type="hidden" name="volWorkid" id = "volWorkid" class="form-control validate" required> -->  
+            <label data-error="wrong" data-success="right" for="form34">Program</label>
+            <input type="text" name="landd_program" id = "landd_program" class="form-control validate" required> -        
+          </div>
+   
+          <div class="md-form mb-5">
+            <label data-error="wrong" data-success="right" for="form34">Inclusive Dates</label>
+            <input type="date" name="landd_date_from" id = "landd_date_from" class="form-control validate" required> - 
+            <input type="date" name="landd_date_to" id = "landd_date_to" class="form-control validate" required>
+         
+          </div>
+
+          <div class="md-form mb-5">
+     
+            <label data-error="wrong" data-success="right" for="form29">Number of Hours</label>
+            <input type="text" name="landd_nohours" id = "landd_nohours" class="form-control validate" required>
+           
+          </div>
+          <div class="md-form mb-5">
+     
+            <label data-error="wrong" data-success="right" for="form29">Type</label>
+            <input type="text" name="landd_type" id = "landd_type" class="form-control validate" required>
+           
+          </div>
+
+          <div class="md-form mb-5">
+     
+            <label data-error="wrong" data-success="right" for="form29">Sponsored By</label>
+            <input type="text" name="landd_sponsoredby" id = "landd_sponsoredby" class="form-control validate" required>
+           
+          </div>
+         
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+          <!--<input type="hidden" name="eligibility_action_id" id = "eligibility_action_id" class="form-control validate" > --> 
+          <button class="btn btn-primary" id = "add_landd">Submit data</button>
+          <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UPDATE L & D FORM -->
+    <div class="modal fade" id="modalUpdateLanddForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold" id="modal_title">Update Learning and Development</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-3">
+          <div class="md-form mb-5">
+            <!--<input type="hidden" name="volWorkid" id = "volWorkid" class="form-control validate" required> -->  
+            <label data-error="wrong" data-success="right" for="form34">Program</label>
+            <input type="text" name="landd_program_update" id = "landd_program_update" class="form-control validate" required> -        
+          </div>
+   
+          <div class="md-form mb-5">
+            <label data-error="wrong" data-success="right" for="form34">Inclusive Dates</label>
+            <input type="date" name="landd_date_from_update" id = "landd_date_from_update" class="form-control validate" required> - 
+            <input type="date" name="landd_date_to_update" id = "landd_date_to_update" class="form-control validate" required>
+         
+          </div>
+
+          <div class="md-form mb-5">
+     
+            <label data-error="wrong" data-success="right" for="form29">Number of Hours</label>
+            <input type="text" name="landd_nohours_update" id = "landd_nohours_update" class="form-control validate" required>
+           
+          </div>
+          <div class="md-form mb-5">
+     
+            <label data-error="wrong" data-success="right" for="form29">Type</label>
+            <input type="text" name="landd_type_update" id = "landd_type_update" class="form-control validate" required>
+           
+          </div>
+
+          <div class="md-form mb-5">
+     
+            <label data-error="wrong" data-success="right" for="form29">Sponsored By</label>
+            <input type="text" name="landd_sponsoredby_update" id = "landd_sponsoredby_update" class="form-control validate" required>
+           
+          </div>
+
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+          <!--<input type="hidden" name="eligibility_action_id" id = "eligibility_action_id" class="form-control validate" > --> 
+          <button class="btn btn-primary" id = "update_landd">Submit data</button>
+          <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
     
 
     <!-- Logout Modal-->
@@ -1377,929 +1621,11 @@ include 'view_employee_load_query.php';
 
     <!-- Page level custom scripts -->
     <script src="assets/js/demo/datatables-demo.js"></script>
-
-    <script>
-        //FUNCTION FOR READING HTML TABLE ROWS
-       /* function myFunction() {
-        //alert(document.getElementById("children_data").rows[1].cells[0].innerHTML);
-        var children_data = document.getElementById('children_data');
-        var employeeiddb = document.getElementById("empID").value;
-        var TableData = new Array();
-
-        $('#children_data tr').each(function(row, tr){
-            TableData[row]={
-                "fullName" : $(tr).find('td:eq(0)').text()
-                , "dob" :$(tr).find('td:eq(1)').text()
-               
-            }
-        }); 
-        TableData.shift();
-
-        $.ajax({
-                url: 'view_employee_action.php',
-                type: 'post',
-                data: 
-                {
-                children_data:TableData,
-                employeeiddb:employeeiddb, 
-                action:'update_children'},
-
-                dataType: 'json',
-                success:function(response){
-
-                    var len = response.length;
-
-                    if(len > 0){
-
-                    alert("Exito");
-
-                    }
-
-                }
-            });
-
-            return false;
-
-        }*/
-
-            
-
-            $(document).ready(function(){
     
-                //fetch_data();
-                fetch_single();
-                //document.getElementById("update_eligibility").style.visibility='hidden';
-                function fetch_children_data(){
-                    //alert('pota');
-                    
-                    var employeeiddb = document.getElementById("empID").value;
-                    var dataTable = $('#children_data').DataTable({
-                    /* "processing" : true,
-                    "serverSide" : true,*/
-                    "columnDefs": [{ "orderable": false, "targets":[0,2] }],
-                   // "order" : [],
-                    "ajax" : {
-                    url:"view_employee_action.php",
-                    type:"POST",
-                    data:{
-                                    employeeiddb:employeeiddb, 
-                                    action:'fetch_children'},
-                    }
-                    });
-                }
+    <!--JS FOR EMPLOYEE ACTIONS -->
+    <script type="text/javascript" src="viewEmployee.js"></script>
 
-                function fetch_educ_data(){
-                    //alert('pota');
-                    var employeeiddb = document.getElementById("empID").value;
-                    
-                    //alert('s');
-                    var dataTable = $('#educ_data').DataTable({
-                    "columnDefs": [{ "orderable": false, "targets":[1,8] }],
-                    "ajax" : {
-                    url:"view_employee_action.php",
-                    type:"POST",
-                    data:{
-                                    employeeiddb:employeeiddb, 
-                                    action:'fetch_educ'},
-                    }
-                    });
-                    //alert(dataTable);
-                }
-
-                function fetch_civil_data(){
-                    //alert('pota');
-                    var employeeiddb = document.getElementById("empID").value;
-                    
-                    //alert('s');
-                    var dataTable = $('#civil_data').DataTable({
-                    "columnDefs": [{ "orderable": false, "targets":[1,6] }],
-                    "ajax" : {
-                    url:"view_employee_action.php",
-                    type:"POST",
-                    data:{
-                                    employeeiddb:employeeiddb, 
-                                    action:'fetch_eligibility'},
-                    }
-                    });
-                    //alert(dataTable);
-                } 
-
-                function fetch_civil_data(){
-                    //alert('pota');
-                    var employeeiddb = document.getElementById("empID").value;
-                    
-                    //alert('s');
-                    var dataTable = $('#work_data').DataTable({
-                    "columnDefs": [{ "orderable": false, "targets":[1,6] }],
-                    "ajax" : {
-                    url:"view_employee_action.php",
-                    type:"POST",
-                    data:{
-                                    employeeiddb:employeeiddb, 
-                                    action:'fetch_work'},
-                    }
-                    });
-                    //alert(dataTable);
-                }
-
-                
-                function fetch_single() {
-                        var employeeiddb = document.getElementById("empID").value;
-                        
-                        //var email_hidden = $(this).data('email_hidden'); //data id in database
-                        //var admin_id = $(this).data('id');
-                        //$('#user_form').parsley().reset();
-
-                        $.ajax({
-                                url:"view_employee_action.php",
-                                method:"POST",
-                                data:{
-                                    employeeiddb:employeeiddb, 
-                                    action:'fetch_single'},
-                                dataType:'JSON',
-                                success:function(data)
-                                {
-                                    $('#employeeid').val(data.data.employeeid);
-                                    $('#firstname').val(data.data.firstname);
-                                    $('#middlename').val(data.data.middlename);
-                                    $('#lastname').val(data.data.lastname);
-                                    $('#extension').val(data.data.extension);
-                                    $('#position').val(data.data.position);
-                                    $('#datehired').val(data.data.datehired);
-                                    $('#username').val(data.data.username);
-                                    $('#password').val(data.data.password);
-                                    $('#confirmpassword').val(data.data.password);
-
-                                    /*$('#slcredit').val(data.data.slcredit);
-                                    $('#vlcredit').val(data.data.vlcredit);*/
-
-                                    var genderValue =  data.data_profile.gender;
-
-                                    if (genderValue == 'MALE'){
-                                        $("#gender").val("MALE").change();
-                                    } else if (genderValue == "") {
-                                        $("#gender").val('NA').change();
-                                    }
-                                    //var civilStatusValue =  'NA';
-                                    var civilStatusValue =  data.data_profile.civilstatus;
-                                    
-                                    $("#civilstatus").val(civilStatusValue).change();
-         
-                               
-                                    
-                                    $('#profileid').val(data.data_profile.id);
-                                    $('#dob').val(data.data_profile.dob);
-                                    $('#placeofbirth').val(data.data_profile.placeofbirth);
-                                    $('#height').val(data.data_profile.height);
-                                    $('#weight').val(data.data_profile.weight);
-                                    $('#gsisno').val(data.data_profile.gsisno);
-                                    $('#pagibigno').val(data.data_profile.pagibigno);
-                                    $('#phicno').val(data.data_profile.phicno);
-                                    $('#sssno').val(data.data_profile.sssno);
-                                    $('#tinno').val(data.data_profile.tinno);
-                                    $('#agencyemployeeno').val(data.data_profile.agencyemployeeno);
-                                   
-                                    //$('#citizenship').prop("dual", true)
-                                    var citizenValueDB = data.data_profile.citizenship;
-                                    //$('#citizenship').attr('checked','checked');
-                                    //alert(citizenValueDB);
-                                    if (citizenValueDB == 'dual'){
-                                        $('#dual').attr('checked','checked');
-                                    } else if (citizenValueDB == 'filipino'){
-                                        $('#filipino').attr('checked','checked');
-                                    }
-                                   
-                                    var citizenValue = $('input[name="citizenship"]:checked').val();
-                                    if (citizenValue == 'dual'){
-                                            
-                                            document.getElementById("birth").disabled=false;
-                                            document.getElementById("naturalization").disabled=false;
-                                            //document.getElementById("dualcountry").disabled=false;
-                                        } else {
-                                           
-                                            document.getElementById("birth").disabled=true;
-                                            document.getElementById("naturalization").disabled=true;
-                                            //document.getElementById("dualcountry").disabled=true;
-                                        }
-
-
-                                    var dualchoiceDB = data.data_profile.dualcitizen;
-
-                                    if (dualchoiceDB == 'dual'){
-                                        $('#birth').attr('checked','checked');
-                                    } else if (dualchoiceDB == 'filipino'){
-                                        $('#naturalization').attr('checked','checked');
-                                    }
-
-                                    $('#residentialaddress').val(data.data_profile.residentialaddress);
-                                    $('#permanentaddress').val(data.data_profile.permanentaddress);
-                                    $('#telephoneno').val(data.data_profile.telephoneno);
-                                    $('#mobileno').val(data.data_profile.mobileno);
-                                    $('#emailprofile').val(data.data_profile.email);
-
-
-                                    $('#familyid').val(data.data_family.id);
-                                    $('#spouselastname').val(data.data_family.spouselastname);
-                                    $('#spousemiddlename').val(data.data_family.spousemiddlename);
-                                    $('#spousefirstname').val(data.data_family.spousefirstname);
-                                    $('#spouseextension').val(data.data_family.spouseextension);
-                                    $('#occupation').val(data.data_family.occupation);
-                                    $('#employername').val(data.data_family.employername);
-                                    $('#businessaddress').val(data.data_family.businessaddress);
-                                    $('#spousetelno').val(data.data_family.spousetelno);
-                                    $('#fathersurname').val(data.data_family.fathersurname);
-                                    $('#fatherfirstname').val(data.data_family.fatherfirstname);
-                                    $('#fathermiddlename').val(data.data_family.fathermiddlename);
-                                    $('#fatherext').val(data.data_family.fatherext);
-                                    $('#mothermaidenname').val(data.data_family.mothermaidenname);
-                                    $('#mothersurname').val(data.data_family.mothersurname);
-                                    $('#motherfirstname').val(data.data_family.motherfirstname);
-                                    $('#mothermiddlename').val(data.data_family.mothermiddlename);
-                                }
-                            });
-
-                            fetch_children_data();
-                            fetch_educ_data();
-                            fetch_civil_data();
-
-                            $('input[type=radio][name="citizenship"]').change(function() {
-                                //alert($(this).val()); // or this.value
-                                if ($(this).val() == 'dual'){
-                                        document.getElementById("birth").disabled=false;
-                                        document.getElementById("naturalization").disabled=false;
-                                        document.getElementById("dualcountry").disabled=false;
-                                } else {
-                                        document.getElementById("birth").disabled=true;
-                                        document.getElementById("naturalization").disabled=true;
-                                        document.getElementById("dualcountry").disabled=true;
-                                }
-                               
-                            });
-
-                            $("input[type=checkbox][name='addressCheck']").change(function() {
-                                
-                                var text1 = document.getElementById("residentialaddress").value;
-                                var text2 = document.getElementById("permanentaddress").value;
-                                if(this.checked) {
-                                    document.getElementById("permanentaddress").value = text1;
-                                } 
-                            });
-                }  
-
-
-                $(document).on('click', '#add_children', function(){
-                    var employeeiddb = document.getElementById("empID").value;
-                    var add_employee = "Success";
-                        //validateData();
-                        //var answer = validateData();
-                            var fullname = $('#fullname').val();
-                            var dob = $('#dob_add').val();              
-                            $.ajax({
-                                url:"view_employee_action",
-                                method:"POST",
-                                data:{
-                                    fullname:fullname, 
-                                    dob:dob, 
-                                    employeeiddb:employeeiddb,
-                                    action:'add_children'
-                                },
-                                success:function(data){
-                                alert("Data Added");
-
-                                $('#children_data').DataTable().ajax.reload();
-                                $('#modalChildrenForm').modal('hide');
-                               
-                                }     
-                            }); 
-                });
-
-
-                $(document).on('click', '#add_educ', function(){
-                    var employeeiddb = document.getElementById("empID").value;
-                    var add_employee = "Success";
-                        //validateData();
-                        //var answer = validateData();
-                            var level = $('#level').val();
-                            var school_name = $('#school_name').val(); 
-                            var educ = $('#educ').val();
-                            var attended_from = $('#attended_from').val();       
-                            var attended_to = $('#attended_to').val();
-                            var highest_level = $('#highest_level').val();       
-                            var year_grad = $('#year_grad').val();
-                            var honor_received = $('#honor_received').val();                    
-                            $.ajax({
-                                url:"view_employee_action",
-                                method:"POST",
-                                data:{
-                                    employeeiddb:employeeiddb,
-                                    level:level, 
-                                    school_name:school_name, 
-                                    educ:educ,
-                                    attended_from:attended_from,
-                                    attended_to:attended_to,
-                                    highest_level:highest_level,
-                                    year_grad:year_grad,
-                                    honor_received:honor_received,
-                                    action:'add_educ'
-                                },
-                                success:function(data){
-                                alert("Data Added");
-
-                                $('#educ_data').DataTable().ajax.reload();
-                                $('#modalEducationForm').modal('hide');
-                               
-                                }     
-                            }); 
-                });
-
-                $(document).on('click', '#submit_update_children', function(){
-                    var employeeiddb = document.getElementById("empID").value;
-                    var add_employee = "Success";
-                        //validateData(); submit_update_educ
-                        //var answer = validateData();
-                            var fullname = $('#fullname_update').val();
-                            var hidden_id = $('#hidden_id').val();
-                            var dob = $('#dob_update').val();    
-
-          
-                            $.ajax({
-                                url:"view_employee_action",
-                                method:"POST",
-                                data:{
-                                    fullname:fullname, 
-                                    dob:dob, 
-                                    employeeiddb:employeeiddb,
-                                    id:hidden_id,
-                                    action:'submit_update_children'
-                                },
-                                success:function(data){
-                                alert("Data Updated");
-
-                                $('#children_data').DataTable().ajax.reload();
-                                $('#modalEditChildrenForm').modal('hide');
-                               
-                                }     
-                            }); 
-                });
-
-
-
-                $(document).on('click', '#submit_educ', function(){
-                    var educid = $('#educid').val();
-                    var level = $('#level_update').val();
-                    var school_name = $('#school_name_update').val(); 
-                    var educ = $('#educ_update').val();
-                    var attended_from = $('#attended_from_update').val();       
-                    var attended_to = $('#attended_to_update').val();
-                    var highest_level = $('#highest_level_update').val();       
-                    var year_grad = $('#year_grad_update').val();
-                    var honor_received = $('#honor_received_update').val();
-                    var employeeiddb = document.getElementById("empID").value;
-
-                    $.ajax({
-                        url:"view_employee_action",
-                        method:"POST",
-                        data:{
-                            educid:educid,
-                            employeeiddb:employeeiddb,
-                            level:level, 
-                            school_name:school_name, 
-                            educ:educ,
-                            attended_from:attended_from,
-                            attended_to:attended_to,
-                            highest_level:highest_level,
-                            year_grad:year_grad,
-                            honor_received:honor_received,
-                            action:'submit_educ'
-                        },
-                        success:function(data){
-                        alert("Data Updated");
-
-                        $('#educ_data').DataTable().ajax.reload();
-                        //$('#modalEducationForm').modal('hide');
-                        
-                        }     
-                    }); 
-            
-                });
-
-            });
-
-            function refreshPage() {
-                    location.reload(true);
-                }
-
-
-            $(document).on('click', '#update_employee', function(){
-                    var employeeiddb = document.getElementById("empID").value;
-
-                    var empid                   = $('#employeeid').val();
-                    var firstname               = $('#firstname').val();
-                    var middlename              = $('#middlename').val();
-                    var lastname                = $('#lastname').val();
-                    var extension               = $('#extension').val();
-                    var position                = $('#position').val();
-                    var datehired               = $('#datehired').val();
-                    var username                = $('#username').val();
-                    var password                = $('#password').val();
-                    var gender                  = $('#gender').val();
-                    var civilstatus             = $('#civilstatus').val();
-
-                    var profileid               = $('#profileid').val();
-                    var dob                     = $('#dob').val();
-                    var placeofbirth            = $('#placeofbirth').val();
-                    var height                  = $('#height').val();
-                    var weight                  = $('#weight').val();
-                    var gsisno                  = $('#gsisno').val();
-                    var pagibigno               = $('#pagibigno').val();
-                    var phicno                  = $('#phicno').val();
-                    var sssno                   = $('#sssno').val();
-                    var tinno                   = $('#tinno').val();
-                    var agencyemployeeno        = $('#agencyemployeeno').val();
-                    var dual                    = $('#dual').val();
-                    var filipino                = $('#filipino').val();
-                    var birth                   = $('#birth').val();
-                    var naturalization          = $('#naturalization').val();
-                    var residentialaddress      = $('#residentialaddress').val();
-                    var permanentaddress        = $('#permanentaddress').val();
-                    var telephoneno             = $('#telephoneno').val();
-                    var mobileno                = $('#mobileno').val();
-                    var emailprofile            = $('#emailprofile').val();
-
-                    var familyid                = $('#familyid').val();
-                    var spouselastname          = $('#spouselastname').val();
-                    var spousemiddlename        = $('#spousemiddlename').val();
-                    var spousefirstname         = $('#spousefirstname').val();
-                    var spouseextension         = $('#spouseextension').val();
-                    var occupation              = $('#occupation').val();
-                    var employername            = $('#employername').val(); 
-                    var businessaddress         = $('#businessaddress').val();
-                    var spousetelno             = $('#spousetelno').val();
-                    var fathersurname           = $('#fathersurname').val();
-                    var fatherfirstname         = $('#fatherfirstname').val();
-                    var fathermiddlename        = $('#fathermiddlename').val();
-                    var fatherext               = $('#fatherext').val();
-                    var mothermaidenname        = $('#mothermaidenname').val();
-                    var mothersurname           = $('#mothersurname').val();
-                    var motherfirstname         = $('#motherfirstname').val(); 
-                    var mothermiddlename        = $('#mothermiddlename').val();
-
-                 //if(answer == 'N'){ //COMMENTED, USED FOR VALIDATION
-                    $.ajax({
-                        url:"view_employee_action",
-                        method:"POST",
-                        data:{
-                            employeeiddb:employeeiddb,
-                            empid:empid,        
-                            firstname:firstname,       
-                            middlename:middlename,      
-                            lastname:lastname,       
-                            extension:extension,       
-                            position:position,        
-                            datehired:datehired,       
-                            username:username,       
-                            password:password,        
-                            gender:gender,          
-                            civilstatus:civilstatus,     
-                            profileid:profileid,       
-                            dob:dob,             
-                            placeofbirth:placeofbirth,    
-                            height:height,          
-                            weight:weight,          
-                            gsisno:gsisno,          
-                            pagibigno:pagibigno,       
-                            phicno:phicno,          
-                            sssno:sssno,          
-                            tinno:tinno,           
-                            agencyemployeeno:agencyemployeeno,
-                            dual:dual,            
-                            filipino:filipino,        
-                            birth:birth,           
-                            naturalization:naturalization,  
-                            residentialaddress:residentialaddress,
-                            permanentaddress:permanentaddress,
-                            telephoneno:telephoneno,     
-                            mobileno:mobileno,       
-                            emailprofile:emailprofile,    
-                            familyid:familyid,        
-                            spouselastname:spouselastname,  
-                            spousemiddlename:spousemiddlename,
-                            spousefirstname:spousefirstname, 
-                            spouseextension:spouseextension,
-                            occupation:occupation,      
-                            employername:employername,    
-                            businessaddress:businessaddress, 
-                            spousetelno:spousetelno,     
-                            fathersurname:fathersurname,   
-                            fatherfirstname:fatherfirstname, 
-                            fathermiddlename:fathermiddlename,
-                            fatherext:fatherext,       
-                            mothermaidenname:mothermaidenname,
-                            mothersurname:mothersurname,   
-                            motherfirstname:motherfirstname, 
-                            mothermiddlename:mothermiddlename,
-                            action:'update_employee'
-
-                        },
-                        success:function(data){
-                        // $('#add_employee').modal('hide');
-                        
-                        //COMMENTED FOR THE MEAN TIME
-                        // $('#user_data').DataTable().destroy();
-                        //fetch_data();
-                        alert("Data Updated");
-
-                        //$('#addEmployeeForm').modal('hide');
-                        }     
-                    }); 
-                    //}
-              
-            });
-
-
-            $(document).on('click', '#cancel_employee', function(){
-                    var employeeiddb = document.getElementById("empID").value;
-                    var cancel_employee = "Success";
-
-                    var empid = $('#employeeid').val();
-
-
-                 //if(answer == 'N'){ //COMMENTED, USED FOR VALIDATION
-                    $.ajax({
-                        url:"view_employee_action",
-                        method:"POST",
-                        data:{
-                            
-                            empid:empid, 
-                            employeeiddb:employeeiddb,
-                            action:'cancel_update'
-
-                        },
-                        success:function(data){
-                        // $('#add_employee').modal('hide');
-                        
-                        //COMMENTED FOR THE MEAN TIME
-                        // $('#user_data').DataTable().destroy();
-                        //fetch_data();
-                        //alert("Data Updated");
-
-                        //$('#addEmployeeForm').modal('hide');
-                        window.location.href="employee_detail";
-                        }     
-                    }); 
-                    //}
-            });
-
-
-
-            $(document).on('click', '.delete_children', function(){
-                     var id = $(this).data('id');
-                    // alert(id);
-                    var employeeiddb = document.getElementById("empID").value;
-                    var add_employee = "Success";
-
-                    $.ajax({
-                        url:"view_employee_action",
-                        method:"POST",
-                        data:{
-                            id:id, 
-                            employeeiddb:employeeiddb,
-                            action:'delete_children'
-
-                        },
-                        success:function(data){
-                       
-                        alert("Data Deleted");
-                        $('#children_data').DataTable().ajax.reload();
-                        }     
-                    }); 
-
-            });
-
-
-            $(document).on('click', '.delete_educ', function(){
-                     var id = $(this).data('id');
-                    // alert(id);
-                    var employeeiddb = document.getElementById("empID").value;
-                    var add_employee = "Success";
-
-                    $.ajax({
-                        url:"view_employee_action",
-                        method:"POST",
-                        data:{
-                            id:id, 
-                            employeeiddb:employeeiddb,
-                            action:'delete_education'
-
-                        },
-                        success:function(data){
-                       
-                        alert("Data Deleted");
-                        $('#educ_data').DataTable().ajax.reload();
-                        }     
-                    }); 
-
-            });
-
-
-            $(document).on('click', '.update_children', function(){
-                     var id = $(this).data('id');
-                    // alert(id);
-                    var employeeiddb = document.getElementById("empID").value;
-                    var add_employee = "Success";
-                    //
-                
-                    $.ajax({
-                        url:"view_employee_action",
-                        method:"POST",
-                        data:{
-                            id:id, 
-                            employeeiddb:employeeiddb, //THIS IS AN ID FROM tbl_employee
-                            action:'fetch_single_children'
-
-                        },
-                        success:function(data){
-                        var values = $.parseJSON(data);
-                        //$('#modal_title').text('Edit Children Data');
-                        //$('#add_children').text('Update Children Data');
-                        //alert(values.fullname);
-                       $('#employeeid_update').val(values.employeeid);
-                        $('#fullname_update').val(values.fullname);
-                        $('#hidden_id').val(values.hidden_id);
-                        $('#dob_update').val(values.dob);
-                    
-                        $('#modalEditChildrenForm').modal('show');
-
-                        //alert("Children Data Updated");
-                       
-
-                        
-                        }     
-                    }); 
-
-            });
-
-
-
-            $(document).on('click', '.update_educ', function(){
-                    var id = $(this).data('id');
-                    // alert(id);
-                    var employeeiddb = document.getElementById("empID").value;
-                    var add_employee = "Success";
-                    //
-                
-                    $.ajax({
-                        url:"view_employee_action",
-                        method:"POST",
-                        data:{
-                            id:id, 
-                            employeeiddb:employeeiddb, //THIS IS AN ID FROM tbl_employee
-                            action:'fetch_single_educ'
-
-                        },
-                        success:function(data){
-                            var values = $.parseJSON(data);
-                            $('#modal_title').text('Update Educational Background Data');
-                            $('#add_education').text('Update Educational Background Children Data');
-                            
-                            //alert(values.fullname);
-                            $('#educid').val(values.educid);
-                            $('#level_update').val(values.level);
-                            $('#school_name_update').val(values.school_name);
-                            $('#educ_update').val(values.educ);
-                            $('#attended_from_update').val(values.attended_from);
-                            $('#attended_to_update').val(values.attended_to);
-                            $('#highest_level_update').val(values.year_grad);
-                            $('#year_grad_update').val(values.year_grad);
-                            $('#honor_received_update').val(values.honor_received);
-
-                            $('#modalEducationForm').modal('show');
-                        
-                        }     
-                    }); 
-
-            });
-
-            //ELIGIBITILY UPDATE FRORM
-            $(document).on('click', '.update_eligibility', function(){
-                var id = $(this).data('id');
-                var action_val =  document.getElementById('eligibility_action_id').value = 'UPDATE';
-                var employeeiddb = document.getElementById("empID").value;
-                
-                $.ajax({
-                    url:"view_employee_action",
-                    method:"POST",
-                    data:{
-                        id:id, 
-                        employeeiddb:employeeiddb, //THIS IS AN ID FROM tbl_employee
-                        action:'fetch_single_eligibility'
-
-                    },
-                    success:function(data){
-                        var values = $.parseJSON(data);
-                        //$('#modal_title').text('Update Educational Background Data');
-                        //$('#add_education').text('Update Educational Background Children Data');
-                        
-
-                        $('#eligibilityid').val(values.eligibilityid);
-                        $('#eligibility_update').val(values.eligibility);
-                        $('#rating_update').val(values.rating);
-                        $('#date_of_exam_update').val(values.date_of_exam);
-                        $('#place_of_exam_update').val(values.place_of_exam);
-                        $('#license_no_update').val(values.license_no);
-                        $('#license_date_update').val(values.license_date);
-
-
-                        $('#modalUpdateEligibilityForm').modal('show');
-                    
-                    }     
-                }); 
-
-            });
-
-            $(document).on('click', '#add_eligibility', function(){
-                    var employeeiddb = document.getElementById("empID").value;
-
-                        //validateData();
-                        //var answer = validateData();
-                            var eligibility = $('#eligibility').val();
-                            var rating = $('#rating').val(); 
-                            var date_of_exam = $('#date_of_exam').val();
-                            var place_of_exam = $('#place_of_exam').val();       
-                            var license_no = $('#license_no').val();
-                            var license_date = $('#license_date').val();                        
-                            $.ajax({
-                                url:"view_employee_action",
-                                method:"POST",
-                                data:{
-                                    employeeiddb:employeeiddb,
-                                    eligibility:eligibility, 
-                                    rating:rating, 
-                                    date_of_exam:date_of_exam,
-                                    place_of_exam:place_of_exam,
-                                    license_no:license_no,
-                                    license_date:license_date,
-                                    action:'add_eligibility'
-                                },
-                                success:function(data){
-                                alert("Data Added");
-
-                                $('#civil_data').DataTable().ajax.reload();
-                                $('#modalEligibilityForm').modal('hide');
-                               
-                                }     
-                            }); 
-                });
-
-
-                $(document).on('click', '#submit_eligibility', function(){
-                    var eligibilityid = $('#eligibilityid').val();
-                    var eligibility = $('#eligibility_update').val();
-                    var rating = $('#rating_update').val(); 
-                    var date_of_exam = $('#date_of_exam_update').val();
-                    var place_of_exam = $('#place_of_exam_update').val();       
-                    var license_no = $('#license_no_update').val();
-                    var license_date = $('#license_date_update').val();   
-
-                    $.ajax({
-                        url:"view_employee_action",
-                        method:"POST",
-                        data:{
-                            eligibilityid:eligibilityid,
-                            employeeiddb:employeeiddb,
-                            eligibility:eligibility, 
-                            rating:rating, 
-                            date_of_exam:date_of_exam,
-                            place_of_exam:place_of_exam,
-                            license_no:license_no,
-                            license_date:license_date,
-                            action:'submit_eligibility'
-                        },
-                        success:function(data){
-                        alert("Data Updated");
-
-                        $('#civil_data').DataTable().ajax.reload();
-                        //$('#modalEducationForm').modal('hide');
-                        
-                        }     
-                    }); 
-            
-                });
-
-
-                // UPDATE WORK FRORM
-            $(document).on('click', '.update_work', function(){
-                var id = $(this).data('id');
-                //var action_val =  document.getElementById('eligibility_action_id').value = 'UPDATE';
-                var employeeiddb = document.getElementById("empID").value;
-                
-                $.ajax({
-                    url:"view_employee_action",
-                    method:"POST",
-                    data:{
-                        id:id, 
-                        employeeiddb:employeeiddb, //THIS IS AN ID FROM tbl_employee
-                        action:'fetch_single_work'
-
-                    },
-                    success:function(data){
-                        var values = $.parseJSON(data);
-
-
-                        $('#workid').val(values.workid);
-                        $('#work_date_from_update').val(values.eligibility);
-                        $('#work_date_to_update').val(values.rating);
-                        $('#work_position_update').val(values.date_of_exam);
-                        $('#work_company_update').val(values.place_of_exam);
-                        $('#work_salary_update').val(values.license_no);
-                        $('#work_salary_grade_update').val(values.license_date);
-                        $('#work_status_update').val(values.license_no);
-                        $('#work_govt_service_update').val(values.license_date);
-
-
-                        $('#modalUpdateWorkForm').modal('show');
-                    
-                    }     
-                }); 
-
-            });
-
-            $(document).on('click', '#add_work', function(){
-                    var employeeiddb = document.getElementById("empID").value;
-                    var work_date_from = $('#work_date_from').val();
-                    var work_date_to = $('#work_date_to').val();
-                    var work_position = $('#work_position').val(); 
-                    var work_company = $('#work_company').val();
-                    var work_salary = $('#work_salary').val();       
-                    var work_salary_grade = $('#work_salary_grade').val();
-                    var work_status = $('#work_status').val();  
-                    var work_govt_service = $('#work_govt_service').val();                     
-                            $.ajax({
-                                url:"view_employee_action",
-                                method:"POST",
-                                data:{
-                                    employeeiddb:employeeiddb,
-                                    work_date_from:work_date_from, 
-                                    work_date_to:work_date_to, 
-                                    work_position:work_position,
-                                    work_company:work_company,
-                                    work_salary:work_salary,
-                                    work_salary_grade:work_salary_grade,
-                                    work_status:work_status,
-                                    work_govt_service:work_govt_service,
-                                    action:'add_work'
-                                },
-                                success:function(data){
-                                alert("Data Added");
-
-                                $('#work_data').DataTable().ajax.reload();
-                                $('#modalWorkForm').modal('hide');
-                               
-                                }     
-                            }); 
-                });
-
-
-                $(document).on('click', '#submit_work', function(){
-                    var employeeiddb = document.getElementById("empID").value;
-                    var workid = $('#workid').val();
-                    var work_date_from = $('#work_date_from_update').val();
-                    var work_date_to = $('#work_date_to_update').val();
-                    var work_position = $('#work_position_update').val(); 
-                    var work_company = $('#work_company_update').val();
-                    var work_salary = $('#work_salary_update').val();       
-                    var work_salary_grade = $('#work_salary_grade_update').val();
-                    var work_status = $('#work_status_update').val();  
-                    var work_govt_service = $('#work_govt_service_update').val();   
-
-                    $.ajax({
-                        url:"view_employee_action",
-                        method:"POST",
-                        data:{
-                            workid:workid,
-                            employeeiddb:employeeiddb,
-                            work_date_from:work_date_from, 
-                            work_date_to:work_date_to, 
-                            work_position:work_position,
-                            work_company:work_company,
-                            work_salary:work_salary,
-                            work_salary_grade:work_salary_grade,
-                            work_status:work_status,
-                            work_govt_service:work_govt_service,
-                            action:'submit_work'
-                        },
-                        success:function(data){
-                        alert("Data Updated");
-
-                        $('#work_data').DataTable().ajax.reload();
-                        //$('#modalEducationForm').modal('hide');
-                        
-                        }     
-                    }); 
-            
-                });
-
-    </script>
+    
 
 </body>
 

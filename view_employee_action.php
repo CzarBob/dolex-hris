@@ -236,6 +236,7 @@ if (isset($_POST['action'])){
 
 
   }
+}
 
   if (isset($_POST['action'])){
     if ($_POST['action'] == 'fetch_children'){
@@ -304,15 +305,7 @@ if (isset($_POST['action'])){
                 <button type='button' name='delete_children' class='btn btn-danger btn-sm delete_children' data-id='".$row['ID']."'>Delete</button>";  
               //<a data-toggle='modal' id = 'delete-children' data-id='".$row['ID']."'>Delete</a>
       
-                
-      /*
-        $sub_array[] = $type;
-        $sub_array[] = $description;
-        $sub_array[] = (new DateTime($row["date_received"]))->format('M d, Y H:i:s');
-        $sub_array[] = $row["received_by"];
-        $sub_array[] = (new DateTime($rel))->format('M d, Y H:i:s');
-        $sub_array[] = $time_cycle;
-        $sub_array[] = $row["remarks"];*/
+  
         $data[] = $sub_array;
       }
       
@@ -342,39 +335,39 @@ if (isset($_POST['action'])){
 
       $query = 'SELECT * FROM tbl_employee_educ_background WHERE EMPID = "'.$_POST['employeeiddb'].'" AND CANCELLED = "N" ';
 
+      //var_dump($query);
+      //$number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
       
-      $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
-      
-      $result = mysqli_query($connect, $query );
+      $result = mysqli_query($connect, $query);
       
       $data = array();
-       
-      while($row = mysqli_fetch_array($result)){
+      if($result){
+        while($row = mysqli_fetch_array($result)){
         
+          $sub_array = array();
+          $sub_array[] = $row["LEVEL"];
+          $sub_array[] = $row["SCHOOLNAME"];
+          $sub_array[] = $row["BASICEDUCATION"];
+          $sub_array[] = $row["PERIODFROM"];
+          $sub_array[] = $row["PERIODTO"];
+          $sub_array[] = $row["HIGHESTLEVEL"];
+          $sub_array[] = $row["YEARGRADUATED"];
+          $sub_array[] = $row["HONORRECEIVED"];
+          $sub_array[] = "
+          
+          <button type='button' name='update_educ' class='btn btn-warning btn-sm update_educ'  data-id='".$row['ID']."'><i class='fas fa-edit'></i></button>
+          <button type='button' name='delete_educ' class='btn btn-danger btn-sm delete_educ' data-id='".$row['ID']."'>Delete</button>";  
+          //<a data-toggle='modal' id = 'delete-children' data-id='".$row['ID']."'>Delete</a>
+          $data[] = $sub_array;
+        }
+
+      } else {
         $sub_array = array();
-        $sub_array[] = $row["LEVEL"];
-        $sub_array[] = $row["SCHOOLNAME"];
-        $sub_array[] = $row["BASICEDUCATION"];
-        $sub_array[] = $row["PERIODFROM"];
-        $sub_array[] = $row["PERIODTO"];
-        $sub_array[] = $row["HIGHESTLEVEL"];
-        $sub_array[] = $row["YEARGRADUATED"];
-        $sub_array[] = $row["HONORRECEIVED"];
-        $sub_array[] = "
-        
-        <button type='button' name='update_educ' class='btn btn-warning btn-sm update_educ'  data-id='".$row['ID']."'><i class='fas fa-edit'></i></button>
-        <button type='button' name='delete_educ' class='btn btn-danger btn-sm delete_educ' data-id='".$row['ID']."'>Delete</button>";  
-        //<a data-toggle='modal' id = 'delete-children' data-id='".$row['ID']."'>Delete</a>
         $data[] = $sub_array;
       }
       
-      /*function get_all_data($connect){
-       $query = "SELECT * FROM updates where receiver = '".$_SESSION['received_by']."'";
-       $result = mysqli_query($connect, $query);
-       return mysqli_num_rows($result);
-      }*/
       
-      $_SESSION['query2'] = $data;
+
       
       //var_dump($_SESSION['query2']);
       $output = array(
@@ -387,6 +380,7 @@ if (isset($_POST['action'])){
       echo json_encode($output);
     }
   }
+  
 
   if (isset($_POST['action'])){
     //var_dump($_POST['action']);
@@ -394,7 +388,7 @@ if (isset($_POST['action'])){
 
       $query = 'SELECT * FROM tbl_employee_civil_service WHERE EMPID = "'.$_POST['employeeiddb'].'" AND CANCELLED = "N" ';
 
-      
+      //var_dump($query);
       $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
       
       $result = mysqli_query($connect, $query );
@@ -476,11 +470,89 @@ if (isset($_POST['action'])){
     }
   }
 
+  if (isset($_POST['action'])){
+    //var_dump($_POST['action']);
+    if ($_POST['action'] == 'fetch_volwork'){
+
+      $query = 'SELECT * FROM tbl_employee_voluntary_work WHERE EMPID = "'.$_POST['employeeiddb'].'" AND CANCELLED = "N" ';
+
+      
+      $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
+      
+      $result = mysqli_query($connect, $query );
+      
+      $data = array();
+       
+      while($row = mysqli_fetch_array($result)){
+        
+        $sub_array = array();
+        $sub_array[] = $row["ORGANIZATION"];
+        $sub_array[] = $row["DATEFROM"];
+        $sub_array[] = $row["DATETO"];
+        $sub_array[] = $row["NOOFHOURS"];
+        $sub_array[] = $row["POSITION"];
+        $sub_array[] = "
+        
+        <button type='button' name='update_volwork' class='btn btn-warning btn-sm update_volwork'  data-id='".$row['ID']."'><i class='fas fa-edit'></i></button>
+        <button type='button' name='delete_volwork' class='btn btn-danger btn-sm delete_volwork' data-id='".$row['ID']."'>Delete</button>";  
+        $data[] = $sub_array;
+      }
+      
+      $output = array(
+       //"draw"    => intval($_POST["draw"]),
+       //"recordsTotal"  =>  get_all_data($connect),
+       //"recordsFiltered" => $number_filter_row,
+       "data"    => $data
+      );
+      
+      echo json_encode($output);
+    }
+  }
+
+  if (isset($_POST['action'])){
+    //var_dump($_POST['action']);
+    if ($_POST['action'] == 'fetch_landd'){
+
+      $query = 'SELECT * FROM tbl_employee_ld WHERE EMPID = "'.$_POST['employeeiddb'].'" AND CANCELLED = "N" ';
+
+      
+      $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
+      
+      $result = mysqli_query($connect, $query );
+      
+      $data = array();
+       
+      while($row = mysqli_fetch_array($result)){
+        
+        $sub_array = array();
+        $sub_array[] = $row["PROGRAM"];
+        $sub_array[] = $row["DATEFROM"];
+        $sub_array[] = $row["DATETO"];
+        $sub_array[] = $row["NOOFHOURS"];
+        $sub_array[] = $row["TYPE"];
+        $sub_array[] = $row["SPONSOREDBY"];
+        $sub_array[] = "
+        
+        <button type='button' name='update_landd' class='btn btn-warning btn-sm update_landd'  data-id='".$row['ID']."'><i class='fas fa-edit'></i></button>
+        <button type='button' name='delete_landd' class='btn btn-danger btn-sm delete_landd' data-id='".$row['ID']."'>Delete</button>";  
+        $data[] = $sub_array;
+      }
+      
+      $output = array(
+       //"draw"    => intval($_POST["draw"]),
+       //"recordsTotal"  =>  get_all_data($connect),
+       //"recordsFiltered" => $number_filter_row,
+       "data"    => $data
+      );
+      
+      echo json_encode($output);
+    }
+  }
+
 
   if (isset($_POST['action'])){
     if ($_POST['action'] == 'add_children'){
         
-        //var_dump($_SESSION['query2']);
         $fullname = $_POST['fullname'];
         $dob = $_POST['dob'];
         $empid  = $_POST['employeeiddb'];
@@ -624,8 +696,6 @@ if (isset($_POST['action'])){
         foreach($educ_data as $x ) {
           $que_educ = "INSERT INTO `tbl_employee_educ_background` SET 
           EMPID = '".$empid."',
-          FULLNAME = '".$x[0]."',
-          DOB = '".$x[1]."',
           LEVEL = '".$x[1]."',
           SCHOOLNAME = '".$x[2]."',
           BASICEDUCATION = '".$x[3]."',
@@ -655,14 +725,14 @@ if (isset($_POST['action'])){
           $que_work = "INSERT INTO `tbl_employee_civil_service` SET 
 
           EMPID = '".$empid."',
-          DATEFROM = '".$x[0]."',
-          DATETO = '".$x[1]."',
-          POSITION = '".$x[2]."',
-          COMPANY = '".$x[3]."',
-          MONTHLYSALARY = '".$x[4]."',
-          GRADE = '".$x[5]."',
-          STATUS = '".$x[6]."',
-          GOVTSERVICE = '".$x[7]."',
+          DATEFROM = '".$x[2]."',
+          DATETO = '".$x[3]."',
+          POSITION = '".$x[4]."',
+          COMPANY = '".$x[5]."',
+          MONTHLYSALARY = '".$x[6]."',
+          GRADE = '".$x[7]."',
+          STATUS = '".$x[8]."',
+          GOVTSERVICE = '".$x[9]."',
           CANCELLED = 'N'"; 
 
 
@@ -686,15 +756,40 @@ if (isset($_POST['action'])){
           $que_eligibility = "INSERT INTO `tbl_employee_civil_service` SET 
 
           EMPID = '".$empid."',
-          ELIGIBILITY = '".$x[0]."',
-          RATING = '".$x[1]."',
-          DATEOFEXAM = '".$x[2]."',
-          PLACEOFEXAM = '".$x[3]."',
-          LICENSENUMBER = '".$x[4]."',
-          LICENSEDATEOFVALIDITY = '".$x[5]."',
+          ELIGIBILITY = '".$x[1]."',
+          RATING = '".$x[2]."',
+          DATEOFEXAM = '".$x[3]."',
+          PLACEOFEXAM = '".$x[4]."',
+          LICENSENUMBER = '".$x[5]."',
+          LICENSEDATEOFVALIDITY = '".$x[6]."',
           CANCELLED = 'N'"; 
 
+          //echo $que;
+          $result = mysqli_query($connect, $que_eligibility);
+          $i++; 
 
+        }
+
+
+        //VOLUNTARY WORK DATA
+        $query = 'UPDATE tbl_employee_voluntary_work
+        SET CANCELLED = "Y" 
+        WHERE EMPID = "'.$_POST["employeeiddb"].'"';
+        $result = mysqli_query($connect, $query);
+
+        $eligibility_data =  $_SESSION['volwork_data'];
+        
+
+        foreach($eligibility_data as $x ) {
+          $que_eligibility = "INSERT INTO `tbl_employee_voluntary_work` SET 
+
+          EMPID = '".$empid."',
+          ORGANIZATION = '".$x[2]."',
+          DATEFROM = '".$x[3]."',
+          DATETO = '".$x[4]."',
+          NOOFHOURS = '".$x[5]."',
+          POSITION = '".$x[6]."',
+          CANCELLED = 'N'"; 
 
           //echo $que;
           $result = mysqli_query($connect, $que_eligibility);
@@ -798,7 +893,7 @@ if (isset($_POST['action'])){
         PERMANENTADDRESS        = "'.$permanentaddress.'", 
         TELEPHONENO             = "'.$telephoneno.'", 
         MOBILENO                = "'.$mobileno.'", 
-        EMAIL            = "'.$emailprofile.'"
+        EMAIL                   = "'.$emailprofile.'"
         
         WHERE 
         ID = "'.$profileid.'" AND 
@@ -1028,6 +1123,20 @@ if (isset($_POST['action'])){
     }
   }
 
+  if (isset($_POST['action'])){
+    if ($_POST['action'] == 'delete_volwork'){
+
+      $query = 'UPDATE tbl_employee_voluntary_work
+        SET CANCELLED = "Y" 
+        WHERE ID = "'.$_POST["id"].'" AND CANCELLED = "N" ';
+
+      echo $query;
+      
+      $result = mysqli_query($connect, $query );
+
+    }
+  }
+
 
 
 
@@ -1190,11 +1299,7 @@ if (isset($_POST['action'])){
         $sub_array['work_salary_grade']      = $row["GRADE"];
         $sub_array['work_status']      = $row["STATUS"];
         $sub_array['work_govt_service']      = $row["GOVTSERVICE"];
-        
-
         $data[] = $sub_array;
-
-
       }
 
 
@@ -1207,15 +1312,45 @@ if (isset($_POST['action'])){
       );
 
     echo json_encode($sub_array);
-
-
-
   }
+
+  if ($_POST['action'] == 'fetch_single_volwork'){
+    $query = 'SELECT * FROM tbl_employee_voluntary_work WHERE ID = "'.$_POST["id"].'" AND CANCELLED != "Y" ';
+
+    //var_dump($query);
+
+    $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
+    $result = mysqli_query($connect, $query);
+    $data = array();
+    
+    while($row = mysqli_fetch_array($result)){
+      
+      $sub_array = array();
+      $sub_array['volworkid']                   = $row["ID"];
+      $sub_array['volwork_date_from']           = $row["DATEFROM"];
+      $sub_array['volwork_date_to']             = $row["DATETO"];
+      $sub_array['volwork_nohours']             = $row["NOOFHOURS"];
+      $sub_array['volwork_position']            = $row["POSITION"];
+      $sub_array['volwork_organization']           = $row["ORGANIZATION"];
+      $data[] = $sub_array;
+    }
+
+
+
+  $output = array(
+    //"draw"    => intval($_POST["draw"]),
+    //"recordsTotal"  =>  get_all_data($connect),
+    //"recordsFiltered" => $number_filter_row,
+    "data"    => $sub_array
+    );
+
+  echo json_encode($sub_array);
+}
 
   
 
 
-}
+
 
 
 
