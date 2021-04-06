@@ -1186,7 +1186,139 @@
                         $('#landd_data').DataTable().ajax.reload();
                         }     
                     }); 
+                });
 
+
+                //ADD OTHER SKILL
+                $(document).on('click', '#add_other_skill', function(){
+                    var employeeiddb = document.getElementById("empID").value;
+                    var other_skill = $('#other_skill').val();
+                  
+                            $.ajax({
+                                url:"view_employee_action",
+                                method:"POST",
+                                data:{
+                                    employeeiddb:employeeiddb,
+                                    other_skill:other_skill, 
+                                    action:'add_other_skill'
+                                },
+                                success:function(data){
+                                alert("Data Added");
+
+                                $('#other_skill_data').DataTable().ajax.reload();
+                                $('#otherSkillForm').modal('hide');
+                            
+                                }     
+                            }); 
+                });
+
+                //DELETE OTHER SKILL
+                $(document).on('click', '.delete_other_skill', function(){
+                    var id = $(this).data('id');
+                    // alert(id);
+                    var employeeiddb = document.getElementById("empID").value;
+                    $.ajax({
+                        url:"view_employee_action",
+                        method:"POST",
+                        data:{
+                            id:id, 
+                            employeeiddb:employeeiddb,
+                            action:'delete_other_skill'
+                        },
+                        success:function(data){
+                    
+                        alert("Data Deleted");
+                        $('#other_skill_data').DataTable().ajax.reload();
+                        }     
+                    }); 
+                });
+
+                //ADD OTHER RECOGNITION
+                $(document).on('click', '#add_other_recognition', function(){
+                    var employeeiddb = document.getElementById("empID").value;
+                    var other_recognition = $('#other_recognition').val();
+                  
+                            $.ajax({
+                                url:"view_employee_action",
+                                method:"POST",
+                                data:{
+                                    employeeiddb:employeeiddb,
+                                    other_recognition:other_recognition, 
+                                    action:'add_other_recognition'
+                                },
+                                success:function(data){
+                                alert("Data Added");
+
+                                $('#other_recognition_data').DataTable().ajax.reload();
+                                $('#otherRecognitionForm').modal('hide');
+                            
+                                }     
+                            }); 
+                });
+
+                //DELETE OTHER RECOGNITION
+                $(document).on('click', '.delete_other_recognition', function(){
+                    var id = $(this).data('id');
+                    // alert(id);
+                    var employeeiddb = document.getElementById("empID").value;
+                    $.ajax({
+                        url:"view_employee_action",
+                        method:"POST",
+                        data:{
+                            id:id, 
+                            employeeiddb:employeeiddb,
+                            action:'delete_other_recognition'
+                        },
+                        success:function(data){
+                    
+                        alert("Data Deleted");
+                        $('#otherRecognitionForm').DataTable().ajax.reload();
+                        }     
+                    }); 
+                });
+
+                //ADD OTHER RECOGNITION
+                $(document).on('click', '#add_other_membership', function(){
+                    var employeeiddb = document.getElementById("empID").value;
+                    var other_membership = $('#other_membership').val();
+                  
+                            $.ajax({
+                                url:"view_employee_action",
+                                method:"POST",
+                                data:{
+                                    employeeiddb:employeeiddb,
+                                    other_membership:other_membership, 
+                                    action:'add_other_membership'
+                                },
+                                success:function(data){
+                                alert("Data Added");
+
+                                $('#other_membership_data').DataTable().ajax.reload();
+                                $('#otherMembershipForm').modal('hide');
+                            
+                                }     
+                            }); 
+                });
+
+                //DELETE OTHER RECOGNITION
+                $(document).on('click', '.delete_other_membership', function(){
+                    var id = $(this).data('id');
+                    // alert(id);
+                    var employeeiddb = document.getElementById("empID").value;
+                    $.ajax({
+                        url:"view_employee_action",
+                        method:"POST",
+                        data:{
+                            id:id, 
+                            employeeiddb:employeeiddb,
+                            action:'delete_other_membership'
+                        },
+                        success:function(data){
+                    
+                        alert("Data Deleted");
+                        $('#otherMembershipForm').DataTable().ajax.reload();
+                        }     
+                    }); 
                 });
 
    

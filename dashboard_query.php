@@ -80,8 +80,7 @@ while($row = mysqli_fetch_array($result)){
 					  <input type='submit' class ='btn btn-sm btn-info btn-block' name ='view' id = 'submit' value ='VIEW (?)'>
 					</form> ";*/
 // $sub_array[] = "<a href='employee_detail.php'  id='ID' data-toggle='modal' data-id='".$row['ID']."'>View</a> / 
-          $sub_array[] = "<a href='viewEmployee.php?id=".$row['ID']."' data-id='".$row['ID']."'> HERE</a> / 
-          <a href='#addEmployeeForm'  id='custId' data-toggle='modal' data-id='".$row['ID']."'>Edit</a> / 
+          $sub_array[] = "<a href='viewEmployee.php?id=".$row['ID']."' data-id='".$row['ID']."'> View</a> / 
           <a href='#addEmployeeForm'  id='custId' data-toggle='modal' data-id='".$row['ID']."'>Delete</a>";  
       
 

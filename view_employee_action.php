@@ -549,6 +549,95 @@ if (isset($_POST['action'])){
     }
   }
 
+  if (isset($_POST['action'])){
+    if ($_POST['action'] == 'fetch_other_skill'){
+
+      $query = 'SELECT * FROM tbl_employee_other_skills WHERE EMPID = "'.$_POST['employeeiddb'].'" AND CANCELLED = "N" ';
+
+      
+      $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
+      
+      $result = mysqli_query($connect, $query );
+      
+      $data = array();
+       
+      while($row = mysqli_fetch_array($result)){
+        
+        $sub_array = array();
+        $sub_array[] = $row["SKILLS"];
+        $sub_array[] = "
+        
+        
+        <button type='button' name='delete_other_skill' class='btn btn-danger btn-sm delete_other_skill' data-id='".$row['ID']."'>Delete</button>";  
+        $data[] = $sub_array;
+      }
+      
+      $output = array(
+       "data"    => $data
+      );
+      
+      echo json_encode($output);
+    }
+  }
+
+  if (isset($_POST['action'])){
+    if ($_POST['action'] == 'fetch_other_recognition'){
+
+      $query = 'SELECT * FROM tbl_employee_other_recognition WHERE EMPID = "'.$_POST['employeeiddb'].'" AND CANCELLED = "N" ';
+
+      
+      $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
+      
+      $result = mysqli_query($connect, $query );
+      
+      $data = array();
+       
+      while($row = mysqli_fetch_array($result)){
+        
+        $sub_array = array();
+        $sub_array[] = $row["RECOGNITION"];
+        $sub_array[] = "
+        
+       
+        <button type='button' name='delete_other_recognition' class='btn btn-danger btn-sm delete_other_recognition' data-id='".$row['ID']."'>Delete</button>";  
+        $data[] = $sub_array;
+      }
+      
+      $output = array(
+       "data"    => $data
+      );
+      
+      echo json_encode($output);
+    }
+  }
+
+  if (isset($_POST['action'])){
+    if ($_POST['action'] == 'fetch_other_membership'){
+
+      $query = 'SELECT * FROM tbl_employee_other_membership WHERE EMPID = "'.$_POST['employeeiddb'].'" AND CANCELLED = "N" ';
+
+      
+      $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
+      
+      $result = mysqli_query($connect, $query );
+      
+      $data = array();
+       
+      while($row = mysqli_fetch_array($result)){
+        
+        $sub_array = array();
+        $sub_array[] = $row["MEMBERSHIP"];
+        $sub_array[] = "
+        <button type='button' name='delete_other_membership' class='btn btn-danger btn-sm delete_other_membership' data-id='".$row['ID']."'>Delete</button>";  
+        $data[] = $sub_array;
+      }
+      
+      $output = array(
+       "data"    => $data
+      );
+      echo json_encode($output);
+    }
+  }
 
   if (isset($_POST['action'])){
     if ($_POST['action'] == 'add_children'){
@@ -637,6 +726,123 @@ if (isset($_POST['action'])){
 
         //var_dump($que);
         $query = $connect->query($que_eligibility) or die($connect->error); 
+
+    }
+  }
+
+  if (isset($_POST['action'])){
+    if ($_POST['action'] == 'add_work'){
+        
+        $empid                  = $_POST['employeeiddb'];
+        $work_date_from                  = $_POST['work_date_from'];
+        $work_date_to            = $_POST['work_date_to'];
+        $work_position                  = $_POST['work_position'];
+        $work_company                   = $_POST['work_company'];
+        $work_salary          = $_POST['work_salary'];
+        $work_salary_grade            = $_POST['work_salary_grade'];
+        $work_status          = $_POST['work_status'];
+        $work_govt_service            = $_POST['work_govt_service'];
+
+        /*$dateOfBirth=$_POST['dob'];
+        $dob =  date_format($dateOfBirth,"Y/m/d");*/
+
+        $dateAdded = date("Y-m-d H:i:s");
+        $que_work_exp = "INSERT INTO `tbl_employee_work_experience` SET 
+        EMPID = '".$empid."',
+        DATEFROM = '".$work_date_from."',
+        DATETO = '".$work_date_to."',
+        POSITION = '".$work_position."',
+        COMPANY = '".$work_company."',
+        MONTHLYSALARY = '".$work_salary."',
+        GRADE = '".$work_salary_grade."',
+        STATUS = '".$work_status."',
+        GOVTSERVICE = '".$work_govt_service."',
+
+        CANCELLED = 'N'"; 
+
+        //var_dump($que);
+        $query = $connect->query($que_work_exp) or die($connect->error); 
+
+    }
+  }
+
+  if (isset($_POST['action'])){
+    if ($_POST['action'] == 'add_volwork'){
+        
+        $empid                  = $_POST['employeeiddb'];
+        $volwork_organization                  = $_POST['volwork_organization'];
+        $volwork_date_from            = $_POST['volwork_date_from'];
+        $volwork_date_to                  = $_POST['volwork_date_to'];
+        $volwork_nohours                   = $_POST['volwork_nohours'];
+        $volwork_position          = $_POST['volwork_position'];
+
+
+
+        $dateAdded = date("Y-m-d H:i:s");
+        $que_vol_work = "INSERT INTO `tbl_employee_work_experience` SET 
+        EMPID = '".$empid."',
+        ORGANIZATION = '".$volwork_organization."',
+        DATEFROM = '".$volwork_date_from."',
+        DATETO = '".$volwork_date_to."',
+        NOOFHOURS = '".$volwork_nohours."',
+        POSITION = '".$volwork_position."',
+        CANCELLED = 'N'"; 
+
+        //var_dump($que);
+        $query = $connect->query($que_vol_work) or die($connect->error); 
+
+    }
+  }
+
+  if (isset($_POST['action'])){
+    if ($_POST['action'] == 'add_landd'){
+        
+        $empid                  = $_POST['employeeiddb'];
+        $landd_program                  = $_POST['landd_program'];
+        $landd_date_from            = $_POST['landd_date_from'];
+        $landd_date_to                  = $_POST['landd_date_to'];
+        $landd_nohours                   = $_POST['landd_nohours'];
+        $landd_type          = $_POST['landd_type'];
+        $landd_sponsoredby          = $_POST['landd_sponsoredby'];
+
+        $dateAdded = date("Y-m-d H:i:s");
+        $que_vol_work = "INSERT INTO `tbl_employee_work_experience` SET 
+        EMPID = '".$empid."',
+        ORGANIZATION = '".$volwork_organization."',
+        DATEFROM = '".$volwork_date_from."',
+        DATETO = '".$volwork_date_to."',
+        NOOFHOURS = '".$volwork_nohours."',
+        POSITION = '".$volwork_position."',
+        CANCELLED = 'N'"; 
+
+        //var_dump($que);
+        $query = $connect->query($que_vol_work) or die($connect->error);
+    }
+  }
+
+  if (isset($_POST['action'])){
+    if ($_POST['action'] == 'add_other_skill'){
+        
+        $empid                  = $_POST['employeeiddb'];
+        $landd_program                  = $_POST['landd_program'];
+        $landd_date_from            = $_POST['landd_date_from'];
+        $landd_date_to                  = $_POST['landd_date_to'];
+        $landd_nohours                   = $_POST['landd_nohours'];
+        $landd_type          = $_POST['landd_type'];
+        $landd_sponsoredby          = $_POST['landd_sponsoredby'];
+
+        $dateAdded = date("Y-m-d H:i:s");
+        $que_vol_work = "INSERT INTO `tbl_employee_work_experience` SET 
+        EMPID = '".$empid."',
+        ORGANIZATION = '".$volwork_organization."',
+        DATEFROM = '".$volwork_date_from."',
+        DATETO = '".$volwork_date_to."',
+        NOOFHOURS = '".$volwork_nohours."',
+        POSITION = '".$volwork_position."',
+        CANCELLED = 'N'"; 
+
+        //var_dump($que);
+        $query = $connect->query($que_vol_work) or die($connect->error); 
 
     }
   }
@@ -777,11 +983,11 @@ if (isset($_POST['action'])){
         WHERE EMPID = "'.$_POST["employeeiddb"].'"';
         $result = mysqli_query($connect, $query);
 
-        $eligibility_data =  $_SESSION['volwork_data'];
+        $volwork_data =  $_SESSION['volwork_data'];
         
 
-        foreach($eligibility_data as $x ) {
-          $que_eligibility = "INSERT INTO `tbl_employee_voluntary_work` SET 
+        foreach($volwork_data as $x ) {
+          $que_volwork = "INSERT INTO `tbl_employee_voluntary_work` SET 
 
           EMPID = '".$empid."',
           ORGANIZATION = '".$x[2]."',
@@ -792,10 +998,78 @@ if (isset($_POST['action'])){
           CANCELLED = 'N'"; 
 
           //echo $que;
-          $result = mysqli_query($connect, $que_eligibility);
+          $result = mysqli_query($connect, $que_volwork);
           $i++; 
 
         }
+
+        
+        //OTHER SKILL DATA
+        $query = 'UPDATE tbl_employee_other_skills
+        SET CANCELLED = "Y" 
+        WHERE EMPID = "'.$_POST["employeeiddb"].'"';
+        $result = mysqli_query($connect, $query);
+
+        $other_skill_data =  $_SESSION['other_skill_data'];
+
+
+        foreach($other_skill_data as $x ) {
+          $que_other_skill = "INSERT INTO `tbl_employee_other_skills` SET 
+
+          EMPID = '".$empid."',
+          SKILLS = '".$x[2]."',
+          CANCELLED = 'N'"; 
+
+          $result = mysqli_query($connect, $que_other_skill);
+          $i++; 
+
+        }
+
+        //OTHER RECOGNITION DATA
+        $query = 'UPDATE tbl_employee_other_recognition
+        SET CANCELLED = "Y" 
+        WHERE EMPID = "'.$_POST["employeeiddb"].'"';
+        $result = mysqli_query($connect, $query);
+
+        $other_recognition_data =  $_SESSION['other_recognition_data'];
+
+
+        foreach($other_recognition_data as $x ) {
+          $que_other_recognition = "INSERT INTO `tbl_employee_other_recognition` SET 
+
+          EMPID = '".$empid."',
+          RECOGNITION = '".$x[2]."',
+          CANCELLED = 'N'"; 
+
+          $result = mysqli_query($connect, $que_other_recognition);
+          $i++; 
+
+        }
+
+        //OTHER MEMBERSHIP DATA
+        $query = 'UPDATE tbl_employee_other_membership
+        SET CANCELLED = "Y" 
+        WHERE EMPID = "'.$_POST["employeeiddb"].'"';
+        $result = mysqli_query($connect, $query);
+
+        $other_membership_data =  $_SESSION['other_membership_data'];
+
+
+        foreach($other_membership_data as $x ) {
+          $que_other_membership = "INSERT INTO `tbl_employee_other_membershipo` SET 
+
+          EMPID = '".$empid."',
+          MEMBERSHIP = '".$x[2]."',
+          CANCELLED = 'N'"; 
+
+          $result = mysqli_query($connect, $que_other_membership);
+          $i++; 
+
+        }
+
+
+
+
     }
   }
 

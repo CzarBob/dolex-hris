@@ -1,6 +1,10 @@
 <?php
 include "dbConnection.php";
 session_start();
+if ($_SESSION['username'] == ""){
+  header("Location: admin");
+  exit;
+}
 
 include 'view_employee_load_query.php';
 /*if (isset($_GET['id'])) {
@@ -29,6 +33,9 @@ include 'view_employee_load_query.php';
 }*/
 
 //include 'adminlogout.php';
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +45,7 @@ include 'view_employee_load_query.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="assets/img/AEP_icon.png" rel="icon">
-    <title>Employee View</title>
+    <title>Employee Details</title>
 
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -64,7 +71,7 @@ include 'view_employee_load_query.php';
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admindashboard.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="main">
                 <div class="sidebar-brand-icon">
                     <img src="assets/img/AEP_icon.png" alt="" width="35px" height="35px">
                 </div>
@@ -83,7 +90,7 @@ include 'view_employee_load_query.php';
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link collapsed" href="main" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw 	fas fa-home"></i>
                     <span>Return</span>
                 </a>
@@ -611,10 +618,10 @@ include 'view_employee_load_query.php';
                                     <a class="nav-link" id="voluntary-tab" data-toggle="tab" href="#volworktab" role="tab" aria-controls="contact" aria-selected="false">Voluntary Work</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="lad-tab" data-toggle="tab" href="#ladtab" role="tab" aria-controls="contact" aria-selected="false">Learning and Development</a>
+                                    <a class="nav-link" id="landd-tab" data-toggle="tab" href="#landdtab" role="tab" aria-controls="contact" aria-selected="false">Learning and Development</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Other Information</a>
+                                    <a class="nav-link" id="others-tab" data-toggle="tab" href="#otherstab" role="tab" aria-controls="contact" aria-selected="false">Other Information</a>
                                 </li>
                                 </ul>
                                 <div class="tab-content" id="myTabContent">
@@ -711,32 +718,32 @@ include 'view_employee_load_query.php';
                                                     <!--<a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#dateRangeModal" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Generate Report</a> -->
                                                 </div>
                                                 <div class="card-body">
-                                                        <div class="table-responsive">
-                                                            <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="civil_data" width="100%" cellspacing="0">
-                                                                <thead class = "text-primary">
-                                                                    <tr>
-                                                                        <th data-column-id="eligibility">ELIGIBILITY</th>
-                                                                        <th data-column-id="rating">RATING</th>
-                                                                        <th data-column-id="date_of_exam">DATE OF EXAM</th>
-                                                                        <th data-column-id="place_of_exam">PLACE OF EXAM</th>
-                                                                        <th data-column-id="license_no">LICENSE NUMBER</th>
-                                                                        <th data-column-id="license_date">LICENSE DATE OF VALIDITY</th>
-                                                                        <th >ACTION</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tfoot class = "text-primary">
-                                                                    <tr>
-                                                                        <th>ELIGIBILITY</th>
-                                                                        <th>RATING</th>
-                                                                        <th>DATE OF EXAM</th>
-                                                                        <th>PLACE OF EXAM</th>
-                                                                        <th>LICENSE NUMBER</th>
-                                                                        <th>LICENSE DATE OF VALIDITY</th>
-                                                                        <th>ACTION</th>
-                                                                    </tr>
-                                                                </tfoot>
-                                                            </table>
-                                                        </div>
+                                                      <div class="table-responsive">
+                                                          <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="civil_data" width="100%" cellspacing="0">
+                                                              <thead class = "text-primary">
+                                                                  <tr>
+                                                                      <th data-column-id="eligibility">ELIGIBILITY</th>
+                                                                      <th data-column-id="rating">RATING</th>
+                                                                      <th data-column-id="date_of_exam">DATE OF EXAM</th>
+                                                                      <th data-column-id="place_of_exam">PLACE OF EXAM</th>
+                                                                      <th data-column-id="license_no">LICENSE NUMBER</th>
+                                                                      <th data-column-id="license_date">LICENSE DATE OF VALIDITY</th>
+                                                                      <th >ACTION</th>
+                                                                  </tr>
+                                                              </thead>
+                                                              <tfoot class = "text-primary">
+                                                                  <tr>
+                                                                      <th>ELIGIBILITY</th>
+                                                                      <th>RATING</th>
+                                                                      <th>DATE OF EXAM</th>
+                                                                      <th>PLACE OF EXAM</th>
+                                                                      <th>LICENSE NUMBER</th>
+                                                                      <th>LICENSE DATE OF VALIDITY</th>
+                                                                      <th>ACTION</th>
+                                                                  </tr>
+                                                              </tfoot>
+                                                          </table>
+                                                      </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -787,12 +794,11 @@ include 'view_employee_load_query.php';
                                                         </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                                                          
+                                        </div>                                  
                                     </div> <!--END OF WORK TAB -->
 
 
-                                    <!-- WORK TAB-->
+                                    <!-- VOLUNTARY WORK TAB-->
                                     <div class="tab-pane fade" id="volworktab" role="tabpanel" aria-labelledby="work-tab">
                                         <div class="container-fluid">
                                             <div class="card shadow mb-4">
@@ -833,6 +839,121 @@ include 'view_employee_load_query.php';
                                         </div>
                                                                           
                                     </div> <!--END OFVOLUNTARY WORK TAB -->
+
+                                    <!-- LEARNING AND DEVELOPMENT TAB-->
+                                    <div class="tab-pane fade" id="landdtab" role="tabpanel" aria-labelledby="work-tab">
+                                        <div class="container-fluid">
+                                            <div class="card shadow mb-4">
+                                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                                    <h6 class="m-0 font-weight-bold text-primary"></h6> 
+                                                    
+                                                    <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#modalWorkForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Work Experience</a>
+                                                    
+                                                    <!--<a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#dateRangeModal" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Generate Report</a> -->
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="landd_data" width="100%" cellspacing="0">
+                                                            <thead class = "text-primary">
+                                                                <tr>
+                                                                    <th data-column-id="landd_program">COMPANY</th>
+                                                                    <th data-column-id="landd_date_from">DATE FROM</th>
+                                                                    <th data-column-id="landd_date_to">DATE TO</th>
+                                                                    <th data-column-id="landd_nohours">NUMBER OF HOURS</th>
+                                                                    <th data-column-id="landd_type">TYPE</th>
+                                                                    <th data-column-id="landd_type">SPONSORED BY</th>
+                                                                    <th >ACTION</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tfoot class = "text-primary">
+                                                                <tr>
+                                                                  <th>COMPANY</th>
+                                                                  <th>DATE FROM</th>
+                                                                  <th>DATE TO</th>
+                                                                  <th>NUMBER OF HOURS</th>
+                                                                  <th>TYPE</th>
+                                                                  <th>SPONSORED BY</th>
+                                                                  <th>ACTION</th>
+                                                                </tr>
+                                                            </tfoot>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                                                          
+                                    </div> <!--END OF LEARNING AND DEVELOPMENT TAB -->
+
+                                    <!-- OTHERS TAB-->
+                                    <div class="tab-pane fade" id="otherstab" role="tabpanel" aria-labelledby="work-tab">
+                                        <div class="container-fluid">
+                                            <div class="card shadow mb-4">
+                                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                                    <h6 class="m-0 font-weight-bold text-primary"></h6>                                                                                              
+                                                    <!--<a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#dateRangeModal" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Generate Report</a> -->
+                                                </div>
+                                                <div class="card-body">
+                                                  <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#otherSkillForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Skill or Hobby</a>
+                                                      <div class="table-responsive">
+                                                          <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="other_skill_data" width="100%" cellspacing="0">
+                                                              <thead class = "text-primary">
+                                                                  <tr>
+                                                                    <th data-column-id="other_special_skill">SPECIAL SKILLS/HOBBIES</th>
+                                                                    <th>ACTION</th>
+                                                                  </tr>
+                                                              </thead>
+                                                              <tfoot class = "text-primary">
+                                                                  <tr>
+                                                                    <th>SPECIAL SKILLS/HOBBIES</th>
+                                                                    <th>ACTION</th>
+                                                                  </tr>
+                                                              </tfoot>
+                                                          </table>
+                                                      </div>
+                                                </div>
+                                                <div class="card-body">
+                                                      <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#otherRecognitionForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Recognition</a>
+                                                      <div class="table-responsive">
+                                                          <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="other_recognition_data" width="100%" cellspacing="0">
+                                                              <thead class = "text-primary">
+                                                                  <tr>
+                                                                      <th data-column-id="other_recognition">NON-ACADEMIC RECOGNITIONS</th>
+                                                                      <th >ACTION</th>
+                                                                  </tr>
+                                                              </thead>
+                                                              <tfoot class = "text-primary">
+                                                                  <tr>
+                                                                      <th>RECOGNITIONS</th>
+                                                                      <th >ACTION</th>
+                                                                  </tr>
+                                                              </tfoot>
+                                                          </table>
+                                                      </div>
+                                                </div>
+                                                <div class="card-body">
+                                                      <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#otherMembershipForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-1"></i> Add Membership in Organization</a>
+                                                      <div class="table-responsive">
+                                                          <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="other_membership_data" width="100%" cellspacing="0">
+                                                              <thead class = "text-primary">
+                                                                  <tr>
+                                                                      <th data-column-id="other_membership">MEMBERSHIP IN ORGANIZATION</th>
+                                                                      <th >ACTION</th>
+                                                                  </tr>
+                                                              </thead>
+                                                              <tfoot class = "text-primary">
+                                                                  <tr>
+                                                                      <th>MEMBERSHIP</th>
+                                                                      <th>ACTION</th>
+                                                                  </tr>
+                                                              </tfoot>
+                                                          </table>
+                                                      </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                                                          
+                                    </div> <!--END OF OTHERS TAB -->
+
 
                                     </div>
                                 </div>
@@ -1583,9 +1704,84 @@ include 'view_employee_load_query.php';
         </div>
       </div>
     </div>
-    
 
-    <!-- Logout Modal-->
+
+    <!-- ADD OTHER SKILL FORM -->
+    <div class="modal fade" id="otherSkillForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold" id="modal_title">Add Skill or Hobby</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-3">
+          <div class="md-form mb-5"> 
+            <label data-error="wrong" data-success="right" for="form34">Special Skill or Hobby</label>
+            <input type="text" name="other_skill" id = "other_skill" class="form-control validate" required> -        
+          </div>
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+          <!--<input type="hidden" name="eligibility_action_id" id = "eligibility_action_id" class="form-control validate" > --> 
+          <button class="btn btn-primary" id = "add_other_skill">Submit data</button>
+          <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADD OTHER RECOGNITION FORM -->
+    <div class="modal fade" id="otherRecognitionForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold" id="modal_title">Add Skill or Hobby</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-3">
+          <div class="md-form mb-5"> 
+            <label data-error="wrong" data-success="right" for="form34">Non-Academic Distinction/Recognition</label>
+            <input type="text" name="other_recognition" id = "other_recognition" class="form-control validate" required> -        
+          </div>
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+          <!--<input type="hidden" name="eligibility_action_id" id = "eligibility_action_id" class="form-control validate" > --> 
+          <button class="btn btn-primary" id = "add_other_recognition">Submit data</button>
+          <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADD OTHER MEMBERSHIP FORM -->
+    <div class="modal fade" id="otherMembershipForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold" id="modal_title">Add Membership</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-3">
+          <div class="md-form mb-5"> 
+            <label data-error="wrong" data-success="right" for="form34">Membership in Association/Organization</label>
+            <input type="text" name="other_membership" id = "other_membership" class="form-control validate" required> -        
+          </div>
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+          <!--<input type="hidden" name="eligibility_action_id" id = "eligibility_action_id" class="form-control validate" > --> 
+          <button class="btn btn-primary" id = "add_other_membership">Submit data</button>
+          <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Logout Modal
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -1604,7 +1800,28 @@ include 'view_employee_load_query.php';
                 </form>
             </div>
         </div>
+    </div>-->
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <!--<a class="btn btn-primary" href="logout.php">Logout</a> -->
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <a class="btn btn-primary" href="logout">Logout</a> 
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
     </div>
+  </div>
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="assets/vendor/jquery/jquery.min.js"></script>

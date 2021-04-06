@@ -38,7 +38,7 @@ if ($_SESSION['username'] == ""){
 <body id="page-top">
   <div id="wrapper">
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="main.php">
         <img class = "icon" src = "img/dolelogogs.png" width = "60"></img>
         <div class="sidebar-brand-text mx-3">Admin Panel</div>
       </a>
@@ -55,7 +55,7 @@ if ($_SESSION['username'] == ""){
 
       <hr class="sidebar-divider">
       <li class="nav-item active">
-        <a class="nav-link" href="employee_detail.php">
+        <a class="nav-link" href="employee_detail">
           <i class="fas fa-fw fa-lg fa-check-square"></i>
           <span>Employee List</span>
         </a>
@@ -133,8 +133,8 @@ if ($_SESSION['username'] == ""){
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
               <h6 class="m-0 font-weight-bold text-primary">Employee List</h6>
               <t>
-              <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" href = "export.php" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Employee</a> 
-              <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#dateRangeModal" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Generate Report</a>
+              <!--<a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" href = "export.php" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Employee</a> 
+              <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#dateRangeModal" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Generate Report</a> -->
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -145,16 +145,14 @@ if ($_SESSION['username'] == ""){
                       <th>FIRST NAME</th>
                       <th>MIDDLE NAME</th>
                       <th>LAST NAME</th>
-                      <th>ACTION</th>
                     </tr>
                   </thead>
                   <tfoot class = "text-primary">
                     <tr>
-                      <th>Process Name</th>
-                      <th>Rating</th>
-                      <th>Full Name</th>
-                      <th>Email</th>
-                      <th>Comment</th>
+                      <th>EMPLOYEE ID</th>
+                      <th>FIRST NAME</th>
+                      <th>MIDDLE NAME</th>
+                      <th>LAST NAME</th>
                     </tr>
                   </tfoot>
                 </table>
@@ -200,6 +198,8 @@ if ($_SESSION['username'] == ""){
       </div>
     </div>
   </div>
+
+  
     <div id="add_record" class="modal" data-backdrop="static" data-keyboard="false">
       <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">

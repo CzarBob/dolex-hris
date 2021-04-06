@@ -172,7 +172,79 @@ if (isset($_GET['id'])) {
       }
       $_SESSION['landd_data'] = $data;
       //END OF VOLUNTARY WORK DATA
+
+
+
+    //OTHER SKILL DATA
+    unset($_SESSION['other_skill_data']);
+    //$id = $_GET['id'];
+
+    $query = 'SELECT * FROM tbl_employee_other_skills WHERE EMPID = "'.$id.'" AND CANCELLED = "N" ';
+ 
+      $result = mysqli_query($connect, $query );
       
+      $data = array();
+      if($result){
+        while($row = mysqli_fetch_array($result)){
+            
+            $sub_array = array();
+            $sub_array[] = $row["ID"];
+            $sub_array[] = $row["EMPID"];
+            $sub_array[] = $row["SKILLS"];
+  
+            $data[] = $sub_array;
+          }
+      }
+      $_SESSION['other_skill_data'] = $data;
+      //END OF OTHER SKILL  WORK DATA
+      
+
+      
+    //OTHER RECOGNITION DATA
+    unset($_SESSION['other_recognition_data']);
+    //$id = $_GET['id'];
+
+    $query = 'SELECT * FROM tbl_employee_other_recognition WHERE EMPID = "'.$id.'" AND CANCELLED = "N" ';
+ 
+      $result = mysqli_query($connect, $query );
+      
+      $data = array();
+      if($result){
+        while($row = mysqli_fetch_array($result)){
+            
+            $sub_array = array();
+            $sub_array[] = $row["ID"];
+            $sub_array[] = $row["EMPID"];
+            $sub_array[] = $row["RECOGNITION"];
+  
+            $data[] = $sub_array;
+          }
+      }
+      $_SESSION['other_recognition_data'] = $data;
+      //END OF OTHER recognition DATA
+
+    //OTHER MEMBERSHIP DATA
+    unset($_SESSION['other_membership_data']);
+    //$id = $_GET['id'];
+
+    $query = 'SELECT * FROM tbl_employee_other_membership WHERE EMPID = "'.$id.'" AND CANCELLED = "N" ';
+ 
+      $result = mysqli_query($connect, $query );
+      
+      $data = array();
+      if($result){
+        while($row = mysqli_fetch_array($result)){
+            
+            $sub_array = array();
+            $sub_array[] = $row["ID"];
+            $sub_array[] = $row["EMPID"];
+            $sub_array[] = $row["MEMBERSHIP"];
+  
+            $data[] = $sub_array;
+          }
+      }
+      $_SESSION['other_membership_data'] = $data;
+      //END OF OTHER membership DATA
 }
 
 ?>

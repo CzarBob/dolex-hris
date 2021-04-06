@@ -136,7 +136,7 @@ $(document).ready(function(){
         },
       success:function(response){
         if(response=="success"){
-            window.location.href="index";
+            window.location.href="main";
         }
         if(response=="others"){
             window.location.href="admin";
