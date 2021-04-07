@@ -38,7 +38,7 @@ if ($_SESSION['username'] == ""){
 <body id="page-top">
   <div id="wrapper">
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="main">
         <img class = "icon" src = "img/dolelogogs.png" width = "60"></img>
         <div class="sidebar-brand-text mx-3">Admin Panel</div>
       </a>
@@ -55,9 +55,16 @@ if ($_SESSION['username'] == ""){
 
       <hr class="sidebar-divider">
       <li class="nav-item active">
-        <a class="nav-link" href="employee_detail.php">
+        <a class="nav-link" href="employee_detail">
           <i class="fas fa-fw fa-lg fa-check-square"></i>
           <span>Employee List</span>
+        </a>
+      </li>
+      
+      <li class="nav-item active">
+        <a class="nav-link" href="employee_detail">
+          <i class="fas fa-fw fa-lg fa-check-square"></i>
+          <span>Service Records</span>
         </a>
       </li>
       

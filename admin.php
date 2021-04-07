@@ -138,9 +138,9 @@ $(document).ready(function(){
         if(response=="success"){
             window.location.href="main";
         }
-        if(response=="others"){
+        /*if(response=="others"){
             window.location.href="admin";
-        }
+        }*/
         if(response=="fail"){
           $('#error_login').modal('show');
         }

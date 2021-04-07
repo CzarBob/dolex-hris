@@ -119,11 +119,11 @@ if (isset($_GET['id'])) {
 
 
 
-    //WORK DATA
-    unset($_SESSION['volwork_data']);
-    //$id = $_GET['id'];
+      //WORK DATA
+      unset($_SESSION['volwork_data']);
+      //$id = $_GET['id'];
 
-    $query = 'SELECT * FROM tbl_employee_voluntary_work WHERE EMPID = "'.$id.'" AND CANCELLED = "N" ';
+      $query = 'SELECT * FROM tbl_employee_voluntary_work WHERE EMPID = "'.$id.'" AND CANCELLED = "N" ';
  
       $result = mysqli_query($connect, $query );
       
@@ -146,11 +146,11 @@ if (isset($_GET['id'])) {
       //END OF VOLUNTARY WORK DATA
 
 
-    //L AND D DATA
-    unset($_SESSION['landd_data']);
-    //$id = $_GET['id'];
+      //L AND D DATA
+      unset($_SESSION['landd_data']);
+      //$id = $_GET['id'];
 
-    $query = 'SELECT * FROM tbl_employee_ld WHERE EMPID = "'.$id.'" AND CANCELLED = "N" ';
+      $query = 'SELECT * FROM tbl_employee_ld WHERE EMPID = "'.$id.'" AND CANCELLED = "N" ';
  
       $result = mysqli_query($connect, $query );
       
@@ -175,11 +175,11 @@ if (isset($_GET['id'])) {
 
 
 
-    //OTHER SKILL DATA
-    unset($_SESSION['other_skill_data']);
-    //$id = $_GET['id'];
+      //OTHER SKILL DATA
+      unset($_SESSION['other_skill_data']);
+      //$id = $_GET['id'];
 
-    $query = 'SELECT * FROM tbl_employee_other_skills WHERE EMPID = "'.$id.'" AND CANCELLED = "N" ';
+      $query = 'SELECT * FROM tbl_employee_other_skills WHERE EMPID = "'.$id.'" AND CANCELLED = "N" ';
  
       $result = mysqli_query($connect, $query );
       
@@ -200,11 +200,11 @@ if (isset($_GET['id'])) {
       
 
       
-    //OTHER RECOGNITION DATA
-    unset($_SESSION['other_recognition_data']);
-    //$id = $_GET['id'];
+      //OTHER RECOGNITION DATA
+      unset($_SESSION['other_recognition_data']);
+      //$id = $_GET['id'];
 
-    $query = 'SELECT * FROM tbl_employee_other_recognition WHERE EMPID = "'.$id.'" AND CANCELLED = "N" ';
+      $query = 'SELECT * FROM tbl_employee_other_recognition WHERE EMPID = "'.$id.'" AND CANCELLED = "N" ';
  
       $result = mysqli_query($connect, $query );
       
@@ -223,11 +223,11 @@ if (isset($_GET['id'])) {
       $_SESSION['other_recognition_data'] = $data;
       //END OF OTHER recognition DATA
 
-    //OTHER MEMBERSHIP DATA
-    unset($_SESSION['other_membership_data']);
-    //$id = $_GET['id'];
+      //OTHER MEMBERSHIP DATA
+      unset($_SESSION['other_membership_data']);
+      //$id = $_GET['id'];
 
-    $query = 'SELECT * FROM tbl_employee_other_membership WHERE EMPID = "'.$id.'" AND CANCELLED = "N" ';
+      $query = 'SELECT * FROM tbl_employee_other_membership WHERE EMPID = "'.$id.'" AND CANCELLED = "N" ';
  
       $result = mysqli_query($connect, $query );
       

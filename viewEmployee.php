@@ -587,9 +587,7 @@ include 'view_employee_load_query.php';
                                 </div>
                             </div>
                         </div>
-
                     <!-- END OF FAMILY BACKGROUND FORM -->
-                
 
                         <div class="col-xl-12 col-lg-7">
                             <div class="card shadow mb-4">
@@ -598,9 +596,7 @@ include 'view_employee_load_query.php';
                                     <h6 class="m-0 font-weight-bold text-primary">Additional Details</h6>
 
                                 </div>
-                
-
-
+              
                                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Children (if Applicable)</a>
@@ -662,7 +658,7 @@ include 'view_employee_load_query.php';
 
                                     </div>
                                     <div class="tab-pane fade" id="eductab" role="tabpanel" aria-labelledby="educ-tab">
-                                        <div class="container-fluid">
+                                      <div class="container-fluid">
                                             <div class="card shadow mb-4">
                                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                                     <h6 class="m-0 font-weight-bold text-primary"></h6> 
@@ -701,10 +697,19 @@ include 'view_employee_load_query.php';
                                                                     </tr>
                                                                 </tfoot>
                                                             </table>
+                
                                                         </div>
+
+
+
+
+                         
+                      
+
+
                                                 </div>
-                                            </div>
-                                        </div>                                                                                                                          
+                                              </div>                                                                                                                          
+                                          </div>
                                     </div>
                                     
                                     <div class="tab-pane fade" id="civiltab" role="tabpanel" aria-labelledby="civil-tab">
@@ -805,7 +810,7 @@ include 'view_employee_load_query.php';
                                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                                     <h6 class="m-0 font-weight-bold text-primary"></h6> 
                                                     
-                                                    <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#modalWorkForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Work Experience</a>
+                                                    <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#modalVolWorkForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Work Experience</a>
                                                     
                                                     <!--<a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#dateRangeModal" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Generate Report</a> -->
                                                 </div>
@@ -840,16 +845,14 @@ include 'view_employee_load_query.php';
                                                                           
                                     </div> <!--END OFVOLUNTARY WORK TAB -->
 
+
                                     <!-- LEARNING AND DEVELOPMENT TAB-->
                                     <div class="tab-pane fade" id="landdtab" role="tabpanel" aria-labelledby="work-tab">
                                         <div class="container-fluid">
                                             <div class="card shadow mb-4">
                                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                                    <h6 class="m-0 font-weight-bold text-primary"></h6> 
-                                                    
-                                                    <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#modalWorkForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Work Experience</a>
-                                                    
-                                                    <!--<a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#dateRangeModal" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Generate Report</a> -->
+                                                    <h6 class="m-0 font-weight-bold text-primary"></h6>  
+                                                    <button class="btn btn-success" data-toggle="modal" data-target="#modalLanddForm">     Add Learning and Development </button>
                                                 </div>
                                                 <div class="card-body">
                                                     <div class="table-responsive">
@@ -1108,9 +1111,20 @@ include 'view_employee_load_query.php';
 
             <div class="md-form mb-5">
                 <input type="hidden" name="educid" id = "educid" class="form-control validate" required>  
-              <label data-error="wrong" data-success="right" for="form34">Level</label>
-              <input type="text" name="level_update" id = "level_update" class="form-control validate" required>
-           
+              <!--<label data-error="wrong" data-success="right" for="form34">Level</label>
+              <input type="text" name="level_update" id = "level_update" class="form-control validate" required>-->
+
+              <label for="inputZip">Level</label>
+              <select class="custom-select my-1 mr-sm-2" id="level_update" name="level_update">
+                  <option  value="NA" selected>Choose...</option>
+                  <option value="ELEM">ELEMENTARY</option>
+                  <option value="SEC">SECONDARY</option>
+                  <option value="VOC">VOCATIONAL/TRADE COURSE</option>
+                  <option value="COLLEGE">COLLEGE</option>
+                  <option value="GRADSTUD">GRADUATE STUDIES</option>
+
+              </select>
+          
             </div>
 
             <div class="md-form mb-5">
@@ -1127,14 +1141,14 @@ include 'view_employee_load_query.php';
             </div>
             <div class="md-form mb-5">
        
-              <label data-error="wrong" data-success="right" for="form29">Period from </label>
-              <input type="text" name="attended_from_update" id = "attended_from_update" class="form-control validate" required>
+              <label data-error="wrong" data-success="right" for="form29">Period from (YYYY) </label>
+              <input type="number" min="1900" max="2099" step="1" value="2016"  name="attended_from_update" id = "attended_from_update" class="form-control validate" required>
              
             </div>
             <div class="md-form mb-5">
        
-              <label data-error="wrong" data-success="right" for="form29">Period to</label>
-              <input type="text" name="attended_to_update" id = "attended_to_update" class="form-control validate" required>
+              <label data-error="wrong" data-success="right" for="form29">Period to (YYYY)</label>
+              <input type="number" min="1900" max="2099" step="1" value="2016"  name="attended_to_update" id = "attended_to_update" class="form-control validate" required>
              
             </div>
             <div class="md-form mb-5">
@@ -1145,8 +1159,8 @@ include 'view_employee_load_query.php';
             </div>
             <div class="md-form mb-5">
        
-              <label data-error="wrong" data-success="right" for="form29">Year Graduated</label>
-              <input type="text" name="year_grad_update" id = "year_grad_update" class="form-control validate" required>
+              <label data-error="wrong" data-success="right" for="form29">Year Graduated (YYYY)</label>
+              <input type="number" min="1900" max="2099" step="1" value="2016" name="year_grad_update" id = "year_grad_update" class="form-control validate" required>
              
             </div>
             <div class="md-form mb-5">
@@ -1182,9 +1196,18 @@ include 'view_employee_load_query.php';
 
             <div class="md-form mb-5">
             
-              <label data-error="wrong" data-success="right" for="form34">Level</label>
-              <input type="text" name="level" id = "level" class="form-control validate" required>
-           
+              <!--<label data-error="wrong" data-success="right" for="form34">Level</label>
+              <input type="text" name="level" id = "level" class="form-control validate" required>-->
+              <label for="inputZip">Level</label>
+              <select class="custom-select my-1 mr-sm-2" id="level" name="level">
+                  <option  value="NA" selected>Choose...</option>
+                  <option value="ELEM">ELEMENTARY</option>
+                  <option value="SEC">SECONDARY</option>
+                  <option value="VOC">VOCATIONAL/TRADE COURSE</option>
+                  <option value="COLLEGE">COLLEGE</option>
+                  <option value="GRADSTUD">GRADUATE STUDIES</option>
+
+              </select>
             </div>
 
             <div class="md-form mb-5">
@@ -1267,7 +1290,7 @@ include 'view_employee_load_query.php';
           <div class="md-form mb-5">
      
             <label data-error="wrong" data-success="right" for="form29">Date of Exam</label>
-            <input type="text" name="date_of_exam" id = "date_of_exam" class="form-control validate" required>
+            <input type="data" name="date_of_exam" id = "date_of_exam" class="form-control validate" required>
            
           </div>
           <div class="md-form mb-5">
@@ -1285,7 +1308,7 @@ include 'view_employee_load_query.php';
           <div class="md-form mb-5">
      
             <label data-error="wrong" data-success="right" for="form29">License Date of Validity</label>
-            <input type="text" name="license_date" id = "license_date" class="form-control validate" required>
+            <input type="date" name="license_date" id = "license_date" class="form-control validate" required>
            
           </div>
           
@@ -1322,14 +1345,14 @@ include 'view_employee_load_query.php';
 
           <div class="md-form mb-5">
      
-            <label data-error="wrong" data-success="right" for="form29">rating</label>
+            <label data-error="wrong" data-success="right" for="form29">Rating</label>
             <input type="text" name="rating_update" id = "rating_update" class="form-control validate" required>
            
           </div>
           <div class="md-form mb-5">
      
             <label data-error="wrong" data-success="right" for="form29">Date of Exam</label>
-            <input type="text" name="date_of_exam_update" id = "date_of_exam_update" class="form-control validate" required>
+            <input type="date" name="date_of_exam_update" id = "date_of_exam_update" class="form-control validate" required>
            
           </div>
           <div class="md-form mb-5">
@@ -1347,7 +1370,7 @@ include 'view_employee_load_query.php';
           <div class="md-form mb-5">
      
             <label data-error="wrong" data-success="right" for="form29">License Date of Validity</label>
-            <input type="text" name="license_date_update" id = "license_date_update" class="form-control validate" required>
+            <input type="date" name="license_date_update" id = "license_date_update" class="form-control validate" required>
            
           </div>
           
@@ -1415,9 +1438,14 @@ include 'view_employee_load_query.php';
           </div>
           <div class="md-form mb-5">
      
-            <label data-error="wrong" data-success="right" for="form29">Government Service</label>
-            <input type="text" name="work_govt_service" id = "work_govt_service" class="form-control validate" required>
-           
+            <label data-error="wrong" data-success="right" for="form29">Government Service (Y/N)</label>
+            <!--<input type="text" name="work_govt_service_update" id = "work_govt_service_update" class="form-control validate" required> -->
+            <select class="custom-select my-1 mr-sm-2" id="work_govt_service_update" name="work_govt_service_update">
+                <option  value="NA" selected>Please Select</option>
+                <option value="Y">YES</option>
+                <option value="N">No</option>
+
+            </select>
           </div>
           
           
@@ -1486,8 +1514,14 @@ include 'view_employee_load_query.php';
           <div class="md-form mb-5">
      
             <label data-error="wrong" data-success="right" for="form29">Government Service</label>
-            <input type="text" name="work_govt_service_update" id = "work_govt_service_update" class="form-control validate" required>
-           
+            <!--<input type="text" name="work_govt_service_update" id = "work_govt_service_update" class="form-control validate" required> -->
+
+            <select class="custom-select my-1 mr-sm-2" id="work_govt_service_update" name="work_govt_service_update">
+                <option  value="NA" selected>Please Select</option>
+                <option value="Y">YES</option>
+                <option value="N">No</option>
+
+            </select>
           </div>
           
           
@@ -1516,7 +1550,7 @@ include 'view_employee_load_query.php';
           <div class="md-form mb-5">
             <!--<input type="hidden" name="volWorkid" id = "volWorkid" class="form-control validate" required> -->  
             <label data-error="wrong" data-success="right" for="form34">Organization</label>
-            <input type="text" name="volwork_organization" id = "volwork_organization" class="form-control validate" required> -        
+            <input type="text" name="volwork_organization" id = "volwork_organization" class="form-control validate" required>        
           </div>
    
           <div class="md-form mb-5">
@@ -1609,29 +1643,38 @@ include 'view_employee_load_query.php';
           </div>
           <div class="modal-body mx-3">
           <div class="md-form mb-5">
-            <!--<input type="hidden" name="volWorkid" id = "volWorkid" class="form-control validate" required> -->  
             <label data-error="wrong" data-success="right" for="form34">Program</label>
-            <input type="text" name="landd_program" id = "landd_program" class="form-control validate" required> -        
+            <input type="text" name="landd_program" id = "landd_program" class="form-control validate" required>        
           </div>
    
           <div class="md-form mb-5">
             <label data-error="wrong" data-success="right" for="form34">Inclusive Dates</label>
             <input type="date" name="landd_date_from" id = "landd_date_from" class="form-control validate" required> - 
             <input type="date" name="landd_date_to" id = "landd_date_to" class="form-control validate" required>
-         
           </div>
 
           <div class="md-form mb-5">
-     
             <label data-error="wrong" data-success="right" for="form29">Number of Hours</label>
             <input type="text" name="landd_nohours" id = "landd_nohours" class="form-control validate" required>
-           
           </div>
           <div class="md-form mb-5">
      
-            <label data-error="wrong" data-success="right" for="form29">Type</label>
+           <!-- <label data-error="wrong" data-success="right" for="form29">Type</label>
             <input type="text" name="landd_type" id = "landd_type" class="form-control validate" required>
-           
+           -->
+
+            <label data-error="wrong" data-success="right" for="form29">Type</label>
+            <!--<input type="text" name="work_govt_service_update" id = "work_govt_service_update" class="form-control validate" required> -->
+
+            <select class="custom-select my-1 mr-sm-2" id="landd_type" name="landd_type">
+                <option  value="NA" selected>Please Select</option>
+                <option value="MANAGERIAL">MANAGERIAL</option>
+                <option value="SUPERVISORY">SUPERVISORY</option>
+                <option value="TECHNICAL">TECHNICAL</option>
+                <option value="OTHERS">OTHERS</option>
+
+            </select>
+
           </div>
 
           <div class="md-form mb-5">
@@ -1663,7 +1706,7 @@ include 'view_employee_load_query.php';
           </div>
           <div class="modal-body mx-3">
           <div class="md-form mb-5">
-            <!--<input type="hidden" name="volWorkid" id = "volWorkid" class="form-control validate" required> -->  
+           <input type="hidden" name="landdid" id = "landdid" class="form-control validate" required> 
             <label data-error="wrong" data-success="right" for="form34">Program</label>
             <input type="text" name="landd_program_update" id = "landd_program_update" class="form-control validate" required> -        
           </div>
@@ -1684,15 +1727,23 @@ include 'view_employee_load_query.php';
           <div class="md-form mb-5">
      
             <label data-error="wrong" data-success="right" for="form29">Type</label>
-            <input type="text" name="landd_type_update" id = "landd_type_update" class="form-control validate" required>
-           
+            <!--<input type="text" name="landd_type_update" id = "landd_type_update" class="form-control validate" required>-->
+
+            <select class="custom-select my-1 mr-sm-2" id="landd_type_update" name="landd_type_update">
+                <option  value="NA" selected>Please Select</option>
+                <option value="MANAGERIAL">MANAGERIAL</option>
+                <option value="SUPERVISORY">SUPERVISORY</option>
+                <option value="TECHNICAL">TECHNICAL</option>
+                <option value="OTHERS">OTHERS</option>
+
+            </select>
           </div>
 
           <div class="md-form mb-5">
      
             <label data-error="wrong" data-success="right" for="form29">Sponsored By</label>
             <input type="text" name="landd_sponsoredby_update" id = "landd_sponsoredby_update" class="form-control validate" required>
-           
+            
           </div>
 
           </div>
@@ -1719,7 +1770,7 @@ include 'view_employee_load_query.php';
           <div class="modal-body mx-3">
           <div class="md-form mb-5"> 
             <label data-error="wrong" data-success="right" for="form34">Special Skill or Hobby</label>
-            <input type="text" name="other_skill" id = "other_skill" class="form-control validate" required> -        
+            <input type="text" name="other_skill" id = "other_skill" class="form-control validate" required>         
           </div>
           </div>
           <div class="modal-footer d-flex justify-content-center">
@@ -1744,7 +1795,7 @@ include 'view_employee_load_query.php';
           <div class="modal-body mx-3">
           <div class="md-form mb-5"> 
             <label data-error="wrong" data-success="right" for="form34">Non-Academic Distinction/Recognition</label>
-            <input type="text" name="other_recognition" id = "other_recognition" class="form-control validate" required> -        
+            <input type="text" name="other_recognition" id = "other_recognition" class="form-control validate" required>         
           </div>
           </div>
           <div class="modal-footer d-flex justify-content-center">
@@ -1769,7 +1820,7 @@ include 'view_employee_load_query.php';
           <div class="modal-body mx-3">
           <div class="md-form mb-5"> 
             <label data-error="wrong" data-success="right" for="form34">Membership in Association/Organization</label>
-            <input type="text" name="other_membership" id = "other_membership" class="form-control validate" required> -        
+            <input type="text" name="other_membership" id = "other_membership" class="form-control validate" required>        
           </div>
           </div>
           <div class="modal-footer d-flex justify-content-center">

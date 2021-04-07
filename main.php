@@ -38,9 +38,9 @@ if ($_SESSION['username'] == ""){
 <body id="page-top">
   <div id="wrapper">
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="main.php">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="main">
         <img class = "icon" src = "img/dolelogogs.png" width = "60"></img>
-        <div class="sidebar-brand-text mx-3">Admin Panel</div>
+        <div class="sidebar-brand-text mx-3">DOLE-X HRIS</div>
       </a>
 
       <hr class="sidebar-divider my-0">
@@ -58,6 +58,13 @@ if ($_SESSION['username'] == ""){
         <a class="nav-link" href="employee_detail">
           <i class="fas fa-fw fa-lg fa-check-square"></i>
           <span>Employee List</span>
+        </a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="employee_detail">
+          <i class="fas fa-fw fa-lg fa-check-square"></i>
+          <span>Service Records</span>
         </a>
       </li>
       
@@ -101,7 +108,7 @@ if ($_SESSION['username'] == ""){
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php //echo $_SESSION['username'] ?></span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo 'Welcome, '.$_SESSION['username'] ?></span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

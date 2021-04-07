@@ -477,26 +477,28 @@ if (isset($_POST['action'])){
       $query = 'SELECT * FROM tbl_employee_voluntary_work WHERE EMPID = "'.$_POST['employeeiddb'].'" AND CANCELLED = "N" ';
 
       
-      $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
+      //$number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
       
       $result = mysqli_query($connect, $query );
       
       $data = array();
-       
-      while($row = mysqli_fetch_array($result)){
+      if($result){
+        while($row = mysqli_fetch_array($result)){
         
-        $sub_array = array();
-        $sub_array[] = $row["ORGANIZATION"];
-        $sub_array[] = $row["DATEFROM"];
-        $sub_array[] = $row["DATETO"];
-        $sub_array[] = $row["NOOFHOURS"];
-        $sub_array[] = $row["POSITION"];
-        $sub_array[] = "
-        
-        <button type='button' name='update_volwork' class='btn btn-warning btn-sm update_volwork'  data-id='".$row['ID']."'><i class='fas fa-edit'></i></button>
-        <button type='button' name='delete_volwork' class='btn btn-danger btn-sm delete_volwork' data-id='".$row['ID']."'>Delete</button>";  
-        $data[] = $sub_array;
+          $sub_array = array();
+          $sub_array[] = $row["ORGANIZATION"];
+          $sub_array[] = $row["DATEFROM"];
+          $sub_array[] = $row["DATETO"];
+          $sub_array[] = $row["NOOFHOURS"];
+          $sub_array[] = $row["POSITION"];
+          $sub_array[] = "
+          
+          <button type='button' name='update_volwork' class='btn btn-warning btn-sm update_volwork'  data-id='".$row['ID']."'><i class='fas fa-edit'></i></button>
+          <button type='button' name='delete_volwork' class='btn btn-danger btn-sm delete_volwork' data-id='".$row['ID']."'>Delete</button>";  
+          $data[] = $sub_array;
+        }
       }
+      
       
       $output = array(
        //"draw"    => intval($_POST["draw"]),
@@ -516,26 +518,27 @@ if (isset($_POST['action'])){
       $query = 'SELECT * FROM tbl_employee_ld WHERE EMPID = "'.$_POST['employeeiddb'].'" AND CANCELLED = "N" ';
 
       
-      $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
+      //$number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
       
       $result = mysqli_query($connect, $query );
       
       $data = array();
-       
-      while($row = mysqli_fetch_array($result)){
-        
-        $sub_array = array();
-        $sub_array[] = $row["PROGRAM"];
-        $sub_array[] = $row["DATEFROM"];
-        $sub_array[] = $row["DATETO"];
-        $sub_array[] = $row["NOOFHOURS"];
-        $sub_array[] = $row["TYPE"];
-        $sub_array[] = $row["SPONSOREDBY"];
-        $sub_array[] = "
-        
-        <button type='button' name='update_landd' class='btn btn-warning btn-sm update_landd'  data-id='".$row['ID']."'><i class='fas fa-edit'></i></button>
-        <button type='button' name='delete_landd' class='btn btn-danger btn-sm delete_landd' data-id='".$row['ID']."'>Delete</button>";  
-        $data[] = $sub_array;
+      if($result){
+        while($row = mysqli_fetch_array($result)){
+          
+          $sub_array = array();
+          $sub_array[] = $row["PROGRAM"];
+          $sub_array[] = $row["DATEFROM"];
+          $sub_array[] = $row["DATETO"];
+          $sub_array[] = $row["NOOFHOURS"];
+          $sub_array[] = $row["TYPE"];
+          $sub_array[] = $row["SPONSOREDBY"];
+          $sub_array[] = "
+          
+          <button type='button' name='update_landd' class='btn btn-warning btn-sm update_landd'  data-id='".$row['ID']."'><i class='fas fa-edit'></i></button>
+          <button type='button' name='delete_landd' class='btn btn-danger btn-sm delete_landd' data-id='".$row['ID']."'>Delete</button>";  
+          $data[] = $sub_array;
+        }
       }
       
       $output = array(
@@ -1254,6 +1257,7 @@ if (isset($_POST['action'])){
 
         $query = 'UPDATE tbl_employee_educ_background
         SET SCHOOLNAME =  "'.$school_name.'",
+        LEVEL = "'.$level.'",
         BASICEDUCATION = "'.$educ.'",
         PERIODFROM =  "'.$attended_from.'",
         PERIODTO = "'.$attended_to.'",
@@ -1589,37 +1593,71 @@ if (isset($_POST['action'])){
   }
 
   if ($_POST['action'] == 'fetch_single_volwork'){
-    $query = 'SELECT * FROM tbl_employee_voluntary_work WHERE ID = "'.$_POST["id"].'" AND CANCELLED != "Y" ';
+      $query = 'SELECT * FROM tbl_employee_voluntary_work WHERE ID = "'.$_POST["id"].'" AND CANCELLED != "Y" ';
 
-    //var_dump($query);
+      //var_dump($query);
 
-    $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
-    $result = mysqli_query($connect, $query);
-    $data = array();
-    
-    while($row = mysqli_fetch_array($result)){
+      $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
+      $result = mysqli_query($connect, $query);
+      $data = array();
       
-      $sub_array = array();
-      $sub_array['volworkid']                   = $row["ID"];
-      $sub_array['volwork_date_from']           = $row["DATEFROM"];
-      $sub_array['volwork_date_to']             = $row["DATETO"];
-      $sub_array['volwork_nohours']             = $row["NOOFHOURS"];
-      $sub_array['volwork_position']            = $row["POSITION"];
-      $sub_array['volwork_organization']           = $row["ORGANIZATION"];
-      $data[] = $sub_array;
-    }
+      while($row = mysqli_fetch_array($result)){
+        
+        $sub_array = array();
+        $sub_array['volworkid']                   = $row["ID"];
+        $sub_array['volwork_date_from']           = $row["DATEFROM"];
+        $sub_array['volwork_date_to']             = $row["DATETO"];
+        $sub_array['volwork_nohours']             = $row["NOOFHOURS"];
+        $sub_array['volwork_position']            = $row["POSITION"];
+        $sub_array['volwork_organization']           = $row["ORGANIZATION"];
+        $data[] = $sub_array;
+      }
 
 
 
-  $output = array(
-    //"draw"    => intval($_POST["draw"]),
-    //"recordsTotal"  =>  get_all_data($connect),
-    //"recordsFiltered" => $number_filter_row,
-    "data"    => $sub_array
-    );
+    $output = array(
+      //"draw"    => intval($_POST["draw"]),
+      //"recordsTotal"  =>  get_all_data($connect),
+      //"recordsFiltered" => $number_filter_row,
+      "data"    => $sub_array
+      );
 
-  echo json_encode($sub_array);
-}
+    echo json_encode($sub_array);
+  }
+
+  if ($_POST['action'] == 'fetch_single_landd'){
+      $query = 'SELECT * FROM tbl_employee_ld WHERE ID = "'.$_POST["id"].'" AND CANCELLED != "Y" ';
+
+      //var_dump($query);
+
+      $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
+      $result = mysqli_query($connect, $query);
+      $data = array();
+      
+      while($row = mysqli_fetch_array($result)){
+        
+        $sub_array = array();
+        $sub_array['landdid']                   = $row["ID"];
+        $sub_array['landd_program']           = $row["PROGRAM"];
+        $sub_array['landd_date_from']             = $row["DATEFROM"];
+        $sub_array['landd_date_to']             = $row["DATETO"];
+        $sub_array['landd_nohours']            = $row["NOOFHOURS"];
+        $sub_array['landd_type']           = $row["TYPE"];
+        $sub_array['landd_sponsoredby']           = $row["SPONSOREDBY"];
+        $data[] = $sub_array;
+      }
+
+
+
+    $output = array(
+      //"draw"    => intval($_POST["draw"]),
+      //"recordsTotal"  =>  get_all_data($connect),
+      //"recordsFiltered" => $number_filter_row,
+      "data"    => $sub_array
+      );
+
+    echo json_encode($sub_array);
+  }
 
   
 

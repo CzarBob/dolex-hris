@@ -335,6 +335,7 @@
                 $(document).on('click', '#add_educ', function(){
                     var employeeiddb = document.getElementById("empID").value;
                     var add_employee = "Success";
+                    
                         //validateData();
                         //var answer = validateData();
                             var level = $('#level').val();
@@ -434,7 +435,7 @@
                         alert("Data Updated");
 
                         $('#educ_data').DataTable().ajax.reload();
-                        //$('#modalEducationForm').modal('hide');
+                        $('#modalEditEducationForm').modal('hide');
                         
                         }     
                     }); 
@@ -600,7 +601,7 @@
                         //fetch_data();
                         //alert("Data Updated");
 
-                        //$('#addEmployeeForm').modal('hide');
+
                         window.location.href="employee_detail";
                         }     
                     }); 
@@ -661,7 +662,7 @@
 
             $(document).on('click', '.update_children', function(){
                      var id = $(this).data('id');
-                    // alert(id);
+                     //alert(id);
                     var employeeiddb = document.getElementById("empID").value;
                     var add_employee = "Success";
                     //
@@ -673,13 +674,10 @@
                             id:id, 
                             employeeiddb:employeeiddb, //THIS IS AN ID FROM tbl_employee
                             action:'fetch_single_children'
-
                         },
                         success:function(data){
                         var values = $.parseJSON(data);
-                        //$('#modal_title').text('Edit Children Data');
-                        //$('#add_children').text('Update Children Data');
-                        //alert(values.fullname);
+
                        $('#employeeid_update').val(values.employeeid);
                         $('#fullname_update').val(values.fullname);
                         $('#hidden_id').val(values.hidden_id);
@@ -687,7 +685,7 @@
                     
                         $('#modalEditChildrenForm').modal('show');
 
-                        //alert("Children Data Updated");
+                       
                        
 
                         
@@ -700,10 +698,10 @@
 
             $(document).on('click', '.update_educ', function(){
                     var id = $(this).data('id');
-                    // alert(id);
+                    //alert(id);
                     var employeeiddb = document.getElementById("empID").value;
                     var add_employee = "Success";
-                    //
+                    
                 
                     $.ajax({
                         url:"view_employee_action",
@@ -716,24 +714,28 @@
                         },
                         success:function(data){
                             var values = $.parseJSON(data);
-                            $('#modal_title').text('Update Educational Background Data');
-                            $('#add_education').text('Update Educational Background Children Data');
-                            
-                            //alert(values.fullname);
+                            //$('#modal_title').text('Update Educational Background Data');
+                            //$('#add_education').text('Update Educational Background Children Data');
                             $('#educid').val(values.educid);
-                            $('#level_update').val(values.level);
+
+                            //var civilStatusValue =  'NA';
+                            var levelValue =  values.level;                              
+                            $("#level_update").val(levelValue).change();
+                            
+                           // $('#level_update').val(values.level);
                             $('#school_name_update').val(values.school_name);
                             $('#educ_update').val(values.educ);
                             $('#attended_from_update').val(values.attended_from);
                             $('#attended_to_update').val(values.attended_to);
-                            $('#highest_level_update').val(values.year_grad);
+                            $('#highest_level_update').val(values.highest_level);
                             $('#year_grad_update').val(values.year_grad);
                             $('#honor_received_update').val(values.honor_received);
 
-                            $('#modalEducationForm').modal('show');
-                        
+                            $('#modalEditEducationForm').modal('show');
+                            
                         }     
-                    }); 
+                    });
+
 
             });
 
@@ -742,7 +744,7 @@
                 var id = $(this).data('id');
                 var action_val =  document.getElementById('eligibility_action_id').value = 'UPDATE';
                 var employeeiddb = document.getElementById("empID").value;
-                
+                //alert('ss');
                 $.ajax({
                     url:"view_employee_action",
                     method:"POST",
@@ -862,14 +864,16 @@
                     success:function(data){
                         var values = $.parseJSON(data);
                         $('#workid').val(values.workid);
-                        $('#work_date_from_update').val(values.eligibility);
-                        $('#work_date_to_update').val(values.rating);
-                        $('#work_position_update').val(values.date_of_exam);
-                        $('#work_company_update').val(values.place_of_exam);
-                        $('#work_salary_update').val(values.license_no);
-                        $('#work_salary_grade_update').val(values.license_date);
-                        $('#work_status_update').val(values.license_no);
-                        $('#work_govt_service_update').val(values.license_date);
+                        $('#work_date_from_update').val(values.work_date_from);
+                        $('#work_date_to_update').val(values.work_date_to);
+                        $('#work_position_update').val(values.work_position);
+                        $('#work_company_update').val(values.work_company);
+                        $('#work_salary_update').val(values.work_salary);
+                        $('#work_salary_grade_update').val(values.work_salary_grade);
+                        $('#work_status_update').val(values.work_status);
+                        var govtServiceValue =  values.work_govt_service;                              
+                        $("#work_govt_service_update").val(govtServiceValue).change();
+                        //$('#work_govt_service_update').val(values.license_date);
 
 
                         $('#modalUpdateWorkForm').modal('show');
@@ -973,11 +977,11 @@
                     success:function(data){
                         var values = $.parseJSON(data);
                         $('#volworkid').val(values.volworkid);
-                        $('#volwork_organization').val(values.volwork_organization);
-                        $('#volwork_date_from').val(values.volwork_date_from);
-                        $('#volwork_date_to').val(values.volwork_date_to);
-                        $('#volwork_nohours').val(values.volwork_nohours);
-                        $('#volwork_position').val(values.volwork_position);
+                        $('#volwork_organization_update').val(values.volwork_organization);
+                        $('#volwork_date_from_update').val(values.volwork_date_from);
+                        $('#volwork_date_to_update').val(values.volwork_date_to);
+                        $('#volwork_nohours_update').val(values.volwork_nohours);
+                        $('#volwork_position_update').val(values.volwork_position);
                         $('#modalUpdateVolWorkForm').modal('show');
                     
                     }     
@@ -1088,11 +1092,15 @@
                     success:function(data){
                         var values = $.parseJSON(data);
                         $('#landdid').val(values.landdid);
-                        $('#landd_program').val(values.landd_program);
-                        $('#landd_date_from').val(values.landd_date_from);
-                        $('#landd_date_to').val(values.landd_date_to);
-                        $('#landd_nohours').val(values.landd_nohours);
-                        $('#landd_position').val(values.landd_position);
+                        $('#landd_program_update').val(values.landd_program);
+                        $('#landd_date_from_update').val(values.landd_date_from);
+                        $('#landd_date_to_update').val(values.landd_date_to);
+                        $('#landd_nohours_update').val(values.landd_nohours);
+                        $('#landd_type_update').val(values.landd_type);
+                        //$('#landd_sponsoredby_update').val(values.landd_sponsoredby);
+
+                        var sponsoredbyValue =  values.landd_sponsoredby;                              
+                        $("#landd_sponsoredby_update").val(sponsoredbyValue).change();
                         $('#modalUpdateLanddForm').modal('show');
                     
                     }     
