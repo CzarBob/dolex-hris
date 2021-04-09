@@ -157,6 +157,63 @@
 
                 }
 
+                function fetch_other_skill_data(){
+                    
+                    var employeeiddb = document.getElementById("empID").value;
+                    
+
+                    var dataTable = $('#other_skill_data').DataTable({
+                    "columnDefs": [{ "orderable": false, "targets":[1] }],
+                    "ajax" : {
+                    url:"view_employee_action.php",
+                    type:"POST",
+                    data:{
+                                    employeeiddb:employeeiddb, 
+                                    action:'fetch_other_skill'},
+                    }
+                    });
+
+                }
+
+                
+                function fetch_other_recognition_data(){
+                    
+                    var employeeiddb = document.getElementById("empID").value;
+                    
+
+                    var dataTable = $('#other_recognition_data').DataTable({
+                    "columnDefs": [{ "orderable": false, "targets":[1] }],
+                    "ajax" : {
+                    url:"view_employee_action.php",
+                    type:"POST",
+                    data:{
+                                    employeeiddb:employeeiddb, 
+                                    action:'fetch_other_recognition'},
+                    }
+                    });
+
+                }
+
+
+                function fetch_other_membership_data(){
+                    
+                    var employeeiddb = document.getElementById("empID").value;
+                    
+
+                    var dataTable = $('#other_membership_data').DataTable({
+                    "columnDefs": [{ "orderable": false, "targets":[1] }],
+                    "ajax" : {
+                    url:"view_employee_action.php",
+                    type:"POST",
+                    data:{
+                                    employeeiddb:employeeiddb, 
+                                    action:'fetch_other_membership'},
+                    }
+                    });
+
+                }
+
+
                 
                 function fetch_single() {
                         var employeeiddb = document.getElementById("empID").value;
@@ -279,6 +336,10 @@
                             fetch_work_data();
                             fetch_volwork_data();
                             fetch_landd_data();
+                            fetch_other_skill_data();
+                            fetch_other_recognition_data();
+                            fetch_other_membership_data();
+
 
                             $('input[type=radio][name="citizenship"]').change(function() {
                                 //alert($(this).val()); // or this.value

@@ -1787,7 +1787,7 @@ include 'view_employee_load_query.php';
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header text-center">
-            <h4 class="modal-title w-100 font-weight-bold" id="modal_title">Add Skill or Hobby</h4>
+            <h4 class="modal-title w-100 font-weight-bold" id="modal_title">Add Recognition</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>

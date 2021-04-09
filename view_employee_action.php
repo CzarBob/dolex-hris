@@ -301,7 +301,7 @@ if (isset($_POST['action'])){
                 //<button type='button' name='update_children' class='btn btn-warning btn-sm update_children' data-toggle='modal' data-target='#modalChildrenForm' data-id='".$row['ID']."'>Update</button>  
                 $sub_array[] = "
                 
-                <button type='button' name='update_children' class='btn btn-warning btn-sm update_children'  data-id='".$row['ID']."'><i class='fas fa-edit'></i></button>
+                <button type='button' name='update_children' class='btn btn-warning btn-sm update_children'  data-id='".$row['ID']."'>View</button>
                 <button type='button' name='delete_children' class='btn btn-danger btn-sm delete_children' data-id='".$row['ID']."'>Delete</button>";  
               //<a data-toggle='modal' id = 'delete-children' data-id='".$row['ID']."'>Delete</a>
       
@@ -355,7 +355,7 @@ if (isset($_POST['action'])){
           $sub_array[] = $row["HONORRECEIVED"];
           $sub_array[] = "
           
-          <button type='button' name='update_educ' class='btn btn-warning btn-sm update_educ'  data-id='".$row['ID']."'><i class='fas fa-edit'></i></button>
+          <button type='button' name='update_educ' class='btn btn-warning btn-sm update_educ'  data-id='".$row['ID']."'>View</button>
           <button type='button' name='delete_educ' class='btn btn-danger btn-sm delete_educ' data-id='".$row['ID']."'>Delete</button>";  
           //<a data-toggle='modal' id = 'delete-children' data-id='".$row['ID']."'>Delete</a>
           $data[] = $sub_array;
@@ -406,7 +406,7 @@ if (isset($_POST['action'])){
         $sub_array[] = $row["LICENSEDATEOFVALIDITY"];
         $sub_array[] = "
         
-        <button type='button' name='update_civil' class='btn btn-warning btn-sm update_eligibility'  data-id='".$row['ID']."'><i class='fas fa-edit'></i></button>
+        <button type='button' name='update_civil' class='btn btn-warning btn-sm update_eligibility'  data-id='".$row['ID']."'>View</button>
         <button type='button' name='delete_civil' class='btn btn-danger btn-sm delete_eligibility' data-id='".$row['ID']."'>Delete</button>";  
         //<a data-toggle='modal' id = 'delete-children' data-id='".$row['ID']."'>Delete</a>
         $data[] = $sub_array;
@@ -453,7 +453,7 @@ if (isset($_POST['action'])){
         $sub_array[] = $row["GOVTSERVICE"];
         $sub_array[] = "
         
-        <button type='button' name='update_work' class='btn btn-warning btn-sm update_work'  data-id='".$row['ID']."'><i class='fas fa-edit'></i></button>
+        <button type='button' name='update_work' class='btn btn-warning btn-sm update_work'  data-id='".$row['ID']."'>View</button>
         <button type='button' name='delete_work' class='btn btn-danger btn-sm delete_work' data-id='".$row['ID']."'>Delete</button>";  
         //<a data-toggle='modal' id = 'delete-children' data-id='".$row['ID']."'>Delete</a>
         $data[] = $sub_array;
@@ -493,7 +493,7 @@ if (isset($_POST['action'])){
           $sub_array[] = $row["POSITION"];
           $sub_array[] = "
           
-          <button type='button' name='update_volwork' class='btn btn-warning btn-sm update_volwork'  data-id='".$row['ID']."'><i class='fas fa-edit'></i></button>
+          <button type='button' name='update_volwork' class='btn btn-warning btn-sm update_volwork'  data-id='".$row['ID']."'>View</button>
           <button type='button' name='delete_volwork' class='btn btn-danger btn-sm delete_volwork' data-id='".$row['ID']."'>Delete</button>";  
           $data[] = $sub_array;
         }
@@ -535,7 +535,7 @@ if (isset($_POST['action'])){
           $sub_array[] = $row["SPONSOREDBY"];
           $sub_array[] = "
           
-          <button type='button' name='update_landd' class='btn btn-warning btn-sm update_landd'  data-id='".$row['ID']."'><i class='fas fa-edit'></i></button>
+          <button type='button' name='update_landd' class='btn btn-warning btn-sm update_landd'  data-id='".$row['ID']."'>View</button>
           <button type='button' name='delete_landd' class='btn btn-danger btn-sm delete_landd' data-id='".$row['ID']."'>Delete</button>";  
           $data[] = $sub_array;
         }
@@ -558,21 +558,22 @@ if (isset($_POST['action'])){
       $query = 'SELECT * FROM tbl_employee_other_skills WHERE EMPID = "'.$_POST['employeeiddb'].'" AND CANCELLED = "N" ';
 
       
-      $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
+      //$number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
       
       $result = mysqli_query($connect, $query );
       
       $data = array();
-       
-      while($row = mysqli_fetch_array($result)){
-        
-        $sub_array = array();
-        $sub_array[] = $row["SKILLS"];
-        $sub_array[] = "
-        
-        
-        <button type='button' name='delete_other_skill' class='btn btn-danger btn-sm delete_other_skill' data-id='".$row['ID']."'>Delete</button>";  
-        $data[] = $sub_array;
+      if($result){
+        while($row = mysqli_fetch_array($result)){
+          
+          $sub_array = array();
+          $sub_array[] = $row["SKILLS"];
+          $sub_array[] = "
+          
+          
+          <button type='button' name='delete_other_skill' class='btn btn-danger btn-sm delete_other_skill' data-id='".$row['ID']."'>Delete</button>";  
+          $data[] = $sub_array;
+        }
       }
       
       $output = array(
@@ -589,21 +590,22 @@ if (isset($_POST['action'])){
       $query = 'SELECT * FROM tbl_employee_other_recognition WHERE EMPID = "'.$_POST['employeeiddb'].'" AND CANCELLED = "N" ';
 
       
-      $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
+      //$number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
       
       $result = mysqli_query($connect, $query );
       
       $data = array();
-       
-      while($row = mysqli_fetch_array($result)){
+      if($result){
+        while($row = mysqli_fetch_array($result)){
+          
+          $sub_array = array();
+          $sub_array[] = $row["RECOGNITION"];
+          $sub_array[] = "
+          
         
-        $sub_array = array();
-        $sub_array[] = $row["RECOGNITION"];
-        $sub_array[] = "
-        
-       
-        <button type='button' name='delete_other_recognition' class='btn btn-danger btn-sm delete_other_recognition' data-id='".$row['ID']."'>Delete</button>";  
-        $data[] = $sub_array;
+          <button type='button' name='delete_other_recognition' class='btn btn-danger btn-sm delete_other_recognition' data-id='".$row['ID']."'>Delete</button>";  
+          $data[] = $sub_array;
+        }
       }
       
       $output = array(
@@ -620,19 +622,20 @@ if (isset($_POST['action'])){
       $query = 'SELECT * FROM tbl_employee_other_membership WHERE EMPID = "'.$_POST['employeeiddb'].'" AND CANCELLED = "N" ';
 
       
-      $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
+      //$number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
       
       $result = mysqli_query($connect, $query );
       
       $data = array();
-       
-      while($row = mysqli_fetch_array($result)){
-        
-        $sub_array = array();
-        $sub_array[] = $row["MEMBERSHIP"];
-        $sub_array[] = "
-        <button type='button' name='delete_other_membership' class='btn btn-danger btn-sm delete_other_membership' data-id='".$row['ID']."'>Delete</button>";  
-        $data[] = $sub_array;
+      if($result){ 
+        while($row = mysqli_fetch_array($result)){
+          
+          $sub_array = array();
+          $sub_array[] = $row["MEMBERSHIP"];
+          $sub_array[] = "
+          <button type='button' name='delete_other_membership' class='btn btn-danger btn-sm delete_other_membership' data-id='".$row['ID']."'>Delete</button>";  
+          $data[] = $sub_array;
+        }
       }
       
       $output = array(
@@ -826,26 +829,56 @@ if (isset($_POST['action'])){
   if (isset($_POST['action'])){
     if ($_POST['action'] == 'add_other_skill'){
         
-        $empid                  = $_POST['employeeiddb'];
-        $landd_program                  = $_POST['landd_program'];
-        $landd_date_from            = $_POST['landd_date_from'];
-        $landd_date_to                  = $_POST['landd_date_to'];
-        $landd_nohours                   = $_POST['landd_nohours'];
-        $landd_type          = $_POST['landd_type'];
-        $landd_sponsoredby          = $_POST['landd_sponsoredby'];
+        $empid                      = $_POST['employeeiddb'];
+        $other_skill                = $_POST['other_skill'];
+       
 
         $dateAdded = date("Y-m-d H:i:s");
-        $que_vol_work = "INSERT INTO `tbl_employee_work_experience` SET 
+        $que_other_skills = "INSERT INTO `tbl_employee_other_skills` SET 
         EMPID = '".$empid."',
-        ORGANIZATION = '".$volwork_organization."',
-        DATEFROM = '".$volwork_date_from."',
-        DATETO = '".$volwork_date_to."',
-        NOOFHOURS = '".$volwork_nohours."',
-        POSITION = '".$volwork_position."',
+        SKILLS = '".$other_skill."',
         CANCELLED = 'N'"; 
 
         //var_dump($que);
-        $query = $connect->query($que_vol_work) or die($connect->error); 
+        $query = $connect->query($que_other_skills) or die($connect->error); 
+
+    }
+  }
+
+  if (isset($_POST['action'])){
+    if ($_POST['action'] == 'add_other_recognition'){
+        
+        $empid                      = $_POST['employeeiddb'];
+        $other_recognition                = $_POST['other_recognition'];
+       
+
+        $dateAdded = date("Y-m-d H:i:s");
+        $que_other_recognition = "INSERT INTO `tbl_employee_other_recognition` SET 
+        EMPID = '".$empid."',
+        RECOGNITION = '".$other_recognition."',
+        CANCELLED = 'N'"; 
+
+        //var_dump($que);
+        $query = $connect->query($que_other_recognition) or die($connect->error); 
+
+    }
+  }
+
+  if (isset($_POST['action'])){
+    if ($_POST['action'] == 'add_other_membership'){
+        
+        $empid                      = $_POST['employeeiddb'];
+        $other_membership                = $_POST['other_membership'];
+       
+
+        $dateAdded = date("Y-m-d H:i:s");
+        $que_other_membership = "INSERT INTO `tbl_employee_other_membership` SET 
+        EMPID = '".$empid."',
+        MEMBERSHIP = '".$other_membership."',
+        CANCELLED = 'N'"; 
+
+        //var_dump($que);
+        $query = $connect->query($que_other_membership) or die($connect->error); 
 
     }
   }
@@ -1405,6 +1438,48 @@ if (isset($_POST['action'])){
     if ($_POST['action'] == 'delete_volwork'){
 
       $query = 'UPDATE tbl_employee_voluntary_work
+        SET CANCELLED = "Y" 
+        WHERE ID = "'.$_POST["id"].'" AND CANCELLED = "N" ';
+
+      echo $query;
+      
+      $result = mysqli_query($connect, $query );
+
+    }
+  }
+
+  if (isset($_POST['action'])){
+    if ($_POST['action'] == 'delete_other_skill'){
+
+      $query = 'UPDATE tbl_employee_other_skills
+        SET CANCELLED = "Y" 
+        WHERE ID = "'.$_POST["id"].'" AND CANCELLED = "N" ';
+
+      echo $query;
+      
+      $result = mysqli_query($connect, $query );
+
+    }
+  }
+
+  if (isset($_POST['action'])){
+    if ($_POST['action'] == 'delete_other_recognition'){
+
+      $query = 'UPDATE tbl_employee_other_recognition
+        SET CANCELLED = "Y" 
+        WHERE ID = "'.$_POST["id"].'" AND CANCELLED = "N" ';
+
+      echo $query;
+      
+      $result = mysqli_query($connect, $query );
+
+    }
+  }
+
+  if (isset($_POST['action'])){
+    if ($_POST['action'] == 'delete_other_membership'){
+
+      $query = 'UPDATE tbl_employee_other_membership
         SET CANCELLED = "Y" 
         WHERE ID = "'.$_POST["id"].'" AND CANCELLED = "N" ';
 
