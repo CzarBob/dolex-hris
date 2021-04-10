@@ -62,9 +62,9 @@ if ($_SESSION['username'] == ""){
       </li>
       
       <li class="nav-item active">
-        <a class="nav-link" href="employee_detail">
+        <a class="nav-link" href="serviceRecord">
           <i class="fas fa-fw fa-lg fa-check-square"></i>
-          <span>Service Records</span>
+          <span>Service Record</span>
         </a>
       </li>
       
@@ -138,7 +138,7 @@ if ($_SESSION['username'] == ""){
         <div class="container-fluid">
           <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 class="m-0 font-weight-bold text-primary">Employee List</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Employee Details</h6>
              
               <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#addEmployeeForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Employee</a>
               <!--<a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#dateRangeModal" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Generate Report</a> -->

@@ -40,7 +40,7 @@ if ($_SESSION['username'] == ""){
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="main">
         <img class = "icon" src = "img/dolelogogs.png" width = "60"></img>
-        <div class="sidebar-brand-text mx-3">DOLE-X HRIS</div>
+        <div class="sidebar-brand-text mx-3">Admin Panel</div>
       </a>
 
       <hr class="sidebar-divider my-0">
@@ -60,9 +60,9 @@ if ($_SESSION['username'] == ""){
           <span>Employee List</span>
         </a>
       </li>
-
+      
       <li class="nav-item active">
-        <a class="nav-link" href="serviceRecord">
+        <a class="nav-link" href="employee_detail">
           <i class="fas fa-fw fa-lg fa-check-square"></i>
           <span>Service Records</span>
         </a>
@@ -108,7 +108,7 @@ if ($_SESSION['username'] == ""){
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo 'Welcome, '.$_SESSION['username'] ?></span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php //echo $_SESSION['username'] ?></span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -138,28 +138,30 @@ if ($_SESSION['username'] == ""){
         <div class="container-fluid">
           <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 class="m-0 font-weight-bold text-primary">Employee List</h6>
-              <t>
-              <!--<a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" href = "export.php" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Employee</a> 
+              <h6 class="m-0 font-weight-bold text-primary">Employee Service Record</h6>
+             
+              <!--<a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#addEmployeeForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Employee</a>
               <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#dateRangeModal" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Generate Report</a> -->
             </div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="user_data" width="100%" cellspacing="0">
                   <thead class = "text-primary">
-                    <tr>
+                  <tr>
                       <th>EMPLOYEE ID</th>
                       <th>FIRST NAME</th>
                       <th>MIDDLE NAME</th>
                       <th>LAST NAME</th>
+                      <th>ACTION</th>
                     </tr>
                   </thead>
                   <tfoot class = "text-primary">
                     <tr>
-                      <th>EMPLOYEE ID</th>
-                      <th>FIRST NAME</th>
-                      <th>MIDDLE NAME</th>
-                      <th>LAST NAME</th>
+                      <th>Process Name</th>
+                      <th>Rating</th>
+                      <th>Full Name</th>
+                      <th>Email</th>
+                      <th>Comment</th>
                     </tr>
                   </tfoot>
                 </table>
@@ -205,56 +207,7 @@ if ($_SESSION['username'] == ""){
       </div>
     </div>
   </div>
-
-  
-    <div id="add_record" class="modal" data-backdrop="static" data-keyboard="false">
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-      <!-- Modal content-->
-        <div class="modal-header py-3 d-flex flex-row align-items-center justify-content-between">
-          <h5 class="modal-title text-dark">Add Record</h5>
-          <h5 id="date_time"></h5>
-        </div>
-        <div class="modal-body text-dark">
-          <div class = "row">
-            <div class = "col-6">
-              <div class = "form-group">
-                <input type="hidden" name="received_by" id = "received_by" value = "<?php echo $_SESSION['received_by'] ?>">
-                <label>Province</label>
-                <select class="custom-select" id = "province" name = "province">
-                  <option hidden>Province</option>
-                  <option value="Bukidnon">Bukidnon</option>
-                  <option value="Camiguin">Camiguin</option>
-                  <option value="Cagayan de Oro">Cagayan de Oro</option>
-                  <option value="Lanao del Norte">Lanao del Norte</option>
-                  <option value="Misamis Occidental">Misamis Occidental</option>
-                  <option value="Misamis Oriental">Misamis Oriental</option>
-                </select>
-              </div>
-              <div class = "form-group">
-                <label>Track Number</label>
-                <input type="text" id = "track_num" name = "track_num" class="form-control" readonly>
-              </div>
-              <div class = "form-group">
-                <label>Type of document</label>
-                <input type="text" class = "form-control" name="type_docu" id = "type_docu">
-              </div>
-            </div>
-            <div class = "col-6">
-              <div class="form-group">
-                <label for="comment">Description:</label>
-                <textarea class="form-control" rows="5" id="description" name = "description" maxlength="100"></textarea>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-primary" id = "add_docu">Add</button>
-        <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
-        </div>
-       </div>
-      </div>
-    </div>
+    
   
 <div class="modal" id="release_mod" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -298,45 +251,45 @@ if ($_SESSION['username'] == ""){
 <!-- Date range Modal -->
 <div class="modal" tabindex="-1" id="dateRangeModal" role="dialog">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Generate Report</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body text-dark">
-      <form action="export.php" method="post">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Generate Report</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-dark">
+        <form action="export.php" method="post">
 
-        <div class="form-group row">
-          <label for="example-date-input" class="col-2 col-form-label">From:</label>
-          <div class="col-10">
-            <input class="form-control" type="date"  id="fromDate" name="fromDate">
+          <div class="form-group row">
+            <label for="example-date-input" class="col-2 col-form-label">From:</label>
+            <div class="col-10">
+              <input class="form-control" type="date"  id="fromDate" name="fromDate">
+            </div>
           </div>
+
+          <div class="form-group row">
+            <label for="example-date-input" class="col-2 col-form-label">To:</label>
+            <div class="col-10">
+              <input class="form-control" type="date"  id="toDate" name="toDate">
+            </div>
+          </div>
+          <!--<button class="btn btn-primary" type="submit">Generate</button>
+        </form> -->
+        <div class="modal-footer">
+        <!-- <b style = "font-size: 18px;"><button class="btn btn-primary" id ="generateReport">Generate Report</button></b>-->
+          <!-- <button class="btn btn-primary" id = "generateReport">Add</button> -->
+          <!-- <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button> -->
+          <button class="btn btn-primary" type="submit">Generate</button>
+          <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Close</button>
         </div>
 
-        <div class="form-group row">
-          <label for="example-date-input" class="col-2 col-form-label">To:</label>
-          <div class="col-10">
-            <input class="form-control" type="date"  id="toDate" name="toDate">
-          </div>
-        </div>
-        <!--<button class="btn btn-primary" type="submit">Generate</button>
-      </form> -->
-      <div class="modal-footer">
-       <!-- <b style = "font-size: 18px;"><button class="btn btn-primary" id ="generateReport">Generate Report</button></b>-->
-        <!-- <button class="btn btn-primary" id = "generateReport">Add</button> -->
-        <!-- <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button> -->
-        <button class="btn btn-primary" type="submit">Generate</button>
-        <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Close</button>
+      
+        </form>
       </div>
-
-     
-      </form>
     </div>
-  </div>
+  </div>  
 </div>
-
 <!-- End Date Range Modal -->
 
 
@@ -354,7 +307,7 @@ if ($_SESSION['username'] == ""){
     }
     
   </style>
-   <script type="text/javascript">window.onload = date_time('date_time');</script>
+   
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
@@ -374,6 +327,8 @@ if ($_SESSION['username'] == ""){
   <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
   <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
   <script>
+
+
   $(document).ready(function(){
     
     fetch_data();
@@ -386,7 +341,7 @@ if ($_SESSION['username'] == ""){
       "columnDefs": [{ "orderable": false, "targets":[0,1] }],
       "order" : [],*/
       "ajax" : {
-       url:"dashboard_query.php",
+       url:"qry_service_record.php",
        type:"POST"
       }
      });
@@ -396,6 +351,10 @@ if ($_SESSION['username'] == ""){
 
 
   $(document).ready(function(){
+
+
+
+
   $('#generateReport').click(function(){
      var fromDate = $('#fromDate').val();
      var toDate = $('#toDate').val();
@@ -429,6 +388,104 @@ if ($_SESSION['username'] == ""){
    }
   }); 
 }); 
+
+
+
+
+$(document).on('click', '#add_employee', function(){
+          var add_employee = "Success";
+          //validateData();
+          //var answer = validateData();
+          var empid = $('#empid').val();
+          var firstname = $('#firstname').val();
+          var middlename = $('#middlename').val();
+          var lastname = $('#lastname').val();
+          /*var email = $('#email').val();
+          var position = $('#position').val();
+          var datehired = $('#datehired').val();
+          //var rating = document.querySelector('input[name="optradio"]:checked').value;
+          var province = document.querySelector('input[name="province"]:selected').value;
+          var slcredit = $('#slcredit').val();
+          var vlcredit = $('#vlcredit').val();*/
+
+         
+
+       //if(answer == 'N'){ //COMMENTED, USED FOR VALIDATION
+              $.ajax({
+                url:"insertEmployee",
+                method:"POST",
+                data:{
+                  add_employee:add_employee,
+                  empid:empid, 
+                  firstname:firstname, 
+                  middlename:middlename, 
+                  lastname:lastname/*,
+                  email:email,
+                  position:position,
+                  datehired:datehired,
+                  slcredit:slcredit,
+                  vlcredit:vlcredit,*/
+                },
+                success:function(data){
+                 //$('#add_employee').modal('hide');
+                  $('#empid').val('');
+                  $('#firstname').val('');
+                  $('#middlename').val('');
+                  $('#lastname').val('');
+                 /* $('#email').val('');
+                  $('#position').val('');
+                  $('#datehired').val('');
+                  $('#slcredit').val('');
+                  $('#vlcredit').val('');*/
+
+                
+                  //COMMENTED FOR THE MEAN TIME
+                // $('#user_data').DataTable().destroy();
+                  //fetch_data();
+                  alert("Data Added");
+                  
+                  $('#addEmployeeForm').modal('hide');
+                  
+                  setInterval('refreshPage()', 5000);
+                 
+                }     
+              }); 
+            //}
+            
+
+        });
+
+        function refreshPage() {
+              location.reload(true);
+          }
+
+
+
+ 
+
+
+        function validateData() {
+        var flag = 'N';
+        var fullname=document.getElementById("fullname").value;
+        var email = document.getElementById("email").value;
+        //alert(email);
+        var fullnameTrim = fullname.trim();
+        var emailTrim = email.trim();
+        //check will be true or false
+       // alert(fullnameTrim.length);
+        if (fullnameTrim.length == 0){ 
+            alert("Full Name is empty");
+            flag = 'Y';
+          }
+
+        if (emailTrim.length == 0) {
+            alert("Email is empty");
+            flag = 'Y';
+        }
+       
+        return flag;
+        
+      }
   </script>
 
 </body>

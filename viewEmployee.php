@@ -7,33 +7,6 @@ if ($_SESSION['username'] == ""){
 }
 
 include 'view_employee_load_query.php';
-/*if (isset($_GET['id'])) {
-
-    unset($_SESSION['query3']);
-    $id = $_GET['id'];
-
-    $query = 'SELECT * FROM tbl_employee_children WHERE EMPID = "'.$id.'" AND CANCELLED = "N" ';
-
-    
-      $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
-      
-      $result = mysqli_query($connect, $query );
-      
-      $data = array();
-       
-      while($row = mysqli_fetch_array($result)){
-         
-        $sub_array = array();
-        $sub_array[] = $row["FULLNAME"];
-        $sub_array[] = $row["DOB"];
-        $data[] = $sub_array;
-      }
-      $_SESSION['query3'] = $data;
-      
-}*/
-
-//include 'adminlogout.php';
-
 
 
 ?>
@@ -1891,7 +1864,7 @@ include 'view_employee_load_query.php';
     <script src="assets/js/demo/datatables-demo.js"></script>
     
     <!--JS FOR EMPLOYEE ACTIONS -->
-    <script type="text/javascript" src="viewEmployee.js"></script>
+    <script type="text/javascript" src="js/action/viewEmployee.js"></script>
 
     
 
