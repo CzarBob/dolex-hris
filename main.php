@@ -6,6 +6,7 @@ if ($_SESSION['username'] == ""){
   header("Location: admin");
   exit;
 }
+include 'main_load_query.php';
  ?>
 
 <!DOCTYPE html>
@@ -136,6 +137,51 @@ if ($_SESSION['username'] == ""){
           </ul>
         </nav>
         <div class="container-fluid">
+
+        <h1 class="mt-4">DOLEX-HRIS</h1>
+          <ol class="breadcrumb mb-4">
+              <li class="breadcrumb-item active">Dashboard</li>
+          </ol>
+          <div class="row">
+              <div class="col-xl-3 col-md-6">
+                  <div class="card bg-primary text-white mb-4"> <!--id="totEmp"-->
+                      <div class="card-body" >Total Employees: <span > </span></div>
+                      <div class="card-footer d-flex align-items-center justify-content-between">
+                          <a class="large text-black stretched-link"  id="totEmp" href="employee">View Details</a>
+                          <div class="small text-black"><i class="fas fa-angle-right"></i></div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xl-3 col-md-6">
+                  <div class="card bg-warning text-white mb-4">
+                      <div class="card-body">Total Leave Filed</div>
+                      <div class="card-footer d-flex align-items-center justify-content-between">
+                          <a class="large text-black stretched-link" href="#">View Details</a>
+                          <div class="small text-black"><i class="fas fa-angle-right"></i></div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xl-3 col-md-6">
+                  <div class="card bg-success text-white mb-4">
+                      <div class="card-body">New Records </div>
+                      <div class="card-footer d-flex align-items-center justify-content-between">
+                          <a class="large text-black stretched-link" href="#">View Details</a>
+                          <div class="small text-black"><i class="fas fa-angle-right"></i></div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xl-3 col-md-6">
+                  <div class="card bg-danger text-white mb-4">
+                      <div class="card-body">Others</div>
+                      <div class="card-footer d-flex align-items-center justify-content-between">
+                          <a class="large text-black stretched-link" href="#">View Details</a>
+                          <div class="small text-black"><i class="fas fa-angle-right"></i></div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+
           <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
               <h6 class="m-0 font-weight-bold text-primary">Employee List</h6>
@@ -377,6 +423,7 @@ if ($_SESSION['username'] == ""){
   $(document).ready(function(){
     
     fetch_data();
+    fetch_all_data();
    
     function fetch_data(){
     //alert('pota');
@@ -391,6 +438,58 @@ if ($_SESSION['username'] == ""){
       }
      });
     }  
+
+    function fetch_all_data(){
+
+      $.ajax({
+        url:"main_load_query",  
+        method:"post",  
+        data:{
+          action:"fetch_employee"
+          },
+        success:function(response){
+          var values = $.parseJSON(response);
+          //alert(values.totalEmployee);
+          $("#totEmp").text(values.totalEmployee);
+
+        }
+      });
+
+    }  
+
+
+
+      $('#login').click(function(){
+      var username = $('#username').val();
+      var password = $('#password').val();
+      if(username!="" && password!=""){
+      $.ajax({
+        url:"login",  
+        method:"post",  
+        data:{
+          login:"login",
+          username:username,
+          password:password
+          },
+        success:function(response){
+          if(response=="success"){
+              window.location.href="main";
+          }
+          /*if(response=="others"){
+              window.location.href="admin";
+          }*/
+          if(response=="fail"){
+            $('#error_login').modal('show');
+          }
+        }
+      });  
+    }
+    else{
+      $('#error_blank').modal('show');
+    }
+    }); 
+
+
   });
 
 

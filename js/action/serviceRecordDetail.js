@@ -46,34 +46,16 @@
             $(document).ready(function(){
                 fetch_single();   
                 
-                function fetch_children_data(){
-                    
-                    var employeeiddb = document.getElementById("empID").value;
-                    var dataTable = $('#children_data').DataTable({
-                    /* "processing" : true,
-                    "serverSide" : true,*/
-                    "columnDefs": [{ "orderable": false, "targets":[0,2] }],
-                   // "order" : [],
-                    "ajax" : {
-                    url:"view_employee_action.php",
-                    type:"POST",
-                    data:{
-                                    employeeiddb:employeeiddb, 
-                                    action:'fetch_children'},
-                    }
-                    });
-                }
-
                 function fetch_service_record_data(){
                     
                     var employeeiddb = document.getElementById("empID").value;
-                    var dataTable = $('#children_data').DataTable({
+                    var dataTable = $('#service_record_data').DataTable({
                     /* "processing" : true,
                     "serverSide" : true,*/
-                    "columnDefs": [{ "orderable": false, "targets":[0,2] }],
+                    "columnDefs": [{ "orderable": false, "targets":[1] }],
                    // "order" : [],
                     "ajax" : {
-                    url:"view_employee_action.php",
+                    url:"serviceRecord_action.php",
                     type:"POST",
                     data:{
                                     employeeiddb:employeeiddb, 
@@ -94,7 +76,7 @@
                         //$('#user_form').parsley().reset();
 
                         $.ajax({
-                                url:"view_employee_action.php",
+                                url:"serviceRecord_action.php",
                                 method:"POST",
                                 data:{
                                     employeeiddb:employeeiddb, 
@@ -113,35 +95,54 @@
                                 }
                             });
 
-                            fetch_children_data();
+                            fetch_service_record_data();
                           
 
 
                     
                 }  
+                
 
 
-                $(document).on('click', '#add_children', function(){
+                $(document).on('click', '#add_service_record', function(){
                     var employeeiddb = document.getElementById("empID").value;
-                    var add_employee = "Success";
                         //validateData();
                         //var answer = validateData();
-                            var fullname = $('#fullname').val();
-                            var dob = $('#dob_add').val();              
+                            var service_from = $('#service_from').val();
+                            var service_to = $('#service_to').val();   
+                            var designation = $('#designation').val();
+                            var status = $('#status').val(); 
+                            var salary = $('#salary').val(); 
+                            var office = $('#office').val(); 
+                            var branch = $('#branch').val(); 
+                            var abs = $('#abs').val();   
+                            var separation_date = $('#separation_date').val();    
+                            var amount_received = $('#amount_received').val();     
+                            var details = $('#details').val(); 
+                            alert(details);
                             $.ajax({
-                                url:"view_employee_action",
+                                url:"serviceRecord_action",
                                 method:"POST",
                                 data:{
-                                    fullname:fullname, 
-                                    dob:dob, 
+                                    service_from:service_from, 
+                                    service_to:service_to, 
+                                    designation:designation, 
+                                    status:status, 
+                                    salary:salary, 
+                                    office:office, 
+                                    branch:branch, 
+                                    abs:abs, 
+                                    separation_date:separation_date,
+                                    amount_received:amount_received,
+                                    details:details,
                                     employeeiddb:employeeiddb,
-                                    action:'add_children'
+                                    action:'add_service_record'
                                 },
                                 success:function(data){
                                 alert("Data Added");
 
-                                $('#children_data').DataTable().ajax.reload();
-                                $('#modalChildrenForm').modal('hide');
+                                $('#service_record_data').DataTable().ajax.reload();
+                                $('#modalServiceRecordForm').modal('hide');
                                
                                 }     
                             }); 
@@ -150,31 +151,46 @@
 
                
 
-                $(document).on('click', '#submit_update_children', function(){
+                $(document).on('click', '#submit_update_service_record', function(){
                     var employeeiddb = document.getElementById("empID").value;
-                    var add_employee = "Success";
-                        //validateData(); submit_update_educ
-                        //var answer = validateData();
-                            var fullname = $('#fullname_update').val();
-                            var hidden_id = $('#hidden_id').val();
-                            var dob = $('#dob_update').val();    
+                            var srid = $('#srid').val();
+                            var service_from = $('#service_from_update').val();
+                            var service_to = $('#service_to_update').val();   
+                            var designation = $('#designation_update').val();
+                            var status = $('#status_update').val(); 
+                            var salary = $('#salary_update').val(); 
+                            var office = $('#office_update').val(); 
+                            var branch = $('#branch_update').val(); 
+                            var abs = $('#abs_update').val();   
+                            var separation_date = $('#separation_date_update').val();
+                            var amount_received = $('#amount_received_update').val();     
+                            var details = $('#details_update').val();          
+                            //alert(srid);
 
-          
                             $.ajax({
-                                url:"view_employee_action",
+                                url:"serviceRecord_action",
                                 method:"POST",
                                 data:{
-                                    fullname:fullname, 
-                                    dob:dob, 
                                     employeeiddb:employeeiddb,
-                                    id:hidden_id,
-                                    action:'submit_update_children'
+                                    srid:srid, 
+                                    service_from:service_from, 
+                                    service_to:service_to,
+                                    designation:designation,
+                                    status:status,
+                                    salary:salary,
+                                    office:office,
+                                    branch:branch,
+                                    abs:abs,
+                                    separation_date:separation_date,
+                                    amount_received:amount_received,
+                                    details:details,
+                                    action:'submit_update_sr'
                                 },
                                 success:function(data){
                                 alert("Data Updated");
 
-                                $('#children_data').DataTable().ajax.reload();
-                                $('#modalEditChildrenForm').modal('hide');
+                                $('#service_record_data').DataTable().ajax.reload();
+                                $('#modalUpdateServiceRecordForm').modal('hide');
                                
                                 }     
                             }); 
@@ -196,14 +212,13 @@
 
             $(document).on('click', '#cancel_sr', function(){
                     var employeeiddb = document.getElementById("empID").value;
-                    var cancel_employee = "Success";
 
                     var empid = $('#employeeid').val();
 
 
                  //if(answer == 'N'){ //COMMENTED, USED FOR VALIDATION
                     $.ajax({
-                        url:"view_employee_action",
+                        url:"serviceRecord_action",
                         method:"POST",
                         data:{
                             
@@ -221,7 +236,7 @@
                         //alert("Data Updated");
 
 
-                        window.location.href="employee_detail";
+                        window.location.href="serviceRecordDetail";
                         }     
                     }); 
                     //}
@@ -229,59 +244,62 @@
 
 
 
-            $(document).on('click', '.delete_children', function(){
+            $(document).on('click', '.delete_sr', function(){
                      var id = $(this).data('id');
                     // alert(id);
                     var employeeiddb = document.getElementById("empID").value;
                     var add_employee = "Success";
 
                     $.ajax({
-                        url:"view_employee_action",
+                        url:"serviceRecord_action",
                         method:"POST",
                         data:{
                             id:id, 
                             employeeiddb:employeeiddb,
-                            action:'delete_children'
+                            action:'delete_sr'
 
                         },
                         success:function(data){
                        
                         alert("Data Deleted");
-                        $('#children_data').DataTable().ajax.reload();
+                        $('#service_record_data').DataTable().ajax.reload();
                         }     
                     }); 
 
             });
 
-            $(document).on('click', '.update_children', function(){
+            $(document).on('click', '.update_sr', function(){
                      var id = $(this).data('id');
                      //alert(id);
                     var employeeiddb = document.getElementById("empID").value;
-                    var add_employee = "Success";
-                    //
                 
                     $.ajax({
-                        url:"view_employee_action",
+                        url:"serviceRecord_action",
                         method:"POST",
                         data:{
                             id:id, 
                             employeeiddb:employeeiddb, //THIS IS AN ID FROM tbl_employee
-                            action:'fetch_single_children'
+                            action:'fetch_single_sr'
                         },
                         success:function(data){
-                        var values = $.parseJSON(data);
+                            var values = $.parseJSON(data);
 
-                       $('#employeeid_update').val(values.employeeid);
-                        $('#fullname_update').val(values.fullname);
-                        $('#hidden_id').val(values.hidden_id);
-                        $('#dob_update').val(values.dob);
-                    
-                        $('#modalEditChildrenForm').modal('show');
-
-                       
-                       
-
-                        
+                            $('#srid').val(values.srid);
+                            $('#service_from_update').val(values.service_from);
+                            $('#service_to_update').val(values.service_to);
+                            $('#designation_update').val(values.designation);
+                            $('#status_update').val(values.status);
+                            $('#salary_update').val(values.salary);
+                            $('#office_update').val(values.office);
+                            $('#branch_update').val(values.branch);
+                            $('#abs_update').val(values.abs);
+                            $('#separation_date_update').val(values.separation_date);
+                            $('#amount_received_update').val(values.amount_received);
+                            $('#details_update').val(values.details);
+    
+                            $('#modalUpdateServiceRecordForm').modal('show'); 
+                            //$('#modalServiceRecordForm').modal('show');
+      
                         }     
                     }); 
 

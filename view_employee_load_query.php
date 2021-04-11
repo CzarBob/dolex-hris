@@ -12,18 +12,19 @@ if (isset($_GET['id'])) {
     $query = 'SELECT * FROM tbl_employee_children WHERE EMPID = "'.$id.'" AND CANCELLED = "N" ';
 
      // var_dump($query);
-      $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
+      //$number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
       
       $result = mysqli_query($connect, $query );
       
       $data = array();
-       
-      while($row = mysqli_fetch_array($result)){
-         
-        $sub_array = array();
-        $sub_array[] = $row["FULLNAME"];
-        $sub_array[] = $row["DOB"];
-        $data[] = $sub_array;
+      if($result){
+        while($row = mysqli_fetch_array($result)){
+          
+          $sub_array = array();
+          $sub_array[] = $row["FULLNAME"];
+          $sub_array[] = $row["DOB"];
+          $data[] = $sub_array;
+        }
       }
       $_SESSION['query3'] = $data;
       //END OF CHILDREN DATA

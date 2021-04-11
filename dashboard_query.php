@@ -97,18 +97,26 @@ while($row = mysqli_fetch_array($result)){
   $data[] = $sub_array;
 }
 
-/*function get_all_data($connect){
- $query = "SELECT * FROM updates where receiver = '".$_SESSION['received_by']."'";
+function get_all_employee_data($connect){
+ $query = "SELECT * FROM tbl_employees where CANCELLED = 'N'";
  $result = mysqli_query($connect, $query);
  return mysqli_num_rows($result);
-}*/
+}
 
 $output = array(
  //"draw"    => intval($_POST["draw"]),
- //"recordsTotal"  =>  get_all_data($connect),
+ //"employeeTotal"  =>  get_all_employee_data($connect),
  //"recordsFiltered" => $number_filter_row,
+
  "data"    => $data
 );
 
 echo json_encode($output);
+
+
+
+
+
+
+
 ?>

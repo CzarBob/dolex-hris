@@ -392,81 +392,9 @@ include 'serviceRecordDetail_load_query.php';
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Modal -->
-
-
-
-    <!-- ADD SERVICE RECORD FORM -->
-    <div class="modal fade" id="modalServiceRecordForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header text-center">
-            <h4 class="modal-title w-100 font-weight-bold" id="modal_title">Add Service Record</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body mx-3">
-
-
-            <div class="md-form mb-5">
-            
-              <label data-error="wrong" data-success="right" for="form34">Service From</label>
-              <input type="date" name="service_from" id = "service_from" class="form-control validate" required>
-           
-            </div>
-            <div class="md-form mb-5">
-            
-              <label data-error="wrong" data-success="right" for="form34">Service To</label>
-              <input type="date" name="service_to" id = "service_to" class="form-control validate" required>
-           
-            </div>
-
-            <div class="md-form mb-5">
-       
-              <label data-error="wrong" data-success="right" for="form29">Designation</label>
-              <input type="text" name="designation" id = "designation" class="form-control validate" required>
-             
-            </div>
-            <div class="md-form mb-5">
-       
-              <label data-error="wrong" data-success="right" for="form29">Status</label>
-              <input type="text" name="status" id = "status" class="form-control validate" required>
-             
-            </div>
-            <div class="md-form mb-5">
-              <label data-error="wrong" data-success="right" for="form29">Salary</label>
-              <input type="text" name="salary" id = "salary" class="form-control validate" required>
-            </div>
-            <div class="md-form mb-5">
-              <label data-error="wrong" data-success="right" for="form29">Office</label>
-              <input type="text" name="office" id = "office" class="form-control validate" required>
-            </div>
-            <div class="md-form mb-5">
-              <label data-error="wrong" data-success="right" for="form29">Branch</label>
-              <input type="text" name="branch" id = "branch" class="form-control validate" required>
-            </div>
-            <div class="md-form mb-5">
-              <label data-error="wrong" data-success="right" for="form29">ABS</label>
-              <input type="text" name="abs" id = "abs" class="form-control validate" required>
-            </div>
-            <div class="md-form mb-5">
-              <label data-error="wrong" data-success="right" for="form29">Separation Date</label>
-              <input type="date" name="separation_date" id = "separation_date" class="form-control validate" required>
-            </div>
-
-          <div class="modal-footer d-flex justify-content-center">
-         
-          <button class="btn btn-primary" id = "add_service_record">Add data</button>
-          <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
 
     <!-- UPDATE SERVICE RECORD FORM -->
-    <div class="modal fade" id="modalEditServiceRecordForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalUpdateServiceRecordForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header text-center">
@@ -479,7 +407,7 @@ include 'serviceRecordDetail_load_query.php';
 
 
             <div class="md-form mb-5">
-            
+              <input type="hidden" name="srid" id = "srid" class="form-control validate" required> 
               <label data-error="wrong" data-success="right" for="form34">Service From</label>
               <input type="date" name="service_from_update" id = "service_from_update" class="form-control validate" required>
            
@@ -523,21 +451,105 @@ include 'serviceRecordDetail_load_query.php';
               <label data-error="wrong" data-success="right" for="form29">Separation Date</label>
               <input type="date" name="separation_date_update" id = "separation_date_update" class="form-control validate" required>
             </div>
+            <div class="md-form mb-5">
+              <label data-error="wrong" data-success="right" for="form29">Amount Received</label>
+              <input type="text" name="amount_received_update" id = "amount_received_update" class="form-control validate" required>
+            </div>
+            <div class="md-form mb-5">
+              <label data-error="wrong" data-success="right" for="form29">Details</label>
+              <input type="text" name="details_update" id = "details_update" class="form-control validate" required>
+            </div>
 
-          <div class="modal-footer d-flex justify-content-center">
-         
-          <button class="btn btn-primary" id = "add_service_record">Add data</button>
-          <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
+            <div class="modal-footer d-flex justify-content-center">
+          
+              <button class="btn btn-primary" id = "submit_update_service_record">Update data</button>
+              <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    
-  
-  
 
-    
+
+    <!-- ADD SERVICE RECORD FORM -->
+    <div class="modal fade" id="modalServiceRecordForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold" id="modal_title">Add Service Record</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-3">
+
+
+            <div class="md-form mb-5">
+           
+              <label data-error="wrong" data-success="right" for="form34">Service From</label>
+              <input type="date" name="service_from" id = "service_from" class="form-control validate" required>
+           
+            </div>
+            <div class="md-form mb-5">
+            
+              <label data-error="wrong" data-success="right" for="form34">Service To</label>
+              <input type="date" name="service_to" id = "service_to" class="form-control validate" required>
+           
+            </div>
+
+            <div class="md-form mb-5">
+       
+              <label data-error="wrong" data-success="right" for="form29">Designation</label>
+              <input type="text" name="designation" id = "designation" class="form-control validate" required>
+             
+            </div>
+            <div class="md-form mb-5">
+       
+              <label data-error="wrong" data-success="right" for="form29">Status</label>
+              <input type="text" name="status" id = "status" class="form-control validate" required>
+             
+            </div>
+            <div class="md-form mb-5">
+              <label data-error="wrong" data-success="right" for="form29">Salary</label>
+              <input type="text" name="salary" id = "salary" class="form-control validate" required>
+            </div>
+            <div class="md-form mb-5">
+              <label data-error="wrong" data-success="right" for="form29">Office</label>
+              <input type="text" name="office" id = "office" class="form-control validate" required>
+            </div>
+            <div class="md-form mb-5">
+              <label data-error="wrong" data-success="right" for="form29">Branch</label>
+              <input type="text" name="branch" id = "branch" class="form-control validate" required>
+            </div>
+            <div class="md-form mb-5">
+              <label data-error="wrong" data-success="right" for="form29">ABS</label>
+              <input type="text" name="abs" id = "abs" class="form-control validate" required>
+            </div>
+            <div class="md-form mb-5">
+              <label data-error="wrong" data-success="right" for="form29">Separation Date</label>
+              <input type="date" name="separation_date" id = "separation_date" class="form-control validate" required>
+            </div>
+            <div class="md-form mb-5">
+              <label data-error="wrong" data-success="right" for="form29">Amount Received</label>
+              <input type="text" name="amount_received" id = "amount_received" class="form-control validate" required>
+            </div>
+            <div class="md-form mb-5">
+              <label data-error="wrong" data-success="right" for="form29">Details</label>
+              <input type="text" name="details" id = "details" class="form-control validate" required>
+            </div>
+
+            <div class="modal-footer d-flex justify-content-center">
+          
+            <button class="btn btn-primary" id = "add_service_record">Add data</button>
+            <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
     
 
   <!-- Logout Modal-->
