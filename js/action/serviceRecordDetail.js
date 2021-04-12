@@ -52,7 +52,7 @@
                     var dataTable = $('#service_record_data').DataTable({
                     /* "processing" : true,
                     "serverSide" : true,*/
-                    "columnDefs": [{ "orderable": false, "targets":[1] }],
+                    //"columnDefs": [{ "orderable": false, "targets":[1] }],
                    // "order" : [],
                     "ajax" : {
                     url:"serviceRecord_action.php",

@@ -302,6 +302,7 @@ include 'serviceRecordDetail_load_query.php';
                                                                         <th data-column-id="details">DETAILS</th>
 
                                                                         <th >ACTION</th>
+                                                                        
                                                                     </tr>
                                                                 </thead>
                                                                 <tfoot class = "text-primary">
@@ -318,7 +319,8 @@ include 'serviceRecordDetail_load_query.php';
                                                                         <th>AMOUNT RECEIVED</th>
                                                                         <th>DETAILS</th>
 
-                                                                        <th >ACTION</th>
+                                                                        <th>ACTION</th>
+                                                                       
                                                                     </tr>
                                                                 </tfoot>
                                                             </table>
@@ -349,13 +351,10 @@ include 'serviceRecordDetail_load_query.php';
                                     <div class="col-md-12">
     
                                        <table class=" table">
-                                            <tr>
-                                                <td style="width: 100%;" colspan="2" style = "align: center"><button  style="width: 100%;" class="btn btn-primary" id = "update_sr">     Confirm Update of Service Records </button></td> 
-                                                                                       
-                                            </tr>  
+                                           
                                             <tr>
                                            
-                                                <td style="width: 100%;"  colspan="2" style = "align: left"><button  style="width: 100%;" class="btn btn-primary" id = "cancel_sr">     Cancel  </button></td>                                               
+                                                <td style="width: 100%;"  colspan="2" style = "align: left"><button  style="width: 100%;" class="btn btn-primary" id = "cancel_sr">     Close  </button></td>                                               
                                             </tr>  
                                       </table> 
                                     </div>                        
@@ -457,7 +456,9 @@ include 'serviceRecordDetail_load_query.php';
             </div>
             <div class="md-form mb-5">
               <label data-error="wrong" data-success="right" for="form29">Details</label>
-              <input type="text" name="details_update" id = "details_update" class="form-control validate" required>
+              <!--<input type="text" name="details_update" id = "details_update" class="form-control validate" required>-->
+              <textarea class="form-control" id="details_update" name="details_update" rows="3">Please input details
+              </textarea>
             </div>
 
             <div class="modal-footer d-flex justify-content-center">
@@ -536,7 +537,9 @@ include 'serviceRecordDetail_load_query.php';
             </div>
             <div class="md-form mb-5">
               <label data-error="wrong" data-success="right" for="form29">Details</label>
-              <input type="text" name="details" id = "details" class="form-control validate" required>
+              <!--<input type="text" name="details" id = "details" class="form-control validate" required>-->
+              <textarea class="form-control" id="details" name="details" rows="3">Please input details
+              </textarea>
             </div>
 
             <div class="modal-footer d-flex justify-content-center">
