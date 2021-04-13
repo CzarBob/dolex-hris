@@ -182,7 +182,7 @@ include 'view_employee_load_query.php';
                               <div class="card shadow mb-4">
                                   <!-- Card Header - Dropdown -->
                                   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                      <h6 class="m-0 font-weight-bold text-primary">I. Personal Data</h6> <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#modalServiceRecordForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Update Personal Details</a>
+                                      <h6 class="m-0 font-weight-bold text-primary">I. Personal Data</h6><button class="btn btn-info" data-toggle="modal" data-target="#modalLanddForm">     Update Personal Details </button>
                                   </div>
                                   <!-- Card Body -->
                                   <div class="card-body">
@@ -438,7 +438,7 @@ include 'view_employee_load_query.php';
                               <div class="card shadow mb-4">
                                   <!-- Card Header - Dropdown -->
                                   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                      <h6 class="m-0 font-weight-bold text-primary">II. Family Background</h6>
+                                      <h6 class="m-0 font-weight-bold text-primary">II. Family Background</h6><button class="btn btn-info" data-toggle="modal" data-target="#modalLanddForm">     Update Family Background </button>
                                   </div>
                                   <!-- Card Body -->
                                   <div class="card-body">
@@ -453,20 +453,20 @@ include 'view_employee_load_query.php';
                                           <div class="form-group col-md-3">
                                           <input type="hidden" name="familyid" id="familyid" >
                                           <label for="inputEmail4">Spouse's Surname</label>
-                                          <input type="text" name="spouselastname" id = "spouselastname"  placeholder="Ex. Cruz" class="form-control validate" required>
+                                          <input type="text" name="spouselastname" id = "spouselastname"  placeholder="Ex. Cruz" class="form-control validate" >
                                           </div>
                                           <div class="form-group col-md-3">
                                           <label for="inputEmail4">First Name</label>
-                                          <input type="text" name="spousefirstname" id = "spousefirstname"  placeholder="Ex. Enrico" class="form-control validate" required>
+                                          <input type="text" name="spousefirstname" id = "spousefirstname"  placeholder="Ex. Enrico" class="form-control validate" >
                                           </div>
                                           <div class="form-group col-md-3">
                                           <label for="inputEmail4">Middle Name</label>
-                                          <input type="text" name="spousemiddlename" id = "spousemiddlename"  placeholder="Ex. Santos" class="form-control validate" required>
+                                          <input type="text" name="spousemiddlename" id = "spousemiddlename"  placeholder="Ex. Santos" class="form-control validate" >
                                           </div>
                                           
                                           <div class="form-group col-md-1">
                                           <label for="inputEmail4">Extension</label>
-                                          <input type="text" name="spouseextension" id = "spouseextension"  placeholder="Ex. Jr, II, III" class="form-control validate" required>
+                                          <input type="text" name="spouseextension" id = "spouseextension"  placeholder="Ex. Jr, II, III" class="form-control validate" >
                                           </div>
                                         
                                       </div>
@@ -600,7 +600,7 @@ include 'view_employee_load_query.php';
                                                   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                                       <h6 class="m-0 font-weight-bold text-primary"></h6> 
                                                       
-                                                      <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#modalChildrenForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Employee</a>
+                                                      <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalChildrenForm" aria-expanded="false">Add Children</button>
                                                       
                                                       <!--<a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#dateRangeModal" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Generate Report</a> -->
                                                   </div>
@@ -636,7 +636,7 @@ include 'view_employee_load_query.php';
                                                   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                                       <h6 class="m-0 font-weight-bold text-primary"></h6> 
                                                       
-                                                      <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#modalEducationForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Educational Background</a>
+                                                      <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalEducationForm" aria-expanded="false"> Add Educational Background</button>
                                                       
                                                       <!--<a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#dateRangeModal" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Generate Report</a> -->
                                                   </div>
@@ -673,13 +673,6 @@ include 'view_employee_load_query.php';
                   
                                                           </div>
 
-
-
-
-                          
-                        
-
-
                                                   </div>
                                                 </div>                                                                                                                          
                                             </div>
@@ -691,7 +684,7 @@ include 'view_employee_load_query.php';
                                                   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                                       <h6 class="m-0 font-weight-bold text-primary"></h6> 
                                                       
-                                                      <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#modalEligibilityForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Eligibility</a>
+                                                      <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalEligibilityForm" aria-expanded="false"> Add Eligibility</button>
                                                       
                                                       <!--<a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#dateRangeModal" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Generate Report</a> -->
                                                   </div>
@@ -735,7 +728,7 @@ include 'view_employee_load_query.php';
                                                   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                                       <h6 class="m-0 font-weight-bold text-primary"></h6> 
                                                       
-                                                      <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#modalWorkForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Work Experience</a>
+                                                      <button class="btn btn-success btn-sm" data-toggle="modal"  data-toggle="modal" data-target="#modalWorkForm" aria-expanded="false"> Add Work Experience</button>
                                                       
                                                       <!--<a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#dateRangeModal" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Generate Report</a> -->
                                                   </div>
@@ -783,7 +776,7 @@ include 'view_employee_load_query.php';
                                                   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                                       <h6 class="m-0 font-weight-bold text-primary"></h6> 
                                                       
-                                                      <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#modalVolWorkForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Work Experience</a>
+                                                      <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalVolWorkForm" aria-expanded="false">Add Voluntary work</button>
                                                       
                                                       <!--<a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#dateRangeModal" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Generate Report</a> -->
                                                   </div>
@@ -825,7 +818,7 @@ include 'view_employee_load_query.php';
                                               <div class="card shadow mb-4">
                                                   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                                       <h6 class="m-0 font-weight-bold text-primary"></h6>  
-                                                      <button class="btn btn-success" data-toggle="modal" data-target="#modalLanddForm">     Add Learning and Development </button>
+                                                      <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalLanddForm">     Add Learning and Development </button>
                                                   </div>
                                                   <div class="card-body">
                                                       <div class="table-responsive">
@@ -869,7 +862,11 @@ include 'view_employee_load_query.php';
                                                       <!--<a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#dateRangeModal" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Generate Report</a> -->
                                                   </div>
                                                   <div class="card-body">
-                                                    <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#otherSkillForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Skill or Hobby</a>
+                                                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                                          <h6 class="m-0 font-weight-bold text-primary"></h6>
+                                                          <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#otherSkillForm">Add Skill or Hobby</button>
+                                                      </div>
+                                                    <!--<a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#otherSkillForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Skill or Hobby</a>-->
                                                         <div class="table-responsive">
                                                             <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="other_skill_data" width="100%" cellspacing="0">
                                                                 <thead class = "text-primary">
@@ -888,7 +885,10 @@ include 'view_employee_load_query.php';
                                                         </div>
                                                   </div>
                                                   <div class="card-body">
-                                                        <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#otherRecognitionForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Recognition</a>
+                                                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                                        <h6 class="m-0 font-weight-bold text-primary"></h6><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#otherRecognitionForm"> Add Recognition</button>
+                                                    </div>
+                                                        <!--<a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#otherRecognitionForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Recognition</a>-->
                                                         <div class="table-responsive">
                                                             <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="other_recognition_data" width="100%" cellspacing="0">
                                                                 <thead class = "text-primary">
@@ -907,7 +907,10 @@ include 'view_employee_load_query.php';
                                                         </div>
                                                   </div>
                                                   <div class="card-body">
-                                                        <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#otherMembershipForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-1"></i> Add Membership in Organization</a>
+                                                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                                        <h6 class="m-0 font-weight-bold text-primary"></h6><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#otherMembershipForm"> Add Membership in Organization</button>
+                                                    </div>
+                                                        <!--<a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#otherMembershipForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-1"></i> Add Membership in Organization</a>-->
                                                         <div class="table-responsive">
                                                             <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="other_membership_data" width="100%" cellspacing="0">
                                                                 <thead class = "text-primary">
@@ -948,13 +951,13 @@ include 'view_employee_load_query.php';
                                       <div class="col-md-12">
       
                                         <table class=" table">
-                                              <tr>
+                                              <!--<tr>
                                                   <td style="width: 100%;" colspan="2" style = "align: center"><button  style="width: 100%;" class="btn btn-primary" id = "update_employee">     Update Employee Details  </button></td> 
                                                                                         
-                                              </tr>  
+                                              </tr>  -->
                                               <tr>
                                             
-                                                  <td style="width: 100%;"  colspan="2" style = "align: left"><button  style="width: 100%;" class="btn btn-primary" id = "cancel_employee">     Cancel  </button></td>                                               
+                                                  <td style="width: 100%;"  colspan="2" style = "align: left"><button  style="width: 100%;" class="btn btn-primary" id = "cancel_employee">     Close  </button></td>                                               
                                               </tr>  
                                         </table> 
                                       </div>                        
