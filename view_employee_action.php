@@ -70,10 +70,8 @@ if (isset($_POST['action'])){
       else{
         $type = $row["type"];
       }
-    */
+      */
       $sub_array = array();
-
-
         $sub_array['employeeid'] = $row['EMPLOYEEID'];
         $sub_array['firstname'] = $row['FIRSTNAME'];
         $sub_array['middlename'] = $row['MIDDLENAME'];
@@ -178,27 +176,25 @@ if (isset($_POST['action'])){
     $data_family = array();
     
     while($row = mysqli_fetch_array($result_query_family)){
-  
       $sub_array_query_family = array();
-      
-      $sub_array_query_family['id']                         = $row['ID'];
-      $sub_array_query_family['empid']                      = $row['EMPID'];
-      $sub_array_query_family['spouselastname']             = $row['SPOUSELASTNAME'];
+      $sub_array_query_family['id']                           = $row['ID'];
+      $sub_array_query_family['empid']                        = $row['EMPID'];
+      $sub_array_query_family['spouselastname']               = $row['SPOUSELASTNAME'];
       $sub_array_query_family['spousemiddlename']             = $row['SPOUSEMIDDLENAME'];
-      $sub_array_query_family['spousefirstname']             = $row['SPOUSEFIRSTNAME'];
-      $sub_array_query_family['spouseextension']             = $row['SPOUSEEXTENSION'];
+      $sub_array_query_family['spousefirstname']              = $row['SPOUSEFIRSTNAME'];
+      $sub_array_query_family['spouseextension']              = $row['SPOUSEEXTENSION'];
       $sub_array_query_family['occupation']                   = $row['OCCUPATION'];
-      $sub_array_query_family['employername']                   = $row['EMPLOYERNAME'];
-      $sub_array_query_family['businessaddress']                   = $row['BUSINESSADDRESS'];
-      $sub_array_query_family['spousetelno']                   = $row['SPOUSETELNO'];
-      $sub_array_query_family['fathersurname']                   = $row['FATHERSURNAME'];
-      $sub_array_query_family['fatherfirstname']                   = $row['FATHERFIRSTNAME'];
-      $sub_array_query_family['fathermiddlename']                   = $row['FATHERMIDDLENAME'];
+      $sub_array_query_family['employername']                 = $row['EMPLOYERNAME'];
+      $sub_array_query_family['businessaddress']              = $row['BUSINESSADDRESS'];
+      $sub_array_query_family['spousetelno']                  = $row['SPOUSETELNO'];
+      $sub_array_query_family['fathersurname']                = $row['FATHERSURNAME'];
+      $sub_array_query_family['fatherfirstname']              = $row['FATHERFIRSTNAME'];
+      $sub_array_query_family['fathermiddlename']             = $row['FATHERMIDDLENAME'];
       $sub_array_query_family['fatherext']                    = $row['FATHEREXT'];
-      $sub_array_query_family['mothermaidenname']                   = $row['MOTHERMAIDENNAME'];
-      $sub_array_query_family['mothersurname']                   = $row['MOTHERSURNAME'];
-      $sub_array_query_family['motherfirstname']                   = $row['MOTHERFIRSTNAME'];
-      $sub_array_query_family['mothermiddlename']                   = $row['MOTHERMIDDLENAME'];
+      $sub_array_query_family['mothermaidenname']             = $row['MOTHERMAIDENNAME'];
+      $sub_array_query_family['mothersurname']                = $row['MOTHERSURNAME'];
+      $sub_array_query_family['motherfirstname']              = $row['MOTHERFIRSTNAME'];
+      $sub_array_query_family['mothermiddlename']             = $row['MOTHERMIDDLENAME'];
       $data_family[] = $sub_array_query_family;
     }
 
@@ -237,6 +233,182 @@ if (isset($_POST['action'])){
 
   }
 }
+
+
+  if (isset($_POST['action'])){
+    if ($_POST['action'] == 'fetch_single_personal_details'){
+      $query = 'SELECT 
+      tbl_employee.EMPLOYEEID as EMPLOYEEID,
+      tbl_employee.FIRSTNAME as FIRSTNAME,
+      tbl_employee.MIDDLENAME as MIDDLENAME,
+      tbl_employee.LASTNAME as LASTNAME,
+      tbl_employee.EXTENSION as PROFILE_EXTENSION,
+      tbl_employee.POSITION as POSITION,
+      tbl_employee.DATEHIRED as DATEHIRED,
+      tbl_employee.PASSWORD as PASSWORD_ACCOUNT,
+      tbl_employee.USERNAME as USERNAME,
+      tbl_employee.SLCREDIT as SLCREDIT,
+      tbl_employee.VLCREDIT as VLCREDIT
+      FROM tbl_employee WHERE tbl_employee.ID = "'.$_POST["employeeiddb"].'" ';
+
+      $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
+
+      //print_r($query);
+      $result = mysqli_query($connect, $query);
+
+      $data = array();
+      
+      while($row = mysqli_fetch_array($result)){
+        $sub_array = array();
+        $sub_array['employeeid']  = $row['EMPLOYEEID'];
+        $sub_array['firstname']   = $row['FIRSTNAME'];
+        $sub_array['middlename']  = $row['MIDDLENAME'];
+        $sub_array['lastname']    = $row['LASTNAME'];
+        $sub_array['extension'] = $row['PROFILE_EXTENSION'];
+        $sub_array['position'] = $row['POSITION'];
+        $sub_array['datehired'] = $row['DATEHIRED'];
+        $sub_array['username'] = $row['USERNAME'];
+        $sub_array['password'] = $row['PASSWORD_ACCOUNT'];
+        $sub_array['slcredit'] = $row['SLCREDIT'];
+        $sub_array['vlcredit'] = $row['VLCREDIT'];
+        $data[] = $sub_array;
+      }
+
+      $query_profile = 'SELECT * FROM tbl_employee_profile WHERE EMPID = "'.$_POST["employeeiddb"].'" ';
+      $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query_profile));
+      if($number_filter_row == 0){
+        $queProfile = "INSERT INTO `tbl_employee_profile` SET 
+        EMPID = '".$_POST["employeeiddb"]."'
+        "; 
+        //var_dump($queProfile);
+        $query = $connect->query($queProfile) or die($connect->error); 
+      }
+
+
+      $result_query_profile = mysqli_query($connect, $query_profile);
+
+      $data_profile = array();
+      
+      while($row = mysqli_fetch_array($result_query_profile)){
+    
+        $sub_array_query_profile = array();
+        $sub_array_query_profile['id']                 = $row['ID'];
+        $sub_array_query_profile['empid']                = $row['EMPID'];
+        $sub_array_query_profile['dob']                 = $row['DOB'];
+        $sub_array_query_profile['placeofbirth']        = $row['PLACEOFBIRTH'];
+        $sub_array_query_profile['gender']              = $row['GENDER'];
+        $sub_array_query_profile['civilstatus']         = $row['CIVILSTATUS'];
+        $sub_array_query_profile['height']              = $row['HEIGHT'];
+        $sub_array_query_profile['weight']              = $row['WEIGHT'];
+        $sub_array_query_profile['bloodtype']           = $row['BLOODTYPE'];
+        $sub_array_query_profile['gsisno']              = $row['GSISNO'];
+        $sub_array_query_profile['pagibigno']           = $row['PAGIBIGNO'];
+        $sub_array_query_profile['phicno']              = $row['PHICNO'];
+        $sub_array_query_profile['sssno']               = $row['SSSNO'];
+        $sub_array_query_profile['tinno']               = $row['TINNO'];
+        $sub_array_query_profile['agencyemployeeno']    = $row['AGENCYEMPLOYEENO'];
+        $sub_array_query_profile['citizenship']         = $row['CITIZENSHIP'];
+        $sub_array_query_profile['dualcitizen']         = $row['DUALCITIZEN'];
+        $sub_array_query_profile['residentialaddress']  = $row['RESIDENTIALADDRESS'];
+        $sub_array_query_profile['permanentaddress']    = $row['PERMANENTADDRESS'];
+        $sub_array_query_profile['telephoneno']         = $row['TELEPHONENO'];
+        $sub_array_query_profile['mobileno']            = $row['MOBILENO'];
+        $sub_array_query_profile['email']               = $row['EMAIL'];
+        $data_profile[] = $sub_array_query_profile;
+      }
+
+
+
+
+      $a = array();
+      $b = array();
+      
+
+
+      if(isset($sub_array)){
+        $a = $sub_array;
+      } 
+      if(isset($sub_array_query_profile)){
+        $b = $sub_array_query_profile;
+      } 
+      
+      $output = array(
+      "data"    => $a,
+      "data_profile"    => $b
+      );
+
+      echo json_encode($output);
+
+    }
+  }
+
+
+  if (isset($_POST['action'])){
+    if ($_POST['action'] == 'fetch_single_family_background'){
+      $query_family = 'SELECT * FROM tbl_employee_family WHERE EMPID = "'.$_POST["employeeiddb"].'" ';
+      $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query_family));
+
+      if ($number_filter_row == 0){
+        $que = "INSERT INTO `tbl_employee_family` SET 
+        EMPID = '".$_POST["employeeiddb"]."'
+        "; 
+      
+        $query = $connect->query($que) or die($connect->error); 
+      }
+
+
+      $result_query_family = mysqli_query($connect, $query_family);
+
+      $data_family = array();
+      
+      while($row = mysqli_fetch_array($result_query_family)){
+        $sub_array_query_family = array();
+        $sub_array_query_family['id']                           = $row['ID'];
+        $sub_array_query_family['empid']                        = $row['EMPID'];
+        $sub_array_query_family['spouselastname']               = $row['SPOUSELASTNAME'];
+        $sub_array_query_family['spousemiddlename']             = $row['SPOUSEMIDDLENAME'];
+        $sub_array_query_family['spousefirstname']              = $row['SPOUSEFIRSTNAME'];
+        $sub_array_query_family['spouseextension']              = $row['SPOUSEEXTENSION'];
+        $sub_array_query_family['occupation']                   = $row['OCCUPATION'];
+        $sub_array_query_family['employername']                 = $row['EMPLOYERNAME'];
+        $sub_array_query_family['businessaddress']              = $row['BUSINESSADDRESS'];
+        $sub_array_query_family['spousetelno']                  = $row['SPOUSETELNO'];
+        $sub_array_query_family['fathersurname']                = $row['FATHERSURNAME'];
+        $sub_array_query_family['fatherfirstname']              = $row['FATHERFIRSTNAME'];
+        $sub_array_query_family['fathermiddlename']             = $row['FATHERMIDDLENAME'];
+        $sub_array_query_family['fatherext']                    = $row['FATHEREXT'];
+        $sub_array_query_family['mothermaidenname']             = $row['MOTHERMAIDENNAME'];
+        $sub_array_query_family['mothersurname']                = $row['MOTHERSURNAME'];
+        $sub_array_query_family['motherfirstname']              = $row['MOTHERFIRSTNAME'];
+        $sub_array_query_family['mothermiddlename']             = $row['MOTHERMIDDLENAME'];
+        $data_family[] = $sub_array_query_family;
+      }
+
+
+
+
+    
+      //"draw"    => intval($_POST["draw"]),
+      //"recordsTotal"  =>  get_all_data($connect),
+      //"recordsFiltered" => $number_filter_row,
+
+      $c = array();
+
+ 
+      if(isset($sub_array_query_family)){
+        $c = $sub_array_query_family;
+      } 
+      $output = array(
+
+      "data_family"    => $c
+      );
+
+      echo json_encode($output);
+      //cho json_encode($sub_array);
+
+
+    }
+  }
 
   if (isset($_POST['action'])){
     if ($_POST['action'] == 'fetch_children'){
@@ -884,7 +1056,7 @@ if (isset($_POST['action'])){
   }
 
 
-
+  /*
   if (isset($_POST['action'])){
     if ($_POST['action'] == 'cancel_update'){
 
@@ -1107,10 +1279,10 @@ if (isset($_POST['action'])){
 
 
     }
-  }
+  }*/
 
   if (isset($_POST['action'])){
-    if ($_POST['action'] == 'update_employee'){
+    if ($_POST['action'] == 'submit_personal_details'){
        
         $empid  = $_POST['employeeiddb'];
 
@@ -1147,23 +1319,7 @@ if (isset($_POST['action'])){
         $mobileno                = $_POST['mobileno'];
         $emailprofile            = $_POST['emailprofile'];
 
-        $familyid                = $_POST['familyid'];
-        $spouselastname          = $_POST['spouselastname'];
-        $spousemiddlename        = $_POST['spousemiddlename'];
-        $spousefirstname         = $_POST['spousefirstname'];
-        $spouseextension         = $_POST['spouseextension'];
-        $occupation              = $_POST['occupation'];
-        $employername            = $_POST['employername' ];
-        $businessaddress         = $_POST['businessaddress'];
-        $spousetelno             = $_POST['spousetelno'];
-        $fathersurname           = $_POST['fathersurname'];
-        $fatherfirstname         = $_POST['fatherfirstname'];
-        $fathermiddlename        = $_POST['fathermiddlename'];
-        $fatherext               = $_POST['fatherext'];
-        $mothermaidenname        = $_POST['mothermaidenname'];
-        $mothersurname           = $_POST['mothersurname'];
-        $motherfirstname         = $_POST['motherfirstname'];
-        $mothermiddlename        = $_POST['mothermiddlename'];        
+                
 
         $dateAdded = date("Y-m-d H:i:s");
         $sqlProfile = 'UPDATE tbl_employee
@@ -1210,7 +1366,40 @@ if (isset($_POST['action'])){
         EMPID = "'.$empid.'"';
         $result = mysqli_query($connect, $sqlProfile);
 
-        //var_dump($sqlProfile);
+        
+
+
+
+    }
+  }
+
+
+  if (isset($_POST['action'])){
+    if ($_POST['action'] == 'submit_family_background'){
+       
+        $empid  = $_POST['employeeiddb'];
+
+        
+
+        $familyid                = $_POST['familyid'];
+        $spouselastname          = $_POST['spouselastname'];
+        $spousemiddlename        = $_POST['spousemiddlename'];
+        $spousefirstname         = $_POST['spousefirstname'];
+        $spouseextension         = $_POST['spouseextension'];
+        $occupation              = $_POST['occupation'];
+        $employername            = $_POST['employername' ];
+        $businessaddress         = $_POST['businessaddress'];
+        $spousetelno             = $_POST['spousetelno'];
+        $fathersurname           = $_POST['fathersurname'];
+        $fatherfirstname         = $_POST['fatherfirstname'];
+        $fathermiddlename        = $_POST['fathermiddlename'];
+        $fatherext               = $_POST['fatherext'];
+        $mothermaidenname        = $_POST['mothermaidenname'];
+        $mothersurname           = $_POST['mothersurname'];
+        $motherfirstname         = $_POST['motherfirstname'];
+        $mothermiddlename        = $_POST['mothermiddlename'];        
+
+        
 
         $sqlFamily = 'UPDATE tbl_employee_family
         SET 
@@ -1236,9 +1425,6 @@ if (isset($_POST['action'])){
         //var_dump($sqlFamily);
 
         $result = mysqli_query($connect, $sqlFamily);
-
-
-
     }
   }
 

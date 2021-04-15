@@ -304,7 +304,7 @@
                                     }
 
                                     $('#residentialaddress').val(data.data_profile.residentialaddress);
-                                    $('#permanentaddress').val(data.data_profile.permanentaddress);
+                                   // $('#permanentaddress').val(data.data_profile.permanentaddress);
                                     $('#telephoneno').val(data.data_profile.telephoneno);
                                     $('#mobileno').val(data.data_profile.mobileno);
                                     $('#emailprofile').val(data.data_profile.email);
@@ -510,97 +510,179 @@
                 }
 
 
-            $(document).on('click', '#update_employee', function(){
+            // UPDATE PERSONAL DETAILS FORM
+            $(document).on('click', '.update_personal_details', function(){
+                //var id = $(this).data('id');
+                var employeeiddb = document.getElementById("empID").value;
+                var id = document.getElementById("profileid").value;
+                
+                $.ajax({
+                    url:"view_employee_action",
+                    method:"POST",
+                    data:{
+                        id:id, 
+                        employeeiddb:employeeiddb, //THIS IS AN ID FROM tbl_employee
+                        action:'fetch_single_personal_details'
+
+                    },
+                    success:function(output){
+                        var values = $.parseJSON(output);
+                        //alert(data.data.employeeid);
+                        $('#employeeid_update').val(values.data.employeeid);
+                        $('#firstname_update').val(values.data.firstname);
+                        $('#middlename_update').val(values.data.middlename);
+                        $('#lastname_update').val(values.data.lastname);
+                        $('#extension_update').val(values.data.extension);
+                        $('#position_update').val(values.data.position);
+                        $('#datehired_update').val(values.data.datehired);
+                        $('#username_update').val(values.data.username);
+                        $('#password_update').val(values.data.password);
+                        $('#confirmpassword_update').val(values.data.password);
+
+
+                        var genderValue =  values.data_profile.gender;
+
+                        if (genderValue == 'MALE'){
+                            $("#gender_update").val("MALE").change();
+                        } else if (genderValue == "") {
+                            $("#gender_update").val('NA').change();
+                        }
+                        //var civilStatusValue =  'NA';
+                        var civilStatusValue =  values.data_profile.civilstatus;
+                        
+                        $("#civilstatus_update").val(civilStatusValue).change();
+
+                    
+                        
+                        //$('#profileid').val(data.data_profile.id);
+                        $('#dob_update').val(values.data_profile.dob);
+                        $('#placeofbirth_update').val(values.data_profile.placeofbirth);
+                        $('#height_update').val(values.data_profile.height);
+                        $('#weight_update').val(values.data_profile.weight);
+                        $('#gsisno_update').val(values.data_profile.gsisno);
+                        $('#pagibigno_update').val(values.data_profile.pagibigno);
+                        $('#phicno_update').val(values.data_profile.phicno);
+                        $('#sssno_update').val(values.data_profile.sssno);
+                        $('#tinno_update').val(values.data_profile.tinno);
+                        $('#agencyemployeeno_update').val(values.data_profile.agencyemployeeno);
+                        
+                        //$('#citizenship').prop("dual", true)
+                        var citizenValueDB = values.data_profile.citizenship;
+                        //$('#citizenship').attr('checked','checked');
+                        //alert(citizenValueDB);
+                        if (citizenValueDB == 'dual'){
+                            $('#dual').attr('checked','checked');
+                        } else if (citizenValueDB == 'filipino'){
+                            $('#filipino').attr('checked','checked');
+                        }
+                        
+                        var citizenValue = $('input[name="citizenship"]:checked').val();
+                        if (citizenValue == 'dual'){
+                                
+                                document.getElementById("birth").disabled=false;
+                                document.getElementById("naturalization").disabled=false;
+                                //document.getElementById("dualcountry").disabled=false;
+                            } else {
+                                
+                                document.getElementById("birth").disabled=true;
+                                document.getElementById("naturalization").disabled=true;
+                                //document.getElementById("dualcountry").disabled=true;
+                            }
+
+
+                        var dualchoiceDB = values.data_profile.dualcitizen;
+
+                        if (dualchoiceDB == 'dual'){
+                            $('#birth').attr('checked','checked');
+                        } else if (dualchoiceDB == 'filipino'){
+                            $('#naturalization').attr('checked','checked');
+                        }
+
+                        $('#residentialaddress').val(values.data_profile.residentialaddress);
+                        $('#permanentaddress').val(values.data_profile.permanentaddress);
+                        $('#telephoneno').val(values.data_profile.telephoneno);
+                        $('#mobileno').val(values.data_profile.mobileno);
+                        $('#emailprofile').val(values.data_profile.email);
+
+                        
+                        
+                        
+                        $('#modalEditPersonalDetailsForm').modal('show');
+                    
+                    }     
+                }); 
+
+            });
+
+            // UPDATE FAMILY BACKGROUND FORM
+            $(document).on('click', '.update_family_background', function(){
+                //var id = $(this).data('id');
+                var employeeiddb = document.getElementById("empID").value;
+                var id = document.getElementById("familyid").value;
+                
+                $.ajax({
+                    url:"view_employee_action",
+                    method:"POST",
+                    data:{
+                        //id:id, 
+                        employeeiddb:employeeiddb, //THIS IS AN ID FROM tbl_employee
+                        action:'fetch_single_family_background'
+
+                    },
+                    success:function(output){
+                        var values = $.parseJSON(output);
+                        //$('#familyid').val(data.data_family.id);
+                        $('#spouselastname_update').val(values.data_family.spouselastname);
+                        $('#spousemiddlename_update').val(values.data_family.spousemiddlename);
+                        $('#spousefirstname_update').val(values.data_family.spousefirstname);
+                        $('#spouseextension_update').val(values.data_family.spouseextension);
+                        $('#occupation_update').val(values.data_family.occupation);
+                        $('#employername_update').val(values.data_family.employername);
+                        $('#businessaddress_update').val(values.data_family.businessaddress);
+                        $('#spousetelno_update').val(values.data_family.spousetelno);
+                        $('#fathersurname_update').val(values.data_family.fathersurname);
+                        $('#fatherfirstname_update').val(values.data_family.fatherfirstname);
+                        $('#fathermiddlename_update').val(values.data_family.fathermiddlename);
+                        $('#fatherext_update').val(values.data_family.fatherext);
+                        $('#mothermaidenname_update').val(values.data_family.mothermaidenname);
+                        $('#mothersurname_update').val(values.data_family.mothersurname);
+                        $('#motherfirstname_update').val(values.data_family.motherfirstname);
+                        $('#mothermiddlename_update').val(values.data_family.mothermiddlename);
+
+                        $('#modalEditPersonalDetailsForm').modal('show');
+                    
+                    }     
+                }); 
+
+            });
+
+
+            $(document).on('click', '#submit_family_background', function(){
                     var employeeiddb = document.getElementById("empID").value;
 
-                    var empid                   = $('#employeeid').val();
-                    var firstname               = $('#firstname').val();
-                    var middlename              = $('#middlename').val();
-                    var lastname                = $('#lastname').val();
-                    var extension               = $('#extension').val();
-                    var position                = $('#position').val();
-                    var datehired               = $('#datehired').val();
-                    var username                = $('#username').val();
-                    var password                = $('#password').val();
-                    var gender                  = $('#gender').val();
-                    var civilstatus             = $('#civilstatus').val();
-
-                    var profileid               = $('#profileid').val();
-                    var dob                     = $('#dob').val();
-                    var placeofbirth            = $('#placeofbirth').val();
-                    var height                  = $('#height').val();
-                    var weight                  = $('#weight').val();
-                    var gsisno                  = $('#gsisno').val();
-                    var pagibigno               = $('#pagibigno').val();
-                    var phicno                  = $('#phicno').val();
-                    var sssno                   = $('#sssno').val();
-                    var tinno                   = $('#tinno').val();
-                    var agencyemployeeno        = $('#agencyemployeeno').val();
-                    var dual                    = $('#dual').val();
-                    var filipino                = $('#filipino').val();
-                    var birth                   = $('#birth').val();
-                    var naturalization          = $('#naturalization').val();
-                    var residentialaddress      = $('#residentialaddress').val();
-                    var permanentaddress        = $('#permanentaddress').val();
-                    var telephoneno             = $('#telephoneno').val();
-                    var mobileno                = $('#mobileno').val();
-                    var emailprofile            = $('#emailprofile').val();
-
                     var familyid                = $('#familyid').val();
-                    var spouselastname          = $('#spouselastname').val();
-                    var spousemiddlename        = $('#spousemiddlename').val();
-                    var spousefirstname         = $('#spousefirstname').val();
-                    var spouseextension         = $('#spouseextension').val();
-                    var occupation              = $('#occupation').val();
-                    var employername            = $('#employername').val(); 
-                    var businessaddress         = $('#businessaddress').val();
-                    var spousetelno             = $('#spousetelno').val();
-                    var fathersurname           = $('#fathersurname').val();
-                    var fatherfirstname         = $('#fatherfirstname').val();
-                    var fathermiddlename        = $('#fathermiddlename').val();
-                    var fatherext               = $('#fatherext').val();
-                    var mothermaidenname        = $('#mothermaidenname').val();
-                    var mothersurname           = $('#mothersurname').val();
-                    var motherfirstname         = $('#motherfirstname').val(); 
-                    var mothermiddlename        = $('#mothermiddlename').val();
-
-                 //if(answer == 'N'){ //COMMENTED, USED FOR VALIDATION
+                    var spouselastname          = $('#spouselastname_update').val();
+                    var spousemiddlename        = $('#spousemiddlename_update').val();
+                    var spousefirstname         = $('#spousefirstname_update').val();
+                    var spouseextension         = $('#spouseextension_update').val();
+                    var occupation              = $('#occupation_update').val();
+                    var employername            = $('#employername_update').val(); 
+                    var businessaddress         = $('#businessaddress_update').val();
+                    var spousetelno             = $('#spousetelno_update').val();
+                    var fathersurname           = $('#fathersurname_update').val();
+                    var fatherfirstname         = $('#fatherfirstname_update').val();
+                    var fathermiddlename        = $('#fathermiddlename_update').val();
+                    var fatherext               = $('#fatherext_update').val();
+                    var mothermaidenname        = $('#mothermaidenname_update').val();
+                    var mothersurname           = $('#mothersurname_update').val();
+                    var motherfirstname         = $('#motherfirstname_update').val(); 
+                    var mothermiddlename        = $('#mothermiddlename_update').val();
                     $.ajax({
                         url:"view_employee_action",
                         method:"POST",
                         data:{
                             employeeiddb:employeeiddb,
-                            empid:empid,        
-                            firstname:firstname,       
-                            middlename:middlename,      
-                            lastname:lastname,       
-                            extension:extension,       
-                            position:position,        
-                            datehired:datehired,       
-                            username:username,       
-                            password:password,        
-                            gender:gender,          
-                            civilstatus:civilstatus,     
-                            profileid:profileid,       
-                            dob:dob,             
-                            placeofbirth:placeofbirth,    
-                            height:height,          
-                            weight:weight,          
-                            gsisno:gsisno,          
-                            pagibigno:pagibigno,       
-                            phicno:phicno,          
-                            sssno:sssno,          
-                            tinno:tinno,           
-                            agencyemployeeno:agencyemployeeno,
-                            dual:dual,            
-                            filipino:filipino,        
-                            birth:birth,           
-                            naturalization:naturalization,  
-                            residentialaddress:residentialaddress,
-                            permanentaddress:permanentaddress,
-                            telephoneno:telephoneno,     
-                            mobileno:mobileno,       
-                            emailprofile:emailprofile,    
+                           
                             familyid:familyid,        
                             spouselastname:spouselastname,  
                             spousemiddlename:spousemiddlename,
@@ -618,32 +700,120 @@
                             mothersurname:mothersurname,   
                             motherfirstname:motherfirstname, 
                             mothermiddlename:mothermiddlename,
-                            action:'update_employee'
+                            action:'submit_family_background'
 
                         },
                         success:function(data){
-                        // $('#add_employee').modal('hide');
-                        
-                        //COMMENTED FOR THE MEAN TIME
-                        // $('#user_data').DataTable().destroy();
-                        //fetch_data();
+                      
                         alert("Data Updated");
 
-                        //$('#addEmployeeForm').modal('hide');
+                        $('#modalEditFamilyBackgroundForm').modal('hide');
                         }     
                     }); 
-                    //}
+                    
             });
 
 
+            $(document).on('click', '#submit_personal_details', function(){
+                var employeeiddb = document.getElementById("empID").value;
+
+                var empid                   = $('#employeeid').val();
+                var firstname               = $('#firstname_update').val();
+                var middlename              = $('#middlename_update').val();
+                var lastname                = $('#lastname_update').val();
+                var extension               = $('#extension_update').val();
+                var position                = $('#position_update').val();
+                var datehired               = $('#datehired_update').val();
+                var username                = $('#username_update').val();
+                var password                = $('#password_update').val();
+                var gender                  = $('#gender_update').val();
+                var civilstatus             = $('#civilstatus_update').val();
+
+                var profileid               = $('#profileid').val();
+                var dob                     = $('#dob_update').val();
+                var placeofbirth            = $('#placeofbirth_update').val();
+                var height                  = $('#height_update').val();
+                var weight                  = $('#weight_update').val();
+                var gsisno                  = $('#gsisno_update').val();
+                var pagibigno               = $('#pagibigno_update').val();
+                var phicno                  = $('#phicno_update').val();
+                var sssno                   = $('#sssno_update').val();
+                var tinno                   = $('#tinno_update').val();
+                var agencyemployeeno        = $('#agencyemployeeno_update').val();
+                var dual                    = $('#dual_update').val();
+                var filipino                = $('#filipino_update').val();
+                var birth                   = $('#birth_update').val();
+                var naturalization          = $('#naturalization_update').val();
+                var residentialaddress      = $('#residentialaddress_update').val();
+                var permanentaddress        = $('#permanentaddress_update').val();
+                var telephoneno             = $('#telephoneno_update').val();
+                var mobileno                = $('#mobileno_update').val();
+                var emailprofile            = $('#emailprofile_update').val();
+
+               
+
+            
+                $.ajax({
+                    url:"view_employee_action",
+                    method:"POST",
+                    data:{
+                        employeeiddb:employeeiddb,
+                        empid:empid,        
+                        firstname:firstname,       
+                        middlename:middlename,      
+                        lastname:lastname,       
+                        extension:extension,       
+                        position:position,        
+                        datehired:datehired,       
+                        username:username,       
+                        password:password,        
+                        gender:gender,          
+                        civilstatus:civilstatus,     
+                        profileid:profileid,       
+                        dob:dob,             
+                        placeofbirth:placeofbirth,    
+                        height:height,          
+                        weight:weight,          
+                        gsisno:gsisno,          
+                        pagibigno:pagibigno,       
+                        phicno:phicno,          
+                        sssno:sssno,          
+                        tinno:tinno,           
+                        agencyemployeeno:agencyemployeeno,
+                        dual:dual,            
+                        filipino:filipino,        
+                        birth:birth,           
+                        naturalization:naturalization,  
+                        residentialaddress:residentialaddress,
+                        permanentaddress:permanentaddress,
+                        telephoneno:telephoneno,     
+                        mobileno:mobileno,       
+                        emailprofile:emailprofile,    
+                        //action:'update_employee'
+                        action:'submit_personal_details'
+
+                    },
+                    success:function(data){
+                   
+                    alert("Data Updated");
+                    $('#modalEditPersonalDetailsForm').modal('hide');
+
+                    }     
+                }); 
+                
+        });
+
+
             $(document).on('click', '#cancel_employee', function(){
+                    window.location.href="employee_detail";
+                    /*
                     var employeeiddb = document.getElementById("empID").value;
                     var cancel_employee = "Success";
 
                     var empid = $('#employeeid').val();
 
 
-                 //if(answer == 'N'){ //COMMENTED, USED FOR VALIDATION
+               
                     $.ajax({
                         url:"view_employee_action",
                         method:"POST",
@@ -665,8 +835,8 @@
 
                         window.location.href="employee_detail";
                         }     
-                    }); 
-                    //}
+                    }); */
+                   
             });
 
 
