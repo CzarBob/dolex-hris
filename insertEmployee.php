@@ -2,7 +2,7 @@
 include "dbConnection.php";
 date_default_timezone_set("Asia/Manila");
 //var_dump($_POST['add_employee']);
-if(isset($_POST['add_employee'])) {
+if(isset($_POST['add_employee_action'])) {
   /*if($_POST['track_num'] != ''){
     $track_num = $_POST['track_num'];
     $prov = $_POST['prov'];
@@ -46,9 +46,15 @@ if(isset($_POST['add_employee'])) {
   "; 
 
   $query = $connect->query($que) or die($connect->error); 
+  $success = '<div class="alert alert-success">User Added</div>';
 
+  $output = array(
+    //'error'	=>	$error,
+    'success'	=>	$success
+  );
 
-    
+  //echo json_encode($output, JSON_HEX_QUOT | JSON_HEX_TAG);
+  echo json_encode($output);
 
 
 

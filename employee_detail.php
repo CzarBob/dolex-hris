@@ -136,11 +136,13 @@ if ($_SESSION['username'] == ""){
           </ul>
         </nav>
         <div class="container-fluid">
+        <span id="message"></span>
           <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
               <h6 class="m-0 font-weight-bold text-primary">Employee Details</h6>
-             
-              <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#addEmployeeForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Employee</a>
+              <input type="hidden" name="actionStatus" id="actionStatus" class="form-control validate" required>
+              <!--<a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#addEmployeeForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Employee</a>-->
+              <button type="button" name="add_employee" id="add_employee" class="btn btn-success btn-sm"><i class="fas fa-plus"></i></button>
               <!--<a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#dateRangeModal" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Generate Report</a> -->
             </div>
             <div class="card-body">
@@ -157,11 +159,11 @@ if ($_SESSION['username'] == ""){
                   </thead>
                   <tfoot class = "text-primary">
                     <tr>
-                      <th>Process Name</th>
-                      <th>Rating</th>
-                      <th>Full Name</th>
-                      <th>Email</th>
-                      <th>Comment</th>
+                      <th>EMPLOYEE ID</th>
+                      <th>FIRST NAME</th>
+                      <th>MIDDLE NAME</th>
+                      <th>LAST NAME</th>
+                      <th>ACTION</th>
                     </tr>
                   </tfoot>
                 </table>
@@ -341,110 +343,68 @@ if ($_SESSION['username'] == ""){
 </div>
 <!-- End Date Range Modal -->
 
- <!-- ADD EMPLOYEE FORM -->
- <div class="modal fade bd-example-modal-lg" id="addEmployeeForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header text-center">
-            <h4 class="modal-title w-100 font-weight-bold">Add Employee</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body mx-3">
-       
-            <div class="md-form mb-5">
-       
-              <label data-error="wrong" data-success="right" for="form29">*Employee ID</label>
-              <input type="test" name="empid" id = "empid" class="form-control validate" required>
-             
-            </div>
 
 
-            <div class="md-form mb-5">
-            
-              <label data-error="wrong" data-success="right" for="form34">*First Name</label>
-              <input type="text" name="firstname" id = "firstname" class="form-control validate" required>
-           
-            </div>
+    <div id="addEmployeeForm" class="modal fade">
+        <div class="modal-dialog">
+          <form method="post" id="employee_form" enctype="multipart/form-data">
+              <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal_title">Add Employee</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                      <div class="row">
+                        <label class="col-md-4 text-right">Employee ID <span class="text-danger">*</span></label>
+                        <div class="col-md-8">
+                          <input type="text" name="empid" id="empid" class="form-control" required data-parsley-pattern="/^[a-zA-Z\s]+$/" data-parsley-maxlength="150" data-parsley-trigger="keyup" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="row">
+                        <label class="col-md-4 text-right">First Name <span class="text-danger">*</span></label>
+                        <div class="col-md-8">
+                          <input type="text" name="firstname" id="firstname" class="form-control" required data-parsley-pattern="/^[a-zA-Z\s]+$/" data-parsley-maxlength="150" data-parsley-trigger="keyup" />
+                          
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="row">
+                        <label class="col-md-4 text-right">Middle Name <span class="text-danger">*</span></label>
+                        <div class="col-md-8">
+                          <input type="text" name="middlename" id="middlename" class="form-control" required data-parsley-pattern="/^[a-zA-Z\s]+$/" data-parsley-maxlength="150" data-parsley-trigger="keyup" />
+                          
+                        </div>
+                      </div>
+                    </div>
 
-            <div class="md-form mb-5">
-            
-              <label data-error="wrong" data-success="right" for="form34">*Middle Name</label>
-              <input type="text" name="middlename" id = "middlename" class="form-control validate" required>
-           
-            </div>
-
-            <div class="md-form mb-5">
-            
-              <label data-error="wrong" data-success="right" for="form34">*Last Name</label>
-              <input type="text" name="lastname" id = "lastname" class="form-control validate" required>
-           
-            </div>
-
-            <!--
-            
-            <div class="md-form mb-5">
-            
-              <label data-error="wrong" data-success="right" for="form34">*Email Address</label>
-              <input type="email" name="email" id = "email" class="form-control validate" required>
-         
-            </div>
-
-            <div class="md-form mb-5">
-       
-              <label data-error="wrong" data-success="right" for="form29">*Postion</label>
-              <input type="text" name="position" id = "position" class="form-control validate" required>
-             
-            </div>
-
-             <div class="md-form mb-5">
-       
-              <label data-error="wrong" data-success="right" for="form29">*Date Hired</label>
-              <input type="date" name="datehired" id = "datehired" class="form-control validate" required>
-             
-            </div>
-
-
-            <div class="md-form mb-5"> -->
-    
-              <!--<input type="hidden" name="received_by" id = "received_by" value = "<?php echo $_SESSION['received_by'] ?>"> -->
-              <!--  <label>Province</label>
-                <select class="custom-select" id = "province" name = "province">
-                  <option hidden>Province</option>
-                  <option value="RO">Regional Office</option>
-                  <option value="Bukidnon">Bukidnon</option>
-                  <option value="Camiguin">Camiguin</option>
-                  <option value="Cagayan de Oro">Cagayan de Oro</option>
-                  <option value="Lanao del Norte">Lanao del Norte</option>
-                  <option value="Misamis Occidental">Misamis Occidental</option>
-                  <option value="Misamis Oriental">Misamis Oriental</option>
-                </select>
-              
-            </div>
-
-            <div class="md-form mb-5">
-              
-              <label data-error="wrong" data-success="right" for="form29">Sick Leave Credit</label>
-              <input type="text" name="slcredit" id = "slcredit" class="form-control validate" required>
-              
-            </div>
-
-            <div class="md-form mb-5">
-              
-              <label data-error="wrong" data-success="right" for="form29">Vacation Leave Credit</label>
-              <input type="text" name="vlcredit" id = "vlcredit" class="form-control validate" required>
-              
-            </div>  -->
-
-          </div>
-          <div class="modal-footer d-flex justify-content-center">
-          <button class="btn btn-primary" id = "add_employee">Send</button>
-          <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
-          </div>
+                    <div class="form-group">
+                      <div class="row">
+                        <label class="col-md-4 text-right">Last Name <span class="text-danger">*</span></label>
+                        <div class="col-md-8">
+                          <input type="text" name="lastname" id="lastname" class="form-control" required data-parsley-pattern="/^[a-zA-Z\s]+$/" data-parsley-maxlength="150" data-parsley-trigger="keyup" />
+                          
+                        </div>
+                      </div>
+                    </div>
+                    
+                   
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="hidden_id" id="hidden_id" />
+                    <input type="hidden" name="add_employee_action" id="add_employee_action" value="Add" />
+                    <input type="submit" name="submit" id="add_employee" class="btn btn-success" value="Add" />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+          </form>
         </div>
-      </div>
     </div>
+
+
 
 
   <style type="text/css">
@@ -468,6 +428,7 @@ if ($_SESSION['username'] == ""){
 
   <!-- Core plugin JavaScript-->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script  src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
@@ -479,6 +440,7 @@ if ($_SESSION['username'] == ""){
 
   <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
   <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+  <script src="http://parsleyjs.org/dist/parsley.js"></script>
   <script>
 
 
@@ -504,9 +466,6 @@ if ($_SESSION['username'] == ""){
 
 
   $(document).ready(function(){
-
-
-
 
   $('#generateReport').click(function(){
      var fromDate = $('#fromDate').val();
@@ -543,149 +502,64 @@ if ($_SESSION['username'] == ""){
 }); 
 
 
-$(document).on('click', '#viewEmployee2', function(){
-          var add_employee = "Success";
-          //validateData();
-          //var answer = validateData();  
-       //if(answer == 'N'){ //COMMENTED, USED FOR VALIDATION
-              $.ajax({
-                url:"viewEmployee",
-                method:"POST",
-                data:{
-                  add_employee:add_employee,
-                  empid:empid, 
-                  firstname:firstname, 
-                  middlename:middlename, 
-                  lastname:lastname/*,
-                  email:email,
-                  position:position,
-                  datehired:datehired,
-                  slcredit:slcredit,
-                  vlcredit:vlcredit,*/
-                },
-                success:function(data){
-                 // $('#add_employee').modal('hide');
-                 /* $('#empid').val('');
-                  $('#firstname').val('');
-                  $('#middlename').val('');
-                  $('#lastname').val('');
-                  $('#email').val('');
-                  $('#position').val('');
-                  $('#datehired').val('');
-                  $('#slcredit').val('');
-                  $('#vlcredit').val('');*/
+  $('#add_employee').click(function(){		
+		$('#employee_form')[0].reset();
+		$('#employee_form').parsley().reset();
+    	$('#modal_title').text('Add Employee');
+    	$('#action').val('Add');
+    	$('#submit_button').val('Add');
+    	$('#addEmployeeForm').modal('show');
 
-                
-                  //COMMENTED FOR THE MEAN TIME
-                // $('#user_data').DataTable().destroy();
-                  //fetch_data();
-                 /* alert("Data Added");
-                  
-                  $('#addEmployeeForm').modal('hide');
-                  
-                  setInterval('refreshPage()', 5000);*/
-                 
-                }     
-              }); 
-            //}
-            
+	});
 
-        });
+  $('#employee_form').parsley();
 
-$(document).on('click', '#add_employee', function(){
-          var add_employee = "Success";
-          //validateData();
-          //var answer = validateData();
-          var empid = $('#empid').val();
-          var firstname = $('#firstname').val();
-          var middlename = $('#middlename').val();
-          var lastname = $('#lastname').val();
-          /*var email = $('#email').val();
-          var position = $('#position').val();
-          var datehired = $('#datehired').val();
-          //var rating = document.querySelector('input[name="optradio"]:checked').value;
-          var province = document.querySelector('input[name="province"]:selected').value;
-          var slcredit = $('#slcredit').val();
-          var vlcredit = $('#vlcredit').val();*/
 
-         
+  $('#employee_form').on('submit', function(event){
+		event.preventDefault();
+		if($('#employee_form').parsley().isValid())
+		{		
+			
+			$.ajax({
+				url:"insertEmployee.php",
+				method:"POST",
+				data:new FormData(this),
+				contentType:false,
+				processData:false,
+				dateType:'JSON', //ADDED
+				beforeSend:function()
+				{
+					$('#submit_button').attr('disabled', 'disabled');
+					$('#submit_button').val('wait...');
+				},
+				success:function(data)
+				{
+          values = $.parseJSON(data);
+					$('#submit_button').attr('disabled', false);
+					$('#addEmployeeForm').modal('hide');
+					$('#message').html(values.success);
+					//alert(html.prompt);
+					//dataTable.ajax.reload();
+          $('#user_data').DataTable().ajax.reload();
+					setTimeout(function(){
+						$('#message').html('');
+					}, 5000);
+				}
+			})
+		}
+	});
 
-       //if(answer == 'N'){ //COMMENTED, USED FOR VALIDATION
-              $.ajax({
-                url:"insertEmployee",
-                method:"POST",
-                data:{
-                  add_employee:add_employee,
-                  empid:empid, 
-                  firstname:firstname, 
-                  middlename:middlename, 
-                  lastname:lastname/*,
-                  email:email,
-                  position:position,
-                  datehired:datehired,
-                  slcredit:slcredit,
-                  vlcredit:vlcredit,*/
-                },
-                success:function(data){
-                 //$('#add_employee').modal('hide');
-                  $('#empid').val('');
-                  $('#firstname').val('');
-                  $('#middlename').val('');
-                  $('#lastname').val('');
-                 /* $('#email').val('');
-                  $('#position').val('');
-                  $('#datehired').val('');
-                  $('#slcredit').val('');
-                  $('#vlcredit').val('');*/
 
-                
-                  //COMMENTED FOR THE MEAN TIME
-                // $('#user_data').DataTable().destroy();
-                  //fetch_data();
-                  alert("Data Added");
-                  
-                  $('#addEmployeeForm').modal('hide');
-                  
-                  setInterval('refreshPage()', 5000);
-                 
-                }     
-              }); 
-            //}
-            
 
-        });
 
         function refreshPage() {
               location.reload(true);
           }
 
-
-
- 
-
-
-        function validateData() {
-        var flag = 'N';
-        var fullname=document.getElementById("fullname").value;
-        var email = document.getElementById("email").value;
-        //alert(email);
-        var fullnameTrim = fullname.trim();
-        var emailTrim = email.trim();
-        //check will be true or false
-       // alert(fullnameTrim.length);
-        if (fullnameTrim.length == 0){ 
-            alert("Full Name is empty");
-            flag = 'Y';
-          }
-
-        if (emailTrim.length == 0) {
-            alert("Email is empty");
-            flag = 'Y';
-        }
-       
-        return flag;
         
-      }
+
+
+      
   </script>
 
 </body>

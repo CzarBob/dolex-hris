@@ -238,6 +238,7 @@ if (isset($_POST['action'])){
   if (isset($_POST['action'])){
     if ($_POST['action'] == 'fetch_single_personal_details'){
       $query = 'SELECT 
+      tbl_employee.ID as ID,
       tbl_employee.EMPLOYEEID as EMPLOYEEID,
       tbl_employee.FIRSTNAME as FIRSTNAME,
       tbl_employee.MIDDLENAME as MIDDLENAME,
@@ -260,6 +261,7 @@ if (isset($_POST['action'])){
       
       while($row = mysqli_fetch_array($result)){
         $sub_array = array();
+     
         $sub_array['employeeid']  = $row['EMPLOYEEID'];
         $sub_array['firstname']   = $row['FIRSTNAME'];
         $sub_array['middlename']  = $row['MIDDLENAME'];
@@ -292,7 +294,7 @@ if (isset($_POST['action'])){
       while($row = mysqli_fetch_array($result_query_profile)){
     
         $sub_array_query_profile = array();
-        $sub_array_query_profile['id']                 = $row['ID'];
+
         $sub_array_query_profile['empid']                = $row['EMPID'];
         $sub_array_query_profile['dob']                 = $row['DOB'];
         $sub_array_query_profile['placeofbirth']        = $row['PLACEOFBIRTH'];
@@ -1275,9 +1277,6 @@ if (isset($_POST['action'])){
 
         }
 
-
-
-
     }
   }*/
 
@@ -1919,6 +1918,10 @@ if (isset($_POST['action'])){
 
     echo json_encode($sub_array);
   }
+
+
+
+  
 
   
 

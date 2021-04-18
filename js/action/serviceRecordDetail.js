@@ -119,7 +119,7 @@
                             var separation_date = $('#separation_date').val();    
                             var amount_received = $('#amount_received').val();     
                             var details = $('#details').val(); 
-                            alert(details);
+                           // alert(details);
                             $.ajax({
                                 url:"serviceRecord_action",
                                 method:"POST",

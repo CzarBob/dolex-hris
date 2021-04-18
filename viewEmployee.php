@@ -19,21 +19,38 @@ include 'view_employee_load_query.php';
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="assets/img/AEP_icon.png" rel="icon">
   <title>Employee Details</title>
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link
     href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
     rel="stylesheet">
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
 
   <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css" rel="stylesheet">
-
-
+>
 
   <!-- Custom styles for this page -->
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
   <link rel="icon" href="img/dolelogogs.png">
   <script type="text/javascript" src="js/date_time.js"></script>
+  
+  <!-- Page level plugins -->
+  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+  <script src="js/demo/datatables-demo.js"></script>
+
+  <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+  <script type="text/javascript" src="parsley/dist/parsley.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="parsley/parsley.css"/>
+
 
 </head>
 
@@ -173,7 +190,7 @@ include 'view_employee_load_query.php';
           <div class="row">
             <!-- Employee ID database-->
             <input type="hidden" name="empID" id="empID" value="<?php echo $_GET['id']; ?>">
-
+           
 
 
             <!-- Pending Requests Card Example -->
@@ -181,9 +198,6 @@ include 'view_employee_load_query.php';
           </div>
 
           <!-- Content Row -->
-
-          <div class="row">
-
             <!-- Area Chart -->
             <div class="col-xl-12 col-lg-7">
               <div class="card shadow mb-4">
@@ -636,6 +650,7 @@ include 'view_employee_load_query.php';
                       aria-controls="contact" aria-selected="false">Other Information</a>
                   </li>
                 </ul>
+                
                 <div class="tab-content" id="myTabContent">
                   <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <div class="container-fluid">
@@ -675,6 +690,9 @@ include 'view_employee_load_query.php';
 
 
                   </div>
+
+                  
+
                   <div class="tab-pane fade" id="eductab" role="tabpanel" aria-labelledby="educ-tab">
                     <div class="container-fluid">
                       <div class="card shadow mb-4">
@@ -684,22 +702,22 @@ include 'view_employee_load_query.php';
                           <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalEducationForm"
                             aria-expanded="false"> Add Educational Background</button>
 
-                          <!--<a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#dateRangeModal" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Generate Report</a> -->
+                          <!--<a class width="100%"  = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#dateRangeModal" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Generate Report</a> -->
                         </div>
                         <div class="card-body">
                           <div class="table-responsive">
-                            <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="educ_data"
-                              width="100%" cellspacing="0">
+                          
+                            <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="educ_data" cellspacing="0"> 
                               <thead class="text-primary">
                                 <tr>
-                                  <th data-column-id="educ_level">LEVEL</th>
-                                  <th data-column-id="school_name">NAME OF SCHOOL</th>
-                                  <th data-column-id="basic_educ">BASIC EDUCATION/DEGREE/COURSE</th>
-                                  <th data-column-id="period_from">ATTENDED FROM</th>
-                                  <th data-column-id="period_to">ATTENDED UNTIL</th>
-                                  <th data-column-id="highest_level">HIGHEST LEVEL/UNITS EARNED</th>
-                                  <th data-column-id="year_grad">YEAR GRADUATED</th>
-                                  <th data-column-id="honor_received">ACADEMIC HONORS RECEIVED</th>
+                                  <th >LEVEL</th>
+                                  <th >NAME OF SCHOOL</th>
+                                  <th >BASIC EDUCATION/DEGREE/COURSE</th>
+                                  <th >ATTENDED FROM</th>
+                                  <th >ATTENDED UNTIL</th>
+                                  <th >HIGHEST LEVEL/UNITS EARNED</th>
+                                  <th >YEAR GRADUATED</th>
+                                  <th>ACADEMIC HONORS RECEIVED</th>
                                   <th>ACTION</th>
                                 </tr>
                               </thead>
@@ -1914,27 +1932,6 @@ include 'view_employee_load_query.php';
     </div>
   </div>
 
-  <!-- Logout Modal
-      <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                      <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">×</span>
-                      </button>
-                  </div>
-                  <form action="admindashboard.php" method="post">
-                      <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                      <div class="modal-footer">
-                          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                          <input type="submit" class="btn btn-primary" value="Logout" name="signout">
-                      </div>
-                  </form>
-              </div>
-          </div>
-      </div>-->
-
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -1956,6 +1953,72 @@ include 'view_employee_load_query.php';
     </div>
   </div>
 
+    <!-- DATA SUBMITTED  Modal-->
+    <div class="modal fade" style= "z-index: 2001;" id="dataSubmittedModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Data Submitted</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <!--<a class="btn btn-primary" href="logout.php">Logout</a> -->
+        <div class="modal-body">Data Submitted Successfully</div>
+        <div class="modal-footer">
+          <!--<button class="btn btn-primary" id="submit_personal_details">Confirm</button>-->
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Confirm Personal details Modal-->
+  <div class="modal fade" style= "z-index: 2000;" id="confirmPersonalDetailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirm Update Data</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <!--<a class="btn btn-primary" href="logout.php">Logout</a> -->
+        <div class="modal-body">Would you like to proceed with the submission of data?</div>
+        <div class="modal-footer">
+          <!--<a class="btn btn-primary" href="logout">Confirm</a>-->
+          <button class="btn btn-primary" id="submit_personal_details">Confirm</button>
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <!-- Confirm Family Background Modal-->
+    <div class="modal fade" style= "z-index: 2000;" id="confirmFamilyBackgroundModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Confirm Update Data</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <!--<a class="btn btn-primary" href="logout.php">Logout</a> -->
+          <div class="modal-body">Would you like to proceed with the submission of data?</div>
+          <div class="modal-footer">
+            <!--<a class="btn btn-primary" href="logout">Confirm</a>-->
+            <button class="btn btn-primary" id="submit_family_background">Confirm</button>
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
 
@@ -2165,10 +2228,6 @@ include 'view_employee_load_query.php';
                     By Naturalization
                   </label>
                 </div> <br>
-                <!-- <div class="form-group col-md-10">
-                                            <label for="inputZip">Please Indicate Country</label>
-                                            <input type="text" class="form-control" id="dualcountry" placeholder="Ex. China">
-                                        </div> -->
               </div>
             </div>
             <!-- Grid row -->
@@ -2216,7 +2275,7 @@ include 'view_employee_load_query.php';
           </div>
           <div class="modal-footer d-flex justify-content-center">
 
-            <button class="btn btn-primary" id="submit_personal_details">Update data</button>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#confirmPersonalDetailsModal" >Update data</button>
             <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
           </div>
         </div>
@@ -2366,8 +2425,9 @@ include 'view_employee_load_query.php';
                   </div>
           </div>
           <div class="modal-footer d-flex justify-content-center">
+            <!-- <button class="btn btn-primary" id="submit_family_background">Update data</button> -->
 
-            <button class="btn btn-primary" id="submit_family_background">Update data</button>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#confirmFamilyBackgroundModal" >Update data</button>
             <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
           </div>
         </div>
@@ -2393,6 +2453,9 @@ include 'view_employee_load_query.php';
 
   <!--JS FOR EMPLOYEE ACTIONS -->
   <script type="text/javascript" src="js/action/viewEmployee.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+  
 </body>
 
 

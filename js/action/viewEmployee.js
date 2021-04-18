@@ -14,6 +14,9 @@
         }); 
         TableData.shift();
 
+
+
+
         $.ajax({
                 url: 'view_employee_action.php',
                 type: 'post',
@@ -41,10 +44,10 @@
 
         }
 
-            
-
             $(document).ready(function(){
     
+
+               
                 //fetch_data();
                 fetch_single();
                 //document.getElementById("update_eligibility").style.visibility='hidden';
@@ -73,7 +76,10 @@
                     
                     //alert('s');
                     var dataTable = $('#educ_data').DataTable({
-                    "columnDefs": [{ "orderable": false, "targets":[1,8] }],
+
+                   // "responsive": true,
+                    "columnDefs": [{ "orderable": false, "targets":[1,2] }],
+                    
                     "ajax" : {
                     url:"view_employee_action.php",
                     type:"POST",
@@ -212,7 +218,6 @@
                     });
 
                 }
-
 
                 
                 function fetch_single() {
@@ -503,6 +508,10 @@
             
                 });
 
+            
+            
+            
+            
             });
 
             function refreshPage() {
@@ -515,7 +524,6 @@
                 //var id = $(this).data('id');
                 var employeeiddb = document.getElementById("empID").value;
                 var id = document.getElementById("profileid").value;
-                
                 $.ajax({
                     url:"view_employee_action",
                     method:"POST",
@@ -528,7 +536,9 @@
                     success:function(output){
                         var values = $.parseJSON(output);
                         //alert(data.data.employeeid);
+
                         $('#employeeid_update').val(values.data.employeeid);
+                        $('#hiddenid_emp').val(values.data.id);
                         $('#firstname_update').val(values.data.firstname);
                         $('#middlename_update').val(values.data.middlename);
                         $('#lastname_update').val(values.data.lastname);
@@ -554,7 +564,7 @@
 
                     
                         
-                        //$('#profileid').val(data.data_profile.id);
+                       
                         $('#dob_update').val(values.data_profile.dob);
                         $('#placeofbirth_update').val(values.data_profile.placeofbirth);
                         $('#height_update').val(values.data_profile.height);
@@ -603,12 +613,14 @@
                         $('#telephoneno').val(values.data_profile.telephoneno);
                         $('#mobileno').val(values.data_profile.mobileno);
                         $('#emailprofile').val(values.data_profile.email);
+   
+                       
+                        $('#modal_title').text('Edit Profile Data');
+                        $('#profile_action').val('submit_profile');
+                        $('#submit_button').val('Edit');
 
-                        
-                        
-                        
                         $('#modalEditPersonalDetailsForm').modal('show');
-                    
+                            
                     }     
                 }); 
 
@@ -649,7 +661,7 @@
                         $('#motherfirstname_update').val(values.data_family.motherfirstname);
                         $('#mothermiddlename_update').val(values.data_family.mothermiddlename);
 
-                        $('#modalEditPersonalDetailsForm').modal('show');
+                        $('#modalEditFamilyBackgroundForm').modal('show');
                     
                     }     
                 }); 
@@ -682,7 +694,7 @@
                         method:"POST",
                         data:{
                             employeeiddb:employeeiddb,
-                           
+                            
                             familyid:familyid,        
                             spouselastname:spouselastname,  
                             spousemiddlename:spousemiddlename,
@@ -705,13 +717,49 @@
                         },
                         success:function(data){
                       
-                        alert("Data Updated");
+                            $('#modalEditFamilyBackgroundForm').modal('hide');
 
-                        $('#modalEditFamilyBackgroundForm').modal('hide');
+                            $('#confirmFamilyBackgroundModal').modal('hide');
+                        
+                            if($('#dataSubmittedModal').modal('show')){
+                                location.reload(true);
+                            }
                         }     
                     }); 
                     
             });
+
+
+            /*$('#employee_profile_form').parsley();
+
+            $('#employee_profile_form').on('submit', function(event){
+                event.preventDefault();
+                if($('#employee_profile_form').parsley().isValid())
+                {		
+
+                    $.ajax({
+                        url:"view_employee_action.php",
+                        method:"POST",
+                        data:new FormData(this),
+                        contentType:false,
+                        processData:false,
+                        dateType:'JSON', //ADDED
+                        beforeSend:function()
+                        {
+                            $('#submit_profile_employee').attr('disabled', 'disabled');
+                            $('#submit_profile_employee').val('wait...');
+                        },
+                        success:function(data)
+                        {
+                            $('#submit_profile_employee').attr('disabled', false);
+                            $('#modalEditPersonalDetailsForm').modal('hide');
+
+                                 
+                            if(!alert('Data Updated!')){window.location.reload();}
+                        }
+                    })
+                }
+            });*/
 
 
             $(document).on('click', '#submit_personal_details', function(){
@@ -750,9 +798,6 @@
                 var mobileno                = $('#mobileno_update').val();
                 var emailprofile            = $('#emailprofile_update').val();
 
-               
-
-            
                 $.ajax({
                     url:"view_employee_action",
                     method:"POST",
@@ -795,47 +840,22 @@
                     },
                     success:function(data){
                    
-                    alert("Data Updated");
+                    //alert("Data Updated");
                     $('#modalEditPersonalDetailsForm').modal('hide');
+                    $('#confirmPersonalDetailsModal').modal('hide');
+                   
+ 
+                    if(!alert('Data Updated!')){window.location.reload();}
+
 
                     }     
                 }); 
                 
-        });
+            });
 
 
             $(document).on('click', '#cancel_employee', function(){
                     window.location.href="employee_detail";
-                    /*
-                    var employeeiddb = document.getElementById("empID").value;
-                    var cancel_employee = "Success";
-
-                    var empid = $('#employeeid').val();
-
-
-               
-                    $.ajax({
-                        url:"view_employee_action",
-                        method:"POST",
-                        data:{
-                            
-                            empid:empid, 
-                            employeeiddb:employeeiddb,
-                            action:'cancel_update'
-
-                        },
-                        success:function(data){
-                        // $('#add_employee').modal('hide');
-                        
-                        //COMMENTED FOR THE MEAN TIME
-                        // $('#user_data').DataTable().destroy();
-                        //fetch_data();
-                        //alert("Data Updated");
-
-
-                        window.location.href="employee_detail";
-                        }     
-                    }); */
                    
             });
 

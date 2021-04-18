@@ -655,8 +655,8 @@ $(document).on('click', '#add_employee', function(){
           var email = $('#email').val();
           var position = $('#position').val();
           var datehired = $('#datehired').val();
-          //var rating = document.querySelector('input[name="optradio"]:checked').value;
-          var province = document.querySelector('input[name="province"]:selected').value;
+
+        
           var slcredit = $('#slcredit').val();
           var vlcredit = $('#vlcredit').val();
 
@@ -697,6 +697,7 @@ $(document).on('click', '#add_employee', function(){
                   alert("Data Added");
 
                   $('#addEmployeeForm').modal('hide');
+                  $('#user_data').DataTable().ajax.reload();
                 }     
               }); 
             //}
