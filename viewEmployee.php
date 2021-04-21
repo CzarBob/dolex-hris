@@ -190,7 +190,7 @@ include 'view_employee_load_query.php';
           <div class="row">
             <!-- Employee ID database-->
             <input type="hidden" name="empID" id="empID" value="<?php echo $_GET['id']; ?>">
-           
+            <span id="message"></span>
 
 
             <!-- Pending Requests Card Example -->
@@ -1990,7 +1990,7 @@ include 'view_employee_load_query.php';
         <div class="modal-body">Would you like to proceed with the submission of data?</div>
         <div class="modal-footer">
           <!--<a class="btn btn-primary" href="logout">Confirm</a>-->
-          <button class="btn btn-primary" id="submit_personal_details">Confirm</button>
+          <button class="btn btn-primary" id="submit_personal_details" data-dismiss="modal">Confirm</button>
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
         </div>
       </div>
@@ -2013,7 +2013,7 @@ include 'view_employee_load_query.php';
           <div class="modal-body">Would you like to proceed with the submission of data?</div>
           <div class="modal-footer">
             <!--<a class="btn btn-primary" href="logout">Confirm</a>-->
-            <button class="btn btn-primary" id="submit_family_background">Confirm</button>
+            <button class="btn btn-primary" id="submit_family_background" data-dismiss="modal">Confirm</button>
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
           </div>
         </div>
@@ -2245,7 +2245,7 @@ include 'view_employee_load_query.php';
               <!-- Default input -->
               <div class="form-group col-md-10">
                 <label for="inputCity">Permanent Address</label><br>
-                <input class="form-check-input" type="checkbox" id="addressCheck_update" name="addressCheck_update">
+                <input class="form-check-input" type="checkbox" id="permanentaddress_update" name="addressCheck_update">
                 <label class="form-check-label" for="gridCheck1">
                   Same with Residential Address
                 </label>

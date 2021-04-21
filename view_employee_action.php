@@ -1318,7 +1318,12 @@ if (isset($_POST['action'])){
         $mobileno                = $_POST['mobileno'];
         $emailprofile            = $_POST['emailprofile'];
 
-                
+        $flag = array();
+        $message  = '';
+        if (empty($lastname) ){
+          $message .= 'LASTNAME EMPTY';
+        }
+        $flag['message'] =  $message;
 
         $dateAdded = date("Y-m-d H:i:s");
         $sqlProfile = 'UPDATE tbl_employee
@@ -1336,8 +1341,6 @@ if (isset($_POST['action'])){
         WHERE ID = "'.$empid.'" ';
         $result = mysqli_query($connect, $sqlProfile);
 
-        //var_dump($sqlProfile); 
-        /** */
         
         $sqlProfile = 'UPDATE tbl_employee_profile
         SET DOB                 = "'.$dob.'", 
@@ -1367,7 +1370,31 @@ if (isset($_POST['action'])){
 
         
 
+        $a = array();
+        $b = array();
+ 
+        $success = '<div class="alert alert-success">User Details Updated</div>';
+        $flag2 = 'LASTNAME EMPTY \\nLASTNAME EMPTY';
+        $output = array(
+        'status'    => $success,
+        'flag'    =>$flag2
+        );
+  
+        echo json_encode($output);
 
+
+
+        //////////////////////
+				/*$success = '<div class="alert alert-success">User Details Updated</div>';
+				
+          
+          $output = array(
+          'error'		=>	$error,
+          'success'	=>	$success
+          );
+
+          echo json_encode($output);*/
+        //////////////////
 
     }
   }
@@ -1421,7 +1448,7 @@ if (isset($_POST['action'])){
        
         WHERE EMPID = "'.$_POST["employeeiddb"].'" AND ID = "'.$_POST["familyid"].'" ';
         
-        //var_dump($sqlFamily);
+
 
         $result = mysqli_query($connect, $sqlFamily);
     }

@@ -512,6 +512,8 @@
             
             
             
+            
+            
             });
 
             function refreshPage() {
@@ -520,7 +522,7 @@
 
 
             // UPDATE PERSONAL DETAILS FORM
-            $(document).on('click', '.update_personal_details', function(){
+            $(document).on('click', '.update_personal_details2', function(){
                 //var id = $(this).data('id');
                 var employeeiddb = document.getElementById("empID").value;
                 var id = document.getElementById("profileid").value;
@@ -801,6 +803,7 @@
                 $.ajax({
                     url:"view_employee_action",
                     method:"POST",
+                    dataType: 'json',
                     data:{
                         employeeiddb:employeeiddb,
                         empid:empid,        
@@ -839,14 +842,26 @@
 
                     },
                     success:function(data){
-                   
+                        //console.log(output);   
+                        //var values = $.parseJSON(data);
+  
+                    
                     //alert("Data Updated");
+                   
                     $('#modalEditPersonalDetailsForm').modal('hide');
                     $('#confirmPersonalDetailsModal').modal('hide');
-                   
- 
-                    if(!alert('Data Updated!')){window.location.reload();}
+                        //alert(data.success);
+                    /*if(!alert(data.flag)){
+                        window.location.reload();
+                    }*/
 
+                   
+                    /*$('#message').html(data.success);
+                    setTimeout(function(){
+                        $('#message').html('');
+                       
+                    }, 5000);*/
+                
 
                     }     
                 }); 
