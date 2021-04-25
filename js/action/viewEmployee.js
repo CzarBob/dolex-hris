@@ -276,40 +276,15 @@
                                     $('#tinno').val(data.data_profile.tinno);
                                     $('#agencyemployeeno').val(data.data_profile.agencyemployeeno);
                                    
-                                    //$('#citizenship').prop("dual", true)
                                     var citizenValueDB = data.data_profile.citizenship;
-                                    //$('#citizenship').attr('checked','checked');
-                                    //alert(citizenValueDB);
-                                    if (citizenValueDB == 'dual'){
-                                        $('#dual').attr('checked','checked');
-                                    } else if (citizenValueDB == 'filipino'){
-                                        $('#filipino').attr('checked','checked');
-                                    }
-                                   
-                                    var citizenValue = $('input[name="citizenship"]:checked').val();
-                                    if (citizenValue == 'dual'){
-                                            
-                                            document.getElementById("birth").disabled=false;
-                                            document.getElementById("naturalization").disabled=false;
-                                            //document.getElementById("dualcountry").disabled=false;
-                                        } else {
-                                           
-                                            document.getElementById("birth").disabled=true;
-                                            document.getElementById("naturalization").disabled=true;
-                                            //document.getElementById("dualcountry").disabled=true;
-                                        }
-
+ 
+                                    $("#citizenship").val(citizenValueDB).change();
 
                                     var dualchoiceDB = data.data_profile.dualcitizen;
-
-                                    if (dualchoiceDB == 'dual'){
-                                        $('#birth').attr('checked','checked');
-                                    } else if (dualchoiceDB == 'filipino'){
-                                        $('#naturalization').attr('checked','checked');
-                                    }
+                                    $("#dualchoice").val(dualchoiceDB).change();
 
                                     $('#residentialaddress').val(data.data_profile.residentialaddress);
-                                   // $('#permanentaddress').val(data.data_profile.permanentaddress);
+                                    $('#permanentaddress').val(data.data_profile.permanentaddress);
                                     $('#telephoneno').val(data.data_profile.telephoneno);
                                     $('#mobileno').val(data.data_profile.mobileno);
                                     $('#emailprofile').val(data.data_profile.email);
@@ -346,19 +321,7 @@
                             fetch_other_membership_data();
 
 
-                            $('input[type=radio][name="citizenship"]').change(function() {
-                                //alert($(this).val()); // or this.value
-                                if ($(this).val() == 'dual'){
-                                        document.getElementById("birth").disabled=false;
-                                        document.getElementById("naturalization").disabled=false;
-                                        document.getElementById("dualcountry").disabled=false;
-                                } else {
-                                        document.getElementById("birth").disabled=true;
-                                        document.getElementById("naturalization").disabled=true;
-                                        document.getElementById("dualcountry").disabled=true;
-                                }
-                               
-                            });
+
 
                             $("input[type=checkbox][name='addressCheck']").change(function() {
                                 
@@ -508,22 +471,25 @@
             
                 });
 
-            
-            
-            
-            
-            
-            
-            });
+        
 
-            function refreshPage() {
-                    location.reload(true);
-                }
+                $("#citizenship_update").change (function () { 
 
+                  var selectedVal = $(this).find(':selected').val();
+                    if (selectedVal == 'dual'){
+                        $("#dualchoice_update").prop("disabled", false);
+                       
+                        
+                    } else {
+                        $("#dualchoice_update").prop("disabled", true);
+                        $("#dualchoice_update").val("NA");
+
+                    }
+               
+                });
 
             // UPDATE PERSONAL DETAILS FORM
-            $(document).on('click', '.update_personal_details2', function(){
-                //var id = $(this).data('id');
+            $(document).on('click', '.update_personal_details', function(){
                 var employeeiddb = document.getElementById("empID").value;
                 var id = document.getElementById("profileid").value;
                 $.ajax({
@@ -539,7 +505,7 @@
                         var values = $.parseJSON(output);
                         //alert(data.data.employeeid);
 
-                        $('#employeeid_update').val(values.data.employeeid);
+                        $('#employeeidmain_update').val(values.data.employeeid);
                         $('#hiddenid_emp').val(values.data.id);
                         $('#firstname_update').val(values.data.firstname);
                         $('#middlename_update').val(values.data.middlename);
@@ -559,7 +525,7 @@
                         } else if (genderValue == "") {
                             $("#gender_update").val('NA').change();
                         }
-                        //var civilStatusValue =  'NA';
+                        
                         var civilStatusValue =  values.data_profile.civilstatus;
                         
                         $("#civilstatus_update").val(civilStatusValue).change();
@@ -578,37 +544,20 @@
                         $('#tinno_update').val(values.data_profile.tinno);
                         $('#agencyemployeeno_update').val(values.data_profile.agencyemployeeno);
                         
-                        //$('#citizenship').prop("dual", true)
+                        //alert(values.data_profile.dob);
                         var citizenValueDB = values.data_profile.citizenship;
-                        //$('#citizenship').attr('checked','checked');
-                        //alert(citizenValueDB);
+                        
+                        $("#citizenship_update").val(citizenValueDB).change();
                         if (citizenValueDB == 'dual'){
-                            $('#dual').attr('checked','checked');
-                        } else if (citizenValueDB == 'filipino'){
-                            $('#filipino').attr('checked','checked');
+                            $("#dualchoice_update").prop("disabled", false);
+                            var dualchoiceDB = values.data_profile.dualcitizen;
+                            $("#dualchoice_update").val(dualchoiceDB).change();
+                        } else {
+                            $("#dualchoice_update").prop("disabled", true);
                         }
                         
-                        var citizenValue = $('input[name="citizenship"]:checked').val();
-                        if (citizenValue == 'dual'){
-                                
-                                document.getElementById("birth").disabled=false;
-                                document.getElementById("naturalization").disabled=false;
-                                //document.getElementById("dualcountry").disabled=false;
-                            } else {
-                                
-                                document.getElementById("birth").disabled=true;
-                                document.getElementById("naturalization").disabled=true;
-                                //document.getElementById("dualcountry").disabled=true;
-                            }
+                        
 
-
-                        var dualchoiceDB = values.data_profile.dualcitizen;
-
-                        if (dualchoiceDB == 'dual'){
-                            $('#birth').attr('checked','checked');
-                        } else if (dualchoiceDB == 'filipino'){
-                            $('#naturalization').attr('checked','checked');
-                        }
 
                         $('#residentialaddress').val(values.data_profile.residentialaddress);
                         $('#permanentaddress').val(values.data_profile.permanentaddress);
@@ -627,6 +576,9 @@
                 }); 
 
             });
+
+           
+
 
             // UPDATE FAMILY BACKGROUND FORM
             $(document).on('click', '.update_family_background', function(){
@@ -718,56 +670,25 @@
 
                         },
                         success:function(data){
-                      
                             $('#modalEditFamilyBackgroundForm').modal('hide');
-
-                            $('#confirmFamilyBackgroundModal').modal('hide');
+                            $('#confirmFamilyBackgroundModal').modal('hide');                    
+                            fetch_single_input();
                         
-                            if($('#dataSubmittedModal').modal('show')){
-                                location.reload(true);
-                            }
+                            $('#message').html(data.status);
+                            setTimeout(function(){
+                                $('#message').html('');
+                            }, 30000);
                         }     
                     }); 
                     
             });
 
 
-            /*$('#employee_profile_form').parsley();
-
-            $('#employee_profile_form').on('submit', function(event){
-                event.preventDefault();
-                if($('#employee_profile_form').parsley().isValid())
-                {		
-
-                    $.ajax({
-                        url:"view_employee_action.php",
-                        method:"POST",
-                        data:new FormData(this),
-                        contentType:false,
-                        processData:false,
-                        dateType:'JSON', //ADDED
-                        beforeSend:function()
-                        {
-                            $('#submit_profile_employee').attr('disabled', 'disabled');
-                            $('#submit_profile_employee').val('wait...');
-                        },
-                        success:function(data)
-                        {
-                            $('#submit_profile_employee').attr('disabled', false);
-                            $('#modalEditPersonalDetailsForm').modal('hide');
-
-                                 
-                            if(!alert('Data Updated!')){window.location.reload();}
-                        }
-                    })
-                }
-            });*/
-
 
             $(document).on('click', '#submit_personal_details', function(){
                 var employeeiddb = document.getElementById("empID").value;
 
-                var empid                   = $('#employeeid').val();
+                var empid                   = $('#employeeidmain_update').val();
                 var firstname               = $('#firstname_update').val();
                 var middlename              = $('#middlename_update').val();
                 var lastname                = $('#lastname_update').val();
@@ -778,7 +699,7 @@
                 var password                = $('#password_update').val();
                 var gender                  = $('#gender_update').val();
                 var civilstatus             = $('#civilstatus_update').val();
-
+                
                 var profileid               = $('#profileid').val();
                 var dob                     = $('#dob_update').val();
                 var placeofbirth            = $('#placeofbirth_update').val();
@@ -790,8 +711,13 @@
                 var sssno                   = $('#sssno_update').val();
                 var tinno                   = $('#tinno_update').val();
                 var agencyemployeeno        = $('#agencyemployeeno_update').val();
-                var dual                    = $('#dual_update').val();
-                var filipino                = $('#filipino_update').val();
+                var citizenship             = $('#citizenship_update').val();
+                if ($('#dualchoice').prop("disabled") == false){
+                    var dualchoice                = $('#dualchoice_update').val();
+                } else {
+                    var dualchoice                = "NA";
+                }
+                
                 var birth                   = $('#birth_update').val();
                 var naturalization          = $('#naturalization_update').val();
                 var residentialaddress      = $('#residentialaddress_update').val();
@@ -828,10 +754,8 @@
                         sssno:sssno,          
                         tinno:tinno,           
                         agencyemployeeno:agencyemployeeno,
-                        dual:dual,            
-                        filipino:filipino,        
-                        birth:birth,           
-                        naturalization:naturalization,  
+                        citizenship:citizenship,
+                        dualchoice:dualchoice,
                         residentialaddress:residentialaddress,
                         permanentaddress:permanentaddress,
                         telephoneno:telephoneno,     
@@ -841,32 +765,121 @@
                         action:'submit_personal_details'
 
                     },
-                    success:function(data){
-                        //console.log(output);   
-                        //var values = $.parseJSON(data);
-  
+                    success:function(data){                  
+                        $('#modalEditPersonalDetailsForm').modal('hide');
+                        $('#confirmPersonalDetailsModal').modal('hide');
+                        fetch_single_input();
+                        
+                        $('#message').html(data.status);
+                        setTimeout(function(){
+                            $('#message').html('');
+                        
+                        }, 30000);
                     
-                    //alert("Data Updated");
-                   
-                    $('#modalEditPersonalDetailsForm').modal('hide');
-                    $('#confirmPersonalDetailsModal').modal('hide');
-                        //alert(data.success);
-                    /*if(!alert(data.flag)){
-                        window.location.reload();
-                    }*/
-
-                   
-                    /*$('#message').html(data.success);
-                    setTimeout(function(){
-                        $('#message').html('');
-                       
-                    }, 5000);*/
-                
 
                     }     
                 }); 
                 
             });
+
+
+            //function for reloading main data after update
+            function fetch_single_input() {
+                var employeeiddb = document.getElementById("empID").value;
+                
+                //var email_hidden = $(this).data('email_hidden'); //data id in database
+                //var admin_id = $(this).data('id');
+                //$('#user_form').parsley().reset();
+
+                $.ajax({
+                        url:"view_employee_action.php",
+                        method:"POST",
+                        data:{
+                            employeeiddb:employeeiddb, 
+                            action:'fetch_single'},
+                        dataType:'JSON',
+                        success:function(data)
+                        {
+                            $('#employeeid').val(data.data.employeeid);
+                            $('#firstname').val(data.data.firstname);
+                            $('#middlename').val(data.data.middlename);
+                            $('#lastname').val(data.data.lastname);
+                            $('#extension').val(data.data.extension);
+                            $('#position').val(data.data.position);
+                            $('#datehired').val(data.data.datehired);
+                            $('#username').val(data.data.username);
+                            $('#password').val(data.data.password);
+                            $('#confirmpassword').val(data.data.password);
+
+                            /*$('#slcredit').val(data.data.slcredit);
+                            $('#vlcredit').val(data.data.vlcredit);*/
+
+                            var genderValue =  data.data_profile.gender;
+
+                            if (genderValue == 'MALE'){
+                                $("#gender").val("MALE").change();
+                            } else if (genderValue == "") {
+                                $("#gender").val('NA').change();
+                            }
+                            //var civilStatusValue =  'NA';
+                            var civilStatusValue =  data.data_profile.civilstatus;
+                            
+                            $("#civilstatus").val(civilStatusValue).change();
+ 
+                       
+                            
+                            $('#profileid').val(data.data_profile.id);
+                            $('#dob').val(data.data_profile.dob);
+                            $('#placeofbirth').val(data.data_profile.placeofbirth);
+                            $('#height').val(data.data_profile.height);
+                            $('#weight').val(data.data_profile.weight);
+                            $('#gsisno').val(data.data_profile.gsisno);
+                            $('#pagibigno').val(data.data_profile.pagibigno);
+                            $('#phicno').val(data.data_profile.phicno);
+                            $('#sssno').val(data.data_profile.sssno);
+                            $('#tinno').val(data.data_profile.tinno);
+                            $('#agencyemployeeno').val(data.data_profile.agencyemployeeno);
+                           
+                            //$('#citizenship').prop("dual", true)
+                            var citizenValueDB = data.data_profile.citizenship;
+ 
+                            $("#citizenship").val(citizenValueDB).change();
+                        
+
+                            var dualchoiceDB = data.data_profile.dualcitizen;
+
+                            $("#dualchoice").val(dualchoiceDB).change();
+                               
+
+                            $('#residentialaddress').val(data.data_profile.residentialaddress);
+                           // $('#permanentaddress').val(data.data_profile.permanentaddress);
+                            $('#telephoneno').val(data.data_profile.telephoneno);
+                            $('#mobileno').val(data.data_profile.mobileno);
+                            $('#emailprofile').val(data.data_profile.email);
+
+                            $('#familyid').val(data.data_family.id);
+                            $('#spouselastname').val(data.data_family.spouselastname);
+                            $('#spousemiddlename').val(data.data_family.spousemiddlename);
+                            $('#spousefirstname').val(data.data_family.spousefirstname);
+                            $('#spouseextension').val(data.data_family.spouseextension);
+                            $('#occupation').val(data.data_family.occupation);
+                            $('#employername').val(data.data_family.employername);
+                            $('#businessaddress').val(data.data_family.businessaddress);
+                            $('#spousetelno').val(data.data_family.spousetelno);
+                            $('#fathersurname').val(data.data_family.fathersurname);
+                            $('#fatherfirstname').val(data.data_family.fatherfirstname);
+                            $('#fathermiddlename').val(data.data_family.fathermiddlename);
+                            $('#fatherext').val(data.data_family.fatherext);
+                            $('#mothermaidenname').val(data.data_family.mothermaidenname);
+                            $('#mothersurname').val(data.data_family.mothersurname);
+                            $('#motherfirstname').val(data.data_family.motherfirstname);
+                            $('#mothermiddlename').val(data.data_family.mothermiddlename);
+                        }
+                    });
+
+                   
+        }  
+
 
 
             $(document).on('click', '#cancel_employee', function(){
@@ -980,9 +993,7 @@
                         },
                         success:function(data){
                             var values = $.parseJSON(data);
-                            //$('#modal_title').text('Update Educational Background Data');
-                            //$('#add_education').text('Update Educational Background Children Data');
-                            $('#educid').val(values.educid);
+                           $('#educid').val(values.educid);
 
                             //var civilStatusValue =  'NA';
                             var levelValue =  values.level;                              
@@ -1022,9 +1033,6 @@
                     },
                     success:function(data){
                         var values = $.parseJSON(data);
-                        //$('#modal_title').text('Update Educational Background Data');
-                        //$('#add_education').text('Update Educational Background Children Data');
-                        
 
                         $('#eligibilityid').val(values.eligibilityid);
                         $('#eligibility_update').val(values.eligibility);
@@ -1595,4 +1603,5 @@
                     }); 
                 });
 
-   
+    
+            });

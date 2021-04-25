@@ -190,7 +190,7 @@ include 'view_employee_load_query.php';
           <div class="row">
             <!-- Employee ID database-->
             <input type="hidden" name="empID" id="empID" value="<?php echo $_GET['id']; ?>">
-            <span id="message"></span>
+          
 
 
             <!-- Pending Requests Card Example -->
@@ -200,7 +200,9 @@ include 'view_employee_load_query.php';
           <!-- Content Row -->
             <!-- Area Chart -->
             <div class="col-xl-12 col-lg-7">
+            <span id="message"></span>
               <div class="card shadow mb-4">
+              
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary">I. Personal Data</h6>
@@ -251,17 +253,17 @@ include 'view_employee_load_query.php';
                     <!-- Default input -->
                     <div class="form-group col-md-3">
                       <label for="inputEmail4">First Name</label>
-                      <input type="text" name="firstname" id="firstname" placeholder="Ex. Enrico"
+                      <input type="text" name="firstname" id="firstname" 
                         class="form-control validate"  disabled>
                     </div>
                     <div class="form-group col-md-3">
                       <label for="inputEmail4">Middle Name</label>
-                      <input type="text" name="middlename" id="middlename" placeholder="Ex. Santos"
+                      <input type="text" name="middlename" id="middlename" 
                         class="form-control validate" disabled>
                     </div>
                     <div class="form-group col-md-3">
                       <label for="inputEmail4">Last Name</label>
-                      <input type="text" name="lastname" id="lastname" placeholder="Ex. Cruz"
+                      <input type="text" name="lastname" id="lastname" 
                         class="form-control validate" disabled>
                     </div>
                     <div class="form-group col-md-1">
@@ -275,7 +277,7 @@ include 'view_employee_load_query.php';
                     <!-- Default input -->
                     <div class="form-group col-md-3">
                       <label for="inputEmail4">User Name</label>
-                      <input type="text" name="username" id="username" placeholder="Ex. CBTZ200116"
+                      <input type="text" name="username" id="username" 
                         class="form-control validate" disabled>
                     </div>
                     <div class="form-group col-md-3">
@@ -357,72 +359,54 @@ include 'view_employee_load_query.php';
                     <div class="form-group col-md-2">
                       <label for="inputZip">Pagibig No.</label>
                       <input type="text" class="form-control" id="pagibigno" name="pagibigno"
-                        placeholder="Ex. 1234 Main Street" disabled>
+                         disabled>
                     </div>
                     <!-- Default input -->
                     <div class="form-group col-md-2">
                       <label for="inputZip">Philhealth No.</label>
                       <input type="text" class="form-control" id="phicno" name="phicno"
-                        placeholder="Ex. 1234 Main Street" disabled>
+                         disabled>
                     </div>
                     <!-- Default input -->
                     <div class="form-group col-md-2">
                       <label for="inputZip">SSS No.</label>
                       <input type="text" class="form-control" id="sssno" name="sssno"
-                        placeholder="Ex. 1234 Main Street" disabled>
+                         disabled>
                     </div>
                     <!-- Default input -->
                     <div class="form-group col-md-2">
                       <label for="inputZip">TIN No.</label>
                       <input type="text" class="form-control" id="tinno" name="tinno"
-                        placeholder="Ex. 1234 Main Street" disabled>
+                         disabled>
                     </div>
                     <!-- Default input -->
                     <div class="form-group col-md-2">
                       <label for="inputZip">Agency Employee No.</label>
                       <input type="text" class="form-control" id="agencyemployeeno" name="agencyemployeeno"
-                        placeholder="Ex. 1234 Main Street" disabled>
+                         disabled>
                     </div>
                   </div>
                   <!-- Grid row -->
                   <div class="form-row">
+
                     <!-- Default input -->
                     <div class="form-group col-md-2">
                       <label for="inputCity">Citizenship</label>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="citizenship" id="filipino" value="filipino"
-                          checked disabled>
-                        <label class="form-check-label" for="citizenship1">
-                          Filipino
-                        </label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="citizenship" id="dual" value="dual" disabled>
-                        <label class="form-check-label" for="citizenship2">
-                          Dual Citizenship
-                        </label>
-                      </div>
+                      <select class="custom-select my-1 mr-sm-2" id="citizenship" name="citizenship" disabled>
+                        <option value='NA' selected>Choose...</option>
+                        <option value="filipino">Filipino</option>
+                        <option value="dual">Dual</option>
+                      </select>
                     </div>
-
-                    <div class="form-group col-md-2">
-                      <label for="inputCity"></label>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="dualchoice" id="birth" value="birth" checked disabled>
-                        <label class="form-check-label" for="gridRadios1">
-                          By Birth
-                        </label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="dualchoice" id="naturalization"
-                          value="naturalization" disabled>
-                        <label class="form-check-label" for="gridRadios2">
-                          By Naturalization
-                        </label>
-                      </div> <br>
-                      <!-- <div class="form-group col-md-10">
-                                                  <label for="inputZip">Please Indicate Country</label>
-                                                  <input type="text" class="form-control" id="dualcountry" placeholder="Ex. China">
-                                              </div> -->
+                  
+                    <!-- Default input -->
+                    <div class="form-group col-md-3">
+                      <label for="inputCity">Dual Citizenship Status (If dual citizen)</label>
+                      <select class="custom-select my-1 mr-sm-2" id="dualchoice" name="dualchoice" disabled>
+                        <option value='NA' selected>Choose...</option>
+                        <option value="birth">By Birth</option>
+                        <option value="naturalization">By Naturalization</option>
+                      </select>
                     </div>
 
                   </div>
@@ -453,17 +437,17 @@ include 'view_employee_load_query.php';
                     <div class="form-group col-md-2">
                       <label for="inputCity">Telephone No.</label><br>
                       <input type="text" class="form-control" id="telephoneno" name="telephoneno"
-                        placeholder="Ex. 1234 Main Street" disabled>
+                       disabled>
                     </div>
                     <div class="form-group col-md-2">
                       <label for="inputZip">Mobile No.</label>
                       <input type="text" class="form-control" id="mobileno" name="mobileno"
-                        placeholder="Ex. 1234 Main Street" disabled>
+                         disabled>
                     </div>
                     <div class="form-group col-md-2">
                       <label for="inputZip">Email Address</label>
                       <input type="text" class="form-control" id="emailprofile" name="emailprofile"
-                        placeholder="Ex. 1234 Main Street" disabled>
+                         disabled>
                     </div>
                   </div>
                 </div>
@@ -491,17 +475,17 @@ include 'view_employee_load_query.php';
                     <div class="form-group col-md-3">
                       <input type="hidden" name="familyid" id="familyid">
                       <label for="inputEmail4">Spouse's Surname</label>
-                      <input type="text" name="spouselastname" id="spouselastname" placeholder="Ex. Cruz"
+                      <input type="text" name="spouselastname" id="spouselastname" 
                         class="form-control validate" disabled>
                     </div>
                     <div class="form-group col-md-3">
                       <label for="inputEmail4">First Name</label>
-                      <input type="text" name="spousefirstname" id="spousefirstname" placeholder="Ex. Enrico"
+                      <input type="text" name="spousefirstname" id="spousefirstname" 
                         class="form-control validate" disabled>
                     </div>
                     <div class="form-group col-md-3">
                       <label for="inputEmail4">Middle Name</label>
-                      <input type="text" name="spousemiddlename" id="spousemiddlename" placeholder="Ex. Santos"
+                      <input type="text" name="spousemiddlename" id="spousemiddlename" 
                         class="form-control validate" disabled>
                     </div>
 
@@ -558,17 +542,17 @@ include 'view_employee_load_query.php';
                     <!-- Default input -->
                     <div class="form-group col-md-3">
                       <label for="inputEmail4">Father's Surname</label>
-                      <input type="text" name="fathersurname" id="fathersurname" placeholder="Ex. Cruz"
+                      <input type="text" name="fathersurname" id="fathersurname" 
                         class="form-control validate" disabled>
                     </div>
                     <div class="form-group col-md-3">
                       <label for="inputEmail4">First Name</label>
-                      <input type="text" name="fatherfirstname" id="fatherfirstname" placeholder="Ex. Enrico"
+                      <input type="text" name="fatherfirstname" id="fatherfirstname" 
                         class="form-control validate" disabled>
                     </div>
                     <div class="form-group col-md-3">
                       <label for="inputEmail4">Middle Name</label>
-                      <input type="text" name="fathermiddlename" id="fathermiddlename" placeholder="Ex. Santos"
+                      <input type="text" name="fathermiddlename" id="fathermiddlename" 
                         class="form-control validate" disabled>
                     </div>
 
@@ -585,22 +569,22 @@ include 'view_employee_load_query.php';
                     <!-- Default input -->
                     <div class="form-group col-md-3">
                       <label for="inputEmail4">Mother's Maiden Name</label>
-                      <input type="text" name="mothermaidenname" id="mothermaidenname" placeholder="Ex. Cruz"
+                      <input type="text" name="mothermaidenname" id="mothermaidenname" 
                         class="form-control validate" disabled>
                     </div>
                     <div class="form-group col-md-3">
                       <label for="inputEmail4">Mother's Surname</label>
-                      <input type="text" name="mothersurname" id="mothersurname" placeholder="Ex. Cruz"
+                      <input type="text" name="mothersurname" id="mothersurname" 
                         class="form-control validate" disabled>
                     </div>
                     <div class="form-group col-md-3">
                       <label for="inputEmail4">First Name</label>
-                      <input type="text" name="motherfirstname" id="motherfirstname" placeholder="Ex. Enrico"
+                      <input type="text" name="motherfirstname" id="motherfirstname" 
                         class="form-control validate" disabled>
                     </div>
                     <div class="form-group col-md-3">
                       <label for="inputEmail4">Middle Name</label>
-                      <input type="text" name="mothermiddlename" id="mothermiddlename" placeholder="Ex. Santos"
+                      <input type="text" name="mothermiddlename" id="mothermiddlename" 
                         class="form-control validate" disabled>
                     </div>
 
@@ -1474,7 +1458,7 @@ include 'view_employee_load_query.php';
         </div>
         <div class="modal-body mx-3">
           <div class="md-form mb-5">
-            <input type="hidden" name="workid" id="workid" class="form-control validate" required> -->
+            <input type="hidden" name="workid" id="workid" class="form-control validate" required> 
             <label data-error="wrong" data-success="right" for="form34">Inclusive Date</label>
             <input type="date" name="work_date_from" id="work_date_from" class="form-control validate" required> -
             <input type="date" name="work_date_to" id="work_date_to" class="form-control validate" required>
@@ -2039,7 +2023,7 @@ include 'view_employee_load_query.php';
             <div class="form-row">
               <div class="form-group col-md-4">
                 <label for="inputAddress">Employee ID</label>
-                <input type="text" class="form-control" id="employeeid_update" placeholder="Ex. CBTZ200116">
+                <input type="text" class="form-control" id="employeeidmain_update" placeholder="Ex. CBTZ200116">
               </div>
               <div class="form-group col-md-4">
                 <label for="inputAddress">Position</label>
@@ -2195,40 +2179,25 @@ include 'view_employee_load_query.php';
             </div>
             <!-- Grid row -->
             <div class="form-row">
-              <!-- Default input -->
-              <div class="form-group col-md-2">
-                <label for="inputCity">Citizenship</label>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="citizenship_update" id="filipino_update" value="filipino"
-                    checked>
-                  <label class="form-check-label" for="citizenship1">
-                    Filipino
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="citizenship_update" id="dual_update" value="dual">
-                  <label class="form-check-label" for="citizenship2">
-                    Dual Citizenship
-                  </label>
-                </div>
-              </div>
-
-              <div class="form-group col-md-2">
-                <label for="inputCity"></label>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="dualchoice" id="birth_update" value="birth" checked>
-                  <label class="form-check-label" for="gridRadios1">
-                    By Birth
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="dualchoice_update" id="naturalization_update"
-                    value="naturalization">
-                  <label class="form-check-label" for="gridRadios2">
-                    By Naturalization
-                  </label>
-                </div> <br>
-              </div>
+               <!-- Default input -->
+               <div class="form-group col-md-2">
+                      <label for="inputCity">Citizenship</label>
+                      <select class="custom-select my-1 mr-sm-2" id="citizenship_update" name="citizenship_update" >
+                        <option value='NA' selected>Choose...</option>
+                        <option value="filipino">Filipino</option>
+                        <option value="dual">Dual</option>
+                      </select>
+                    </div>
+                  
+                    <!-- Default input -->
+                    <div class="form-group col-md-3">
+                      <label for="inputCity">Dual Citizenship Status (If dual citizen)</label>
+                      <select class="custom-select my-1 mr-sm-2" id="dualchoice_update" name="dualchoice_update" disabled>
+                        <option value='NA' selected>Choose...</option>
+                        <option value="birth">By Birth</option>
+                        <option value="naturalization">By Naturalization</option>
+                      </select>
+                    </div>
             </div>
             <!-- Grid row -->
             <div class="form-row">

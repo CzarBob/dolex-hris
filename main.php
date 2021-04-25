@@ -421,24 +421,9 @@ include 'main_load_query.php';
   <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
   <script>
   $(document).ready(function(){
-    
-    fetch_data();
+
     fetch_all_data();
    
-    function fetch_data(){
-    //alert('pota');
-     var dataTable = $('#user_data').DataTable({
-     /* "processing" : true,
-      "serverSide" : true,
-      "columnDefs": [{ "orderable": false, "targets":[0,1] }],
-      "order" : [],*/
-      "ajax" : {
-       url:"dashboard_query.php",
-       type:"POST"
-      }
-     });
-    }  
-
     function fetch_all_data(){
 
       $.ajax({

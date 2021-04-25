@@ -140,9 +140,8 @@ if ($_SESSION['username'] == ""){
           <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
               <h6 class="m-0 font-weight-bold text-primary">Employee Details</h6>
-              <input type="hidden" name="actionStatus" id="actionStatus" class="form-control validate" required>
-              <!--<a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#addEmployeeForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Employee</a>-->
-              <button type="button" name="add_employee" id="add_employee" class="btn btn-success btn-sm"><i class="fas fa-plus"></i></button>
+             
+              <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#addEmployeeForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Employee</a>
               <!--<a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#dateRangeModal" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Generate Report</a> -->
             </div>
             <div class="card-body">
@@ -209,96 +208,8 @@ if ($_SESSION['username'] == ""){
       </div>
     </div>
   </div>
-    <div id="add_record" class="modal" data-backdrop="static" data-keyboard="false">
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-     
-     
-      <!-- Modal content-->
-        <div class="modal-header py-3 d-flex flex-row align-items-center justify-content-between">
-          <h5 class="modal-title text-dark">Add Record</h5>
-          <h5 id="date_time"></h5>
-        </div>
-        <div class="modal-body text-dark">
-          <div class = "row">
-            <div class = "col-6">
-              <div class = "form-group">
-                <input type="hidden" name="received_by" id = "received_by" value = "<?php echo $_SESSION['received_by'] ?>">
-                <label>Province</label>
-                <select class="custom-select" id = "province" name = "province">
-                  <option hidden>Province</option>
-                  <option value="Bukidnon">Bukidnon</option>
-                  <option value="Camiguin">Camiguin</option>
-                  <option value="Cagayan de Oro">Cagayan de Oro</option>
-                  <option value="Lanao del Norte">Lanao del Norte</option>
-                  <option value="Misamis Occidental">Misamis Occidental</option>
-                  <option value="Misamis Oriental">Misamis Oriental</option>
-                </select>
-              </div>
-              <div class = "form-group">
-                <label>Track Number</label>
-                <input type="text" id = "track_num" name = "track_num" class="form-control" readonly>
-              </div>
-              <div class = "form-group">
-                <label>Type of document</label>
-                <input type="text" class = "form-control" name="type_docu" id = "type_docu">
-              </div>
-            </div>
-            <div class = "col-6">
-              <div class="form-group">
-                <label for="comment">Description:</label>
-                <textarea class="form-control" rows="5" id="description" name = "description" maxlength="100"></textarea>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-primary" id = "add_docu">Add</button>
-        <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
-        </div>
-       </div>
-      </div>
-    </div>
-  
-<div class="modal" id="release_mod" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content" id = "data">
+   
 
-      </div>
-    </div>
-  </div>
-<div class="modal fade" id="record_added" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Success</h5>
-        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
-      </div>
-      <div class="modal-body">Record Successfully Added!</div>
-      <div class="modal-footer">
-        <button class="btn btn-success" type="button" data-dismiss="modal">Ok</button>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="modal fade" id="record_released" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Success</h5>
-        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
-      </div>
-      <div class="modal-body">Record Successfully Released!</div>
-      <div class="modal-footer">
-        <button class="btn btn-success" type="button" data-dismiss="modal">Ok</button>
-      </div>
-    </div>
-  </div>
-</div>
 <!-- Date range Modal -->
 <div class="modal" tabindex="-1" id="dateRangeModal" role="dialog">
   <div class="modal-dialog" role="document">
@@ -343,68 +254,77 @@ if ($_SESSION['username'] == ""){
 </div>
 <!-- End Date Range Modal -->
 
+ <!-- ADD EMPLOYEE FORM -->
+ <div class="modal fade bd-example-modal-lg" id="addEmployeeForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold">Add Employee</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-3">
+       
+            <div class="md-form mb-5">
+       
+              <label data-error="wrong" data-success="right" for="form29">*Employee ID</label>
+              <input type="test" name="empid" id = "empid" class="form-control validate" required>
+             
+            </div>
 
 
-    <div id="addEmployeeForm" class="modal fade">
-        <div class="modal-dialog">
-          <form method="post" id="employee_form" enctype="multipart/form-data">
-              <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="modal_title">Add Employee</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                      <div class="row">
-                        <label class="col-md-4 text-right">Employee ID <span class="text-danger">*</span></label>
-                        <div class="col-md-8">
-                          <input type="text" name="empid" id="empid" class="form-control" required data-parsley-pattern="/^[a-zA-Z\s]+$/" data-parsley-maxlength="150" data-parsley-trigger="keyup" />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="row">
-                        <label class="col-md-4 text-right">First Name <span class="text-danger">*</span></label>
-                        <div class="col-md-8">
-                          <input type="text" name="firstname" id="firstname" class="form-control" required data-parsley-pattern="/^[a-zA-Z\s]+$/" data-parsley-maxlength="150" data-parsley-trigger="keyup" />
-                          
-                        </div>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="row">
-                        <label class="col-md-4 text-right">Middle Name <span class="text-danger">*</span></label>
-                        <div class="col-md-8">
-                          <input type="text" name="middlename" id="middlename" class="form-control" required data-parsley-pattern="/^[a-zA-Z\s]+$/" data-parsley-maxlength="150" data-parsley-trigger="keyup" />
-                          
-                        </div>
-                      </div>
-                    </div>
+            <div class="md-form mb-5">
+            
+              <label data-error="wrong" data-success="right" for="form34">*First Name</label>
+              <input type="text" name="firstname" id = "firstname" class="form-control validate" required>
+           
+            </div>
 
-                    <div class="form-group">
-                      <div class="row">
-                        <label class="col-md-4 text-right">Last Name <span class="text-danger">*</span></label>
-                        <div class="col-md-8">
-                          <input type="text" name="lastname" id="lastname" class="form-control" required data-parsley-pattern="/^[a-zA-Z\s]+$/" data-parsley-maxlength="150" data-parsley-trigger="keyup" />
-                          
-                        </div>
-                      </div>
-                    </div>
-                    
-                   
-                </div>
-                <div class="modal-footer">
-                    <input type="hidden" name="hidden_id" id="hidden_id" />
-                    <input type="hidden" name="add_employee_action" id="add_employee_action" value="Add" />
-                    <input type="submit" name="submit" id="add_employee" class="btn btn-success" value="Add" />
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-          </form>
+            <div class="md-form mb-5">
+              <label data-error="wrong" data-success="right" for="form34">*Middle Name</label>
+              <input type="text" name="middlename" id = "middlename" class="form-control validate" required>
+           
+            </div>
+
+            <div class="md-form mb-5">
+              <label data-error="wrong" data-success="right" for="form34">*Last Name</label>
+              <input type="text" name="lastname" id = "lastname" class="form-control validate" required>
+            </div>
+
+            <!--
+            
+            <div class="md-form mb-5">
+            
+              <label data-error="wrong" data-success="right" for="form34">*Email Address</label>
+              <input type="email" name="email" id = "email" class="form-control validate" required>
+         
+            </div>
+
+            <div class="md-form mb-5">
+       
+              <label data-error="wrong" data-success="right" for="form29">*Postion</label>
+              <input type="text" name="position" id = "position" class="form-control validate" required>
+             
+            </div>
+
+             <div class="md-form mb-5">
+       
+              <label data-error="wrong" data-success="right" for="form29">*Date Hired</label>
+              <input type="date" name="datehired" id = "datehired" class="form-control validate" required>
+             
+            </div>-->
+
+
+
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+          <button class="btn btn-primary" id = "add_employee">Send</button>
+          <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
+          </div>
         </div>
+      </div>
     </div>
-
-
 
 
   <style type="text/css">
@@ -420,7 +340,7 @@ if ($_SESSION['username'] == ""){
     }
     
   </style>
-   <script type="text/javascript">window.onload = date_time('date_time');</script>
+
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
@@ -428,7 +348,6 @@ if ($_SESSION['username'] == ""){
 
   <!-- Core plugin JavaScript-->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-  <script  src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
@@ -440,7 +359,6 @@ if ($_SESSION['username'] == ""){
 
   <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
   <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
-  <script src="http://parsleyjs.org/dist/parsley.js"></script>
   <script>
 
 
@@ -449,117 +367,126 @@ if ($_SESSION['username'] == ""){
     fetch_data();
    
     function fetch_data(){
-    //alert('pota');
-     var dataTable = $('#user_data').DataTable({
-     /* "processing" : true,
-      "serverSide" : true,
-      "columnDefs": [{ "orderable": false, "targets":[0,1] }],
-      "order" : [],*/
-      "ajax" : {
-       url:"dashboard_query.php",
-       type:"POST"
-      }
-     });
+      var action = 'fetch_data';
+      var dataTable = $('#user_data').DataTable({
+      /* "processing" : true,
+        "serverSide" : true,
+        "columnDefs": [{ "orderable": false, "targets":[0,1] }],
+        "order" : [],*/
+        "ajax" : {
+        url:"dashboard_query.php",
+        type:"POST",
+        data:{
+            action:action
+                  },
+        },
+        success:function(){
+        }
+      });
     }  
+
+    $('#generateReport').click(function(){
+      var fromDate = $('#fromDate').val();
+      var toDate = $('#toDate').val();
+
+
+      if(fromDate!="" && toDate!=""){
+      $.ajax({
+        url:"export",  
+        method:"post",  
+        data:{
+          export:"export",
+          fromDate:fromDate,
+          toDate:toDate
+          },
+        success:function(response){
+        /* if(response=="success"){
+              window.location.href="index";
+          }
+          if(response=="others"){
+              window.location.href="admin";
+          }
+          if(response=="fail"){
+            $('#error_login').modal('show');
+          }*/
+          $('#dateRangeModal').modal('hide');
+        }
+      });  
+    }
+    else{
+      $('#error_blank').modal('show');
+    }
+    }); 
+
+
+
+  $(document).on('click', '.delete_employee', function(){
+      var id = $(this).data('id');
+      
+      var add_employee = "Success";
+      var delete_confirm = confirm("Confirm deletion of data?");
+      if (delete_confirm == true) {
+          $.ajax({
+              url:"employee_detail_action",
+              method:"POST",
+              data:{
+                  id:id, 
+                  action:'delete_employee'
+              },
+              success:function(data){
+              
+              alert("Data Deleted");
+              $('#user_data').DataTable().ajax.reload();
+              }     
+          }); 
+      }
+
   });
 
+  $(document).on('click', '#add_employee', function(){
+          var empid = $('#empid').val();
+          var firstname = $('#firstname').val();
+          var middlename = $('#middlename').val();
+          var lastname = $('#lastname').val();
+          var add_action = confirm("Confirm submission of data?");
 
+          if (add_action == true) {
+              $.ajax({
+              url:"employee_detail_action",
+              method:"POST",
+              data:{
+                empid:empid, 
+                firstname:firstname, 
+                middlename:middlename, 
+                lastname:lastname,
+                action: 'insert_employee'
+                
+              },
+              success:function(data){
+                var values = jQuery.parseJSON(data);
+                $('#empid').val('');
+                $('#firstname').val('');
+                $('#middlename').val('');
+                $('#lastname').val('');
+            //alert(values.status);
 
-  $(document).ready(function(){
+                $('#message').html(values.status);
+                      setTimeout(function(){
+                          $('#message').html('');
+                      
+                      }, 30000);
+                
+                $('#addEmployeeForm').modal('hide');
+                $('#user_data').DataTable().ajax.reload();
+              
+              }     
+            }); 
+          } 
+              
+        });
 
-  $('#generateReport').click(function(){
-     var fromDate = $('#fromDate').val();
-     var toDate = $('#toDate').val();
-
-    alert(fromDate);
-     if(fromDate!="" && toDate!=""){
-     $.ajax({
-      url:"export",  
-      method:"post",  
-      data:{
-        export:"export",
-        fromDate:fromDate,
-        toDate:toDate
-        },
-      success:function(response){
-       /* if(response=="success"){
-            window.location.href="index";
-        }
-        if(response=="others"){
-            window.location.href="admin";
-        }
-        if(response=="fail"){
-          $('#error_login').modal('show');
-        }*/
-        $('#dateRangeModal').modal('hide');
-      }
-    });  
-   }
-   else{
-    $('#error_blank').modal('show');
-   }
-  }); 
 }); 
 
-
-  $('#add_employee').click(function(){		
-		$('#employee_form')[0].reset();
-		$('#employee_form').parsley().reset();
-    	$('#modal_title').text('Add Employee');
-    	$('#action').val('Add');
-    	$('#submit_button').val('Add');
-    	$('#addEmployeeForm').modal('show');
-
-	});
-
-  $('#employee_form').parsley();
-
-
-  $('#employee_form').on('submit', function(event){
-		event.preventDefault();
-		if($('#employee_form').parsley().isValid())
-		{		
-			
-			$.ajax({
-				url:"insertEmployee.php",
-				method:"POST",
-				data:new FormData(this),
-				contentType:false,
-				processData:false,
-				dateType:'JSON', //ADDED
-				beforeSend:function()
-				{
-					$('#submit_button').attr('disabled', 'disabled');
-					$('#submit_button').val('wait...');
-				},
-				success:function(data)
-				{
-          values = $.parseJSON(data);
-					$('#submit_button').attr('disabled', false);
-					$('#addEmployeeForm').modal('hide');
-					$('#message').html(values.success);
-					//alert(html.prompt);
-					//dataTable.ajax.reload();
-          $('#user_data').DataTable().ajax.reload();
-					setTimeout(function(){
-						$('#message').html('');
-					}, 5000);
-				}
-			})
-		}
-	});
-
-
-
-
-        function refreshPage() {
-              location.reload(true);
-          }
-
-        
-
-
-      
   </script>
 
 </body>

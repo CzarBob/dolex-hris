@@ -1058,232 +1058,23 @@ if (isset($_POST['action'])){
   }
 
 
-  /*
-  if (isset($_POST['action'])){
-    if ($_POST['action'] == 'cancel_update'){
-
-        $empid  = $_POST['employeeiddb'];
-
-        $email = 'X';
-        $position = 'X';
-        $datehired = 'X';
-        $slcredit = 'X';
-        $vlcredit = 'X';
-      
-      
-        $i = 0;
-
-        //CHILDREN DATA
-        $dateAdded = date("Y-m-d H:i:s");
-        $query = 'UPDATE tbl_employee_children
-        SET CANCELLED = "Y" 
-        WHERE EMPID = "'.$_POST["employeeiddb"].'"';
-        $result = mysqli_query($connect, $query);
-
-        $children_data =  $_SESSION['query3'];
-
-
-        foreach($children_data as $x ) {
-
-          //echo "$x[0] + $x[1]<br>";
-          $que = "INSERT INTO `tbl_employee_children` SET 
-          EMPID = '".$empid."',
-          FULLNAME = '".$x[0]."',
-          DOB = '".$x[1]."',
-          CANCELLED = 'N'
-          "; 
-
-          //echo $que;
-          $result = mysqli_query($connect, $que);
-          $i++; 
-
-        }
-
-
-        //EDUCATION DATA
-        $query = 'UPDATE tbl_employee_educ_background
-        SET CANCELLED = "Y" 
-        WHERE EMPID = "'.$_POST["employeeiddb"].'"';
-        $result = mysqli_query($connect, $query);
-
-        $educ_data =  $_SESSION['educ_data'];
-
-
-        foreach($educ_data as $x ) {
-          $que_educ = "INSERT INTO `tbl_employee_educ_background` SET 
-          EMPID = '".$empid."',
-          LEVEL = '".$x[1]."',
-          SCHOOLNAME = '".$x[2]."',
-          BASICEDUCATION = '".$x[3]."',
-          PERIODFROM = '".$x[4]."',
-          PERIODTO = '".$x[5]."',
-          HIGHESTLEVEL = '".$x[6]."',
-          YEARGRADUATED = '".$x[7]."',
-          HONORRECEIVED = '".$x[8]."',
-          CANCELLED = 'N'"; 
-
-          //echo $que;
-          $result = mysqli_query($connect, $que_educ);
-          $i++; 
-
-        }
-
-        //WORK DATA
-        $query = 'UPDATE tbl_employee_work_experience
-        SET CANCELLED = "Y" 
-        WHERE EMPID = "'.$_POST["employeeiddb"].'"';
-        $result = mysqli_query($connect, $query);
-
-        $work_data =  $_SESSION['work_data'];
-
-
-        foreach($work_data as $x ) {
-          $que_work = "INSERT INTO `tbl_employee_civil_service` SET 
-
-          EMPID = '".$empid."',
-          DATEFROM = '".$x[2]."',
-          DATETO = '".$x[3]."',
-          POSITION = '".$x[4]."',
-          COMPANY = '".$x[5]."',
-          MONTHLYSALARY = '".$x[6]."',
-          GRADE = '".$x[7]."',
-          STATUS = '".$x[8]."',
-          GOVTSERVICE = '".$x[9]."',
-          CANCELLED = 'N'"; 
-
-
-
-          //echo $que;
-          $result = mysqli_query($connect, $que_work);
-          $i++; 
-
-        }
-
-        //ELIGIBILITY DATA
-        $query = 'UPDATE tbl_employee_civil_service
-        SET CANCELLED = "Y" 
-        WHERE EMPID = "'.$_POST["employeeiddb"].'"';
-        $result = mysqli_query($connect, $query);
-
-        $eligibility_data =  $_SESSION['eligibility_data'];
-        
-
-        foreach($eligibility_data as $x ) {
-          $que_eligibility = "INSERT INTO `tbl_employee_civil_service` SET 
-
-          EMPID = '".$empid."',
-          ELIGIBILITY = '".$x[1]."',
-          RATING = '".$x[2]."',
-          DATEOFEXAM = '".$x[3]."',
-          PLACEOFEXAM = '".$x[4]."',
-          LICENSENUMBER = '".$x[5]."',
-          LICENSEDATEOFVALIDITY = '".$x[6]."',
-          CANCELLED = 'N'"; 
-
-          //echo $que;
-          $result = mysqli_query($connect, $que_eligibility);
-          $i++; 
-
-        }
-
-
-        //VOLUNTARY WORK DATA
-        $query = 'UPDATE tbl_employee_voluntary_work
-        SET CANCELLED = "Y" 
-        WHERE EMPID = "'.$_POST["employeeiddb"].'"';
-        $result = mysqli_query($connect, $query);
-
-        $volwork_data =  $_SESSION['volwork_data'];
-        
-
-        foreach($volwork_data as $x ) {
-          $que_volwork = "INSERT INTO `tbl_employee_voluntary_work` SET 
-
-          EMPID = '".$empid."',
-          ORGANIZATION = '".$x[2]."',
-          DATEFROM = '".$x[3]."',
-          DATETO = '".$x[4]."',
-          NOOFHOURS = '".$x[5]."',
-          POSITION = '".$x[6]."',
-          CANCELLED = 'N'"; 
-
-          //echo $que;
-          $result = mysqli_query($connect, $que_volwork);
-          $i++; 
-
-        }
-
-        
-        //OTHER SKILL DATA
-        $query = 'UPDATE tbl_employee_other_skills
-        SET CANCELLED = "Y" 
-        WHERE EMPID = "'.$_POST["employeeiddb"].'"';
-        $result = mysqli_query($connect, $query);
-
-        $other_skill_data =  $_SESSION['other_skill_data'];
-
-
-        foreach($other_skill_data as $x ) {
-          $que_other_skill = "INSERT INTO `tbl_employee_other_skills` SET 
-
-          EMPID = '".$empid."',
-          SKILLS = '".$x[2]."',
-          CANCELLED = 'N'"; 
-
-          $result = mysqli_query($connect, $que_other_skill);
-          $i++; 
-
-        }
-
-        //OTHER RECOGNITION DATA
-        $query = 'UPDATE tbl_employee_other_recognition
-        SET CANCELLED = "Y" 
-        WHERE EMPID = "'.$_POST["employeeiddb"].'"';
-        $result = mysqli_query($connect, $query);
-
-        $other_recognition_data =  $_SESSION['other_recognition_data'];
-
-
-        foreach($other_recognition_data as $x ) {
-          $que_other_recognition = "INSERT INTO `tbl_employee_other_recognition` SET 
-
-          EMPID = '".$empid."',
-          RECOGNITION = '".$x[2]."',
-          CANCELLED = 'N'"; 
-
-          $result = mysqli_query($connect, $que_other_recognition);
-          $i++; 
-
-        }
-
-        //OTHER MEMBERSHIP DATA
-        $query = 'UPDATE tbl_employee_other_membership
-        SET CANCELLED = "Y" 
-        WHERE EMPID = "'.$_POST["employeeiddb"].'"';
-        $result = mysqli_query($connect, $query);
-
-        $other_membership_data =  $_SESSION['other_membership_data'];
-
-
-        foreach($other_membership_data as $x ) {
-          $que_other_membership = "INSERT INTO `tbl_employee_other_membershipo` SET 
-
-          EMPID = '".$empid."',
-          MEMBERSHIP = '".$x[2]."',
-          CANCELLED = 'N'"; 
-
-          $result = mysqli_query($connect, $que_other_membership);
-          $i++; 
-
-        }
-
-    }
-  }*/
 
   if (isset($_POST['action'])){
     if ($_POST['action'] == 'submit_personal_details'){
        
         $empid  = $_POST['employeeiddb'];
+
+        $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Data Updated!</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>';
+        $message = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Please Check field/s below:</strong> <br>
+        ';
+        $flag = false;
+        
 
         $employeeid              = $_POST['empid'];
         $firstname               = $_POST['firstname'];
@@ -1308,93 +1099,104 @@ if (isset($_POST['action'])){
         $sssno                   = $_POST['sssno'];
         $tinno                   = $_POST['tinno'];
         $agencyemployeeno        = $_POST['agencyemployeeno'];
-        $dual                    = $_POST['dual'];
-        $filipino                = $_POST['filipino'];
-        $birth                   = $_POST['birth'];
-        $naturalization          = $_POST['naturalization'];
+        $citizenship                    = $_POST['citizenship'];
+        $dualchoice                = $_POST['dualchoice'];
         $residentialaddress      = $_POST['residentialaddress'];
         $permanentaddress        = $_POST['permanentaddress'];
         $telephoneno             = $_POST['telephoneno'];
         $mobileno                = $_POST['mobileno'];
         $emailprofile            = $_POST['emailprofile'];
 
-        $flag = array();
-        $message  = '';
-        if (empty($lastname) ){
-          $message .= 'LASTNAME EMPTY';
+       /* if(1 === preg_match('~[0-9]~', $string)){
+          #has numbers
+      }*/
+
+        if (($employeeid == null) || ($employeeid == '') ){
+          $flag = true;
+          $message .= 'Employee ID must not be blank <br>
+          ';
         }
-        $flag['message'] =  $message;
+        if (($firstname == null) || ($firstname == '') || (preg_match('~[0-9]+~', $firstname))){
+          $flag = true;
+          $message .= 'First Name must not be blank or not correct format <br>
+          ';
+        }
+        if (($middlename == null) || ($middlename == '') || (preg_match('~[0-9]+~', $middlename))){
+          $flag = true;
+          $message .= 'Middle Name must not be blank or not correct format <br>
+          ';
+        }
+        if (($lastname == null) || ($lastname == '') || (preg_match('~[0-9]+~', $lastname))){
+          $flag = true;
+          $message .= 'Last Name must not be blank or not correct format <br>
+          ';
+        }
 
-        $dateAdded = date("Y-m-d H:i:s");
-        $sqlProfile = 'UPDATE tbl_employee
-        SET FIRSTNAME           = "'.$firstname.'",
-        MIDDLENAME              = "'.$middlename.'", 
-        LASTNAME                = "'.$lastname.'", 
-        EXTENSION               = "'.$extension.'", 
-        EMPLOYEEID              = "'.$employeeid.'", 
-        POSITION                = "'.$position.'", 
-        DATEHIRED               = "'.$datehired.'", 
-        USERNAME                = "'.$username.'", 
-        PASSWORD                = "'.$password.'"
+        if (!$flag){
+
+          $dateAdded = date("Y-m-d H:i:s");
+          $sqlemployee = 'UPDATE tbl_employee
+          SET FIRSTNAME           = "'.$firstname.'",
+          MIDDLENAME              = "'.$middlename.'", 
+          LASTNAME                = "'.$lastname.'", 
+          EXTENSION               = "'.$extension.'", 
+          EMPLOYEEID              = "'.$employeeid.'", 
+          POSITION                = "'.$position.'", 
+          DATEHIRED               = "'.$datehired.'", 
+          USERNAME                = "'.$username.'", 
+          PASSWORD                = "'.$password.'"
+          
+          WHERE ID = "'.$empid.'" ';
+          $result = mysqli_query($connect, $sqlemployee);
+
+          //var_dump($sqlemployee);
+          $sqlProfile = 'UPDATE tbl_employee_profile
+          SET DOB                 = "'.$dob.'", 
+          PLACEOFBIRTH            = "'.$placeofbirth.'", 
+          HEIGHT                  = "'.$height.'",
+          WEIGHT                  = "'.$weight.'", 
+          GENDER                  = "'.$gender.'", 
+          CIVILSTATUS             = "'.$civilstatus.'",
+          GSISNO                  = "'.$gsisno.'", 
+          PAGIBIGNO               = "'.$pagibigno.'", 
+          PHICNO                  = "'.$phicno.'", 
+          SSSNO                   = "'.$sssno.'", 
+          TINNO                   = "'.$tinno.'", 
+          AGENCYEMPLOYEENO        = "'.$agencyemployeeno.'", 
+          CITIZENSHIP                    = "'.$citizenship.'", 
+          DUALCITIZEN                   = "'.$dualchoice.'", 
+          RESIDENTIALADDRESS      = "'.$residentialaddress.'", 
+          PERMANENTADDRESS        = "'.$permanentaddress.'", 
+          TELEPHONENO             = "'.$telephoneno.'", 
+          MOBILENO                = "'.$mobileno.'", 
+          EMAIL                   = "'.$emailprofile.'"
+          
+          WHERE 
+          ID = "'.$profileid.'" AND 
+          EMPID = "'.$empid.'"';
+          $result = mysqli_query($connect, $sqlProfile);
+        }
         
+        $message .= '
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button></div>';
+
+        $message_final = '';
+
+        if ($flag){
+          $message_final = $message;
+        } else {
+          $message_final = $message_success;
+        }
        
-        WHERE ID = "'.$empid.'" ';
-        $result = mysqli_query($connect, $sqlProfile);
-
-        
-        $sqlProfile = 'UPDATE tbl_employee_profile
-        SET DOB                 = "'.$dob.'", 
-        PLACEOFBIRTH            = "'.$placeofbirth.'", 
-        HEIGHT                  = "'.$height.'",
-        WEIGHT                  = "'.$weight.'", 
-        GENDER                  = "'.$gender.'", 
-        CIVILSTATUS             = "'.$civilstatus.'",
-        GSISNO                  = "'.$gsisno.'", 
-        PAGIBIGNO               = "'.$pagibigno.'", 
-        PHICNO                  = "'.$phicno.'", 
-        SSSNO                   = "'.$sssno.'", 
-        TINNO                   = "'.$tinno.'", 
-        AGENCYEMPLOYEENO        = "'.$agencyemployeeno.'", 
-        CITIZENSHIP                    = "'.$dual.'", 
-        DUALCITIZEN                   = "'.$birth.'", 
-        RESIDENTIALADDRESS      = "'.$residentialaddress.'", 
-        PERMANENTADDRESS        = "'.$permanentaddress.'", 
-        TELEPHONENO             = "'.$telephoneno.'", 
-        MOBILENO                = "'.$mobileno.'", 
-        EMAIL                   = "'.$emailprofile.'"
-        
-        WHERE 
-        ID = "'.$profileid.'" AND 
-        EMPID = "'.$empid.'"';
-        $result = mysqli_query($connect, $sqlProfile);
-
-        
-
-        $a = array();
-        $b = array();
- 
-        $success = '<div class="alert alert-success">User Details Updated</div>';
-        $flag2 = 'LASTNAME EMPTY \\nLASTNAME EMPTY';
         $output = array(
-        'status'    => $success,
-        'flag'    =>$flag2
+        'status'    => $message_final
         );
   
         echo json_encode($output);
 
 
-
-        //////////////////////
-				/*$success = '<div class="alert alert-success">User Details Updated</div>';
-				
-          
-          $output = array(
-          'error'		=>	$error,
-          'success'	=>	$success
-          );
-
-          echo json_encode($output);*/
-        //////////////////
 
     }
   }
@@ -1405,8 +1207,18 @@ if (isset($_POST['action'])){
        
         $empid  = $_POST['employeeiddb'];
 
-        
+        $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Data Updated!</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>';
+        $message = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Please Check field/s below:</strong> <br>
+        ';
+        $flag = false;
 
+      
         $familyid                = $_POST['familyid'];
         $spouselastname          = $_POST['spouselastname'];
         $spousemiddlename        = $_POST['spousemiddlename'];
@@ -1427,30 +1239,58 @@ if (isset($_POST['action'])){
 
         
 
-        $sqlFamily = 'UPDATE tbl_employee_family
-        SET 
-        SPOUSELASTNAME            = "'.$spouselastname.'", 
-        SPOUSEFIRSTNAME           = "'.$spousefirstname.'", 
-        SPOUSEMIDDLENAME          = "'.$spousemiddlename.'", 
-        SPOUSEEXTENSION                  = "'.$spouseextension.'", 
-        OCCUPATION               = "'.$occupation.'", 
-        EMPLOYERNAME                  = "'.$employername.'", 
-        BUSINESSADDRESS                   = "'.$businessaddress.'", 
-        SPOUSETELNO                   = "'.$spousetelno.'", 
-        FATHERSURNAME        = "'.$fathersurname.'", 
-        FATHERFIRSTNAME                    = "'.$fatherfirstname.'", 
-        FATHERMIDDLENAME                   = "'.$fathermiddlename.'", 
-        FATHEREXT          = "'.$fatherext.'", 
-        MOTHERMAIDENNAME      = "'.$mothermaidenname.'", 
-        MOTHERSURNAME        = "'.$mothersurname.'", 
-        MOTHERFIRSTNAME             = "'.$motherfirstname.'", 
-        MOTHERMIDDLENAME                = "'.$mothermiddlename.'" 
+        //CONDITION 
+        /*if (preg_match('~[0-9]+~', $middlename)){
+          $flag = true;
+          $message .= 'Father Surname not correct format <br>
+          ';
+        }*/
        
-        WHERE EMPID = "'.$_POST["employeeiddb"].'" AND ID = "'.$_POST["familyid"].'" ';
+
+        if (!$flag){
+          $sqlFamily = 'UPDATE tbl_employee_family
+          SET 
+          SPOUSELASTNAME            = "'.$spouselastname.'", 
+          SPOUSEFIRSTNAME           = "'.$spousefirstname.'", 
+          SPOUSEMIDDLENAME          = "'.$spousemiddlename.'", 
+          SPOUSEEXTENSION                  = "'.$spouseextension.'", 
+          OCCUPATION               = "'.$occupation.'", 
+          EMPLOYERNAME                  = "'.$employername.'", 
+          BUSINESSADDRESS                   = "'.$businessaddress.'", 
+          SPOUSETELNO                   = "'.$spousetelno.'", 
+          FATHERSURNAME        = "'.$fathersurname.'", 
+          FATHERFIRSTNAME                    = "'.$fatherfirstname.'", 
+          FATHERMIDDLENAME                   = "'.$fathermiddlename.'", 
+          FATHEREXT          = "'.$fatherext.'", 
+          MOTHERMAIDENNAME      = "'.$mothermaidenname.'", 
+          MOTHERSURNAME        = "'.$mothersurname.'", 
+          MOTHERFIRSTNAME             = "'.$motherfirstname.'", 
+          MOTHERMIDDLENAME                = "'.$mothermiddlename.'" 
         
+          WHERE EMPID = "'.$_POST["employeeiddb"].'" AND ID = "'.$_POST["familyid"].'" ';
+        
+          $result = mysqli_query($connect, $sqlFamily);
+        }
+        $message .= '
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button></div>';
+
+        $message_final = '';
+
+        if ($flag){
+          $message_final = $message;
+        } else {
+          $message_final = $message_success;
+        }
+       
+        $output = array(
+        'status'    => $message_final
+        );
+  
+        echo json_encode($output);
 
 
-        $result = mysqli_query($connect, $sqlFamily);
     }
   }
 
