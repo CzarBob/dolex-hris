@@ -1093,6 +1093,7 @@ if (isset($_POST['action'])){
         $placeofbirth            = $_POST['placeofbirth'];
         $height                  = $_POST['height'];
         $weight                  = $_POST['weight'];
+        $bloodtype               = $_POST['bloodtype'];
         $gsisno                  = $_POST['gsisno'];
         $pagibigno               = $_POST['pagibigno'];
         $phicno                  = $_POST['phicno'];
@@ -1154,7 +1155,8 @@ if (isset($_POST['action'])){
           SET DOB                 = "'.$dob.'", 
           PLACEOFBIRTH            = "'.$placeofbirth.'", 
           HEIGHT                  = "'.$height.'",
-          WEIGHT                  = "'.$weight.'", 
+          WEIGHT                  = "'.$weight.'",
+          BLOODTYPE              = "'.$bloodtype.'", 
           GENDER                  = "'.$gender.'", 
           CIVILSTATUS             = "'.$civilstatus.'",
           GSISNO                  = "'.$gsisno.'", 
@@ -1174,7 +1176,10 @@ if (isset($_POST['action'])){
           WHERE 
           ID = "'.$profileid.'" AND 
           EMPID = "'.$empid.'"';
+
+          
           $result = mysqli_query($connect, $sqlProfile);
+
         }
         
         $message .= '

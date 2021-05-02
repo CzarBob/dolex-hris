@@ -147,7 +147,7 @@ include 'main_load_query.php';
                   <div class="card bg-primary text-white mb-4"> <!--id="totEmp"-->
                       <div class="card-body" >Total Employees: <span > </span></div>
                       <div class="card-footer d-flex align-items-center justify-content-between">
-                          <a class="large text-black stretched-link"  id="totEmp" href="employee">View Details</a>
+                          <a class="large text-black stretched-link"  id="totEmp" href="employee_detail">View Details</a>
                           <div class="small text-black"><i class="fas fa-angle-right"></i></div>
                       </div>
                   </div>
@@ -302,45 +302,7 @@ include 'main_load_query.php';
       </div>
     </div>
   
-<div class="modal" id="release_mod" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content" id = "data">
 
-      </div>
-    </div>
-  </div>
-<div class="modal fade" id="record_added" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Success</h5>
-        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
-      </div>
-      <div class="modal-body">Record Successfully Added!</div>
-      <div class="modal-footer">
-        <button class="btn btn-success" type="button" data-dismiss="modal">Ok</button>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="modal fade" id="record_released" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Success</h5>
-        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
-      </div>
-      <div class="modal-body">Record Successfully Released!</div>
-      <div class="modal-footer">
-        <button class="btn btn-success" type="button" data-dismiss="modal">Ok</button>
-      </div>
-    </div>
-  </div>
-</div>
 <!-- Date range Modal -->
 <div class="modal" tabindex="-1" id="dateRangeModal" role="dialog">
   <div class="modal-dialog" role="document">
@@ -434,13 +396,37 @@ include 'main_load_query.php';
           },
         success:function(response){
           var values = $.parseJSON(response);
-          //alert(values.totalEmployee);
+          
           $("#totEmp").text(values.totalEmployee);
 
         }
       });
 
+      fetch_dashboard_employee();
+
+
+
     }  
+
+
+    function fetch_dashboard_employee(){
+        var action = 'fetch_dashboard_employee';
+        var dataTable = $('#user_data').DataTable({
+        /* "processing" : true,
+          "serverSide" : true,
+          "columnDefs": [{ "orderable": false, "targets":[0,1] }],
+          "order" : [],*/
+          "ajax" : {
+          url:"main_load_query.php",
+          type:"POST",
+          data:{
+              action:action
+                    },
+          },
+          success:function(){
+          }
+        });
+      }  
 
 
 
@@ -448,27 +434,27 @@ include 'main_load_query.php';
       var username = $('#username').val();
       var password = $('#password').val();
       if(username!="" && password!=""){
-      $.ajax({
-        url:"login",  
-        method:"post",  
-        data:{
-          login:"login",
-          username:username,
-          password:password
-          },
-        success:function(response){
-          if(response=="success"){
-              window.location.href="main";
+        $.ajax({
+          url:"login",  
+          method:"post",  
+          data:{
+            login:"login",
+            username:username,
+            password:password
+            },
+          success:function(response){
+            if(response=="success"){
+                window.location.href="main";
+            }
+            /*if(response=="others"){
+                window.location.href="admin";
+            }*/
+            if(response=="fail"){
+              $('#error_login').modal('show');
+            }
           }
-          /*if(response=="others"){
-              window.location.href="admin";
-          }*/
-          if(response=="fail"){
-            $('#error_login').modal('show');
-          }
-        }
-      });  
-    }
+        });  
+      }
     else{
       $('#error_blank').modal('show');
     }

@@ -2009,7 +2009,7 @@ include 'view_employee_load_query.php';
 
     <!-- UPDATE PERSONAL DETAILS FORM -->
     <div class="modal fade" id="modalEditPersonalDetailsForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-      aria-hidden="true">
+      aria-hidden="true" >
       <div class="modal-dialog" style="max-width: 80%;" role="document">
         <div class="modal-content">
           <div class="modal-header text-center">
@@ -2088,7 +2088,7 @@ include 'view_employee_load_query.php';
               <div class="form-group col-md-2">
 
                 <label for="inputCity">Date of Birth</label>
-                <input type="date" class="form-control" id="dob_update">
+                <input type="date" class="form-control" id="dobprofile_update">
               </div>
               <!-- Default input -->
               <div class="form-group col-md-8">
@@ -2214,11 +2214,8 @@ include 'view_employee_load_query.php';
               <!-- Default input -->
               <div class="form-group col-md-10">
                 <label for="inputCity">Permanent Address</label><br>
-                <input class="form-check-input" type="checkbox" id="permanentaddress_update" name="addressCheck_update">
-                <label class="form-check-label" for="gridCheck1">
-                  Same with Residential Address
-                </label>
-                <input type="text" class="form-control" id="permanentaddress">
+                
+                <input type="text" class="form-control" id="permanentaddress_update">
               </div>
             </div>
 
@@ -2254,7 +2251,7 @@ include 'view_employee_load_query.php';
 
     <!-- UPDATE FAMILY BACKGROUND FORM -->
     <div class="modal fade" id="modalEditFamilyBackgroundForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-      aria-hidden="true">
+      aria-hidden="true" data-backdrop="static" data-keyboard="false"ss>
       <div class="modal-dialog" style="max-width: 80%;" role="document">
         <div class="modal-content">
           <div class="modal-header text-center">
@@ -2398,6 +2395,30 @@ include 'view_employee_load_query.php';
 
             <button class="btn btn-primary" data-toggle="modal" data-target="#confirmFamilyBackgroundModal" >Update data</button>
             <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+  
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Data Process Result</h5>
+            <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+          <span id="message_subdata">
+          </span></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+              Close
+            </button>
+            <!--<button type="button" class="btn btn-primary">Save changes</button>-->
           </div>
         </div>
       </div>

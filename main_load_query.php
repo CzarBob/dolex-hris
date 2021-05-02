@@ -53,6 +53,60 @@ if (isset($_POST['action'])){
 }
 
 
+if (isset($_POST['action'])){
+  if ($_POST['action'] == 'fetch_dashboard_employee'){
+
+      $query = "SELECT * FROM tbl_employee  where  CANCELLED != 'Y'";
+
+      if(isset($_POST["search"]["value"])){
+      $query .= ' AND (FIRSTNAME LIKE "%'.$_POST["search"]["value"].'%" 
+      OR MIDDLENAME LIKE "%'.$_POST["search"]["value"].'%" 
+      OR LASTNAME LIKE "%'.$_POST["search"]["value"].'%" 
+      OR EMPLOYEEID LIKE "%'.$_POST["search"]["value"].'%" ) 
+      ';
+      }
+
+
+      $query .= ' ORDER BY ID DESC ';
+      $query1 = '';
+
+      $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
+
+      $result = mysqli_query($connect, $query . $query1);
+
+      $data = array();
+      
+      while($row = mysqli_fetch_array($result)){
+        
+        $sub_array = array();
+        $sub_array[] = $row["EMPLOYEEID"];
+        $sub_array[] = $row["FIRSTNAME"];
+        $sub_array[] = $row["MIDDLENAME"];
+        $sub_array[] = $row["LASTNAME"];
+        $data[] = $sub_array;
+      }
+
+      function get_all_employee_data($connect){
+      $query = "SELECT * FROM tbl_employees where CANCELLED = 'N'";
+      $result = mysqli_query($connect, $query);
+      return mysqli_num_rows($result);
+      }
+
+      $output = array(
+      //"draw"    => intval($_POST["draw"]),
+      //"employeeTotal"  =>  get_all_employee_data($connect),
+      //"recordsFiltered" => $number_filter_row,
+
+      "data"    => $data
+      );
+
+      echo json_encode($output);
+
+  }
+}
+
+
+
 
 
 

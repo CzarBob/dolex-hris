@@ -383,7 +383,9 @@ if ($_SESSION['username'] == ""){
         success:function(){
         }
       });
-    }  
+    }
+    
+    
 
     $('#generateReport').click(function(){
       var fromDate = $('#fromDate').val();

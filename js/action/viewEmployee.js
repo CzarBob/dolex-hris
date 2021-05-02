@@ -269,6 +269,7 @@
                                     $('#placeofbirth').val(data.data_profile.placeofbirth);
                                     $('#height').val(data.data_profile.height);
                                     $('#weight').val(data.data_profile.weight);
+                                    $('#bloodtype').val(data.data_profile.bloodtype);
                                     $('#gsisno').val(data.data_profile.gsisno);
                                     $('#pagibigno').val(data.data_profile.pagibigno);
                                     $('#phicno').val(data.data_profile.phicno);
@@ -319,18 +320,6 @@
                             fetch_other_skill_data();
                             fetch_other_recognition_data();
                             fetch_other_membership_data();
-
-
-
-
-                            $("input[type=checkbox][name='addressCheck']").change(function() {
-                                
-                                var text1 = document.getElementById("residentialaddress").value;
-                                var text2 = document.getElementById("permanentaddress").value;
-                                if(this.checked) {
-                                    document.getElementById("permanentaddress").value = text1;
-                                } 
-                            });
                 }  
 
 
@@ -559,11 +548,11 @@
                         
 
 
-                        $('#residentialaddress').val(values.data_profile.residentialaddress);
-                        $('#permanentaddress').val(values.data_profile.permanentaddress);
-                        $('#telephoneno').val(values.data_profile.telephoneno);
-                        $('#mobileno').val(values.data_profile.mobileno);
-                        $('#emailprofile').val(values.data_profile.email);
+                        $('#residentialaddress_update').val(values.data_profile.residentialaddress);
+                        $('#permanentaddress_update').val(values.data_profile.permanentaddress);
+                        $('#telephoneno_update').val(values.data_profile.telephoneno);
+                        $('#mobileno_update').val(values.data_profile.mobileno);
+                        $('#emailprofile_update').val(values.data_profile.email);
    
                        
                         $('#modal_title').text('Edit Profile Data');
@@ -701,10 +690,11 @@
                 var civilstatus             = $('#civilstatus_update').val();
                 
                 var profileid               = $('#profileid').val();
-                var dob                     = $('#dob_update').val();
+                var dob                     = $('#dobprofile_update').val();
                 var placeofbirth            = $('#placeofbirth_update').val();
                 var height                  = $('#height_update').val();
                 var weight                  = $('#weight_update').val();
+                var bloodtype               = $('#bloodtype_update').val();    
                 var gsisno                  = $('#gsisno_update').val();
                 var pagibigno               = $('#pagibigno_update').val();
                 var phicno                  = $('#phicno_update').val();
@@ -712,14 +702,11 @@
                 var tinno                   = $('#tinno_update').val();
                 var agencyemployeeno        = $('#agencyemployeeno_update').val();
                 var citizenship             = $('#citizenship_update').val();
-                if ($('#dualchoice').prop("disabled") == false){
+                if ($('#dualchoice_update').prop("disabled") == false){
                     var dualchoice                = $('#dualchoice_update').val();
                 } else {
                     var dualchoice                = "NA";
                 }
-                
-                var birth                   = $('#birth_update').val();
-                var naturalization          = $('#naturalization_update').val();
                 var residentialaddress      = $('#residentialaddress_update').val();
                 var permanentaddress        = $('#permanentaddress_update').val();
                 var telephoneno             = $('#telephoneno_update').val();
@@ -747,7 +734,8 @@
                         dob:dob,             
                         placeofbirth:placeofbirth,    
                         height:height,          
-                        weight:weight,          
+                        weight:weight,
+                        bloodtype:bloodtype,          
                         gsisno:gsisno,          
                         pagibigno:pagibigno,       
                         phicno:phicno,          
@@ -769,6 +757,7 @@
                         $('#modalEditPersonalDetailsForm').modal('hide');
                         $('#confirmPersonalDetailsModal').modal('hide');
                         fetch_single_input();
+                       
                         
                         $('#message').html(data.status);
                         setTimeout(function(){
@@ -833,6 +822,7 @@
                             $('#placeofbirth').val(data.data_profile.placeofbirth);
                             $('#height').val(data.data_profile.height);
                             $('#weight').val(data.data_profile.weight);
+                            $('#bloodtype').val(data.data_profile.bloodtype);
                             $('#gsisno').val(data.data_profile.gsisno);
                             $('#pagibigno').val(data.data_profile.pagibigno);
                             $('#phicno').val(data.data_profile.phicno);
