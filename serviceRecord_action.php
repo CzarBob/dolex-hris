@@ -229,8 +229,9 @@ if (isset($_POST['action'])){
         DETAILS =  "'.$details.'",
         CANCELLED = "N"
         '; 
+        $result = mysqli_query($connect,$que );
 
-
+/*
         $sub_array = array();
         $sub_array[] = $row["ID"];
         $sub_array[] = $row["EMPID"];
@@ -253,7 +254,7 @@ if (isset($_POST['action'])){
              
       
   
-        $data[] = $sub_array;
+        $data[] = $sub_array;*/
       
     }
   }

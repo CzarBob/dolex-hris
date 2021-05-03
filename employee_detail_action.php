@@ -103,7 +103,7 @@ if (isset($_POST['action'])){
       WHERE ID = "'.$_POST["id"].'" AND CANCELLED = "N" ';
 
     //echo $query;
-    print_r($query);
+    //print_r($query);
 
 
     $result = mysqli_query($connect, $query );

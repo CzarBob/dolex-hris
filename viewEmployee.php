@@ -34,7 +34,7 @@ include 'view_employee_load_query.php';
   <script src="js/sb-admin-2.min.js"></script>
 
   <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css" rel="stylesheet">
->
+
 
   <!-- Custom styles for this page -->
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -972,7 +972,7 @@ include 'view_employee_load_query.php';
                         </div>
                         <div class="card-body">
                           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary"></h6><button class="btn btn-success btn-sm"
+                            <h6 class="m-0 font-weight-bold text-primary"></h6><button type="button" class="btn btn-success btn-sm"
                               data-toggle="modal" data-target="#otherMembershipForm"> Add Membership in
                               Organization</button>
                           </div>
@@ -1840,7 +1840,7 @@ include 'view_employee_load_query.php';
 
   <!-- ADD OTHER SKILL FORM -->
   <div class="modal fade" id="otherSkillForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-    aria-hidden="true">
+    aria-hidden="true" >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header text-center">
@@ -1891,7 +1891,7 @@ include 'view_employee_load_query.php';
   </div>
 
   <!-- ADD OTHER MEMBERSHIP FORM -->
-  <div class="modal fade" id="otherMembershipForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  <div class="modal fade" id="otherMembershipForm" tabindex="-1" role="dialog" data-backdrop="false"  aria-labelledby="myModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -2251,7 +2251,7 @@ include 'view_employee_load_query.php';
 
     <!-- UPDATE FAMILY BACKGROUND FORM -->
     <div class="modal fade" id="modalEditFamilyBackgroundForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-      aria-hidden="true" data-backdrop="static" data-keyboard="false"ss>
+      aria-hidden="true" data-backdrop="static" data-keyboard="false">
       <div class="modal-dialog" style="max-width: 80%;" role="document">
         <div class="modal-content">
           <div class="modal-header text-center">

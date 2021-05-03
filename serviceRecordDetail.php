@@ -475,7 +475,7 @@ include 'serviceRecordDetail_load_query.php';
 
     <!-- ADD SERVICE RECORD FORM -->
     <div class="modal fade" id="modalServiceRecordForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
+      <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header text-center">
             <h4 class="modal-title w-100 font-weight-bold" id="modal_title">Add Service Record</h4>
@@ -502,7 +502,7 @@ include 'serviceRecordDetail_load_query.php';
             <div class="md-form mb-5">
        
               <label data-error="wrong" data-success="right" for="form29">Designation</label>
-              <input type="text" name="designation" id = "designation" class="form-control validate" required>
+              <input type="text" name="designation" id = "designation" class="form-control validate"  required>
              
             </div>
             <div class="md-form mb-5">
@@ -551,9 +551,6 @@ include 'serviceRecordDetail_load_query.php';
         </div>
       </div>
     </div>
-
-
-    
 
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

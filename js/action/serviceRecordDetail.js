@@ -139,10 +139,22 @@
                                     action:'add_service_record'
                                 },
                                 success:function(data){
-                                alert("Data Added");
-
-                                $('#service_record_data').DataTable().ajax.reload();
-                                $('#modalServiceRecordForm').modal('hide');
+                                    alert("Data Added");
+                                    $('#service_from').val('');
+                                    $('#service_to').val('');
+                                    $('#designation').val('');
+                                    $('#status').val('');
+                                    $('#salary').val('');
+                                    $('#office').val('');
+                                    $('#branch').val('');
+                                    $('#abs').val('');
+                                    $('#separation_date').val('');
+                                    $('#amount_received').val('');
+                                    $('#details').val('');
+                                    $('#service_record_data').DataTable().ajax.reload();
+                                    $('#modalServiceRecordForm').modal('hide');
+                                    
+                                   
                                
                                 }     
                             }); 

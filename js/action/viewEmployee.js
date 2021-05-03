@@ -13,10 +13,6 @@
             }
         }); 
         TableData.shift();
-
-
-
-
         $.ajax({
                 url: 'view_employee_action.php',
                 type: 'post',
@@ -1069,6 +1065,7 @@
 
                                 $('#civil_data').DataTable().ajax.reload();
                                 $('#modalEligibilityForm').modal('hide');
+                                
                                
                                 }     
                             }); 
@@ -1475,10 +1472,11 @@
                                     action:'add_other_skill'
                                 },
                                 success:function(data){
-                                alert("Data Added");
+                               
 
                                 $('#other_skill_data').DataTable().ajax.reload();
                                 $('#otherSkillForm').modal('hide');
+                                alert("Data Added");
                             
                                 }     
                             }); 
