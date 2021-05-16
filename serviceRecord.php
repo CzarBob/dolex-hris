@@ -40,7 +40,7 @@ if ($_SESSION['username'] == ""){
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="main">
         <img class = "icon" src = "img/dolelogogs.png" width = "60"></img>
-        <div class="sidebar-brand-text mx-3">Admin Panel</div>
+        <div class="sidebar-brand-text mx-3">DOLE-X HRIS</div>
       </a>
 
       <hr class="sidebar-divider my-0">
@@ -62,7 +62,7 @@ if ($_SESSION['username'] == ""){
       </li>
       
       <li class="nav-item active">
-        <a class="nav-link" href="employee_detail">
+        <a class="nav-link" href="serviceRecord">
           <i class="fas fa-fw fa-lg fa-check-square"></i>
           <span>Service Records</span>
         </a>
@@ -131,8 +131,6 @@ if ($_SESSION['username'] == ""){
                 </a>
               </div>
             </li>
-
-         
           </ul>
         </nav>
         <div class="container-fluid">
@@ -140,8 +138,8 @@ if ($_SESSION['username'] == ""){
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
               <h6 class="m-0 font-weight-bold text-primary">Employee Service Record</h6>
              
-              <!--<a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#addEmployeeForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Employee</a>
-              <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#dateRangeModal" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Generate Report</a> -->
+             <!-- <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#addEmployeeForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Employee</a>
+              <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#record_added" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Generate Report</a> -->
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -157,11 +155,11 @@ if ($_SESSION['username'] == ""){
                   </thead>
                   <tfoot class = "text-primary">
                     <tr>
-                      <th>Process Name</th>
-                      <th>Rating</th>
-                      <th>Full Name</th>
-                      <th>Email</th>
-                      <th>Comment</th>
+                      <th>EMPLOYEE ID</th>
+                      <th>FIRST NAME</th>
+                      <th>MIDDLE NAME</th>
+                      <th>LAST NAME</th>
+                      <th>ACTION</th>
                     </tr>
                   </tfoot>
                 </table>
@@ -207,15 +205,7 @@ if ($_SESSION['username'] == ""){
       </div>
     </div>
   </div>
-    
-  
-<div class="modal" id="release_mod" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content" id = "data">
 
-      </div>
-    </div>
-  </div>
 <div class="modal fade" id="record_added" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -225,29 +215,14 @@ if ($_SESSION['username'] == ""){
           <span aria-hidden="true">×</span>
         </button>
       </div>
-      <div class="modal-body">Record Successfully Added!</div>
+      <div class="modal-body">Record Successfully Updated!</div>
       <div class="modal-footer">
         <button class="btn btn-success" type="button" data-dismiss="modal">Ok</button>
       </div>
     </div>
   </div>
 </div>
-<div class="modal fade" id="record_released" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Success</h5>
-        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
-      </div>
-      <div class="modal-body">Record Successfully Released!</div>
-      <div class="modal-footer">
-        <button class="btn btn-success" type="button" data-dismiss="modal">Ok</button>
-      </div>
-    </div>
-  </div>
-</div>
+
 <!-- Date range Modal -->
 <div class="modal" tabindex="-1" id="dateRangeModal" role="dialog">
   <div class="modal-dialog" role="document">
@@ -352,140 +327,39 @@ if ($_SESSION['username'] == ""){
 
   $(document).ready(function(){
 
+      $('#generateReport').click(function(){
+        var fromDate = $('#fromDate').val();
+        var toDate = $('#toDate').val();
 
-
-
-  $('#generateReport').click(function(){
-     var fromDate = $('#fromDate').val();
-     var toDate = $('#toDate').val();
-
-    alert(fromDate);
-     if(fromDate!="" && toDate!=""){
-     $.ajax({
-      url:"export",  
-      method:"post",  
-      data:{
-        export:"export",
-        fromDate:fromDate,
-        toDate:toDate
-        },
-      success:function(response){
-       /* if(response=="success"){
-            window.location.href="index";
-        }
-        if(response=="others"){
-            window.location.href="admin";
-        }
-        if(response=="fail"){
-          $('#error_login').modal('show');
-        }*/
-        $('#dateRangeModal').modal('hide');
+        alert(fromDate);
+        if(fromDate!="" && toDate!=""){
+        $.ajax({
+          url:"export",  
+          method:"post",  
+          data:{
+            export:"export",
+            fromDate:fromDate,
+            toDate:toDate
+            },
+          success:function(response){
+          /* if(response=="success"){
+                window.location.href="index";
+            }
+            if(response=="others"){
+                window.location.href="admin";
+            }
+            if(response=="fail"){
+              $('#error_login').modal('show');
+            }*/
+            $('#record_added').modal('hide');
+          }
+        });  
       }
-    });  
-   }
-   else{
-    $('#error_blank').modal('show');
-   }
+      else{
+        $('#error_blank').modal('show');
+      }
+      }); 
   }); 
-}); 
-
-
-
-
-$(document).on('click', '#add_employee', function(){
-          var add_employee = "Success";
-          //validateData();
-          //var answer = validateData();
-          var empid = $('#empid').val();
-          var firstname = $('#firstname').val();
-          var middlename = $('#middlename').val();
-          var lastname = $('#lastname').val();
-          /*var email = $('#email').val();
-          var position = $('#position').val();
-          var datehired = $('#datehired').val();
-          //var rating = document.querySelector('input[name="optradio"]:checked').value;
-          var province = document.querySelector('input[name="province"]:selected').value;
-          var slcredit = $('#slcredit').val();
-          var vlcredit = $('#vlcredit').val();*/
-
-         
-
-       //if(answer == 'N'){ //COMMENTED, USED FOR VALIDATION
-              $.ajax({
-                url:"insertEmployee",
-                method:"POST",
-                data:{
-                  add_employee:add_employee,
-                  empid:empid, 
-                  firstname:firstname, 
-                  middlename:middlename, 
-                  lastname:lastname/*,
-                  email:email,
-                  position:position,
-                  datehired:datehired,
-                  slcredit:slcredit,
-                  vlcredit:vlcredit,*/
-                },
-                success:function(data){
-                 //$('#add_employee').modal('hide');
-                  $('#empid').val('');
-                  $('#firstname').val('');
-                  $('#middlename').val('');
-                  $('#lastname').val('');
-                 /* $('#email').val('');
-                  $('#position').val('');
-                  $('#datehired').val('');
-                  $('#slcredit').val('');
-                  $('#vlcredit').val('');*/
-
-                
-                  //COMMENTED FOR THE MEAN TIME
-                // $('#user_data').DataTable().destroy();
-                  //fetch_data();
-                  alert("Data Added");
-                  
-                  $('#addEmployeeForm').modal('hide');
-                  
-                  setInterval('refreshPage()', 5000);
-                 
-                }     
-              }); 
-            //}
-            
-
-        });
-
-        function refreshPage() {
-              location.reload(true);
-          }
-
-
-
- 
-
-
-        function validateData() {
-        var flag = 'N';
-        var fullname=document.getElementById("fullname").value;
-        var email = document.getElementById("email").value;
-        //alert(email);
-        var fullnameTrim = fullname.trim();
-        var emailTrim = email.trim();
-        //check will be true or false
-       // alert(fullnameTrim.length);
-        if (fullnameTrim.length == 0){ 
-            alert("Full Name is empty");
-            flag = 'Y';
-          }
-
-        if (emailTrim.length == 0) {
-            alert("Email is empty");
-            flag = 'Y';
-        }
-       
-        return flag;
-        
-      }
   </script>
 
 </body>

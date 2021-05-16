@@ -579,9 +579,6 @@ include 'view_employee_load_query.php';
                                       <input type="text" name="mothermiddlename" id="mothermiddlename" 
                                         class="form-control validate" disabled>
                                     </div>
-
-
-
                                   </div>
                                 </div>
                             </div>
@@ -589,6 +586,7 @@ include 'view_employee_load_query.php';
                     <!-- END OF FAMILY BACKGROUND FORM -->
 
                         <div class="col-xl-12 col-lg-7">
+                        <span id="message2"></span>
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -968,10 +966,6 @@ include 'view_employee_load_query.php';
                                 <!-- END OF TAB CONTENT -->
                             </div>
                         </div>
-
-
-
-
                         <!-- UPDATE OR CANCEL SECTION -->
 
                         <div class="col-xl-12 col-lg-7">
@@ -980,10 +974,10 @@ include 'view_employee_load_query.php';
                                     <div class="col-md-12">
     
                                        <table class=" table">
-                                            <tr>
+                                          <!--  <tr>
                                                 <td style="width: 100%;" colspan="2" style = "align: center"><button  style="width: 100%;" class="btn btn-primary" id = "update_employee">     Update Employee Details  </button></td> 
                                                                                        
-                                            </tr>  
+                                            </tr>  -->
                                             <tr>
                                            
                                                 <td style="width: 100%;"  colspan="2" style = "align: left"><button  style="width: 100%;" class="btn btn-primary" id = "cancel_employee">     Cancel  </button></td>                                               
@@ -993,9 +987,6 @@ include 'view_employee_load_query.php';
                             </div>
                         </div>
                     </div>
-
-
-
                 </div>
                 <!-- /.container-fluid -->
             </div>
@@ -1403,7 +1394,7 @@ include 'view_employee_load_query.php';
           </div>
           <div class="modal-body mx-3">
           <div class="md-form mb-5">
-            <input type="hidden" name="workid" id = "workid" class="form-control validate" required> -->  
+            <input type="hidden" name="workid" id = "workid" class="form-control validate" required>   
             <label data-error="wrong" data-success="right" for="form34">Inclusive Date</label>
             <input type="date" name="work_date_from" id = "work_date_from" class="form-control validate" required> - 
             <input type="date" name="work_date_to" id = "work_date_to" class="form-control validate" required>
@@ -1445,7 +1436,7 @@ include 'view_employee_load_query.php';
      
             <label data-error="wrong" data-success="right" for="form29">Government Service (Y/N)</label>
             <!--<input type="text" name="work_govt_service_update" id = "work_govt_service_update" class="form-control validate" required> -->
-            <select class="custom-select my-1 mr-sm-2" id="work_govt_service_update" name="work_govt_service_update">
+            <select class="custom-select my-1 mr-sm-2" id="work_govt_service" name="work_govt_service">
                 <option  value="NA" selected>Please Select</option>
                 <option value="Y">YES</option>
                 <option value="N">No</option>
@@ -1602,7 +1593,7 @@ include 'view_employee_load_query.php';
           <div class="md-form mb-5">
             <input type="hidden" name="volWorkid" id = "volWorkid" class="form-control validate" required> 
             <label data-error="wrong" data-success="right" for="form34">Organization</label>
-            <input type="text" name="volwork_organization_update" id = "volwork_organization_update" class="form-control validate" required> -        
+            <input type="text" name="volwork_organization_update" id = "volwork_organization_update" class="form-control validate" required>        
           </div>
    
           <div class="md-form mb-5">
@@ -1627,7 +1618,7 @@ include 'view_employee_load_query.php';
           </div>
           <div class="modal-footer d-flex justify-content-center">
           <!--<input type="hidden" name="eligibility_action_id" id = "eligibility_action_id" class="form-control validate" > --> 
-          <button class="btn btn-primary" id = "add_volwork">Submit data</button>
+          <button class="btn btn-primary" id = "submit_volwork">Submit data</button>
           <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
           </div>
         </div>
@@ -1754,7 +1745,7 @@ include 'view_employee_load_query.php';
           </div>
           <div class="modal-footer d-flex justify-content-center">
           <!--<input type="hidden" name="eligibility_action_id" id = "eligibility_action_id" class="form-control validate" > --> 
-          <button class="btn btn-primary" id = "update_landd">Submit data</button>
+          <button class="btn btn-primary" id = "submit_landd">Submit data</button>
           <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
           </div>
         </div>

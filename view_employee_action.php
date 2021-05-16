@@ -3,12 +3,7 @@
 include "dbConnection.php";
 $columns = array('process', 'rating','fullname', 'email', 'comment',  'date_submitted');
 session_start();
-//$_SESSION['query2'] = '';
-//var_dump($_POST['action']);
 
-/*if($_POST["length"] != -1){
- $query1 = 'LIMIT ' . $_POST['start'] . ', ' . $_POST['length'];
-}*/
 
 $query = '';
 
@@ -38,39 +33,7 @@ if (isset($_POST['action'])){
     $data = array();
     
     while($row = mysqli_fetch_array($result)){
-      /*if($_SESSION['received_by'] == "Receiving"){
-        $rel = $row["date_sent"];
-      }
-      else{
-        $rel = $row["date_released"];
-      }
-      $timestamp = $row["date_received"];
-      $delta_time = strtotime($rel) - strtotime($timestamp);
-      $days = floor($delta_time / 86400);
-      $delta_time %= 86400;
-      $hours = floor($delta_time / 3600);
-      $delta_time %= 3600;
-      $minutes = floor($delta_time / 60);
-      $delta_time %= 60;
-      $seconds = floor($delta_time / 1);
-      $time_cycle = "";
-      if($days==0){$dd = "";}else{if($days>1){$dd = "{$days} days";}else{$dd = "{$days} day";}}
-      if($hours==0){$hh = "";}else{if($hours>1){$hh = "{$hours} hours";}else{$hh = "{$hours} hour";}}
-      if($minutes==0){$mm = "";}else{if($minutes>1){$mm = "{$minutes} minutes";}else{$mm = "{$minutes} minute";}}
-      if($days!=0){$time_cycle = $dd." ".$hh;}else{$time_cycle = $hh." ".$mm." {$seconds} seconds";}
-      if(strlen($row["description"]) >= 25){
-        $description = "<a style = 'color:#0893b8;' class ='fas fa-info-circle' data-toggle='tooltip' title='".$row["description"]."'></a> ". $row["description"];
-      }
-      else{
-        $description = $row["description"];
-      }
-      if(strlen($row["type"]) >= 25){
-        $type = "<a style = 'color:#0893b8;' class ='fas fa-info-circle' data-toggle='tooltip' title='".$row["type"]."'></a> ". $row["type"];
-      }
-      else{
-        $type = $row["type"];
-      }
-      */
+      
       $sub_array = array();
         $sub_array['employeeid'] = $row['EMPLOYEEID'];
         $sub_array['firstname'] = $row['FIRSTNAME'];
@@ -85,22 +48,6 @@ if (isset($_POST['action'])){
         $sub_array['vlcredit'] = $row['VLCREDIT'];
 
 
-      //$sub_array[] = $row["EMPLOYEEID"];
-      /*$sub_array[] = 
-      "<form action='adminviewapplicant.php' method='POST'>
-                          <input type='hidden' name='tin' value='" . $row["FIRSTNAME"] . "'>
-                          <input type='hidden' name='id' value='" . $row["ID"] . "'>
-                <input type='submit' class ='btn btn-sm btn-info btn-block' name ='view' id = 'submit' value ='VIEW (?)'>
-              </form> ";*/
-    // $sub_array[] = "<a href='employee_detail.php'  id='ID' data-toggle='modal' data-id='".$row['ID']."'>View</a> /           
-    /*
-      $sub_array[] = $type;
-      $sub_array[] = $description;
-      $sub_array[] = (new DateTime($row["date_received"]))->format('M d, Y H:i:s');
-      $sub_array[] = $row["received_by"];
-      $sub_array[] = (new DateTime($rel))->format('M d, Y H:i:s');
-      $sub_array[] = $time_cycle;
-      $sub_array[] = $row["remarks"];*/
       $data[] = $sub_array;
     }
 
@@ -200,13 +147,6 @@ if (isset($_POST['action'])){
 
 
 
-
-   
-    //"draw"    => intval($_POST["draw"]),
-    //"recordsTotal"  =>  get_all_data($connect),
-    //"recordsFiltered" => $number_filter_row,
-
-
     $a = array();
     $b = array();
     $c = array();
@@ -229,8 +169,6 @@ if (isset($_POST['action'])){
 
     echo json_encode($output);
     //cho json_encode($sub_array);
-
-
   }
 }
 
@@ -385,14 +323,6 @@ if (isset($_POST['action'])){
         $sub_array_query_family['mothermiddlename']             = $row['MOTHERMIDDLENAME'];
         $data_family[] = $sub_array_query_family;
       }
-
-
-
-
-    
-      //"draw"    => intval($_POST["draw"]),
-      //"recordsTotal"  =>  get_all_data($connect),
-      //"recordsFiltered" => $number_filter_row,
 
       $c = array();
 
@@ -821,43 +751,105 @@ if (isset($_POST['action'])){
 
   if (isset($_POST['action'])){
     if ($_POST['action'] == 'add_children'){
-        
+
         $fullname = $_POST['fullname'];
         $dob = $_POST['dob'];
         $empid  = $_POST['employeeiddb'];
-        //var_dump($dob);
-        /*$dateOfBirth=$_POST['dob'];
-        $dob =  date_format($dateOfBirth,"Y/m/d");*/
 
-        $dateAdded = date("Y-m-d H:i:s");
-        $que = "INSERT INTO `tbl_employee_CHILDREN` SET 
-        EMPID = '".$empid."',
-        FULLNAME = '".$fullname."',
-        DOB = '".$dob."',
-        CANCELLED = 'N'
-        "; 
-        $query = $connect->query($que) or die($connect->error); 
 
+        $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Data Updated!</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>';
+        $message = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Please Check field/s:</strong> <br>
+        ';
+        $flag = false;
+
+        $currentDate = date("Y/m/d");
+
+        if (($fullname == null) || ($fullname == '') || (preg_match('~[0-9]+~', $fullname))){
+          $flag = true;
+          $message .= 'Name must not be blank or must be in correct format <br>
+          ';
+        }
+
+        if (($dob == null) || ($dob == '') || ($dob>= $currentDate)){
+          $flag = true;
+          $message .= 'Date of Birth must not be blank or must be in correct format <br>
+          ';
+        }
+
+        if (!$flag){
+
+          $dateAdded = date("Y-m-d H:i:s");
+          $que = "INSERT INTO `tbl_employee_CHILDREN` SET 
+          EMPID = '".$empid."',
+          FULLNAME = '".$fullname."',
+          DOB = '".$dob."',
+          CANCELLED = 'N'
+          "; 
+          $query = $connect->query($que) or die($connect->error);
+
+        }
+
+        $message_final = '';
+
+        if ($flag){
+          $message_final = $message;
+        } else {
+          $message_final = $message_success;
+        }
+       
+        $output = array(
+        'status'    => $message_final
+        );
+  
+        echo json_encode($output);
     }
   }
 
   if (isset($_POST['action'])){
     if ($_POST['action'] == 'add_educ'){
         
-        //var_dump($_SESSION['query2']);
-        $level                  = $_POST['level'];
-        $school_name            = $_POST['school_name'];
-        $empid                  = $_POST['employeeiddb'];
-        $educ                   = $_POST['educ'];
-        $attended_from          = $_POST['attended_from'];
-        $attended_to            = $_POST['attended_to'];
-        $highest_level               = $_POST['highest_level'];
-        $year_grad          = $_POST['year_grad'];
-        $honor_received         = $_POST['honor_received'];
-        
-        /*$dateOfBirth=$_POST['dob'];
-        $dob =  date_format($dateOfBirth,"Y/m/d");*/
+      $level                  = $_POST['level'];
+      $school_name            = $_POST['school_name'];
+      $empid                  = $_POST['employeeiddb'];
+      $educ                   = $_POST['educ'];
+      $attended_from          = $_POST['attended_from'];
+      $attended_to            = $_POST['attended_to'];
+      $highest_level               = $_POST['highest_level'];
+      $year_grad          = $_POST['year_grad'];
+      $honor_received         = $_POST['honor_received'];
+      
+      $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>Data Updated!</strong> 
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      </div>';
+      $message = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>Please Check field/s:</strong> <br>
+      ';
+      $flag = false;
 
+      $currentDate = date("Y/m/d");
+
+      if (($level == null) || ($level == '') || ($level == 'NA')){
+        $flag = true;
+        $message .= 'Educational Level must not be blank <br>
+        ';
+      }
+
+      if (($school_name == null) || ($school_name == '')){
+        $flag = true;
+        $message .= 'School Name must not be blank<br>
+        ';
+      }
+
+      if (!$flag){
         $dateAdded = date("Y-m-d H:i:s");
         $que = "INSERT INTO `tbl_employee_educ_background` SET 
         EMPID = '".$empid."',
@@ -871,41 +863,82 @@ if (isset($_POST['action'])){
         HONORRECEIVED = '".$honor_received."',
         CANCELLED = 'N'
         "; 
-
-        //var_dump($que);
         $query = $connect->query($que) or die($connect->error); 
+      }
 
+
+        $message_final = '';
+
+        if ($flag){
+          $message_final = $message;
+        } else {
+          $message_final = $message_success;
+        }
+       
+        $output = array(
+        'status'    => $message_final
+        );
+  
+        echo json_encode($output);
     }
   }
 
   if (isset($_POST['action'])){
     if ($_POST['action'] == 'add_eligibility'){
         
-        $empid                  = $_POST['employeeiddb'];
+        $empid                        = $_POST['employeeiddb'];
         $eligibility                  = $_POST['eligibility'];
-        $rating            = $_POST['rating'];
-        $date_of_exam                  = $_POST['date_of_exam'];
-        $place_of_exam                   = $_POST['place_of_exam'];
-        $license_no          = $_POST['license_no'];
-        $license_date            = $_POST['license_date'];
+        $rating                       = $_POST['rating'];
+        $date_of_exam                 = $_POST['date_of_exam'];
+        $place_of_exam                = $_POST['place_of_exam'];
+        $license_no                   = $_POST['license_no'];
+        $license_date                 = $_POST['license_date'];
 
-        
-        /*$dateOfBirth=$_POST['dob'];
-        $dob =  date_format($dateOfBirth,"Y/m/d");*/
+        $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Data Updated!</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>';
+        $message = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Please Check field/s:</strong> <br>
+        ';
+        $flag = false;
+  
+        $currentDate = date("Y/m/d");
+  
+        if (($eligibility == null) || ($eligibility == '')){
+          $flag = true;
+          $message .= 'Eligibility must not be blank <br>
+          ';
+        }
 
-        $dateAdded = date("Y-m-d H:i:s");
-        $que_eligibility = "INSERT INTO `tbl_employee_civil_service` SET 
-        EMPID = '".$empid."',
-        ELIGIBILITY = '".$eligibility."',
-        RATING = '".$rating."',
-        DATEOFEXAM = '".$date_of_exam."',
-        PLACEOFEXAM = '".$place_of_exam."',
-        LICENSENUMBER = '".$license_no."',
-        LICENSEDATEOFVALIDITY = '".$license_date."',
-        CANCELLED = 'N'"; 
+        if (!$flag){
+          $que_eligibility = "INSERT INTO `tbl_employee_civil_service` SET 
+          EMPID = '".$empid."',
+          ELIGIBILITY = '".$eligibility."',
+          RATING = '".$rating."',
+          DATEOFEXAM = '".$date_of_exam."',
+          PLACEOFEXAM = '".$place_of_exam."',
+          LICENSENUMBER = '".$license_no."',
+          LICENSEDATEOFVALIDITY = '".$license_date."',
+          CANCELLED = 'N'"; 
+          $query = $connect->query($que_eligibility) or die($connect->error);
+        }
 
-        //var_dump($que);
-        $query = $connect->query($que_eligibility) or die($connect->error); 
+        $message_final = '';
+
+        if ($flag){
+          $message_final = $message;
+        } else {
+          $message_final = $message_success;
+        }
+       
+        $output = array(
+        'status'    => $message_final
+        );
+  
+        echo json_encode($output);
 
     }
   }
@@ -923,25 +956,54 @@ if (isset($_POST['action'])){
         $work_status          = $_POST['work_status'];
         $work_govt_service            = $_POST['work_govt_service'];
 
-        /*$dateOfBirth=$_POST['dob'];
-        $dob =  date_format($dateOfBirth,"Y/m/d");*/
+        $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Data Updated!</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>';
+        $message = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Please Check field/s:</strong> <br>
+        ';
+        $flag = false;
+  
+        $currentDate = date("Y/m/d");
+  
+        if (($work_position == null) || ($work_position == '')){
+          $flag = true;
+          $message .= 'Work Position must not be blank <br>
+          ';
+        }
 
-        $dateAdded = date("Y-m-d H:i:s");
-        $que_work_exp = "INSERT INTO `tbl_employee_work_experience` SET 
-        EMPID = '".$empid."',
-        DATEFROM = '".$work_date_from."',
-        DATETO = '".$work_date_to."',
-        POSITION = '".$work_position."',
-        COMPANY = '".$work_company."',
-        MONTHLYSALARY = '".$work_salary."',
-        GRADE = '".$work_salary_grade."',
-        STATUS = '".$work_status."',
-        GOVTSERVICE = '".$work_govt_service."',
+        if (!$flag){
+          $que_work_exp = "INSERT INTO `tbl_employee_work_experience` SET 
+          EMPID = '".$empid."',
+          DATEFROM = '".$work_date_from."',
+          DATETO = '".$work_date_to."',
+          POSITION = '".$work_position."',
+          COMPANY = '".$work_company."',
+          MONTHLYSALARY = '".$work_salary."',
+          GRADE = '".$work_salary_grade."',
+          STATUS = '".$work_status."',
+          GOVTSERVICE = '".$work_govt_service."',
 
-        CANCELLED = 'N'"; 
+          CANCELLED = 'N'"; 
+          $query = $connect->query($que_work_exp) or die($connect->error); 
+        }
 
-        //var_dump($que);
-        $query = $connect->query($que_work_exp) or die($connect->error); 
+        $message_final = '';
+
+        if ($flag){
+          $message_final = $message;
+        } else {
+          $message_final = $message_success;
+        }
+       
+        $output = array(
+        'status'    => $message_final
+        );
+  
+        echo json_encode($output);
 
     }
   }
@@ -955,21 +1017,54 @@ if (isset($_POST['action'])){
         $volwork_date_to                  = $_POST['volwork_date_to'];
         $volwork_nohours                   = $_POST['volwork_nohours'];
         $volwork_position          = $_POST['volwork_position'];
+        
+        $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Data Updated!</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>';
+        $message = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Please Check field/s:</strong> <br>
+        ';
+        $flag = false;
+  
+        $currentDate = date("Y/m/d");
+  
+        if (($volwork_organization == null) || ($volwork_organization == '')){
+          $flag = true;
+          $message .= 'Organization/Company must not be blank <br>
+          ';
+        }
 
+        if (!$flag){
+          $dateAdded = date("Y-m-d H:i:s");
+          $que_vol_work = "INSERT INTO `tbl_employee_voluntary_work` SET 
+          EMPID = '".$empid."',
+          ORGANIZATION = '".$volwork_organization."',
+          DATEFROM = '".$volwork_date_from."',
+          DATETO = '".$volwork_date_to."',
+          NOOFHOURS = '".$volwork_nohours."',
+          POSITION = '".$volwork_position."',
+          CANCELLED = 'N'"; 
 
+          //var_dump($que);
+          $query = $connect->query($que_vol_work) or die($connect->error); 
+        }
 
-        $dateAdded = date("Y-m-d H:i:s");
-        $que_vol_work = "INSERT INTO `tbl_employee_work_experience` SET 
-        EMPID = '".$empid."',
-        ORGANIZATION = '".$volwork_organization."',
-        DATEFROM = '".$volwork_date_from."',
-        DATETO = '".$volwork_date_to."',
-        NOOFHOURS = '".$volwork_nohours."',
-        POSITION = '".$volwork_position."',
-        CANCELLED = 'N'"; 
+        $message_final = '';
 
-        //var_dump($que);
-        $query = $connect->query($que_vol_work) or die($connect->error); 
+        if ($flag){
+          $message_final = $message;
+        } else {
+          $message_final = $message_success;
+        }
+      
+        $output = array(
+        'status'    => $message_final
+        );
+
+        echo json_encode($output);
 
     }
   }
@@ -985,18 +1080,54 @@ if (isset($_POST['action'])){
         $landd_type          = $_POST['landd_type'];
         $landd_sponsoredby          = $_POST['landd_sponsoredby'];
 
-        $dateAdded = date("Y-m-d H:i:s");
-        $que_vol_work = "INSERT INTO `tbl_employee_work_experience` SET 
-        EMPID = '".$empid."',
-        ORGANIZATION = '".$volwork_organization."',
-        DATEFROM = '".$volwork_date_from."',
-        DATETO = '".$volwork_date_to."',
-        NOOFHOURS = '".$volwork_nohours."',
-        POSITION = '".$volwork_position."',
-        CANCELLED = 'N'"; 
+        $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Data Updated!</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>';
+        $message = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Please Check field/s:</strong> <br>
+        ';
+        $flag = false;
+  
+        $currentDate = date("Y/m/d");
+  
+        if (($landd_program == null) || ($landd_program == '')){
+          $flag = true;
+          $message .= 'Program must not be blank <br>
+          ';
+        }
 
-        //var_dump($que);
-        $query = $connect->query($que_vol_work) or die($connect->error);
+        if (!$flag){
+          $dateAdded = date("Y-m-d H:i:s");
+          $que_lad = "INSERT INTO `tbl_employee_ld` SET 
+          EMPID = '".$empid."',
+          PROGRAM = '".$landd_program."',
+          DATEFROM = '".$landd_date_from."',
+          DATETO = '".$landd_date_to."',
+          NOOFHOURS = '".$landd_nohours."',
+          TYPE = '".$landd_type."',
+          SPONSOREDBY = '".$landd_sponsoredby."',
+          CANCELLED = 'N'"; 
+
+          //var_dump($que);
+          $query = $connect->query($que_lad) or die($connect->error);
+        }
+
+        $message_final = '';
+
+        if ($flag){
+          $message_final = $message;
+        } else {
+          $message_final = $message_success;
+        }
+      
+        $output = array(
+        'status'    => $message_final
+        );
+
+        echo json_encode($output);
     }
   }
 
@@ -1005,7 +1136,26 @@ if (isset($_POST['action'])){
         
         $empid                      = $_POST['employeeiddb'];
         $other_skill                = $_POST['other_skill'];
-       
+        $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Data Updated!</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>';
+        $message = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Please Check field/s:</strong> <br>
+        ';
+        $flag = false;
+  
+        $currentDate = date("Y/m/d");
+  
+        if (($other_skill == null) || ($other_skill == '')){
+          $flag = true;
+          $message .= 'Field must not be blank <br>
+          ';
+        }
+
+        if (!$flag){
 
         $dateAdded = date("Y-m-d H:i:s");
         $que_other_skills = "INSERT INTO `tbl_employee_other_skills` SET 
@@ -1014,7 +1164,23 @@ if (isset($_POST['action'])){
         CANCELLED = 'N'"; 
 
         //var_dump($que);
-        $query = $connect->query($que_other_skills) or die($connect->error); 
+        $query = $connect->query($que_other_skills) or die($connect->error);
+        }
+
+        $message_final = '';
+
+        if ($flag){
+          $message_final = $message;
+        } else {
+          $message_final = $message_success;
+        }
+      
+        $output = array(
+        'status'    => $message_final
+        );
+
+        echo json_encode($output);
+
 
     }
   }
@@ -1024,17 +1190,52 @@ if (isset($_POST['action'])){
         
         $empid                      = $_POST['employeeiddb'];
         $other_recognition                = $_POST['other_recognition'];
-       
+        
+        $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Data Updated!</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>';
+        $message = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Please Check field/s:</strong> <br>
+        ';
+        $flag = false;
+  
+        $currentDate = date("Y/m/d");
+  
+        if (($other_recognition == null) || ($other_recognition == '')){
+          $flag = true;
+          $message .= 'Field must not be blank <br>
+          ';
+        }
 
-        $dateAdded = date("Y-m-d H:i:s");
-        $que_other_recognition = "INSERT INTO `tbl_employee_other_recognition` SET 
-        EMPID = '".$empid."',
-        RECOGNITION = '".$other_recognition."',
-        CANCELLED = 'N'"; 
+        if (!$flag){
 
-        //var_dump($que);
-        $query = $connect->query($que_other_recognition) or die($connect->error); 
+          $dateAdded = date("Y-m-d H:i:s");
+          $que_other_recognition = "INSERT INTO `tbl_employee_other_recognition` SET 
+          EMPID = '".$empid."',
+          RECOGNITION = '".$other_recognition."',
+          CANCELLED = 'N'"; 
 
+          //var_dump($que);
+          $query = $connect->query($que_other_recognition) or die($connect->error); 
+
+        }
+
+        $message_final = '';
+
+        if ($flag){
+          $message_final = $message;
+        } else {
+          $message_final = $message_success;
+        }
+      
+        $output = array(
+        'status'    => $message_final
+        );
+
+        echo json_encode($output);
     }
   }
 
@@ -1043,7 +1244,27 @@ if (isset($_POST['action'])){
         
         $empid                      = $_POST['employeeiddb'];
         $other_membership                = $_POST['other_membership'];
-       
+        
+        $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Data Updated!</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>';
+        $message = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Please Check field/s:</strong> <br>
+        ';
+        $flag = false;
+  
+        $currentDate = date("Y/m/d");
+  
+        if (($other_membership == null) || ($other_membership == '')){
+          $flag = true;
+          $message .= 'Field must not be blank <br>
+          ';
+        }
+
+        if (!$flag){
 
         $dateAdded = date("Y-m-d H:i:s");
         $que_other_membership = "INSERT INTO `tbl_employee_other_membership` SET 
@@ -1054,6 +1275,21 @@ if (isset($_POST['action'])){
         //var_dump($que);
         $query = $connect->query($que_other_membership) or die($connect->error); 
 
+        }
+
+        $message_final = '';
+
+        if ($flag){
+          $message_final = $message;
+        } else {
+          $message_final = $message_success;
+        }
+      
+        $output = array(
+        'status'    => $message_final
+        );
+
+        echo json_encode($output);
     }
   }
 
@@ -1306,21 +1542,56 @@ if (isset($_POST['action'])){
 
       $fullname = $_POST['fullname'];
       $dob = $_POST['dob'];
-      //$empid  = $_POST['employeeiddb'];
       $empid  = $_POST['id'];
-      
-      /*$dateOfBirth = $_POST['dob'];
-      $dob =  date_format($dateOfBirth,"Y/m/d");*/
-     
+
+      $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>Data Updated!</strong> 
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      </div>';
+      $message = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>Please Check field/s:</strong> <br>
+      ';
+      $flag = false;
+
+      $currentDate = date("Y/m/d");
+
+      if (($fullname == null) || ($fullname == '') || (preg_match('~[0-9]+~', $fullname))){
+        $flag = true;
+        $message .= 'Name must not be blank or must be in correct format <br>
+        ';
+      }
+
+      if (($dob == null) || ($dob == '') || ($dob>= $currentDate)){
+        $flag = true;
+        $message .= 'Date of Birth must not be blank or must be in correct format <br>
+        ';
+      }
+
+      if (!$flag){
 
       $query = 'UPDATE tbl_employee_children
       SET FULLNAME =  "'.$fullname.'",
       DOB = "'.$dob.'"
-
       WHERE ID = "'.$_POST["id"].'"';
 
-      //var_dump($query);
       $result = mysqli_query($connect, $query);
+      }
+
+      $message_final = '';
+
+      if ($flag){
+        $message_final = $message;
+      } else {
+        $message_final = $message_success;
+      }
+    
+      $output = array(
+      'status'    => $message_final
+      );
+
+      echo json_encode($output);
 
 
     }
@@ -1340,25 +1611,61 @@ if (isset($_POST['action'])){
         $year_grad          = $_POST['year_grad'];
         $honor_received         = $_POST['honor_received'];
         
-        /*$dateOfBirth=$_POST['dob'];
-        $dob =  date_format($dateOfBirth,"Y/m/d");*/
+        $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Data Updated!</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>';
+        $message = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Please Check field/s:</strong> <br>
+        ';
+        $flag = false;
+  
+        $currentDate = date("Y/m/d");
+  
+        if (($level == null) || ($level == '') || ($level == 'NA')){
+          $flag = true;
+          $message .= 'Level must not be blank  <br>
+          ';
+        }
+        if (($school_name == null) || ($school_name == '') ){
+          $flag = true;
+          $message .= 'School Name must not be blank  <br>
+          ';
+        }
 
+        if (!$flag){
+          $query = 'UPDATE tbl_employee_educ_background
+          SET SCHOOLNAME =  "'.$school_name.'",
+          LEVEL = "'.$level.'",
+          BASICEDUCATION = "'.$educ.'",
+          PERIODFROM =  "'.$attended_from.'",
+          PERIODTO = "'.$attended_to.'",
+          HIGHESTLEVEL =  "'.$highest_level.'",
+          YEARGRADUATED = "'.$year_grad.'",
+          HONORRECEIVED =  "'.$honor_received.'"
+        
+          WHERE ID = "'.$educid.'"';
 
+          //var_dump($query);
+          $result = mysqli_query($connect, $query);
+        }
 
-        $query = 'UPDATE tbl_employee_educ_background
-        SET SCHOOLNAME =  "'.$school_name.'",
-        LEVEL = "'.$level.'",
-        BASICEDUCATION = "'.$educ.'",
-        PERIODFROM =  "'.$attended_from.'",
-        PERIODTO = "'.$attended_to.'",
-        HIGHESTLEVEL =  "'.$highest_level.'",
-        YEARGRADUATED = "'.$year_grad.'",
-        HONORRECEIVED =  "'.$honor_received.'"
+        $message_final = '';
+
+        if ($flag){
+          $message_final = $message;
+        } else {
+          $message_final = $message_success;
+        }
       
-        WHERE ID = "'.$educid.'"';
+        $output = array(
+        'status'    => $message_final
+        );
 
-        //var_dump($query);
-        $result = mysqli_query($connect, $query);
+        echo json_encode($output);
+
 
 
     }
@@ -1376,21 +1683,56 @@ if (isset($_POST['action'])){
         $license_no            = $_POST['license_no'];
         $license_date               = $_POST['license_date'];
 
+        $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Data Updated!</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>';
+        $message = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Please Check field/s:</strong> <br>
+        ';
+        $flag = false;
+  
+        $currentDate = date("Y/m/d");
+  
+        if (($eligibility == null) || ($eligibility == '') ){
+          $flag = true;
+          $message .= 'Eligibility must not be blank <br>
+          ';
+        }
+  
+  
+        if (!$flag){
 
+          $query = 'UPDATE tbl_employee_civil_service
+          SET ELIGIBILITY =  "'.$eligibility.'",
+          RATING = "'.$rating.'",
+          DATEOFEXAM =  "'.$date_of_exam.'",
+          PLACEOFEXAM = "'.$place_of_exam.'",
+          LICENSENUMBER =  "'.$license_no.'",
+          LICENSEDATEOFVALIDITY = "'.$license_date.'"
 
-        $query = 'UPDATE tbl_employee_civil_service
-        SET ELIGIBILITY =  "'.$eligibility.'",
-        RATING = "'.$rating.'",
-        DATEOFEXAM =  "'.$date_of_exam.'",
-        PLACEOFEXAM = "'.$place_of_exam.'",
-        LICENSENUMBER =  "'.$license_no.'",
-        LICENSEDATEOFVALIDITY = "'.$license_date.'"
+        
+          WHERE ID = "'.$eligibilityid.'"';
 
+          $result = mysqli_query($connect, $query);
+        }
+
+        $message_final = '';
+
+        if ($flag){
+          $message_final = $message;
+        } else {
+          $message_final = $message_success;
+        }
       
-        WHERE ID = "'.$eligibilityid.'"';
+        $output = array(
+        'status'    => $message_final
+        );
 
-        //var_dump($query);
-        $result = mysqli_query($connect, $query);
+        echo json_encode($output);
+
 
 
     }
@@ -1409,26 +1751,182 @@ if (isset($_POST['action'])){
         $work_status            = $_POST['work_status'];
         $work_govt_service               = $_POST['work_govt_service'];
 
+        $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Data Updated!</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>';
+        $message = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Please Check field/s:</strong> <br>
+        ';
+        $flag = false;
+  
+        $currentDate = date("Y/m/d");
+        //if (($work_position == null) || ($work_position == '') || (preg_match('~[0-9]+~', $fullname))){
+        if (($work_position == null) || ($work_position == '')){
+          $flag = true;
+          $message .= 'Name must not be blank or must be in correct format <br>
+          ';
+        }
+  
+        
+  
+        if (!$flag){
+          $query = 'UPDATE tbl_employee_work_experience
+          SET DATEFROM =  "'.$work_date_from.'",
+          DATETO = "'.$work_date_to.'",
+          POSITION =  "'.$work_position.'",
+          COMPANY = "'.$work_company.'",
+          MONTHLYSALARY =  "'.$work_salary.'",
+          GRADE = "'.$work_salary_grade.'",
+          STATUS =  "'.$work_status.'",
+          GOVTSERVICE = "'.$work_govt_service.'"
 
+        
+          WHERE ID = "'.$workid.'"';
 
+          //var_dump($query);
+          $result = mysqli_query($connect, $query);
 
-        $query = 'UPDATE tbl_employee_work_experience
-        SET DATEFROM =  "'.$work_date_from.'",
-        DATETO = "'.$work_date_to.'",
-        POSITION =  "'.$work_position.'",
-        COMPANY = "'.$work_company.'",
-        MONTHLYSALARY =  "'.$work_salary.'",
-        GRADE = "'.$work_salary_grade.'",
-        STATUS =  "'.$work_status.'",
-        GOVTSERVICE = "'.$work_govt_service.'"
+        }
 
+        $message_final = '';
+
+        if ($flag){
+          $message_final = $message;
+        } else {
+          $message_final = $message_success;
+        }
       
-        WHERE ID = "'.$workid.'"';
+        $output = array(
+        'status'    => $message_final
+        );
 
-        //var_dump($query);
-        $result = mysqli_query($connect, $query);
+        echo json_encode($output);
+    }
+  }
 
+  if (isset($_POST['action'])){
+    if ($_POST['action'] == 'submit_volwork'){
+        $volworkid                  = $_POST['volworkid'];
+        $volwork_organization                  = $_POST['volwork_organization'];
+        $volwork_date_from            = $_POST['volwork_date_from'];
+        $empid                  = $_POST['employeeiddb'];
+        $volwork_date_to                   = $_POST['volwork_date_to'];
+        $volwork_nohours          = $_POST['volwork_nohours'];
+        $volwork_position            = $_POST['volwork_position'];
+    
 
+        $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Data Updated!</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>';
+        $message = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Please Check field/s:</strong> <br>
+        ';
+        $flag = false;
+  
+        $currentDate = date("Y/m/d");
+        //if (($work_position == null) || ($work_position == '') || (preg_match('~[0-9]+~', $fullname))){
+        if (($volwork_organization == null) || ($volwork_organization == '')){
+          $flag = true;
+          $message .= 'Organization/Company must not be blank  <br>
+          ';
+        }
+  
+        if (!$flag){
+          $query = 'UPDATE tbl_employee_voluntary
+          SET ORGANIZATION =  "'.$volwork_organization.'",
+          DATEFROM = "'.$volwork_date_from.'",
+          DATETO =  "'.$volwork_date_to.'",
+          NOOFHOURS = "'.$volwork_nohours.'",
+          POSITION =  "'.$volwork_position.'",
+    
+          WHERE ID = "'.$volworkid.'"';
+
+          //var_dump($query);
+          $result = mysqli_query($connect, $query);
+
+        }
+
+        $message_final = '';
+
+        if ($flag){
+          $message_final = $message;
+        } else {
+          $message_final = $message_success;
+        }
+      
+        $output = array(
+        'status'    => $message_final
+        );
+
+        echo json_encode($output);
+    }
+  }
+
+  if (isset($_POST['action'])){
+    if ($_POST['action'] == 'submit_landd'){
+        $landdid                  = $_POST['landdid'];
+        $landd_program                  = $_POST['landd_program'];
+        $landd_date_from            = $_POST['landd_date_from'];
+        $empid                  = $_POST['employeeiddb'];
+        $landd_date_to                   = $_POST['landd_date_to'];
+        $landd_nohours          = $_POST['landd_nohours'];
+        $landd_type            = $_POST['landd_type'];
+        $landd_sponsoredby            = $_POST['landd_sponsoredby'];
+    
+
+        $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Data Updated!</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>';
+        $message = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Please Check field/s:</strong> <br>
+        ';
+        $flag = false;
+  
+        $currentDate = date("Y/m/d");
+        //if (($work_position == null) || ($work_position == '') || (preg_match('~[0-9]+~', $fullname))){
+        if (($landd_program == null) || ($landd_program == '')){
+          $flag = true;
+          $message .= 'Program must not be blank  <br>
+          ';
+        }
+  
+        if (!$flag){
+          $query = 'UPDATE tbl_employee_ld
+          SET ORGANIZATION =  "'.$volwork_organization.'",
+          DATEFROM = "'.$volwork_date_from.'",
+          DATETO =  "'.$volwork_date_to.'",
+          NOOFHOURS = "'.$volwork_nohours.'",
+          POSITION =  "'.$volwork_position.'",
+    
+          WHERE ID = "'.$volworkid.'"';
+
+          //var_dump($query);
+          $result = mysqli_query($connect, $query);
+
+        }
+
+        $message_final = '';
+
+        if ($flag){
+          $message_final = $message;
+        } else {
+          $message_final = $message_success;
+        }
+      
+        $output = array(
+        'status'    => $message_final
+        );
+
+        echo json_encode($output);
     }
   }
 
@@ -1512,7 +2010,7 @@ if (isset($_POST['action'])){
         SET CANCELLED = "Y" 
         WHERE ID = "'.$_POST["id"].'" AND CANCELLED = "N" ';
 
-      echo $query;
+      //echo $query;
       
       $result = mysqli_query($connect, $query );
 
@@ -1526,7 +2024,7 @@ if (isset($_POST['action'])){
         SET CANCELLED = "Y" 
         WHERE ID = "'.$_POST["id"].'" AND CANCELLED = "N" ';
 
-      echo $query;
+      //echo $query;
       
       $result = mysqli_query($connect, $query );
 
@@ -1540,9 +2038,9 @@ if (isset($_POST['action'])){
         SET CANCELLED = "Y" 
         WHERE ID = "'.$_POST["id"].'" AND CANCELLED = "N" ';
 
-      echo $query;
+      //echo $query;
       
-      $result = mysqli_query($connect, $query );
+      $result = mysqli_query($connect, $query);
 
     }
   }
@@ -1605,15 +2103,7 @@ if (isset($_POST['action'])){
       $data = array();
       
       while($row = mysqli_fetch_array($result)){
-        
-      /*  $sub_array = array();
-
-        $sub_array['employeeid'] = $row['EMPID'];
-        $sub_array['fullname'] = $row['FULLNAME'];
-        $sub_array['dob'] = $row['DOB'];
-
-
-        $data[] = $sub_array;*/
+      
 
 
         $sub_array = array();
@@ -1774,7 +2264,7 @@ if (isset($_POST['action'])){
         $sub_array['landd_date_from']             = $row["DATEFROM"];
         $sub_array['landd_date_to']             = $row["DATETO"];
         $sub_array['landd_nohours']            = $row["NOOFHOURS"];
-        $sub_array['landd_type']           = $row["TYPE"];
+        $sub_array['landd_type']              = $row["TYPE"];
         $sub_array['landd_sponsoredby']           = $row["SPONSOREDBY"];
         $data[] = $sub_array;
       }

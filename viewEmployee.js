@@ -322,13 +322,12 @@
             $(document).on('click', '#add_children', function(){
                 var employeeiddb = document.getElementById("empID").value;
                 var add_employee = "Success";
-                    //validateData();
-                    //var answer = validateData();
                         var fullname = $('#fullname').val();
                         var dob = $('#dob_add').val();              
                         $.ajax({
                             url:"view_employee_action",
                             method:"POST",
+                            dataType:'JSON',
                             data:{
                                 fullname:fullname, 
                                 dob:dob, 
@@ -336,10 +335,16 @@
                                 action:'add_children'
                             },
                             success:function(data){
-                            alert("Data Added");
 
                             $('#children_data').DataTable().ajax.reload();
                             $('#modalChildrenForm').modal('hide');
+                            $('#fullname').val('');
+                            $('#dob_add').val('');
+                            $('#message2').html(data.status);
+                            setTimeout(function(){
+                                $('#message2').html('');
+                            }, 90000);
+
                            
                             }     
                         }); 
@@ -349,9 +354,6 @@
             $(document).on('click', '#add_educ', function(){
                 var employeeiddb = document.getElementById("empID").value;
                 var add_employee = "Success";
-                
-                    //validateData();
-                    //var answer = validateData();
                         var level = $('#level').val();
                         var school_name = $('#school_name').val(); 
                         var educ = $('#educ').val();
@@ -363,6 +365,7 @@
                         $.ajax({
                             url:"view_employee_action",
                             method:"POST",
+                            dataType:'JSON',
                             data:{
                                 employeeiddb:employeeiddb,
                                 level:level, 
@@ -376,11 +379,22 @@
                                 action:'add_educ'
                             },
                             success:function(data){
-                            alert("Data Added");
-
-                            $('#educ_data').DataTable().ajax.reload();
-                            $('#modalEducationForm').modal('hide');
-                           
+                                //alert("Data Added");
+                                $('#educ_data').DataTable().ajax.reload();
+                                $('#modalEducationForm').modal('hide');
+                                $('#school_name').val('');
+                                $('#educ').val('');
+                                $('#school_name').val('');
+                                $('#attended_from').val('');
+                                $('#attended_to').val('');
+                                $('#highest_level').val('');
+                                $('#year_grad').val('');
+                                $('#honor_received').val('');
+                                $("#level")[0].selectedIndex = 0;
+                                $('#message2').html(data.status);
+                                setTimeout(function(){
+                                    $('#message2').html('');
+                                }, 90000);
                             }     
                         }); 
             });
@@ -398,6 +412,7 @@
                         $.ajax({
                             url:"view_employee_action",
                             method:"POST",
+                            dataType:'JSON',
                             data:{
                                 fullname:fullname, 
                                 dob:dob, 
@@ -406,11 +421,14 @@
                                 action:'submit_update_children'
                             },
                             success:function(data){
-                            alert("Data Updated");
+                            //alert("Data Updated");
 
                             $('#children_data').DataTable().ajax.reload();
                             $('#modalEditChildrenForm').modal('hide');
-                           
+                            $('#message2').html(data.status);
+                                setTimeout(function(){
+                                    $('#message2').html('');
+                                }, 90000);
                             }     
                         }); 
             });
@@ -432,6 +450,7 @@
                 $.ajax({
                     url:"view_employee_action",
                     method:"POST",
+                    dataType:'JSON',
                     data:{
                         educid:educid,
                         employeeiddb:employeeiddb,
@@ -446,11 +465,14 @@
                         action:'submit_educ'
                     },
                     success:function(data){
-                    alert("Data Updated");
+                    //alert("Data Updated");
 
                     $('#educ_data').DataTable().ajax.reload();
                     $('#modalEditEducationForm').modal('hide');
-                    
+                    $('#message2').html(data.status);
+                        setTimeout(function(){
+                            $('#message2').html('');
+                        }, 90000);
                     }     
                 }); 
         
@@ -540,10 +562,7 @@
                     } else {
                         $("#dualchoice_update").prop("disabled", true);
                     }
-                    
-                    
-
-
+                
                     $('#residentialaddress_update').val(values.data_profile.residentialaddress);
                     $('#permanentaddress_update').val(values.data_profile.permanentaddress);
                     $('#telephoneno_update').val(values.data_profile.telephoneno);
@@ -561,8 +580,6 @@
             }); 
 
         });
-
-       
 
 
         // UPDATE FAMILY BACKGROUND FORM
@@ -631,6 +648,7 @@
                 $.ajax({
                     url:"view_employee_action",
                     method:"POST",
+                    dataType: 'json',
                     data:{
                         employeeiddb:employeeiddb,
                         
@@ -660,6 +678,7 @@
                         fetch_single_input();
                     
                         $('#message').html(data.status);
+                        //alert(data.status);
                         setTimeout(function(){
                             $('#message').html('');
                         }, 30000);
@@ -943,7 +962,7 @@
                     success:function(data){
                     var values = $.parseJSON(data);
 
-                   $('#employeeid_update').val(values.employeeid);
+                    $('#employeeid_update').val(values.employeeid);
                     $('#fullname_update').val(values.fullname);
                     $('#hidden_id').val(values.hidden_id);
                     $('#dob_update').val(values.dob);
@@ -951,9 +970,6 @@
                     $('#modalEditChildrenForm').modal('show');
 
                    
-                   
-
-                    
                     }     
                 }); 
 
@@ -1050,6 +1066,7 @@
                         $.ajax({
                             url:"view_employee_action",
                             method:"POST",
+                            dataType: 'JSON',
                             data:{
                                 employeeiddb:employeeiddb,
                                 eligibility:eligibility, 
@@ -1061,10 +1078,22 @@
                                 action:'add_eligibility'
                             },
                             success:function(data){
-                            alert("Data Added");
+                            //alert("Data Added");
 
                             $('#civil_data').DataTable().ajax.reload();
-                            $('#modalEligibilityForm').modal('hide');
+                                $('#modalEligibilityForm').modal('hide');
+                                    $('#eligibilityid').val('');
+                                    $('#eligibility').val('');
+                                    $('#rating').val('');
+                                    $('#date_of_exam').val('');
+                                    $('#place_of_exam').val('');
+                                    $('#license_no').val('');
+                                    $('#license_date').val('');
+                                $('#message2').html(data.status);
+                                setTimeout(function(){
+                                    $('#message2').html('');
+                                }, 90000);
+                           
                             
                            
                             }     
@@ -1079,11 +1108,13 @@
                 var date_of_exam = $('#date_of_exam_update').val();
                 var place_of_exam = $('#place_of_exam_update').val();       
                 var license_no = $('#license_no_update').val();
-                var license_date = $('#license_date_update').val();   
+                var license_date = $('#license_date_update').val(); 
+                var employeeiddb = document.getElementById("empID").value;  
 
                 $.ajax({
                     url:"view_employee_action",
                     method:"POST",
+                    dataType:'JSON',                  
                     data:{
                         eligibilityid:eligibilityid,
                         employeeiddb:employeeiddb,
@@ -1096,10 +1127,13 @@
                         action:'submit_eligibility'
                     },
                     success:function(data){
-                    alert("Data Updated");
+                    //alert("Data Updated");
 
                     $('#civil_data').DataTable().ajax.reload();
-                    //$('#modalEducationForm').modal('hide');
+                    $('#message2').html(data.status);
+                    setTimeout(function(){
+                        $('#message2').html('');
+                    }, 90000);
                     
                     }     
                 }); 
@@ -1138,6 +1172,7 @@
 
 
                     $('#modalUpdateWorkForm').modal('show');
+                    
                 
                 }     
             }); 
@@ -1157,6 +1192,7 @@
                         $.ajax({
                             url:"view_employee_action",
                             method:"POST",
+                            dataType:'JSON', 
                             data:{
                                 employeeiddb:employeeiddb,
                                 work_date_from:work_date_from, 
@@ -1170,11 +1206,25 @@
                                 action:'add_work'
                             },
                             success:function(data){
-                            alert("Data Added");
+                            //alert("Data Added");
 
-                            $('#work_data').DataTable().ajax.reload();
-                            $('#modalWorkForm').modal('hide');
-                           
+                                $('#work_data').DataTable().ajax.reload();
+                                $('#modalWorkForm').modal('hide');
+                                $('#workid').val('');
+                                $('#work_date_from').val('');
+                                $('#work_date_to').val('');
+                                $('#work_position').val('');
+                                $('#work_company').val('');
+                                $('#work_salary').val('');
+                                $('#work_salary_grade').val('');
+                                $('#work_status').val('');
+                                $('#work_govt_service').val('');
+
+                                $('#message2').html(data.status);
+                                setTimeout(function(){
+                                    $('#message2').html('');
+                                }, 90000);
+                            
                             }     
                         }); 
             });
@@ -1195,6 +1245,7 @@
                 $.ajax({
                     url:"view_employee_action",
                     method:"POST",
+                    dataType:'JSON', 
                     data:{
                         workid:workid,
                         employeeiddb:employeeiddb,
@@ -1209,14 +1260,40 @@
                         action:'submit_work'
                     },
                     success:function(data){
-                    alert("Data Updated");
+                    //alert("Data Updated");
 
-                    $('#work_data').DataTable().ajax.reload();
-                    $('#modalEditWorkForm').modal('hide');
+                        $('#work_data').DataTable().ajax.reload();
+                        $('#modalUpdateWorkForm').modal('hide');
+                        $('#message2').html(data.status);
+                        setTimeout(function(){
+                            $('#message2').html('');
+                        }, 90000);
+                
                     
                     }     
                 }); 
         
+            });
+
+            $(document).on('click', '.delete_work', function(){
+                var id = $(this).data('id');
+               // alert(id);
+               var employeeiddb = document.getElementById("empID").value;
+               $.ajax({
+                   url:"view_employee_action",
+                   method:"POST",
+                   data:{
+                       id:id, 
+                       employeeiddb:employeeiddb,
+                       action:'delete_work'
+                   },
+                   success:function(data){
+                  
+                   alert("Data Deleted");
+                   $('#work_data').DataTable().ajax.reload();
+                   }     
+               }); 
+
             });
 
 
@@ -1237,7 +1314,9 @@
                 },
                 success:function(data){
                     var values = $.parseJSON(data);
-                    $('#volworkid').val(values.volworkid);
+ 
+                    $('#volWorkid').val(id);
+                    //alert(data.volworkid);
                     $('#volwork_organization_update').val(values.volwork_organization);
                     $('#volwork_date_from_update').val(values.volwork_date_from);
                     $('#volwork_date_to_update').val(values.volwork_date_to);
@@ -1261,6 +1340,7 @@
                         $.ajax({
                             url:"view_employee_action",
                             method:"POST",
+                            dataType:'JSON', 
                             data:{
                                 employeeiddb:employeeiddb,
                                 volwork_organization:volwork_organization, 
@@ -1271,10 +1351,19 @@
                                 action:'add_volwork'
                             },
                             success:function(data){
-                            alert("Data Added");
+                            //alert("Data Added");
 
-                            $('#volwork_data').DataTable().ajax.reload();
-                            $('#modalVolWorkForm').modal('hide');
+                                $('#volwork_data').DataTable().ajax.reload();
+                                $('#modalVolWorkForm').modal('hide');
+                                $('#message2').html(data.status);
+                                $('#volwork_organization').val('');
+                                $('#volwork_date_from').val('');
+                                $('#volwork_date_to').val('');
+                                $('#volwork_nohours').val('');
+                                $('#volwork_position').val('');
+                                setTimeout(function(){
+                                    $('#message2').html('');
+                                }, 90000);
                            
                             }     
                         }); 
@@ -1283,16 +1372,18 @@
 
             $(document).on('click', '#submit_volwork', function(){
                 var employeeiddb = document.getElementById("empID").value;
-                var workid = $('#volworkid').val();
+                //var volworkid = $('#volWorkid').val();
+                var volworkid = document.getElementById("volWorkid").value;
                 var volwork_organization = $('#volwork_organization_update').val();
                 var volwork_date_from = $('#volwork_date_from_update').val();
                 var volwork_date_to = $('#volwork_date_to_update').val();
                 var volwork_nohours = $('#volwork_nohours_update').val();
                 var volwork_position = $('#volwork_position_update').val(); 
-
+                //alert(volworkid);
                 $.ajax({
                     url:"view_employee_action",
                     method:"POST",
+                    dataType:'JSON', 
                     data:{
                         volworkid:volworkid,
                         employeeiddb:employeeiddb,
@@ -1304,10 +1395,14 @@
                         action:'submit_volwork'
                     },
                     success:function(data){
-                    alert("Data Updated");
+                    //alert("Data Updated");
 
                     $('#volwork_data').DataTable().ajax.reload();
-                    $('#modalUpdateWorkForm').modal('hide');
+                    $('#modalUpdateVolWorkForm').modal('hide');
+                    $('#message2').html(data.status);
+                    setTimeout(function(){
+                        $('#message2').html('');
+                    }, 90000);
                     
                     }     
                 }); 
@@ -1340,6 +1435,7 @@
         $(document).on('click', '.update_landd', function(){
             var id = $(this).data('id');
             var employeeiddb = document.getElementById("empID").value;
+            //alert(id);
             
             $.ajax({
                 url:"view_employee_action",
@@ -1380,6 +1476,7 @@
                         $.ajax({
                             url:"view_employee_action",
                             method:"POST",
+                            dataType:'JSON', 
                             data:{
                                 employeeiddb:employeeiddb,
                                 landd_program:landd_program, 
@@ -1391,10 +1488,20 @@
                                 action:'add_landd'
                             },
                             success:function(data){
-                            alert("Data Added");
+                            //alert("Data Added");
 
                             $('#landd_data').DataTable().ajax.reload();
                             $('#modalLanddForm').modal('hide');
+
+                            $('#message2').html(data.status);
+                                $('#landd_program').val('');
+                                $('#landd_date_to').val('');
+                                $('#landd_nohours').val('');
+                                $('#landd_type').val('');
+                                $('#landd_sponsoredby').val('');
+                                setTimeout(function(){
+                                    $('#message2').html('');
+                                }, 90000);
                            
                             }     
                         }); 
@@ -1404,33 +1511,37 @@
             $(document).on('click', '#submit_landd', function(){
                 var employeeiddb = document.getElementById("empID").value;
                 var landdid = $('#landdid').val();
-                var landdid_program = $('#landdid_program_update').val();
-                var landdid_date_from = $('#landdid_date_from_update').val();
-                var landdid_date_to = $('#landdid_date_to_update').val();
-                var landdid_nohours = $('#landdid_nohours_update').val();
+                var landd_program = $('#landd_program_update').val();
+                var landd_date_from = $('#landd_date_from_update').val();
+                var landd_date_to = $('#landd_date_to_update').val();
+                var landd_nohours = $('#landd_nohours_update').val();
                 var landd_type = $('#landd_type_update').val(); 
                 var landd_sponsoredby = $('#landd_sponsoredby_update').val(); 
 
                 $.ajax({
                     url:"view_employee_action",
                     method:"POST",
+                    dataType:'JSON', 
                     data:{
                         landdid:landdid,
                         employeeiddb:employeeiddb,
-                        landdid_program:landdid_program, 
-                        landdid_date_from:landdid_date_from, 
-                        landdid_date_to:landdid_date_to,
-                        landdid_nohours:landdid_nohours,
+                        landd_program:landd_program, 
+                        landd_date_from:landd_date_from, 
+                        landd_date_to:landd_date_to,
+                        landd_nohours:landd_nohours,
                         landd_type:landd_type,
                         landd_sponsoredby:landd_sponsoredby,
-                        action:'submit_landdid'
+                        action:'submit_landd'
                     },
                     success:function(data){
-                    alert("Data Updated");
+                    //alert("Data Updated");
 
-                    $('#landd_data').DataTable().ajax.reload();
-                    $('#modalUpdateLanddForm').modal('hide');
-                    
+                        $('#landd_data').DataTable().ajax.reload();
+                        $('#modalUpdateLanddForm').modal('hide');
+                        $('#message2').html(data.status);
+                        setTimeout(function(){
+                            $('#message2').html('');
+                        }, 90000);
                     }     
                 }); 
         
@@ -1466,17 +1577,21 @@
                         $.ajax({
                             url:"view_employee_action",
                             method:"POST",
+                            dataType:'JSON', 
                             data:{
                                 employeeiddb:employeeiddb,
                                 other_skill:other_skill, 
                                 action:'add_other_skill'
                             },
                             success:function(data){
-                           
+                                $('#other_skill_data').DataTable().ajax.reload();
+                                $('#otherSkillForm').modal('hide');
+                                $('#other_skill').val('');
 
-                            $('#other_skill_data').DataTable().ajax.reload();
-                            $('#otherSkillForm').modal('hide');
-                            alert("Data Added");
+                                $('#message2').html(data.status);
+                                setTimeout(function(){
+                                    $('#message2').html('');
+                                }, 90000);
                         
                             }     
                         }); 
@@ -1485,7 +1600,7 @@
             //DELETE OTHER SKILL
             $(document).on('click', '.delete_other_skill', function(){
                 var id = $(this).data('id');
-                // alert(id);
+                 alert(id);
                 var employeeiddb = document.getElementById("empID").value;
                 $.ajax({
                     url:"view_employee_action",
@@ -1495,7 +1610,7 @@
                         employeeiddb:employeeiddb,
                         action:'delete_other_skill'
                     },
-                    success:function(data){
+                    success:function(){
                 
                     alert("Data Deleted");
                     $('#other_skill_data').DataTable().ajax.reload();
@@ -1511,17 +1626,23 @@
                         $.ajax({
                             url:"view_employee_action",
                             method:"POST",
+                            dataType:'JSON', 
                             data:{
                                 employeeiddb:employeeiddb,
                                 other_recognition:other_recognition, 
                                 action:'add_other_recognition'
                             },
                             success:function(data){
-                            alert("Data Added");
+                            //alert("Data Added");
 
                             $('#other_recognition_data').DataTable().ajax.reload();
                             $('#otherRecognitionForm').modal('hide');
-                        
+                            $('#other_recognition').val('');
+
+                            $('#message2').html(data.status);
+                            setTimeout(function(){
+                                $('#message2').html('');
+                            }, 90000);
                             }     
                         }); 
             });
@@ -1539,10 +1660,10 @@
                         employeeiddb:employeeiddb,
                         action:'delete_other_recognition'
                     },
-                    success:function(data){
+                    success:function(){
                 
                     alert("Data Deleted");
-                    $('#otherRecognitionForm').DataTable().ajax.reload();
+                    $('#other_recognition_data').DataTable().ajax.reload();
                     }     
                 }); 
             });
@@ -1555,22 +1676,29 @@
                         $.ajax({
                             url:"view_employee_action",
                             method:"POST",
+                            dataType:'JSON', 
                             data:{
                                 employeeiddb:employeeiddb,
                                 other_membership:other_membership, 
                                 action:'add_other_membership'
                             },
-                            success:function(data){
-                            alert("Data Added");
+                            success:function(){
+                            //lert("Data Added");
 
-                            $('#other_membership_data').DataTable().ajax.reload();
-                            $('#otherMembershipForm').modal('hide');
+                                $('#other_membership_data').DataTable().ajax.reload();
+                                $('#otherMembershipForm').modal('hide');
+                                $('#other_membership').val('');
+
+                                $('#message2').html(data.status);
+                                setTimeout(function(){
+                                    $('#message2').html('');
+                                }, 90000);
                         
                             }     
                         }); 
             });
 
-            //DELETE OTHER RECOGNITION
+            //DELETE OTHER MEMBERSHIP
             $(document).on('click', '.delete_other_membership', function(){
                 var id = $(this).data('id');
                 // alert(id);
@@ -1583,13 +1711,11 @@
                         employeeiddb:employeeiddb,
                         action:'delete_other_membership'
                     },
-                    success:function(data){
+                    success:function(){
                 
                     alert("Data Deleted");
-                    $('#otherMembershipForm').DataTable().ajax.reload();
+                    $('#other_membership_data').DataTable().ajax.reload();
                     }     
                 }); 
             });
-
-
         });

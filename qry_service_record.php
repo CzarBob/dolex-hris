@@ -4,18 +4,18 @@ include "dbConnection.php";
 $columns = array('process', 'rating','fullname', 'email', 'comment',  'date_submitted');
 
 //$query = "SELECT * FROM feedback where receiver = '".$_SESSION['received_by']."' ";
-$query = "SELECT * FROM tbl_employee  ";
+$query = "SELECT * FROM tbl_employee WHERE ";
 
 if(isset($_POST["search"]["value"])){
- $query .= 'where (FIRSTNAME LIKE "%'.$_POST["search"]["value"].'%" 
+ $query .= ' (FIRSTNAME LIKE "%'.$_POST["search"]["value"].'%" 
  OR MIDDLENAME LIKE "%'.$_POST["search"]["value"].'%" 
  OR LASTNAME LIKE "%'.$_POST["search"]["value"].'%" 
- OR EMPLOYEEID LIKE "%'.$_POST["search"]["value"].'%" ) AND CANCELLED != "Y"
+ OR EMPLOYEEID LIKE "%'.$_POST["search"]["value"].'%" ) AND
  ';
 }
 
 
- $query .= 'ORDER BY ID DESC ';
+ $query .= " CANCELLED = 'N' ORDER BY ID DESC ";
 
 
  //var_dump($query);
