@@ -108,6 +108,7 @@
                     var employeeiddb = document.getElementById("empID").value;
                         //validateData();
                         //var answer = validateData();
+                            //alert('e');
                             var service_from = $('#service_from').val();
                             var service_to = $('#service_to').val();   
                             var designation = $('#designation').val();
@@ -123,6 +124,7 @@
                             $.ajax({
                                 url:"serviceRecord_action",
                                 method:"POST",
+                                dataType:'JSON',
                                 data:{
                                     service_from:service_from, 
                                     service_to:service_to, 
@@ -139,7 +141,7 @@
                                     action:'add_service_record'
                                 },
                                 success:function(data){
-                                    alert("Data Added");
+                                    //alert("Data Added");
                                     $('#service_from').val('');
                                     $('#service_to').val('');
                                     $('#designation').val('');
@@ -153,7 +155,10 @@
                                     $('#details').val('');
                                     $('#service_record_data').DataTable().ajax.reload();
                                     $('#modalServiceRecordForm').modal('hide');
-                                    
+                                    $('#message').html(data.status);
+                                    setTimeout(function(){
+                                        $('#message').html('');
+                                    }, 90000);
                                    
                                
                                 }     
@@ -199,59 +204,26 @@
                                     action:'submit_update_sr'
                                 },
                                 success:function(data){
-                                alert("Data Updated");
+                                //alert("Data Updated");
 
                                 $('#service_record_data').DataTable().ajax.reload();
                                 $('#modalUpdateServiceRecordForm').modal('hide');
+                                $('#message').html(data.status);
+                                    setTimeout(function(){
+                                        $('#message').html('');
+                                    }, 90000);
                                
                                 }     
                             }); 
                 });
-
-
-
-                
-
             });
 
             function refreshPage() {
                     location.reload(true);
                 }
-
-
-           
-
-
+                
             $(document).on('click', '#cancel_sr', function(){
-                    var employeeiddb = document.getElementById("empID").value;
-
-                    var empid = $('#employeeid').val();
-
-
-                 //if(answer == 'N'){ //COMMENTED, USED FOR VALIDATION
-                    $.ajax({
-                        url:"serviceRecord_action",
-                        method:"POST",
-                        data:{
-                            
-                            empid:empid, 
-                            employeeiddb:employeeiddb,
-                            action:'cancel_update'
-
-                        },
-                        success:function(data){
-                        // $('#add_employee').modal('hide');
-                        
-                        //COMMENTED FOR THE MEAN TIME
-                        // $('#user_data').DataTable().destroy();
-                        //fetch_data();
-                        //alert("Data Updated");
-
-
-                        window.location.href="serviceRecordDetail";
-                        }     
-                    }); 
-                    //}
+                    window.location.href="serviceRecordDetail";
             });
 
 

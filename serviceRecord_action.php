@@ -212,8 +212,26 @@ if (isset($_POST['action'])){
       $amount_received = $_POST['amount_received'];
       $details = $_POST['details'];
 
+      $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>Data Updated!</strong> 
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      </div>';
+      $message = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>Please Check field/s:</strong> <br>
+      ';
+      $flag = false;
 
-        $dateAdded = date("Y-m-d H:i:s");
+      $currentDate = date("Y/m/d");
+
+      if (($designation == null) || ($designation == '')){
+        $flag = true;
+        $message .= 'Designation must not be blank <br>
+        ';
+      }
+
+      if (!$flag){
         $que = 'INSERT INTO `tbl_service_record` SET 
         EMPID =  "'.$empid.'",
         SERVICEFROM =  "'.$service_from.'",
@@ -229,74 +247,27 @@ if (isset($_POST['action'])){
         DETAILS =  "'.$details.'",
         CANCELLED = "N"
         '; 
-        $result = mysqli_query($connect,$que );
+        $result = mysqli_query($connect,$que); 
 
-/*
-        $sub_array = array();
-        $sub_array[] = $row["ID"];
-        $sub_array[] = $row["EMPID"];
-        $sub_array[] = $row["SERVICEFROM"];
-        $sub_array[] = $row["SERVICETO"];
-        $sub_array[] = $row["DESIGNATION"];
-        $sub_array[] = $row["STATUS"];
-        $sub_array[] = $row["SALARY"];
-        $sub_array[] = $row["OFFICE"];
-        $sub_array[] = $row["BRANCH"];
-        $sub_array[] = $row["ABS"];
-        $sub_array[] = $row["SEPARATIONDATE"];
-        $sub_array[] = $row["AMOUNTRECEIVED"];
-        $sub_array[] = $row["DETAILS"];
-      
-        
-                $sub_array[] = "
-                <button type='button' name='update_sr' class='btn btn-warning btn-sm update_sr'  data-id='".$row['ID']."'>View</button>
-                <button type='button' name='delete_sr' class='btn btn-danger btn-sm delete_sr' data-id='".$row['ID']."'>Delete</button>";  
-             
-      
-  
-        $data[] = $sub_array;*/
-      
+      }
+
+      $message_final = '';
+
+      if ($flag){
+        $message_final = $message;
+      } else {
+        $message_final = $message_success;
+      }
+     
+      $output = array(
+      'status'    => $message_final
+      );
+
+      echo json_encode($output);
     }
   }
 
-  /* BACKUP ADD
-  if (isset($_POST['action'])){
-    if ($_POST['action'] == 'add_service_record'){
-      $empid  = $_POST['employeeiddb'];
-
-      $service_from = $_POST['service_from'];
-      $service_to = $_POST['service_to'];
-      $designation = $_POST['designation'];
-      $status = $_POST['status'];
-      $salary = $_POST['salary'];
-      $office = $_POST['office'];
-      $branch = $_POST['branch'];
-      $abs = $_POST['abs'];
-      $separation_date = $_POST['separation_date'];
-      $amount_received = $_POST['amount_received'];
-      $details = $_POST['details'];
-
-
-        $dateAdded = date("Y-m-d H:i:s");
-        $que = 'INSERT INTO `tbl_service_record` SET 
-        EMPID =  "'.$empid.'",
-        SERVICEFROM =  "'.$service_from.'",
-        SERVICETO =  "'.$service_to.'",
-        DESIGNATION =  "'.$designation.'",
-        STATUS =  "'.$status.'",
-        SALARY =  "'.$salary.'",
-        OFFICE =  "'.$office.'",
-        BRANCH =  "'.$branch.'",
-        ABS =  "'.$abs.'",
-        SEPARATIONDATE =  "'.$separation_date.'",
-        AMOUNTRECEIVED =  "'.$amount_received.'",
-        DETAILS =  "'.$details.'",
-        CANCELLED = "N"
-        '; 
-        $query = $connect->query($que) or die($connect->error); 
-    }
-  }*/
-
+  
 
 
   if (isset($_POST['action'])){
@@ -494,28 +465,60 @@ if (isset($_POST['action'])){
       $amount_received = $_POST['amount_received'];
       $details = $_POST['details'];
       
-      /*$dateOfBirth = $_POST['dob'];
-      $dob =  date_format($dateOfBirth,"Y/m/d");*/
-     
+      $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>Data Updated!</strong> 
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      </div>';
+      $message = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>Please Check field/s:</strong> <br>
+      ';
+      $flag = false;
 
-      $query = 'UPDATE tbl_service_record
-      SET 
-      SERVICEFROM =  "'.$service_from.'",
-      SERVICETO =  "'.$service_to.'",
-      DESIGNATION =  "'.$designation.'",
-      STATUS =  "'.$status.'",
-      SALARY =  "'.$salary.'",
-      OFFICE =  "'.$office.'",
-      BRANCH =  "'.$branch.'",
-      ABS =  "'.$abs.'",
-      SEPARATIONDATE =  "'.$separation_date.'",
-      AMOUNTRECEIVED =  "'.$amount_received.'",
-      DETAILS =  "'.$details.'"
+      $currentDate = date("Y/m/d");
 
-      WHERE ID = "'.$srid.'"';
+      if (($designation == null) || ($designation == '')){
+        $flag = true;
+        $message .= 'Designation must not be blank <br>
+        ';
+      }
 
-      //var_dump($query);
-      $result = mysqli_query($connect, $query);
+      if (!$flag){
+        $query = 'UPDATE tbl_service_record
+        SET 
+        SERVICEFROM =  "'.$service_from.'",
+        SERVICETO =  "'.$service_to.'",
+        DESIGNATION =  "'.$designation.'",
+        STATUS =  "'.$status.'",
+        SALARY =  "'.$salary.'",
+        OFFICE =  "'.$office.'",
+        BRANCH =  "'.$branch.'",
+        ABS =  "'.$abs.'",
+        SEPARATIONDATE =  "'.$separation_date.'",
+        AMOUNTRECEIVED =  "'.$amount_received.'",
+        DETAILS =  "'.$details.'"
+
+        WHERE ID = "'.$srid.'"';
+
+        //var_dump($query);
+        $result = mysqli_query($connect, $query);
+
+      }
+
+      $message_final = '';
+
+      if ($flag){
+        $message_final = $message;
+      } else {
+        $message_final = $message_success;
+      }
+    
+      $output = array(
+      'status'    => $message_final
+      );
+
+      echo json_encode($output);
 
 
     }

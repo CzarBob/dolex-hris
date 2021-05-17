@@ -208,132 +208,119 @@ include 'serviceRecordDetail_load_query.php';
 
                     <div class="row">
 
-                        <!-- Area Chart -->
-                        <div class="col-xl-12 col-lg-7">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">I. Personal Data</h6>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="col-md-12">
-                                    </div>
+                                <!-- Area Chart -->
+                                <div class="col-xl-12 col-lg-7">
+                                    <div class="card shadow mb-4">
                                     
+                                        <!-- Card Header - Dropdown -->
+                                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                            <h6 class="m-0 font-weight-bold text-primary">I. Personal Data</h6>
+                                        </div>
+                                        <!-- Card Body -->
+                                        <div class="card-body">
+                                            <div class="col-md-12">
+                                            </div>
+                                            
 
-                                    <!-- Grid row -->
-                                    <div class="form-row">
-                                        <!-- Default input -->
-                                        <div class="form-group col-md-4">
-                                        <label for="inputAddress">Employee ID</label>
-                                        <input type="text" class="form-control" id="employeeid" placeholder="Ex. CBTZ200116" disabled>
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                        <label for="inputAddress">Position</label>
-                                        <input  type="text" class="form-control" id="position" placeholder="Ex. Labor Employment Officer I" disabled>
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                        <label for="inputAddress">Date Hired</label>
-                                        <input type="date" class="form-control" id="datehired" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                      <hr>
-                                       
-                                    </div>
-                                    <!-- Grid row -->
-                                    <div class="form-row">
-                                        <!-- Default input -->
-                                        <div class="form-group col-md-3">
-                                        <label for="inputEmail4">First Name</label>
-                                        <input type="text" name="firstname" id = "firstname"  placeholder="Ex. Enrico" class="form-control validate" disabled>
-                                        </div>
-                                        <div class="form-group col-md-3">
-                                        <label for="inputEmail4">Middle Name</label>
-                                        <input type="text" name="middlename" id = "middlename"  placeholder="Ex. Santos" class="form-control validate" disabled>
-                                        </div>
-                                        <div class="form-group col-md-3">
-                                        <label for="inputEmail4">Last Name</label>
-                                        <input type="text" name="lastname" id = "lastname"  placeholder="Ex. Cruz" class="form-control validate" disabled>
-                                        </div>
-                                        <div class="form-group col-md-1">
-                                        <label for="inputEmail4">Extension</label>
-                                        <input type="text" name="extension" id = "extension"  placeholder="Ex. Jr, II, III" class="form-control validate" disabled>
-                                        </div>
-                                      
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                          
-
-                        <div class="col-xl-12 col-lg-7">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Service Record</h6>
-
-                                </div>
-                                <div class="container-fluid">
-                                            <div class="card shadow mb-4">
-                                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                                    <h6 class="m-0 font-weight-bold text-primary"></h6> 
-                                                    
-                                                    <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#modalServiceRecordForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Service Record</a>
-                                                    
-                                                    <!--<a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#dateRangeModal" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Generate Report</a> -->
+                                            <!-- Grid row -->
+                                            <div class="form-row">
+                                                <!-- Default input -->
+                                                <div class="form-group col-md-4">
+                                                <label for="inputAddress">Employee ID</label>
+                                                <input type="text" class="form-control" id="employeeid" placeholder="Ex. CBTZ200116" disabled>
                                                 </div>
-                                                <div class="card-body">
-                                                        <div class="table-responsive">
-                                                            <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="service_record_data" width="100%" cellspacing="0">
-                                                                <thead class = "text-primary">
-                                                                    <tr>
-                                                                        <th data-column-id="service_from">SERVICE FROM</th>
-                                                                        <th data-column-id="service_to">SERVICE TO</th>
-                                                                        <th data-column-id="designation">DESIGNATION</th>
-                                                                        <th data-column-id="status">STATUS</th>
-                                                                        <th data-column-id="salary">SALARY</th>
-                                                                        <th data-column-id="office">OFFICE</th>
-                                                                        <th data-column-id="branch">BRANCH</th>
-                                                                        <th data-column-id="abs">ABS</th>
-                                                                        <th data-column-id="separation_date">SEPARATION DATE</th>
-                                                                        <th data-column-id="amount">AMOUNT RECEIVED</th>
-                                                                        <th data-column-id="details">DETAILS</th>
-
-                                                                        <th >ACTION</th>
-                                                                        
-                                                                    </tr>
-                                                                </thead>
-                                                                <tfoot class = "text-primary">
-                                                                    <tr>
-                                                                    <th data-column-id="fullName">SERVICE FROM</th>
-                                                                        <th>SERVICE TO</th>
-                                                                        <th>DESIGNATION</th>
-                                                                        <th>STATUS</th>
-                                                                        <th>SALARY</th>
-                                                                        <th>OFFICE</th>
-                                                                        <th>BRANCH</th>
-                                                                        <th>ABS</th>
-                                                                        <th>SEPARATION DATE</th>
-                                                                        <th>AMOUNT RECEIVED</th>
-                                                                        <th>DETAILS</th>
-
-                                                                        <th>ACTION</th>
-                                                                       
-                                                                    </tr>
-                                                                </tfoot>
-                                                            </table>
-                                                        </div>
-                                                   
+                                                <div class="form-group col-md-4">
+                                                <label for="inputAddress">Position</label>
+                                                <input  type="text" class="form-control" id="position" placeholder="Ex. Labor Employment Officer I" disabled>
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                <label for="inputAddress">Date Hired</label>
+                                                <input type="date" class="form-control" id="datehired" disabled>
                                                 </div>
                                             </div>
+                                            <div class="form-row">
+                                              <hr>
+                                              
+                                            </div>
+                                            <!-- Grid row -->
+                                            <div class="form-row">
+                                                <!-- Default input -->
+                                                <div class="form-group col-md-3">
+                                                <label for="inputEmail4">First Name</label>
+                                                <input type="text" name="firstname" id = "firstname"  placeholder="Ex. Enrico" class="form-control validate" disabled>
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                <label for="inputEmail4">Middle Name</label>
+                                                <input type="text" name="middlename" id = "middlename"  placeholder="Ex. Santos" class="form-control validate" disabled>
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                <label for="inputEmail4">Last Name</label>
+                                                <input type="text" name="lastname" id = "lastname"  placeholder="Ex. Cruz" class="form-control validate" disabled>
+                                                </div>
+                                                <div class="form-group col-md-1">
+                                                <label for="inputEmail4">Extension</label>
+                                                <input type="text" name="extension" id = "extension"  placeholder="Ex. Jr, II, III" class="form-control validate" disabled>
+                                                </div>
+                                              
+                                            </div>
                                         </div>
-                               
-                                
-                                    
+                                    </div>
+                                </div>
 
 
+                                <!-- Area Chart -->
+                                <div class="col-xl-12 col-lg-7">
+                                    <div class="card shadow mb-4">
+                                    <span id="message"></span>
+                                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                            <h6 class="m-0 font-weight-bold text-primary">Service Record</h6>
+                                            <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#modalServiceRecordForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Service Record</a>
+
+                                        </div>
+
+                                        <!-- Card Body -->
+                                        <div class="card-body">
+                                          <div class="table-responsive">
+                                              <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="service_record_data" width="100%" cellspacing="0">
+                                                  <thead class = "text-primary">
+                                                      <tr>
+                                                          <th data-column-id="service_from">SERVICE FROM</th>
+                                                          <th data-column-id="service_to">SERVICE TO</th>
+                                                          <th data-column-id="designation">DESIGNATION</th>
+                                                          <th data-column-id="status">STATUS</th>
+                                                          <th data-column-id="salary">SALARY</th>
+                                                          <th data-column-id="office">OFFICE</th>
+                                                          <th data-column-id="branch">BRANCH</th>
+                                                          <th data-column-id="abs">ABS</th>
+                                                          <th data-column-id="separation_date">SEPARATION DATE</th>
+                                                          <th data-column-id="amount">AMOUNT RECEIVED</th>
+                                                          <th data-column-id="details">DETAILS</th>
+
+                                                          <th >ACTION</th>
+                                                          
+                                                      </tr>
+                                                  </thead>
+                                                  <tfoot class = "text-primary">
+                                                      <tr>
+                                                      <th data-column-id="fullName">SERVICE FROM</th>
+                                                          <th>SERVICE TO</th>
+                                                          <th>DESIGNATION</th>
+                                                          <th>STATUS</th>
+                                                          <th>SALARY</th>
+                                                          <th>OFFICE</th>
+                                                          <th>BRANCH</th>
+                                                          <th>ABS</th>
+                                                          <th>SEPARATION DATE</th>
+                                                          <th>AMOUNT RECEIVED</th>
+                                                          <th>DETAILS</th>
+
+                                                          <th>ACTION</th>
+                                                        
+                                                      </tr>
+                                                  </tfoot>
+                                              </table>
+                                          </div>               
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- END OF TAB CONTENT -->
@@ -590,7 +577,7 @@ include 'serviceRecordDetail_load_query.php';
     <script src="assets/js/demo/datatables-demo.js"></script>
     
     <!--JS FOR EMPLOYEE ACTIONS -->
-    <script type="text/javascript" src="js/action/serviceRecordDetail.js"></script>
+    <script type="text/javascript" src="serviceRecordDetail.js"></script>
 
     
 
