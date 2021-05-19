@@ -525,7 +525,7 @@ include 'serviceRecordDetail_load_query.php';
             <div class="md-form mb-5">
               <label data-error="wrong" data-success="right" for="form29">Details</label>
               <!--<input type="text" name="details" id = "details" class="form-control validate" required>-->
-              <textarea class="form-control" id="details" name="details" rows="3">Please input details
+              <textarea class="form-control" placeholder="Provide Details.." id="details" name="details" rows="s" >
               </textarea>
             </div>
 

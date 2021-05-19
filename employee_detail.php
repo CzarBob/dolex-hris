@@ -68,6 +68,13 @@ if ($_SESSION['username'] == ""){
         </a>
       </li>
       
+      <li class="nav-item active">
+        <a class="nav-link" href="report_main">
+          <i class="fas fa-fw fa-lg fa-check-square"></i>
+          <span>Reports</span>
+        </a>
+      </li>
+      
       <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
       </div>

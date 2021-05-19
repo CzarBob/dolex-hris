@@ -223,7 +223,8 @@
                 }
                 
             $(document).on('click', '#cancel_sr', function(){
-                    window.location.href="serviceRecordDetail";
+                     window.location.href="serviceRecord";
+                     
             });
 
 

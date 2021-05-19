@@ -68,6 +68,13 @@ include 'main_load_query.php';
           <span>Service Records</span>
         </a>
       </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="report_main">
+          <i class="fas fa-fw fa-lg fa-check-square"></i>
+          <span>Reports</span>
+        </a>
+      </li>
      
       
       <div class="text-center d-none d-md-inline">
@@ -253,55 +260,7 @@ include 'main_load_query.php';
     </div>
   </div>
 
-  
-    <div id="add_record" class="modal" data-backdrop="static" data-keyboard="false">
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-      <!-- Modal content-->
-        <div class="modal-header py-3 d-flex flex-row align-items-center justify-content-between">
-          <h5 class="modal-title text-dark">Add Record</h5>
-          <h5 id="date_time"></h5>
-        </div>
-        <div class="modal-body text-dark">
-          <div class = "row">
-            <div class = "col-6">
-              <div class = "form-group">
-                <input type="hidden" name="received_by" id = "received_by" value = "<?php echo $_SESSION['received_by'] ?>">
-                <label>Province</label>
-                <select class="custom-select" id = "province" name = "province">
-                  <option hidden>Province</option>
-                  <option value="Bukidnon">Bukidnon</option>
-                  <option value="Camiguin">Camiguin</option>
-                  <option value="Cagayan de Oro">Cagayan de Oro</option>
-                  <option value="Lanao del Norte">Lanao del Norte</option>
-                  <option value="Misamis Occidental">Misamis Occidental</option>
-                  <option value="Misamis Oriental">Misamis Oriental</option>
-                </select>
-              </div>
-              <div class = "form-group">
-                <label>Track Number</label>
-                <input type="text" id = "track_num" name = "track_num" class="form-control" readonly>
-              </div>
-              <div class = "form-group">
-                <label>Type of document</label>
-                <input type="text" class = "form-control" name="type_docu" id = "type_docu">
-              </div>
-            </div>
-            <div class = "col-6">
-              <div class="form-group">
-                <label for="comment">Description:</label>
-                <textarea class="form-control" rows="5" id="description" name = "description" maxlength="100"></textarea>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-primary" id = "add_docu">Add</button>
-        <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
-        </div>
-       </div>
-      </div>
-    </div>
+
   
 
 <!-- Date range Modal -->

@@ -58,7 +58,7 @@ if(isset($_SESSION["loggedin"])){
                       <input type="text" class="form-control form-control-user" id="username" name = "username" placeholder="Username" autocomplete = "on">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="password" name = "password" placeholder="Password">
+                      <input type="password" class="form-control form-control-user" id="password" name = "password" placeholder="Password" onkeydown="handleEnter(event)">
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
@@ -122,8 +122,25 @@ if(isset($_SESSION["loggedin"])){
 </style>
 <script type="text/javascript">
 $(document).ready(function(){
-  $('#login').click(function(){
-     var username = $('#username').val();
+  var inputPass = document.getElementById("password");
+  inputPass.addEventListener("keyup", function(event) {
+      if (event.keyCode === 13) {
+          event.preventDefault();
+          document.getElementById("login").click();
+      }
+  });
+
+  var inputUser = document.getElementById("username");
+  inputUser.addEventListener("keyup", function(event) {
+      if (event.keyCode === 13) {
+          event.preventDefault();
+          document.getElementById("login").click();
+      }
+  });
+
+
+  function loginConfirm(){
+    var username = $('#username').val();
      var password = $('#password').val();
      if(username!="" && password!=""){
      $.ajax({
@@ -150,7 +167,12 @@ $(document).ready(function(){
    else{
     $('#error_blank').modal('show');
    }
+  }
+
+  $('#login').click(function(){
+    loginConfirm();
   }); 
+
 }); 
 </script> 
 </body>
