@@ -145,20 +145,22 @@ $(document).ready(function(){
      if(username!="" && password!=""){
      $.ajax({
       url:"login",  
-      method:"post",  
+      method:"post", 
+      dataType: "JSON",
       data:{
         login:"login",
         username:username,
         password:password
         },
-      success:function(response){
-        if(response=="success"){
-            window.location.href="main";
+      success:function(data){
+        //alert(data.status);
+        if(data.status=="success"){
+            window.location.href="main.php", true;
         }
         /*if(response=="others"){
             window.location.href="admin";
         }*/
-        if(response=="fail"){
+        if(data.status=="fail"){
           $('#error_login').modal('show');
         }
       }

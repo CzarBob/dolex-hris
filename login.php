@@ -7,6 +7,7 @@ if(isset($_POST['login'])){
 	$query = "SELECT * FROM `users` WHERE `USERNAME` = '".$user."' AND `PASSWORD` = '".$pass."' ";
 	//var_dump($query);
 	$result = mysqli_query($connect,$query);
+	$message_final = '';
 	if($row=mysqli_fetch_assoc($result)){
 		/*if($row['received_by']=="Receiving"){
 		  $_SESSION['loggedin']="Account_Logged";
@@ -23,10 +24,19 @@ if(isset($_POST['login'])){
 
 		  $_SESSION['loggedin']="Account_Logged";
 		  $_SESSION['username'] = $row['USERNAME'];
-		  echo "success";
+		  //echo "success";
+		  $message_final = 'success';
 	}
 	else{
-	  echo "fail";
+	  //echo "fail";
+	  $message_final = 'fail';
 	}
+
+
+	$output = array(
+        'status'    => $message_final
+        );
+  
+        echo json_encode($output);
 }
 ?>

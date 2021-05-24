@@ -402,14 +402,12 @@ include 'main_load_query.php';
             username:username,
             password:password
             },
-          success:function(response){
-            if(response=="success"){
+          success:function(data){
+            if(data.status=="success"){
                 window.location.href="main";
             }
-            /*if(response=="others"){
-                window.location.href="admin";
-            }*/
-            if(response=="fail"){
+            
+            if(data.status=="fail"){
               $('#error_login').modal('show');
             }
           }
