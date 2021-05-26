@@ -3,6 +3,7 @@
 include "dbConnection.php";
 $columns = array('process', 'rating','fullname', 'email', 'comment',  'date_submitted');
 session_start();
+date_default_timezone_set('Asia/Manila');
 
 
 $query = '';
@@ -61,9 +62,12 @@ if (isset($_POST['action'])){
     $query_profile = 'SELECT * FROM tbl_employee_profile WHERE EMPID = "'.$_POST["employeeiddb"].'" ';
     $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query_profile));
     //var_dump($number_filter_row);
+    $dateNow = date("Y-m-d H:i:s");
     if($number_filter_row == 0){
       $queProfile = "INSERT INTO `tbl_employee_profile` SET 
-      EMPID = '".$_POST["employeeiddb"]."'
+      EMPID = '".$_POST["employeeiddb"]."',
+      UPDATEDBY = '".$usernameid."',
+      UPDATEDDATETIME = '".$dateNow."'
       "; 
       //var_dump($queProfile);
       $query = $connect->query($queProfile) or die($connect->error); 
@@ -109,9 +113,13 @@ if (isset($_POST['action'])){
     $query_family = 'SELECT * FROM tbl_employee_family WHERE EMPID = "'.$_POST["employeeiddb"].'" ';
     $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query_family));
 
+    $dateNow = date("Y-m-d H:i:s");
+
     if ($number_filter_row == 0){
       $queProfile = "INSERT INTO `tbl_employee_family` SET 
-      EMPID = '".$_POST["employeeiddb"]."'
+      EMPID = '".$_POST["employeeiddb"]."',
+      UPDATEDBY = '".$usernameid."',
+      UPDATEDDATETIME = '".$dateNow."'
       "; 
     
       $query = $connect->query($queProfile) or die($connect->error); 
@@ -1311,7 +1319,7 @@ if (isset($_POST['action'])){
         ';
         $flag = false;
         
-
+        $usernameid              = $_POST['usernameid'];
         $employeeid              = $_POST['empid'];
         $firstname               = $_POST['firstname'];
         $middlename              = $_POST['middlename'];
@@ -1344,6 +1352,9 @@ if (isset($_POST['action'])){
         $mobileno                = $_POST['mobileno'];
         $emailprofile            = $_POST['emailprofile'];
 
+        $usernameid = $_POST['usernameid'];
+        
+
        /* if(1 === preg_match('~[0-9]~', $string)){
           #has numbers
       }*/
@@ -1371,7 +1382,7 @@ if (isset($_POST['action'])){
 
         if (!$flag){
 
-          $dateAdded = date("Y-m-d H:i:s");
+          $dateNow = date("Y-m-d H:i:s");
           $sqlemployee = 'UPDATE tbl_employee
           SET FIRSTNAME           = "'.$firstname.'",
           MIDDLENAME              = "'.$middlename.'", 
@@ -1381,9 +1392,13 @@ if (isset($_POST['action'])){
           POSITION                = "'.$position.'", 
           DATEHIRED               = "'.$datehired.'", 
           USERNAME                = "'.$username.'", 
-          PASSWORD                = "'.$password.'"
+          PASSWORD                = "'.$password.'",
+          UPDATEDBY               = "'.$usernameid.'",
+          UPDATEDDATETIME          = "'.$dateNow.'"
           
           WHERE ID = "'.$empid.'" ';
+
+          //var_dump($sqlemployee);
           $result = mysqli_query($connect, $sqlemployee);
 
           //var_dump($sqlemployee);
@@ -1407,7 +1422,9 @@ if (isset($_POST['action'])){
           PERMANENTADDRESS        = "'.$permanentaddress.'", 
           TELEPHONENO             = "'.$telephoneno.'", 
           MOBILENO                = "'.$mobileno.'", 
-          EMAIL                   = "'.$emailprofile.'"
+          EMAIL                   = "'.$emailprofile.'",
+          UPDATEDBY               = "'.$usernameid.'",
+          UPDATEDDATETIME          = "'.$dateNow.'"
           
           WHERE 
           ID = "'.$profileid.'" AND 
@@ -1476,7 +1493,9 @@ if (isset($_POST['action'])){
         $mothermaidenname        = $_POST['mothermaidenname'];
         $mothersurname           = $_POST['mothersurname'];
         $motherfirstname         = $_POST['motherfirstname'];
-        $mothermiddlename        = $_POST['mothermiddlename'];        
+        $mothermiddlename        = $_POST['mothermiddlename'];   
+        
+        $usernameid = $_POST['usernameid'];
 
         
 
@@ -1489,6 +1508,7 @@ if (isset($_POST['action'])){
        
 
         if (!$flag){
+          $dateNow = date("Y-m-d H:i:s");
           $sqlFamily = 'UPDATE tbl_employee_family
           SET 
           SPOUSELASTNAME            = "'.$spouselastname.'", 
@@ -1506,7 +1526,9 @@ if (isset($_POST['action'])){
           MOTHERMAIDENNAME      = "'.$mothermaidenname.'", 
           MOTHERSURNAME        = "'.$mothersurname.'", 
           MOTHERFIRSTNAME             = "'.$motherfirstname.'", 
-          MOTHERMIDDLENAME                = "'.$mothermiddlename.'" 
+          MOTHERMIDDLENAME                = "'.$mothermiddlename.'",
+          UPDATEDBY               = "'.$usernameid.'",
+          UPDATEDDATETIME          = "'.$dateNow.'"
         
           WHERE EMPID = "'.$_POST["employeeiddb"].'" AND ID = "'.$_POST["familyid"].'" ';
         

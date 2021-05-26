@@ -645,13 +645,14 @@
                 var mothersurname           = $('#mothersurname_update').val();
                 var motherfirstname         = $('#motherfirstname_update').val(); 
                 var mothermiddlename        = $('#mothermiddlename_update').val();
+                var usernameid              = $('#loginID').val();
                 $.ajax({
                     url:"view_employee_action",
                     method:"POST",
                     dataType: 'json',
                     data:{
                         employeeiddb:employeeiddb,
-                        
+                        usernameid:usernameid,
                         familyid:familyid,        
                         spouselastname:spouselastname,  
                         spousemiddlename:spousemiddlename,
@@ -692,6 +693,7 @@
         $(document).on('click', '#submit_personal_details', function(){
             var employeeiddb = document.getElementById("empID").value;
 
+            var usernameid              = $('#loginID').val();
             var empid                   = $('#employeeidmain_update').val();
             var firstname               = $('#firstname_update').val();
             var middlename              = $('#middlename_update').val();
@@ -733,6 +735,7 @@
                 method:"POST",
                 dataType: 'json',
                 data:{
+                    usernameid:usernameid,
                     employeeiddb:employeeiddb,
                     empid:empid,        
                     firstname:firstname,       

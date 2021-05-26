@@ -90,6 +90,7 @@ if ($_SESSION['username'] == ""){
           </button>
           <div class="d-none d-md-inline-block div-inline mr-auto ml-md-3 my-2 my-md-0 mw-100">
            <!-- <h2><?php// echo $_SESSION['received_by'] . " Department";?></h2>-->
+            <input type="hidden" name="loginID" id="loginID" value="<?php echo $_SESSION['usernameid']; ?>">
           </div>
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
@@ -116,6 +117,7 @@ if ($_SESSION['username'] == ""){
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php //echo $_SESSION['username'] ?></span>
+                
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -147,6 +149,7 @@ if ($_SESSION['username'] == ""){
           <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
               <h6 class="m-0 font-weight-bold text-primary">Employee Details</h6>
+
              
               <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#addEmployeeForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Employee</a>
               <!--<a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#dateRangeModal" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Generate Report</a> -->
@@ -431,6 +434,7 @@ if ($_SESSION['username'] == ""){
 
   $(document).on('click', '.delete_employee', function(){
       var id = $(this).data('id');
+      var usernameid = $('#loginID').val();
       
       var add_employee = "Success";
       var delete_confirm = confirm("Confirm deletion of data?");
@@ -439,6 +443,7 @@ if ($_SESSION['username'] == ""){
               url:"employee_detail_action",
               method:"POST",
               data:{
+                  usernameid:usernameid,
                   id:id, 
                   action:'delete_employee'
               },
@@ -453,6 +458,7 @@ if ($_SESSION['username'] == ""){
   });
 
   $(document).on('click', '#add_employee', function(){
+          var usernameid = $('#loginID').val();
           var empid = $('#empid').val();
           var firstname = $('#firstname').val();
           var middlename = $('#middlename').val();
@@ -464,6 +470,7 @@ if ($_SESSION['username'] == ""){
               url:"employee_detail_action",
               method:"POST",
               data:{
+                usernameid:usernameid,
                 empid:empid, 
                 firstname:firstname, 
                 middlename:middlename, 

@@ -109,6 +109,7 @@
                         //validateData();
                         //var answer = validateData();
                             //alert('e');
+                            var usernameid = $('#loginID').val();
                             var service_from = $('#service_from').val();
                             var service_to = $('#service_to').val();   
                             var designation = $('#designation').val();
@@ -126,6 +127,7 @@
                                 method:"POST",
                                 dataType:'JSON',
                                 data:{
+                                    usernameid:usernameid,
                                     service_from:service_from, 
                                     service_to:service_to, 
                                     designation:designation, 
@@ -182,7 +184,7 @@
                             var separation_date = $('#separation_date_update').val();
                             var amount_received = $('#amount_received_update').val();     
                             var details = $('#details_update').val();          
-                            //alert(srid);
+                            var usernameid = $('#loginID').val();
 
                             $.ajax({
                                 url:"serviceRecord_action",
@@ -201,6 +203,7 @@
                                     separation_date:separation_date,
                                     amount_received:amount_received,
                                     details:details,
+                                    usernameid:usernameid,
                                     action:'submit_update_sr'
                                 },
                                 success:function(data){

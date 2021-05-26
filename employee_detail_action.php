@@ -18,7 +18,7 @@ if (isset($_POST['action'])){
     ';
     $flag = false;
 
-
+    $usernameid = $_POST['usernameid'];
     $empid = $_POST['empid'];
     $firstname = $_POST['firstname'];
     $middlename = $_POST['middlename'];
@@ -65,6 +65,8 @@ if (isset($_POST['action'])){
       DATEHIRED = '".$datehired."',
       SLCREDIT = '".$slcredit."',
       VLCREDIT = '".$vlcredit."',
+      CREATEDBY = '".$usernameid."',
+      CREATEDDATETIME = '".$dateAdded."',
       CANCELLED = 'N'
       "; 
 
@@ -97,14 +99,14 @@ if (isset($_POST['action'])){
 
 if (isset($_POST['action'])){
   if ($_POST['action'] == 'delete_employee'){
-
+    $usernameid = $_POST['usernameid'];
+    $date = date("Y-m-d H:i:s");
     $query = 'UPDATE tbl_employee
-      SET CANCELLED = "Y" 
+      SET CANCELLED = "Y",
+      CANCELLEDBY = "'.$usernameid.'",
+      CANCELLEDDATETIME = "'.$date.'"
       WHERE ID = "'.$_POST["id"].'" AND CANCELLED = "N" ';
-
-    //echo $query;
-    //print_r($query);
-
+     
 
     $result = mysqli_query($connect, $query );
 

@@ -1,8 +1,10 @@
 <?php 
-session_start();
-require_once "Classes/PHPExcel.php";
+//session_start();
 include "dbConnection.php";
-
+require_once "Classes/PHPExcel.php";
+$columns = array('process', 'rating','fullname', 'email', 'comment',  'date_submitted');
+session_start();
+date_default_timezone_set('Asia/Manila');
 
 $export = new PHPExcel();
 $q ='SELECT EMPLOYEEID,LASTNAME, FIRSTNAME, MIDDLENAME,  EXTENSION, POSITION, ADDRESS, DATEHIRED FROM tbl_employee
@@ -13,15 +15,12 @@ CANCELLED = "N"
 ORDER BY LASTNAME ASC
 ';
 
-
-
-
+  
 $export->setActiveSheetIndex(0);
 $query = mysqli_query($connect,$q);
-$row = 5; //changed to five to add more headers
-$datetime = date("Y-m-d H:i:s");
+$row = 5; 
 $now = date_create()->format('Y-m-d H:i:s');
-//$datetime = 'ss';
+
 while($list = mysqli_fetch_object($query)){
 /*	if($_SESSION['received_by'] == 'Receiving'){
 	$GG = "date_sent";
@@ -115,9 +114,21 @@ $export->getActiveSheet()->getStyle('A5:H'.($row-1))->applyFromArray(
 		)
 	)
 );
-header('Content-Type: application/vnd.openxmlformats-officedocumnets.spreadsheetml.sheet');
+/*header('Content-Type: application/vnd.openxmlformats-officedocumnets.spreadsheetml.sheet');
 header('Content-Disposition: attachment; filename="Employee Data.xlsx"');
 header('Content-Control: max-age=0');
-$file = PHPExcel_IOFactory::createWriter($export,'Excel2007');
+$file = PHPExcel_IOFactory::createWriter($export,'Excel2007');*/
+
+$file = PHPExcel_IOFactory::createWriter($export, 'Excel5');
+header('Content-Type: application/vnd.ms-excel');
+header('Content-Disposition: attachment;filename="DOLE X Employee Record.xls"');
+
 ob_end_clean();
 $file->save('php://output');
+
+ 
+
+
+
+
+?>

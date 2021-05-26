@@ -23,11 +23,11 @@ $(document).ready(function(){
 
 
      $('#generateReport').click(function(){
-        //var from_date = 'SHET';
+
         //var to_date = '';
 
         //window.location.href="export?from_date="+from_date+"&to_date="+to_date+"";
-        window.location.href="export";
+        window.location.href="export.php", true;
      
      }); 
 

@@ -4,7 +4,7 @@ include "dbConnection.php";
 if(isset($_POST['login'])){
 	$user=$_POST['username'];
 	$pass=$_POST['password'];
-	$query = "SELECT * FROM `users` WHERE `USERNAME` = '".$user."' AND `PASSWORD` = '".$pass."' ";
+	$query = "SELECT * FROM `tbl_employee` WHERE `USERNAME` = '".$user."' AND `PASSWORD` = '".$pass."' ";
 	//var_dump($query);
 	$result = mysqli_query($connect,$query);
 	$message_final = '';
@@ -24,6 +24,7 @@ if(isset($_POST['login'])){
 
 		  $_SESSION['loggedin']="Account_Logged";
 		  $_SESSION['username'] = $row['USERNAME'];
+		  $_SESSION['usernameid'] = $row['ID'];
 		  //echo "success";
 		  $message_final = 'success';
 	}

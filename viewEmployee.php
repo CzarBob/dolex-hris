@@ -187,15 +187,11 @@ include 'view_employee_load_query.php';
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-
-
                     <!-- Content Row -->
                     <div class="row">
                         <!-- Employee ID database-->
                         <input type="hidden" name="empID" id="empID" value="<?php echo $_GET['id']; ?>">
-
-
-
+                        <input type="hidden" name="loginID" id="loginID" value="<?php echo $_SESSION['usernameid']; ?>">
                         <!-- Pending Requests Card Example -->
 
                     </div>

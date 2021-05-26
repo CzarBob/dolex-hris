@@ -3,6 +3,7 @@
 include "dbConnection.php";
 $columns = array('process', 'rating','fullname', 'email', 'comment',  'date_submitted');
 session_start();
+date_default_timezone_set('Asia/Manila');
 //$_SESSION['sr_data2'] = array();
 //$_SESSION['query2'] = '';
 //var_dump($_POST['action']);
@@ -212,6 +213,8 @@ if (isset($_POST['action'])){
       $amount_received = $_POST['amount_received'];
       $details = $_POST['details'];
 
+      $usernameid = $_POST['usernameid'];
+
       $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
       <strong>Data Updated!</strong> 
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -232,6 +235,7 @@ if (isset($_POST['action'])){
       }
 
       if (!$flag){
+        $dateAdded = date("Y-m-d H:i:s");
         $que = 'INSERT INTO `tbl_service_record` SET 
         EMPID =  "'.$empid.'",
         SERVICEFROM =  "'.$service_from.'",
@@ -245,7 +249,10 @@ if (isset($_POST['action'])){
         SEPARATIONDATE =  "'.$separation_date.'",
         AMOUNTRECEIVED =  "'.$amount_received.'",
         DETAILS =  "'.$details.'",
-        CANCELLED = "N"
+        CANCELLED = "N",
+        CREATEDBY = "'.$usernameid.'",
+        CREATEDDATETIME = "'.$dateAdded.'"
+        
         '; 
         $result = mysqli_query($connect,$que); 
 
@@ -464,6 +471,8 @@ if (isset($_POST['action'])){
       $separation_date = $_POST['separation_date'];
       $amount_received = $_POST['amount_received'];
       $details = $_POST['details'];
+      $usernameid = $_POST['usernameid'];
+
       
       $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
       <strong>Data Updated!</strong> 
@@ -476,7 +485,6 @@ if (isset($_POST['action'])){
       ';
       $flag = false;
 
-      $currentDate = date("Y/m/d");
 
       if (($designation == null) || ($designation == '')){
         $flag = true;
@@ -485,6 +493,7 @@ if (isset($_POST['action'])){
       }
 
       if (!$flag){
+        $dateNow = date("Y-m-d H:i:s");
         $query = 'UPDATE tbl_service_record
         SET 
         SERVICEFROM =  "'.$service_from.'",
@@ -497,7 +506,9 @@ if (isset($_POST['action'])){
         ABS =  "'.$abs.'",
         SEPARATIONDATE =  "'.$separation_date.'",
         AMOUNTRECEIVED =  "'.$amount_received.'",
-        DETAILS =  "'.$details.'"
+        DETAILS =  "'.$details.'",
+        UPDATEDBY = "'.$usernameid.'",
+        UPDATEDDATETIME = "'.$dateNow.'"
 
         WHERE ID = "'.$srid.'"';
 
@@ -528,9 +539,14 @@ if (isset($_POST['action'])){
 
   if (isset($_POST['action'])){
     if ($_POST['action'] == 'delete_sr'){
-
+      $dateNow = date("Y-m-d H:i:s");
+      $usernameid = $_POST['usernameid'];
       $query = 'UPDATE tbl_SERVICE_RECORD
-        SET CANCELLED = "Y" 
+        SET CANCELLED = "Y",
+        CANCELLEDBY = "'.$usernameid.'",
+        CANCELLEDDATETIME = "'.$dateNow.'"
+
+
         WHERE ID = "'.$_POST["id"].'" AND CANCELLED = "N" ';
 
       echo $query;
