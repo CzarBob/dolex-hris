@@ -2018,7 +2018,7 @@ include 'view_employee_load_query.php';
               <div class="form-group col-md-2">
 
                 <label for="inputCity">Date of Birth</label>
-                <input type="date" class="form-control" id="dobprofile_update">
+                <input type="date" class="form-control"  name="dobprofile_update" id="dobprofile_update">
               </div>
               <!-- Default input -->
               <div class="form-group col-md-8">
@@ -2080,31 +2080,31 @@ include 'view_employee_load_query.php';
               <div class="form-group col-md-2">
                 <label for="inputZip">Pagibig No.</label>
                 <input type="text" class="form-control" id="pagibigno_update" name="pagibigno_update"
-                  placeholder="Ex. 1234 Main Street">
+                 >
               </div>
               <!-- Default input -->
               <div class="form-group col-md-2">
                 <label for="inputZip">Philhealth No.</label>
                 <input type="text" class="form-control" id="phicno_update" name="phicno_update"
-                  placeholder="Ex. 1234 Main Street">
+                >
               </div>
               <!-- Default input -->
               <div class="form-group col-md-2">
                 <label for="inputZip">SSS No.</label>
                 <input type="text" class="form-control" id="sssno_update" name="sssno_update"
-                  placeholder="Ex. 1234 Main Street">
+                 >
               </div>
               <!-- Default input -->
               <div class="form-group col-md-2">
                 <label for="inputZip">TIN No.</label>
                 <input type="text" class="form-control" id="tinno_update" name="tinno_update"
-                  placeholder="Ex. 1234 Main Street">
+                 >
               </div>
               <!-- Default input -->
               <div class="form-group col-md-2">
                 <label for="inputZip">Agency Employee No.</label>
                 <input type="text" class="form-control" id="agencyemployeeno_update" name="agencyemployeeno_update"
-                  placeholder="Ex. 1234 Main Street">
+                 >
               </div>
             </div>
             <!-- Grid row -->

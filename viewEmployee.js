@@ -251,7 +251,7 @@
                                 if (genderValue == 'MALE'){
                                     $("#gender").val("MALE").change();
                                 } else if (genderValue == "") {
-                                    $("#gender").val('NA').change();
+                                    $("#gender").val("NA").change();
                                 }
                                 //var civilStatusValue =  'NA';
                                 var civilStatusValue =  data.data_profile.civilstatus;
@@ -540,7 +540,7 @@
                 
                     
                    
-                    $('#dob_update').val(values.data_profile.dob);
+                    $('#dobprofile_update').val(values.data_profile.dob);
                     $('#placeofbirth_update').val(values.data_profile.placeofbirth);
                     $('#height_update').val(values.data_profile.height);
                     $('#weight_update').val(values.data_profile.weight);
@@ -860,7 +860,7 @@
                            
 
                         $('#residentialaddress').val(data.data_profile.residentialaddress);
-                       // $('#permanentaddress').val(data.data_profile.permanentaddress);
+                        $('#permanentaddress').val(data.data_profile.permanentaddress);
                         $('#telephoneno').val(data.data_profile.telephoneno);
                         $('#mobileno').val(data.data_profile.mobileno);
                         $('#emailprofile').val(data.data_profile.email);
@@ -1603,7 +1603,7 @@
             //DELETE OTHER SKILL
             $(document).on('click', '.delete_other_skill', function(){
                 var id = $(this).data('id');
-                 alert(id);
+                 //alert(id);
                 var employeeiddb = document.getElementById("empID").value;
                 $.ajax({
                     url:"view_employee_action",

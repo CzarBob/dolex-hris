@@ -1430,7 +1430,7 @@ if (isset($_POST['action'])){
           ID = "'.$profileid.'" AND 
           EMPID = "'.$empid.'"';
 
-          
+          //var_dump($sqlProfile);
           $result = mysqli_query($connect, $sqlProfile);
 
         }
@@ -1860,12 +1860,12 @@ if (isset($_POST['action'])){
         }
   
         if (!$flag){
-          $query = 'UPDATE tbl_employee_voluntary
+          $query = 'UPDATE tbl_employee_voluntary_work
           SET ORGANIZATION =  "'.$volwork_organization.'",
           DATEFROM = "'.$volwork_date_from.'",
           DATETO =  "'.$volwork_date_to.'",
           NOOFHOURS = "'.$volwork_nohours.'",
-          POSITION =  "'.$volwork_position.'",
+          POSITION =  "'.$volwork_position.'"
     
           WHERE ID = "'.$volworkid.'"';
 
@@ -1923,13 +1923,14 @@ if (isset($_POST['action'])){
   
         if (!$flag){
           $query = 'UPDATE tbl_employee_ld
-          SET ORGANIZATION =  "'.$volwork_organization.'",
-          DATEFROM = "'.$volwork_date_from.'",
-          DATETO =  "'.$volwork_date_to.'",
-          NOOFHOURS = "'.$volwork_nohours.'",
-          POSITION =  "'.$volwork_position.'",
+          SET PROGRAM =  "'.$landd_program.'",
+          DATEFROM = "'.$landd_date_from.'",
+          DATETO =  "'.$landd_date_to.'",
+          NOOFHOURS = "'.$landd_nohours.'",
+          TYPE =  "'.$landd_type.'",
+          SPONSOREDBY =  "'.$landd_sponsoredby.'"
     
-          WHERE ID = "'.$volworkid.'"';
+          WHERE ID = "'.$landdid.'"';
 
           //var_dump($query);
           $result = mysqli_query($connect, $query);
