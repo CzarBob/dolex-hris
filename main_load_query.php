@@ -56,7 +56,7 @@ if (isset($_POST['action'])){
 if (isset($_POST['action'])){
   if ($_POST['action'] == 'fetch_dashboard_employee'){
 
-      $query = "SELECT * FROM tbl_employee  where  CANCELLED != 'Y'";
+      $query = "SELECT * FROM tbl_employee  where ID != '1' AND CANCELLED != 'Y'";
 
       if(isset($_POST["search"]["value"])){
       $query .= ' AND (FIRSTNAME LIKE "%'.$_POST["search"]["value"].'%" 

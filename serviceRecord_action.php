@@ -541,7 +541,7 @@ if (isset($_POST['action'])){
     if ($_POST['action'] == 'delete_sr'){
       $dateNow = date("Y-m-d H:i:s");
       $usernameid = $_POST['usernameid'];
-      $query = 'UPDATE tbl_SERVICE_RECORD
+      $query = 'UPDATE tbl_service_record
         SET CANCELLED = "Y",
         CANCELLEDBY = "'.$usernameid.'",
         CANCELLEDDATETIME = "'.$dateNow.'"
@@ -549,7 +549,7 @@ if (isset($_POST['action'])){
 
         WHERE ID = "'.$_POST["id"].'" AND CANCELLED = "N" ';
 
-      echo $query;
+      //echo $query;
       //$number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
       
       $result = mysqli_query($connect, $query );
