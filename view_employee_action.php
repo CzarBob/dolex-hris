@@ -760,9 +760,9 @@ if (isset($_POST['action'])){
   if (isset($_POST['action'])){
     if ($_POST['action'] == 'add_children'){
 
-        $fullname = $_POST['fullname'];
-        $dob = $_POST['dob'];
-        $empid  = $_POST['employeeiddb'];
+        $fullname = mysqli_real_escape_string($connect, $_POST['fullname']);
+        $dob = mysqli_real_escape_string($connect,$_POST['dob']);
+        $empid  = mysqli_real_escape_string($connect,$_POST['employeeiddb']);
 
 
         $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -822,15 +822,15 @@ if (isset($_POST['action'])){
   if (isset($_POST['action'])){
     if ($_POST['action'] == 'add_educ'){
         
-      $level                  = $_POST['level'];
-      $school_name            = $_POST['school_name'];
-      $empid                  = $_POST['employeeiddb'];
-      $educ                   = $_POST['educ'];
-      $attended_from          = $_POST['attended_from'];
-      $attended_to            = $_POST['attended_to'];
-      $highest_level               = $_POST['highest_level'];
-      $year_grad          = $_POST['year_grad'];
-      $honor_received         = $_POST['honor_received'];
+      $level                  = mysqli_real_escape_string($connect,$_POST['level']);
+      $school_name            =  mysqli_real_escape_string($connect, $_POST['school_name']);
+      $empid                  = mysqli_real_escape_string($connect,$_POST['employeeiddb']);
+      $educ                   =  mysqli_real_escape_string($connect, $_POST['educ']);
+      $attended_from          = mysqli_real_escape_string($connect,$_POST['attended_from']);
+      $attended_to            = mysqli_real_escape_string($connect,$_POST['attended_to']);
+      $highest_level               =  mysqli_real_escape_string($connect, $_POST['highest_level']);
+      $year_grad          = mysqli_real_escape_string($connect,$_POST['year_grad']);
+      $honor_received         =  mysqli_real_escape_string($connect, $_POST['honor_received']);
       
       $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
       <strong>Data Updated!</strong> 
@@ -894,13 +894,13 @@ if (isset($_POST['action'])){
   if (isset($_POST['action'])){
     if ($_POST['action'] == 'add_eligibility'){
         
-        $empid                        = $_POST['employeeiddb'];
-        $eligibility                  = $_POST['eligibility'];
-        $rating                       = $_POST['rating'];
-        $date_of_exam                 = $_POST['date_of_exam'];
-        $place_of_exam                = $_POST['place_of_exam'];
-        $license_no                   = $_POST['license_no'];
-        $license_date                 = $_POST['license_date'];
+        $empid                        = mysqli_real_escape_string($connect,$_POST['employeeiddb']);
+        $eligibility                  = mysqli_real_escape_string($connect,$_POST['eligibility']);
+        $rating                       = mysqli_real_escape_string($connect,$_POST['rating']);
+        $date_of_exam                 = mysqli_real_escape_string($connect,$_POST['date_of_exam']);
+        $place_of_exam                = mysqli_real_escape_string($connect,$_POST['place_of_exam']);
+        $license_no                   = mysqli_real_escape_string($connect,$_POST['license_no']);
+        $license_date                 = mysqli_real_escape_string($connect,$_POST['license_date']);
 
         $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>Data Updated!</strong> 
@@ -954,15 +954,15 @@ if (isset($_POST['action'])){
   if (isset($_POST['action'])){
     if ($_POST['action'] == 'add_work'){
         
-        $empid                  = $_POST['employeeiddb'];
-        $work_date_from                  = $_POST['work_date_from'];
-        $work_date_to            = $_POST['work_date_to'];
-        $work_position                  = $_POST['work_position'];
-        $work_company                   = $_POST['work_company'];
-        $work_salary          = $_POST['work_salary'];
-        $work_salary_grade            = $_POST['work_salary_grade'];
-        $work_status          = $_POST['work_status'];
-        $work_govt_service            = $_POST['work_govt_service'];
+        $empid                  =  mysqli_real_escape_string($connect,$_POST['employeeiddb']);
+        $work_date_from                  =  mysqli_real_escape_string($connect,$_POST['work_date_from']);
+        $work_date_to            =  mysqli_real_escape_string($connect,$_POST['work_date_to']);
+        $work_position                  =  mysqli_real_escape_string($connect,$_POST['work_position']);
+        $work_company                   =  mysqli_real_escape_string($connect,$_POST['work_company']);
+        $work_salary          =  mysqli_real_escape_string($connect,$_POST['work_salary']);
+        $work_salary_grade            =  mysqli_real_escape_string($connect,$_POST['work_salary_grade']);
+        $work_status          =  mysqli_real_escape_string($connect,$_POST['work_status']);
+        $work_govt_service            =  mysqli_real_escape_string($connect,$_POST['work_govt_service']);
 
         $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>Data Updated!</strong> 
@@ -1019,12 +1019,12 @@ if (isset($_POST['action'])){
   if (isset($_POST['action'])){
     if ($_POST['action'] == 'add_volwork'){
         
-        $empid                  = $_POST['employeeiddb'];
-        $volwork_organization                  = $_POST['volwork_organization'];
-        $volwork_date_from            = $_POST['volwork_date_from'];
-        $volwork_date_to                  = $_POST['volwork_date_to'];
-        $volwork_nohours                   = $_POST['volwork_nohours'];
-        $volwork_position          = $_POST['volwork_position'];
+        $empid                  = mysqli_real_escape_string($connect,$_POST['employeeiddb']);
+        $volwork_organization                  = mysqli_real_escape_string($connect,$_POST['volwork_organization']);
+        $volwork_date_from            = mysqli_real_escape_string($connect,$_POST['volwork_date_from']);
+        $volwork_date_to                  = mysqli_real_escape_string($connect,$_POST['volwork_date_to']);
+        $volwork_nohours                   = mysqli_real_escape_string($connect,$_POST['volwork_nohours']);
+        $volwork_position          = mysqli_real_escape_string($connect,$_POST['volwork_position']);
         
         $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>Data Updated!</strong> 
@@ -1080,13 +1080,13 @@ if (isset($_POST['action'])){
   if (isset($_POST['action'])){
     if ($_POST['action'] == 'add_landd'){
         
-        $empid                  = $_POST['employeeiddb'];
-        $landd_program                  = $_POST['landd_program'];
-        $landd_date_from            = $_POST['landd_date_from'];
-        $landd_date_to                  = $_POST['landd_date_to'];
-        $landd_nohours                   = $_POST['landd_nohours'];
-        $landd_type          = $_POST['landd_type'];
-        $landd_sponsoredby          = $_POST['landd_sponsoredby'];
+        $empid                  = mysqli_real_escape_string($connect,$_POST['employeeiddb']);
+        $landd_program                  =  mysqli_real_escape_string($connect, $_POST['landd_program']);
+        $landd_date_from            = mysqli_real_escape_string($connect,$_POST['landd_date_from']);
+        $landd_date_to                  = mysqli_real_escape_string($connect,$_POST['landd_date_to']);
+        $landd_nohours                   = mysqli_real_escape_string($connect,$_POST['landd_nohours']);
+        $landd_type          =  mysqli_real_escape_string($connect, $_POST['landd_type']);
+        $landd_sponsoredby          =  mysqli_real_escape_string($connect, $_POST['landd_sponsoredby']);
 
         $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>Data Updated!</strong> 
@@ -1142,8 +1142,8 @@ if (isset($_POST['action'])){
   if (isset($_POST['action'])){
     if ($_POST['action'] == 'add_other_skill'){
         
-        $empid                      = $_POST['employeeiddb'];
-        $other_skill                = $_POST['other_skill'];
+        $empid                      = mysqli_real_escape_string($connect, $_POST['employeeiddb']);
+        $other_skill                = mysqli_real_escape_string($connect, $_POST['other_skill']);
         $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>Data Updated!</strong> 
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -1196,8 +1196,8 @@ if (isset($_POST['action'])){
   if (isset($_POST['action'])){
     if ($_POST['action'] == 'add_other_recognition'){
         
-        $empid                      = $_POST['employeeiddb'];
-        $other_recognition                = $_POST['other_recognition'];
+        $empid                      = mysqli_real_escape_string($connect, $_POST['employeeiddb']);
+        $other_recognition                = mysqli_real_escape_string($connect, $_POST['other_recognition']);
         
         $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>Data Updated!</strong> 
@@ -1250,8 +1250,8 @@ if (isset($_POST['action'])){
   if (isset($_POST['action'])){
     if ($_POST['action'] == 'add_other_membership'){
         
-        $empid                      = $_POST['employeeiddb'];
-        $other_membership                = $_POST['other_membership'];
+        $empid                      = mysqli_real_escape_string($connect, $_POST['employeeiddb']);
+        $other_membership                = mysqli_real_escape_string($connect, $_POST['other_membership']);
         
         $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>Data Updated!</strong> 
@@ -1319,40 +1319,40 @@ if (isset($_POST['action'])){
         ';
         $flag = false;
         
-        $usernameid              = $_POST['usernameid'];
-        $employeeid              = $_POST['empid'];
-        $firstname               = $_POST['firstname'];
-        $middlename              = $_POST['middlename'];
-        $lastname                = $_POST['lastname'];
-        $extension               = $_POST['extension'];
-        $position                = $_POST['position'];
-        $datehired               = $_POST['datehired'];
-        $username                = $_POST['username'];
-        $password                = $_POST['password'];
-        $gender                  = $_POST['gender'];
-        $civilstatus             = $_POST['civilstatus'];
+        $usernameid              = mysqli_real_escape_string($connect, $_POST['usernameid']);
+        $employeeid              = mysqli_real_escape_string($connect, $_POST['empid']);
+        $firstname               = mysqli_real_escape_string($connect, $_POST['firstname']);
+        $middlename              = mysqli_real_escape_string($connect, $_POST['middlename']);
+        $lastname                = mysqli_real_escape_string($connect, $_POST['lastname']);
+        $extension               = mysqli_real_escape_string($connect, $_POST['extension']);
+        $position                = mysqli_real_escape_string($connect, $_POST['position']);
+        $datehired               = mysqli_real_escape_string($connect, $_POST['datehired']);
+        $username                = mysqli_real_escape_string($connect, $_POST['username']);
+        $password                = mysqli_real_escape_string($connect, $_POST['password']);
+        $gender                  = mysqli_real_escape_string($connect, $_POST['gender']);
+        $civilstatus             = mysqli_real_escape_string($connect, $_POST['civilstatus']);
 
-        $profileid               = $_POST['profileid'];
-        $dob                     = $_POST['dob'];
-        $placeofbirth            = $_POST['placeofbirth'];
-        $height                  = $_POST['height'];
-        $weight                  = $_POST['weight'];
-        $bloodtype               = $_POST['bloodtype'];
-        $gsisno                  = $_POST['gsisno'];
-        $pagibigno               = $_POST['pagibigno'];
-        $phicno                  = $_POST['phicno'];
-        $sssno                   = $_POST['sssno'];
-        $tinno                   = $_POST['tinno'];
-        $agencyemployeeno        = $_POST['agencyemployeeno'];
-        $citizenship                    = $_POST['citizenship'];
-        $dualchoice                = $_POST['dualchoice'];
-        $residentialaddress      = $_POST['residentialaddress'];
-        $permanentaddress        = $_POST['permanentaddress'];
-        $telephoneno             = $_POST['telephoneno'];
-        $mobileno                = $_POST['mobileno'];
-        $emailprofile            = $_POST['emailprofile'];
+        $profileid               = mysqli_real_escape_string($connect, $_POST['profileid']);
+        $dob                     = mysqli_real_escape_string($connect, $_POST['dob']);
+        $placeofbirth            = mysqli_real_escape_string($connect, $_POST['placeofbirth']);
+        $height                  = mysqli_real_escape_string($connect, $_POST['height']);
+        $weight                  = mysqli_real_escape_string($connect, $_POST['weight']);
+        $bloodtype               = mysqli_real_escape_string($connect, $_POST['bloodtype']);
+        $gsisno                  = mysqli_real_escape_string($connect, $_POST['gsisno']);
+        $pagibigno               = mysqli_real_escape_string($connect, $_POST['pagibigno']);
+        $phicno                  = mysqli_real_escape_string($connect, $_POST['phicno']);
+        $sssno                   = mysqli_real_escape_string($connect, $_POST['sssno']);
+        $tinno                   = mysqli_real_escape_string($connect, $_POST['tinno']);
+        $agencyemployeeno        = mysqli_real_escape_string($connect, $_POST['agencyemployeeno']);
+        $citizenship                    = mysqli_real_escape_string($connect, $_POST['citizenship']);
+        $dualchoice                =mysqli_real_escape_string($connect,  $_POST['dualchoice']);
+        $residentialaddress      = mysqli_real_escape_string($connect, $_POST['residentialaddress']);
+        $permanentaddress        = mysqli_real_escape_string($connect, $_POST['permanentaddress']);
+        $telephoneno             = mysqli_real_escape_string($connect, $_POST['telephoneno']);
+        $mobileno                = mysqli_real_escape_string($connect, $_POST['mobileno']);
+        $emailprofile            = mysqli_real_escape_string($connect, $_POST['emailprofile']);
 
-        $usernameid = $_POST['usernameid'];
+        $usernameid = mysqli_real_escape_string($connect, $_POST['usernameid']);
         
 
        /* if(1 === preg_match('~[0-9]~', $string)){
@@ -1477,25 +1477,25 @@ if (isset($_POST['action'])){
         $flag = false;
 
       
-        $familyid                = $_POST['familyid'];
-        $spouselastname          = $_POST['spouselastname'];
-        $spousemiddlename        = $_POST['spousemiddlename'];
-        $spousefirstname         = $_POST['spousefirstname'];
-        $spouseextension         = $_POST['spouseextension'];
-        $occupation              = $_POST['occupation'];
-        $employername            = $_POST['employername' ];
-        $businessaddress         = $_POST['businessaddress'];
-        $spousetelno             = $_POST['spousetelno'];
-        $fathersurname           = $_POST['fathersurname'];
-        $fatherfirstname         = $_POST['fatherfirstname'];
-        $fathermiddlename        = $_POST['fathermiddlename'];
-        $fatherext               = $_POST['fatherext'];
-        $mothermaidenname        = $_POST['mothermaidenname'];
-        $mothersurname           = $_POST['mothersurname'];
-        $motherfirstname         = $_POST['motherfirstname'];
-        $mothermiddlename        = $_POST['mothermiddlename'];   
+        $familyid                = mysqli_real_escape_string($connect,$_POST['familyid']);
+        $spouselastname          = mysqli_real_escape_string($connect,$_POST['spouselastname']);
+        $spousemiddlename        = mysqli_real_escape_string($connect,$_POST['spousemiddlename']);
+        $spousefirstname         = mysqli_real_escape_string($connect,$_POST['spousefirstname']);
+        $spouseextension         = mysqli_real_escape_string($connect,$_POST['spouseextension']);
+        $occupation              = mysqli_real_escape_string($connect,$_POST['occupation']);
+        $employername            = mysqli_real_escape_string($connect,$_POST['employername' ]);
+        $businessaddress         = mysqli_real_escape_string($connect,$_POST['businessaddress']);
+        $spousetelno             = mysqli_real_escape_string($connect,$_POST['spousetelno']);
+        $fathersurname           = mysqli_real_escape_string($connect,$_POST['fathersurname']);
+        $fatherfirstname         = mysqli_real_escape_string($connect,$_POST['fatherfirstname']);
+        $fathermiddlename        = mysqli_real_escape_string($connect,$_POST['fathermiddlename']);
+        $fatherext               = mysqli_real_escape_string($connect,$_POST['fatherext']);
+        $mothermaidenname        = mysqli_real_escape_string($connect,$_POST['mothermaidenname']);
+        $mothersurname           = mysqli_real_escape_string($connect,$_POST['mothersurname']);
+        $motherfirstname         = mysqli_real_escape_string($connect,$_POST['motherfirstname']);
+        $mothermiddlename        = mysqli_real_escape_string($connect,$_POST['mothermiddlename']);   
         
-        $usernameid = $_POST['usernameid'];
+        $usernameid =  mysqli_real_escape_string($connect,$_POST['usernameid']);
 
         
 
@@ -1562,9 +1562,9 @@ if (isset($_POST['action'])){
   if (isset($_POST['action'])){
     if ($_POST['action'] == 'submit_update_children'){
 
-      $fullname = $_POST['fullname'];
-      $dob = $_POST['dob'];
-      $empid  = $_POST['id'];
+      $fullname =  mysqli_real_escape_string($connect,$_POST['fullname']);
+      $dob =  mysqli_real_escape_string($connect,$_POST['dob']);
+      $empid  =  mysqli_real_escape_string($connect,$_POST['id']);
 
       $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
       <strong>Data Updated!</strong> 
@@ -1622,16 +1622,16 @@ if (isset($_POST['action'])){
 
   if (isset($_POST['action'])){
     if ($_POST['action'] == 'submit_educ'){
-        $educid                  = $_POST['educid'];
-        $level                  = $_POST['level'];
-        $school_name            = $_POST['school_name'];
-        $empid                  = $_POST['employeeiddb'];
-        $educ                   = $_POST['educ'];
-        $attended_from          = $_POST['attended_from'];
-        $attended_to            = $_POST['attended_to'];
-        $highest_level               = $_POST['highest_level'];
-        $year_grad          = $_POST['year_grad'];
-        $honor_received         = $_POST['honor_received'];
+        $educid                  =  mysqli_real_escape_string($connect,$_POST['educid']);
+        $level                  =  mysqli_real_escape_string($connect,$_POST['level']);
+        $school_name            =  mysqli_real_escape_string($connect,$_POST['school_name']);
+        $empid                  =  mysqli_real_escape_string($connect,$_POST['employeeiddb']);
+        $educ                   =  mysqli_real_escape_string($connect,$_POST['educ']);
+        $attended_from          =  mysqli_real_escape_string($connect,$_POST['attended_from']);
+        $attended_to            =  mysqli_real_escape_string($connect,$_POST['attended_to']);
+        $highest_level               =  mysqli_real_escape_string($connect,$_POST['highest_level']);
+        $year_grad          =  mysqli_real_escape_string($connect,$_POST['year_grad']);
+        $honor_received         =  mysqli_real_escape_string($connect,$_POST['honor_received']);
         
         $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>Data Updated!</strong> 
@@ -1696,14 +1696,14 @@ if (isset($_POST['action'])){
 
   if (isset($_POST['action'])){
     if ($_POST['action'] == 'submit_eligibility'){
-        $eligibilityid                  = $_POST['eligibilityid'];
-        $eligibility                  = $_POST['eligibility'];
-        $rating            = $_POST['rating'];
-        $empid                  = $_POST['employeeiddb'];
-        $date_of_exam                   = $_POST['date_of_exam'];
-        $place_of_exam          = $_POST['place_of_exam'];
-        $license_no            = $_POST['license_no'];
-        $license_date               = $_POST['license_date'];
+        $eligibilityid                  = mysqli_real_escape_string($connect,$_POST['eligibilityid']);
+        $eligibility                  = mysqli_real_escape_string($connect,$_POST['eligibility']);
+        $rating            = mysqli_real_escape_string($connect,$_POST['rating']);
+        $empid                  = mysqli_real_escape_string($connect,$_POST['employeeiddb']);
+        $date_of_exam                   = mysqli_real_escape_string($connect,$_POST['date_of_exam']);
+        $place_of_exam          = mysqli_real_escape_string($connect,$_POST['place_of_exam']);
+        $license_no            = mysqli_real_escape_string($connect,$_POST['license_no']);
+        $license_date               = mysqli_real_escape_string($connect,$_POST['license_date']);
 
         $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>Data Updated!</strong> 
@@ -1762,16 +1762,16 @@ if (isset($_POST['action'])){
 
   if (isset($_POST['action'])){
     if ($_POST['action'] == 'submit_work'){
-        $workid                  = $_POST['workid'];
-        $work_date_from                  = $_POST['work_date_from'];
-        $work_date_to            = $_POST['work_date_to'];
-        $empid                  = $_POST['employeeiddb'];
-        $work_position                   = $_POST['work_position'];
-        $work_company          = $_POST['work_company'];
-        $work_salary            = $_POST['work_salary'];
-        $work_salary_grade               = $_POST['work_salary_grade'];
-        $work_status            = $_POST['work_status'];
-        $work_govt_service               = $_POST['work_govt_service'];
+        $workid                  = mysqli_real_escape_string($connect,$_POST['workid']);
+        $work_date_from                  = mysqli_real_escape_string($connect,$_POST['work_date_from']);
+        $work_date_to            = mysqli_real_escape_string($connect,$_POST['work_date_to']);
+        $empid                  = mysqli_real_escape_string($connect,$_POST['employeeiddb']);
+        $work_position                   = mysqli_real_escape_string($connect,$_POST['work_position']);
+        $work_company          = mysqli_real_escape_string($connect,$_POST['work_company']);
+        $work_salary            = mysqli_real_escape_string($connect,$_POST['work_salary']);
+        $work_salary_grade               = mysqli_real_escape_string($connect,$_POST['work_salary_grade']);
+        $work_status            = mysqli_real_escape_string($connect,$_POST['work_status']);
+        $work_govt_service               = mysqli_real_escape_string($connect,$_POST['work_govt_service']);
 
         $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>Data Updated!</strong> 
@@ -1831,13 +1831,13 @@ if (isset($_POST['action'])){
 
   if (isset($_POST['action'])){
     if ($_POST['action'] == 'submit_volwork'){
-        $volworkid                  = $_POST['volworkid'];
-        $volwork_organization                  = $_POST['volwork_organization'];
-        $volwork_date_from            = $_POST['volwork_date_from'];
-        $empid                  = $_POST['employeeiddb'];
-        $volwork_date_to                   = $_POST['volwork_date_to'];
-        $volwork_nohours          = $_POST['volwork_nohours'];
-        $volwork_position            = $_POST['volwork_position'];
+        $volworkid                  = mysqli_real_escape_string($connect,$_POST['volworkid']);
+        $volwork_organization                  = mysqli_real_escape_string($connect,$_POST['volwork_organization']);
+        $volwork_date_from            = mysqli_real_escape_string($connect,$_POST['volwork_date_from']);
+        $empid                  = mysqli_real_escape_string($connect,$_POST['employeeiddb']);
+        $volwork_date_to                   = mysqli_real_escape_string($connect,$_POST['volwork_date_to']);
+        $volwork_nohours          = mysqli_real_escape_string($connect,$_POST['volwork_nohours');
+        $volwork_position            = mysqli_real_escape_string($connect,$_POST['volwork_position']);
     
 
         $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -1892,14 +1892,14 @@ if (isset($_POST['action'])){
 
   if (isset($_POST['action'])){
     if ($_POST['action'] == 'submit_landd'){
-        $landdid                  = $_POST['landdid'];
-        $landd_program                  = $_POST['landd_program'];
-        $landd_date_from            = $_POST['landd_date_from'];
-        $empid                  = $_POST['employeeiddb'];
-        $landd_date_to                   = $_POST['landd_date_to'];
-        $landd_nohours          = $_POST['landd_nohours'];
-        $landd_type            = $_POST['landd_type'];
-        $landd_sponsoredby            = $_POST['landd_sponsoredby'];
+        $landdid                  = mysqli_real_escape_string($connect,$_POST['landdid']);
+        $landd_program                  = mysqli_real_escape_string($connect,$_POST['landd_program']);
+        $landd_date_from            = mysqli_real_escape_string($connect,$_POST['landd_date_from']);
+        $empid                  = mysqli_real_escape_string($connect,$_POST['employeeiddb']);
+        $landd_date_to                   = mysqli_real_escape_string($connect,$_POST['landd_date_to']);
+        $landd_nohours          = mysqli_real_escape_string($connect,$_POST['landd_nohours']);
+        $landd_type            = mysqli_real_escape_string($connect,$_POST['landd_type']);
+        $landd_sponsoredby            = mysqli_real_escape_string($connect,$_POST['landd_sponsoredby']);
     
 
         $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
