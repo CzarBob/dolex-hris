@@ -122,7 +122,7 @@ $export->getActiveSheet()->getStyle('A3:R'.($row-1))->applyFromArray(
 	)
 );
 header('Content-Type: application/vnd.openxmlformats-officedocumnets.spreadsheetml.sheet');
-header('Content-Disposition: attachment; filename="AEP MASTERLIST.xls"');
+header('Content-Disposition: attachment; filename="AEP MASTERLIST.xlsx"');
 header('Content-Control: max-age=0');
 $file = PHPExcel_IOFactory::createWriter($export,'Excel5');
 $file->save('php://output');
