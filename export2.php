@@ -77,12 +77,6 @@ $query = 'SELECT
         }
     }
       
-
-
-
-
-
-
 $sheet->setCellValue('A1', 'GSIS D 202-02 (Revised, 1989)');
 $sheet->setCellValue('A4', 'SERVICE RECORD');
 $sheet->setCellValue('D5', 'Department of Labor and Employment');
