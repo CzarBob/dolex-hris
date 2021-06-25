@@ -361,74 +361,70 @@ if (isset($_POST['action'])){
       $result = mysqli_query($connect, $query );
       
       $data = array();
-       
-      while($row = mysqli_fetch_array($result)){
-        /*if($_SESSION['received_by'] == "Receiving"){
-          $rel = $row["date_sent"];
-        }
-        else{
-          $rel = $row["date_released"];
-        }
-        $timestamp = $row["date_received"];
-        $delta_time = strtotime($rel) - strtotime($timestamp);
-        $days = floor($delta_time / 86400);
-        $delta_time %= 86400;
-        $hours = floor($delta_time / 3600);
-        $delta_time %= 3600;
-        $minutes = floor($delta_time / 60);
-        $delta_time %= 60;
-        $seconds = floor($delta_time / 1);
-        $time_cycle = "";
-        if($days==0){$dd = "";}else{if($days>1){$dd = "{$days} days";}else{$dd = "{$days} day";}}
-        if($hours==0){$hh = "";}else{if($hours>1){$hh = "{$hours} hours";}else{$hh = "{$hours} hour";}}
-        if($minutes==0){$mm = "";}else{if($minutes>1){$mm = "{$minutes} minutes";}else{$mm = "{$minutes} minute";}}
-        if($days!=0){$time_cycle = $dd." ".$hh;}else{$time_cycle = $hh." ".$mm." {$seconds} seconds";}
-        if(strlen($row["description"]) >= 25){
-          $description = "<a style = 'color:#0893b8;' class ='fas fa-info-circle' data-toggle='tooltip' title='".$row["description"]."'></a> ". $row["description"];
-        }
-        else{
-           $description = $row["description"];
-        }
-        if(strlen($row["type"]) >= 25){
-          $type = "<a style = 'color:#0893b8;' class ='fas fa-info-circle' data-toggle='tooltip' title='".$row["type"]."'></a> ". $row["type"];
-        }
-        else{
-           $type = $row["type"];
-        }
-      */
-        $sub_array = array();
-        $sub_array[] = $row["FULLNAME"];
-        $sub_array[] = $row["DOB"];
-      
-        //$sub_array[] = $row["EMPLOYEEID"];
-        /*$sub_array[] = 
-        "<form action='adminviewapplicant.php' method='POST'>
-                            <input type='hidden' name='tin' value='" . $row["FIRSTNAME"] . "'>
-                            <input type='hidden' name='id' value='" . $row["ID"] . "'>
-                  <input type='submit' class ='btn btn-sm btn-info btn-block' name ='view' id = 'submit' value ='VIEW (?)'>
-                </form> ";*/
-        // $sub_array[] = "<a href='employee_detail.php'  id='ID' data-toggle='modal' data-id='".$row['ID']."'>View</a> / 
-                //$sub_array[] = "<a href='viewEmployee.php?id=".$row['ID']."' data-id='".$row['ID']."'> HERE</a> /  
 
-                //<button type='button' name='update_children' class='btn btn-warning btn-sm update_children' data-toggle='modal' data-target='#modalChildrenForm' data-id='".$row['ID']."'>Update</button>  
-                $sub_array[] = "
-                
-                <button type='button' name='update_children' class='btn btn-warning btn-sm update_children'  data-id='".$row['ID']."'>View</button>
-                <button type='button' name='delete_children' class='btn btn-danger btn-sm delete_children' data-id='".$row['ID']."'>Delete</button>";  
-              //<a data-toggle='modal' id = 'delete-children' data-id='".$row['ID']."'>Delete</a>
-      
+      if ($result) {
+        while($row = mysqli_fetch_array($result)){
+          /*if($_SESSION['received_by'] == "Receiving"){
+            $rel = $row["date_sent"];
+          }
+          else{
+            $rel = $row["date_released"];
+          }
+          $timestamp = $row["date_received"];
+          $delta_time = strtotime($rel) - strtotime($timestamp);
+          $days = floor($delta_time / 86400);
+          $delta_time %= 86400;
+          $hours = floor($delta_time / 3600);
+          $delta_time %= 3600;
+          $minutes = floor($delta_time / 60);
+          $delta_time %= 60;
+          $seconds = floor($delta_time / 1);
+          $time_cycle = "";
+          if($days==0){$dd = "";}else{if($days>1){$dd = "{$days} days";}else{$dd = "{$days} day";}}
+          if($hours==0){$hh = "";}else{if($hours>1){$hh = "{$hours} hours";}else{$hh = "{$hours} hour";}}
+          if($minutes==0){$mm = "";}else{if($minutes>1){$mm = "{$minutes} minutes";}else{$mm = "{$minutes} minute";}}
+          if($days!=0){$time_cycle = $dd." ".$hh;}else{$time_cycle = $hh." ".$mm." {$seconds} seconds";}
+          if(strlen($row["description"]) >= 25){
+            $description = "<a style = 'color:#0893b8;' class ='fas fa-info-circle' data-toggle='tooltip' title='".$row["description"]."'></a> ". $row["description"];
+          }
+          else{
+             $description = $row["description"];
+          }
+          if(strlen($row["type"]) >= 25){
+            $type = "<a style = 'color:#0893b8;' class ='fas fa-info-circle' data-toggle='tooltip' title='".$row["type"]."'></a> ". $row["type"];
+          }
+          else{
+             $type = $row["type"];
+          }
+        */
+          $sub_array = array();
+          $sub_array[] = $row["FULLNAME"];
+          $sub_array[] = $row["DOB"];
+        
+          //$sub_array[] = $row["EMPLOYEEID"];
+          /*$sub_array[] = 
+          "<form action='adminviewapplicant.php' method='POST'>
+                              <input type='hidden' name='tin' value='" . $row["FIRSTNAME"] . "'>
+                              <input type='hidden' name='id' value='" . $row["ID"] . "'>
+                    <input type='submit' class ='btn btn-sm btn-info btn-block' name ='view' id = 'submit' value ='VIEW (?)'>
+                  </form> ";*/
+          // $sub_array[] = "<a href='employee_detail.php'  id='ID' data-toggle='modal' data-id='".$row['ID']."'>View</a> / 
+                  //$sub_array[] = "<a href='viewEmployee.php?id=".$row['ID']."' data-id='".$row['ID']."'> HERE</a> /  
   
-        $data[] = $sub_array;
+                  //<button type='button' name='update_children' class='btn btn-warning btn-sm update_children' data-toggle='modal' data-target='#modalChildrenForm' data-id='".$row['ID']."'>Update</button>  
+                  $sub_array[] = "
+                  
+                  <button type='button' name='update_children' class='btn btn-warning btn-sm update_children'  data-id='".$row['ID']."'>View</button>
+                  <button type='button' name='delete_children' class='btn btn-danger btn-sm delete_children' data-id='".$row['ID']."'>Delete</button>";  
+                //<a data-toggle='modal' id = 'delete-children' data-id='".$row['ID']."'>Delete</a>
+        
+    
+          $data[] = $sub_array;
+        }
       }
+       
       
-      /*function get_all_data($connect){
-       $query = "SELECT * FROM updates where receiver = '".$_SESSION['received_by']."'";
-       $result = mysqli_query($connect, $query);
-       return mysqli_num_rows($result);
-      }*/
-      
-      $_SESSION['query2'] = $data;
-      
+ 
       //var_dump($_SESSION['query2']);
       $output = array(
        //"draw"    => intval($_POST["draw"]),
@@ -1836,7 +1832,7 @@ if (isset($_POST['action'])){
         $volwork_date_from            = mysqli_real_escape_string($connect,$_POST['volwork_date_from']);
         $empid                  = mysqli_real_escape_string($connect,$_POST['employeeiddb']);
         $volwork_date_to                   = mysqli_real_escape_string($connect,$_POST['volwork_date_to']);
-        $volwork_nohours          = mysqli_real_escape_string($connect,$_POST['volwork_nohours');
+        $volwork_nohours          = mysqli_real_escape_string($connect,$_POST['volwork_nohours']);
         $volwork_position            = mysqli_real_escape_string($connect,$_POST['volwork_position']);
     
 

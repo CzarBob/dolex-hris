@@ -8,6 +8,11 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load('Book2.xlsx');
 
+
+//$id = $_POST['employeeiddb'];
+$id = '15';
+
+
 $query = 'SELECT tbl_employee.FIRSTNAME as FIRSTNAME,
 tbl_employee.MIDDLENAME as MIDDLENAME,
 tbl_employee.LASTNAME as LASTNAME,
@@ -17,7 +22,7 @@ tbl_employee_profile.PLACEOFBIRTH as PLACEOFBIRTH
 FROM tbl_employee 
 INNER JOIN tbl_employee_profile ON 
 tbl_employee_profile.EMPID = tbl_employee.ID
-WHERE tbl_employee.ID = "2" ';
+WHERE tbl_employee.ID = "15" ';
 
 
     $firstname = '';
@@ -41,7 +46,8 @@ WHERE tbl_employee.ID = "2" ';
     }
 
 
-    $$query_profile = 'SELECT * FROM tbl_employee_profile WHERE EMPID = "'.$_POST["employeeiddb"].'" ';
+    //$$query_profile = 'SELECT * FROM tbl_employee_profile WHERE EMPID = "'.$_POST["employeeiddb"].'" ';
+    $query_profile = 'SELECT * FROM tbl_employee_profile WHERE EMPID = "'.$id.'" ';
     $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query_profile));
 
     $result_query_profile = mysqli_query($connect, $query_profile);
@@ -70,57 +76,44 @@ WHERE tbl_employee.ID = "2" ';
 
 
 
-
+   if ($result_query_profile){
     while($row = mysqli_fetch_array($result_query_profile)){
-  
-        $sub_array_query_profile = array();
 
-        $dob                   = $row['DOB'];
-        $placeofbirth          = $row['PLACEOFBIRTH'];
-        $gender                = $row['GENDER'];
-        $civilstatus                = $row['CIVILSTATUS'];
-        $height                 = $row['HEIGHT'];
-        $weight                = $row['WEIGHT'];
-        $bloodtype              = $row['BLOODTYPE'];
-        $gsisno                = $row['GSISNO'];
-        $pagibigno             = $row['PAGIBIGNO'];
-        $phicno                = $row['PHICNO'];
-        $sssno                 = $row['SSSNO'];
-        $tinno                 = $row['TINNO'];
-        $agencyemployeeno      = $row['AGENCYEMPLOYEENO'];
-        $citizenship           = $row['CITIZENSHIP'];
-        $dualchoice            = $row['DUALCITIZEN'];
-        $residentialaddress    = $row['RESIDENTIALADDRESS'];
-        $permanentaddress      = $row['PERMANENTADDRESS'];
-        $telephoneno           = $row['TELEPHONENO'];
-        $mobileno              = $row['MOBILENO'];
-        $emailprofile          = $row['EMAIL'];
-        
-        $data_profile[] = $sub_array_query_profile;
-      }
+      $dob                   = $row['DOB'];
+      $placeofbirth          = $row['PLACEOFBIRTH'];
+      $gender                = $row['GENDER'];
+      $civilstatus                = $row['CIVILSTATUS'];
+      $height                 = $row['HEIGHT'];
+      $weight                = $row['WEIGHT'];
+      $bloodtype              = $row['BLOODTYPE'];
+      $gsisno                = $row['GSISNO'];
+      $pagibigno             = $row['PAGIBIGNO'];
+      $phicno                = $row['PHICNO'];
+      $sssno                 = $row['SSSNO'];
+      $tinno                 = $row['TINNO'];
+      $agencyemployeeno      = $row['AGENCYEMPLOYEENO'];
+      $citizenship           = $row['CITIZENSHIP'];
+      $dualchoice            = $row['DUALCITIZEN'];
+      $residentialaddress    = $row['RESIDENTIALADDRESS'];
+      $permanentaddress      = $row['PERMANENTADDRESS'];
+      $telephoneno           = $row['TELEPHONENO'];
+      $mobileno              = $row['MOBILENO'];
+      $emailprofile          = $row['EMAIL'];
+    }
+  }
+
+    
 
 
-/*
+
     //$query_family = 'SELECT * FROM tbl_employee_family WHERE EMPID = "'.$_POST["employeeiddb"].'" ';
-    $query_family = 'SELECT * FROM tbl_employee_family WHERE EMPID = "'.$_POST["employeeiddb"].'" ';
+    $query_family = 'SELECT * FROM tbl_employee_family WHERE EMPID = "'.$id.'" ';
     $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query_family));
 
     $dateNow = date("Y-m-d H:i:s");
 
-    if ($number_filter_row == 0){
-      $queProfile = "INSERT INTO `tbl_employee_family` SET 
-      EMPID = '".$_POST["employeeiddb"]."',
-      UPDATEDBY = '".$usernameid."',
-      UPDATEDDATETIME = '".$dateNow."'
-      "; 
-    
-      $query = $connect->query($queProfile) or die($connect->error); 
-    }
-
 
     $result_query_family = mysqli_query($connect, $query_family);
-
-    $data_family = array();
 
         $spousemiddlename     = '';
         $spouselastname       = '';
@@ -139,11 +132,11 @@ WHERE tbl_employee.ID = "2" ';
         $mothersurname        = '';
         $motherfirstname      = '';
         $mothermiddlename     = ''; 
-    
-    while($row = mysqli_fetch_array($result_query_family)){
+   
+    if ($result_query_family){
+      while($row = mysqli_fetch_array($result_query_family)){
         $spousemiddlename       = $row['SPOUSEMIDDLENAME'];
-        $spouselastname         = $row['SPOUSEFIRSTNAME'];
-        $spousemiddlename       = $row['SPOUSEEXTENSION'];
+        $spouselastname         = $row['SPOUSELASTNAME'];
         $spousefirstname        = $row['SPOUSEFIRSTNAME'];
         $spouseextension        = $row['SPOUSEEXTENSION'];
         $occupation             = $row['OCCUPATION'];
@@ -158,7 +151,15 @@ WHERE tbl_employee.ID = "2" ';
         $mothersurname          = $row['MOTHERSURNAME'];
         $motherfirstname        = $row['MOTHERFIRSTNAME'];
         $mothermiddlename       = $row['MOTHERMIDDLENAME'];   
-    }*/
+      }
+    }
+
+   
+
+
+
+    
+    
 
 
     $spreadsheet->setActiveSheetIndex(0);
@@ -169,29 +170,48 @@ WHERE tbl_employee.ID = "2" ';
     $worksheet->getCell('D12')->setValue($middlename);
     $worksheet->getCell('D13')->setValue($dob);
     $worksheet->getCell('D15')->setValue($placeofbirth);
-    $worksheet->getCell('D22')->setValue($placeofbirth);
 
 
-        $gender                = $row['GENDER'];
-        $civilstatus                = $row['CIVILSTATUS'];
-        $height             = $row['HEIGHT'];
-        $weight                = $row['WEIGHT'];
-        $bloodtype           = $row['BLOODTYPE'];
-        $gsisno                = $row['GSISNO'];
-        $pagibigno             = $row['PAGIBIGNO'];
-        $phicno                = $row['PHICNO'];
-        $sssno                 = $row['SSSNO'];
-        $tinno                 = $row['TINNO'];
-        $agencyemployeeno      = $row['AGENCYEMPLOYEENO'];
-        $citizenship           = $row['CITIZENSHIP'];
-        $dualchoice            = $row['DUALCITIZEN'];
-        $residentialaddress    = $row['RESIDENTIALADDRESS'];
-        $permanentaddress      = $row['PERMANENTADDRESS'];
-        $telephoneno           = $row['TELEPHONENO'];
-        $mobileno              = $row['MOBILENO'];
-        $emailprofile          = $row['EMAIL'];
+
+    $query = 'SELECT * FROM tbl_employee_children WHERE EMPID = "'.$id.'" AND CANCELLED = "N" ';
+
+    $result = mysqli_query($connect, $query);
+    $rowNum = 37; 
+    
+    if ($result){
+      while(($row = mysqli_fetch_array($result)) && ($rowNum > 50)){
+        $worksheet->getCell('I'.(int)$rowNum)->setValue($row["FULLNAME"]);
+        $worksheet->getCell('M'.(int)$rowNum)->setValue($row["DOB"]);
+        $rowNum++;
+      }    
+    }
 
 
+    //$query = 'SELECT * FROM tbl_employee_educ_background WHERE EMPID = "'.$id.'" AND CANCELLED = "N"';
+    /*$query = 'SELECT * FROM tbl_employee_educ_background WHERE EMPID = "15" AND CANCELLED = "N"  
+    ORDER BY `tbl_employee_educ_background`.`LEVEL`= "ELEM",`tbl_employee_educ_background`.`LEVEL`= 'SEC",`tbl_employee_educ_background`.`LEVEL`= 'VOC',`tbl_employee_educ_background`.`LEVEL`= 'COLLEGE'
+    ,`tbl_employee_educ_background`.`LEVEL`= "GRADSTUD"';*/
+    
+    $result = mysqli_query($connect, $query);
+    $educlevel = '';
+    $educschool = '';
+    $educcourse = '';
+    $educfrom = '';
+    $educto = '';
+    $educlevelearned = '';
+    $educyeargraduated = '';
+    $educschol = '';
+    $rowNum = 54; 
+    if ($result){
+      while($row = mysqli_fetch_array($result)){
+        if ($row["LEVEL"] == 'ELEM'){
+          
+        }
+        $rowNum++;
+      }    
+
+      $worksheet->getCell('I'.(int)$rowNum)->setValue($row["FULLNAME"]);
+    }
 
 
 
