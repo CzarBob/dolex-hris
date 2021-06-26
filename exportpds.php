@@ -863,6 +863,8 @@ $spreadsheet->setActiveSheetIndex(1);//->setCellValue('A1', 'world!');
 // Rename worksheet
 $spreadsheet->getActiveSheet()->setTitle('C2');
 $sheet = $spreadsheet->getActiveSheet();
+$sheet->getStyle('A1:N999')
+    ->getAlignment()->setWrapText(true); 
 // Set active sheet index to the first sheet, so Excel opens this as the first sheet
 
 $sheet->getColumnDimension('A')->setWidth(3);
@@ -901,7 +903,14 @@ $query = 'SELECT * FROM tbl_employee_civil_service WHERE EMPID = "'.$id.'" AND C
 $result = mysqli_query($connect, $query);
 $rowNum=5;
 if ($result){
-    while($row = mysqli_fetch_array($result)){
+    while(($row = mysqli_fetch_array($result)) && ($rowNum < 12)){
+
+        $sheet->mergeCells('A'.((int)$rowNum).':E'.((int)$rowNum));
+        $sheet->mergeCells('G'.((int)$rowNum).':H'.((int)$rowNum));
+        $sheet->mergeCells('I'.((int)$rowNum).':K'.((int)$rowNum));
+
+
+
         $sheet->setCellValue('A'.$rowNum,$row['ELIGIBILITY'])
         ->setCellValue('F'.$rowNum, $row['RATING'])
         ->setCellValue('G'.$rowNum, $row['DATEOFEXAM'])
@@ -909,16 +918,110 @@ if ($result){
         ->setCellValue('L'.$rowNum, $row['LICENSENUMBER'])
         ->setCellValue('M'.$rowNum, $row['LICENSEDATEOFVALIDITY']);
         $rowNum++;
- 
+    }
+}
+
+$sheet->setCellValue('A12', '(Continue on separate sheet if necessary)');
+$sheet->setCellValue('A13', 'V.  WORK EXPERIENCE ');
+$sheet->setCellValue('A14', '(Include private employment.  Start from your recent work) Description of duties should be indicated in the attached Work Experience sheet.');
+$sheet->setCellValue('A15', '28. INCLUSIVE DATES (mm/dd/yyyy)');
+$sheet->setCellValue('D15', 'POSITION TITLE
+(Write in full/Do not abbreviate)');
+$sheet->setCellValue('G15', 'DEPARTMENT / AGENCY / OFFICE / COMPANY
+(Write in full/Do not abbreviate)');
+$sheet->setCellValue('J15', 'MONTHLY SALARY');
+$sheet->setCellValue('K15', 'SALARY/ JOB/ PAY GRADE (if applicable)& STEP  (Format "00-0")/ INCREMENT');
+$sheet->setCellValue('L15', 'STATUS OF APPOINTMENT');
+$sheet->setCellValue('M15', "GOV'T SERVICE(Y/ N)");
+$sheet->setCellValue('A17', "From");
+$sheet->setCellValue('C17', "To");
+
+
+//$query = 'SELECT * FROM tbl_service_record  WHERE EMPID = "'.$_POST['employeeiddb'].'" AND CANCELLED = "N" ';
+$query = 'SELECT * FROM tbl_employee_work_experience WHERE EMPID = "'.$id.'" AND CANCELLED = "N" ORDER BY DATEFROM';
+
+
+$result = mysqli_query($connect, $query);
+$rowNum=18;
+if ($result){
+    while(($row = mysqli_fetch_array($result)) && ($rowNum < 46)){
+
+        $sheet->mergeCells('A'.((int)$rowNum).':B'.((int)$rowNum));
+        $sheet->mergeCells('D'.((int)$rowNum).':F'.((int)$rowNum));
+        $sheet->mergeCells('G'.((int)$rowNum).':I'.((int)$rowNum));
+
+
+
+
+        $sheet->setCellValue('A'.$rowNum,$row['DATEFROM'])
+        ->setCellValue('C'.$rowNum, $row['DATETO'])
+        ->setCellValue('D'.$rowNum, $row['POSITION'])
+        ->setCellValue('G'.$rowNum, $row['COMPANY'])
+        ->setCellValue('J'.$rowNum, $row['MONTHLYSALARY'])
+        ->setCellValue('K'.$rowNum, $row['GRADE'])
+        ->setCellValue('L'.$rowNum, $row['STATUS'])
+        ->setCellValue('M'.$rowNum, $row['GOVTSERVICE']);
+        $rowNum++;
     }
 }
 
 
+$sheet->setCellValue('A46', "(Continue on separate sheet if necessary)");
+$sheet->setCellValue('A47', 'SIGNATURE');
+$sheet->setCellValue('D47', ' ');
+$sheet->setCellValue('J47', 'DATE');
+$sheet->setCellValue('L47', ' ');
+
+$sheet->setCellValue('A48', '(CS FORM 212 (Revised 2017), Page 2 of 4)');
+
+
+$sheet->mergeCells('A2:M2')->getStyle('A2:M2')->getFill()
+->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+->getStartColor()->setARGB('828583');
+$sheet->mergeCells('A3:E4');
+
+
+$sheet->mergeCells('A13:M13')->getStyle('A13:A13')->getFill()
+->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+->getStartColor()->setARGB('828583');
+
+$sheet->mergeCells('A14:M14')->getStyle('A14:A14')->getFill()
+->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+->getStartColor()->setARGB('828583');
+
+$sheet->mergeCells('F3:F4');
+$sheet->mergeCells('G3:H4');
+$sheet->mergeCells('I3:K4');
+$sheet->mergeCells('L3:M3');
+$sheet->mergeCells('A12:M12');
+$sheet->mergeCells('A13:M13');
+$sheet->mergeCells('A15:C16');
+$sheet->mergeCells('D15:F17');
+$sheet->mergeCells('A17:B17');
+$sheet->mergeCells('G15:I17');
+$sheet->mergeCells('J15:J17');
+$sheet->mergeCells('K15:K17');
+$sheet->mergeCells('L15:L17');
+$sheet->mergeCells('M15:M17');
+$sheet->mergeCells('A46:M46');
+$sheet->mergeCells('A47:C47');
+$sheet->mergeCells('A48:M48');
 
 
 
 
 
+$sheet->getStyle('A3:M4')->applyFromArray($styleArrayLightGrayFill);
+$sheet->getStyle('A12:M12')->applyFromArray($styleArrayLightGrayFill);
+$sheet->getStyle('A15:M17')->applyFromArray($styleArrayLightGrayFill);
+$sheet->getStyle('A46:M46')->applyFromArray($styleArrayLightGrayFill);
+$sheet->getStyle('A47:C47')->applyFromArray($styleArrayLightGrayFill);
+$sheet->getStyle('I47')->applyFromArray($styleArrayLightGrayFill);
+$sheet->getStyle('A1:M48')->applyFromArray($styleArrayBorder);
+
+$sheet->getStyle('A3:M11')->applyFromArray($styleArrayInsideBox);
+$sheet->getStyle('A15:M45')->applyFromArray($styleArrayInsideBox);
+$sheet->getStyle('A46:M48')->applyFromArray($styleArrayInsideBox);
 
 
 $spreadsheet->setActiveSheetIndex(0);
