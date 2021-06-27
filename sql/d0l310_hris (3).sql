@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 25, 2021 at 11:22 AM
+-- Generation Time: Jun 27, 2021 at 04:35 PM
 -- Server version: 10.4.16-MariaDB
 -- PHP Version: 7.4.12
 
@@ -162,6 +162,31 @@ INSERT INTO `tbl_employee` (`ID`, `FIRSTNAME`, `MIDDLENAME`, `LASTNAME`, `EXTENS
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_employee_attachment`
+--
+
+CREATE TABLE `tbl_employee_attachment` (
+  `ID` int(100) NOT NULL,
+  `EMPID` varchar(255) NOT NULL,
+  `FILENAME` varchar(255) NOT NULL,
+  `LOCATION` varchar(255) NOT NULL,
+  `CANCELLED` char(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_employee_attachment`
+--
+
+INSERT INTO `tbl_employee_attachment` (`ID`, `EMPID`, `FILENAME`, `LOCATION`, `CANCELLED`) VALUES
+(1, '', 'TEST', 'Uploaded_Files/27062021105352DOLE LOGO.png', 'N'),
+(2, '', '', 'Uploaded_Files/27062021105445198012357_195892645756467_8660611398713063018_n.jpg', 'N'),
+(3, '5', 'TESTFFgg', 'Uploaded_Files/194535519.jpg', 'N'),
+(4, '5', 'GG', 'Uploaded_Files/1474690716.pdf', 'N'),
+(5, '5', 'GSJDA', 'Uploaded_Files/1646801337.49 pm (1)', 'N');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_employee_children`
 --
 
@@ -202,7 +227,7 @@ INSERT INTO `tbl_employee_children` (`ID`, `EMPID`, `FULLNAME`, `DOB`, `CANCELLE
 (25, 8, 'uu', '0000-00-00', 'N'),
 (26, 8, 'u5545u', '0000-00-00', 'N'),
 (27, 3, 'ffsfs', '0000-00-00', 'N'),
-(28, 5, 'sdad', '0000-00-00', 'N'),
+(28, 5, 'sdad', '0000-00-00', 'Y'),
 (29, 5, 'uu', '0000-00-00', 'Y'),
 (30, 5, 'JEssane', '2021-05-12', 'N'),
 (31, 5, 'dsd', '2021-05-12', 'N'),
@@ -274,7 +299,8 @@ INSERT INTO `tbl_employee_educ_background` (`ID`, `EMPID`, `LEVEL`, `SCHOOLNAME`
 (7, '5', 'COLLEGE', '2', '3', 2016, 2018, '7', 2018, '8', 'Y'),
 (8, '2', 'VOC', '2321', '123', 123, 123, '123', 213, '123', 'N'),
 (9, '5', 'SEC', 'ALC', 'HIGHSCHOOL', 2016, 2016, '123', 2090, '123', 'N'),
-(10, '5', 'ELEM', 'MONTESORRY', 'HIGH SCHOOL', 2011, 2015, 'GRADUATE', 2015, 'HONOR STUDNETDDD', 'N');
+(10, '5', 'ELEM', 'MONTESORRY', 'HIGH SCHOOL', 2011, 2015, 'GRADUATE', 2015, 'HONOR STUDNETDDD', 'N'),
+(11, '12', 'ELEM', 'XAVIER UNIVERSITY - ATENEO DE CAGAYAN', 'BACHELOR OF SCIENCE IN INDUSTRIAL ENGINEERING ', 2007, 2013, '', 2013, 'DEAN\'S LISTER', 'N');
 
 -- --------------------------------------------------------
 
@@ -348,7 +374,8 @@ CREATE TABLE `tbl_employee_ld` (
 --
 
 INSERT INTO `tbl_employee_ld` (`ID`, `EMPID`, `PROGRAM`, `DATEFROM`, `DATETO`, `NOOFHOURS`, `TYPE`, `SPONSOREDBY`, `CANCELLED`) VALUES
-(1, 5, 'DD', '0000-00-00', '0000-00-00', 0, '', '', 'N');
+(1, 5, 'DD', '0000-00-00', '0000-00-00', 0, '', '', 'N'),
+(2, 12, 'Trainers\' Training on the PESO Employment Information System (PEIS), Philjobnet and Philippines Talent Mapping (PTMI)', '0000-00-00', '0000-00-00', 0, 'NA', '', 'N');
 
 -- --------------------------------------------------------
 
@@ -540,7 +567,10 @@ CREATE TABLE `tbl_employee_work_experience` (
 
 INSERT INTO `tbl_employee_work_experience` (`ID`, `EMPID`, `DATEFROM`, `DATETO`, `POSITION`, `COMPANY`, `MONTHLYSALARY`, `GRADE`, `STATUS`, `GOVTSERVICE`, `CANCELLED`) VALUES
 (1, 5, '0000-00-00', '0000-00-00', 'fdfdd', '', 0, '', '', 'Y', 'Y'),
-(2, 5, '0000-00-00', '0000-00-00', 'D', 'DDD', 199900, '', '', 'N', 'N');
+(2, 5, '0000-00-00', '0000-00-00', 'D', 'DDD', 199900, '', '', 'N', 'Y'),
+(3, 5, '2021-05-04', '2021-06-24', 'IT SPECIALIST', 'DOLE X', 20000, '16', 'REGULAR', 'Y', 'N'),
+(4, 5, '2020-10-05', '2021-04-14', 'HR', 'AGS', 17000, '13', 'PROBATIONARY', 'N', 'N'),
+(5, 5, '2019-01-08', '2020-04-21', 'SALESMAN', 'PLDT', 29582, '272', 'REGULAR', 'N', 'N');
 
 -- --------------------------------------------------------
 
@@ -602,7 +632,8 @@ INSERT INTO `tbl_service_record` (`ID`, `EMPID`, `SERVICEFROM`, `SERVICETO`, `DE
 (13, 3, '0000-00-00', '0000-00-00', '4555', '', '', '', '', '', '0000-00-00', 0, '', 'N', '2021-05-25 08:46:06', '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00'),
 (14, 2, '2021-05-18', '0000-00-00', '22', '', '', '', '', '', '0000-00-00', 0, 'Please input details\n              ', 'N', '2021-05-25 08:46:06', '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00'),
 (15, 13, '2021-05-03', '2021-05-03', 'IT FOCALDD', 'EMPLOYED', '367030', 'ORD', 'RO10', '12', '2021-05-11', 49299, 'sda', 'N', '2021-05-25 09:17:20', '', '', '2021-05-25 09:17:20', '1', '2021-05-25 09:17:20'),
-(16, 13, '2021-04-26', '2021-05-18', 'IT', 'EMPLOYED YES', '3050322', 'ORD', 'RO11', '100', '2021-05-27', 422444, 'YES', 'N', '2021-05-25 09:19:22', '', '1', '2021-05-25 09:19:22', '', '2021-05-25 09:19:22');
+(16, 13, '2021-04-26', '2021-05-18', 'IT', 'EMPLOYED YES', '3050322', 'ORD', 'RO11', '100', '2021-05-27', 422444, 'YES', 'N', '2021-05-25 09:19:22', '', '1', '2021-05-25 09:19:22', '', '2021-05-25 09:19:22'),
+(17, 2, '2021-06-16', '2021-07-01', 'sdasd', 'EMPLOYED', '30503', 'ORD', 'RO10', '6', '2021-06-11', 422, '              asdasfdasgsdgasdfg', 'N', '2021-06-23 06:44:29', '', '1', '2021-06-23 06:44:29', '', '2021-06-23 06:44:29');
 
 -- --------------------------------------------------------
 
@@ -650,6 +681,12 @@ ALTER TABLE `tbl_division`
 -- Indexes for table `tbl_employee`
 --
 ALTER TABLE `tbl_employee`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `tbl_employee_attachment`
+--
+ALTER TABLE `tbl_employee_attachment`
   ADD PRIMARY KEY (`ID`);
 
 --
@@ -765,6 +802,12 @@ ALTER TABLE `tbl_employee`
   MODIFY `ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
+-- AUTO_INCREMENT for table `tbl_employee_attachment`
+--
+ALTER TABLE `tbl_employee_attachment`
+  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `tbl_employee_children`
 --
 ALTER TABLE `tbl_employee_children`
@@ -780,7 +823,7 @@ ALTER TABLE `tbl_employee_civil_service`
 -- AUTO_INCREMENT for table `tbl_employee_educ_background`
 --
 ALTER TABLE `tbl_employee_educ_background`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `tbl_employee_family`
@@ -792,7 +835,7 @@ ALTER TABLE `tbl_employee_family`
 -- AUTO_INCREMENT for table `tbl_employee_ld`
 --
 ALTER TABLE `tbl_employee_ld`
-  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_employee_other_membership`
@@ -828,7 +871,7 @@ ALTER TABLE `tbl_employee_voluntary_work`
 -- AUTO_INCREMENT for table `tbl_employee_work_experience`
 --
 ALTER TABLE `tbl_employee_work_experience`
-  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbl_fieldoffice`
@@ -840,7 +883,7 @@ ALTER TABLE `tbl_fieldoffice`
 -- AUTO_INCREMENT for table `tbl_service_record`
 --
 ALTER TABLE `tbl_service_record`
-  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `users`

@@ -215,6 +215,24 @@
 
             }
 
+            function fetch_attachment_data(){
+                
+                var employeeiddb = document.getElementById("empID").value;
+                
+
+                var dataTable = $('#attachment_data').DataTable({
+                "columnDefs": [{ "orderable": false, "targets":[1] }],
+                "ajax" : {
+                url:"view_employee_action.php",
+                type:"POST",
+                data:{
+                                employeeiddb:employeeiddb, 
+                                action:'fetch_attachment'},
+                }
+                });
+
+            }
+
             
             function fetch_single() {
                     var employeeiddb = document.getElementById("empID").value;
@@ -316,6 +334,7 @@
                         fetch_other_skill_data();
                         fetch_other_recognition_data();
                         fetch_other_membership_data();
+                        fetch_attachment_data();
             }  
 
 
@@ -1721,4 +1740,138 @@
                     }     
                 }); 
             });
+
+
+
+            //DELETE ATTACHMENT
+            $(document).on('click', '.delete_attachment', function(){
+                var id = $(this).data('id');
+                // alert(id);
+                var employeeiddb = document.getElementById("empID").value;
+                $.ajax({
+                    url:"view_employee_action",
+                    method:"POST",
+                    data:{
+                        id:id, 
+                        employeeiddb:employeeiddb,
+                        action:'delete_attachment'
+                    },
+                    success:function(){
+                
+                    alert("Data Deleted");
+                    $('#attachment_data').DataTable().ajax.reload();
+                    }     
+                }); 
+            });
+
+
+
         });
+
+                    //ADD OTHER RECOGNITION
+                    $(document).on('click', '#add_attachment', function(){
+                        var employeeiddb = document.getElementById("empID").value;
+                    
+                        var filename = $('#filename').val();
+                        var file = $('#file').val();  
+                      
+                                $.ajax({
+                                    url:"view_employee_action",
+                                    method:"POST",
+                                    dataType:'JSON', 
+                                    data:{
+                                        employeeiddb:employeeiddb,
+                                        filename:filename,
+                                        file:file, 
+                                        action:'add_attachment'
+                                    },
+                                    success:function(){
+        
+                                       /* $('#other_membership_data').DataTable().ajax.reload();
+                                        $('#otherMembershipForm').modal('hide');
+                                        $('#other_membership').val('');
+        
+                                        $('#message2').html(data.status);
+                                        setTimeout(function(){
+                                            $('#message2').html('');
+                                        }, 90000);*/
+                                
+                                    }     
+                                }); 
+                    });
+
+
+                    $('#addattachment_form').on('submit', function(){
+                        event.preventDefault();
+	
+                            var extension = $('#user_image').val().split('.').pop().toLowerCase();
+                            if(extension != '')
+                            {
+                                if(jQuery.inArray(extension, ['pdf','png','jpg','jpeg']) == -1)
+                                {
+                                    alert("Invalid File");
+                                    $('#user_image').val('');
+                                    return false;
+                                }
+                            }
+                            $.ajax({
+                                url:"view_employee_action.php",
+                                method:"POST",
+                                data:new FormData(this),
+                                contentType:false,
+                                processData:false,
+                                dataType:"JSON",
+                                /*beforeSend:function()
+                                {
+                                    $('#submit_button').attr('disabled', 'disabled');
+                                    $('#submit_button').html('wait...');
+                                },*/
+                                success:function(data)
+                                {
+                                        $('#attachment_data').DataTable().ajax.reload();
+                                        $('#attachmentForm').modal('hide');
+                                        $('#filename').val('');
+        
+                                        $('#message2').html(data.status);
+                                        setTimeout(function(){
+                                            $('#message2').html('');
+                                        }, 90000);
+                                }
+                            })
+                        
+                    });
+
+        
+        $('#generateReport').click(function(){
+
+            //var to_date = '';
+            //window.location.href="export?from_date="+from_date+"&to_date="+to_date+"";
+            var employeeiddb = document.getElementById("empID").value;
+            window.location.href="exportpds.php?id="+employeeiddb, true;
+        
+        }); 
+
+        /*$('#attachmentForm').on('submit', function(event){
+            event.preventDefault();
+              $.ajax({
+                  url:"view_employee_action",
+                  method:"POST",
+                  data:{
+                  $(this).serialize(),
+                  action:'add_other_membership'
+                    },
+                  success:function(data)
+                  {
+                    alert('data uploaded');
+                    $('#attachment_data').DataTable().ajax.reload();
+            
+                  }
+              });
+          
+        });*/
+
+        //ADD OTHER RECOGNITION
+        /*$(document).on('click', '#generateReport', function(){
+            var employeeiddb = document.getElementById("empID").value;
+            window.location.href="export.php", true;
+        });*/

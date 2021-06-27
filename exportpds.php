@@ -23,7 +23,7 @@ $drawing->setWorksheet($sheet);  */
 
 
 //$id = $_POST['employeeiddb'];
-$id = '5';
+$id = isset($_GET["id"]);
 
 
 $query = 'SELECT tbl_employee.FIRSTNAME as FIRSTNAME,
@@ -484,7 +484,7 @@ if($result){
     }
 }
 
-$sheet->setCellValue('A'.((int)$rowNum+1), '(Continue on separate sheet if necessary)');
+$sheet->setCellValue('A'.((int)$rowNum+1), '(Continue on separate sheet if necessary)')->getStyle('A'.((int)$rowNum+1))->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 $sheet->setCellValue('A'.((int)$rowNum+2), 'SIGNATURE');
 $sheet->setCellValue('D'.((int)$rowNum+2), ' ');
 $sheet->setCellValue('J'.((int)$rowNum+2), 'DATE');
@@ -921,7 +921,7 @@ if ($result){
     }
 }
 
-$sheet->setCellValue('A12', '(Continue on separate sheet if necessary)');
+$sheet->setCellValue('A12', '(Continue on separate sheet if necessary)')->getStyle('A12')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 $sheet->setCellValue('A13', 'V.  WORK EXPERIENCE ');
 $sheet->setCellValue('A14', '(Include private employment.  Start from your recent work) Description of duties should be indicated in the attached Work Experience sheet.');
 $sheet->setCellValue('A15', '28. INCLUSIVE DATES (mm/dd/yyyy)');
@@ -966,7 +966,7 @@ if ($result){
 }
 
 
-$sheet->setCellValue('A46', "(Continue on separate sheet if necessary)");
+$sheet->setCellValue('A46', "(Continue on separate sheet if necessary)")->getStyle('A46')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 $sheet->setCellValue('A47', 'SIGNATURE');
 $sheet->setCellValue('D47', ' ');
 $sheet->setCellValue('J47', 'DATE');
@@ -1007,10 +1007,6 @@ $sheet->mergeCells('A46:M46');
 $sheet->mergeCells('A47:C47');
 $sheet->mergeCells('A48:M48');
 
-
-
-
-
 $sheet->getStyle('A3:M4')->applyFromArray($styleArrayLightGrayFill);
 $sheet->getStyle('A12:M12')->applyFromArray($styleArrayLightGrayFill);
 $sheet->getStyle('A15:M17')->applyFromArray($styleArrayLightGrayFill);
@@ -1023,6 +1019,501 @@ $sheet->getStyle('A3:M11')->applyFromArray($styleArrayInsideBox);
 $sheet->getStyle('A15:M45')->applyFromArray($styleArrayInsideBox);
 $sheet->getStyle('A46:M48')->applyFromArray($styleArrayInsideBox);
 
+
+
+
+
+$spreadsheet->createSheet();
+// Add some data
+$spreadsheet->setActiveSheetIndex(2);//->setCellValue('A1', 'world!');
+// Rename worksheet
+$spreadsheet->getActiveSheet()->setTitle('C3');
+$sheet = $spreadsheet->getActiveSheet();
+$sheet->getStyle('A1:N999')
+    ->getAlignment()->setWrapText(true); 
+
+
+    $sheet->getColumnDimension('A')->setWidth(3);
+    $sheet->getColumnDimension('B')->setWidth(20);
+    $sheet->getColumnDimension('C')->setWidth(9);
+    $sheet->getColumnDimension('D')->setWidth(30);
+    $sheet->getColumnDimension('E')->setWidth(9);
+    $sheet->getColumnDimension('F')->setWidth(9);
+    $sheet->getColumnDimension('G')->setWidth(12);
+    $sheet->getColumnDimension('H')->setWidth(13);
+    $sheet->getColumnDimension('I')->setWidth(12);
+    $sheet->getColumnDimension('J')->setWidth(11);
+    $sheet->getColumnDimension('K')->setWidth(12);
+
+
+    $sheet->setCellValue('A2', 'VI. VOLUNTARY WORK OR INVOLVEMENT IN CIVIC / NON-GOVERNMENT / PEOPLE / VOLUNTARY ORGANIZATION/S');
+    $sheet->setCellValue('A3', "29. NAME & ADDRESS OF ORGANIZATION 
+    (Write in full)")
+    ->setCellValue('E3', "INCLUSIVE DATES
+    (mm/dd/yyyy)")
+    ->setCellValue('G3', "NUMBER OF HOURS")
+    ->setCellValue('H3', "POSITION / NATURE OF WORK");
+    $sheet->setCellValue('E5', 'From');
+    $sheet->setCellValue('F5', 'To');
+
+    $query = 'SELECT * FROM tbl_employee_voluntary_work WHERE EMPID = "'.$id.'" AND CANCELLED = "N" ORDER BY DATEFROM';
+
+    $result = mysqli_query($connect, $query);
+    $rowNum=6;
+    if ($result){
+        while(($row = mysqli_fetch_array($result)) && ($rowNum < 13)){
+
+            $sheet->mergeCells('A'.((int)$rowNum).':D'.((int)$rowNum));
+            $sheet->mergeCells('H'.((int)$rowNum).':K'.((int)$rowNum));
+
+            $sheet->setCellValue('A'.$rowNum,$row['ORGANIZATION'])
+            ->setCellValue('E'.$rowNum, $row['DATEFROM'])
+            ->setCellValue('F'.$rowNum, $row['DATETO'])
+            ->setCellValue('G'.$rowNum, $row['NOOFHOURS'])
+            ->setCellValue('H'.$rowNum, $row['POSITION']);
+            $rowNum++;
+        }
+    }
+    $sheet->setCellValue('A13', '(Continue on separate sheet if necessary)')->getStyle('A13')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+
+    $sheet->setCellValue('A14', 'VII.  LEARNING AND DEVELOPMENT (L&D) INTERVENTIONS/TRAINING PROGRAMS ATTENDED');
+    $sheet->setCellValue('A15', '(Start from the most recent L&D/training program and include only the relevant L&D/training taken for the last five (5) years for Division Chief/Executive/Managerial positions)');
+
+    //$sheet->setCellValue('A16', '');
+    $sheet->setCellValue('A16', '30. TITLE OF LEARNING AND DEVELOPMENT INTERVENTIONS/TRAINING PROGRAMS
+    (Write in full)');
+    $sheet->setCellValue('E16', 'INCLUSIVE DATES OF ATTENDANCE
+    (mm/dd/yyyy)');
+    $sheet->setCellValue('G16', 'NUMBER OF HOURS');
+    $sheet->setCellValue('H16', 'Type of LD
+    ( Managerial/ Supervisory/
+   Technical/etc) ');
+   $sheet->setCellValue('I16', 'Type of LD
+   ( Managerial/ Supervisory/
+  Technical/etc) ');
+
+    $sheet->setCellValue('E18', 'From');
+    $sheet->setCellValue('F18', 'To');
+
+    $query = 'SELECT * FROM tbl_employee_ld WHERE EMPID = "'.$id.'" AND CANCELLED = "N" ORDER BY DATEFROM';
+
+    $result = mysqli_query($connect, $query);
+    $rowNum=19;
+    if ($result){
+        while(($row = mysqli_fetch_array($result)) && ($rowNum < 40)){
+
+            $sheet->mergeCells('A'.((int)$rowNum).':D'.((int)$rowNum));
+            $sheet->mergeCells('I'.((int)$rowNum).':K'.((int)$rowNum));
+
+            $sheet->setCellValue('A'.$rowNum,$row['PROGRAM'])
+            ->setCellValue('E'.$rowNum, $row['DATEFROM'])
+            ->setCellValue('F'.$rowNum, $row['DATETO'])
+            ->setCellValue('G'.$rowNum, $row['NOOFHOURS'])
+            ->setCellValue('H'.$rowNum, $row['TYPE'])
+            ->setCellValue('I'.$rowNum, $row['SPONSOREDBY']);
+            $rowNum++;
+        }
+    }
+    $sheet->setCellValue('A40', '(Continue on separate sheet if necessary)')->getStyle('A50')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+
+    $sheet->setCellValue('A41', 'VIII.  OTHER INFORMATION');
+    $sheet->setCellValue('A42', '31. SPECIAL SKILLS and HOBBIES');
+    $sheet->setCellValue('C42', '32. NON-ACADEMIC DISTINCTIONS / RECOGNITION
+    (Write in full)');
+    $sheet->setCellValue('I42', '33. MEMBERSHIP IN ASSOCIATION/ORGANIZATION
+    (Write in full)');
+
+    $query = 'SELECT * FROM tbl_employee_other_skills WHERE EMPID = "'.$id.'" AND CANCELLED = "N" ';
+
+    $result = mysqli_query($connect, $query);
+    $rowNum=43;
+    if ($result){
+        while(($row = mysqli_fetch_array($result)) && ($rowNum < 50)){
+
+            $sheet->mergeCells('A'.((int)$rowNum).':B'.((int)$rowNum));
+
+            $sheet->setCellValue('A'.$rowNum,$row['SKILLS']);
+            $rowNum++;
+        }
+    }
+
+    $query = 'SELECT * FROM tbl_employee_other_recognition WHERE EMPID = "'.$id.'" AND CANCELLED = "N" ';
+
+    $result = mysqli_query($connect, $query);
+    $rowNum=43;
+    if ($result){
+        while(($row = mysqli_fetch_array($result)) && ($rowNum < 50)){
+
+            $sheet->mergeCells('C'.((int)$rowNum).':H'.((int)$rowNum));
+
+            $sheet->setCellValue('C'.$rowNum,$row['RECOGNITION']);
+            $rowNum++;
+        }
+    }
+
+    $query = 'SELECT * FROM tbl_employee_other_membership WHERE EMPID = "'.$id.'" AND CANCELLED = "N" ';
+
+    $result = mysqli_query($connect, $query);
+    $rowNum=43;
+    if ($result){
+        while(($row = mysqli_fetch_array($result)) && ($rowNum < 50)){
+
+            $sheet->mergeCells('I'.((int)$rowNum).':K'.((int)$rowNum));
+
+            $sheet->setCellValue('I'.$rowNum,$row['MEMBERSHIP']);
+            $rowNum++;
+        }
+    }
+
+    $sheet->setCellValue('A50', "(Continue on separate sheet if necessary)")->getStyle('A50')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+    $sheet->setCellValue('A51', 'SIGNATURE');
+    $sheet->setCellValue('C51', ' ');
+    $sheet->setCellValue('G51', 'DATE');
+    $sheet->setCellValue('I51', ' ');
+
+    $sheet->setCellValue('A52', '(CS FORM 212 (Revised 2017), Page 3 of 4)')->getStyle('A52')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT);
+
+
+    $sheet->mergeCells('A2:K2')->getStyle('A2:K2')->getFill()
+    ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+    ->getStartColor()->setARGB('828583');
+    $sheet->mergeCells('A3:D5');
+    $sheet->mergeCells('E3:F4');
+    $sheet->mergeCells('G3:G5');
+    $sheet->mergeCells('H3:K5');
+    $sheet->mergeCells('A13:K13');
+    
+    
+    $sheet->mergeCells('A14:K14')->getStyle('A14:K14')->getFill()
+    ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+    ->getStartColor()->setARGB('828583');
+    
+    $sheet->mergeCells('A15:K15')->getStyle('A15:K15')->getFill()
+    ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+    ->getStartColor()->setARGB('828583');
+    
+    $sheet->mergeCells('A16:D18');
+    $sheet->mergeCells('E16:F17');
+    $sheet->mergeCells('G16:G18');
+    $sheet->mergeCells('H16:H18');
+    $sheet->mergeCells('I16:K18');
+
+    $sheet->mergeCells('A40:K40');
+
+    $sheet->mergeCells('A41:K41')->getStyle('A41:K41')->getFill()
+    ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+    ->getStartColor()->setARGB('828583');
+
+    $sheet->mergeCells('A42:B42');
+    $sheet->mergeCells('C42:H42');
+    $sheet->mergeCells('I42:K42');
+    $sheet->mergeCells('A50:K50');
+    $sheet->mergeCells('A51:B51');
+    $sheet->mergeCells('C51:F51');
+    $sheet->mergeCells('G51:H51');
+    $sheet->mergeCells('I51:K51');
+    $sheet->mergeCells('A52:K52');
+
+    
+    $sheet->getStyle('A3:K5')->applyFromArray($styleArrayLightGrayFill);
+    $sheet->getStyle('A13:K13')->applyFromArray($styleArrayLightGrayFill);
+    
+    $sheet->getStyle('A40:K40')->applyFromArray($styleArrayLightGrayFill);
+    $sheet->getStyle('A42:K42')->applyFromArray($styleArrayLightGrayFill);
+    $sheet->getStyle('A50:K50')->applyFromArray($styleArrayLightGrayFill);
+    $sheet->getStyle('A51:B51')->applyFromArray($styleArrayLightGrayFill);
+    $sheet->getStyle('G51:H51')->applyFromArray($styleArrayLightGrayFill);
+    
+    
+    $sheet->getStyle('A1:K52')->applyFromArray($styleArrayBorder);
+    
+    $sheet->getStyle('A1:K52')->applyFromArray($styleArrayInsideBox);
+
+
+    $sheet->mergeCells('A2:K2')->getStyle('A2:K2')->getFill()
+    ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+    ->getStartColor()->setARGB('828583');
+    $sheet->mergeCells('A3:D5');
+    $sheet->mergeCells('E3:F4');
+    $sheet->mergeCells('G3:G5');
+    $sheet->mergeCells('H3:K5');
+    $sheet->mergeCells('A13:K13');
+    
+    
+    $sheet->mergeCells('A14:K14')->getStyle('A14:K14')->getFill()
+    ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+    ->getStartColor()->setARGB('828583');
+    
+    $sheet->mergeCells('A15:K15')->getStyle('A15:K15')->getFill()
+    ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+    ->getStartColor()->setARGB('828583');
+    
+    $sheet->mergeCells('A16:D18');
+    $sheet->mergeCells('E16:F17');
+    $sheet->mergeCells('G16:G18');
+    $sheet->mergeCells('H16:H18');
+    $sheet->mergeCells('I16:K18');
+
+    $sheet->mergeCells('A40:K40');
+
+    $sheet->mergeCells('A41:K41')->getStyle('A41:K41')->getFill()
+    ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+    ->getStartColor()->setARGB('828583');
+
+    $sheet->mergeCells('A42:B42');
+    $sheet->mergeCells('C42:H42');
+    $sheet->mergeCells('I42:K42');
+    $sheet->mergeCells('A50:K50');
+    $sheet->mergeCells('A51:B51');
+    $sheet->mergeCells('C51:F51');
+    $sheet->mergeCells('G51:H51');
+    $sheet->mergeCells('I51:K51');
+    $sheet->mergeCells('A52:K52');
+
+    
+    $sheet->getStyle('A3:K5')->applyFromArray($styleArrayLightGrayFill);
+    $sheet->getStyle('A13:K13')->applyFromArray($styleArrayLightGrayFill);
+    
+    $sheet->getStyle('A40:K40')->applyFromArray($styleArrayLightGrayFill);
+    $sheet->getStyle('A42:K42')->applyFromArray($styleArrayLightGrayFill);
+    $sheet->getStyle('A50:K50')->applyFromArray($styleArrayLightGrayFill);
+    $sheet->getStyle('A51:B51')->applyFromArray($styleArrayLightGrayFill);
+    $sheet->getStyle('G51:H51')->applyFromArray($styleArrayLightGrayFill);
+    
+    
+    $sheet->getStyle('A1:K52')->applyFromArray($styleArrayBorder);
+    
+    $sheet->getStyle('A1:K52')->applyFromArray($styleArrayInsideBox);
+
+
+
+
+
+    
+
+$spreadsheet->createSheet();
+// Add some data
+$spreadsheet->setActiveSheetIndex(3);//->setCellValue('A1', 'world!');
+// Rename worksheet
+$spreadsheet->getActiveSheet()->setTitle('C4');
+$sheet = $spreadsheet->getActiveSheet();
+$sheet->getStyle('A1:N999')
+    ->getAlignment()->setWrapText(true); 
+
+
+    $sheet->getColumnDimension('A')->setWidth(3);
+    $sheet->getColumnDimension('B')->setWidth(3);
+    $sheet->getColumnDimension('C')->setWidth(20);
+    $sheet->getColumnDimension('D')->setWidth(30);
+    $sheet->getColumnDimension('E')->setWidth(5);
+    $sheet->getColumnDimension('F')->setWidth(40);
+    $sheet->getColumnDimension('G')->setWidth(7);
+    $sheet->getColumnDimension('H')->setWidth(8);
+    $sheet->getColumnDimension('I')->setWidth(3);
+    $sheet->getColumnDimension('J')->setWidth(3);
+    $sheet->getColumnDimension('K')->setWidth(12);
+    $sheet->getColumnDimension('L')->setWidth(20);
+    $sheet->getColumnDimension('M')->setWidth(3);
+
+
+   
+
+$sheet->setCellValue('A2', '34. Are you related by consanguinity or affinity to the appointing or recommending authority, or to the
+chief of bureau or office or to the person who has immediate supervision over you in the Office, 
+Bureau or Department where you will be apppointed,
+a. within the third degree?
+b. within the fourth degree (for Local Government Unit - Career Employees)?');
+
+$sheet->setCellValue('G2', '
+
+
+
+[ ] Yes             [ ] No
+[ ] Yes             [ ] No
+If YES, give details: ________________________________  ________________________________');
+
+$sheet->setCellValue('A13', '35. a. Have you ever been found guilty of any administrative offense?
+
+
+b. Have you been criminally charged before any court?');
+
+$sheet->setCellValue('G13', '[ ] Yes             [ ] No
+If YES, give details: 
+
+[ ] Yes             [ ] No
+If YES, give details: 
+Date Filed: ________________________________
+Status of Case/s: ________________________________
+');
+
+$sheet->setCellValue('A23', '36. Have you ever been convicted of any crime or violation of any law, decree, ordinance or regulation by any court or tribunal?');
+$sheet->setCellValue('G23', '[ ] Yes             [ ] No
+If YES, give details: ________________________________
+');
+
+$sheet->setCellValue('A27', '37. Have you ever been separated from the service in any of the following modes: resignation, retirement, dropped from the rolls, dismissal, termination, end of term, finished contract or phased out (abolition) in the public or private sector?');
+$sheet->setCellValue('G27', '[ ] Yes             [ ] No
+If YES, give details: ________________________________
+');
+
+$sheet->setCellValue('A31', '38. a. Have you ever been a candidate in a national or local election held within the last year (except Barangay election)?
+
+b. Have you resigned from the government service during the three (3)-month period before the last election to promote/actively campaign for a national or local candidate?');
+$sheet->setCellValue('G31', '[ ] Yes             [ ] No
+If YES, give details: ________________________________
+
+[ ] Yes             [ ] No
+If YES, give details: ________________________________
+');
+
+$sheet->setCellValue('A37', '39. Have you acquired the status of an immigrant or permanent resident of another country?');
+$sheet->setCellValue('G37', '
+
+[ ] Yes             [ ] No
+If YES, give details (country): ________________________________
+
+');
+
+$sheet->setCellValue('A41', "40. Pursuant to: (a) Indigenous People's Act (RA 8371); (b) Magna Carta for Disabled Persons (RA 7277); and (c) Solo Parents Welfare Act of 2000 (RA 8972), please answer the following items:
+    
+    a. Are you a member of any indigenous group?
+    
+    
+    b. Are you a person with disability?
+    
+    
+    c. Are you a solo parent?");
+$sheet->setCellValue('G41', '[ ] Yes             [ ] No
+If YES, please specify: ________________________________
+
+
+[ ] Yes             [ ] No
+If YES, please specify: ________________________________
+
+
+[ ] Yes             [ ] No
+If YES, please specify: ________________________________
+
+');
+
+$sheet->setCellValue('A50', '41. REFERENCES (Person not related by consanguinity or affinity to applicant /appointee)');
+$sheet->setCellValue('A51', 'NAME');
+$sheet->setCellValue('F51', 'ADDRESS');
+$sheet->setCellValue('G51', 'TEL. NO');
+
+$sheet->setCellValue('A55', '42. I declare under oath that I have personally accomplished this Personal Data Sheet which is a true, correct and complete statement pursuant to the provisions of pertinent laws, rules and regulations of the Republic of the Philippines. I authorize the agency head/authorized representative to verify/validate the contents stated herein.          I  agree that any misrepresentation made in this document and its attachments shall cause the filing of administrative/criminal case/s against me.');
+$sheet->setCellValue('K56', 'PHOTO')->getStyle('K56')
+->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+
+$sheet->setCellValue('B60', "Government Issued ID (i.e.Passport, GSIS, SSS, PRC, Driver's License, etc.)
+PLEASE INDICATE ID Number and Date of Issuance");
+$sheet->setCellValue('B61', "Government Issued ID: ");
+$sheet->setCellValue('B62', "ID/License/Passport No.: ");
+$sheet->setCellValue('B63', "Date/Place of Issuance:");
+
+$sheet->setCellValue('F63', "Signature (Sign inside the box)")->getStyle('F63')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+$sheet->setCellValue('F65', "Date Accomplished")->getStyle('F65')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+$sheet->setCellValue('K65', "Right Thumbmark")->getStyle('K65')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+
+$sheet->setCellValue('A67', "SUBSCRIBED AND SWORN to before me this _____________________________________, affiant exhibiting his/her validly issued government ID as indicated above.");
+$sheet->setCellValue('E69', "Person Administering Oath")->getStyle('E69')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+$sheet->setCellValue('A71', "CS FORM 212 (Revised 2017),  Page 4 of 4")->getStyle('A71:M71')
+->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT);
+
+$sheet->mergeCells('A2:F12');
+$sheet->mergeCells('G2:M12');
+
+$sheet->mergeCells('A13:F22');
+$sheet->mergeCells('G13:M22');
+
+$sheet->mergeCells('A23:F26');
+$sheet->mergeCells('G23:M26');
+
+$sheet->mergeCells('A27:F30');
+$sheet->mergeCells('G27:M30');
+
+$sheet->mergeCells('A31:F36');
+$sheet->mergeCells('G31:M36');
+
+$sheet->mergeCells('A37:F40');
+$sheet->mergeCells('G37:M40');
+
+$sheet->mergeCells('A41:F49');
+$sheet->mergeCells('G41:M49');
+
+$sheet->mergeCells('A50:I50');
+$sheet->mergeCells('A51:E51')->getStyle('A51:I51')
+->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+$sheet->mergeCells('G51:I51');
+
+$sheet->mergeCells('A52:E52');
+$sheet->mergeCells('A53:E53');
+$sheet->mergeCells('A54:E54');
+$sheet->mergeCells('G52:I52');
+$sheet->mergeCells('G53:I53');
+$sheet->mergeCells('G54:I54');
+
+$sheet->mergeCells('A55:I58');
+$sheet->mergeCells('K56:L56');
+
+$sheet->mergeCells('B60:D60');
+$sheet->mergeCells('B61:D61');
+$sheet->mergeCells('B62:D62');
+$sheet->mergeCells('B63:D63');
+$sheet->mergeCells('F60:I62');
+
+$sheet->mergeCells('K58:L64');
+$sheet->mergeCells('K65:L65');
+
+$sheet->mergeCells('F63:I63');
+$sheet->mergeCells('F64:I64');
+$sheet->mergeCells('F65:I65');
+
+$sheet->mergeCells('A67:M67');
+$sheet->mergeCells('E68:I68');
+$sheet->mergeCells('E69:I69');
+$sheet->mergeCells('A71:M71');
+
+$spreadsheet->getActiveSheet()->getRowDimension('50')->setRowHeight(20, 'pt');
+$spreadsheet->getActiveSheet()->getRowDimension('52')->setRowHeight(30, 'pt');
+$spreadsheet->getActiveSheet()->getRowDimension('53')->setRowHeight(30, 'pt');
+$spreadsheet->getActiveSheet()->getRowDimension('54')->setRowHeight(30, 'pt');
+$spreadsheet->getActiveSheet()->getRowDimension('55')->setRowHeight(40, 'pt');
+$spreadsheet->getActiveSheet()->getRowDimension('68')->setRowHeight(100, 'pt');
+
+$sheet->getStyle('A2:M71')->applyFromArray($styleArrayBorder);
+$sheet->getStyle('A2:F49')->applyFromArray($styleArrayLightGrayFill);
+$sheet->getStyle('A50:I51')->applyFromArray($styleArrayLightGrayFill);
+$sheet->getStyle('A55:I58')->applyFromArray($styleArrayLightGrayFill);
+$sheet->getStyle('B60:D60')->applyFromArray($styleArrayLightGrayFill);
+$sheet->getStyle('F63:I63')->applyFromArray($styleArrayLightGrayFill);
+$sheet->getStyle('F65:I65')->applyFromArray($styleArrayLightGrayFill);
+$sheet->getStyle('K65:L65')->applyFromArray($styleArrayLightGrayFill);
+$sheet->getStyle('E69:I69')->applyFromArray($styleArrayLightGrayFill);
+
+$sheet->getStyle('A2:M49')->applyFromArray($styleArrayInsideBox);
+$sheet->getStyle('A50:I54')->applyFromArray($styleArrayInsideBox);
+$sheet->getStyle('B60:D63')->applyFromArray($styleArrayInsideBox);
+$sheet->getStyle('F60:I65')->applyFromArray($styleArrayInsideBox);
+$sheet->getStyle('K58:L65')->applyFromArray($styleArrayInsideBox);
+$sheet->getStyle('E68:I69')->applyFromArray($styleArrayInsideBox);
+
+$sheet->getStyle('A50:I50')->applyFromArray($styleArrayBorder);
+$sheet->getStyle('A51:I54')->applyFromArray($styleArrayBorder);
+$sheet->getStyle('A55:I58')->applyFromArray($styleArrayBorder);
+$sheet->getStyle('B60:D63')->applyFromArray($styleArrayBorder);
+$sheet->getStyle('F60:I65')->applyFromArray($styleArrayBorder);
+$sheet->getStyle('K58:L65')->applyFromArray($styleArrayBorder);
+$sheet->getStyle('E68:I69')->applyFromArray($styleArrayBorder);
+$sheet->getStyle('A71:M71')->applyFromArray($styleArrayBorder);
+
+
+$drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
+$drawing->setPath("2x2.jpg");
+$drawing->setName('2x2');
+$drawing->setCoordinates('k51');
+$drawing->setWidthAndHeight(132,170);
+$drawing->setWorksheet($sheet); 
 
 $spreadsheet->setActiveSheetIndex(0);
 

@@ -753,6 +753,38 @@ if (isset($_POST['action'])){
     }
   }
 
+
+  if (isset($_POST['action'])){
+    if ($_POST['action'] == 'fetch_attachment'){
+
+      $query = 'SELECT * FROM tbl_employee_attachment WHERE EMPID = "'.$_POST['employeeiddb'].'" AND CANCELLED = "N" ';
+      //$query = 'SELECT * FROM tbl_employee_attachment ';
+
+      
+      //$number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
+      
+      $result = mysqli_query($connect, $query );
+      
+      $data = array();
+      if($result){ 
+        while($row = mysqli_fetch_array($result)){
+          
+          $sub_array = array();
+          $sub_array[] = $row["FILENAME"];
+          $sub_array[] = "
+          <a href='".$row['LOCATION']."'><button type='button' class='btn btn-info btn-sm'>Download</button></a>
+          <button type='button' name='delete_other_membership' class='btn btn-danger btn-sm delete_other_membership' data-id='".$row['ID']."'>Delete</button>";  
+          $data[] = $sub_array;
+        }
+      }
+      
+      $output = array(
+       "data"    => $data
+      );
+      echo json_encode($output);
+    }
+  }
+
   if (isset($_POST['action'])){
     if ($_POST['action'] == 'add_children'){
 
@@ -1297,6 +1329,65 @@ if (isset($_POST['action'])){
     }
   }
 
+  if (isset($_POST['action'])){
+    if ($_POST['action'] == 'add_attachment'){
+        
+      $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>Data Updated!</strong> 
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      </div>';
+      $message = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>Please Check field/s:</strong> <br>
+      ';
+      $flag = false;
+
+				$user_image = upload_image();
+			
+        $empid  = mysqli_real_escape_string($connect, $_POST['empID']);
+			  $filename = mysqli_real_escape_string($connect, $_POST["filename"]);
+
+			  $admin_profile = $user_image;
+
+       
+        if (!$flag){
+
+          $sqli = "INSERT INTO `tbl_employee_attachment` SET 
+          EMPID = '".$empid."',
+          FILENAME = '".$filename."',
+          LOCATION = '".$admin_profile."',
+          CANCELLED = 'N'";
+          $query = $connect->query($sqli) or die($connect->error); 
+        }
+
+        $message_final = '';
+
+        if ($flag){
+          $message_final = $message;
+        } else {
+          $message_final = $message_success;
+        }
+      
+        $output = array(
+        'status'    => $message_final
+        );
+
+        echo json_encode($output);
+    }
+  }
+  
+  function upload_image()
+  {
+    if(isset($_FILES["user_image"]))
+    {
+      $extension = explode('.', $_FILES['user_image']['name']);
+      $new_name = rand() . '.' . $extension[1];
+      $destination = 'Uploaded_Files/' . $new_name;
+      move_uploaded_file($_FILES['user_image']['tmp_name'], $destination);
+      return $destination;
+    }
+  }
 
 
   if (isset($_POST['action'])){
@@ -2054,6 +2145,20 @@ if (isset($_POST['action'])){
     if ($_POST['action'] == 'delete_other_membership'){
 
       $query = 'UPDATE tbl_employee_other_membership
+        SET CANCELLED = "Y" 
+        WHERE ID = "'.$_POST["id"].'" AND CANCELLED = "N" ';
+
+      //echo $query;
+      
+      $result = mysqli_query($connect, $query);
+
+    }
+  }
+
+  if (isset($_POST['action'])){
+    if ($_POST['action'] == 'delete_attachment'){
+
+      $query = 'UPDATE tbl_employee_attachment
         SET CANCELLED = "Y" 
         WHERE ID = "'.$_POST["id"].'" AND CANCELLED = "N" ';
 

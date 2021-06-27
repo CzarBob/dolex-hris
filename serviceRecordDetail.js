@@ -293,6 +293,15 @@
 
             });
 
+            $('#generateReport').click(function(){
+
+                //var to_date = '';
+                //window.location.href="export?from_date="+from_date+"&to_date="+to_date+"";
+                var employeeiddb = document.getElementById("empID").value;
+                window.location.href="export2.php?id="+employeeiddb, true;
+            
+            }); 
+
 
 
             

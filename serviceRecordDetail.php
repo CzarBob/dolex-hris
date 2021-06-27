@@ -273,8 +273,12 @@ include 'serviceRecordDetail_load_query.php';
                                     <span id="message"></span>
                                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                             <h6 class="m-0 font-weight-bold text-primary">Service Record</h6>
-                                            <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#modalServiceRecordForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Service Record</a>
-
+                                           
+                                            <div>
+                                              <button class="btn btn-info generateReport" name='generateReport' id= "generateReport" > Generate Excel File </button>
+                                              <a data-toggle="modal" data-target="#modalServiceRecordForm" ><button class="btn btn-success"  > Add Service Record </button></a>
+                                             
+                                            </div>
                                         </div>
 
                                         <!-- Card Body -->
