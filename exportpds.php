@@ -23,7 +23,7 @@ $drawing->setWorksheet($sheet);  */
 
 
 //$id = $_POST['employeeiddb'];
-$id = isset($_GET["id"]);
+$id = $_GET["id"];
 
 
 $query = 'SELECT tbl_employee.FIRSTNAME as FIRSTNAME,

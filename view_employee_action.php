@@ -773,7 +773,7 @@ if (isset($_POST['action'])){
           $sub_array[] = $row["FILENAME"];
           $sub_array[] = "
           <a href='".$row['LOCATION']."'><button type='button' class='btn btn-info btn-sm'>Download</button></a>
-          <button type='button' name='delete_other_membership' class='btn btn-danger btn-sm delete_other_membership' data-id='".$row['ID']."'>Delete</button>";  
+          <button type='button' name='delete_attachment' class='btn btn-danger btn-sm delete_attachment' data-id='".$row['ID']."'>Delete</button>";  
           $data[] = $sub_array;
         }
       }

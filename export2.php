@@ -17,6 +17,7 @@ $drawing->setCoordinates('C5');
 $drawing->setWidthAndHeight(50,50);
 $drawing->setWorksheet($sheet);  
 
+$id = $_GET["id"];
 
 $query = 'SELECT 
     tbl_employee.FIRSTNAME as FIRSTNAME,
@@ -30,7 +31,6 @@ $query = 'SELECT
     WHERE tbl_employee.ID = "2" ';
 
     //WHERE tbl_employee.ID = "'.$_POST["employeeiddb"].'" ';
-
 
     //var_dump($query);
 
@@ -57,7 +57,7 @@ $query = 'SELECT
 
 
     //$query = 'SELECT * FROM tbl_service_record  WHERE EMPID = "'.$_POST['employeeiddb'].'" AND CANCELLED = "N" ';
-    $query = 'SELECT * FROM tbl_service_record  WHERE EMPID = "2" AND CANCELLED = "N" ';
+    $query = 'SELECT * FROM tbl_service_record  WHERE EMPID = "'.$id.'"  AND CANCELLED = "N" ';
     $result = mysqli_query($connect, $query);
     $rowNum=23;
     if($result){
