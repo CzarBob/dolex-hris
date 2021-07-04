@@ -1050,7 +1050,7 @@ if (mysqli_connect_errno()) {
             <div class="md-form mb-5">
             
               <label data-error="wrong" data-success="right" for="form34">Full name</label>
-              <input type="text" name="fullname" id = "fullname" class="form-control validate" required>
+              <input type="text" style="text-transform: uppercase;"  name="fullname" id = "fullname" class="form-control validate" required>
            
             </div>
 
@@ -1086,7 +1086,7 @@ if (mysqli_connect_errno()) {
             <div class="md-form mb-5">
             
               <label data-error="wrong" data-success="right" for="form34">Full name</label>
-              <input type="text" name="fullname_update" id = "fullname_update" class="form-control validate" required>
+              <input type="text" style="text-transform: uppercase;"  name="fullname_update" id = "fullname_update" class="form-control validate" required>
            
             </div>
 
@@ -1142,43 +1142,43 @@ if (mysqli_connect_errno()) {
             <div class="md-form mb-5">
        
               <label data-error="wrong" data-success="right" for="form29">Name of School (Write in full)</label>
-              <input type="text" name="school_name_update" id = "school_name_update" class="form-control validate" required>
+              <input type="text" style="text-transform: uppercase;" name="school_name_update" id = "school_name_update" class="form-control validate" required>
              
             </div>
             <div class="md-form mb-5">
        
               <label data-error="wrong" data-success="right" for="form29">Basic Education/Degree/Course</label>
-              <input type="text" name="educ_update" id = "educ_update" class="form-control validate" required>
+              <input type="text" style="text-transform: uppercase;" name="educ_update" id = "educ_update" class="form-control validate" required>
              
             </div>
             <div class="md-form mb-5">
        
               <label data-error="wrong" data-success="right" for="form29">Period from (YYYY) </label>
-              <input type="number" min="1900" max="2099" step="1" value="2016"  name="attended_from_update" id = "attended_from_update" class="form-control validate" required>
+              <input type="text" style="text-transform: uppercase;"  name="attended_from_update" id = "attended_from_update" class="form-control validate" required>
              
             </div>
             <div class="md-form mb-5">
        
               <label data-error="wrong" data-success="right" for="form29">Period to (YYYY)</label>
-              <input type="number" min="1900" max="2099" step="1" value="2016"  name="attended_to_update" id = "attended_to_update" class="form-control validate" required>
+              <input type="text" style="text-transform: uppercase;"   name="attended_to_update" id = "attended_to_update" class="form-control validate" required>
              
             </div>
             <div class="md-form mb-5">
        
               <label data-error="wrong" data-success="right" for="form29">Highest Level/Units Earned</label>
-              <input type="text" name="highest_level_update" id = "highest_level_update" class="form-control validate" required>
+              <input type="text" style="text-transform: uppercase;" name="highest_level_update" id = "highest_level_update" class="form-control validate" required>
              
             </div>
             <div class="md-form mb-5">
        
               <label data-error="wrong" data-success="right" for="form29">Year Graduated (YYYY)</label>
-              <input type="number" min="1900" max="2099" step="1" value="2016" name="year_grad_update" id = "year_grad_update" class="form-control validate" required>
+              <input type="text" style="text-transform: uppercase;" name="year_grad_update" id = "year_grad_update" class="form-control validate" required>
              
             </div>
             <div class="md-form mb-5">
        
               <label data-error="wrong" data-success="right" for="form29">Scholarship/Academic Honors Received</label>
-              <input type="text" name="honor_received_update" id = "honor_received_update" class="form-control validate" required>
+              <input type="text" style="text-transform: uppercase;" name="honor_received_update" id = "honor_received_update" class="form-control validate" required>
              
             </div>
           </div>
@@ -1225,43 +1225,43 @@ if (mysqli_connect_errno()) {
             <div class="md-form mb-5">
        
               <label data-error="wrong" data-success="right" for="form29">Name of School (Write in full)</label>
-              <input type="text" name="school_name" id = "school_name" class="form-control validate" required>
+              <input type="text" style="text-transform: uppercase;" name="school_name" id = "school_name" class="form-control validate" required>
              
             </div>
             <div class="md-form mb-5">
        
               <label data-error="wrong" data-success="right" for="form29">Basic Education/Degree/Course</label>
-              <input type="text" name="educ" id = "educ" class="form-control validate" required>
+              <input type="text" style="text-transform: uppercase;" name="educ" id = "educ" class="form-control validate" required>
              
             </div>
             <div class="md-form mb-5">
        
               <label data-error="wrong" data-success="right" for="form29">Period from </label>
-              <input type="text" name="attended_from" id = "attended_from" class="form-control validate" required>
+              <input type="text" style="text-transform: uppercase;" name="attended_from" id = "attended_from" class="form-control validate" required>
              
             </div>
             <div class="md-form mb-5">
        
               <label data-error="wrong" data-success="right" for="form29">Period to</label>
-              <input type="text" name="attended_to" id = "attended_to" class="form-control validate" required>
+              <input type="text" style="text-transform: uppercase;" name="attended_to" id = "attended_to" class="form-control validate" required>
              
             </div>
             <div class="md-form mb-5">
        
               <label data-error="wrong" data-success="right" for="form29">Highest Level/Units Earned</label>
-              <input type="text" name="highest_level" id = "highest_level" class="form-control validate" required>
+              <input type="text" style="text-transform: uppercase;" name="highest_level" id = "highest_level" class="form-control validate" required>
              
             </div>
             <div class="md-form mb-5">
        
               <label data-error="wrong" data-success="right" for="form29">Year Graduated</label>
-              <input type="text" name="year_grad" id = "year_grad" class="form-control validate" required>
+              <input type="text" style="text-transform: uppercase;" name="year_grad" id = "year_grad" class="form-control validate" required>
              
             </div>
             <div class="md-form mb-5">
        
               <label data-error="wrong" data-success="right" for="form29">Scholarship/Academic Honors Received</label>
-              <input type="text" name="honor_received" id = "honor_received" class="form-control validate" required>
+              <input type="text" style="text-transform: uppercase;" name="honor_received" id = "honor_received" class="form-control validate" required>
              
             </div>
           </div>
@@ -1289,14 +1289,14 @@ if (mysqli_connect_errno()) {
           <div class="md-form mb-5">
             <input type="hidden" name="eligibilityid" id = "eligibilityid" class="form-control validate" required>  
             <label data-error="wrong" data-success="right" for="form34">Eligibility</label>
-            <input type="text" name="eligibility" id = "eligibility" class="form-control validate" required>
+            <input type="text" style="text-transform: uppercase;" name="eligibility" id = "eligibility" class="form-control validate" required>
          
           </div>
 
           <div class="md-form mb-5">
      
             <label data-error="wrong" data-success="right" for="form29">rating</label>
-            <input type="text" name="rating" id = "rating" class="form-control validate" required>
+            <input type="text" style="text-transform: uppercase;" name="rating" id = "rating" class="form-control validate" required>
            
           </div>
           <div class="md-form mb-5">
@@ -1308,13 +1308,13 @@ if (mysqli_connect_errno()) {
           <div class="md-form mb-5">
      
             <label data-error="wrong" data-success="right" for="form29">Place of Exam</label>
-            <input type="text" name="place_of_exam" id = "place_of_exam" class="form-control validate" required>
+            <input type="text" style="text-transform: uppercase;" name="place_of_exam" id = "place_of_exam" class="form-control validate" required>
            
           </div>
           <div class="md-form mb-5">
      
             <label data-error="wrong" data-success="right" for="form29">License Number</label>
-            <input type="text" name="license_no" id = "license_no" class="form-control validate" required>
+            <input type="text" style="text-transform: uppercase;" name="license_no" id = "license_no" class="form-control validate" required>
            
           </div>
           <div class="md-form mb-5">
@@ -1351,14 +1351,14 @@ if (mysqli_connect_errno()) {
           <div class="md-form mb-5">
             <input type="hidden" name="eligibilityid" id = "eligibilityid" class="form-control validate" required>  
             <label data-error="wrong" data-success="right" for="form34">Eligibility</label>
-            <input type="text" name="eligibility_update" id = "eligibility_update" class="form-control validate" required>
+            <input type="text" style="text-transform: uppercase;" name="eligibility_update" id = "eligibility_update" class="form-control validate" required>
          
           </div>
 
           <div class="md-form mb-5">
      
             <label data-error="wrong" data-success="right" for="form29">Rating</label>
-            <input type="text" name="rating_update" id = "rating_update" class="form-control validate" required>
+            <input type="text" style="text-transform: uppercase;" name="rating_update" id = "rating_update" class="form-control validate" required>
            
           </div>
           <div class="md-form mb-5">
@@ -1370,13 +1370,13 @@ if (mysqli_connect_errno()) {
           <div class="md-form mb-5">
      
             <label data-error="wrong" data-success="right" for="form29">Place of Exam</label>
-            <input type="text" name="place_of_exam_update" id = "place_of_exam_update" class="form-control validate" required>
+            <input type="text" style="text-transform: uppercase;" name="place_of_exam_update" id = "place_of_exam_update" class="form-control validate" required>
            
           </div>
           <div class="md-form mb-5">
      
             <label data-error="wrong" data-success="right" for="form29">License Number</label>
-            <input type="text" name="license_no_update" id = "license_no_update" class="form-control validate" required>
+            <input type="text" style="text-transform: uppercase;" name="license_no_update" id = "license_no_update" class="form-control validate" required>
            
           </div>
           <div class="md-form mb-5">
@@ -1421,31 +1421,31 @@ if (mysqli_connect_errno()) {
           <div class="md-form mb-5">
      
             <label data-error="wrong" data-success="right" for="form29">Positon Title (Write in Full)</label>
-            <input type="text" name="work_position" id = "work_position" class="form-control validate" required>
+            <input type="text" style="text-transform: uppercase;" name="work_position" id = "work_position" class="form-control validate" required>
            
           </div>
           <div class="md-form mb-5">
      
             <label data-error="wrong" data-success="right" for="form29">Department/Agency/Office/Company</label>
-            <input type="text" name="work_company" id = "work_company" class="form-control validate" required>
+            <input type="text" style="text-transform: uppercase;" name="work_company" id = "work_company" class="form-control validate" required>
            
           </div>
           <div class="md-form mb-5">
      
             <label data-error="wrong" data-success="right" for="form29">Monthly Salary</label>
-            <input type="text" name="work_salary" id = "work_salary" class="form-control validate" required>
+            <input type="text" style="text-transform: uppercase;" name="work_salary" id = "work_salary" class="form-control validate" required>
            
           </div>
           <div class="md-form mb-5">
      
             <label data-error="wrong" data-success="right" for="form29">Salary/Job/Pat Grade (If applicable)</label>
-            <input type="text" name="work_salary_grade" id = "work_salary_grade" class="form-control validate" required>
+            <input type="text" style="text-transform: uppercase;" name="work_salary_grade" id = "work_salary_grade" class="form-control validate" required>
            
           </div>
           <div class="md-form mb-5">
      
             <label data-error="wrong" data-success="right" for="form29">Status of Appointment</label>
-            <input type="text" name="work_status" id = "work_status" class="form-control validate" required>
+            <input type="text" style="text-transform: uppercase;" name="work_status" id = "work_status" class="form-control validate" required>
            
           </div>
           <div class="md-form mb-5">
@@ -1496,31 +1496,31 @@ if (mysqli_connect_errno()) {
           <div class="md-form mb-5">
      
             <label data-error="wrong" data-success="right" for="form29">Positon Title (Write in Full)</label>
-            <input type="text" name="work_position_update" id = "work_position_update" class="form-control validate" required>
+            <input type="text" style="text-transform: uppercase;" name="work_position_update" id = "work_position_update" class="form-control validate" required>
            
           </div>
           <div class="md-form mb-5">
      
             <label data-error="wrong" data-success="right" for="form29">Department/Agency/Office/Company</label>
-            <input type="text" name="work_company_update" id = "work_company_update" class="form-control validate" required>
+            <input type="text" style="text-transform: uppercase;" name="work_company_update" id = "work_company_update" class="form-control validate" required>
            
           </div>
           <div class="md-form mb-5">
      
             <label data-error="wrong" data-success="right" for="form29">Monthly Salary</label>
-            <input type="text" name="work_salary_update" id = "work_salary_update" class="form-control validate" required>
+            <input type="text" style="text-transform: uppercase;" name="work_salary_update" id = "work_salary_update" class="form-control validate" required>
            
           </div>
           <div class="md-form mb-5">
      
             <label data-error="wrong" data-success="right" for="form29">Salary/Job/Pat Grade (If applicable)</label>
-            <input type="text" name="work_salary_grade_update" id = "work_salary_grade_update" class="form-control validate" required>
+            <input type="text" style="text-transform: uppercase;" name="work_salary_grade_update" id = "work_salary_grade_update" class="form-control validate" required>
            
           </div>
           <div class="md-form mb-5">
      
             <label data-error="wrong" data-success="right" for="form29">Status of Appointment</label>
-            <input type="text" name="work_status_update" id = "work_status_update" class="form-control validate" required>
+            <input type="text" style="text-transform: uppercase;" name="work_status_update" id = "work_status_update" class="form-control validate" required>
            
           </div>
           <div class="md-form mb-5">
@@ -1562,7 +1562,7 @@ if (mysqli_connect_errno()) {
           <div class="md-form mb-5">
             <!--<input type="hidden" name="volWorkid" id = "volWorkid" class="form-control validate" required> -->  
             <label data-error="wrong" data-success="right" for="form34">Organization</label>
-            <input type="text" name="volwork_organization" id = "volwork_organization" class="form-control validate" required>        
+            <input type="text" style="text-transform: uppercase;" name="volwork_organization" id = "volwork_organization" class="form-control validate" required>        
           </div>
    
           <div class="md-form mb-5">
@@ -1576,13 +1576,13 @@ if (mysqli_connect_errno()) {
           <div class="md-form mb-5">
      
             <label data-error="wrong" data-success="right" for="form29">Number of Hours</label>
-            <input type="text" name="volwork_nohours" id = "volwork_nohours" class="form-control validate" required>
+            <input type="text" style="text-transform: uppercase;" name="volwork_nohours" id = "volwork_nohours" class="form-control validate" required>
            
           </div>
           <div class="md-form mb-5">
      
             <label data-error="wrong" data-success="right" for="form29">Position</label>
-            <input type="text" name="volwork_position" id = "volwork_position" class="form-control validate" required>
+            <input type="text" style="text-transform: uppercase;" name="volwork_position" id = "volwork_position" class="form-control validate" required>
            
           </div>
           </div>
@@ -1609,7 +1609,7 @@ if (mysqli_connect_errno()) {
           <div class="md-form mb-5">
             <input type="hidden" name="volWorkid" id = "volWorkid" class="form-control validate" required> 
             <label data-error="wrong" data-success="right" for="form34">Organization</label>
-            <input type="text" name="volwork_organization_update" id = "volwork_organization_update" class="form-control validate" required>        
+            <input type="text" style="text-transform: uppercase;" name="volwork_organization_update" id = "volwork_organization_update" class="form-control validate" required>        
           </div>
    
           <div class="md-form mb-5">
@@ -1622,13 +1622,13 @@ if (mysqli_connect_errno()) {
           <div class="md-form mb-5">
      
             <label data-error="wrong" data-success="right" for="form29">Number of Hours</label>
-            <input type="text" name="volwork_nohours_update" id = "volwork_nohours_update" class="form-control validate" required>
+            <input type="text" style="text-transform: uppercase;" name="volwork_nohours_update" id = "volwork_nohours_update" class="form-control validate" required>
            
           </div>
           <div class="md-form mb-5">
      
             <label data-error="wrong" data-success="right" for="form29">Position</label>
-            <input type="text" name="volwork_position_update" id = "volwork_position_update" class="form-control validate" required>
+            <input type="text" style="text-transform: uppercase;" name="volwork_position_update" id = "volwork_position_update" class="form-control validate" required>
            
           </div>
           </div>
@@ -1656,7 +1656,7 @@ if (mysqli_connect_errno()) {
           <div class="modal-body mx-3">
           <div class="md-form mb-5">
             <label data-error="wrong" data-success="right" for="form34">Program</label>
-            <input type="text" name="landd_program" id = "landd_program" class="form-control validate" required>        
+            <input type="text" style="text-transform: uppercase;" name="landd_program" id = "landd_program" class="form-control validate" required>        
           </div>
    
           <div class="md-form mb-5">
@@ -1667,7 +1667,7 @@ if (mysqli_connect_errno()) {
 
           <div class="md-form mb-5">
             <label data-error="wrong" data-success="right" for="form29">Number of Hours</label>
-            <input type="text" name="landd_nohours" id = "landd_nohours" class="form-control validate" required>
+            <input type="text" style="text-transform: uppercase;" name="landd_nohours" id = "landd_nohours" class="form-control validate" required>
           </div>
           <div class="md-form mb-5">
      
@@ -1692,7 +1692,7 @@ if (mysqli_connect_errno()) {
           <div class="md-form mb-5">
      
             <label data-error="wrong" data-success="right" for="form29">Sponsored By</label>
-            <input type="text" name="landd_sponsoredby" id = "landd_sponsoredby" class="form-control validate" required>
+            <input type="text" style="text-transform: uppercase;" name="landd_sponsoredby" id = "landd_sponsoredby" class="form-control validate" required>
            
           </div>
          
@@ -1720,7 +1720,7 @@ if (mysqli_connect_errno()) {
           <div class="md-form mb-5">
            <input type="hidden" name="landdid" id = "landdid" class="form-control validate" required> 
             <label data-error="wrong" data-success="right" for="form34">Program</label>
-            <input type="text" name="landd_program_update" id = "landd_program_update" class="form-control validate" required> -        
+            <input type="text" style="text-transform: uppercase;" name="landd_program_update" id = "landd_program_update" class="form-control validate" required> -        
           </div>
    
           <div class="md-form mb-5">
@@ -1733,7 +1733,7 @@ if (mysqli_connect_errno()) {
           <div class="md-form mb-5">
      
             <label data-error="wrong" data-success="right" for="form29">Number of Hours</label>
-            <input type="text" name="landd_nohours_update" id = "landd_nohours_update" class="form-control validate" required>
+            <input type="text" style="text-transform: uppercase;" name="landd_nohours_update" id = "landd_nohours_update" class="form-control validate" required>
            
           </div>
           <div class="md-form mb-5">
@@ -1754,7 +1754,7 @@ if (mysqli_connect_errno()) {
           <div class="md-form mb-5">
      
             <label data-error="wrong" data-success="right" for="form29">Sponsored By</label>
-            <input type="text" name="landd_sponsoredby_update" id = "landd_sponsoredby_update" class="form-control validate" required>
+            <input type="text" style="text-transform: uppercase;" name="landd_sponsoredby_update" id = "landd_sponsoredby_update" class="form-control validate" required>
             
           </div>
 
@@ -1782,7 +1782,7 @@ if (mysqli_connect_errno()) {
           <div class="modal-body mx-3">
           <div class="md-form mb-5"> 
             <label data-error="wrong" data-success="right" for="form34">Special Skill or Hobby</label>
-            <input type="text" name="other_skill" id = "other_skill" class="form-control validate" required>         
+            <input type="text" style="text-transform: uppercase;" name="other_skill" id = "other_skill" class="form-control validate" required>         
           </div>
           </div>
           <div class="modal-footer d-flex justify-content-center">
@@ -1807,7 +1807,7 @@ if (mysqli_connect_errno()) {
           <div class="modal-body mx-3">
           <div class="md-form mb-5"> 
             <label data-error="wrong" data-success="right" for="form34">Non-Academic Distinction/Recognition</label>
-            <input type="text" name="other_recognition" id = "other_recognition" class="form-control validate" required>         
+            <input type="text" style="text-transform: uppercase;" name="other_recognition" id = "other_recognition" class="form-control validate" required>         
           </div>
           </div>
           <div class="modal-footer d-flex justify-content-center">
@@ -1832,7 +1832,7 @@ if (mysqli_connect_errno()) {
           <div class="modal-body mx-3">
           <div class="md-form mb-5"> 
             <label data-error="wrong" data-success="right" for="form34">Membership in Association/Organization</label>
-            <input type="text" name="other_membership" id = "other_membership" class="form-control validate" required>        
+            <input type="text" style="text-transform: uppercase;" name="other_membership" id = "other_membership" class="form-control validate" required>        
           </div>
           </div>
           <div class="modal-footer d-flex justify-content-center">
@@ -1859,7 +1859,7 @@ if (mysqli_connect_errno()) {
           
           <div class="md-form mb-5"> 
             <label data-error="wrong" data-success="right" for="form34">File Name</label>
-            <input type="text" name="filename" id = "filename" class="form-control validate" required>        
+            <input type="text" style="text-transform: uppercase;" name="filename" id = "filename" class="form-control validate" required>        
           </div>
           <div class="md-form mb-5"> 
             <label data-error="wrong" data-success="right" for="form34">Document</label>
@@ -2009,15 +2009,15 @@ if (mysqli_connect_errno()) {
             <div class="form-row">
               <div class="form-group col-md-4">
                 <label for="inputAddress">Employee ID</label>
-                <input type="text" class="form-control" id="employeeidmain_update" placeholder="Ex. CBTZ200116">
+                <input type="text" style="text-transform: uppercase;" class="form-control" id="employeeidmain_update" placeholder="Ex. CBTZ200116">
               </div>
               <div class="form-group col-md-4">
                 <label for="inputAddress">Position</label>
-                <input type="text" class="form-control" id="position_update" placeholder="Ex. Labor Employment Officer I">
+                <input type="text" style="text-transform: uppercase;" class="form-control" id="position_update" placeholder="Ex. Labor Employment Officer I">
               </div>
               <div class="form-group col-md-4">
                 <label for="inputAddress">Date Hired</label>
-                <input type="date" class="form-control" id="datehired_update">
+                <input type="date" style="text-transform: uppercase;" class="form-control" id="datehired_update">
               </div>
             </div>
             <div class="form-row">
@@ -2029,22 +2029,22 @@ if (mysqli_connect_errno()) {
               <!-- Default input -->
               <div class="form-group col-md-3">
                 <label for="inputEmail4">First Name</label>
-                <input type="text" name="firstname_update" id="firstname_update" placeholder="Ex. Enrico" class="form-control validate"
+                <input type="text" style="text-transform: uppercase;" name="firstname_update" id="firstname_update" placeholder="Ex. Enrico" class="form-control validate"
                   required>
               </div>
               <div class="form-group col-md-3">
                 <label for="inputEmail4">Middle Name</label>
-                <input type="text" name="middlename_update" id="middlename_update" placeholder="Ex. Santos"
+                <input type="text" style="text-transform: uppercase;" name="middlename_update" id="middlename_update" placeholder="Ex. Santos"
                   class="form-control validate" required>
               </div>
               <div class="form-group col-md-3">
                 <label for="inputEmail4">Last Name</label>
-                <input type="text" name="lastname_update" id="lastname_update" placeholder="Ex. Cruz" class="form-control validate"
+                <input type="text" style="text-transform: uppercase;" name="lastname_update" id="lastname_update" placeholder="Ex. Cruz" class="form-control validate"
                   required>
               </div>
               <div class="form-group col-md-1">
                 <label for="inputEmail4">Extension</label>
-                <input type="text" name="extension_update" id="extension_update" placeholder="Ex. Jr, II, III"
+                <input type="text" style="text-transform: uppercase;" name="extension_update" id="extension_update" placeholder="Ex. Jr, II, III"
                   class="form-control validate" required>
               </div>
             </div>
@@ -2074,12 +2074,12 @@ if (mysqli_connect_errno()) {
               <div class="form-group col-md-2">
 
                 <label for="inputCity">Date of Birth</label>
-                <input type="date" class="form-control"  name="dobprofile_update" id="dobprofile_update">
+                <input type="date" style="text-transform: uppercase;" class="form-control"  name="dobprofile_update" id="dobprofile_update">
               </div>
               <!-- Default input -->
               <div class="form-group col-md-8">
                 <label for="inputZip">Place of Birth</label>
-                <input type="text" class="form-control" name="placeofbirth_update" id="placeofbirth_update"
+                <input type="text" style="text-transform: uppercase;" class="form-control" name="placeofbirth_update" id="placeofbirth_update"
                   placeholder="Ex. 1234 Main Street">
               </div>
             </div>
@@ -2112,17 +2112,17 @@ if (mysqli_connect_errno()) {
               <!-- Default input -->
               <div class="form-group col-md-1">
                 <label for="inputZip">Weight (Kg)</label>
-                <input type="text" class="form-control" id="weight_update" name="weight_update" placeholder="Ex. 67">
+                <input type="text" style="text-transform: uppercase;" class="form-control" id="weight_update" name="weight_update" placeholder="Ex. 67">
               </div>
               <!-- Default input -->
               <div class="form-group col-md-2">
                 <label for="inputZip">Height (cm)</label>
-                <input type="text" class="form-control" id="height_update" name="height_update" placeholder="Ex. 163">
+                <input type="text" style="text-transform: uppercase;" class="form-control" id="height_update" name="height_update" placeholder="Ex. 163">
               </div>
               <!-- Default input -->
               <div class="form-group col-md-1">
                 <label for="inputZip">Blood Type</label>
-                <input type="text" class="form-control" id="bloodtype_update" name="bloodtype_update" placeholder="Ex. B+">
+                <input type="text" style="text-transform: uppercase;" class="form-control" id="bloodtype_update" name="bloodtype_update" placeholder="Ex. B+">
               </div>
             </div>
             <!-- Grid row -->
@@ -2130,36 +2130,36 @@ if (mysqli_connect_errno()) {
               <!-- Default input -->
               <div class="form-group col-md-2">
                 <label for="inputCity">GSIS ID No.</label>
-                <input type="text" class="form-control" id="gsisno_update" name="gsisno_update">
+                <input type="text" style="text-transform: uppercase;" class="form-control" id="gsisno_update" name="gsisno_update">
               </div>
               <!-- Default input -->
               <div class="form-group col-md-2">
                 <label for="inputZip">Pagibig No.</label>
-                <input type="text" class="form-control" id="pagibigno_update" name="pagibigno_update"
+                <input type="text" style="text-transform: uppercase;" class="form-control" id="pagibigno_update" name="pagibigno_update"
                  >
               </div>
               <!-- Default input -->
               <div class="form-group col-md-2">
                 <label for="inputZip">Philhealth No.</label>
-                <input type="text" class="form-control" id="phicno_update" name="phicno_update"
+                <input type="text" style="text-transform: uppercase;" class="form-control" id="phicno_update" name="phicno_update"
                 >
               </div>
               <!-- Default input -->
               <div class="form-group col-md-2">
                 <label for="inputZip">SSS No.</label>
-                <input type="text" class="form-control" id="sssno_update" name="sssno_update"
+                <input type="text" style="text-transform: uppercase;" class="form-control" id="sssno_update" name="sssno_update"
                  >
               </div>
               <!-- Default input -->
               <div class="form-group col-md-2">
                 <label for="inputZip">TIN No.</label>
-                <input type="text" class="form-control" id="tinno_update" name="tinno_update"
+                <input type="text" style="text-transform: uppercase;" class="form-control" id="tinno_update" name="tinno_update"
                  >
               </div>
               <!-- Default input -->
               <div class="form-group col-md-2">
                 <label for="inputZip">Agency Employee No.</label>
-                <input type="text" class="form-control" id="agencyemployeeno_update" name="agencyemployeeno_update"
+                <input type="text" style="text-transform: uppercase;" class="form-control" id="agencyemployeeno_update" name="agencyemployeeno_update"
                  >
               </div>
             </div>
@@ -2191,7 +2191,7 @@ if (mysqli_connect_errno()) {
               <!-- Default input -->
               <div class="form-group col-md-10">
                 <label for="inputCity">Residential Address</label>
-                <input type="text" class="form-control" id="residentialaddress_update">
+                <input type="text" style="text-transform: uppercase;" class="form-control" id="residentialaddress_update">
               </div>
             </div>
 
@@ -2201,7 +2201,7 @@ if (mysqli_connect_errno()) {
               <div class="form-group col-md-10">
                 <label for="inputCity">Permanent Address</label><br>
                 
-                <input type="text" class="form-control" id="permanentaddress_update">
+                <input type="text" style="text-transform: uppercase;" class="form-control" id="permanentaddress_update">
               </div>
             </div>
 
@@ -2210,17 +2210,17 @@ if (mysqli_connect_errno()) {
               <!-- Default input -->
               <div class="form-group col-md-2">
                 <label for="inputCity">Telephone No.</label><br>
-                <input type="text" class="form-control" id="telephoneno_update" name="telephoneno_update"
+                <input type="text" style="text-transform: uppercase;" class="form-control" id="telephoneno_update" name="telephoneno_update"
                   placeholder="Ex. 1234 Main Street">
               </div>
               <div class="form-group col-md-2">
                 <label for="inputZip">Mobile No.</label>
-                <input type="text" class="form-control" id="mobileno_update" name="mobileno_update"
+                <input type="text" style="text-transform: uppercase;" class="form-control" id="mobileno_update" name="mobileno_update"
                   placeholder="Ex. 1234 Main Street">
               </div>
               <div class="form-group col-md-2">
                 <label for="inputZip">Email Address</label>
-                <input type="text" class="form-control" id="emailprofile_update" name="emailprofile_update"
+                <input type="text" style="text-transform: uppercase;" class="form-control" id="emailprofile_update" name="emailprofile_update"
                   placeholder="Ex. 1234 Main Street">
               </div>
             </div>
@@ -2259,23 +2259,23 @@ if (mysqli_connect_errno()) {
                     <div class="form-group col-md-3">
                       <!--<input type="hidden" name="familyid" id="familyid">-->
                       <label for="inputEmail4">Spouse's Surname</label>
-                      <input type="text" name="spouselastname_update" id="spouselastname_update" placeholder="Ex. Cruz"
+                      <input type="text" style="text-transform: uppercase;" name="spouselastname_update" id="spouselastname_update" placeholder="Ex. Cruz"
                         class="form-control validate">
                     </div>
                     <div class="form-group col-md-3">
                       <label for="inputEmail4">First Name</label>
-                      <input type="text" name="spousefirstname_update" id="spousefirstname_update" placeholder="Ex. Enrico"
+                      <input type="text" style="text-transform: uppercase;" name="spousefirstname_update" id="spousefirstname_update" placeholder="Ex. Enrico"
                         class="form-control validate">
                     </div>
                     <div class="form-group col-md-3">
                       <label for="inputEmail4">Middle Name</label>
-                      <input type="text" name="spousemiddlename_update" id="spousemiddlename_update" placeholder="Ex. Santos"
+                      <input type="text" style="text-transform: uppercase;" name="spousemiddlename_update" id="spousemiddlename_update" placeholder="Ex. Santos"
                         class="form-control validate">
                     </div>
 
                     <div class="form-group col-md-1">
                       <label for="inputEmail4">Extension</label>
-                      <input type="text" name="spouseextension_update" id="spouseextension_update" placeholder="Ex. Jr, II, III"
+                      <input type="text" style="text-transform: uppercase;" name="spouseextension_update" id="spouseextension_update" placeholder="Ex. Jr, II, III"
                         class="form-control validate">
                     </div>
 
@@ -2286,7 +2286,7 @@ if (mysqli_connect_errno()) {
                     <!-- Default input -->
                     <div class="form-group col-md-10">
                       <label for="inputCity">Occupation</label>
-                      <input type="text" class="form-control" id="occupation_update">
+                      <input type="text" style="text-transform: uppercase;" class="form-control" id="occupation_update">
                     </div>
 
                   </div>
@@ -2295,7 +2295,7 @@ if (mysqli_connect_errno()) {
                     <!-- Default input -->
                     <div class="form-group col-md-10">
                       <label for="inputCity">Employer/Business Name</label>
-                      <input type="text" class="form-control" id="employername_update">
+                      <input type="text" style="text-transform: uppercase;" class="form-control" id="employername_update">
                     </div>
 
                   </div>
@@ -2305,7 +2305,7 @@ if (mysqli_connect_errno()) {
                     <!-- Default input -->
                     <div class="form-group col-md-10">
                       <label for="inputCity">Business Address</label>
-                      <input type="text" class="form-control" id="businessaddress_update">
+                      <input type="text" style="text-transform: uppercase;" class="form-control" id="businessaddress_update">
                     </div>
 
                   </div>
@@ -2315,7 +2315,7 @@ if (mysqli_connect_errno()) {
                     <!-- Default input -->
                     <div class="form-group col-md-2">
                       <label for="inputCity">Telephone No.</label>
-                      <input type="text" class="form-control" id="spousetelno_update">
+                      <input type="text" style="text-transform: uppercase;" class="form-control" id="spousetelno_update">
                     </div>
 
                   </div>
@@ -2326,23 +2326,23 @@ if (mysqli_connect_errno()) {
                     <!-- Default input -->
                     <div class="form-group col-md-3">
                       <label for="inputEmail4">Father's Surname</label>
-                      <input type="text" name="fathersurname_update" id="fathersurname_update" placeholder="Ex. Cruz"
+                      <input type="text" style="text-transform: uppercase;" name="fathersurname_update" id="fathersurname_update" placeholder="Ex. Cruz"
                         class="form-control validate" required>
                     </div>
                     <div class="form-group col-md-3">
                       <label for="inputEmail4">First Name</label>
-                      <input type="text" name="fatherfirstname_update" id="fatherfirstname_update" placeholder="Ex. Enrico"
+                      <input type="text" style="text-transform: uppercase;" name="fatherfirstname_update" id="fatherfirstname_update" placeholder="Ex. Enrico"
                         class="form-control validate" required>
                     </div>
                     <div class="form-group col-md-3">
                       <label for="inputEmail4">Middle Name</label>
-                      <input type="text" name="fathermiddlename_update" id="fathermiddlename_update" placeholder="Ex. Santos"
+                      <input type="text" style="text-transform: uppercase;" name="fathermiddlename_update" id="fathermiddlename_update" placeholder="Ex. Santos"
                         class="form-control validate" required>
                     </div>
 
                     <div class="form-group col-md-1">
                       <label for="inputEmail4">Extension</label>
-                      <input type="text" name="fatherext_update" id="fatherext_update" placeholder="Ex. Jr, II, III"
+                      <input type="text" style="text-transform: uppercase;" name="fatherext_update" id="fatherext_update" placeholder="Ex. Jr, II, III"
                         class="form-control validate" required>
                     </div>
 
@@ -2353,22 +2353,22 @@ if (mysqli_connect_errno()) {
                     <!-- Default input -->
                     <div class="form-group col-md-3">
                       <label for="inputEmail4">Mother's Maiden Name</label>
-                      <input type="text" name="mothermaidenname_update" id="mothermaidenname_update" placeholder="Ex. Cruz"
+                      <input type="text" style="text-transform: uppercase;" name="mothermaidenname_update" id="mothermaidenname_update" placeholder="Ex. Cruz"
                         class="form-control validate" required>
                     </div>
                     <div class="form-group col-md-3">
                       <label for="inputEmail4">Mother's Surname</label>
-                      <input type="text" name="mothersurname_update" id="mothersurname_update" placeholder="Ex. Cruz"
+                      <input type="text" style="text-transform: uppercase;" name="mothersurname_update" id="mothersurname_update" placeholder="Ex. Cruz"
                         class="form-control validate" required>
                     </div>
                     <div class="form-group col-md-3">
                       <label for="inputEmail4">First Name</label>
-                      <input type="text" name="motherfirstname_update" id="motherfirstname_update" placeholder="Ex. Enrico"
+                      <input type="text" style="text-transform: uppercase;" name="motherfirstname_update" id="motherfirstname_update" placeholder="Ex. Enrico"
                         class="form-control validate" required>
                     </div>
                     <div class="form-group col-md-3">
                       <label for="inputEmail4">Middle Name</label>
-                      <input type="text" name="mothermiddlename_update" id="mothermiddlename_update" placeholder="Ex. Santos"
+                      <input type="text" style="text-transform: uppercase;" name="mothermiddlename_update" id="mothermiddlename_update" placeholder="Ex. Santos"
                         class="form-control validate" required>
                     </div>
 
