@@ -319,39 +319,50 @@ if (mysqli_connect_errno()) {
                                       <input type="text" class="form-control" id="bloodtype" name="bloodtype" disabled>
                                     </div>
                                   </div>
+                                
                                   <!-- Grid row -->
                                   <div class="form-row">
                                     <!-- Default input -->
-                                    <div class="form-group col-md-2">
+                                    <div class="form-group col-md-4">
                                       <label for="inputCity">GSIS ID No.</label>
                                       <input type="text" class="form-control" id="gsisno" name="gsisno" disabled>
                                     </div>
+                                  </div>
+                                  <div class="form-row">
                                     <!-- Default input -->
-                                    <div class="form-group col-md-2">
+                                    <div class="form-group col-md-4">
                                       <label for="inputZip">Pagibig No.</label>
                                       <input type="text" class="form-control" id="pagibigno" name="pagibigno"
                                         disabled>
                                     </div>
-                                    <!-- Default input -->
-                                    <div class="form-group col-md-2">
+                                  </div>
+                                  <div class="form-row">
+                                  <!-- Default input -->
+                                  <div class="form-group col-md-4">
                                       <label for="inputZip">Philhealth No.</label>
                                       <input type="text" class="form-control" id="phicno" name="phicno"
                                         disabled>
                                     </div>
-                                    <!-- Default input -->
-                                    <div class="form-group col-md-2">
+                                  </div>
+                                  <div class="form-row">
+                                  <!-- Default input -->
+                                  <div class="form-group col-md-4">
                                       <label for="inputZip">SSS No.</label>
                                       <input type="text" class="form-control" id="sssno" name="sssno"
                                         disabled>
                                     </div>
+                                  </div>
+                                  <div class="form-row">
                                     <!-- Default input -->
-                                    <div class="form-group col-md-2">
-                                      <label for="inputZip">TIN No.</label>
-                                      <input type="text" class="form-control" id="tinno" name="tinno"
+                                    <div class="form-group col-md-4">
+                                          <label for="inputZip">TIN No.</label>
+                                          <input type="text" class="form-control" id="tinno" name="tinno"
                                         disabled>
-                                    </div>
-                                    <!-- Default input -->
-                                    <div class="form-group col-md-2">
+                                      </div>
+                                  </div>
+                                  <div class="form-row">
+                                  <!-- Default input -->
+                                  <div class="form-group col-md-4">
                                       <label for="inputZip">Agency Employee No.</label>
                                       <input type="text" class="form-control" id="agencyemployeeno" name="agencyemployeeno"
                                         disabled>
@@ -2005,7 +2016,6 @@ if (mysqli_connect_errno()) {
             </button>
           </div>
           <div class="modal-body mx-3">
-
             <div class="form-row">
               <div class="form-group col-md-4">
                 <label for="inputAddress">Employee ID</label>
@@ -2128,36 +2138,46 @@ if (mysqli_connect_errno()) {
             <!-- Grid row -->
             <div class="form-row">
               <!-- Default input -->
-              <div class="form-group col-md-2">
+              <div class="form-group col-md-4">
                 <label for="inputCity">GSIS ID No.</label>
                 <input type="text" style="text-transform: uppercase;" class="form-control" id="gsisno_update" name="gsisno_update">
               </div>
-              <!-- Default input -->
-              <div class="form-group col-md-2">
+            </div>
+            <div class="form-row">
+               <!-- Default input -->
+               <div class="form-group col-md-4">
                 <label for="inputZip">Pagibig No.</label>
                 <input type="text" style="text-transform: uppercase;" class="form-control" id="pagibigno_update" name="pagibigno_update"
                  >
               </div>
-              <!-- Default input -->
-              <div class="form-group col-md-2">
+            </div>
+            <div class="form-row">
+             <!-- Default input -->
+             <div class="form-group col-md-4">
                 <label for="inputZip">Philhealth No.</label>
                 <input type="text" style="text-transform: uppercase;" class="form-control" id="phicno_update" name="phicno_update"
                 >
               </div>
-              <!-- Default input -->
-              <div class="form-group col-md-2">
+            </div>
+            <div class="form-row">
+            <!-- Default input -->
+            <div class="form-group col-md-4">
                 <label for="inputZip">SSS No.</label>
                 <input type="text" style="text-transform: uppercase;" class="form-control" id="sssno_update" name="sssno_update"
                  >
               </div>
+            </div>
+            <div class="form-row">
               <!-- Default input -->
-              <div class="form-group col-md-2">
-                <label for="inputZip">TIN No.</label>
-                <input type="text" style="text-transform: uppercase;" class="form-control" id="tinno_update" name="tinno_update"
-                 >
-              </div>
-              <!-- Default input -->
-              <div class="form-group col-md-2">
+              <div class="form-group col-md-4">
+                    <label for="inputZip">TIN No.</label>
+                    <input type="text" style="text-transform: uppercase;" class="form-control" id="tinno_update" name="tinno_update"
+                    >
+                </div>
+            </div>
+            <div class="form-row">
+             <!-- Default input -->
+             <div class="form-group col-md-4">
                 <label for="inputZip">Agency Employee No.</label>
                 <input type="text" style="text-transform: uppercase;" class="form-control" id="agencyemployeeno_update" name="agencyemployeeno_update"
                  >
@@ -2185,23 +2205,137 @@ if (mysqli_connect_errno()) {
                       </select>
                     </div>
             </div>
-            <!-- Grid row -->
-            <div class="form-row">
-
-              <!-- Default input -->
+            <!--<div class="form-row">
               <div class="form-group col-md-10">
                 <label for="inputCity">Residential Address</label>
                 <input type="text" style="text-transform: uppercase;" class="form-control" id="residentialaddress_update">
+              </div>
+            </div>-->
+
+            <!-- Grid row -->
+            <div class="form-row">
+              <!-- Default input -->
+              <div class="form-group col-md-10">
+                <label for="inputCity"><strong>Residential Address</strong></label>
+
+              </div>
+            </div>
+             <!-- Grid row -->
+             <div class="form-row">
+              <!-- Default input -->
+              <div class="form-group col-md-5">
+                <label for="inputCity">House/Block/Lot No.</label>
+                <input type="text" style="text-transform: uppercase;" class="form-control" id="res_blockno_update">
+              </div>
+              
+              <div class="form-group col-md-5">
+                <label for="inputCity">Street</label>
+                <input type="text" style="text-transform: uppercase;" class="form-control" id="res_street_update">
+              </div>
+            </div>
+            <!-- Grid row -->
+            <div class="form-row">
+              <!-- Default input -->
+              <div class="form-group col-md-5">
+                <label for="inputCity">Subdivision/Village</label>
+                <input type="text" style="text-transform: uppercase;" class="form-control" id="res_subdivision_update">
+              </div>
+              
+              <div class="form-group col-md-5">
+                <label for="inputCity">Barangay</label>
+                <input type="text" style="text-transform: uppercase;" class="form-control" id="res_barangay_update">
               </div>
             </div>
 
             <!-- Grid row -->
             <div class="form-row">
               <!-- Default input -->
+              <div class="form-group col-md-5">
+                <label for="inputCity">City/Municipality</label>
+                <input type="text" style="text-transform: uppercase;" class="form-control" id="res_city_update">
+              </div>
+              
+              <div class="form-group col-md-5">
+                <label for="inputCity">Province</label>
+                <input type="text" style="text-transform: uppercase;" class="form-control" id="res_province_update">
+              </div>
+            </div>
+
+            <!-- Grid row -->
+            <div class="form-row">
+              <div class="form-group col-md-5">
+                <label for="inputCity">Zip Code</label>
+                <input type="text" style="text-transform: uppercase;" class="form-control" id="res_zipcode_update">
+              </div>
+            </div>
+
+
+
+            <!-- Grid row -->
+            <!--<div class="form-row">
               <div class="form-group col-md-10">
                 <label for="inputCity">Permanent Address</label><br>
                 
                 <input type="text" style="text-transform: uppercase;" class="form-control" id="permanentaddress_update">
+              </div>
+            </div>-->
+             <!-- Grid row -->
+             <div class="form-row">
+              <!-- Default input -->
+              <div class="form-group col-md-10">
+                <label for="inputCity"><strong>Permanent Address</strong></label><br>
+              </div>
+            </div>
+
+
+             <!-- Grid row -->
+             <div class="form-row">
+            
+              <!-- Default input -->
+              <div class="form-group col-md-5">
+                <label for="inputCity">House/Block/Lot No.</label>
+                <input type="text" style="text-transform: uppercase;" class="form-control" id="perm_blockno_update">
+              </div>
+              
+              <div class="form-group col-md-5">
+                <label for="inputCity">Street</label>
+                <input type="text" style="text-transform: uppercase;" class="form-control" id="perm_street_update">
+              </div>
+            </div>
+            <!-- Grid row -->
+            <div class="form-row">
+              <!-- Default input -->
+              <div class="form-group col-md-5">
+                <label for="inputCity">Subdivision/Village</label>
+                <input type="text" style="text-transform: uppercase;" class="form-control" id="perm_subdivision_update">
+              </div>
+              
+              <div class="form-group col-md-5">
+                <label for="inputCity">Barangay</label>
+                <input type="text" style="text-transform: uppercase;" class="form-control" id="perm_barangay_update">
+              </div>
+            </div>
+
+            <!-- Grid row -->
+            <div class="form-row">
+              <!-- Default input -->
+              <div class="form-group col-md-5">
+                <label for="inputCity">City/Municipality</label>
+                <input type="text" style="text-transform: uppercase;" class="form-control" id="perm_city_update">
+              </div>
+              
+              <div class="form-group col-md-5">
+                <label for="inputCity">Province</label>
+                <input type="text" style="text-transform: uppercase;" class="form-control" id="perm_province_update">
+              </div>
+            
+            
+            </div>
+            <!-- Grid row -->
+            <div class="form-row">
+              <div class="form-group col-md-5">
+                <label for="inputCity">Zip Code</label>
+                <input type="text" style="text-transform: uppercase;" class="form-control" id="perm_zipcode_update">
               </div>
             </div>
 
@@ -2211,17 +2345,17 @@ if (mysqli_connect_errno()) {
               <div class="form-group col-md-2">
                 <label for="inputCity">Telephone No.</label><br>
                 <input type="text" style="text-transform: uppercase;" class="form-control" id="telephoneno_update" name="telephoneno_update"
-                  placeholder="Ex. 1234 Main Street">
+                 >
               </div>
               <div class="form-group col-md-2">
                 <label for="inputZip">Mobile No.</label>
                 <input type="text" style="text-transform: uppercase;" class="form-control" id="mobileno_update" name="mobileno_update"
-                  placeholder="Ex. 1234 Main Street">
+                 >
               </div>
               <div class="form-group col-md-2">
                 <label for="inputZip">Email Address</label>
                 <input type="text" style="text-transform: uppercase;" class="form-control" id="emailprofile_update" name="emailprofile_update"
-                  placeholder="Ex. 1234 Main Street">
+                  >
               </div>
             </div>
           </div>
