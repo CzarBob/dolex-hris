@@ -1339,7 +1339,7 @@ if (isset($_POST['action'])){
       </button>
       </div>';
       $message = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-      <strong>Please Check field/s:</strong> <br>
+      <strong>File Exceed Upload limit of 1Mb</strong> <br>
       ';
       $flag = false;
 
@@ -1350,6 +1350,11 @@ if (isset($_POST['action'])){
 
 			  $admin_profile = $user_image;
 
+        if ($admin_profile != ''){
+          $flag = false;
+        } else {
+          $flag = true;
+        }
        
         if (!$flag){
 
@@ -1379,12 +1384,21 @@ if (isset($_POST['action'])){
   
   function upload_image()
   {
+    include "dbConnection.php";
     if(isset($_FILES["user_image"]))
     {
+      $filename = mysqli_real_escape_string($connect, strtoupper($_POST["filename"]));
       $extension = explode('.', $_FILES['user_image']['name']);
-      $new_name = rand() . '.' . $extension[1];
-      $destination = 'Uploaded_Files/' . $new_name;
-      move_uploaded_file($_FILES['user_image']['tmp_name'], $destination);
+      $fileSize = $_FILES['user_image']['size'];
+      $destination = '';
+      if ($fileSize < 1000000){
+        $new_name =  $filename . '.' . $extension[1];
+        $destination = 'Uploaded_Files/' . $new_name;
+        move_uploaded_file($_FILES['user_image']['tmp_name'], $destination);
+      } else {
+        $destination = '';
+      }
+
       return $destination;
     }
   }

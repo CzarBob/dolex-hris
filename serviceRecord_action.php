@@ -203,15 +203,15 @@ if (isset($_POST['action'])){
 
       $service_from = $_POST['service_from'];
       $service_to = $_POST['service_to'];
-      $designation = $_POST['designation'];
-      $status = $_POST['status'];
-      $salary = $_POST['salary'];
-      $office = $_POST['office'];
-      $branch = $_POST['branch'];
-      $abs = $_POST['abs'];
+      $designation = mysqli_real_escape_string($connect,strtoupper($_POST['designation']));
+      $status = mysqli_real_escape_string($connect,strtoupper($_POST['status']));
+      $salary = mysqli_real_escape_string($connect,strtoupper($_POST['salary']));
+      $office = mysqli_real_escape_string($connect,strtoupper($_POST['office']));
+      $branch = mysqli_real_escape_string($connect,strtoupper($_POST['branch']));
+      $abs = mysqli_real_escape_string($connect,strtoupper($_POST['abs']));
       $separation_date = $_POST['separation_date'];
-      $amount_received = $_POST['amount_received'];
-      $details = $_POST['details'];
+      $amount_received = mysqli_real_escape_string($connect,strtoupper($_POST['amount_received']));
+      $details = mysqli_real_escape_string($connect,strtoupper($_POST['details']));
 
       $usernameid = $_POST['usernameid'];
 
@@ -462,15 +462,15 @@ if (isset($_POST['action'])){
       $srid  = $_POST['srid'];
       $service_from = $_POST['service_from'];
       $service_to = $_POST['service_to'];
-      $designation = $_POST['designation'];
-      $status = $_POST['status'];
-      $salary = $_POST['salary'];
-      $office = $_POST['office'];
-      $branch = $_POST['branch'];
-      $abs = $_POST['abs'];
+      $designation =  mysqli_real_escape_string($connect,strtoupper($_POST['designation']));
+      $status =  mysqli_real_escape_string($connect,strtoupper($_POST['status']));
+      $salary =  mysqli_real_escape_string($connect,strtoupper($_POST['salary']));
+      $office =  mysqli_real_escape_string($connect,strtoupper($_POST['office']));
+      $branch =  mysqli_real_escape_string($connect,strtoupper($_POST['branch']));
+      $abs =  mysqli_real_escape_string($connect,strtoupper($_POST['abs']));
       $separation_date = $_POST['separation_date'];
-      $amount_received = $_POST['amount_received'];
-      $details = $_POST['details'];
+      $amount_received =  mysqli_real_escape_string($connect,strtoupper($_POST['amount_received']));
+      $details =  mysqli_real_escape_string($connect,strtoupper($_POST['details']));
       $usernameid = $_POST['usernameid'];
 
       

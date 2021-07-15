@@ -28,7 +28,7 @@ $query = 'SELECT
  
     FROM tbl_employee 
     INNER JOIN tbl_employee_profile ON tbl_employee_profile.EMPID = tbl_employee.ID
-    WHERE tbl_employee.ID = "2" ';
+    WHERE tbl_employee.ID = "'.$id.'" ';
 
     //WHERE tbl_employee.ID = "'.$_POST["employeeiddb"].'" ';
 
@@ -54,6 +54,7 @@ $query = 'SELECT
         
       }
     }
+
 
 
     //$query = 'SELECT * FROM tbl_service_record  WHERE EMPID = "'.$_POST['employeeiddb'].'" AND CANCELLED = "N" ';

@@ -2,11 +2,9 @@
 $servername = "localhost";
 $username = "root";
 $password="";
-
 $db = "d0l310_hris";
 
-/*$servername = "localhost";
-$username = "d0l310_hrisadmin";
+/*$username = "d0l310_hrisadmin";
 $password="d0l310_hrisadmin";
 $db = "d0l310_hris_db";*/
 //Establish Connnecion

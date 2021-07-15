@@ -411,30 +411,30 @@ include 'serviceRecordDetail_load_query.php';
             <div class="md-form mb-5">
        
               <label data-error="wrong" data-success="right" for="form29">Designation</label>
-              <input type="text" name="designation_update" id = "designation_update" class="form-control validate" required>
+              <input type="text" style="text-transform: uppercase;" name="designation_update" id = "designation_update" class="form-control validate" required>
              
             </div>
             <div class="md-form mb-5">
        
               <label data-error="wrong" data-success="right" for="form29">Status</label>
-              <input type="text" name="status_update" id = "status_update" class="form-control validate" required>
+              <input type="text" style="text-transform: uppercase;" name="status_update" id = "status_update" class="form-control validate" required>
              
             </div>
             <div class="md-form mb-5">
               <label data-error="wrong" data-success="right" for="form29">Salary</label>
-              <input type="text" name="salary_update" id = "salary_update" class="form-control validate" required>
+              <input type="text" style="text-transform: uppercase;" name="salary_update" id = "salary_update" class="form-control validate" required>
             </div>
             <div class="md-form mb-5">
               <label data-error="wrong" data-success="right" for="form29">Office</label>
-              <input type="text" name="office_update" id = "office_update" class="form-control validate" required>
+              <input type="text" style="text-transform: uppercase;" name="office_update" id = "office_update" class="form-control validate" required>
             </div>
             <div class="md-form mb-5">
               <label data-error="wrong" data-success="right" for="form29">Branch</label>
-              <input type="text" name="branch_update" id = "branch_update" class="form-control validate" required>
+              <input type="text" style="text-transform: uppercase;" name="branch_update" id = "branch_update" class="form-control validate" required>
             </div>
             <div class="md-form mb-5">
               <label data-error="wrong" data-success="right" for="form29">ABS</label>
-              <input type="text" name="abs_update" id = "abs_update" class="form-control validate" required>
+              <input type="text" style="text-transform: uppercase;" name="abs_update" id = "abs_update" class="form-control validate" required>
             </div>
             <div class="md-form mb-5">
               <label data-error="wrong" data-success="right" for="form29">Separation Date</label>
@@ -442,12 +442,12 @@ include 'serviceRecordDetail_load_query.php';
             </div>
             <div class="md-form mb-5">
               <label data-error="wrong" data-success="right" for="form29">Amount Received</label>
-              <input type="text" name="amount_received_update" id = "amount_received_update" class="form-control validate" required>
+              <input type="text" style="text-transform: uppercase;" name="amount_received_update" id = "amount_received_update" class="form-control validate" required>
             </div>
             <div class="md-form mb-5">
               <label data-error="wrong" data-success="right" for="form29">Details</label>
               <!--<input type="text" name="details_update" id = "details_update" class="form-control validate" required>-->
-              <textarea class="form-control" id="details_update" name="details_update" rows="3">Please input details
+              <textarea style="text-transform: uppercase;" class="form-control" id="details_update" name="details_update">Please input details
               </textarea>
             </div>
 
@@ -492,30 +492,30 @@ include 'serviceRecordDetail_load_query.php';
             <div class="md-form mb-5">
        
               <label data-error="wrong" data-success="right" for="form29">Designation</label>
-              <input type="text" name="designation" id = "designation" class="form-control validate"  required>
+              <input type="text" style="text-transform: uppercase;" name="designation" id = "designation" class="form-control validate"  required>
              
             </div>
             <div class="md-form mb-5">
        
               <label data-error="wrong" data-success="right" for="form29">Status</label>
-              <input type="text" name="status" id = "status" class="form-control validate" required>
+              <input type="text" style="text-transform: uppercase;" name="status" id = "status" class="form-control validate" required>
              
             </div>
             <div class="md-form mb-5">
               <label data-error="wrong" data-success="right" for="form29">Salary</label>
-              <input type="text" name="salary" id = "salary" class="form-control validate" required>
+              <input type="text" style="text-transform: uppercase;" name="salary" id = "salary" class="form-control validate" required>
             </div>
             <div class="md-form mb-5">
               <label data-error="wrong" data-success="right" for="form29">Office</label>
-              <input type="text" name="office" id = "office" class="form-control validate" required>
+              <input type="text" style="text-transform: uppercase;" name="office" id = "office" class="form-control validate" required>
             </div>
             <div class="md-form mb-5">
               <label data-error="wrong" data-success="right" for="form29">Branch</label>
-              <input type="text" name="branch" id = "branch" class="form-control validate" required>
+              <input type="text" style="text-transform: uppercase;" name="branch" id = "branch" class="form-control validate" required>
             </div>
             <div class="md-form mb-5">
               <label data-error="wrong" data-success="right" for="form29">ABS</label>
-              <input type="text" name="abs" id = "abs" class="form-control validate" required>
+              <input type="text" style="text-transform: uppercase;" name="abs" id = "abs" class="form-control validate" required>
             </div>
             <div class="md-form mb-5">
               <label data-error="wrong" data-success="right" for="form29">Separation Date</label>
@@ -523,12 +523,12 @@ include 'serviceRecordDetail_load_query.php';
             </div>
             <div class="md-form mb-5">
               <label data-error="wrong" data-success="right" for="form29">Amount Received</label>
-              <input type="text" name="amount_received" id = "amount_received" class="form-control validate" required>
+              <input type="text" style="text-transform: uppercase;" name="amount_received" id = "amount_received" class="form-control validate" required>
             </div>
             <div class="md-form mb-5">
               <label data-error="wrong" data-success="right" for="form29">Details</label>
               <!--<input type="text" name="details" id = "details" class="form-control validate" required>-->
-              <textarea class="form-control" placeholder="Provide Details.." id="details" name="details" rows="s" >
+              <textarea class="form-control" style="text-transform: uppercase;" placeholder="Provide Details.." id="details" name="details"  >
               </textarea>
             </div>
 
