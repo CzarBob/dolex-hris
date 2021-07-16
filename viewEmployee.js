@@ -249,7 +249,8 @@
                                 action:'fetch_single'},
                             dataType:'JSON',
                             success:function(data)
-                            {
+                            {   
+                                $('#employeeid').val(data.data.employeeid);
                                 $('#employeeid').val(data.data.employeeid);
                                 $('#firstname').val(data.data.firstname);
                                 $('#middlename').val(data.data.middlename);
@@ -261,8 +262,12 @@
                                 $('#password').val(data.data.password);
                                 $('#confirmpassword').val(data.data.password);
 
-                                /*$('#slcredit').val(data.data.slcredit);
-                                $('#vlcredit').val(data.data.vlcredit);*/
+                                var officeValue =  data.data.office;
+                                $("#office").val(officeValue).change();
+                               
+                                var divisionValue =  data.data.division;
+                                $("#division").val(divisionValue).change();
+    
 
                                 var genderValue =  data.data_profile.gender;
 
@@ -275,9 +280,7 @@
                                 var civilStatusValue =  data.data_profile.civilstatus;
                                 
                                 $("#civilstatus").val(civilStatusValue).change();
-     
-                           
-                                
+      
                                 $('#profileid').val(data.data_profile.id);
                                 $('#dob').val(data.data_profile.dob);
                                 $('#placeofbirth').val(data.data_profile.placeofbirth);
@@ -292,18 +295,29 @@
                                 $('#agencyemployeeno').val(data.data_profile.agencyemployeeno);
                                
                                 var citizenValueDB = data.data_profile.citizenship;
-
                                 $("#citizenship").val(citizenValueDB).change();
 
                                 var dualchoiceDB = data.data_profile.dualcitizen;
                                 $("#dualchoice").val(dualchoiceDB).change();
 
-                                $('#residentialaddress').val(data.data_profile.residentialaddress);
-                                $('#permanentaddress').val(data.data_profile.permanentaddress);
+                                $('#res_blockno').val(data.data_profile.residentialaddress);
+                                $('#res_street').val(data.data_profile.residentialaddress);
+                                $('#res_subdivision').val(data.data_profile.residentialaddress);
+                                $('#res_barangay').val(data.data_profile.residentialaddress);
+                                $('#res_city').val(data.data_profile.residentialaddress);
+                                $('#res_province').val(data.data_profile.residentialaddress);
+                                $('#res_zipcode').val(data.data_profile.residentialaddress);
+                                $('#perm_blockno').val(data.data_profile.residentialaddress);
+                                $('#perm_street').val(data.data_profile.residentialaddress);
+                                $('#perm_subdivision').val(data.data_profile.residentialaddress);
+                                $('#perm_barangay').val(data.data_profile.residentialaddress);
+                                $('#perm_city').val(data.data_profile.residentialaddress);
+                                $('#perm_province').val(data.data_profile.residentialaddress);
+                                $('#perm_zipcode').val(data.data_profile.residentialaddress);
+                                
                                 $('#telephoneno').val(data.data_profile.telephoneno);
                                 $('#mobileno').val(data.data_profile.mobileno);
                                 $('#emailprofile').val(data.data_profile.email);
-
 
                                 $('#familyid').val(data.data_family.id);
                                 $('#spouselastname').val(data.data_family.spouselastname);
@@ -322,6 +336,7 @@
                                 $('#mothersurname').val(data.data_family.mothersurname);
                                 $('#motherfirstname').val(data.data_family.motherfirstname);
                                 $('#mothermiddlename').val(data.data_family.mothermiddlename);
+                            
                             }
                         });
 
@@ -527,10 +542,10 @@
                     action:'fetch_single_personal_details'
 
                 },
-                success:function(output){
-                    var values = $.parseJSON(output);
-                    //alert(data.data.employeeid);
+                success:function(data){
+                    var values = $.parseJSON(data);
 
+                    //alert(data.data.office);
                     $('#employeeidmain_update').val(values.data.employeeid);
                     $('#hiddenid_emp').val(values.data.id);
                     $('#firstname_update').val(values.data.firstname);
@@ -542,7 +557,12 @@
                     $('#username_update').val(values.data.username);
                     $('#password_update').val(values.data.password);
                     $('#confirmpassword_update').val(values.data.password);
-
+                    
+                    var officeValue =  values.data.office;
+                    $("#office_update").val(officeValue).change();
+                   
+                    var divisionValue =  values.data.division;
+                    $("#division_update").val(divisionValue).change();
 
                     var genderValue =  values.data_profile.gender;
 
@@ -556,9 +576,6 @@
                     
                     $("#civilstatus_update").val(civilStatusValue).change();
 
-                
-                    
-                   
                     $('#dobprofile_update').val(values.data_profile.dob);
                     $('#placeofbirth_update').val(values.data_profile.placeofbirth);
                     $('#height_update').val(values.data_profile.height);
@@ -582,8 +599,8 @@
                         $("#dualchoice_update").prop("disabled", true);
                     }
                 
-                    $('#residentialaddress_update').val(values.data_profile.residentialaddress);
-                    $('#permanentaddress_update').val(values.data_profile.permanentaddress);
+                   // $('#residentialaddress_update').val(values.data_profile.residentialaddress);
+                   // $('#permanentaddress_update').val(values.data_profile.permanentaddress);
                     $('#telephoneno_update').val(values.data_profile.telephoneno);
                     $('#mobileno_update').val(values.data_profile.mobileno);
                     $('#emailprofile_update').val(values.data_profile.email);
@@ -719,6 +736,8 @@
             var lastname                = $('#lastname_update').val();
             var extension               = $('#extension_update').val();
             var position                = $('#position_update').val();
+            var division                = $('#division_update').val();
+            var office                  = $('#office_update').val();
             var datehired               = $('#datehired_update').val();
             var username                = $('#username_update').val();
             var password                = $('#password_update').val();
@@ -743,8 +762,22 @@
             } else {
                 var dualchoice                = "NA";
             }
-            var residentialaddress      = $('#residentialaddress_update').val();
-            var permanentaddress        = $('#permanentaddress_update').val();
+            /*var residentialaddress      = $('#residentialaddress_update').val();
+            var permanentaddress        = $('#permanentaddress_update').val();*/
+            var res_blockno             = $('#res_blockno_update').val();
+            var res_street              = $('#res_street_update').val();
+            var res_subdivision         = $('#res_subdivision_update').val();
+            var res_barangay            = $('#res_barangay_update').val();
+            var res_city                = $('#res_city_update').val();
+            var res_province            = $('#res_province_update').val();
+            var res_zipcode             = $('#res_zipcode_update').val();
+            var perm_blockno            = $('#perm_blockno_update').val();
+            var perm_street             = $('#perm_street_update').val();
+            var perm_subdivision        = $('#perm_subdivision_update').val();
+            var perm_barangay           = $('#perm_barangay_update').val();
+            var perm_city               = $('#perm_city_update').val();
+            var perm_province           = $('#perm_province_update').val();
+            var perm_zipcode            = $('#perm_zipcode_update').val();
             var telephoneno             = $('#telephoneno_update').val();
             var mobileno                = $('#mobileno_update').val();
             var emailprofile            = $('#emailprofile_update').val();
@@ -761,7 +794,9 @@
                     middlename:middlename,      
                     lastname:lastname,       
                     extension:extension,       
-                    position:position,        
+                    position:position,
+                    division:division,
+                    office:office,
                     datehired:datehired,       
                     username:username,       
                     password:password,        
@@ -781,8 +816,20 @@
                     agencyemployeeno:agencyemployeeno,
                     citizenship:citizenship,
                     dualchoice:dualchoice,
-                    residentialaddress:residentialaddress,
-                    permanentaddress:permanentaddress,
+                    res_blockno:res_blockno,     
+                    res_street:res_street,      
+                    res_subdivision:res_subdivision, 
+                    res_barangay:res_barangay,    
+                    res_city:res_city,        
+                    res_province:res_province,    
+                    res_zipcode:res_zipcode,     
+                    perm_blockno:perm_blockno,    
+                    perm_street:perm_street,     
+                    perm_subdivision:perm_subdivision,
+                    perm_barangay:perm_barangay,   
+                    perm_city:perm_city,       
+                    perm_province:perm_province,
+                    perm_zipcode:perm_zipcode,   
                     telephoneno:telephoneno,     
                     mobileno:mobileno,       
                     emailprofile:emailprofile,    
@@ -878,8 +925,23 @@
                         $("#dualchoice").val(dualchoiceDB).change();
                            
 
-                        $('#residentialaddress').val(data.data_profile.residentialaddress);
-                        $('#permanentaddress').val(data.data_profile.permanentaddress);
+                        //$('#residentialaddress').val(data.data_profile.residentialaddress);
+                        //$('#permanentaddress').val(data.data_profile.permanentaddress);
+                        $('#res_blockno_update').val(data.data_profile.residentialaddress);
+                        $('#res_street_update').val(data.data_profile.residentialaddress);
+                        $('#res_subdivision_update').val(data.data_profile.residentialaddress);
+                        $('#res_barangay_update').val(data.data_profile.residentialaddress);
+                        $('#res_city_update').val(data.data_profile.residentialaddress);
+                        $('#res_province_update').val(data.data_profile.residentialaddress);
+                        $('#res_zipcode_update').val(data.data_profile.residentialaddress);
+                        $('#perm_blockno_update').val(data.data_profile.residentialaddress);
+                        $('#perm_street_update').val(data.data_profile.residentialaddress);
+                        $('#perm_subdivision_update').val(data.data_profile.residentialaddress);
+                        $('#perm_barangay_update').val(data.data_profile.residentialaddress);
+                        $('#perm_city_update').val(data.data_profile.residentialaddress);
+                        $('#perm_province_update').val(data.data_profile.residentialaddress);
+                        $('#perm_zipcode_update').val(data.data_profile.residentialaddress);
+                        
                         $('#telephoneno').val(data.data_profile.telephoneno);
                         $('#mobileno').val(data.data_profile.mobileno);
                         $('#emailprofile').val(data.data_profile.email);

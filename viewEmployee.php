@@ -216,6 +216,32 @@ if (mysqli_connect_errno()) {
                                     </div>
                                   </div>
                                   <div class="form-row">
+                                    <!-- Default input -->
+                                    <div class="form-group col-md-2">
+                                      <label for="inputCity">Office</label>
+                                      <select class="custom-select my-1 mr-sm-2" id="office" name="office" disabled>
+                                        <option value='NA' selected>Choose...</option>
+                                        <option value="RO">REGIONAL OFFICE</option>
+                                        <option value="CDOFO">CAGAYAN DE ORO FIELD OFFICE</option>
+                                        <option value="BFO">BUKIDNON FIELD OFFICE</option>
+                                        <option value="CFO">CAMIGUIN FIELD OFFICE</option>
+                                        <option value="LDNFO">LANAO DEL NORTE FIELD OFFICE</option>
+                                        <option value="MISOCCFO">MISAMIS OCCIDENTAL FIELD OFFICE</option>
+                                        <option value="MISORFO">MISAMIS ORIENTAL FIELD OFFICE</option>
+                                      </select>
+                                    </div>
+                                    <!-- Default input -->
+                                    <div class="form-group col-md-2">
+                                      <label for="inputZip">Division</label>
+                                      <select class="custom-select my-1 mr-sm-2" id="division" name="division" disabled>
+                                        <option value="NA" selected>Choose...</option>
+                                        <option value="TSSD">TSSD</option>
+                                        <option value="IMSD">IMSD</option>
+                                        <option value="MALSU">MALSU</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="form-row">
                                     <hr>
 
                                   </div>
@@ -396,20 +422,128 @@ if (mysqli_connect_errno()) {
 
                                   <!-- Grid row -->
                                   <div class="form-row">
-
                                     <!-- Default input -->
                                     <div class="form-group col-md-10">
-                                      <label for="inputCity">Residential Address</label>
-                                      <input type="text" class="form-control" id="residentialaddress" disabled>
+                                      <label for="inputCity"><strong>Residential Address</strong></label>
+
+                                    </div>
+                                  </div>
+                                  <!-- Grid row -->
+                                  <div class="form-row">
+                                    <!-- Default input -->
+                                    <div class="form-group col-md-5">
+                                      <label for="inputCity">House/Block/Lot No.</label>
+                                      <input type="text" style="text-transform: uppercase;" class="form-control" id="res_blockno" disabled>
+                                    </div>
+                                    
+                                    <div class="form-group col-md-5">
+                                      <label for="inputCity">Street</label>
+                                      <input type="text" style="text-transform: uppercase;" class="form-control" id="res_street" disabled>
+                                    </div>
+                                  </div>
+                                  <!-- Grid row -->
+                                  <div class="form-row">
+                                    <!-- Default input -->
+                                    <div class="form-group col-md-5">
+                                      <label for="inputCity">Subdivision/Village</label>
+                                      <input type="text" style="text-transform: uppercase;" class="form-control" id="res_subdivision" disabled>
+                                    </div>
+                                    
+                                    <div class="form-group col-md-5">
+                                      <label for="inputCity">Barangay</label>
+                                      <input type="text" style="text-transform: uppercase;" class="form-control" id="res_barangay" disabled>
                                     </div>
                                   </div>
 
                                   <!-- Grid row -->
                                   <div class="form-row">
                                     <!-- Default input -->
+                                    <div class="form-group col-md-5">
+                                      <label for="inputCity">City/Municipality</label>
+                                      <input type="text" style="text-transform: uppercase;" class="form-control" id="res_city" disabled>
+                                    </div>
+                                    
+                                    <div class="form-group col-md-5">
+                                      <label for="inputCity">Province</label>
+                                      <input type="text" style="text-transform: uppercase;" class="form-control" id="res_province" disabled>
+                                    </div>
+                                  </div>
+
+                                  <!-- Grid row -->
+                                  <div class="form-row">
+                                    <div class="form-group col-md-5">
+                                      <label for="inputCity">Zip Code</label>
+                                      <input type="text" style="text-transform: uppercase;" class="form-control" id="res_zipcode" disabled>
+                                    </div>
+                                  </div>
+
+
+
+                                  <!-- Grid row -->
+                                  <!--<div class="form-row">
                                     <div class="form-group col-md-10">
                                       <label for="inputCity">Permanent Address</label><br>
-                                      <input type="text" class="form-control" id="permanentaddress" disabled>
+                                      
+                                      <input type="text" style="text-transform: uppercase;" class="form-control" id="permanentaddress_update">
+                                    </div>
+                                  </div>-->
+                                  <!-- Grid row -->
+                                  <div class="form-row">
+                                    <!-- Default input -->
+                                    <div class="form-group col-md-10">
+                                      <label for="inputCity"><strong>Permanent Address</strong></label><br>
+                                    </div>
+                                  </div>
+
+
+                                  <!-- Grid row -->
+                                  <div class="form-row">
+                                  
+                                    <!-- Default input -->
+                                    <div class="form-group col-md-5">
+                                      <label for="inputCity">House/Block/Lot No.</label>
+                                      <input type="text" style="text-transform: uppercase;" class="form-control" id="perm_blockno" disabled>
+                                    </div>
+                                    
+                                    <div class="form-group col-md-5">
+                                      <label for="inputCity">Street</label>
+                                      <input type="text" style="text-transform: uppercase;" class="form-control" id="perm_street" disabled>
+                                    </div>
+                                  </div>
+                                  <!-- Grid row -->
+                                  <div class="form-row">
+                                    <!-- Default input -->
+                                    <div class="form-group col-md-5">
+                                      <label for="inputCity">Subdivision/Village</label>
+                                      <input type="text" style="text-transform: uppercase;" class="form-control" id="perm_subdivision" disabled>
+                                    </div>
+                                    
+                                    <div class="form-group col-md-5">
+                                      <label for="inputCity">Barangay</label>
+                                      <input type="text" style="text-transform: uppercase;" class="form-control" id="perm_barangay" disabled>
+                                    </div>
+                                  </div>
+
+                                  <!-- Grid row -->
+                                  <div class="form-row">
+                                    <!-- Default input -->
+                                    <div class="form-group col-md-5">
+                                      <label for="inputCity">City/Municipality</label>
+                                      <input type="text" style="text-transform: uppercase;" class="form-control" id="perm_city" disabled>
+                                    </div>
+                                    
+                                    <div class="form-group col-md-5">
+                                      <label for="inputCity">Province</label>
+                                      <input type="text" style="text-transform: uppercase;" class="form-control" id="perm_province" disabled>
+                                    </div>
+                                  
+                                  
+                                  </div>
+                                  <!-- Grid row -->
+                                  <div class="form-row">
+                                    <div class="form-group col-md-5">
+                                      <label for="inputCity">Zip Code</label>
+                                      <input type="text" style="text-transform: uppercase;" class="form-control" id="perm_zipcode" disabled>
                                     </div>
                                   </div>
 
@@ -2028,6 +2162,32 @@ if (mysqli_connect_errno()) {
               <div class="form-group col-md-4">
                 <label for="inputAddress">Date Hired</label>
                 <input type="date" style="text-transform: uppercase;" class="form-control" id="datehired_update">
+              </div>
+            </div>
+            <div class="form-row">
+            <!-- Default input -->
+              <div class="form-group col-md-2">
+                <label for="inputCity">Office</label>
+                <select class="custom-select my-1 mr-sm-2" id="office_update" name="office_update" >
+                  <option value='NA' selected>Choose...</option>
+                  <option value="RO">REGIONAL OFFICE</option>
+                  <option value="CDOFO">CAGAYAN DE ORO FIELD OFFICE</option>
+                  <option value="BFO">BUKIDNON FIELD OFFICE</option>
+                  <option value="CFO">CAMIGUIN FIELD OFFICE</option>
+                  <option value="LDNFO">LANAO DEL NORTE FIELD OFFICE</option>
+                  <option value="MISOCCFO">MISAMIS OCCIDENTAL FIELD OFFICE</option>
+                  <option value="MISORFO">MISAMIS ORIENTAL FIELD OFFICE</option>
+                </select>
+              </div>
+              <!-- Default input -->
+              <div class="form-group col-md-2">
+                <label for="inputZip">Division</label>
+                <select class="custom-select my-1 mr-sm-2" id="division_update" name="division_update" >
+                  <option value="NA" selected>Choose...</option>
+                  <option value="TSSD">TSSD</option>
+                  <option value="IMSD">IMSD</option>
+                  <option value="MALSU">MALSU</option>
+                </select>
               </div>
             </div>
             <div class="form-row">

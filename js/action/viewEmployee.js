@@ -502,6 +502,12 @@
                         $('#password_update').val(values.data.password);
                         $('#confirmpassword_update').val(values.data.password);
 
+                        var officeValue =  values.data.office;
+                        $("#office_update").val(officeValue).change();
+                       
+                        var divisionValue =  values.data.division;
+                        $("#division_update").val(divisionValue).change();
+
 
                         var genderValue =  values.data_profile.gender;
 
@@ -745,9 +751,7 @@
                         telephoneno:telephoneno,     
                         mobileno:mobileno,       
                         emailprofile:emailprofile,    
-                        //action:'update_employee'
                         action:'submit_personal_details'
-
                     },
                     success:function(data){                  
                         $('#modalEditPersonalDetailsForm').modal('hide');
@@ -760,8 +764,6 @@
                             $('#message').html('');
                         
                         }, 30000);
-                    
-
                     }     
                 }); 
                 
@@ -837,8 +839,23 @@
                             $("#dualchoice").val(dualchoiceDB).change();
                                
 
-                            $('#residentialaddress').val(data.data_profile.residentialaddress);
-                           // $('#permanentaddress').val(data.data_profile.permanentaddress);
+                            //$('#residentialaddress').val(data.data_profile.residentialaddress);
+                            //$('#permanentaddress').val(data.data_profile.permanentaddress);
+                            $('#res_blockno_update').val(data.data_profile.residentialaddress);
+                            $('#res_street_update').val(data.data_profile.residentialaddress);
+                            $('#res_subdivision_update').val(data.data_profile.residentialaddress);
+                            $('#res_barangay_update').val(data.data_profile.residentialaddress);
+                            $('#res_city_update').val(data.data_profile.residentialaddress);
+                            $('#res_province_update').val(data.data_profile.residentialaddress);
+                            $('#res_zipcode_update').val(data.data_profile.residentialaddress);
+                            $('#perm_blockno_update').val(data.data_profile.residentialaddress);
+                            $('#perm_street_update').val(data.data_profile.residentialaddress);
+                            $('#perm_subdivision_update').val(data.data_profile.residentialaddress);
+                            $('#perm_barangay_update').val(data.data_profile.residentialaddress);
+                            $('#perm_city_update').val(data.data_profile.residentialaddress);
+                            $('#perm_province_update').val(data.data_profile.residentialaddress);
+                            $('#perm_zipcode_update').val(data.data_profile.residentialaddress);
+
                             $('#telephoneno').val(data.data_profile.telephoneno);
                             $('#mobileno').val(data.data_profile.mobileno);
                             $('#emailprofile').val(data.data_profile.email);
@@ -861,9 +878,7 @@
                             $('#motherfirstname').val(data.data_family.motherfirstname);
                             $('#mothermiddlename').val(data.data_family.mothermiddlename);
                         }
-                    });
-
-                   
+                    });                  
         }  
 
 
