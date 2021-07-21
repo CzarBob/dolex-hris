@@ -177,7 +177,7 @@ if ($_SESSION['username'] == ""){
 
         <h1 class="mt-4">DOLEX-HRIS</h1>
           <ol class="breadcrumb mb-4">
-              <li class="breadcrumb-item active">Dashboard</li>
+              <li class="breadcrumb-item active">User Management Dashboard</li>
           </ol>
           <div class="row">
 
@@ -186,32 +186,25 @@ if ($_SESSION['username'] == ""){
                       <div class="card-body" >Leave Application<span > </span></div>
                       <div class="card-footer d-flex align-items-center justify-content-between">
                           <!--<a class="large text-black stretched-link"  id="totEmp" href="employee_detail">View Details</a>-->
-                          <div class="dropdown">
-                          <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            View Details 
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Process on RSP</a>
-                          </div>
-                        </div>
+                     
+                          <a class="large text-black stretched-link"  id="totEmp" href="employee_detail">Proceed Here</a>
+                          <div class="small text-black"><i class="fas fa-angle-right"></i></div>
+
+                    
                       </div>
                   </div>
               </div>
               <div class="col-xl-2 col-md-6">
                   <div class="card bg-warning text-white mb-4">
-                      <div class="card-body">Leave Credits</div>
+                      <div class="card-body">Track Leave Application Approval Status</div>
                       <div class="card-footer d-flex align-items-center justify-content-between">
-                      <div class="dropdown">
-                          <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            View Details 
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Training Calendar for the year</a>
-                          </div>
-                        </div>
+                        <a class="large text-black stretched-link"  id="totEmp" href="employee_detail">Proceed Here</a>
+                          <div class="small text-black"><i class="fas fa-angle-right"></i></div>
                       </div>
                   </div>
               </div>
+
+              <!--
               <div class="col-xl-2 col-md-6">
                   <div class="card bg-success text-white mb-4">
                       <div class="card-body">Rewards and Recognition </div>
@@ -248,7 +241,7 @@ if ($_SESSION['username'] == ""){
               </div>
 
               <div class="col-xl-2 col-md-6">
-                  <div class="card bg-primary text-white mb-4"> <!--id="totEmp"-->
+                  <div class="card bg-primary text-white mb-4"> 
                       <div class="card-body" >Other Personnel Actions <span > </span>
                     
                     </div>
@@ -268,6 +261,8 @@ if ($_SESSION['username'] == ""){
                       </div>
                   </div>
               </div>
+
+              -->
               
 
 
