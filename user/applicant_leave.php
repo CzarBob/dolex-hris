@@ -182,13 +182,11 @@ if ($_SESSION['username'] == ""){
           <div class="row">
 
               <div class="col-xl-2 col-md-6">
-                  <div class="card bg-primary text-white mb-4"> <!--id="totEmp"-->
-                      <div class="card-body" >Leave Application<span > </span></div>
+                  <div class="card bg-primary  mb-4"> <!--id="totEmp"-->
+                      <div class="card-body text-white" >Leave Application<span > </span></div>
                       <div class="card-footer d-flex align-items-center justify-content-between">
-                          <!--<a class="large text-black stretched-link"  id="totEmp" href="employee_detail">View Details</a>-->
-                     
-                          <a class="large text-black stretched-link"  id="totEmp" href="employee_detail">Proceed Here</a>
-                          <div class="small text-black"><i class="fas fa-angle-right"></i></div>
+                          <a class="large text-black stretched-link" data-toggle="modal" data-target="#applyLeaveForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i>Apply Here</a>
+
 
                     
                       </div>
@@ -203,68 +201,6 @@ if ($_SESSION['username'] == ""){
                       </div>
                   </div>
               </div>
-
-              <!--
-              <div class="col-xl-2 col-md-6">
-                  <div class="card bg-success text-white mb-4">
-                      <div class="card-body">Rewards and Recognition </div>
-                      <div class="card-footer d-flex align-items-center justify-content-between">
-                      <div class="dropdown">
-                          <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            View Details 
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Schedule of annual PRAISE Ceremony</a>
-                            <a class="dropdown-item" href="#">Summary of PRAISE result by year</a>
-                            <a class="dropdown-item" href="#">Criteria</a>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-xl-2 col-md-6">
-                  <div class="card bg-danger text-white mb-4">
-                      <div class="card-body">Performance Management</div>
-                      <div class="card-footer d-flex align-items-center justify-content-between">
-                      <div class="dropdown">
-                          <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            View Details 
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Validated OPCR per year</a>
-                            <a class="dropdown-item" href="#">DPCRs</a>
-                            <a class="dropdown-item" href="#">IPCRs</a>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-              </div>
-
-              <div class="col-xl-2 col-md-6">
-                  <div class="card bg-primary text-white mb-4"> 
-                      <div class="card-body" >Other Personnel Actions <span > </span>
-                    
-                    </div>
-                      <div class="card-footer d-flex align-items-center justify-content-between">
-                      <div class="dropdown">
-                          <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            View Details 
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="serviceRecord">Service Records</a>
-                            <a class="dropdown-item" href="#">Leave Credits</a>
-                            <a class="dropdown-item" href="#">Leave Applications</a>
-                            <a class="dropdown-item" href="#">Travel Order</a>
-                            <a class="dropdown-item" href="#">Inspection Authority</a>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-              </div>
-
-              -->
-              
-
 
               
           </div>
@@ -312,47 +248,71 @@ if ($_SESSION['username'] == ""){
 
   
 
-<!-- Date range Modal -->
-<div class="modal" tabindex="-1" id="dateRangeModal" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Generate Report</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body text-dark">
-      <form action="export.php" method="post">
+<!-- APPLY LEAVE FORM -->
+<div class="modal fade bd-example-modal-lg" id="applyLeaveForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold">Add Employee</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-3">
+       
+          <div class="md-form mb-5">
 
-        <div class="form-group row">
-          <label for="example-date-input" class="col-2 col-form-label">From:</label>
-          <div class="col-10">
-            <input class="form-control" type="date"  id="fromDate" name="fromDate">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+              <h6 class="m-0 font-weight-bold text-primary">I. Select Leave Application</h6>
+            </div>
+            <!--<input type="text" name="landd_type_update" id = "landd_type_update" class="form-control validate" required>-->
+
+            <select class="custom-select my-1 mr-sm-2" id="landd_type_update" name="landd_type_update">
+                <option value="NA" selected>Please Select</option>
+                <option value="MANAGERIAL">MANAGERIAL</option>
+                <option value="SUPERVISORY">SUPERVISORY</option>
+                <option value="TECHNICAL">TECHNICAL</option>
+                <option value="OTHERS">OTHERS</option>
+            </select>
+          </div>
+
+          <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">II. Select Employee</h6>
+          </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="user_data" width="100%" cellspacing="0">
+                  <thead class = "text-primary">
+                  <tr>
+                      <th>OFFICE</th>
+                      <th>EMPLOYEE ID</th>
+                      <th>FIRST NAME</th>
+                      <th>MIDDLE NAME</th>
+                      <th>LAST NAME</th>
+                      <th>ACTION</th>
+                    </tr>
+                  </thead>
+                  <tfoot class = "text-primary">
+                    <tr>
+                      <th>OFFICE</th>
+                      <th>EMPLOYEE ID</th>
+                      <th>FIRST NAME</th>
+                      <th>MIDDLE NAME</th>
+                      <th>LAST NAME</th>
+                      <th>ACTION</th>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+          
           </div>
         </div>
-
-        <div class="form-group row">
-          <label for="example-date-input" class="col-2 col-form-label">To:</label>
-          <div class="col-10">
-            <input class="form-control" type="date"  id="toDate" name="toDate">
-          </div>
-        </div>
-        <!--<button class="btn btn-primary" type="submit">Generate</button>
-      </form> -->
-      <div class="modal-footer">
-       <!-- <b style = "font-size: 18px;"><button class="btn btn-primary" id ="generateReport">Generate Report</button></b>-->
-        <!-- <button class="btn btn-primary" id = "generateReport">Add</button> -->
-        <!-- <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button> -->
-        <button class="btn btn-primary" type="submit">Generate</button>
-        <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Close</button>
       </div>
-
-     
-      </form>
     </div>
-  </div>
-</div>
 
 <!-- End Date Range Modal -->
 
@@ -393,29 +353,27 @@ if ($_SESSION['username'] == ""){
   <script>
   $(document).ready(function(){
 
-    fetch_all_data();
+
+    fetch_data();
    
-    function fetch_all_data(){
-
-      $.ajax({
-        url:"main_load_query",  
-        method:"post",  
+    function fetch_data(){
+      var action = 'fetch_data';
+      var dataTable = $('#user_data').DataTable({
+      /* "processing" : true,
+        "serverSide" : true,
+        "columnDefs": [{ "orderable": false, "targets":[0,1] }],
+        "order" : [],*/
+        "ajax" : {
+        url:"dashboard_query.php",
+        type:"POST",
         data:{
-          action:"fetch_employee"
-          },
-        success:function(response){
-          var values = $.parseJSON(response);
-          
-          $("#totEmp").text(values.totalEmployee);
-
+            action:action
+                  },
+        },
+        success:function(){
         }
       });
-
-      fetch_dashboard_employee();
-
-
-
-    }  
+    }
 
 
     function fetch_dashboard_employee(){

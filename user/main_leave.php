@@ -37,7 +37,6 @@ if ($_SESSION['username'] == ""){
 </style>
 <body id="page-top">
   <div id="wrapper">
-    
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="main">
         <img class = "icon" src = "../img/dolelogogs.png" width = "60"></img>
@@ -190,9 +189,7 @@ if ($_SESSION['username'] == ""){
                           <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             View Details 
                           </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Process on RSP</a>
-                          </div>
+                         
                         </div>
                       </div>
                   </div>
