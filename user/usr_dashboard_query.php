@@ -1,14 +1,12 @@
 <?php 
 session_start();
-include "dbConnection.php";
+include "../dbConnection.php";
 $columns = array('process', 'rating','fullname', 'email', 'comment',  'date_submitted');
 
 
 
 if (isset($_POST['action'])){
-  if ($_POST['action'] == 'fetch_data'){
-
-          
+  if ($_POST['action'] == 'fetch_data'){  
       //$query = "SELECT * FROM feedback where receiver = '".$_SESSION['received_by']."' ";
       $query = "SELECT * FROM tbl_employee  where  CANCELLED != 'Y'";
 
@@ -19,8 +17,6 @@ if (isset($_POST['action'])){
       OR EMPLOYEEID LIKE "%'.$_POST["search"]["value"].'%" ) 
       ';
       }
-
-
       $query .= ' ORDER BY ID DESC ';
 
 
@@ -57,8 +53,7 @@ if (isset($_POST['action'])){
                 </form> ";*/
               /* $sub_array[] = "<a href='viewEmployee.php?id=".$row['ID']."' data-id='".$row['ID']."'> View</a> / 
                 <a href='#addEmployeeForm'  id='custId' data-toggle='modal' data-id='".$row['ID']."'>Delete</a>"; */
-                $sub_array[] = "<a href='viewEmployee.php?id=".$row['ID']."' data-id='".$row['ID']."'> <button type='button' class='btn btn-info btn-sm'>View</button></a></a> 
-                <button type='button' name='delete_employee' class='btn btn-danger btn-sm delete_employee' data-id='".$row['ID']."'>Delete</button>";  
+                $sub_array[] = "<a href='applicant_leave_detail.php?id=".$row['ID']."' data-id='".$row['ID']."'> <button type='button' class='btn btn-info btn-sm'>Select</button></a></a> ";  
 
         $data[] = $sub_array;
       }

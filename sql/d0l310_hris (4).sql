@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 27, 2021 at 04:35 PM
+-- Generation Time: Jul 30, 2021 at 12:56 AM
 -- Server version: 10.4.16-MariaDB
 -- PHP Version: 7.4.12
 
@@ -129,8 +129,8 @@ CREATE TABLE `tbl_employee` (
   `CANCELLEDBY` char(3) NOT NULL,
   `CANCELLEDDATETIME` timestamp NOT NULL DEFAULT current_timestamp(),
   `ENABLED` char(2) NOT NULL,
-  `FIELDOFFICEID` char(3) NOT NULL,
-  `DIVISIONID` char(3) NOT NULL,
+  `FIELDOFFICEID` varchar(100) NOT NULL,
+  `DIVISIONID` varchar(100) NOT NULL,
   `BUREAUID` char(3) NOT NULL,
   `UNITID` char(3) NOT NULL,
   `EMAIL` varchar(100) NOT NULL,
@@ -144,20 +144,8 @@ CREATE TABLE `tbl_employee` (
 --
 
 INSERT INTO `tbl_employee` (`ID`, `FIRSTNAME`, `MIDDLENAME`, `LASTNAME`, `EXTENSION`, `EMPLOYEEID`, `POSITION`, `ADDRESS`, `DATEHIRED`, `SLCREDIT`, `VLCREDIT`, `UPDATEDDATETIME`, `UPDATEDBY`, `CREATEDDATETIME`, `CREATEDBY`, `CANCELLED`, `CANCELLEDBY`, `CANCELLEDDATETIME`, `ENABLED`, `FIELDOFFICEID`, `DIVISIONID`, `BUREAUID`, `UNITID`, `EMAIL`, `TYPE`, `USERNAME`, `PASSWORD`) VALUES
-(1, 'CZAR', 'TEJANO', 'ZAMBRANO', '', 'CBTZ116200', 'ISA II', 'NHA KAUSWAGAN', '2020-01-06', 12, 12, '2021-02-09 08:30:59', '0', '2021-02-09 08:30:59', '', 'N', '0', '2021-02-09 08:30:59', 'Y', '1', '1', '1', '1', '', 'ADMIN', 'admin', '1234'),
-(2, 'sdasd', 'hhh', 'asdasd', '', 'N', 'ds', '', '2021-02-10', 2, 3, '2021-02-12 12:40:35', '', '2021-02-12 12:40:35', '', 'N', '', '2021-02-12 12:40:35', '', '', '', '', '', 'aasd', '', '', ''),
-(3, 'sdasd', 'ssdddd', 'asdasd', '', '323', '11', '', '0000-00-00', 0, 0, '2021-03-06 14:50:18', '', '2021-03-06 14:50:18', '', 'Y', '', '2021-03-06 14:50:18', '', '', '', '', '', 'X', '', '', ''),
-(4, 'BOB', 'TEJ', 'ZAMBRAFF', '', '44444', 'X', '', '0000-00-00', 0, 0, '2021-03-28 04:44:16', '', '2021-03-28 04:44:16', '', 'Y', '1', '2021-05-25 03:30:47', '', '', '', '', '', 'X', '', '', ''),
-(5, 'SAMPLE NAME', 'SAMPLE MID', 'EEF', '', 'SAMPLE1454', 'ISA II', '', '2021-04-20', 0, 0, '2021-05-25 08:22:23', '1', '2021-03-28 04:46:02', '', 'N', '', '2021-03-28 04:46:02', '', '', '', '', '', 'X', '', '', ''),
-(6, 'BOBIN', 'TET', 'GARCIA', '', 'CBBSFW2951', 'X', '', '0000-00-00', 0, 0, '2021-04-17 04:22:15', '', '2021-04-17 04:22:15', '', 'Y', '', '2021-04-17 04:22:15', '', '', '', '', '', 'X', '', '', ''),
-(7, 'TESt', 'TEST', 'TEST', '', 'TEST 1', 'X', '', '0000-00-00', 0, 0, '2021-04-17 05:18:51', '', '2021-04-17 05:18:51', '', 'Y', '', '2021-04-17 05:18:51', '', '', '', '', '', 'X', '', '', ''),
-(8, 'CZAR', 'SAMPLE MID', 'ZAMPERT', '', 'HH', 'X', '', '0000-00-00', 0, 0, '2021-04-17 10:45:58', '', '2021-04-17 10:45:58', '', 'N', '', '2021-04-17 10:45:58', '', '', '', '', '', 'X', '', '', ''),
-(9, 'GG', 'GGG', 'GGG', '', 'GGG', 'X', '', '0000-00-00', 0, 0, '2021-04-17 10:46:44', '', '2021-04-17 10:46:44', '', 'N', '', '2021-04-17 10:46:44', '', '', '', '', '', 'X', '', '', ''),
-(10, 'CZAR', 'hhh', 'ZAM', '', 'GG', 'X', '', '0000-00-00', 0, 0, '2021-04-17 10:49:12', '', '2021-04-17 10:49:12', '', 'Y', '', '2021-04-17 10:49:12', '', '', '', '', '', 'X', '', '', ''),
-(11, 'dd', 'TEJANO', 'ZAMPERTsdsad', '', 'ggfg', 'X', '', '0000-00-00', 0, 0, '2021-04-17 12:03:44', '', '2021-04-17 12:03:44', '', 'Y', '', '2021-04-17 12:03:44', '', '', '', '', '', 'X', '', '', ''),
-(12, 'MARNK', 'GO', 'OPOEW', '', 'CNARO0294', '', '', '0000-00-00', 0, 0, '2021-04-25 13:02:18', '', '2021-04-25 13:02:18', '', 'N', '', '2021-04-25 13:02:18', '', '', '', '', '', '', '', '', ''),
-(13, '222', '333', '444', '', '111', 'X', '', '0000-00-00', 0, 0, '2021-05-04 00:44:32', '', '2021-05-04 00:44:32', '', 'N', '', '2021-05-04 00:44:32', '', '', '', '', '', 'X', '', '', ''),
-(14, 'DADD', 'WERR', 'GHETWT', '', 'TSTERR', '', '', '0000-00-00', 0, 0, '2021-05-25 03:24:45', '', '2021-05-25 03:24:45', '1', 'Y', '1', '2021-05-25 03:30:33', '', '', '', '', '', '', '', '', '');
+(1, 'ADMIN', 'ADMIN', 'ADMIN', '', 'ADMIN', 'WEB ADMIN', 'NHA KAUSWAGAN', '2020-01-06', 12, 12, '2021-07-16 07:22:11', '1', '2021-02-09 08:30:59', '', 'N', '0', '2021-02-09 08:30:59', 'Y', 'RO', 'TSSD', '1', '1', '', 'ADMIN', 'ADMIN', '1234'),
+(15, 'DEPARTMENT OF LABOR AND EMPLOYMENT', 'Tejano', 'REGION X', '', 'CBTZ200116', 'ISA II', '', '2020-01-06', 0, 0, '2021-05-31 04:34:26', '1', '2021-05-28 03:08:56', '1', 'N', '', '2021-05-28 03:08:56', '', 'NA', 'NA', '', '', '', '', 'CBTZ200116', 'CBTZ200116');
 
 -- --------------------------------------------------------
 
@@ -182,7 +170,10 @@ INSERT INTO `tbl_employee_attachment` (`ID`, `EMPID`, `FILENAME`, `LOCATION`, `C
 (2, '', '', 'Uploaded_Files/27062021105445198012357_195892645756467_8660611398713063018_n.jpg', 'N'),
 (3, '5', 'TESTFFgg', 'Uploaded_Files/194535519.jpg', 'N'),
 (4, '5', 'GG', 'Uploaded_Files/1474690716.pdf', 'N'),
-(5, '5', 'GSJDA', 'Uploaded_Files/1646801337.49 pm (1)', 'N');
+(5, '5', 'GSJDA', 'Uploaded_Files/1646801337.49 pm (1)', 'N'),
+(6, '15', 'CSC FILE', 'Uploaded_Files/1052063385.jpg', 'Y'),
+(7, '15', 'CSC FILE', 'Uploaded_Files/1587636044.jpg', 'N'),
+(8, '15', 'RECORD', 'Uploaded_Files/1898753660.pdf', 'N');
 
 -- --------------------------------------------------------
 
@@ -203,37 +194,7 @@ CREATE TABLE `tbl_employee_children` (
 --
 
 INSERT INTO `tbl_employee_children` (`ID`, `EMPID`, `FULLNAME`, `DOB`, `CANCELLED`) VALUES
-(1, 5, 'CZAR', '2021-03-09', 'Y'),
-(2, 5, 's', '0000-00-00', 'Y'),
-(4, 5, 'f', '0000-00-00', 'Y'),
-(5, 5, 'CZAR', '2021-03-09', 'Y'),
-(6, 5, 'f', '0000-00-00', 'Y'),
-(7, 5, 'bbd', '2021-03-09', 'Y'),
-(8, 5, 'f', '0000-00-00', 'Y'),
-(9, 5, '1', '2021-03-17', 'Y'),
-(10, 5, '7767', '2021-03-27', 'Y'),
-(13, 5, 'CZAR', '2021-03-09', 'Y'),
-(14, 5, 'bbd', '2021-03-09', 'Y'),
-(15, 5, '1', '2021-03-17', 'Y'),
-(16, 5, '7767', '2021-03-27', 'Y'),
-(17, 5, 'CZAR', '2021-03-09', 'N'),
-(18, 5, 'bbd', '2021-03-09', 'Y'),
-(19, 5, '1', '2021-03-17', 'Y'),
-(20, 5, 'FIRST', '2021-03-27', 'N'),
-(21, 5, 'ESTHERFF', '2021-05-19', 'N'),
-(22, 2, '2323', '2021-05-11', 'N'),
-(23, 2, '223', '2021-05-18', 'N'),
-(24, 2, '22', '0000-00-00', 'N'),
-(25, 8, 'uu', '0000-00-00', 'N'),
-(26, 8, 'u5545u', '0000-00-00', 'N'),
-(27, 3, 'ffsfs', '0000-00-00', 'N'),
-(28, 5, 'sdad', '0000-00-00', 'Y'),
-(29, 5, 'uu', '0000-00-00', 'Y'),
-(30, 5, 'JEssane', '2021-05-12', 'N'),
-(31, 5, 'dsd', '2021-05-12', 'N'),
-(32, 5, 'YES KID', '2021-05-12', 'N'),
-(33, 5, 'uubb', '2021-04-29', 'Y'),
-(34, 5, 'DDDD', '2021-05-12', 'N');
+(1, 15, 'MARK ZAMBRANO', '2021-05-12', 'N');
 
 -- --------------------------------------------------------
 
@@ -258,12 +219,7 @@ CREATE TABLE `tbl_employee_civil_service` (
 --
 
 INSERT INTO `tbl_employee_civil_service` (`ID`, `EMPID`, `ELIGIBILITY`, `RATING`, `DATEOFEXAM`, `PLACEOFEXAM`, `LICENSENUMBER`, `LICENSEDATEOFVALIDITY`, `CANCELLED`) VALUES
-(1, 5, 'ELEMENTARY', 89, '2021-04-14', 'CDO', 2141515, '2021-04-30', 'Y'),
-(2, 5, 'ELEMENTARY', 89, '2021-04-14', 'CDO', 2141515, '2021-04-30', 'Y'),
-(3, 5, 'ELEMENTARY', 89, '2021-04-14', 'CDO', 2141515, '2021-04-30', 'Y'),
-(4, 5, 'ELEMENTARY', 89, '2021-04-14', 'CDO', 2141515, '2021-04-30', 'N'),
-(5, 5, 'ASD', 32, '0000-00-00', '123', 323, '2021-05-26', 'N'),
-(6, 5, 'ASD3', 32, '0000-00-00', '333', 111, '2021-05-25', 'N');
+(1, 15, 'CS PASSER', 84, '0000-00-00', 'XU CDO', 295291, '2021-05-25', 'N');
 
 -- --------------------------------------------------------
 
@@ -290,17 +246,13 @@ CREATE TABLE `tbl_employee_educ_background` (
 --
 
 INSERT INTO `tbl_employee_educ_background` (`ID`, `EMPID`, `LEVEL`, `SCHOOLNAME`, `BASICEDUCATION`, `PERIODFROM`, `PERIODTO`, `HIGHESTLEVEL`, `YEARGRADUATED`, `HONORRECEIVED`, `CANCELLED`) VALUES
-(1, '5', 'VOC', 'ALC', 'ELEMENTARY', 20210301, 20210305, 'GRADUATE', 2015, 'YES', 'Y'),
-(2, '5', '6', '', '', 0, 0, '', 0, '', 'Y'),
-(3, '5', 'COLLEGE', '2', '3', 2016, 2018, '7', 2018, '8', 'Y'),
-(4, '5', 'VOC', 'ALC', 'ELEMENTARY', 20210301, 20210305, 'GRADUATE', 2015, 'YES', 'Y'),
-(5, '5', 'COLLEGE', '2', '3', 2016, 2018, '7', 2018, '8', 'Y'),
-(6, '5', 'VOC', 'ALC', 'ELEMENTARY', 20210301, 20210305, 'GRADUATE', 2015, 'YES', 'N'),
-(7, '5', 'COLLEGE', '2', '3', 2016, 2018, '7', 2018, '8', 'Y'),
-(8, '2', 'VOC', '2321', '123', 123, 123, '123', 213, '123', 'N'),
-(9, '5', 'SEC', 'ALC', 'HIGHSCHOOL', 2016, 2016, '123', 2090, '123', 'N'),
-(10, '5', 'ELEM', 'MONTESORRY', 'HIGH SCHOOL', 2011, 2015, 'GRADUATE', 2015, 'HONOR STUDNETDDD', 'N'),
-(11, '12', 'ELEM', 'XAVIER UNIVERSITY - ATENEO DE CAGAYAN', 'BACHELOR OF SCIENCE IN INDUSTRIAL ENGINEERING ', 2007, 2013, '', 2013, 'DEAN\'S LISTER', 'N');
+(1, '15', 'ELEM', 'ANGELICUM LEARNING CENTRE', 'ELEMENTARY', 2016, 2019, 'ELEM GRADUATE', 2014, 'NONE', 'N'),
+(2, '15', 'SEC', 'ANGELICUM LEARNING CENTRE', 'ELEMENTARY GRADUATE', 20007, 2011, 'GRADUTE', 2011, 'NONE', 'N'),
+(3, '15', 'SEC', 'Mindanao University of Science and Technology', 'SECONDARY', 2007, 2007, 'Graduate', 2007, 'NONE', 'N'),
+(4, '15', 'COLLEGE', 'XAVIER UNIVERSITY', 'BS-COMPUTER SCIENCE', 2011, 2015, 'COLLEGE GRAD', 2015, 'GRADUATE, DEAN\'S LISTER', 'N'),
+(5, '15', 'ELEM', 'STA CECILIA', 'DD', 2012, 2018, '44', 2019, 'YES', 'N'),
+(6, '15', 'VOC', 'TESDA', 'ASDWLLD', 2016, 2011, '209', 2012, 'YESH MA', 'N'),
+(7, '15', 'GRADSTUD', 'MS-CS', 'XU CAGAYAN', 2019, 2020, '22', 2019, 'DD', 'N');
 
 -- --------------------------------------------------------
 
@@ -336,20 +288,9 @@ CREATE TABLE `tbl_employee_family` (
 --
 
 INSERT INTO `tbl_employee_family` (`ID`, `EMPID`, `SPOUSELASTNAME`, `SPOUSEFIRSTNAME`, `SPOUSEMIDDLENAME`, `SPOUSEEXTENSION`, `OCCUPATION`, `EMPLOYERNAME`, `BUSINESSADDRESS`, `SPOUSETELNO`, `FATHERSURNAME`, `FATHERFIRSTNAME`, `FATHERMIDDLENAME`, `FATHEREXT`, `MOTHERMAIDENNAME`, `MOTHERSURNAME`, `MOTHERFIRSTNAME`, `MOTHERMIDDLENAME`, `UPDATEDBY`, `UPDATEDDATETIME`) VALUES
-(1, 2, 'MSFKKALL', 'MEKAKAK', 'OHFMD', 'II', 'HR', 'CEROBRO', 'CUGMAN', '09389583', 'ABRHANS', 'TALGAOTM', 'KJJWIIW', 'JR', 'rrrF', 'KSKCMWJ', 'KFAKSKWI', 'GAWG', '', '2021-05-25 03:49:49'),
-(3, 5, 'DDD', 'CESAIRR', 'Tejano', '', 'WITDD', 'DDD', 'NHA KAUSWAGAN', '09278175', '', '', '', '', '', '', '', '', '1', '2021-05-25 08:25:44'),
-(4, 3, 'DDD', 'DDS', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2021-05-25 03:49:49'),
-(5, 4, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2021-05-25 03:49:49'),
-(6, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2021-05-25 03:49:49'),
-(7, 6, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2021-05-25 03:49:49'),
-(8, 7, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2021-05-25 03:49:49'),
-(9, 10, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2021-05-25 03:49:49'),
-(10, 12, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2021-05-25 03:49:49'),
-(11, 8, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2021-05-25 03:49:49'),
-(12, 1, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2021-05-25 03:49:49'),
-(13, 13, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2021-05-25 03:49:49'),
-(14, 9, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2021-05-25 03:49:49'),
-(15, 14, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2021-05-25 03:49:49');
+(1, 1, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2021-05-27 19:19:27'),
+(2, 6, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2021-05-28 03:07:47'),
+(3, 15, 'ALIGO', 'GEMA', 'Metls', 'II', 'HR Supervisior', 'AGS COmpang', 'Bahada, Davao', '+639568776357', 'CALDERON', 'JOHN', 'RANDYL', '', 'Tkela', 'CMake', 'GGKAEIO', '', '1', '2021-05-31 04:35:37');
 
 -- --------------------------------------------------------
 
@@ -374,8 +315,7 @@ CREATE TABLE `tbl_employee_ld` (
 --
 
 INSERT INTO `tbl_employee_ld` (`ID`, `EMPID`, `PROGRAM`, `DATEFROM`, `DATETO`, `NOOFHOURS`, `TYPE`, `SPONSOREDBY`, `CANCELLED`) VALUES
-(1, 5, 'DD', '0000-00-00', '0000-00-00', 0, '', '', 'N'),
-(2, 12, 'Trainers\' Training on the PESO Employment Information System (PEIS), Philjobnet and Philippines Talent Mapping (PTMI)', '0000-00-00', '0000-00-00', 0, 'NA', '', 'N');
+(1, 15, 'DDDD', '2021-05-02', '2021-05-18', 16, 'MANAGERIAL', 'CBAG', 'N');
 
 -- --------------------------------------------------------
 
@@ -395,14 +335,7 @@ CREATE TABLE `tbl_employee_other_membership` (
 --
 
 INSERT INTO `tbl_employee_other_membership` (`ID`, `EMPID`, `MEMBERSHIP`, `CANCELLED`) VALUES
-(1, 5, 'DSS', 'Y'),
-(2, 5, 'dd', 'Y'),
-(3, 5, '231', 'Y'),
-(4, 5, '1', 'Y'),
-(5, 2, '1', 'N'),
-(6, 3, 'TEST DATA', 'N'),
-(7, 5, 'DDD', 'N'),
-(8, 5, 'qweqweda', 'Y');
+(1, 15, 'QITC', 'Y');
 
 -- --------------------------------------------------------
 
@@ -422,16 +355,7 @@ CREATE TABLE `tbl_employee_other_recognition` (
 --
 
 INSERT INTO `tbl_employee_other_recognition` (`ID`, `EMPID`, `RECOGNITION`, `CANCELLED`) VALUES
-(1, 5, 'BEST', 'Y'),
-(2, 5, 'BEST', 'Y'),
-(3, 5, 'BEST', 'Y'),
-(4, 5, 'BEST IN SNACKS', 'N'),
-(5, 5, 'dsd', 'Y'),
-(6, 2, 'BEST IN SNACKS', 'N'),
-(7, 2, 'dsd', 'N'),
-(8, 5, 'BEST IN REDLDLD', 'Y'),
-(9, 5, 'DDD', 'Y'),
-(10, 5, 'DSFAF', 'Y');
+(1, 15, 'Best in Snacks', 'Y');
 
 -- --------------------------------------------------------
 
@@ -451,16 +375,7 @@ CREATE TABLE `tbl_employee_other_skills` (
 --
 
 INSERT INTO `tbl_employee_other_skills` (`ID`, `EMPID`, `SKILLS`, `CANCELLED`) VALUES
-(1, 5, 'Signing', 'Y'),
-(2, 5, 'Dancing', 'Y'),
-(3, 5, 'dd', 'Y'),
-(4, 2, '12312', 'Y'),
-(5, 5, 'dd', 'Y'),
-(6, 5, 'asdasd', 'Y'),
-(7, 5, 'DDD', 'Y'),
-(8, 5, 'DDD', 'Y'),
-(9, 5, 'asdasd', 'N'),
-(10, 5, 'DDD', 'Y');
+(1, 15, 'MUSIC ISNTRUMENT', 'Y');
 
 -- --------------------------------------------------------
 
@@ -486,8 +401,20 @@ CREATE TABLE `tbl_employee_profile` (
   `AGENCYEMPLOYEENO` varchar(100) NOT NULL,
   `CITIZENSHIP` varchar(100) NOT NULL,
   `DUALCITIZEN` varchar(10) NOT NULL,
-  `RESIDENTIALADDRESS` varchar(255) NOT NULL,
-  `PERMANENTADDRESS` varchar(255) NOT NULL,
+  `RESBLOCKNO` varchar(255) NOT NULL,
+  `RESSTREET` varchar(255) NOT NULL,
+  `RESSUBDIVISION` varchar(255) NOT NULL,
+  `RESBARANGAY` varchar(255) NOT NULL,
+  `RESCITY` varchar(250) NOT NULL,
+  `RESPROVINCE` varchar(255) NOT NULL,
+  `RESZIPCODE` varchar(100) NOT NULL,
+  `PERMBLOCKNO` varchar(255) NOT NULL,
+  `PERMSTREET` varchar(255) NOT NULL,
+  `PERMSUBDIVISION` varchar(255) NOT NULL,
+  `PERMBARANGAY` varchar(255) NOT NULL,
+  `PERMCITY` varchar(255) NOT NULL,
+  `PERMPROVINCE` varchar(255) NOT NULL,
+  `PERMZIPCODE` int(100) NOT NULL,
   `TELEPHONENO` varchar(100) NOT NULL,
   `MOBILENO` varchar(100) NOT NULL,
   `EMAIL` varchar(100) NOT NULL,
@@ -499,21 +426,10 @@ CREATE TABLE `tbl_employee_profile` (
 -- Dumping data for table `tbl_employee_profile`
 --
 
-INSERT INTO `tbl_employee_profile` (`ID`, `EMPID`, `DOB`, `PLACEOFBIRTH`, `GENDER`, `CIVILSTATUS`, `HEIGHT`, `WEIGHT`, `BLOODTYPE`, `GSISNO`, `PAGIBIGNO`, `PHICNO`, `SSSNO`, `TINNO`, `AGENCYEMPLOYEENO`, `CITIZENSHIP`, `DUALCITIZEN`, `RESIDENTIALADDRESS`, `PERMANENTADDRESS`, `TELEPHONENO`, `MOBILENO`, `EMAIL`, `UPDATEDBY`, `UPDATEDDATETIME`) VALUES
-(1, 2, '0000-00-00', 'CDO', 'NA', 'SINGLE', 163, 67, '', 353253426, 3423423, 2342343, 34324, 342345236, 'CBTZ200116', 'dual', 'birth', 'FJ SKMWFKK W', 'CDO SWOOR', '2512612', '352362351', 'dole10.czarbobzambrano@gmail.com', '', '2021-05-25 03:48:52'),
-(6, 5, '2021-05-26', 'CDO', 'MALE', 'SINGLE', 0, 63, '', 289488291, 0, 0, 0, 0, '', 'dual', 'birth', '', 'on', '', '', '', '1', '2021-05-25 08:22:23'),
-(7, 3, '0000-00-00', '', 'NA', '', 0, 0, '', 0, 21312412, 0, 0, 0, '', 'dual', '', '', '', '', '', '', '', '2021-05-25 03:48:52'),
-(8, 4, '0000-00-00', '', '', '', 0, 0, '', 0, 0, 0, 0, 0, '', '', '', '', '', '', '', '', '', '2021-05-25 03:48:52'),
-(9, 0, '0000-00-00', '', '', '', 0, 0, '', 0, 0, 0, 0, 0, '', '', '', '', '', '', '', '', '', '2021-05-25 03:48:52'),
-(10, 6, '0000-00-00', '', '', '', 0, 0, '', 0, 0, 0, 0, 0, '', '', '', '', '', '', '', '', '', '2021-05-25 03:48:52'),
-(11, 7, '0000-00-00', '', '', '', 0, 0, '', 0, 0, 0, 0, 0, '', '', '', '', '', '', '', '', '', '2021-05-25 03:48:52'),
-(12, 10, '0000-00-00', '', '', '', 0, 0, '', 0, 0, 0, 0, 0, '', '', '', '', '', '', '', '', '', '2021-05-25 03:48:52'),
-(13, 12, '0000-00-00', '', '', '', 0, 0, '', 0, 0, 0, 0, 0, '', '', '', '', '', '', '', '', '', '2021-05-25 03:48:52'),
-(14, 8, '0000-00-00', '', '', '', 0, 0, '', 0, 0, 0, 0, 0, '', '', '', '', '', '', '', '', '', '2021-05-25 03:48:52'),
-(15, 1, '0000-00-00', '', '', '', 0, 0, '', 0, 0, 0, 0, 0, '', '', '', '', '', '', '', '', '', '2021-05-25 03:48:52'),
-(16, 13, '0000-00-00', '', '', '', 0, 0, '', 0, 0, 0, 0, 0, '', '', '', '', '', '', '', '', '', '2021-05-25 03:48:52'),
-(17, 9, '0000-00-00', '', '', '', 0, 0, '', 0, 0, 0, 0, 0, '', '', '', '', '', '', '', '', '', '2021-05-25 03:48:52'),
-(18, 14, '0000-00-00', '', '', '', 0, 0, '', 0, 0, 0, 0, 0, '', '', '', '', '', '', '', '', '', '2021-05-25 03:48:52');
+INSERT INTO `tbl_employee_profile` (`ID`, `EMPID`, `DOB`, `PLACEOFBIRTH`, `GENDER`, `CIVILSTATUS`, `HEIGHT`, `WEIGHT`, `BLOODTYPE`, `GSISNO`, `PAGIBIGNO`, `PHICNO`, `SSSNO`, `TINNO`, `AGENCYEMPLOYEENO`, `CITIZENSHIP`, `DUALCITIZEN`, `RESBLOCKNO`, `RESSTREET`, `RESSUBDIVISION`, `RESBARANGAY`, `RESCITY`, `RESPROVINCE`, `RESZIPCODE`, `PERMBLOCKNO`, `PERMSTREET`, `PERMSUBDIVISION`, `PERMBARANGAY`, `PERMCITY`, `PERMPROVINCE`, `PERMZIPCODE`, `TELEPHONENO`, `MOBILENO`, `EMAIL`, `UPDATEDBY`, `UPDATEDDATETIME`) VALUES
+(1, 1, '0000-00-00', '', 'NA', '', 0, 0, '', 0, 0, 0, 0, 0, '', '', 'NA', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '', '', '1', '2021-07-16 07:22:11'),
+(2, 6, '0000-00-00', '', '', '', 0, 0, '', 0, 0, 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '', '', '', '2021-05-28 03:07:47'),
+(3, 15, '2021-05-13', 'CAGAYAN DE ORO', 'MALE', 'MARRIED', 163, 76, '', 353525, 52464346, 236346346, 23462346, 3246643, '34623', 'filipino', 'NA', '6TH FLOOR,TRINIDAD BUILDING, CORRALES STREET, CAGAYAN DE ORO', 'TRINIDAD BUILDING, CORRALES STREET, CAGAYAN DE ORO', '', '', '', '', '', '', '', '', '', '', '', 0, '+639568776357', '639568776357', 'dole10.technical@gmail.com', '1', '2021-05-31 04:34:26');
 
 -- --------------------------------------------------------
 
@@ -528,7 +444,7 @@ CREATE TABLE `tbl_employee_voluntary_work` (
   `DATEFROM` date NOT NULL,
   `DATETO` date NOT NULL,
   `NOOFHOURS` int(11) NOT NULL,
-  `POSITION` int(11) NOT NULL,
+  `POSITION` varchar(100) NOT NULL,
   `CANCELLED` char(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -537,9 +453,7 @@ CREATE TABLE `tbl_employee_voluntary_work` (
 --
 
 INSERT INTO `tbl_employee_voluntary_work` (`ID`, `EMPID`, `ORGANIZATION`, `DATEFROM`, `DATETO`, `NOOFHOURS`, `POSITION`, `CANCELLED`) VALUES
-(1, 5, 'QITC', '0000-00-00', '0000-00-00', 0, 0, 'N'),
-(2, 5, 'DDD', '0000-00-00', '0000-00-00', 0, 0, 'Y'),
-(3, 5, 'dsad', '0000-00-00', '0000-00-00', 0, 0, 'Y');
+(1, 15, 'ABC CompanyD', '2021-02-10', '2021-05-20', 18, 'ITTT', 'Y');
 
 -- --------------------------------------------------------
 
@@ -566,11 +480,7 @@ CREATE TABLE `tbl_employee_work_experience` (
 --
 
 INSERT INTO `tbl_employee_work_experience` (`ID`, `EMPID`, `DATEFROM`, `DATETO`, `POSITION`, `COMPANY`, `MONTHLYSALARY`, `GRADE`, `STATUS`, `GOVTSERVICE`, `CANCELLED`) VALUES
-(1, 5, '0000-00-00', '0000-00-00', 'fdfdd', '', 0, '', '', 'Y', 'Y'),
-(2, 5, '0000-00-00', '0000-00-00', 'D', 'DDD', 199900, '', '', 'N', 'Y'),
-(3, 5, '2021-05-04', '2021-06-24', 'IT SPECIALIST', 'DOLE X', 20000, '16', 'REGULAR', 'Y', 'N'),
-(4, 5, '2020-10-05', '2021-04-14', 'HR', 'AGS', 17000, '13', 'PROBATIONARY', 'N', 'N'),
-(5, 5, '2019-01-08', '2020-04-21', 'SALESMAN', 'PLDT', 29582, '272', 'REGULAR', 'N', 'N');
+(1, 15, '2020-01-01', '0001-01-01', 'Information System Analyst', 'DEPARTMENT OF LABOR AND EMPLOYMENT - REGION X', 100000, '16', 'REGULAR', 'Y', 'N');
 
 -- --------------------------------------------------------
 
@@ -617,23 +527,8 @@ CREATE TABLE `tbl_service_record` (
 --
 
 INSERT INTO `tbl_service_record` (`ID`, `EMPID`, `SERVICEFROM`, `SERVICETO`, `DESIGNATION`, `STATUS`, `SALARY`, `OFFICE`, `BRANCH`, `ABS`, `SEPARATIONDATE`, `AMOUNTRECEIVED`, `DETAILS`, `CANCELLED`, `CANCELLEDDATETIME`, `CANCELLEDBY`, `CREATEDBY`, `CREATEDDATETIME`, `UPDATEDBY`, `UPDATEDDATETIME`) VALUES
-(1, 5, '2021-04-07', '2021-04-09', 'IT', 'EMPLOYED', '30503', 'ORD', 'RO10', '10', '2021-04-15', 422, '24242', 'N', '2021-05-25 08:46:06', '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00'),
-(2, 5, '2020-12-27', '2021-04-13', 'IT', 'EMPLOYED', '30503', 'ORD', 'RO10', '10', '2021-03-31', 422, '0asdasdasdasd', 'N', '2021-05-25 08:46:06', '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00'),
-(3, 5, '2020-11-18', '2021-03-30', '1', '2', '3', '4', '5', '6', '2021-04-27', 7, '8', 'N', '2021-05-25 08:46:06', '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00'),
-(4, 3, '2021-05-05', '2021-05-26', '', '', '', '', '', '', '0000-00-00', 0, 'Please input details\n              ', 'Y', '2021-05-25 08:46:06', '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00'),
-(5, 3, '2021-05-05', '2021-05-26', 'sdasd', '', '', '', '', '', '0000-00-00', 0, 'Please input details\n              ', 'N', '2021-05-25 08:46:06', '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00'),
-(6, 3, '2021-05-18', '2021-06-02', '', '', '', '', '', '', '0000-00-00', 0, 'Please input details\n              ', 'N', '2021-05-25 08:46:06', '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00'),
-(7, 3, '0000-00-00', '0000-00-00', '232', '', '', '', '', '', '0000-00-00', 0, 'Please input details\n              ', 'N', '2021-05-25 08:46:06', '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00'),
-(8, 3, '0000-00-00', '0000-00-00', '212111', '', '', '', '', '', '0000-00-00', 0, 'Please input details\n              ', 'Y', '2021-05-25 08:46:06', '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00'),
-(9, 3, '0000-00-00', '0000-00-00', '22', '', '', '', '', '', '0000-00-00', 0, 'Please input details\n              ', 'N', '2021-05-25 08:46:06', '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00'),
-(10, 3, '0000-00-00', '0000-00-00', '1', '', '', '', '', '', '0000-00-00', 0, 'Please input details\n              ', 'N', '2021-05-25 08:46:06', '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00'),
-(11, 3, '0000-00-00', '0000-00-00', '235235', '', '', '', '', '', '0000-00-00', 0, 'Please input details\n              ', 'N', '2021-05-25 08:46:06', '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00'),
-(12, 3, '0000-00-00', '0000-00-00', '555', '', '', '', '', '', '0000-00-00', 0, 'Please input details\n              ', 'N', '2021-05-25 08:46:06', '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00'),
-(13, 3, '0000-00-00', '0000-00-00', '4555', '', '', '', '', '', '0000-00-00', 0, '', 'N', '2021-05-25 08:46:06', '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00'),
-(14, 2, '2021-05-18', '0000-00-00', '22', '', '', '', '', '', '0000-00-00', 0, 'Please input details\n              ', 'N', '2021-05-25 08:46:06', '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00'),
-(15, 13, '2021-05-03', '2021-05-03', 'IT FOCALDD', 'EMPLOYED', '367030', 'ORD', 'RO10', '12', '2021-05-11', 49299, 'sda', 'N', '2021-05-25 09:17:20', '', '', '2021-05-25 09:17:20', '1', '2021-05-25 09:17:20'),
-(16, 13, '2021-04-26', '2021-05-18', 'IT', 'EMPLOYED YES', '3050322', 'ORD', 'RO11', '100', '2021-05-27', 422444, 'YES', 'N', '2021-05-25 09:19:22', '', '1', '2021-05-25 09:19:22', '', '2021-05-25 09:19:22'),
-(17, 2, '2021-06-16', '2021-07-01', 'sdasd', 'EMPLOYED', '30503', 'ORD', 'RO10', '6', '2021-06-11', 422, '              asdasfdasgsdgasdfg', 'N', '2021-06-23 06:44:29', '', '1', '2021-06-23 06:44:29', '', '2021-06-23 06:44:29');
+(1, 15, '2021-05-02', '2021-05-26', 'ISA II', 'EMPLOYED', '302881', 'ORD', 'ORD', '12', '2021-05-25', 12444, 'YESEFE', 'N', '2021-05-31 05:13:05', '', '1', '2021-05-31 05:13:05', '', '2021-05-31 05:13:05'),
+(2, 1, '2021-07-05', '2021-07-14', 'IT PERSONEL', 'PERMANENT', '20140', 'ORD', 'DOLE X', '9248', '2021-07-13', 100000, 'TEST DATA', 'N', '2021-07-13 01:41:01', '', '1', '2021-07-13 01:41:01', '', '2021-07-13 01:41:01');
 
 -- --------------------------------------------------------
 
@@ -799,79 +694,79 @@ ALTER TABLE `tbl_division`
 -- AUTO_INCREMENT for table `tbl_employee`
 --
 ALTER TABLE `tbl_employee`
-  MODIFY `ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `tbl_employee_attachment`
 --
 ALTER TABLE `tbl_employee_attachment`
-  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tbl_employee_children`
 --
 ALTER TABLE `tbl_employee_children`
-  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_employee_civil_service`
 --
 ALTER TABLE `tbl_employee_civil_service`
-  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_employee_educ_background`
 --
 ALTER TABLE `tbl_employee_educ_background`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbl_employee_family`
 --
 ALTER TABLE `tbl_employee_family`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_employee_ld`
 --
 ALTER TABLE `tbl_employee_ld`
-  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_employee_other_membership`
 --
 ALTER TABLE `tbl_employee_other_membership`
-  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_employee_other_recognition`
 --
 ALTER TABLE `tbl_employee_other_recognition`
-  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_employee_other_skills`
 --
 ALTER TABLE `tbl_employee_other_skills`
-  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_employee_profile`
 --
 ALTER TABLE `tbl_employee_profile`
-  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_employee_voluntary_work`
 --
 ALTER TABLE `tbl_employee_voluntary_work`
-  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_employee_work_experience`
 --
 ALTER TABLE `tbl_employee_work_experience`
-  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_fieldoffice`
@@ -883,7 +778,7 @@ ALTER TABLE `tbl_fieldoffice`
 -- AUTO_INCREMENT for table `tbl_service_record`
 --
 ALTER TABLE `tbl_service_record`
-  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`

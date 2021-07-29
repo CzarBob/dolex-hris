@@ -1,11 +1,11 @@
 <?php 
 session_start();
 include "../dbConnection.php";
-
+/*
 if ($_SESSION['username'] == ""){
   header("Location: admin");
   exit;
-}
+}*/
  ?>
 
 <!DOCTYPE html>
@@ -183,12 +183,21 @@ if ($_SESSION['username'] == ""){
 
               <div class="col-xl-2 col-md-6">
                   <div class="card bg-primary  mb-4"> <!--id="totEmp"-->
-                      <div class="card-body text-white" >Leave Application<span > </span></div>
+                      <div class="card-body text-white" >Leave Application <span > </span></div>
                       <div class="card-footer d-flex align-items-center justify-content-between">
                           <a class="large text-black stretched-link" data-toggle="modal" data-target="#applyLeaveForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i>Apply Here</a>
 
 
                     
+                      </div>
+                  </div>
+              </div>
+
+              <div class="col-xl-2 col-md-6">
+                  <div class="card bg-info  mb-4"> <!--id="totEmp"-->
+                      <div class="card-body text-white" >Leave Application (For Compensatory and Compassionate Time-Off Application)<span > </span></div>
+                      <div class="card-footer d-flex align-items-center justify-content-between">
+                          <a class="large text-black stretched-link" data-toggle="modal" data-target="#applyLeaveForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i>Apply Here</a>
                       </div>
                   </div>
               </div>
@@ -253,7 +262,7 @@ if ($_SESSION['username'] == ""){
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header text-center">
-            <h4 class="modal-title w-100 font-weight-bold">Add Employee</h4>
+            <h4 class="modal-title w-100 font-weight-bold">Leave Application</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -267,12 +276,23 @@ if ($_SESSION['username'] == ""){
             </div>
             <!--<input type="text" name="landd_type_update" id = "landd_type_update" class="form-control validate" required>-->
 
-            <select class="custom-select my-1 mr-sm-2" id="landd_type_update" name="landd_type_update">
+            <select class="custom-select my-1 mr-sm-2" id="leave_type" name="leave_type">
                 <option value="NA" selected>Please Select</option>
-                <option value="MANAGERIAL">MANAGERIAL</option>
-                <option value="SUPERVISORY">SUPERVISORY</option>
-                <option value="TECHNICAL">TECHNICAL</option>
-                <option value="OTHERS">OTHERS</option>
+                <option value="VACATION">VACATION LEAVE</option>
+                <option value="FORCED">MANDATORY/FORCED LEAVE</option>
+                <option value="SICK">SICK LEAVE</option>
+                <option value="MATERNITY">MATERNITY LEAVE</option>
+                <option value="SPECIALPRIVILEGE">SPECIAL PRIVILEGE LEAVE</option>
+                <option value="SOLOPARENT">SOLO PARENT LEAVE</option>
+                <option value="STUDY">STUDY LEAVE</option>
+                <option value="VAWC">10-DAY VAWC LEAVE</option>
+                <option value="REHAB">REHABILITATION PRIVILEGE</option>
+                <option value="WOMEN">SPECIAL LEAVE BENEFITS FOR WOMEN</option>
+                <option value="EMERGENCY">SPECIAL EMERGENCY (CALAMITY) LEAVE</option>
+                <option value="ADOPTION">ADOPTION LEAVE</option>
+               <!-- <option disabled>_________</option>
+                <option value="CTO">COMPENSATORY TIME-OFF</option>
+                <option value="COMTO">COMPASSIONATE TIME-OFF</option>-->
             </select>
           </div>
 
@@ -285,6 +305,7 @@ if ($_SESSION['username'] == ""){
                   <thead class = "text-primary">
                   <tr>
                       <th>OFFICE</th>
+                      <th>DIVISION</th>
                       <th>EMPLOYEE ID</th>
                       <th>FIRST NAME</th>
                       <th>MIDDLE NAME</th>
@@ -295,6 +316,7 @@ if ($_SESSION['username'] == ""){
                   <tfoot class = "text-primary">
                     <tr>
                       <th>OFFICE</th>
+                      <th>DIVISION</th>
                       <th>EMPLOYEE ID</th>
                       <th>FIRST NAME</th>
                       <th>MIDDLE NAME</th>
@@ -364,7 +386,7 @@ if ($_SESSION['username'] == ""){
         "columnDefs": [{ "orderable": false, "targets":[0,1] }],
         "order" : [],*/
         "ajax" : {
-        url:"dashboard_query.php",
+        url:"usr_dashboard_query.php",
         type:"POST",
         data:{
             action:action
