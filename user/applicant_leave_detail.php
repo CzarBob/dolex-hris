@@ -268,6 +268,35 @@ session_start();
 
                                         <!-- Card Body -->
                                         <div class="card-body">
+
+
+                                            <div class="form-row">
+                                                <!-- Default input -->
+                                                <div class="form-group col-md-4">
+                                                <label for="inputAddress"><strong>Leave Type Application</strong></label>
+                                                <select class="custom-select my-1 mr-sm-2" id="leave_type" name="leave_type">
+                                                    <option value="NA" selected>Please Select</option>
+                                                    <option value="VACATION">VACATION LEAVE</option>
+                                                    <option value="FORCED">MANDATORY/FORCED LEAVE</option>
+                                                    <option value="SICK">SICK LEAVE</option>
+                                                    <option value="MATERNITY">MATERNITY LEAVE</option>
+                                                    <option value="SPECIALPRIVILEGE">SPECIAL PRIVILEGE LEAVE</option>
+                                                    <option value="SOLOPARENT">SOLO PARENT LEAVE</option>
+                                                    <option value="STUDY">STUDY LEAVE</option>
+                                                    <option value="VAWC">10-DAY VAWC LEAVE</option>
+                                                    <option value="REHAB">REHABILITATION PRIVILEGE</option>
+                                                    <option value="WOMEN">SPECIAL LEAVE BENEFITS FOR WOMEN</option>
+                                                    <option value="EMERGENCY">SPECIAL EMERGENCY (CALAMITY) LEAVE</option>
+                                                    <option value="ADOPTION">ADOPTION LEAVE</option>
+                                                  <!-- <option disabled>_________</option>
+                                                    <option value="CTO">COMPENSATORY TIME-OFF</option>
+                                                    <option value="COMTO">COMPASSIONATE TIME-OFF</option>-->
+                                                </select>
+
+                                                </div>
+                
+                                            </div>
+
                                             <div class="form-row">
                                                 <!-- Default input -->
                                                 <div class="form-group col-md-4">
@@ -279,7 +308,7 @@ session_start();
                                             <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <label for="inputAddress">Inclusive Dates</label>
-                                                <input  type="text" class="form-control" id="position" placeholder="Ex. Labor Employment Officer I" disabled>
+                                                <input  type="text" class="form-control" id="inclusivedate"  >
                                                 </div> 
                                             </div>
                                             <!-- Grid row -->
@@ -299,18 +328,18 @@ session_start();
                                             <div class="form-row">
                                                 <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                                  <label class="form-check-label" for="flexRadioDefault1">
+                                                  <input class="form-check-input" type="radio" name="partone" id="partone1">
+                                                  <label class="form-check-label" for="partone1">
                                                     Within the Philippines
                                                   </label> 
-                                                   <input  type="text" class="form-control" id="position" placeholder="Ex. Labor Employment Officer I" disabled>
+                                                   <input  type="text" class="form-control" id="partone1Details" >
                                                 </div>
                                                 <div class="form-check">
-                                                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" >
-                                                  <label class="form-check-label" for="flexRadioDefault2">
+                                                  <input class="form-check-input" type="radio" name="partone" id="partone2" >
+                                                  <label class="form-check-label" for="partone2">
                                                     Abroad (Specify)
                                                   </label>
-                                                  <input  type="text" class="form-control" id="position" placeholder="Ex. Labor Employment Officer I" disabled>
+                                                  <input  type="text" class="form-control" id="partone2Details"  >
                                                 </div>
                                                 </div> 
 
@@ -329,18 +358,18 @@ session_start();
                                             <div class="form-row">
                                                 <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                                  <label class="form-check-label" for="flexRadioDefault1">
+                                                  <input class="form-check-input" type="radio" name="parttwo" id="parttwo1">
+                                                  <label class="form-check-label" for="parttwo1">
                                                     In Hospital (Specify Illness)
                                                   </label> 
-                                                   <input  type="text" class="form-control" id="position" placeholder="Ex. Labor Employment Officer I" disabled>
+                                                   <input  type="text" class="form-control" id="parttwo1details" >
                                                 </div>
                                                 <div class="form-check">
-                                                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" >
-                                                  <label class="form-check-label" for="flexRadioDefault2">
+                                                  <input class="form-check-input" type="radio" name="parttwo" id="parttwo2" >
+                                                  <label class="form-check-label" for="parttwo2">
                                                     Out Patient (Specify Illness)
                                                   </label>
-                                                  <input  type="text" class="form-control" id="position" placeholder="Ex. Labor Employment Officer I" disabled>
+                                                  <input  type="text" class="form-control" id="parttwo2details">
                                                 </div>
                                                 </div> 
                                             </div>
@@ -358,11 +387,11 @@ session_start();
                                             <div class="form-row">
                                                 <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                                  <label class="form-check-label" for="flexRadioDefault1">
+                                                  <input class="form-check-input" type="radio" name="partthree" id="partthree1">
+                                                  <label class="form-check-label" for="partthree1">
                                                     (Specify Illness)
                                                   </label> 
-                                                   <input  type="text" class="form-control" id="position" placeholder="Ex. Labor Employment Officer I" disabled>
+                                                   <input  type="text" class="form-control" id="partthree1details" >
                                                 </div>
                                           
                                                 </div> 
@@ -382,15 +411,15 @@ session_start();
                                             <div class="form-row">
                                                 <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                                  <label class="form-check-label" for="flexRadioDefault1">
+                                                  <input class="form-check-input" type="radio" name="partfour" id="partfour1">
+                                                  <label class="form-check-label" for="partfour1">
                                                     Completion of Master's Degree
                                                   </label> 
                                                 
                                                 </div>
                                                 <div class="form-check">
-                                                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" >
-                                                  <label class="form-check-label" for="flexRadioDefault2">
+                                                  <input class="form-check-input" type="radio" name="partfour" id="partfour2" >
+                                                  <label class="form-check-label" for="partfour2">
                                                     BAR/Board Examination Review
                                                   </label>
                                                  
@@ -411,15 +440,15 @@ session_start();
                                             <div class="form-row">
                                                 <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                                  <label class="form-check-label" for="flexRadioDefault1">
+                                                  <input class="form-check-input" type="radio" name="partfive" id="partfive1">
+                                                  <label class="form-check-label" for="partfive1">
                                                     Monetization of Leave Credits
                                                   </label> 
                                                 
                                                 </div>
                                                 <div class="form-check">
-                                                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" >
-                                                  <label class="form-check-label" for="flexRadioDefault2">
+                                                  <input class="form-check-input" type="radio" name="partfive" id="partfive2" >
+                                                  <label class="form-check-label" for="partfive2">
                                                     Terminal Leave
                                                   </label>
                                                  
@@ -441,14 +470,14 @@ session_start();
                                             <div class="form-row">
                                                 <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                                  <label class="form-check-label" for="flexRadioDefault1">
+                                                  <input class="form-check-input" type="radio" name="partsix" id="partsix1">
+                                                  <label class="form-check-label" for="partsix1">
                                                     Not Requested
                                                   </label> 
                                                 </div>
                                                 <div class="form-check">
-                                                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" >
-                                                  <label class="form-check-label" for="flexRadioDefault2">
+                                                  <input class="form-check-input" type="radio" name="partsix" id="partsix2" >
+                                                  <label class="form-check-label" for="partsix2">
                                                     Requested
                                                   </label>
                                                 </div>
@@ -482,7 +511,7 @@ session_start();
                                             </tr>  
                                             <tr>
                                            
-                                                <td style="width: 100%;"  colspan="2" style = "align: left"><button  style="width: 100%;" class="btn btn-danger" id = "cancel_sr">     Close  </button></td>                                               
+                                                <td style="width: 100%;"  colspan="2" style = "align: left"><button  style="width: 100%;" class="btn btn-info" id = "cancel_sr">     Close  </button></td>                                               
                                             </tr>  
                                       </table> 
                                     </div>                        
@@ -502,7 +531,7 @@ session_start();
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; Your Website 2021</span>
                     </div>
                 </div>
             </footer>
@@ -702,23 +731,23 @@ session_start();
 
 
     <!-- Bootstrap core JavaScript-->
-    <script src="assets/vendor/jquery/jquery.min.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="assets/js/sb-admin-2.min.js"></script>
+    <script src="../assets/js/sb-admin-2.min.js"></script>
 
-    <script src="assets/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="../assets/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="../assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="assets/js/demo/datatables-demo.js"></script>
+    <script src="../assets/js/demo/datatables-demo.js"></script>
     
     <!--JS FOR EMPLOYEE ACTIONS -->
-    <script type="text/javascript" src="serviceRecordDetail.js"></script>
+    <script type="text/javascript" src="applicant_leave_detail.js"></script>
 
     
 

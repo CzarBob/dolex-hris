@@ -269,35 +269,9 @@ if ($_SESSION['username'] == ""){
           </div>
           <div class="modal-body mx-3">
        
-          <div class="md-form mb-5">
-
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 class="m-0 font-weight-bold text-primary">I. Select Leave Application</h6>
-            </div>
-            <!--<input type="text" name="landd_type_update" id = "landd_type_update" class="form-control validate" required>-->
-
-            <select class="custom-select my-1 mr-sm-2" id="leave_type" name="leave_type">
-                <option value="NA" selected>Please Select</option>
-                <option value="VACATION">VACATION LEAVE</option>
-                <option value="FORCED">MANDATORY/FORCED LEAVE</option>
-                <option value="SICK">SICK LEAVE</option>
-                <option value="MATERNITY">MATERNITY LEAVE</option>
-                <option value="SPECIALPRIVILEGE">SPECIAL PRIVILEGE LEAVE</option>
-                <option value="SOLOPARENT">SOLO PARENT LEAVE</option>
-                <option value="STUDY">STUDY LEAVE</option>
-                <option value="VAWC">10-DAY VAWC LEAVE</option>
-                <option value="REHAB">REHABILITATION PRIVILEGE</option>
-                <option value="WOMEN">SPECIAL LEAVE BENEFITS FOR WOMEN</option>
-                <option value="EMERGENCY">SPECIAL EMERGENCY (CALAMITY) LEAVE</option>
-                <option value="ADOPTION">ADOPTION LEAVE</option>
-               <!-- <option disabled>_________</option>
-                <option value="CTO">COMPENSATORY TIME-OFF</option>
-                <option value="COMTO">COMPASSIONATE TIME-OFF</option>-->
-            </select>
-          </div>
 
           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">II. Select Employee</h6>
+            <h6 class="m-0 font-weight-bold text-primary">I. Select Employee</h6>
           </div>
             <div class="card-body">
               <div class="table-responsive">

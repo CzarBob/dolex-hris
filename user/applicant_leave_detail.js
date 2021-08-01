@@ -19,9 +19,10 @@
                 type: 'post',
                 data: 
                 {
-                children_data:TableData,
-                employeeiddb:employeeiddb, 
-                action:'update_children'},
+                    children_data:TableData,
+                    employeeiddb:employeeiddb, 
+                    action:'update_children'
+                },
 
                 dataType: 'json',
                 success:function(response){
@@ -41,12 +42,10 @@
 
         }
 
-            
-
             $(document).ready(function(){
                 fetch_single();   
                 
-                function fetch_service_record_data(){
+                function fetch_empoloyee_data(){
                     
                     var employeeiddb = document.getElementById("empID").value;
                     var dataTable = $('#service_record_data').DataTable({
@@ -55,11 +54,11 @@
                     //"columnDefs": [{ "orderable": false, "targets":[1] }],
                    // "order" : [],
                     "ajax" : {
-                    url:"serviceRecord_action.php",
+                    url:"applicant_leave_detail_action.php",
                     type:"POST",
                     data:{
                                     employeeiddb:employeeiddb, 
-                                    action:'fetch_service_record'},
+                                    action:'fetch_employee_record'},
                     }
                     });
                 }
@@ -76,7 +75,7 @@
                         //$('#user_form').parsley().reset();
 
                         $.ajax({
-                                url:"serviceRecord_action.php",
+                                url:"applicant_leave_detail_action.php",
                                 method:"POST",
                                 data:{
                                     employeeiddb:employeeiddb, 
@@ -290,7 +289,6 @@
       
                         }     
                     }); 
-
             });
 
             $('#generateReport').click(function(){
