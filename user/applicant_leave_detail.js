@@ -1,3 +1,52 @@
+function leaveChange() {
+    document.getElementById("partone1").disabled = true;
+    document.getElementById("partone2").disabled = true;
+    document.getElementById("partone1Details").disabled = true;
+    document.getElementById("partone2Details").disabled = true;
+    document.getElementById("parttwo1").disabled = true;
+    document.getElementById("parttwo2").disabled = true;
+    document.getElementById("parttwo1details").disabled = true;
+    document.getElementById("parttwo2details").disabled = true;
+    document.getElementById("partthree1").disabled = true;
+    document.getElementById("partthree1details").disabled = true;
+    document.getElementById("partfour1").disabled = true;
+    document.getElementById("partfour2").disabled = true;
+    document.getElementById("partfive1").disabled = true;
+    document.getElementById("partfive2").disabled = true;
+    
+
+
+
+    if ((document.getElementById("leave_type").value == "VACATION") || (document.getElementById("leave_type").value == "SPECIALPRIVILEGE")){
+        //document.getElementById("message").innerHTML = "Common message";
+        document.getElementById("partone1").disabled = false;
+        document.getElementById("partone2").disabled = false;
+        document.getElementById("partone1Details").disabled = false;
+        document.getElementById("partone2Details").disabled = false;
+        
+    }     
+    else if (document.getElementById("leave_type").value == "SICK"){
+        document.getElementById("parttwo1").disabled = false;
+        document.getElementById("parttwo2").disabled = false;
+        document.getElementById("parttwo1details").disabled = false;
+        document.getElementById("parttwo2details").disabled = false;
+    }
+    else if (document.getElementById("leave_type").value == "WOMEN"){
+        document.getElementById("partthree1").disabled = false;
+        document.getElementById("partthree1details").disabled = false;
+       
+    }   
+    else if (document.getElementById("leave_type").value == "STUDY"){
+        document.getElementById("partfour1").disabled = false;
+        document.getElementById("partfour2").disabled = false;
+
+    }   
+    if ((document.getElementById("leave_type").value == "MONETIZATION") || (document.getElementById("leave_type").value == "TERMINAL")){
+        document.getElementById("partfive1").disabled = false;
+        document.getElementById("partfive2").disabled = false;
+        
+    }   
+}
 
  function myFunction() {
         //alert(document.getElementById("children_data").rows[1].cells[0].innerHTML);
@@ -43,7 +92,8 @@
         }
 
             $(document).ready(function(){
-                fetch_single();   
+                fetch_single();
+
                 
                 function fetch_empoloyee_data(){
                     
@@ -94,12 +144,13 @@
                                 }
                             });
 
-                            fetch_service_record_data();
-                          
+                            fetch_service_record_data();                   
+                } 
 
 
-                    
-                }  
+
+                
+                
                 
 
 

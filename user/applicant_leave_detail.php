@@ -201,11 +201,11 @@ session_start();
                                                 <!-- Default input -->
                                                 <div class="form-group col-md-4">
                                                 <label for="inputAddress">Office</label>
-                                                <input type="text" class="form-control" id="employeeid" placeholder="Ex. CBTZ200116" disabled>
+                                                <input type="text" class="form-control" id="office" placeholder="Ex. CBTZ200116" disabled>
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                 <label for="inputAddress">Division</label>
-                                                <input  type="text" class="form-control" id="position" placeholder="Ex. Labor Employment Officer I" disabled>
+                                                <input  type="text" class="form-control" id="division" placeholder="Ex. Labor Employment Officer I" disabled>
                                                 </div>
                                             </div>
                                             <div class="form-row">
@@ -237,14 +237,14 @@ session_start();
                                                 <!-- Default input -->
                                                 <div class="form-group col-md-3">
                                                 <label for="inputEmail4">Date of Filing</label>
-                                                <input type="date" name="firstname" id = "firstname"  placeholder="Ex. Enrico" class="form-control validate" >
-                                                </div>                                  
+                                                <input type="date" name="dateoffilling" id = "dateoffilling"   value="<?php echo date("Y-m-d"); ?>" class="form-control validate" >  
+                                              </div>                                  
                                             </div>
                                             <div class="form-row">
                                                 <!-- Default input -->
                                                 <div class="form-group col-md-3">
                                                 <label for="inputEmail4">Salary</label>
-                                                <input type="text" name="firstname" id = "firstname"  placeholder="Ex. Enrico" class="form-control validate" >
+                                                <input type="text" name="salary" id = "salary" class="form-control validate" >
                                                 </div>                                  
                                             </div>
                                         </div>
@@ -274,7 +274,7 @@ session_start();
                                                 <!-- Default input -->
                                                 <div class="form-group col-md-4">
                                                 <label for="inputAddress"><strong>Leave Type Application</strong></label>
-                                                <select class="custom-select my-1 mr-sm-2" id="leave_type" name="leave_type">
+                                                <select class="custom-select my-1 mr-sm-2" onchange="leaveChange();" id="leave_type" name="leave_type" >
                                                     <option value="NA" selected>Please Select</option>
                                                     <option value="VACATION">VACATION LEAVE</option>
                                                     <option value="FORCED">MANDATORY/FORCED LEAVE</option>
@@ -288,6 +288,8 @@ session_start();
                                                     <option value="WOMEN">SPECIAL LEAVE BENEFITS FOR WOMEN</option>
                                                     <option value="EMERGENCY">SPECIAL EMERGENCY (CALAMITY) LEAVE</option>
                                                     <option value="ADOPTION">ADOPTION LEAVE</option>
+                                                    <option value="MONETIZATION">MONETIZATION OF LEAVE CREDITS</option>
+                                                    <option value="TERMINAL">TERMINAL LEAVE</option>
                                                   <!-- <option disabled>_________</option>
                                                     <option value="CTO">COMPENSATORY TIME-OFF</option>
                                                     <option value="COMTO">COMPASSIONATE TIME-OFF</option>-->
@@ -328,18 +330,18 @@ session_start();
                                             <div class="form-row">
                                                 <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                  <input class="form-check-input" type="radio" name="partone" id="partone1">
+                                                  <input class="form-check-input" type="radio" name="partone" id="partone1" disabled>
                                                   <label class="form-check-label" for="partone1">
                                                     Within the Philippines
                                                   </label> 
-                                                   <input  type="text" class="form-control" id="partone1Details" >
+                                                   <input  type="text" class="form-control" id="partone1Details" disabled>
                                                 </div>
                                                 <div class="form-check">
-                                                  <input class="form-check-input" type="radio" name="partone" id="partone2" >
+                                                  <input class="form-check-input" type="radio" name="partone" id="partone2" disabled>
                                                   <label class="form-check-label" for="partone2">
                                                     Abroad (Specify)
                                                   </label>
-                                                  <input  type="text" class="form-control" id="partone2Details"  >
+                                                  <input type="text" class="form-control" id="partone2Details"  disabled>
                                                 </div>
                                                 </div> 
 
@@ -358,18 +360,18 @@ session_start();
                                             <div class="form-row">
                                                 <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                  <input class="form-check-input" type="radio" name="parttwo" id="parttwo1">
+                                                  <input class="form-check-input" type="radio" name="parttwo" id="parttwo1" disabled>
                                                   <label class="form-check-label" for="parttwo1">
                                                     In Hospital (Specify Illness)
                                                   </label> 
-                                                   <input  type="text" class="form-control" id="parttwo1details" >
+                                                   <input  type="text" class="form-control" id="parttwo1details" disabled >
                                                 </div>
                                                 <div class="form-check">
-                                                  <input class="form-check-input" type="radio" name="parttwo" id="parttwo2" >
+                                                  <input class="form-check-input" type="radio" name="parttwo" id="parttwo2" disabled>
                                                   <label class="form-check-label" for="parttwo2">
                                                     Out Patient (Specify Illness)
                                                   </label>
-                                                  <input  type="text" class="form-control" id="parttwo2details">
+                                                  <input  type="text" class="form-control" id="parttwo2details" disabled>
                                                 </div>
                                                 </div> 
                                             </div>
@@ -387,11 +389,11 @@ session_start();
                                             <div class="form-row">
                                                 <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                  <input class="form-check-input" type="radio" name="partthree" id="partthree1">
+                                                  <input class="form-check-input" type="radio" name="partthree" id="partthree1" disabled>
                                                   <label class="form-check-label" for="partthree1">
                                                     (Specify Illness)
                                                   </label> 
-                                                   <input  type="text" class="form-control" id="partthree1details" >
+                                                   <input  type="text" class="form-control" id="partthree1details" disabled>
                                                 </div>
                                           
                                                 </div> 
@@ -411,14 +413,14 @@ session_start();
                                             <div class="form-row">
                                                 <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                  <input class="form-check-input" type="radio" name="partfour" id="partfour1">
+                                                  <input class="form-check-input" type="radio" name="partfour" id="partfour1" disabled>
                                                   <label class="form-check-label" for="partfour1">
                                                     Completion of Master's Degree
                                                   </label> 
                                                 
                                                 </div>
                                                 <div class="form-check">
-                                                  <input class="form-check-input" type="radio" name="partfour" id="partfour2" >
+                                                  <input class="form-check-input" type="radio" name="partfour" id="partfour2" disabled>
                                                   <label class="form-check-label" for="partfour2">
                                                     BAR/Board Examination Review
                                                   </label>
@@ -440,14 +442,14 @@ session_start();
                                             <div class="form-row">
                                                 <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                  <input class="form-check-input" type="radio" name="partfive" id="partfive1">
+                                                  <input class="form-check-input" type="radio" name="partfive" id="partfive1" disabled>
                                                   <label class="form-check-label" for="partfive1">
                                                     Monetization of Leave Credits
                                                   </label> 
                                                 
                                                 </div>
                                                 <div class="form-check">
-                                                  <input class="form-check-input" type="radio" name="partfive" id="partfive2" >
+                                                  <input class="form-check-input" type="radio" name="partfive" id="partfive2" disabled>
                                                   <label class="form-check-label" for="partfive2">
                                                     Terminal Leave
                                                   </label>
@@ -502,11 +504,8 @@ session_start();
                             <div class="card shadow mb-4">                                
                                 <!-- Card Body -->                               
                                     <div class="col-md-12">
-    
-                                       <table class=" table">
-                                             
+                                       <table class=" table">  
                                             <tr>
-                                                
                                                 <td style="width: 100%;"  colspan="2" style = "align: left"><button  style="width: 100%;" class="btn btn-success" id = "cancel_sr">     Submit  </button></td>                                               
                                             </tr>  
                                             <tr>
@@ -518,9 +517,6 @@ session_start();
                             </div>
                         </div> 
                     </div>
-
-
-
                 </div>
                 <!-- /.container-fluid -->
             </div>
