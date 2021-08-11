@@ -34,6 +34,9 @@ session_start();
   <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
   <link rel="icon" href="../img/dolelogogs.png">
   <script type="text/javascript" src = "../js/date_time.js"></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+      <!--JS FOR EMPLOYEE ACTIONS -->
+      <script type="text/javascript" src="applicant_leave_detail.js"></script>
 
 </head>
 
@@ -308,9 +311,15 @@ session_start();
                 
                                             </div>
                                             <div class="form-row">
-                                            <div class="form-group col-md-4">
-                                                <label for="inputAddress">Inclusive Dates</label>
-                                                <input  type="text" class="form-control" id="inclusivedate"  >
+                                              <div class="form-group col-md-4">
+                                                  <label for="inputAddress">Inclusive Dates</label>
+                                                  
+                                                 <!-- <input  type="text" class="form-control" id="inclusivedate"  > -->
+                                                 <div class="table-responsive">
+                                                    <table class="table" id="dynamic_field">
+
+                                                    </table>
+                                                  </div>
                                                 </div> 
                                             </div>
                                             <!-- Grid row -->
@@ -742,8 +751,7 @@ session_start();
     <!-- Page level custom scripts -->
     <script src="../assets/js/demo/datatables-demo.js"></script>
     
-    <!--JS FOR EMPLOYEE ACTIONS -->
-    <script type="text/javascript" src="applicant_leave_detail.js"></script>
+
 
     
 

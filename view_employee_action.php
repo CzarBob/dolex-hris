@@ -2062,7 +2062,7 @@ if (isset($_POST['action'])){
         SET CANCELLED = "Y" 
         WHERE ID = "'.$_POST["id"].'" AND CANCELLED = "N" ';
 
-      echo $query;
+      //echo $query;
       //$number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
       
       $result = mysqli_query($connect, $query );
@@ -2078,7 +2078,7 @@ if (isset($_POST['action'])){
         SET CANCELLED = "Y" 
         WHERE ID = "'.$_POST["id"].'" AND CANCELLED = "N" ';
 
-      echo $query;
+      //echo $query;
       
       $result = mysqli_query($connect, $query );
 
@@ -2092,7 +2092,7 @@ if (isset($_POST['action'])){
         SET CANCELLED = "Y" 
         WHERE ID = "'.$_POST["id"].'" AND CANCELLED = "N" ';
 
-      echo $query;
+      //echo $query;
       
       $result = mysqli_query($connect, $query );
 
@@ -2106,7 +2106,7 @@ if (isset($_POST['action'])){
         SET CANCELLED = "Y" 
         WHERE ID = "'.$_POST["id"].'" AND CANCELLED = "N" ';
 
-      echo $query;
+      //echo $query;
       
       $result = mysqli_query($connect, $query );
 
@@ -2120,7 +2120,7 @@ if (isset($_POST['action'])){
         SET CANCELLED = "Y" 
         WHERE ID = "'.$_POST["id"].'" AND CANCELLED = "N" ';
 
-      echo $query;
+      //echo $query;
       
       $result = mysqli_query($connect, $query );
 
