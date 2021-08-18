@@ -34,9 +34,6 @@ session_start();
   <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
   <link rel="icon" href="../img/dolelogogs.png">
   <script type="text/javascript" src = "../js/date_time.js"></script>
-  <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
-      <!--JS FOR EMPLOYEE ACTIONS -->
-      <script type="text/javascript" src="applicant_leave_detail.js"></script>
 
 </head>
 
@@ -170,365 +167,32 @@ session_start();
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
-                    <!-- Page Heading -->
-
-
-                    <!-- Content Row -->
-                    <div class="row">
-                        <!-- Employee ID database-->
-                        <input type="hidden" name="empID" id="empID" value="<?php echo $_GET['id']; ?>">
-                        <input type="hidden" name="loginID" id="loginID" value="<?php echo $_SESSION['usernameid']; ?>">
-                        <!-- Pending Requests Card Example -->
-
+                  <form method="post" id="add_name">
+                    <div >
+                      
+                      <h4 class="modal-title">Add Details</h4>
                     </div>
+                    <div >
+                      <div class="form-group">
+                            <input type="text" name="name" id="name" class="form-control" placeholder="Enter your name" />
+                          </div>
+                          <div class="table-responsive">
+                            <table class="table" id="dynamic_field">
 
-                    <!-- Content Row -->
-
-                    <div class="row">
-
-                                <!-- Area Chart -->
-                                <div class="col-xl-12 col-lg-7">
-                                    <div class="card shadow mb-4">
-                                    
-                                        <!-- Card Header - Dropdown -->
-                                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                            <h6 class="m-0 font-weight-bold text-primary">I. Personal Data</h6>
-                                        </div>
-                                        <!-- Card Body -->
-                                        <div class="card-body">
-                                            <div class="col-md-12">
-                                            </div>
-                                            <!-- Grid row -->
-                                            <div class="form-row">
-                                                <!-- Default input -->
-                                                <div class="form-group col-md-4">
-                                                <label for="inputAddress">Office</label>
-                                                <input type="text" class="form-control" id="office" placeholder="Ex. CBTZ200116" disabled>
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                <label for="inputAddress">Division</label>
-                                                <input  type="text" class="form-control" id="division" placeholder="Ex. Labor Employment Officer I" disabled>
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                              <hr>
-                                              
-                                            </div>
-                                            <!-- Grid row -->
-                                            <div class="form-row">
-                                                <!-- Default input -->
-                                                <div class="form-group col-md-3">
-                                                <label for="inputEmail4">First Name</label>
-                                                <input type="text" name="firstname" id = "firstname"  placeholder="Ex. Enrico" class="form-control validate" disabled>
-                                                </div>
-                                                <div class="form-group col-md-3">
-                                                <label for="inputEmail4">Middle Name</label>
-                                                <input type="text" name="middlename" id = "middlename"  placeholder="Ex. Santos" class="form-control validate" disabled>
-                                                </div>
-                                                <div class="form-group col-md-3">
-                                                <label for="inputEmail4">Last Name</label>
-                                                <input type="text" name="lastname" id = "lastname"  placeholder="Ex. Cruz" class="form-control validate" disabled>
-                                                </div>
-                                                <div class="form-group col-md-1">
-                                                <label for="inputEmail4">Extension</label>
-                                                <input type="text" name="extension" id = "extension"  placeholder="Ex. Jr, II, III" class="form-control validate" disabled>
-                                                </div>
-                                              
-                                            </div>
-                                            <div class="form-row">
-                                                <!-- Default input -->
-                                                <div class="form-group col-md-3">
-                                                <label for="inputEmail4">Date of Filing</label>
-                                                <input type="date" name="dateoffilling" id = "dateoffilling"   value="<?php echo date("Y-m-d"); ?>" class="form-control validate" >  
-                                              </div>                                  
-                                            </div>
-                                            <div class="form-row">
-                                                <!-- Default input -->
-                                                <div class="form-group col-md-3">
-                                                <label for="inputEmail4">Salary</label>
-                                                <input type="text" name="salary" id = "salary" class="form-control validate" >
-                                                </div>                                  
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <!-- Area Chart -->
-                                <div class="col-xl-12 col-lg-7">
-                                    <div class="card shadow mb-4">
-                                    <span id="message"></span>
-                                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                            <!--<h6 class="m-0 font-weight-bold text-primary">Service Record</h6> -->
-                                           
-                                            <!--<div>
-                                              <button class="btn btn-info generateReport" name='generateReport' id= "generateReport" > Generate Excel File </button>
-                                              <a data-toggle="modal" data-target="#modalServiceRecordForm" ><button class="btn btn-success"  > Add Service Record </button></a>
-                                             
-                                            </div> -->
-                                        </div>
-
-                                        <!-- Card Body -->
-                                        <div class="card-body">
-
-
-                                            <div class="form-row">
-                                                <!-- Default input -->
-                                                <div class="form-group col-md-4">
-                                                <label for="inputAddress"><strong>Leave Type Application</strong></label>
-                                                <select class="custom-select my-1 mr-sm-2" onchange="leaveChange();" id="leave_type" name="leave_type" >
-                                                    <option value="NA" selected>Please Select</option>
-                                                    <option value="VACATION">VACATION LEAVE</option>
-                                                    <option value="FORCED">MANDATORY/FORCED LEAVE</option>
-                                                    <option value="SICK">SICK LEAVE</option>
-                                                    <option value="MATERNITY">MATERNITY LEAVE</option>
-                                                    <option value="SPECIALPRIVILEGE">SPECIAL PRIVILEGE LEAVE</option>
-                                                    <option value="SOLOPARENT">SOLO PARENT LEAVE</option>
-                                                    <option value="STUDY">STUDY LEAVE</option>
-                                                    <option value="VAWC">10-DAY VAWC LEAVE</option>
-                                                    <option value="REHAB">REHABILITATION PRIVILEGE</option>
-                                                    <option value="WOMEN">SPECIAL LEAVE BENEFITS FOR WOMEN</option>
-                                                    <option value="EMERGENCY">SPECIAL EMERGENCY (CALAMITY) LEAVE</option>
-                                                    <option value="ADOPTION">ADOPTION LEAVE</option>
-                                                    <option value="MONETIZATION">MONETIZATION OF LEAVE CREDITS</option>
-                                                    <option value="TERMINAL">TERMINAL LEAVE</option>
-                                                  <!-- <option disabled>_________</option>
-                                                    <option value="CTO">COMPENSATORY TIME-OFF</option>
-                                                    <option value="COMTO">COMPASSIONATE TIME-OFF</option>-->
-                                                </select>
-
-                                                </div>
-                
-                                            </div>
-
-                                            <div class="form-row">
-                                                <!-- Default input -->
-                                                <div class="form-group col-md-4">
-                                                <label for="inputAddress">Number of Working Days Applied for</label>
-                                                <input type="text" class="form-control" id="workingdays"  >
-                                                </div>
-                
-                                            </div>
-                                            <div class="form-row">
-                                              <div class="form-group col-md-4">
-                                                  <label for="inputAddress">Inclusive Dates</label>
-                                                  
-                                                 <!-- <input  type="text" class="form-control" id="inclusivedate"  > -->
-                                                 <div class="table-responsive">
-                                                    <table class="table" id="dynamic_field">
-
-                                                    </table>
-                                                  </div>
-                                                </div> 
-                                            </div>
-                                            <!-- Grid row -->
-                                            <div class="form-row">
-                                              <!-- Default input -->
-                                              <div class="form-group col-md-10">
-                                                <label for="inputCity"><strong>Details of Leave:</strong></label>
-
-                                              </div>
-                                            </div>
-                                            <!--PART 1-->
-                                            <div class="form-row">
-                                                <div class="form-group col-md-4">
-                                                  <label for="inputAddress">In case of Vacation/Special Privilege Leave:</label>
-                                                </div> 
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group col-md-4">
-                                                <div class="form-check">
-                                                  <input class="form-check-input" type="radio" name="partone" id="partone1" disabled>
-                                                  <label class="form-check-label" for="partone1">
-                                                    Within the Philippines
-                                                  </label> 
-                                                   <input  type="text" class="form-control" id="partone1Details" disabled>
-                                                </div>
-                                                <div class="form-check">
-                                                  <input class="form-check-input" type="radio" name="partone" id="partone2" disabled>
-                                                  <label class="form-check-label" for="partone2">
-                                                    Abroad (Specify)
-                                                  </label>
-                                                  <input type="text" class="form-control" id="partone2Details"  disabled>
-                                                </div>
-                                                </div> 
-
-                                            </div>
-
-                                            <!--PART 2-->
-                                            <div class="form-row">
-                                                <div class="form-group col-md-4">
-                                                </div> 
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group col-md-4">
-                                                  <label for="inputAddress">In case of Sick Leave:</label>
-                                                </div> 
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group col-md-4">
-                                                <div class="form-check">
-                                                  <input class="form-check-input" type="radio" name="parttwo" id="parttwo1" disabled>
-                                                  <label class="form-check-label" for="parttwo1">
-                                                    In Hospital (Specify Illness)
-                                                  </label> 
-                                                   <input  type="text" class="form-control" id="parttwo1details" disabled >
-                                                </div>
-                                                <div class="form-check">
-                                                  <input class="form-check-input" type="radio" name="parttwo" id="parttwo2" disabled>
-                                                  <label class="form-check-label" for="parttwo2">
-                                                    Out Patient (Specify Illness)
-                                                  </label>
-                                                  <input  type="text" class="form-control" id="parttwo2details" disabled>
-                                                </div>
-                                                </div> 
-                                            </div>
-
-                                            <!--PART 3-->
-                                            <div class="form-row">
-                                                <div class="form-group col-md-4">
-                                                </div> 
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group col-md-4">
-                                                  <label for="inputAddress">In case of Special Leave Benefits for Women:</label>
-                                                </div> 
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group col-md-4">
-                                                <div class="form-check">
-                                                  <input class="form-check-input" type="radio" name="partthree" id="partthree1" disabled>
-                                                  <label class="form-check-label" for="partthree1">
-                                                    (Specify Illness)
-                                                  </label> 
-                                                   <input  type="text" class="form-control" id="partthree1details" disabled>
-                                                </div>
-                                          
-                                                </div> 
-                                            </div>
-
-
-                                             <!--PART 4-->
-                                             <div class="form-row">
-                                                <div class="form-group col-md-4">
-                                                </div> 
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group col-md-4">
-                                                  <label for="inputAddress">In case of Study Leave:</label>
-                                                </div> 
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group col-md-4">
-                                                <div class="form-check">
-                                                  <input class="form-check-input" type="radio" name="partfour" id="partfour1" disabled>
-                                                  <label class="form-check-label" for="partfour1">
-                                                    Completion of Master's Degree
-                                                  </label> 
-                                                
-                                                </div>
-                                                <div class="form-check">
-                                                  <input class="form-check-input" type="radio" name="partfour" id="partfour2" disabled>
-                                                  <label class="form-check-label" for="partfour2">
-                                                    BAR/Board Examination Review
-                                                  </label>
-                                                 
-                                                </div>
-                                                </div> 
-                                            </div>
-
-                                             <!--PART 5-->
-                                             <div class="form-row">
-                                                <div class="form-group col-md-4">
-                                                </div> 
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group col-md-4">
-                                                  <label for="inputAddress">Other Purpose:</label>
-                                                </div> 
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group col-md-4">
-                                                <div class="form-check">
-                                                  <input class="form-check-input" type="radio" name="partfive" id="partfive1" disabled>
-                                                  <label class="form-check-label" for="partfive1">
-                                                    Monetization of Leave Credits
-                                                  </label> 
-                                                
-                                                </div>
-                                                <div class="form-check">
-                                                  <input class="form-check-input" type="radio" name="partfive" id="partfive2" disabled>
-                                                  <label class="form-check-label" for="partfive2">
-                                                    Terminal Leave
-                                                  </label>
-                                                 
-                                                </div>
-                                                </div> 
-                                            </div>
-
-
-                                            <!--PART 6-->
-                                            <div class="form-row">
-                                              <div class="form-group col-md-4">
-                                              </div> 
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group col-md-4">
-                                                  <label for="inputAddress">Commutation:</label>
-                                                </div> 
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group col-md-4">
-                                                <div class="form-check">
-                                                  <input class="form-check-input" type="radio" name="partsix" id="partsix1">
-                                                  <label class="form-check-label" for="partsix1">
-                                                    Not Requested
-                                                  </label> 
-                                                </div>
-                                                <div class="form-check">
-                                                  <input class="form-check-input" type="radio" name="partsix" id="partsix2" >
-                                                  <label class="form-check-label" for="partsix2">
-                                                    Requested
-                                                  </label>
-                                                </div>
-                                                </div> 
-                                            </div>
-
-
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- END OF TAB CONTENT -->
-                            </div>
-                        </div>
-
-
-
-
-                        <!-- UPDATE OR CANCEL SECTION -->
-
-                        <div class="col-xl-12 col-lg-7">
-                            <div class="card shadow mb-4">                                
-                                <!-- Card Body -->                               
-                                    <div class="col-md-12">
-                                       <table class=" table">  
-                                            <tr>
-                                                <td style="width: 100%;"  colspan="2" style = "align: left"><button  style="width: 100%;" class="btn btn-success" id = "cancel_sr">     Submit  </button></td>                                               
-                                            </tr>  
-                                            <tr>
-                                           
-                                                <td style="width: 100%;"  colspan="2" style = "align: left"><button  style="width: 100%;" class="btn btn-info" id = "cancel_sr">     Close  </button></td>                                               
-                                            </tr>  
-                                      </table> 
-                                    </div>                        
-                            </div>
-                        </div> 
+                            </table>
+                          </div>
                     </div>
+                    <div >
+                      <input type="hidden" name="hidden_id" id="hidden_id" />
+                      <input type="hidden" name="action" id="action" value="add_leave" />
+                      <input type="submit" name="submit" id="submit" class="btn btn-info" value="Submit" />
+                    </div>
+                  </form>
+
                 </div>
                 <!-- /.container-fluid -->
-            </div>
+              </div>
+          </div>
             </div>
             <!-- End of Main Content -->
 
@@ -554,165 +218,9 @@ session_start();
     </a>
 
 
-    <!-- UPDATE SERVICE RECORD FORM -->
-    <div class="modal fade" id="modalUpdateServiceRecordForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header text-center">
-            <h4 class="modal-title w-100 font-weight-bold" id="modal_title">Update Service Record</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body mx-3">
 
 
-            <div class="md-form mb-5">
-              <input type="hidden" name="srid" id = "srid" class="form-control validate" required> 
-              <label data-error="wrong" data-success="right" for="form34">Service From</label>
-              <input type="date" name="service_from_update" id = "service_from_update" class="form-control validate" required>
-           
-            </div>
-            <div class="md-form mb-5">
-            
-              <label data-error="wrong" data-success="right" for="form34">Service To</label>
-              <input type="date" name="service_to_update" id = "service_to_update" class="form-control validate" required>
-           
-            </div>
-
-            <div class="md-form mb-5">
-       
-              <label data-error="wrong" data-success="right" for="form29">Designation</label>
-              <input type="text" style="text-transform: uppercase;" name="designation_update" id = "designation_update" class="form-control validate" required>
-             
-            </div>
-            <div class="md-form mb-5">
-       
-              <label data-error="wrong" data-success="right" for="form29">Status</label>
-              <input type="text" style="text-transform: uppercase;" name="status_update" id = "status_update" class="form-control validate" required>
-             
-            </div>
-            <div class="md-form mb-5">
-              <label data-error="wrong" data-success="right" for="form29">Salary</label>
-              <input type="text" style="text-transform: uppercase;" name="salary_update" id = "salary_update" class="form-control validate" required>
-            </div>
-            <div class="md-form mb-5">
-              <label data-error="wrong" data-success="right" for="form29">Office</label>
-              <input type="text" style="text-transform: uppercase;" name="office_update" id = "office_update" class="form-control validate" required>
-            </div>
-            <div class="md-form mb-5">
-              <label data-error="wrong" data-success="right" for="form29">Branch</label>
-              <input type="text" style="text-transform: uppercase;" name="branch_update" id = "branch_update" class="form-control validate" required>
-            </div>
-            <div class="md-form mb-5">
-              <label data-error="wrong" data-success="right" for="form29">ABS</label>
-              <input type="text" style="text-transform: uppercase;" name="abs_update" id = "abs_update" class="form-control validate" required>
-            </div>
-            <div class="md-form mb-5">
-              <label data-error="wrong" data-success="right" for="form29">Separation Date</label>
-              <input type="date" name="separation_date_update" id = "separation_date_update" class="form-control validate" required>
-            </div>
-            <div class="md-form mb-5">
-              <label data-error="wrong" data-success="right" for="form29">Amount Received</label>
-              <input type="text" style="text-transform: uppercase;" name="amount_received_update" id = "amount_received_update" class="form-control validate" required>
-            </div>
-            <div class="md-form mb-5">
-              <label data-error="wrong" data-success="right" for="form29">Details</label>
-              <!--<input type="text" name="details_update" id = "details_update" class="form-control validate" required>-->
-              <textarea style="text-transform: uppercase;" class="form-control" id="details_update" name="details_update">Please input details
-              </textarea>
-            </div>
-
-            <div class="modal-footer d-flex justify-content-center">
-          
-              <button class="btn btn-primary" id = "submit_update_service_record">Update data</button>
-              <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-
-    <!-- ADD SERVICE RECORD FORM -->
-    <div class="modal fade" id="modalServiceRecordForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header text-center">
-            <h4 class="modal-title w-100 font-weight-bold" id="modal_title">Add Service Record</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body mx-3">
-
-
-            <div class="md-form mb-5">
-           
-              <label data-error="wrong" data-success="right" for="form34">Service From</label>
-              <input type="date" name="service_from" id = "service_from" class="form-control validate" required>
-           
-            </div>
-            <div class="md-form mb-5">
-            
-              <label data-error="wrong" data-success="right" for="form34">Service To</label>
-              <input type="date" name="service_to" id = "service_to" class="form-control validate" required>
-           
-            </div>
-
-            <div class="md-form mb-5">
-       
-              <label data-error="wrong" data-success="right" for="form29">Designation</label>
-              <input type="text" style="text-transform: uppercase;" name="designation" id = "designation" class="form-control validate"  required>
-             
-            </div>
-            <div class="md-form mb-5">
-       
-              <label data-error="wrong" data-success="right" for="form29">Status</label>
-              <input type="text" style="text-transform: uppercase;" name="status" id = "status" class="form-control validate" required>
-             
-            </div>
-            <div class="md-form mb-5">
-              <label data-error="wrong" data-success="right" for="form29">Salary</label>
-              <input type="text" style="text-transform: uppercase;" name="salary" id = "salary" class="form-control validate" required>
-            </div>
-            <div class="md-form mb-5">
-              <label data-error="wrong" data-success="right" for="form29">Office</label>
-              <input type="text" style="text-transform: uppercase;" name="office" id = "office" class="form-control validate" required>
-            </div>
-            <div class="md-form mb-5">
-              <label data-error="wrong" data-success="right" for="form29">Branch</label>
-              <input type="text" style="text-transform: uppercase;" name="branch" id = "branch" class="form-control validate" required>
-            </div>
-            <div class="md-form mb-5">
-              <label data-error="wrong" data-success="right" for="form29">ABS</label>
-              <input type="text" style="text-transform: uppercase;" name="abs" id = "abs" class="form-control validate" required>
-            </div>
-            <div class="md-form mb-5">
-              <label data-error="wrong" data-success="right" for="form29">Separation Date</label>
-              <input type="date" name="separation_date" id = "separation_date" class="form-control validate" required>
-            </div>
-            <div class="md-form mb-5">
-              <label data-error="wrong" data-success="right" for="form29">Amount Received</label>
-              <input type="text" style="text-transform: uppercase;" name="amount_received" id = "amount_received" class="form-control validate" required>
-            </div>
-            <div class="md-form mb-5">
-              <label data-error="wrong" data-success="right" for="form29">Details</label>
-              <!--<input type="text" name="details" id = "details" class="form-control validate" required>-->
-              <textarea class="form-control" style="text-transform: uppercase;" placeholder="Provide Details.." id="details" name="details"  >
-              </textarea>
-            </div>
-
-            <div class="modal-footer d-flex justify-content-center">
-          
-            <button class="btn btn-primary" id = "add_service_record">Add data</button>
-            <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+   
 
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -751,7 +259,8 @@ session_start();
     <!-- Page level custom scripts -->
     <script src="../assets/js/demo/datatables-demo.js"></script>
     
-
+    <!--JS FOR EMPLOYEE ACTIONS -->
+    <script type="text/javascript" src="applicant_leave_detail.js"></script>
 
     
 
