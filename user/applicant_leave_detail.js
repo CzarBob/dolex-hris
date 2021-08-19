@@ -63,7 +63,7 @@ function add_dynamic_input_field(count)
         button = '<button type="button" name="add_more" id="add_more" class="btn btn-success btn-xs">+</button>';
     }
     output = '<tr id="row'+count+'">';
-    output += '<td><input type="text" name="programming_languages[]" placeholder="Add Programming Languages" class="form-control name_list" /></td>';
+    output += '<td><input type="date" name="inclusive_date[]"  class="form-control name_list" /></td>';
     output += '<td align="center">'+button+'</td></tr>';
     $('#dynamic_field').append(output);
 }
@@ -119,7 +119,7 @@ $('#add_name').on('submit', function(event){
                 {
                     alert("Data Edited");
                 }
-                add_dynamic_input_field(1);
+                add_dynamic_input_field(0);
                 //load_data();
                 $('#add_name')[0].reset();
                 $('#dynamic_field_modal').modal('hide');

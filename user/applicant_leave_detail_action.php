@@ -1,6 +1,6 @@
 <?php 
 //session_start();
-include "dbConnection.php";
+include "../dbConnection.php";
 $columns = array('process', 'rating','fullname', 'email', 'comment',  'date_submitted');
 session_start();
 date_default_timezone_set('Asia/Manila');
@@ -225,28 +225,29 @@ if (isset($_POST['action'])){
 
   if (isset($_POST['action'])){
     if ($_POST['action'] == 'add_leave'){
-      $programming_languages = implode(",", $_POST["programming_languages"]);
-      $data = array(
+      $inclusive_date = implode(",", $_POST["inclusive_date"]);
+      $empid  = $_POST['empID'];
+
+
+      //var_dump($inclusive_date);
+      /*$data = array(
         ':name'						=>	$_POST["name"],
         ':programming_languages'	=>	$programming_languages
       );
-      $query = '';
-      if($_POST["action"] == "insert")
-      {
-        $query = "INSERT INTO tbl_name (name, programming_languages) VALUES (:name, :programming_languages)";
-      }
-      if($_POST["action"] == "edit")
-      {
-        $query = "
-        UPDATE tbl_name 
-        SET name = :name, 
-        programming_languages = :programming_languages 
-        WHERE id = '".$_POST['hidden_id']."'
-        ";
-      }
-    
-      $statement = $connect->prepare($query);
-      $statement->execute($data);
+      $query = '';*/
+        //$query = "INSERT INTO tbl_name (name, programming_languages) VALUES (:name, :programming_languages)";
+
+        $que = 'INSERT INTO `tbl_leave` SET 
+        EMPID =  "'.$empid.'",
+        INCLUSIVEDATE =  "'.$inclusive_date.'"
+       
+        
+        '; 
+
+        //var_dump($que);
+        $result = mysqli_query($connect,$que); 
+
+
     }
   }
 
