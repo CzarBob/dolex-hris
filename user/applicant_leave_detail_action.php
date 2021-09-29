@@ -197,7 +197,7 @@ if (isset($_POST['action'])){
         AMOUNTRECEIVED =  "'.$amount_received.'",
         DETAILS =  "'.$details.'",
         CANCELLED = "N",
-        CREATEDBY = "'.$usernameid.'",
+
         CREATEDDATETIME = "'.$dateAdded.'"
         
         '; 
@@ -228,6 +228,12 @@ if (isset($_POST['action'])){
       $inclusive_date = implode(",", $_POST["inclusive_date"]);
       $empid  = $_POST['empID'];
 
+      $dateoffilling =  mysqli_real_escape_string($connect,strtoupper($_POST['dateoffilling']));
+      $salary =  mysqli_real_escape_string($connect,strtoupper($_POST['salary']));
+      $leave_type =  mysqli_real_escape_string($connect,strtoupper($_POST['leave_type']));
+      $workingdays =  mysqli_real_escape_string($connect,strtoupper($_POST['workingdays']));
+
+
 
       //var_dump($inclusive_date);
       /*$data = array(
@@ -239,13 +245,32 @@ if (isset($_POST['action'])){
 
         $que = 'INSERT INTO `tbl_leave` SET 
         EMPID =  "'.$empid.'",
+        LEAVE_TYPE =  "'.$leave_type.'",
+        DATEOFFILLING =  "'.$dateoffilling.'",
+        SALARY =  "'.$salary.'",
+        WORKINGDAYS =  "'.$workingdays.'",
         INCLUSIVEDATE =  "'.$inclusive_date.'"
        
         
         '; 
 
-        //var_dump($que);
+        var_dump($que);
         $result = mysqli_query($connect,$que); 
+
+
+
+        /*
+        if ($flag){
+          $message_final = $message;
+        } else {
+          $message_final = $message_success;
+        }
+      
+        $output = array(
+        'status'    => $message_final
+        );
+
+        echo json_encode($output);*/
 
 
     }

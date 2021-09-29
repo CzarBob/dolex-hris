@@ -86,21 +86,38 @@ $(document).ready(function(){
 });
 
 $('#add_name').on('submit', function(event){
+    //alert('etst');
     event.preventDefault();
-    if($('#name').val() == '')
-    {
-        alert("Enter Your Name");
-        return false;
+    var dataArr = [];
+
+    var leave_type          = $('#leave_type').val();
+    var workingdays        = $('#workingdays').val();
+
+    var inclusive_date = document.getElementsByName('inclusive_date[]');
+
+    for(key=0; key < inclusive_date.length; key++)  {
+
+        dataArr.push(inclusive_date[key].value);
     }
-    var total_languages = 0;
+    var dataArr_joined = dataArr.join();
+    var messageValidate = "Confirm "+leave_type+" leave on inclusive day/s "+dataArr_joined+" ?";
+    if (confirm(messageValidate) == true) {
+       
+    } else {
+       
+    }
+    
+
+/*
+    var total_dates = 0;
     $('.name_list').each(function(){
         if($(this).val() != '')
         {
-            total_languages = total_languages + 1;
+            total_dates = total_dates + 1;
         }
     });
 
-    if(total_languages > 0)
+    if(total_dates > 0)
     {
         var form_data = $(this).serialize();
 
@@ -114,22 +131,23 @@ $('#add_name').on('submit', function(event){
                 if(action == 'add_leave')
                 {
                     alert("Data Inserted");
+
                 }
                 if(action == 'edit')
                 {
                     alert("Data Edited");
                 }
                 add_dynamic_input_field(0);
-                //load_data();
+                
                 $('#add_name')[0].reset();
-                $('#dynamic_field_modal').modal('hide');
+                //$('#dynamic_field_modal').modal('hide');
             }
         });
     }
     else
     {
-        alert("Please Enter at least one programming languages");
-    }
+        alert("Please provide inclusive dates for leave");
+    }*/
 });
 
 

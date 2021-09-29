@@ -197,15 +197,13 @@ session_start();
                           <!-- Employee ID database-->
                           <input type="hidden" name="empID" id="empID" value="<?php echo $_GET['id']; ?>">
                           <input type="hidden" name="loginID" id="loginID" value="<?php echo $_SESSION['usernameid']; ?>">
+                          <input type="hidden" name="action" id="action" value="add_leave" />
                           <!-- Pending Requests Card Example -->
-
                       </div>
 
-
-                      <!-- Content Row -->
+                       <!-- Content Row -->
 
                       <div class="row">
-
                           <!-- Area Chart -->
                           <div class="col-xl-12 col-lg-7">
                               <div class="card shadow mb-4">
@@ -274,7 +272,7 @@ session_start();
                           </div>
 
 
-                          <!-- Area Chart -->
+
                           <div class="col-xl-12 col-lg-7">
                               <div class="card shadow mb-4">
                                 <span id="message"></span>
@@ -325,8 +323,9 @@ session_start();
                                           <!-- Default input -->
                                           <div class="form-group col-md-4">
                                           <label for="inputAddress">Number of Working Days Applied for</label>
-                                          <input type="text" class="form-control" id="workingdays"  >
+                                          <input type="text" class="form-control validate" name="workingdays" id="workingdays"  >
                                           </div>
+
 
                                       </div>
                                       <div class="form-row">
@@ -367,14 +366,14 @@ session_start();
                                       <div class="form-row">
                                           <div class="form-group col-md-4">
                                           <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="partone" id="partone1" disabled>
+                                            <input class="form-check-input" type="radio" name="partone" id="partone1" value="PH" disabled>
                                             <label class="form-check-label" for="partone1">
                                               Within the Philippines
                                             </label> 
                                             <input  type="text" class="form-control" id="partone1Details" disabled>
                                           </div>
                                           <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="partone" id="partone2" disabled>
+                                            <input class="form-check-input" type="radio" name="partone" id="partone2" value="ABROAD"  disabled>
                                             <label class="form-check-label" for="partone2">
                                               Abroad (Specify)
                                             </label>
@@ -397,14 +396,14 @@ session_start();
                                       <div class="form-row">
                                           <div class="form-group col-md-4">
                                           <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="parttwo" id="parttwo1" disabled>
+                                            <input class="form-check-input" type="radio" name="parttwo" id="parttwo1" value = "IPD" disabled>
                                             <label class="form-check-label" for="parttwo1">
                                               In Hospital (Specify Illness)
                                             </label> 
                                             <input  type="text" class="form-control" id="parttwo1details" disabled >
                                           </div>
                                           <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="parttwo" id="parttwo2" disabled>
+                                            <input class="form-check-input" type="radio" name="parttwo" id="parttwo2"  value = "OPD" disabled>
                                             <label class="form-check-label" for="parttwo2">
                                               Out Patient (Specify Illness)
                                             </label>
@@ -426,7 +425,7 @@ session_start();
                                       <div class="form-row">
                                           <div class="form-group col-md-4">
                                           <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="partthree" id="partthree1" disabled>
+                                            <input class="form-check-input" type="radio" name="partthree" id="partthree1" value="SLWOMEN" disabled>
                                             <label class="form-check-label" for="partthree1">
                                               (Specify Illness)
                                             </label> 
@@ -450,14 +449,14 @@ session_start();
                                       <div class="form-row">
                                           <div class="form-group col-md-4">
                                           <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="partfour" id="partfour1" disabled>
+                                            <input class="form-check-input" type="radio" name="partfour" id="partfour1" value="MASTERS" disabled>
                                             <label class="form-check-label" for="partfour1">
                                               Completion of Master's Degree
                                             </label> 
                                           
                                           </div>
                                           <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="partfour" id="partfour2" disabled>
+                                            <input class="form-check-input" type="radio" name="partfour" id="partfour2" value="EXAM" disabled>
                                             <label class="form-check-label" for="partfour2">
                                               BAR/Board Examination Review
                                             </label>
@@ -479,14 +478,14 @@ session_start();
                                       <div class="form-row">
                                           <div class="form-group col-md-4">
                                           <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="partfive" id="partfive1" disabled>
+                                            <input class="form-check-input" type="radio" name="partfive" id="partfive1" value="MONETIZATION" disabled>
                                             <label class="form-check-label" for="partfive1">
                                               Monetization of Leave Credits
                                             </label> 
                                           
                                           </div>
                                           <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="partfive" id="partfive2" disabled>
+                                            <input class="form-check-input" type="radio" name="partfive" id="partfive2"  value="TERMINAL"  disabled>
                                             <label class="form-check-label" for="partfive2">
                                               Terminal Leave
                                             </label>
@@ -509,13 +508,13 @@ session_start();
                                       <div class="form-row">
                                           <div class="form-group col-md-4">
                                           <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="partsix" id="partsix1">
+                                            <input class="form-check-input" type="radio" name="partsix" id="partsix1" value="NOTREQUESTED">
                                             <label class="form-check-label" for="partsix1">
                                               Not Requested
                                             </label> 
                                           </div>
                                           <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="partsix" id="partsix2" >
+                                            <input class="form-check-input" type="radio" name="partsix" id="partsix2" value="REQUESTED">
                                             <label class="form-check-label" for="partsix2">
                                               Requested
                                             </label>
@@ -528,46 +527,40 @@ session_start();
                                   </div>
                               </div>
                           </div>
-                          <!-- END OF TAB CONTENT -->
-                          </div>
-                          </div>
 
-
-
-
-                            <!-- UPDATE OR CANCEL SECTION -->
-                            <div class="col-xl-12 col-lg-7">
-                              <div class="card shadow mb-4">                                
-                              <!-- Card Body -->    
-                              <input type="hidden" name="hidden_id" id="hidden_id" />
-                              <input type="hidden" name="empID" id="empID" value="<?php echo $_GET['id']; ?>">
-                              <input type="hidden" name="action" id="action" value="add_leave" />                           
-                                  <div class="col-md-12">
-                                    <table class=" table">  
-                                          <tr>
-                                              <td style="width: 100%;"  colspan="2" style = "align: left"><button  type="submit" name="submit" style="width: 100%;" class="btn btn-success" id = "submit">     Submit  </button></td>    
-                                                                                         
-                                          </tr>  
-                                          <tr>
-                                        
-                                              <td style="width: 100%;"  colspan="2" style = "align: left"><button  style="width: 100%;" class="btn btn-info" id = "cancel_sr">     Close  </button></td>                                               
-                                          </tr>  
-                                    </table> 
-                                  </div>                        
-                              </div>
-                            </div> 
-                          </div>
-
-
-                    </form>
+                      </div>
+                   
                   
 
-                    
 
-
-                
-
-
+                      <!-- UPDATE OR CANCEL SECTION -->
+                      <div class="col-xl-12 col-lg-7">
+                        <div class="card shadow mb-4">
+                          
+                        
+                          <!--<input type="hidden" name="hidden_id" id="hidden_id" />
+                          <input type="hidden" name="empID" id="empID" value="<?php echo $_GET['id']; ?>">
+                          <input type="hidden" name="action" id="action" value="add_leave" />
+                          <input type="submit" name="submit" id="submit" class="btn btn-info" value="Submit" />-->
+                        <!-- Card Body -->    
+                        <input type="hidden" name="hidden_id" id="hidden_id" />
+                        <input type="hidden" name="empID" id="empID" value="<?php echo $_GET['id']; ?>">
+                        <input type="hidden" name="action" id="action" value="add_leave" />                           
+                            <div class="col-md-12">
+                              <table class=" table">  
+                                    <tr>
+                                        <td style="width: 100%;"  colspan="2" style = "align: left"><button  type="submit" name="submit" style="width: 100%;" class="btn btn-success" id = "submit">     Submit  </button></td>    
+                                                                                    
+                                    </tr>  
+                                    <tr>
+                                  
+                                        <td style="width: 100%;"  colspan="2" style = "align: left"><button  style="width: 100%;" class="btn btn-info" id = "cancel_sr">     Close  </button></td>                                               
+                                    </tr>  
+                              </table> 
+                            </div>                        
+                        </div>
+                      </div> <!-- END UPDATE OF CANCEL SECTION -->
+                    </form> <!-- END FORM-->
                 </div>
                 <!-- /.container-fluid -->
               </div>
