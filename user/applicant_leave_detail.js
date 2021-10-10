@@ -102,52 +102,50 @@ $('#add_name').on('submit', function(event){
     var dataArr_joined = dataArr.join();
     var messageValidate = "Confirm "+leave_type+" leave on inclusive day/s "+dataArr_joined+" ?";
     if (confirm(messageValidate) == true) {
-       
-    } else {
-       
-    }
-    
-
-/*
-    var total_dates = 0;
-    $('.name_list').each(function(){
-        if($(this).val() != '')
-        {
-            total_dates = total_dates + 1;
-        }
-    });
-
-    if(total_dates > 0)
-    {
-        var form_data = $(this).serialize();
-
-        var action = $('#action').val();
-        $.ajax({
-            url:"applicant_leave_detail_action.php",
-            method:"POST",
-            data:form_data,
-            success:function(data)
+        
+        var total_dates = 0;
+        $('.name_list').each(function(){
+            if($(this).val() != '')
             {
-                if(action == 'add_leave')
-                {
-                    alert("Data Inserted");
-
-                }
-                if(action == 'edit')
-                {
-                    alert("Data Edited");
-                }
-                add_dynamic_input_field(0);
-                
-                $('#add_name')[0].reset();
-                //$('#dynamic_field_modal').modal('hide');
+                total_dates = total_dates + 1;
             }
         });
-    }
-    else
-    {
-        alert("Please provide inclusive dates for leave");
-    }*/
+
+        if(total_dates > 0)
+        {
+            var form_data = $(this).serialize();
+
+            var action = $('#action').val();
+            $.ajax({
+                url:"applicant_leave_detail_action.php",
+                method:"POST",
+                data:form_data,
+                success:function(data)
+                {
+                    if(action == 'add_leave')
+                    {
+                        alert("Data Inserted");
+
+                    }
+                    if(action == 'edit')
+                    {
+                        alert("Data Edited");
+                    }
+                    add_dynamic_input_field(0);
+                    
+                    $('#add_name')[0].reset();
+                    //$('#dynamic_field_modal').modal('hide');
+                }
+            });
+        }
+        else
+        {
+            alert("Please provide inclusive dates for leave");
+        }
+    } 
+    
+
+
 });
 
 

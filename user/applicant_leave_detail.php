@@ -554,7 +554,7 @@ session_start();
                                     </tr>  
                                     <tr>
                                   
-                                        <td style="width: 100%;"  colspan="2" style = "align: left"><button  style="width: 100%;" class="btn btn-info" id = "cancel_sr">     Close  </button></td>                                               
+                                        <td style="width: 100%;"  colspan="2" style = "align: left"><button type="button" value="cancel"  style="width: 100%;" class="btn btn-info">     Close  </button></td>                                               
                                     </tr>  
                               </table> 
                             </div>                        
