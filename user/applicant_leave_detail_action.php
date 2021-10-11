@@ -245,11 +245,12 @@ if (isset($_POST['action'])){
 
         $que = 'INSERT INTO `tbl_leave` SET 
         EMPID =  "'.$empid.'",
-        LEAVE_TYPE =  "'.$leave_type.'",
+        LEAVETYPE =  "'.$leave_type.'",
         DATEOFFILLING =  "'.$dateoffilling.'",
         SALARY =  "'.$salary.'",
         WORKINGDAYS =  "'.$workingdays.'",
-        INCLUSIVEDATE =  "'.$inclusive_date.'"
+        INCLUSIVEDATE =  "'.$inclusive_date.'",
+        CANCELLED =  "N"
        
         
         '; 

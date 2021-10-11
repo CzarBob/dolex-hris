@@ -1,6 +1,6 @@
 <?php 
 //session_start();
-include "dbConnection.php";
+include "../dbConnection.php";
 $columns = array('process', 'rating','fullname', 'email', 'comment',  'date_submitted');
 session_start();
 date_default_timezone_set('Asia/Manila');
@@ -95,10 +95,13 @@ if (isset($_POST['action'])){
  
 
 
-/***if (isset($_POST['action'])){
-    if ($_POST['action'] == 'fetch_service_record'){
+if (isset($_POST['action'])){
+    if ($_POST['action'] == 'fetch_leave_data'){
 
-      $query = 'SELECT * FROM tbl_service_record   WHERE EMPID = "'.$_POST['employeeiddb'].'" AND CANCELLED = "N" ';
+      $query = 'SELECT tbl_leave.ID as ID,tbl_leave.DATEOFFILLING as DATEOFFILLING, tbl_employee.FIELDOFFICEID as FIELDOFFICEID, tbl_leave.LEAVETYPE as LEAVETYPE, tbl_employee.FIRSTNAME as FIRSTNAME, tbl_employee.LASTNAME as LASTNAME FROM `tbl_leave`
+      INNER JOIN tbl_employee ON tbl_leave.EMPID = tbl_employee.ID WHERE tbl_leave.CANCELLED = "N"';
+
+
 
       $result = mysqli_query($connect, $query );
       
@@ -107,28 +110,19 @@ if (isset($_POST['action'])){
         while($row = mysqli_fetch_array($result)){
         
           $sub_array = array();
-          $sub_array[] = $row["ID"];
-          $sub_array[] = $row["EMPID"];
-          $sub_array[] = $row["SERVICEFROM"];
-          $sub_array[] = $row["SERVICETO"];
-          $sub_array[] = $row["DESIGNATION"];
-          $sub_array[] = $row["STATUS"];
-          $sub_array[] = $row["SALARY"];
-          $sub_array[] = $row["OFFICE"];
-          $sub_array[] = $row["BRANCH"];
-          $sub_array[] = $row["ABS"];
-          $sub_array[] = $row["SEPARATIONDATE"];
-          $sub_array[] = $row["AMOUNTRECEIVED"];
-          $sub_array[] = $row["DETAILS"];
+          $sub_array[] = $row["DATEOFFILLING"];
+          $sub_array[] = $row["LEAVETYPE"];
+          $sub_array[] = $row["FIRSTNAME"];
+          $sub_array[] = $row["LASTNAME"];
           $sub_array[] = "
-          <button type='button' name='update_sr' class='btn btn-warning btn-sm update_sr'  data-id='".$row['ID']."'>View</button>
+          <button type='button' name='view_leave' class='btn btn-warning btn-sm view_leave'  data-id='".$row['ID']."'>View</button>
           <button type='button' name='delete_sr' class='btn btn-danger btn-sm delete_sr' data-id='".$row['ID']."'>Delete</button>";  
        
           $data[] = $sub_array;
         }
       }
       
-      
+      //var_dump($data);
       //$_SESSION['sr_date_dump'] = $data;
       
       //var_dump($_SESSION['query2']);
@@ -141,7 +135,7 @@ if (isset($_POST['action'])){
       
       echo json_encode($output);
     }
-  } */
+  } 
 
   if (isset($_POST['action'])){
     if ($_POST['action'] == 'fetch_pfo'){
