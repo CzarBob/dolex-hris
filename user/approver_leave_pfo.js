@@ -302,6 +302,94 @@
             
             }); 
 
+            // UPDATE PERSONAL DETAILS FORM
+        $(document).on('click', '.update_personal_details', function(){
+            var employeeiddb = document.getElementById("empID").value;
+            var id = document.getElementById("profileid").value;
+            $.ajax({
+                url:"view_employee_action",
+                method:"POST",
+                data:{
+                    id:id, 
+                    employeeiddb:employeeiddb, //THIS IS AN ID FROM tbl_employee
+                    action:'fetch_single_personal_details'
+
+                },
+                success:function(data){
+                    var values = $.parseJSON(data);
+
+                    //alert(data.data.office);
+                    $('#employeeidmain_update').val(values.data.employeeid);
+                    $('#hiddenid_emp').val(values.data.id);
+                    $('#firstname_update').val(values.data.firstname);
+                    $('#middlename_update').val(values.data.middlename);
+                    $('#lastname_update').val(values.data.lastname);
+                    $('#extension_update').val(values.data.extension);
+                    $('#position_update').val(values.data.position);
+                    $('#datehired_update').val(values.data.datehired);
+                    $('#username_update').val(values.data.username);
+                    $('#password_update').val(values.data.password);
+                    $('#confirmpassword_update').val(values.data.password);
+                    
+                    var officeValue =  values.data.office;
+                    $("#office_update").val(officeValue).change();
+                   
+                    var divisionValue =  values.data.division;
+                    $("#division_update").val(divisionValue).change();
+
+                    var genderValue =  values.data_profile.gender;
+
+                    if (genderValue == 'MALE'){
+                        $("#gender_update").val("MALE").change();
+                    } else if (genderValue == "") {
+                        $("#gender_update").val('NA').change();
+                    }
+                    
+                    var civilStatusValue =  values.data_profile.civilstatus;
+                    
+                    $("#civilstatus_update").val(civilStatusValue).change();
+
+                    $('#dobprofile_update').val(values.data_profile.dob);
+                    $('#placeofbirth_update').val(values.data_profile.placeofbirth);
+                    $('#height_update').val(values.data_profile.height);
+                    $('#weight_update').val(values.data_profile.weight);
+                    $('#gsisno_update').val(values.data_profile.gsisno);
+                    $('#pagibigno_update').val(values.data_profile.pagibigno);
+                    $('#phicno_update').val(values.data_profile.phicno);
+                    $('#sssno_update').val(values.data_profile.sssno);
+                    $('#tinno_update').val(values.data_profile.tinno);
+                    $('#agencyemployeeno_update').val(values.data_profile.agencyemployeeno);
+                    
+                    //alert(values.data_profile.dob);
+                    var citizenValueDB = values.data_profile.citizenship;
+                    
+                    $("#citizenship_update").val(citizenValueDB).change();
+                    if (citizenValueDB == 'dual'){
+                        $("#dualchoice_update").prop("disabled", false);
+                        var dualchoiceDB = values.data_profile.dualcitizen;
+                        $("#dualchoice_update").val(dualchoiceDB).change();
+                    } else {
+                        $("#dualchoice_update").prop("disabled", true);
+                    }
+                
+                   // $('#residentialaddress_update').val(values.data_profile.residentialaddress);
+                   // $('#permanentaddress_update').val(values.data_profile.permanentaddress);
+                    $('#telephoneno_update').val(values.data_profile.telephoneno);
+                    $('#mobileno_update').val(values.data_profile.mobileno);
+                    $('#emailprofile_update').val(values.data_profile.email);
+
+                   
+                    $('#modal_title').text('Edit Profile Data');
+                    $('#profile_action').val('submit_profile');
+                    $('#submit_button').val('Edit');
+
+                    $('#modalEditPersonalDetailsForm').modal('show');
+                        
+                }     
+            }); 
+
+        });
+
 
 
             
