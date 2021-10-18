@@ -257,14 +257,14 @@ session_start();
                                           <!-- Default input -->
                                           <div class="form-group col-md-3">
                                           <label for="inputEmail4">Date of Filing</label>
-                                          <input type="date" name="dateoffilling" id = "dateoffilling"   value="<?php echo date("Y-m-d"); ?>" class="form-control validate" >  
+                                          <input type="date" name="dateoffilling" id = "dateoffilling"   value="<?php echo date("Y-m-d"); ?>" class="form-control validate" disabled>  
                                         </div>                                  
                                       </div>
                                       <div class="form-row">
                                           <!-- Default input -->
                                           <div class="form-group col-md-3">
                                           <label for="inputEmail4">Salary</label>
-                                          <input type="text" name="salary" id = "salary" class="form-control validate" >
+                                          <input type="text" name="salary" id = "salary" class="form-control validate" disabled>
                                           </div>                                  
                                       </div>
                                   </div>
@@ -294,7 +294,7 @@ session_start();
                                           <!-- Default input -->
                                           <div class="form-group col-md-4">
                                           <label for="inputAddress"><strong>Leave Type Application</strong></label>
-                                          <select class="custom-select my-1 mr-sm-2" onchange="leaveChange();" id="leave_type" name="leave_type" >
+                                          <select class="custom-select my-1 mr-sm-2" onchange="leaveChange();" id="leave_type" name="leave_type" disabled>
                                               <option value="NA" selected>Please Select</option>
                                               <option value="VACATION">VACATION LEAVE</option>
                                               <option value="FORCED">MANDATORY/FORCED LEAVE</option>
@@ -323,7 +323,7 @@ session_start();
                                           <!-- Default input -->
                                           <div class="form-group col-md-4">
                                           <label for="inputAddress">Number of Working Days Applied for</label>
-                                          <input type="text" class="form-control validate" name="workingdays" id="workingdays"  >
+                                          <input type="text" class="form-control validate" name="workingdays" id="workingdays"  disabled>
                                           </div>
 
 
