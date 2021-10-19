@@ -530,10 +530,9 @@ session_start();
 
                       </div>
 
-
                       <div class="row">
-                          <div class="col-xl-6 col-lg-7">
-                              <div class="card shadow mb-6">
+                        <div class="col-xl-12 col-lg-12">
+                              <div class="card shadow mb-12">
                                 <span id="message"></span>
                                   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                          <!-- Card Header - Dropdown -->
@@ -563,10 +562,15 @@ session_start();
                               </div>
                           </div>
 
+                      </div>
+                      
+                      <br>
 
-                          <div class="col-xl-6 col-lg-7">
+                      <div class="row">
+
+                          <div class="col-xl-12 col-lg-7">
                               <div class="card shadow mb-6">
-                                <span id="message"></span>
+
                                   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                          <!-- Card Header - Dropdown -->
                                     <h6 class="m-0 font-weight-bold text-primary">IV. Leave Balance</h6>
@@ -576,23 +580,79 @@ session_start();
                                   <!-- Card Body -->
                                   <div class="card-body">
                                       <div class="form-group row">
-                                        <label for="inputEmail3" class="col-lg-4 col-form-label">Vacation Leave Credits</label>
-                                        <div class="col-sm-8">
+                                        <label for="inputEmail3" class="col-lg-2 col-form-label">Vacation Leave Credits</label>
+                                        <div class="col-sm-2">
                                           <input type="text" class="form-control" id="inputEmail3" disabled>
                                         </div>
                                       </div>
                                       <div class="form-group row">
-                                        <label for="inputEmail3" class="col-lg-4 col-form-label">Sick Leave Credits</label>
-                                        <div class="col-sm-8">
+                                        <label for="inputEmail3" class="col-lg-2 col-form-label">Sick Leave Credits</label>
+                                        <div class="col-sm-2">
                                           <input type="text" class="form-control" id="inputEmail3"  disabled>
                                         </div>
                                       </div>
                                   </div>
                               </div>
                           </div>
+
+                          
                       </div>
+
+                      <br>
+                      <div class="row">
+
+                        <div class="col-xl-12 col-lg-7">
+                            <div class="card shadow mb-6">
+
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                      <!-- Card Header - Dropdown -->
+                                  <h6 class="m-0 font-weight-bold text-primary">IV. Leave History</h6>
+                              
+                                </div>
+
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                <div class="card-body">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="leavehistory_data" width="100%" cellspacing="0">
+                                                                <thead class = "text-primary">
+                                                                    <tr>
+                                                                        <th data-column-id="work_date_from">DATE FROM</th>
+                                                                        <th data-column-id="work_date_to">DATE TO</th>
+                                                                        <th data-column-id="work_positon">POSTION</th>
+                                                                        <th data-column-id="work_company">COMPANY</th>
+                                                                        <th data-column-id="work_salary">MONTHLY SALARY</th>
+                                                                        <th data-column-id="work_salary_grade">SALARY GRADE (If Applicable)</th>
+                                                                        <th data-column-id="work_appointment_status">STATUS OF APPOINTMENT</th>
+                                                                        <th data-column-id="work_govt">GOV'T SERVICE</th>
+                                                                        <th >ACTION</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tfoot class = "text-primary">
+                                                                    <tr>
+                                                                        <th >DATE FROM</th>
+                                                                        <th >DATE TO</th>
+                                                                        <th >POSTION</th>
+                                                                        <th >COMPANY</th>
+                                                                        <th >MONTHLY SALARY</th>
+                                                                        <th >SALARY GRADE (If Applicable)</th>
+                                                                        <th >STATUS OF APPOINTMENT</th>
+                                                                        <th >GOV'T SERVICE</th>
+                                                                        <th >ACTION</th>
+                                                                    </tr>
+                                                                </tfoot>
+                                                            </table>
+                                                        </div>
+                                                </div>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+
+
                    
-                  
+                  <br>
 
 
                       <!-- UPDATE OR CANCEL SECTION -->
