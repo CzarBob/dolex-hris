@@ -15,7 +15,7 @@ date_default_timezone_set('Asia/Manila');
 $query = '';
 
 if (isset($_POST['action'])){
-  if ($_POST['action'] == 'fetch_single'){
+  if ($_POST['action'] == 'fetch_leave_application'){
     $query = 'SELECT 
     tbl_employee.EMPLOYEEID as EMPLOYEEID,
     tbl_employee.FIRSTNAME as FIRSTNAME,
@@ -40,7 +40,6 @@ if (isset($_POST['action'])){
         
         $sub_array = array();
 
-
           $sub_array['employeeid'] = $row['EMPLOYEEID'];
           $sub_array['firstname'] = $row['FIRSTNAME'];
           $sub_array['middlename'] = $row['MIDDLENAME'];
@@ -52,8 +51,6 @@ if (isset($_POST['action'])){
           $sub_array['slcredit'] = $row['SLCREDIT'];
           $sub_array['vlcredit'] = $row['VLCREDIT'];
 
-
-        
         $data[] = $sub_array;
         
       }

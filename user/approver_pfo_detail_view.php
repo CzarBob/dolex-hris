@@ -134,7 +134,6 @@ session_start();
 
                         <!-- Nav Item - Alerts -->
 
-
                         <!-- Nav Item - Messages -->
 
 
@@ -613,38 +612,37 @@ session_start();
                                 <!-- Card Body -->
                                 <div class="card-body">
                                 <div class="card-body">
-                                                        <div class="table-responsive">
-                                                            <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="leavehistory_data" width="100%" cellspacing="0">
-                                                                <thead class = "text-primary">
-                                                                    <tr>
-                                                                        <th data-column-id="work_date_from">DATE FROM</th>
-                                                                        <th data-column-id="work_date_to">DATE TO</th>
-                                                                        <th data-column-id="work_positon">POSTION</th>
-                                                                        <th data-column-id="work_company">COMPANY</th>
-                                                                        <th data-column-id="work_salary">MONTHLY SALARY</th>
-                                                                        <th data-column-id="work_salary_grade">SALARY GRADE (If Applicable)</th>
-                                                                        <th data-column-id="work_appointment_status">STATUS OF APPOINTMENT</th>
-                                                                        <th data-column-id="work_govt">GOV'T SERVICE</th>
-                                                                        <th >ACTION</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tfoot class = "text-primary">
-                                                                    <tr>
-                                                                        <th >DATE FROM</th>
-                                                                        <th >DATE TO</th>
-                                                                        <th >POSTION</th>
-                                                                        <th >COMPANY</th>
-                                                                        <th >MONTHLY SALARY</th>
-                                                                        <th >SALARY GRADE (If Applicable)</th>
-                                                                        <th >STATUS OF APPOINTMENT</th>
-                                                                        <th >GOV'T SERVICE</th>
-                                                                        <th >ACTION</th>
-                                                                    </tr>
-                                                                </tfoot>
-                                                            </table>
-                                                        </div>
-                                                </div>
-                                   
+                                          <div class="table-responsive">
+                                              <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="leavehistory_data" width="100%" cellspacing="0">
+                                                  <thead class = "text-primary">
+                                                      <tr>
+                                                          <th data-column-id="work_date_from">DATE FROM</th>
+                                                          <th data-column-id="work_date_to">DATE TO</th>
+                                                          <th data-column-id="work_positon">POSTION</th>
+                                                          <th data-column-id="work_company">COMPANY</th>
+                                                          <th data-column-id="work_salary">MONTHLY SALARY</th>
+                                                          <th data-column-id="work_salary_grade">SALARY GRADE (If Applicable)</th>
+                                                          <th data-column-id="work_appointment_status">STATUS OF APPOINTMENT</th>
+                                                          <th data-column-id="work_govt">GOV'T SERVICE</th>
+                                                          <th >ACTION</th>
+                                                      </tr>
+                                                  </thead>
+                                                  <tfoot class = "text-primary">
+                                                      <tr>
+                                                          <th >DATE FROM</th>
+                                                          <th >DATE TO</th>
+                                                          <th >POSTION</th>
+                                                          <th >COMPANY</th>
+                                                          <th >MONTHLY SALARY</th>
+                                                          <th >SALARY GRADE (If Applicable)</th>
+                                                          <th >STATUS OF APPOINTMENT</th>
+                                                          <th >GOV'T SERVICE</th>
+                                                          <th >ACTION</th>
+                                                      </tr>
+                                                  </tfoot>
+                                              </table>
+                                          </div>
+                                  </div>
                                 </div>
                             </div>
                         </div>
@@ -715,10 +713,6 @@ session_start();
     </a>
 
 
-
-
-   
-
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -757,7 +751,7 @@ session_start();
     <script src="../assets/js/demo/datatables-demo.js"></script>
     
     <!--JS FOR EMPLOYEE ACTIONS -->
-    <script type="text/javascript" src="applicant_leave_detail.js"></script>
+    <script type="text/javascript" src="approver_pfo_detail_view.js"></script>
 
     
 
