@@ -25,7 +25,7 @@ if (isset($_POST['action'])){
     tbl_employee.POSITION as POSITION,
     tbl_employee.USERNAME as USERNAME,
     tbl_employee.SLCREDIT as SLCREDIT,
-    tbl_employee.VLCREDIT as VLCREDIT,
+    tbl_employee.VLCREDIT as VLCREDIT
     FROM tbl_employee WHERE tbl_employee.ID = "'.$_POST["employeeiddb"].'" ';
 
     //var_dump($query);
@@ -40,40 +40,89 @@ if (isset($_POST['action'])){
         
         $sub_array = array();
 
-          $sub_array['employeeid'] = $row['EMPLOYEEID'];
-          $sub_array['firstname'] = $row['FIRSTNAME'];
-          $sub_array['middlename'] = $row['MIDDLENAME'];
-          $sub_array['lastname'] = $row['LASTNAME'];
-          $sub_array['extension'] = $row['PROFILE_EXTENSION'];
-          $sub_array['position'] = $row['POSITION'];
-          $sub_array['datehired'] = $row['DATEHIRED'];
-          $sub_array['username'] = $row['USERNAME'];
-          $sub_array['slcredit'] = $row['SLCREDIT'];
-          $sub_array['vlcredit'] = $row['VLCREDIT'];
+        $sub_array['employeeid'] = $row['EMPLOYEEID'];
+        $sub_array['firstname'] = $row['FIRSTNAME'];
+        $sub_array['middlename'] = $row['MIDDLENAME'];
+        $sub_array['lastname'] = $row['LASTNAME'];
+        $sub_array['extension'] = $row['PROFILE_EXTENSION'];
+        $sub_array['position'] = $row['POSITION'];
+        $sub_array['username'] = $row['USERNAME'];
+        $sub_array['slcredit'] = $row['SLCREDIT'];
+        $sub_array['vlcredit'] = $row['VLCREDIT'];
 
         $data[] = $sub_array;
         
       }
     }
 
+
+
+    $query_leave = 'SELECT * FROM tbl_leave WHERE EMPID = "'.$_POST["employeeiddb"].'" ';
+    $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query_leave));
+
+    $dateNow = date("Y-m-d H:i:s");
+    /*if($number_filter_row == 0){
+      $queProfile = "INSERT INTO `tbl_employee_profile` SET 
+      EMPID = '".$_POST["employeeiddb"]."',
+      UPDATEDBY = '".$usernameid."',
+      UPDATEDDATETIME = '".$dateNow."'
+      "; 
+
+      $query = $connect->query($queProfile) or die($connect->error); 
+    }*/
+
+
+    $result_query_leave = mysqli_query($connect, $query_leave);
+
+    $data_leave = array();
+    
+    while($row = mysqli_fetch_array($result_query_leave)){
+  
+      $sub_array_query_leave = array();
+      $sub_array_query_leave['id']                  = $row['ID'];
+      $sub_array_query_leave['empid']               = $row['EMPID'];
+      $sub_array_query_leave['leavetype']                 = $row['LEAVETYPE'];
+      $sub_array_query_leave['dateoffilling']        = $row['DATEOFFILLING'];
+      $sub_array_query_leave['salary']              = $row['SALARY'];
+      $sub_array_query_leave['workingdays']         = $row['WORKINGDAYS'];
+      $sub_array_query_leave['inclusivedate']              = $row['INCLUSIVEDATE'];
+      $sub_array_query_leave['partone']                       = $row['PARTONE'];
+      $sub_array_query_leave['parttwo']                       = $row['PARTTWO'];
+      $sub_array_query_leave['partthree']                     = $row['PARTTHREE'];
+      $sub_array_query_leave['partfour']                      = $row['PARTFOUR'];
+      $sub_array_query_leave['partfive']                      = $row['PARTFIVE'];
+      $sub_array_query_leave['partsix']                       = $row['PARTSIX'];
+      $sub_array_query_leave['recommendation']                = $row['RECOMMENDATION'];
+      $sub_array_query_leave['recommendationdetails']         = $row['RECOMMENDATIONDETAILS'];
+      $sub_array_query_leave['approveddayswithpay']           = $row['APPROVEDDAYSWITHPAY'];
+      $sub_array_query_leave['approveddayswithoutpay']         = $row['APPROVEDDAYSWITHOUTPAY'];
+      $sub_array_query_leave['approveddaysothers']            = $row['APPROVEDAYSOTHERS'];
+      $sub_array_query_leave['disapproveddue']                = $row['DISAPPROVEDDUE'];
+      $sub_array_query_leave['daterdupdated']                 = $row['DATERDUPDATED'];
+      $sub_array_query_leave['rdapprovedstatus']              = $row['RDAPPROVESTATUS'];
+      $sub_array_query_leave['headapprovestatus']               = $row['HEADAPPROVESTATUS'];
+      $sub_array_query_leave['dateheadupdated']               = $row['DATEHEADUPDATED'];
+      
+      
+      
+      $data_leave[] = $sub_array_query_leave;
+    }
+
     $a = array();
     $b = array();
-    $c = array();
+
 
 
     if(isset($sub_array)){
-      $a = $sub_array;
+      $a = $sub_array; //employee profile
     } 
-    if(isset($sub_array_query_profile)){
-      $b = $sub_array_query_profile;
+    if(isset($sub_array_query_leave)){
+      $b = $sub_array_query_leave;
     } 
-    if(isset($sub_array_query_family)){
-      $c = $sub_array_query_family;
-    } 
+
     $output = array(
     "data"    => $a,
-    "data_profile"    => $b,
-    "data_family"    => $c
+    "data_leave"    => $b
     );
 
     echo json_encode($output);

@@ -83,39 +83,76 @@ $(document).ready(function(){
     count = 1;
     add_dynamic_input_field(count);
 
-    fetch_single();   
+    fetch_leave_data();   
     
     function fetch_leave_data(){
         
         var employeeiddb = document.getElementById("empID").value;
         var action = 'fetch_leave_application';
-        var dataTable = $('#service_record_data').DataTable({
-            /* "processing" : true,
-            "serverSide" : true,*/
-            //"columnDefs": [{ "orderable": false, "targets":[1] }],
-            // "order" : [],
-            "ajax" : {
-                url:"approver_pfo_detail_view_action.php",
-                type:"POST",
-                data:{
-                                employeeiddb:employeeiddb, 
-                                action:action},
-            },
+        alert(action);
+        $.ajax({
+
+            url:"approver_pfo_detail_view_action.php",
+            type:"POST",
+            data:{
+                employeeiddb:employeeiddb, 
+                action:action},
+          
             dataType:'JSON',
             success:function(data)
             {
-                $('#employeeid').val(data.data.employeeid);
+
                 $('#office').val(data.data.firstname);
                 $('#division').val(data.data.middlename);
                 $('#firstname').val(data.data.firstname);
                 $('#middlename').val(data.data.middlename);
                 $('#lastname').val(data.data.lastname);
                 $('#extension').val(data.data.extension);
-                $('#dateoffilling').val(data.data.position);
-                $('#salary').val(data.data.datehired);
+                $('#dateoffilling').val(data.data_leave.dateoffilling);
+                $('#salary').val(data.data_leave.salary);
 
-                var leaveTypeValue =  data.data.leave_type;
+                var leaveTypeValue =  data.data_leave.leavetype;
                 $("#leave_type").val(leaveTypeValue).change();
+                $("#dateoffilling").val(data.data_leave.lastname);
+                $("#workingdays").val(data.data_leave.workingdays);
+                
+                /*var genderValue =  values.data_profile.gender;
+
+                if (genderValue == 'MALE'){
+                    $("#gender_update").val("MALE").change();
+                } else if (genderValue == "") {
+                    $("#gender_update").val('NA').change();
+                }*/
+
+
+
+
+                /**
+                 * 
+                 * 
+                 * 
+                 * 
+                 * 
+                 * 
+                 * $sub_array_query_leave['partone']                  
+$sub_array_query_leave['parttwo']                  
+$sub_array_query_leave['partthree']                
+$sub_array_query_leave['partfour']                 
+$sub_array_query_leave['partfive']                 
+$sub_array_query_leave['partsix']                  
+$sub_array_query_leave['recommendation']           
+$sub_array_query_leave['recommendationdetails']    
+$sub_array_query_leave['approveddayswithpay']      
+$sub_array_query_leave['approveddayswithoutpay']   
+$sub_array_query_leave['approveddaysothers']       
+$sub_array_query_leave['disapproveddue']           
+$sub_array_query_leave['daterdupdated']            
+$sub_array_query_leave['rdapprovedstatus']         
+$sub_array_query_leave['headapprovestatus']        
+$sub_array_query_leave['dateheadupdated']          
+      
+                 */
+               
                 
             }
         });
