@@ -25,8 +25,34 @@ if (isset($_POST['action'])){
     tbl_employee.POSITION as POSITION,
     tbl_employee.USERNAME as USERNAME,
     tbl_employee.SLCREDIT as SLCREDIT,
-    tbl_employee.VLCREDIT as VLCREDIT
-    FROM tbl_employee WHERE tbl_employee.ID = "'.$_POST["employeeiddb"].'" ';
+    tbl_employee.VLCREDIT as VLCREDIT,
+    tbl_leave.ID as LEAVEID,
+    tbl_leave.LEAVETYPE as LEAVETYPE,
+    tbl_leave.DATEOFFILLING as DATEOFFILLING,
+    tbl_leave.SALARY as SALARY,
+    tbl_leave.WORKINGDAYS as WORKINGDAYS,
+    tbl_leave.INCLUSIVEDATE as INCLUSIVEDATE,
+    tbl_leave.PARTONE as PARTONE,
+    tbl_leave.PARTTWO as PARTTWO,
+    tbl_leave.PARTTHREE as PARTTHREE,
+    tbl_leave.PARTFOUR as PARTFOUR,
+    tbl_leave.PARTFIVE as PARTFIVE,
+    tbl_leave.PARTSIX as PARTSIX,
+    tbl_leave.RECOMMENDATION as RECOMMENDATION,
+    tbl_leave.RECOMMENDATIONDETAILS as RECOMMENDATIONDETAILS,
+    tbl_leave.APPROVEDDAYSWITHPAY as APPROVEDDAYSWITHPAY,
+    tbl_leave.APPROVEDDAYSWITHOUTPAY as APPROVEDDAYSWITHOUTPAY,
+    tbl_leave.APPROVEDAYSOTHERS as APPROVEDAYSOTHERS,
+    tbl_leave.DISAPPROVEDDUE as DISAPPROVEDDUE,
+    tbl_leave.DATERDUPDATED as DATERDUPDATED,
+    tbl_leave.RDAPPROVESTATUS as RDAPPROVESTATUS,
+    tbl_leave.HEADAPPROVESTATUS as HEADAPPROVESTATUS,
+    tbl_leave.DATEHEADUPDATED as DATEHEADUPDATED
+    
+    
+    FROM tbl_employee
+    INNER JOIN tbl_leave on tbl_leave.EMPID = tbl_employee.ID
+    where tbl_leave.ID = "'.$_POST["leaveID"].'" ';
 
     //var_dump($query);
 
@@ -49,6 +75,27 @@ if (isset($_POST['action'])){
         $sub_array['username'] = $row['USERNAME'];
         $sub_array['slcredit'] = $row['SLCREDIT'];
         $sub_array['vlcredit'] = $row['VLCREDIT'];
+        $sub_array['leavetype']                 = $row['LEAVETYPE'];
+        $sub_array['dateoffilling']        = $row['DATEOFFILLING'];
+        $sub_array['salary']              = $row['SALARY'];
+        $sub_array['workingdays']         = $row['WORKINGDAYS'];
+        $sub_array['inclusivedate']              = $row['INCLUSIVEDATE'];
+        $sub_array['partone']                       = $row['PARTONE'];
+        $sub_array['parttwo']                       = $row['PARTTWO'];
+        $sub_array['partthree']                     = $row['PARTTHREE'];
+        $sub_array['partfour']                      = $row['PARTFOUR'];
+        $sub_array['partfive']                      = $row['PARTFIVE'];
+        $sub_array['partsix']                       = $row['PARTSIX'];
+        $sub_array['recommendation']                = $row['RECOMMENDATION'];
+        $sub_array['recommendationdetails']         = $row['RECOMMENDATIONDETAILS'];
+        $sub_array['approveddayswithpay']           = $row['APPROVEDDAYSWITHPAY'];
+        $sub_array['approveddayswithoutpay']         = $row['APPROVEDDAYSWITHOUTPAY'];
+        $sub_array['approveddaysothers']            = $row['APPROVEDAYSOTHERS'];
+        $sub_array['disapproveddue']                = $row['DISAPPROVEDDUE'];
+        $sub_array['daterdupdated']                 = $row['DATERDUPDATED'];
+        $sub_array['rdapprovedstatus']              = $row['RDAPPROVESTATUS'];
+        $sub_array['headapprovestatus']               = $row['HEADAPPROVESTATUS'];
+        $sub_array['dateheadupdated']               = $row['DATEHEADUPDATED'];
 
         $data[] = $sub_array;
         
@@ -56,9 +103,6 @@ if (isset($_POST['action'])){
     }
 
 
-
-    $query_leave = 'SELECT * FROM tbl_leave WHERE EMPID = "'.$_POST["employeeiddb"].'" ';
-    $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query_leave));
 
     $dateNow = date("Y-m-d H:i:s");
     /*if($number_filter_row == 0){
@@ -71,58 +115,20 @@ if (isset($_POST['action'])){
       $query = $connect->query($queProfile) or die($connect->error); 
     }*/
 
-
-    $result_query_leave = mysqli_query($connect, $query_leave);
-
-    $data_leave = array();
-    
-    while($row = mysqli_fetch_array($result_query_leave)){
-  
-      $sub_array_query_leave = array();
-      $sub_array_query_leave['id']                  = $row['ID'];
-      $sub_array_query_leave['empid']               = $row['EMPID'];
-      $sub_array_query_leave['leavetype']                 = $row['LEAVETYPE'];
-      $sub_array_query_leave['dateoffilling']        = $row['DATEOFFILLING'];
-      $sub_array_query_leave['salary']              = $row['SALARY'];
-      $sub_array_query_leave['workingdays']         = $row['WORKINGDAYS'];
-      $sub_array_query_leave['inclusivedate']              = $row['INCLUSIVEDATE'];
-      $sub_array_query_leave['partone']                       = $row['PARTONE'];
-      $sub_array_query_leave['parttwo']                       = $row['PARTTWO'];
-      $sub_array_query_leave['partthree']                     = $row['PARTTHREE'];
-      $sub_array_query_leave['partfour']                      = $row['PARTFOUR'];
-      $sub_array_query_leave['partfive']                      = $row['PARTFIVE'];
-      $sub_array_query_leave['partsix']                       = $row['PARTSIX'];
-      $sub_array_query_leave['recommendation']                = $row['RECOMMENDATION'];
-      $sub_array_query_leave['recommendationdetails']         = $row['RECOMMENDATIONDETAILS'];
-      $sub_array_query_leave['approveddayswithpay']           = $row['APPROVEDDAYSWITHPAY'];
-      $sub_array_query_leave['approveddayswithoutpay']         = $row['APPROVEDDAYSWITHOUTPAY'];
-      $sub_array_query_leave['approveddaysothers']            = $row['APPROVEDAYSOTHERS'];
-      $sub_array_query_leave['disapproveddue']                = $row['DISAPPROVEDDUE'];
-      $sub_array_query_leave['daterdupdated']                 = $row['DATERDUPDATED'];
-      $sub_array_query_leave['rdapprovedstatus']              = $row['RDAPPROVESTATUS'];
-      $sub_array_query_leave['headapprovestatus']               = $row['HEADAPPROVESTATUS'];
-      $sub_array_query_leave['dateheadupdated']               = $row['DATEHEADUPDATED'];
-      
-      
-      
-      $data_leave[] = $sub_array_query_leave;
-    }
+    //var_dump($query_leave);
 
     $a = array();
-    $b = array();
+
 
 
 
     if(isset($sub_array)){
       $a = $sub_array; //employee profile
     } 
-    if(isset($sub_array_query_leave)){
-      $b = $sub_array_query_leave;
-    } 
+
 
     $output = array(
-    "data"    => $a,
-    "data_leave"    => $b
+    "data"    => $a
     );
 
     echo json_encode($output);

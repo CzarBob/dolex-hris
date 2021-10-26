@@ -194,7 +194,7 @@ session_start();
                     <form method="post" id="add_name">
                       <div class="row">
                           <!-- Employee ID database-->
-                          <input type="hidden" name="empID" id="empID" value="<?php echo $_GET['id']; ?>">
+                          <input type="hidden" name="leaveID" id="leaveID" value="<?php echo $_GET['id']; ?>">
                           <input type="hidden" name="loginID" id="loginID" value="<?php echo $_SESSION['usernameid']; ?>">
                           <input type="hidden" name="action" id="action" value="add_leave" />
                           <!-- Pending Requests Card Example -->
@@ -369,14 +369,14 @@ session_start();
                                             <label class="form-check-label" for="partone1">
                                               Within the Philippines
                                             </label> 
-                                            <input  type="text" class="form-control" id="partone1Details" disabled>
+                                            <!--<input  type="text" class="form-control" id="partone1Details" disabled>-->
                                           </div>
                                           <div class="form-check">
                                             <input class="form-check-input" type="radio" name="partone" id="partone2" value="ABROAD"  disabled>
                                             <label class="form-check-label" for="partone2">
-                                              Abroad (Specify)
+                                              Abroad
                                             </label>
-                                            <input type="text" class="form-control" id="partone2Details"  disabled>
+                                            <!--<input type="text" class="form-control" id="partone2Details"  disabled>-->
                                           </div>
                                           </div> 
 
@@ -397,16 +397,16 @@ session_start();
                                           <div class="form-check">
                                             <input class="form-check-input" type="radio" name="parttwo" id="parttwo1" value = "IPD" disabled>
                                             <label class="form-check-label" for="parttwo1">
-                                              In Hospital (Specify Illness)
+                                              In Hospital 
                                             </label> 
-                                            <input  type="text" class="form-control" id="parttwo1details" disabled >
+                                            <!--<input  type="text" class="form-control" id="parttwo1details" disabled > -->
                                           </div>
                                           <div class="form-check">
                                             <input class="form-check-input" type="radio" name="parttwo" id="parttwo2"  value = "OPD" disabled>
                                             <label class="form-check-label" for="parttwo2">
-                                              Out Patient (Specify Illness)
+                                              Out Patient 
                                             </label>
-                                            <input  type="text" class="form-control" id="parttwo2details" disabled>
+                                            <!--<input  type="text" class="form-control" id="parttwo2details" disabled>-->
                                           </div>
                                           </div> 
                                       </div>
@@ -424,11 +424,8 @@ session_start();
                                       <div class="form-row">
                                           <div class="form-group col-md-4">
                                           <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="partthree" id="partthree1" value="SLWOMEN" disabled>
-                                            <label class="form-check-label" for="partthree1">
-                                              (Specify Illness)
-                                            </label> 
-                                            <input  type="text" class="form-control" id="partthree1details" disabled>
+                                            
+                                            <input  type="text" class="form-control" id="partthree" disabled>
                                           </div>
                                     
                                           </div> 
@@ -664,7 +661,7 @@ session_start();
                           <input type="submit" name="submit" id="submit" class="btn btn-info" value="Submit" />-->
                         <!-- Card Body -->    
                         <input type="hidden" name="hidden_id" id="hidden_id" />
-                        <input type="hidden" name="empID" id="empID" value="<?php echo $_GET['id']; ?>">
+                        <input type="hidden" name="leaveID" id="leaveID" value="<?php echo $_GET['id']; ?>">
                         <input type="hidden" name="action" id="action" value="add_leave" />                           
                             <div class="col-md-12">
                               <table class=" table">  
