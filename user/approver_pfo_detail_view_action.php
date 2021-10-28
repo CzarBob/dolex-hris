@@ -209,34 +209,42 @@ if (isset($_POST['action'])){
       ';
       $flag = false;
 
-      $currentDate = date("Y/m/d");
+      //$currentDate = date("Y/m/d");
+      $dateNow = date("Y-m-d H:i:s");
 
-      if (($designation == null) || ($designation == '')){
+      /*if (($designation == null) || ($designation == '')){
         $flag = true;
         $message .= 'Designation must not be blank <br>
         ';
-      }
+      }*/
 
       if (!$flag){
         $dateAdded = date("Y-m-d H:i:s");
         $que = 'UPDATE tbl_leave
         SET 
-        CHIEFREMARKS =  "'.$chiefremarks.'"
+        CHIEFREMARKS =  "'.$chiefremarks.'",
+        DATEHEADUPDATED = "'.$dateNow.'",
+        HEADAPPROVESTATUS = "Y"
 
-        WHERE ID = "'.$srid.'"';
 
-        $result = mysqli_query($connect, $query);
+        WHERE ID = "'.$leaveID.'"';
+
+        //$result = mysqli_query($connect, $que);
 
       }
 
-      $message_final = '';
+      $message_final = 'LEAVE APPROVED';
 
-      if ($flag){
+      /*if ($flag){
         $message_final = $message;
       } else {
         $message_final = $message_success;
-      }
+      }*/
      
+      
+      /*$output = array(
+        'status'    => $message_final
+        );*/
       $output = array(
       'status'    => $message_final
       );

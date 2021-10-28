@@ -7,7 +7,7 @@ function leaveChange() {
     document.getElementById("parttwo2").disabled = true;
     //document.getElementById("parttwo1details").disabled = true;
     //document.getElementById("parttwo2details").disabled = true;
-    document.getElementById("partthree1").disabled = true;
+    //document.getElementById("partthree1").disabled = true;
     //document.getElementById("partthree1details").disabled = true;
     document.getElementById("partfour1").disabled = true;
     document.getElementById("partfour2").disabled = true;
@@ -165,7 +165,7 @@ $(document).ready(function(){
         var messageValidate = "Confirm approval of leave?";
         if (confirm(messageValidate) == true) {
             $.ajax({
-                url:"view_employee_action",
+                url:"approver_pfo_detail_view_action",
                 method:"POST",
                 dataType:'JSON',
                 data:{
@@ -176,13 +176,15 @@ $(document).ready(function(){
                 },
                 success:function(data){
                
-
-                $('#children_data').DataTable().ajax.reload();
+                alert(data.status);
+                /*$('#children_data').DataTable().ajax.reload();
                 $('#modalEditChildrenForm').modal('hide');
                 $('#message2').html(data.status);
                     setTimeout(function(){
                         $('#message2').html('');
-                    }, 90000);
+                    }, 90000);*/
+
+                    window.location.href = 'approver_pfo';
                 }     
             }); 
         
@@ -203,7 +205,7 @@ $(document).ready(function(){
                 var messageValidate = "Confirm "+leave_type+" leave on inclusive day/s "+dataArr_joined+" ?";
                 if (confirm(messageValidate) == true) {
                     $.ajax({
-                        url:"view_employee_action",
+                        url:"approver_pfo_detail_view_action",
                         method:"POST",
                         dataType:'JSON',
                         data:{
