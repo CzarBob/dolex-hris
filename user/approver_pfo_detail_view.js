@@ -115,6 +115,7 @@ $(document).ready(function(){
                 var leaveTypeValue =  data.data.leavetype;
                 $("#leave_type").val(leaveTypeValue).change();
                 $("#workingdays").val(data.data.workingdays);
+                $("#inclusivedate").val(data.data.inclusivedate);
                 
                 var partOneValue =  data.data.partone; //In case of Vacation/Special Privilege Leave
                 if (partOneValue != ""){
@@ -140,44 +141,101 @@ $(document).ready(function(){
                     $("input[name=partsix][value="+partSixValue+"]").prop('checked', true);
                 }
                
-             
 
-
-                /**
-                 * 
-                 * 
-                 * 
-                 * 
-                 * 
-                 * 
-                 * $sub_array_query_leave['partone']                  
-$sub_array_query_leave['parttwo']                  
-$sub_array_query_leave['partthree']                
-$sub_array_query_leave['partfour']                 
-$sub_array_query_leave['partfive']                 
-$sub_array_query_leave['partsix']                  
-$sub_array_query_leave['recommendation']           
-$sub_array_query_leave['recommendationdetails']    
-$sub_array_query_leave['approveddayswithpay']      
-$sub_array_query_leave['approveddayswithoutpay']   
-$sub_array_query_leave['approveddaysothers']       
-$sub_array_query_leave['disapproveddue']           
-$sub_array_query_leave['daterdupdated']            
-$sub_array_query_leave['rdapprovedstatus']         
-$sub_array_query_leave['headapprovestatus']        
-$sub_array_query_leave['dateheadupdated']          
-      
-                 */
+                $("#chiefremarks").val(data.data.chiefremarks);
+                $("#rdremarks").val(data.data.rdremarks);
+            
                
                 
             }
         });
     }
 
-});
 
+
+
+    $(document).on('click', '#submit_approve_leave', function(){
+        var leaveID = document.getElementById("leaveID").value;
+        alert('approve');
+
+        var chiefremarks = $('#chiefremarks').val();
+ 
+
+
+        var messageValidate = "Confirm approval of leave?";
+        if (confirm(messageValidate) == true) {
+            $.ajax({
+                url:"view_employee_action",
+                method:"POST",
+                dataType:'JSON',
+                data:{
+                    chiefremarks:chiefremarks, 
+                    leaveID:leaveID, 
+                   
+                    action:'approve_leave'
+                },
+                success:function(data){
+               
+
+                $('#children_data').DataTable().ajax.reload();
+                $('#modalEditChildrenForm').modal('hide');
+                $('#message2').html(data.status);
+                    setTimeout(function(){
+                        $('#message2').html('');
+                    }, 90000);
+                }     
+            }); 
+        
+        }
+    });
+
+
+    $(document).on('click', '#submit_reject_leave', function(){
+        var leaveID = document.getElementById("leaveID").value;
+        alert('rejected');
+
+                var fullname = $('#fullname_update').val();
+                var hidden_id = $('#hidden_id').val();
+                var dob = $('#dob_update').val();    
+
+
+
+                var messageValidate = "Confirm "+leave_type+" leave on inclusive day/s "+dataArr_joined+" ?";
+                if (confirm(messageValidate) == true) {
+                    $.ajax({
+                        url:"view_employee_action",
+                        method:"POST",
+                        dataType:'JSON',
+                        data:{
+                            fullname:fullname, 
+                            dob:dob, 
+                            employeeiddb:employeeiddb,
+                            id:hidden_id,
+                            action:'submit_update_children'
+                        },
+                        success:function(data){
+                       
+    
+                        $('#children_data').DataTable().ajax.reload();
+                        $('#modalEditChildrenForm').modal('hide');
+                        $('#message2').html(data.status);
+                            setTimeout(function(){
+                                $('#message2').html('');
+                            }, 90000);
+                        }     
+                    }); 
+                
+                }
+    });
+
+
+
+
+
+});
+/*
 $('#add_name').on('submit', function(event){
-    //alert('etst');
+
     event.preventDefault();
     var dataArr = [];
 
@@ -237,7 +295,9 @@ $('#add_name').on('submit', function(event){
     
 
 
-});
+});*/
+
+
 
 
                 

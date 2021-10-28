@@ -38,8 +38,8 @@ if (isset($_POST['action'])){
     tbl_leave.PARTFOUR as PARTFOUR,
     tbl_leave.PARTFIVE as PARTFIVE,
     tbl_leave.PARTSIX as PARTSIX,
-    tbl_leave.RECOMMENDATION as RECOMMENDATION,
-    tbl_leave.RECOMMENDATIONDETAILS as RECOMMENDATIONDETAILS,
+    tbl_leave.CHIEFREMARKS as CHIEFREMARKS,
+    tbl_leave.RDREMARKS as RDREMARKS,
     tbl_leave.APPROVEDDAYSWITHPAY as APPROVEDDAYSWITHPAY,
     tbl_leave.APPROVEDDAYSWITHOUTPAY as APPROVEDDAYSWITHOUTPAY,
     tbl_leave.APPROVEDAYSOTHERS as APPROVEDAYSOTHERS,
@@ -86,8 +86,8 @@ if (isset($_POST['action'])){
         $sub_array['partfour']                      = $row['PARTFOUR'];
         $sub_array['partfive']                      = $row['PARTFIVE'];
         $sub_array['partsix']                       = $row['PARTSIX'];
-        $sub_array['recommendation']                = $row['RECOMMENDATION'];
-        $sub_array['recommendationdetails']         = $row['RECOMMENDATIONDETAILS'];
+        $sub_array['chiefremarks']                  = $row['CHIEFREMARKS'];
+        $sub_array['rdremarks']                     = $row['RDREMARKS'];
         $sub_array['approveddayswithpay']           = $row['APPROVEDDAYSWITHPAY'];
         $sub_array['approveddayswithoutpay']         = $row['APPROVEDDAYSWITHOUTPAY'];
         $sub_array['approveddaysothers']            = $row['APPROVEDAYSOTHERS'];
@@ -193,22 +193,10 @@ if (isset($_POST['action'])){
 
 
   if (isset($_POST['action'])){
-    if ($_POST['action'] == 'add_service_record'){
-      $empid  = $_POST['employeeiddb'];
+    if ($_POST['action'] == 'approve_leave'){
+      $leaveID  = $_POST['leaveID'];
 
-      $service_from = $_POST['service_from'];
-      $service_to = $_POST['service_to'];
-      $designation = mysqli_real_escape_string($connect,strtoupper($_POST['designation']));
-      $status = mysqli_real_escape_string($connect,strtoupper($_POST['status']));
-      $salary = mysqli_real_escape_string($connect,strtoupper($_POST['salary']));
-      $office = mysqli_real_escape_string($connect,strtoupper($_POST['office']));
-      $branch = mysqli_real_escape_string($connect,strtoupper($_POST['branch']));
-      $abs = mysqli_real_escape_string($connect,strtoupper($_POST['abs']));
-      $separation_date = $_POST['separation_date'];
-      $amount_received = mysqli_real_escape_string($connect,strtoupper($_POST['amount_received']));
-      $details = mysqli_real_escape_string($connect,strtoupper($_POST['details']));
-
-      $usernameid = $_POST['usernameid'];
+      $chiefremarks = mysqli_real_escape_string($connect,strtoupper($_POST['chiefremarks']));
 
       $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
       <strong>Data Updated!</strong> 
@@ -231,25 +219,13 @@ if (isset($_POST['action'])){
 
       if (!$flag){
         $dateAdded = date("Y-m-d H:i:s");
-        $que = 'INSERT INTO `tbl_service_record` SET 
-        EMPID =  "'.$empid.'",
-        SERVICEFROM =  "'.$service_from.'",
-        SERVICETO =  "'.$service_to.'",
-        DESIGNATION =  "'.$designation.'",
-        STATUS =  "'.$status.'",
-        SALARY =  "'.$salary.'",
-        OFFICE =  "'.$office.'",
-        BRANCH =  "'.$branch.'",
-        ABS =  "'.$abs.'",
-        SEPARATIONDATE =  "'.$separation_date.'",
-        AMOUNTRECEIVED =  "'.$amount_received.'",
-        DETAILS =  "'.$details.'",
-        CANCELLED = "N",
+        $que = 'UPDATE tbl_leave
+        SET 
+        CHIEFREMARKS =  "'.$chiefremarks.'"
 
-        CREATEDDATETIME = "'.$dateAdded.'"
-        
-        '; 
-        $result = mysqli_query($connect,$que); 
+        WHERE ID = "'.$srid.'"';
+
+        $result = mysqli_query($connect, $query);
 
       }
 

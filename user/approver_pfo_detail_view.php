@@ -542,7 +542,7 @@ session_start();
                                           <!-- Default input -->
                                           <div class="form-group col-md-10">
                                           <label for="inputAddress">Head of Office/Division Chief remarks</label>
-                                          <textarea class="form-control"  id="w3review" name="w3review" rows="4" cols="100"> </textarea>
+                                          <textarea class="form-control"  id="chiefremarks" name="chiefremarks" rows="4" cols="100"> </textarea>
                                       
                                           </div>
                                       </div>
@@ -551,7 +551,7 @@ session_start();
                                           <!-- Default input -->
                                           <div class="form-group col-md-10">
                                           <label for="inputAddress">Regional Director remarks</label>
-                                          <textarea class="form-control"  id="w3review" name="w3review" rows="4" cols="100" disabled> </textarea>
+                                          <textarea class="form-control"  id="rdremarks" name="rdremarks" rows="4" cols="100" disabled> </textarea>
                                           </div>
                                       </div>
                                   </div>
@@ -662,15 +662,15 @@ session_start();
                         <!-- Card Body -->    
                         <input type="hidden" name="hidden_id" id="hidden_id" />
                         <input type="hidden" name="leaveID" id="leaveID" value="<?php echo $_GET['id']; ?>">
-                        <input type="hidden" name="action" id="action" value="add_leave" />                           
+                        <input type="hidden" name="action" id="action" value="add_leave" />                 
                             <div class="col-md-12">
                               <table class=" table">  
                                     <tr>
-                                        <td style="width: 100%;"  colspan="2" style = "align: left"><button  type="submit" name="submit" style="width: 100%;" class="btn btn-success" id = "submit">     Approve  </button></td>    
+                                        <td style="width: 100%;"  colspan="2" style = "align: left"><button  type="button" name="submit" style="width: 100%;" class="btn btn-success" id = "submit_approve_leave" >     Approve  </button></td>    
                                                                                     
                                     </tr>
                                     <tr>
-                                        <td style="width: 100%;"  colspan="2" style = "align: left"><button  type="submit" name="submit" style="width: 100%;" class="btn btn-danger" id = "submit">     Reject  </button></td>                                               
+                                        <td style="width: 100%;"  colspan="2" style = "align: left"><button  type="button" name="submit" style="width: 100%;" class="btn btn-danger" id = "submit_reject_leave" >     Reject  </button></td>                                               
                                     </tr> 
                                     <tr>
                                   
