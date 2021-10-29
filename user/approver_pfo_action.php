@@ -95,7 +95,7 @@ if (isset($_POST['action'])){
     if ($_POST['action'] == 'fetch_leave_data'){
 
       $query = 'SELECT tbl_leave.ID as ID,tbl_leave.DATEOFFILLING as DATEOFFILLING, tbl_employee.FIELDOFFICEID as FIELDOFFICEID, tbl_leave.LEAVETYPE as LEAVETYPE, tbl_employee.FIRSTNAME as FIRSTNAME, tbl_employee.LASTNAME as LASTNAME FROM `tbl_leave`
-      INNER JOIN tbl_employee ON tbl_leave.EMPID = tbl_employee.ID WHERE tbl_leave.CANCELLED = "N"';
+      INNER JOIN tbl_employee ON tbl_leave.EMPID = tbl_employee.ID WHERE tbl_leave.CANCELLED = "N" AND tbl_leave.HEADAPPROVESTATUS ="PENDING"  ';
 
 
 

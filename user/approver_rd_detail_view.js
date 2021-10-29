@@ -1,21 +1,21 @@
 function leaveChange() {
     document.getElementById("partone1").disabled = true;
     document.getElementById("partone2").disabled = true;
-    document.getElementById("partone1Details").disabled = true;
-    document.getElementById("partone2Details").disabled = true;
+    /*document.getElementById("partone1Details").disabled = true;
+    document.getElementById("partone2Details").disabled = true;*/
     document.getElementById("parttwo1").disabled = true;
     document.getElementById("parttwo2").disabled = true;
-    document.getElementById("parttwo1details").disabled = true;
-    document.getElementById("parttwo2details").disabled = true;
-    document.getElementById("partthree1").disabled = true;
-    document.getElementById("partthree1details").disabled = true;
+    //document.getElementById("parttwo1details").disabled = true;
+    //document.getElementById("parttwo2details").disabled = true;
+    //document.getElementById("partthree1").disabled = true;
+    //document.getElementById("partthree1details").disabled = true;
     document.getElementById("partfour1").disabled = true;
     document.getElementById("partfour2").disabled = true;
     document.getElementById("partfive1").disabled = true;
     document.getElementById("partfive2").disabled = true;
     
 
-
+/*
 
     if ((document.getElementById("leave_type").value == "VACATION") || (document.getElementById("leave_type").value == "SPECIALPRIVILEGE")){
         //document.getElementById("message").innerHTML = "Common message";
@@ -45,7 +45,7 @@ function leaveChange() {
         document.getElementById("partfive1").disabled = false;
         document.getElementById("partfive2").disabled = false;
         
-    }   
+    }  */ 
 }
 
 
@@ -83,10 +83,157 @@ $(document).ready(function(){
     count = 1;
     add_dynamic_input_field(count);
 
-});
+    fetch_leave_data();   
+    
+    function fetch_leave_data(){
+        
+        var leaveID = document.getElementById("leaveID").value;
+        //alert(leaveID);
+        var action = 'fetch_leave_application';
+        //alert(action);
+        $.ajax({
 
+            url:"approver_pfo_detail_view_action.php",
+            type:"POST",
+            data:{
+                leaveID:leaveID, 
+                action:action},
+          
+            dataType:'JSON',
+            success:function(data)
+            {
+
+                $('#office').val(data.data.firstname);
+                $('#division').val(data.data.middlename);
+                $('#firstname').val(data.data.firstname);
+                $('#middlename').val(data.data.middlename);
+                $('#lastname').val(data.data.lastname);
+                $('#extension').val(data.data.extension);
+                $('#dateoffilling').val(data.data.dateoffilling);
+                $('#salary').val(data.data.salary);
+
+                var leaveTypeValue =  data.data.leavetype;
+                $("#leave_type").val(leaveTypeValue).change();
+                $("#workingdays").val(data.data.workingdays);
+                $("#inclusivedate").val(data.data.inclusivedate);
+                
+                var partOneValue =  data.data.partone; //In case of Vacation/Special Privilege Leave
+                if (partOneValue != ""){
+                    $("input[name=partone][value="+partOneValue+"]").prop('checked', true);
+                }
+                var partTwoValue = data.data.parttwo; //In case of Sick Leave:
+                if (partTwoValue != ""){
+                    $("input[name=parttwo][value="+partTwoValue+"]").prop('checked', true);
+                }
+                var partThreeValue =  data.data.partthree; //In case of Special Leave Benefits for Women
+                $('#parthree').val(partThreeValue);
+                
+                var partFourValue =  data.data.partfour; //In case of Study Leave
+                if (partFourValue != ""){
+                    $("input[name=partfour][value="+partFourValue+"]").prop('checked', true);
+                }
+                var partFiveValue =  data.data.partfive; //Other Purpose
+                if (partFiveValue != ""){
+                    $("input[name=partfive][value="+partFiveValue+"]").prop('checked', true);
+                }
+                var partSixValue =  data.data.partsix; //Commutation
+                if (partSixValue != ""){
+                    $("input[name=partsix][value="+partSixValue+"]").prop('checked', true);
+                }
+               
+
+                $("#chiefremarks").val(data.data.chiefremarks);
+                $("#rdremarks").val(data.data.rdremarks);
+            
+               
+                
+            }
+        });
+    }
+
+
+
+
+    $(document).on('click', '#submit_approve_leave', function(){
+        var leaveID = document.getElementById("leaveID").value;
+        alert('approve');
+
+        var chiefremarks = $('#chiefremarks').val();
+ 
+        var messageValidate = "Confirm approval of leave?";
+        if (confirm(messageValidate) == true) {
+            $.ajax({
+                url:"approver_pfo_detail_view_action",
+                method:"POST",
+                dataType:'JSON',
+                data:{
+                    chiefremarks:chiefremarks, 
+                    leaveID:leaveID, 
+                   
+                    action:'approve_leave'
+                },
+                success:function(data){
+               
+                alert(data.status);
+                /*$('#children_data').DataTable().ajax.reload();
+                $('#modalEditChildrenForm').modal('hide');
+                $('#message2').html(data.status);
+                    setTimeout(function(){
+                        $('#message2').html('');
+                    }, 90000);*/
+
+                    window.location.href = 'approver_pfo';
+                }     
+            }); 
+        
+        }
+    });
+
+
+    $(document).on('click', '#submit_reject_leave', function(){
+        var leaveID = document.getElementById("leaveID").value;
+        alert('rejected');
+                var chiefremarks = $('#chiefremarks').val();
+                var leaveID = document.getElementById("leaveID").value;
+
+                var messageValidate = "Confirm disapproval of leave?";
+                if (confirm(messageValidate) == true) {
+                    $.ajax({
+                        url:"approver_pfo_detail_view_action",
+                        method:"POST",
+                        dataType:'JSON',
+                        data:{
+                            fullname:fullname, 
+                            dob:dob, 
+                            employeeiddb:employeeiddb,
+                            id:hidden_id,
+                            action:'reject_leave'
+                        },
+                        success:function(data){
+                       
+                            alert(data.status);
+                            /*$('#children_data').DataTable().ajax.reload();
+                            $('#modalEditChildrenForm').modal('hide');
+                            $('#message2').html(data.status);
+                                setTimeout(function(){
+                                    $('#message2').html('');
+                                }, 90000);*/
+            
+                                window.location.href = 'approver_pfo';
+                        }     
+                    }); 
+                
+                }
+    });
+
+
+
+
+
+});
+/*
 $('#add_name').on('submit', function(event){
-    //alert('etst');
+
     event.preventDefault();
     var dataArr = [];
 
@@ -146,7 +293,9 @@ $('#add_name').on('submit', function(event){
     
 
 
-});
+});*/
+
+
 
 
                 

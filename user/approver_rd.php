@@ -483,7 +483,7 @@ if ($_SESSION['username'] == ""){
     }
     
   </style>
-   <script type="text/javascript">window.onload = date_time('date_time');</script>
+   <script type="text/javascript"></script>
 
   <!-- Bootstrap core JavaScript-->
   <script src="../vendor/jquery/jquery.min.js"></script>
@@ -516,7 +516,7 @@ if ($_SESSION['username'] == ""){
         "columnDefs": [{ "orderable": false, "targets":[0,1] }],
         "order" : [],*/
         "ajax" : {
-        url:"approver_leave_pfo_action.php",
+        url:"approver_rd_action.php",
         type:"POST",
         data:{
             action:action

@@ -15,7 +15,7 @@ date_default_timezone_set('Asia/Manila');
 $query = '';
 
 if (isset($_POST['action'])){
-  if ($_POST['action'] == 'fetch_single'){
+  if ($_POST['action'] == 'fetch_leave_application'){
     $query = 'SELECT 
     tbl_employee.EMPLOYEEID as EMPLOYEEID,
     tbl_employee.FIRSTNAME as FIRSTNAME,
@@ -23,13 +23,36 @@ if (isset($_POST['action'])){
     tbl_employee.LASTNAME as LASTNAME,
     tbl_employee.EXTENSION as PROFILE_EXTENSION,
     tbl_employee.POSITION as POSITION,
-    tbl_employee.DATEHIRED as DATEHIRED,
-    tbl_employee.PASSWORD as PASSWORD_ACCOUNT,
     tbl_employee.USERNAME as USERNAME,
     tbl_employee.SLCREDIT as SLCREDIT,
-    tbl_employee.VLCREDIT as VLCREDIT
-    FROM tbl_employee WHERE tbl_employee.ID = "'.$_POST["employeeiddb"].'" ';
-
+    tbl_employee.VLCREDIT as VLCREDIT,
+    tbl_leave.ID as LEAVEID,
+    tbl_leave.LEAVETYPE as LEAVETYPE,
+    tbl_leave.DATEOFFILLING as DATEOFFILLING,
+    tbl_leave.SALARY as SALARY,
+    tbl_leave.WORKINGDAYS as WORKINGDAYS,
+    tbl_leave.INCLUSIVEDATE as INCLUSIVEDATE,
+    tbl_leave.PARTONE as PARTONE,
+    tbl_leave.PARTTWO as PARTTWO,
+    tbl_leave.PARTTHREE as PARTTHREE,
+    tbl_leave.PARTFOUR as PARTFOUR,
+    tbl_leave.PARTFIVE as PARTFIVE,
+    tbl_leave.PARTSIX as PARTSIX,
+    tbl_leave.CHIEFREMARKS as CHIEFREMARKS,
+    tbl_leave.RDREMARKS as RDREMARKS,
+    tbl_leave.APPROVEDDAYSWITHPAY as APPROVEDDAYSWITHPAY,
+    tbl_leave.APPROVEDDAYSWITHOUTPAY as APPROVEDDAYSWITHOUTPAY,
+    tbl_leave.APPROVEDAYSOTHERS as APPROVEDAYSOTHERS,
+    tbl_leave.DISAPPROVEDDUE as DISAPPROVEDDUE,
+    tbl_leave.DATERDUPDATED as DATERDUPDATED,
+    tbl_leave.RDAPPROVESTATUS as RDAPPROVESTATUS,
+    tbl_leave.HEADAPPROVESTATUS as HEADAPPROVESTATUS,
+    tbl_leave.DATEHEADUPDATED as DATEHEADUPDATED
+    
+    
+    FROM tbl_employee
+    INNER JOIN tbl_leave on tbl_leave.EMPID = tbl_employee.ID
+    where tbl_leave.ID = "'.$_POST["leaveID"].'" ';
 
     //var_dump($query);
 
@@ -43,44 +66,69 @@ if (isset($_POST['action'])){
         
         $sub_array = array();
 
+        $sub_array['employeeid'] = $row['EMPLOYEEID'];
+        $sub_array['firstname'] = $row['FIRSTNAME'];
+        $sub_array['middlename'] = $row['MIDDLENAME'];
+        $sub_array['lastname'] = $row['LASTNAME'];
+        $sub_array['extension'] = $row['PROFILE_EXTENSION'];
+        $sub_array['position'] = $row['POSITION'];
+        $sub_array['username'] = $row['USERNAME'];
+        $sub_array['slcredit'] = $row['SLCREDIT'];
+        $sub_array['vlcredit'] = $row['VLCREDIT'];
+        $sub_array['leavetype']                 = $row['LEAVETYPE'];
+        $sub_array['dateoffilling']        = $row['DATEOFFILLING'];
+        $sub_array['salary']              = $row['SALARY'];
+        $sub_array['workingdays']         = $row['WORKINGDAYS'];
+        $sub_array['inclusivedate']              = $row['INCLUSIVEDATE'];
+        $sub_array['partone']                       = $row['PARTONE'];
+        $sub_array['parttwo']                       = $row['PARTTWO'];
+        $sub_array['partthree']                     = $row['PARTTHREE'];
+        $sub_array['partfour']                      = $row['PARTFOUR'];
+        $sub_array['partfive']                      = $row['PARTFIVE'];
+        $sub_array['partsix']                       = $row['PARTSIX'];
+        $sub_array['chiefremarks']                  = $row['CHIEFREMARKS'];
+        $sub_array['rdremarks']                     = $row['RDREMARKS'];
+        $sub_array['approveddayswithpay']           = $row['APPROVEDDAYSWITHPAY'];
+        $sub_array['approveddayswithoutpay']         = $row['APPROVEDDAYSWITHOUTPAY'];
+        $sub_array['approveddaysothers']            = $row['APPROVEDAYSOTHERS'];
+        $sub_array['disapproveddue']                = $row['DISAPPROVEDDUE'];
+        $sub_array['daterdupdated']                 = $row['DATERDUPDATED'];
+        $sub_array['rdapprovedstatus']              = $row['RDAPPROVESTATUS'];
+        $sub_array['headapprovestatus']               = $row['HEADAPPROVESTATUS'];
+        $sub_array['dateheadupdated']               = $row['DATEHEADUPDATED'];
 
-          $sub_array['employeeid'] = $row['EMPLOYEEID'];
-          $sub_array['firstname'] = $row['FIRSTNAME'];
-          $sub_array['middlename'] = $row['MIDDLENAME'];
-          $sub_array['lastname'] = $row['LASTNAME'];
-          $sub_array['extension'] = $row['PROFILE_EXTENSION'];
-          $sub_array['position'] = $row['POSITION'];
-          $sub_array['datehired'] = $row['DATEHIRED'];
-          $sub_array['username'] = $row['USERNAME'];
-          $sub_array['password'] = $row['PASSWORD_ACCOUNT'];
-          $sub_array['slcredit'] = $row['SLCREDIT'];
-          $sub_array['vlcredit'] = $row['VLCREDIT'];
-
-
-        
         $data[] = $sub_array;
         
       }
     }
 
+
+
+    $dateNow = date("Y-m-d H:i:s");
+    /*if($number_filter_row == 0){
+      $queProfile = "INSERT INTO `tbl_employee_profile` SET 
+      EMPID = '".$_POST["employeeiddb"]."',
+      UPDATEDBY = '".$usernameid."',
+      UPDATEDDATETIME = '".$dateNow."'
+      "; 
+
+      $query = $connect->query($queProfile) or die($connect->error); 
+    }*/
+
+    //var_dump($query_leave);
+
     $a = array();
-    $b = array();
-    $c = array();
+
+
 
 
     if(isset($sub_array)){
-      $a = $sub_array;
+      $a = $sub_array; //employee profile
     } 
-    if(isset($sub_array_query_profile)){
-      $b = $sub_array_query_profile;
-    } 
-    if(isset($sub_array_query_family)){
-      $c = $sub_array_query_family;
-    } 
+
+
     $output = array(
-    "data"    => $a,
-    "data_profile"    => $b,
-    "data_family"    => $c
+    "data"    => $a
     );
 
     echo json_encode($output);
@@ -145,22 +193,10 @@ if (isset($_POST['action'])){
 
 
   if (isset($_POST['action'])){
-    if ($_POST['action'] == 'add_service_record'){
-      $empid  = $_POST['employeeiddb'];
+    if ($_POST['action'] == 'approve_leave'){
+      $leaveID  = $_POST['leaveID'];
 
-      $service_from = $_POST['service_from'];
-      $service_to = $_POST['service_to'];
-      $designation = mysqli_real_escape_string($connect,strtoupper($_POST['designation']));
-      $status = mysqli_real_escape_string($connect,strtoupper($_POST['status']));
-      $salary = mysqli_real_escape_string($connect,strtoupper($_POST['salary']));
-      $office = mysqli_real_escape_string($connect,strtoupper($_POST['office']));
-      $branch = mysqli_real_escape_string($connect,strtoupper($_POST['branch']));
-      $abs = mysqli_real_escape_string($connect,strtoupper($_POST['abs']));
-      $separation_date = $_POST['separation_date'];
-      $amount_received = mysqli_real_escape_string($connect,strtoupper($_POST['amount_received']));
-      $details = mysqli_real_escape_string($connect,strtoupper($_POST['details']));
-
-      $usernameid = $_POST['usernameid'];
+      $chiefremarks = mysqli_real_escape_string($connect,strtoupper($_POST['chiefremarks']));
 
       $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
       <strong>Data Updated!</strong> 
@@ -173,46 +209,104 @@ if (isset($_POST['action'])){
       ';
       $flag = false;
 
-      $currentDate = date("Y/m/d");
+      //$currentDate = date("Y/m/d");
+      $dateNow = date("Y-m-d H:i:s");
 
-      if (($designation == null) || ($designation == '')){
+      /*if (($designation == null) || ($designation == '')){
         $flag = true;
         $message .= 'Designation must not be blank <br>
         ';
-      }
+      }*/
 
       if (!$flag){
         $dateAdded = date("Y-m-d H:i:s");
-        $que = 'INSERT INTO `tbl_service_record` SET 
-        EMPID =  "'.$empid.'",
-        SERVICEFROM =  "'.$service_from.'",
-        SERVICETO =  "'.$service_to.'",
-        DESIGNATION =  "'.$designation.'",
-        STATUS =  "'.$status.'",
-        SALARY =  "'.$salary.'",
-        OFFICE =  "'.$office.'",
-        BRANCH =  "'.$branch.'",
-        ABS =  "'.$abs.'",
-        SEPARATIONDATE =  "'.$separation_date.'",
-        AMOUNTRECEIVED =  "'.$amount_received.'",
-        DETAILS =  "'.$details.'",
-        CANCELLED = "N",
+        $que = 'UPDATE tbl_leave
+        SET 
+        CHIEFREMARKS =  "'.$chiefremarks.'",
+        DATEHEADUPDATED = "'.$dateNow.'",
+        HEADAPPROVESTATUS = "Y"
 
-        CREATEDDATETIME = "'.$dateAdded.'"
-        
-        '; 
-        $result = mysqli_query($connect,$que); 
+
+        WHERE ID = "'.$leaveID.'"';
+
+        $result = mysqli_query($connect, $que);
 
       }
 
-      $message_final = '';
+      $message_final = 'LEAVE APPROVED';
 
-      if ($flag){
+      /*if ($flag){
         $message_final = $message;
       } else {
         $message_final = $message_success;
-      }
+      }*/
      
+      
+      /*$output = array(
+        'status'    => $message_final
+        );*/
+      $output = array(
+      'status'    => $message_final
+      );
+
+      echo json_encode($output);
+    }
+  }
+
+
+  if (isset($_POST['action'])){
+    if ($_POST['action'] == 'reject_leave'){
+      $leaveID  = $_POST['leaveID'];
+
+      $chiefremarks = mysqli_real_escape_string($connect,strtoupper($_POST['chiefremarks']));
+
+      $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>Data Updated!</strong> 
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      </div>';
+      $message = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>Please Check field/s:</strong> <br>
+      ';
+      $flag = false;
+
+      //$currentDate = date("Y/m/d");
+      $dateNow = date("Y-m-d H:i:s");
+
+      /*if (($designation == null) || ($designation == '')){
+        $flag = true;
+        $message .= 'Designation must not be blank <br>
+        ';
+      }*/
+
+      if (!$flag){
+        $dateAdded = date("Y-m-d H:i:s");
+        $que = 'UPDATE tbl_leave
+        SET 
+        CHIEFREMARKS =  "'.$chiefremarks.'",
+        DATEHEADUPDATED = "'.$dateNow.'",
+        HEADAPPROVESTATUS = "N"
+
+
+        WHERE ID = "'.$leaveID.'"';
+
+        //$result = mysqli_query($connect, $que);
+
+      }
+
+      $message_final = 'LEAVE DISAPPROVED';
+
+      /*if ($flag){
+        $message_final = $message;
+      } else {
+        $message_final = $message_success;
+      }*/
+     
+      
+      /*$output = array(
+        'status'    => $message_final
+        );*/
       $output = array(
       'status'    => $message_final
       );

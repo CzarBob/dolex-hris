@@ -160,8 +160,6 @@ $(document).ready(function(){
 
         var chiefremarks = $('#chiefremarks').val();
  
-
-
         var messageValidate = "Confirm approval of leave?";
         if (confirm(messageValidate) == true) {
             $.ajax({
@@ -195,14 +193,10 @@ $(document).ready(function(){
     $(document).on('click', '#submit_reject_leave', function(){
         var leaveID = document.getElementById("leaveID").value;
         alert('rejected');
+                var chiefremarks = $('#chiefremarks').val();
+                var leaveID = document.getElementById("leaveID").value;
 
-                var fullname = $('#fullname_update').val();
-                var hidden_id = $('#hidden_id').val();
-                var dob = $('#dob_update').val();    
-
-
-
-                var messageValidate = "Confirm "+leave_type+" leave on inclusive day/s "+dataArr_joined+" ?";
+                var messageValidate = "Confirm disapproval of leave?";
                 if (confirm(messageValidate) == true) {
                     $.ajax({
                         url:"approver_pfo_detail_view_action",
@@ -213,17 +207,19 @@ $(document).ready(function(){
                             dob:dob, 
                             employeeiddb:employeeiddb,
                             id:hidden_id,
-                            action:'submit_update_children'
+                            action:'reject_leave'
                         },
                         success:function(data){
                        
-    
-                        $('#children_data').DataTable().ajax.reload();
-                        $('#modalEditChildrenForm').modal('hide');
-                        $('#message2').html(data.status);
-                            setTimeout(function(){
-                                $('#message2').html('');
-                            }, 90000);
+                            alert(data.status);
+                            /*$('#children_data').DataTable().ajax.reload();
+                            $('#modalEditChildrenForm').modal('hide');
+                            $('#message2').html(data.status);
+                                setTimeout(function(){
+                                    $('#message2').html('');
+                                }, 90000);*/
+            
+                                window.location.href = 'approver_pfo';
                         }     
                     }); 
                 

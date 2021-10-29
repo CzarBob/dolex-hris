@@ -250,6 +250,7 @@ if (isset($_POST['action'])){
         SALARY =  "'.$salary.'",
         WORKINGDAYS =  "'.$workingdays.'",
         INCLUSIVEDATE =  "'.$inclusive_date.'",
+        HEADAPPROVESTATUS =  "PENDING",
         CANCELLED =  "N"
        
         

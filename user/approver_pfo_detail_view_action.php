@@ -224,7 +224,70 @@ if (isset($_POST['action'])){
         SET 
         CHIEFREMARKS =  "'.$chiefremarks.'",
         DATEHEADUPDATED = "'.$dateNow.'",
-        HEADAPPROVESTATUS = "Y"
+        HEADAPPROVESTATUS = "Y",
+        RDAPPROVESTATUS = "PENDING"
+
+
+        WHERE ID = "'.$leaveID.'"';
+
+        $result = mysqli_query($connect, $que);
+
+      }
+
+      $message_final = 'LEAVE APPROVED';
+
+      /*if ($flag){
+        $message_final = $message;
+      } else {
+        $message_final = $message_success;
+      }*/
+     
+      
+      /*$output = array(
+        'status'    => $message_final
+        );*/
+      $output = array(
+      'status'    => $message_final
+      );
+
+      echo json_encode($output);
+    }
+  }
+
+
+  if (isset($_POST['action'])){
+    if ($_POST['action'] == 'reject_leave'){
+      $leaveID  = $_POST['leaveID'];
+
+      $chiefremarks = mysqli_real_escape_string($connect,strtoupper($_POST['chiefremarks']));
+
+      $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>Data Updated!</strong> 
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      </div>';
+      $message = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>Please Check field/s:</strong> <br>
+      ';
+      $flag = false;
+
+      //$currentDate = date("Y/m/d");
+      $dateNow = date("Y-m-d H:i:s");
+
+      /*if (($designation == null) || ($designation == '')){
+        $flag = true;
+        $message .= 'Designation must not be blank <br>
+        ';
+      }*/
+
+      if (!$flag){
+        $dateAdded = date("Y-m-d H:i:s");
+        $que = 'UPDATE tbl_leave
+        SET 
+        CHIEFREMARKS =  "'.$chiefremarks.'",
+        DATEHEADUPDATED = "'.$dateNow.'",
+        HEADAPPROVESTATUS = "N"
 
 
         WHERE ID = "'.$leaveID.'"';
@@ -233,7 +296,7 @@ if (isset($_POST['action'])){
 
       }
 
-      $message_final = 'LEAVE APPROVED';
+      $message_final = 'LEAVE DISAPPROVED';
 
       /*if ($flag){
         $message_final = $message;

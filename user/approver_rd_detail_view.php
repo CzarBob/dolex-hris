@@ -134,7 +134,6 @@ session_start();
 
                         <!-- Nav Item - Alerts -->
 
-
                         <!-- Nav Item - Messages -->
 
 
@@ -195,7 +194,7 @@ session_start();
                     <form method="post" id="add_name">
                       <div class="row">
                           <!-- Employee ID database-->
-                          <input type="hidden" name="empID" id="empID" value="<?php echo $_GET['id']; ?>">
+                          <input type="hidden" name="leaveID" id="leaveID" value="<?php echo $_GET['id']; ?>">
                           <input type="hidden" name="loginID" id="loginID" value="<?php echo $_SESSION['usernameid']; ?>">
                           <input type="hidden" name="action" id="action" value="add_leave" />
                           <!-- Pending Requests Card Example -->
@@ -331,13 +330,13 @@ session_start();
                                       <div class="form-row">
                                           <div class="form-group col-md-4">
                                           <label for="inputAddress">Inclusive Dates</label>
-                                          <!--<input  type="text" class="form-control" id="inclusivedate"  >-->
+                                            <input  type="text" class="form-control" id="inclusivedate"  disabled>
                                           </div> 
                                       </div>
                                       <div class="form-row">
-                                      
+                                      <!--
                                         <div class="form-group col-md-4">
-                                        <!--  <input type="text" name="name" id="name" class="form-control" placeholder="Enter your name" />-->
+                                       
                                           <table class="table" id="dynamic_field">
 
                                           </table>
@@ -346,7 +345,7 @@ session_start();
                                           <table class="table" id="dynamic_field">
 
                                           </table>
-                                        </div>
+                                        </div> -->
                                       </div>
 
                                       <!-- Grid row -->
@@ -370,14 +369,14 @@ session_start();
                                             <label class="form-check-label" for="partone1">
                                               Within the Philippines
                                             </label> 
-                                            <input  type="text" class="form-control" id="partone1Details" disabled>
+                                            <!--<input  type="text" class="form-control" id="partone1Details" disabled>-->
                                           </div>
                                           <div class="form-check">
                                             <input class="form-check-input" type="radio" name="partone" id="partone2" value="ABROAD"  disabled>
                                             <label class="form-check-label" for="partone2">
-                                              Abroad (Specify)
+                                              Abroad
                                             </label>
-                                            <input type="text" class="form-control" id="partone2Details"  disabled>
+                                            <!--<input type="text" class="form-control" id="partone2Details"  disabled>-->
                                           </div>
                                           </div> 
 
@@ -398,16 +397,16 @@ session_start();
                                           <div class="form-check">
                                             <input class="form-check-input" type="radio" name="parttwo" id="parttwo1" value = "IPD" disabled>
                                             <label class="form-check-label" for="parttwo1">
-                                              In Hospital (Specify Illness)
+                                              In Hospital 
                                             </label> 
-                                            <input  type="text" class="form-control" id="parttwo1details" disabled >
+                                            <!--<input  type="text" class="form-control" id="parttwo1details" disabled > -->
                                           </div>
                                           <div class="form-check">
                                             <input class="form-check-input" type="radio" name="parttwo" id="parttwo2"  value = "OPD" disabled>
                                             <label class="form-check-label" for="parttwo2">
-                                              Out Patient (Specify Illness)
+                                              Out Patient 
                                             </label>
-                                            <input  type="text" class="form-control" id="parttwo2details" disabled>
+                                            <!--<input  type="text" class="form-control" id="parttwo2details" disabled>-->
                                           </div>
                                           </div> 
                                       </div>
@@ -425,11 +424,8 @@ session_start();
                                       <div class="form-row">
                                           <div class="form-group col-md-4">
                                           <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="partthree" id="partthree1" value="SLWOMEN" disabled>
-                                            <label class="form-check-label" for="partthree1">
-                                              (Specify Illness)
-                                            </label> 
-                                            <input  type="text" class="form-control" id="partthree1details" disabled>
+                                            
+                                            <input  type="text" class="form-control" id="partthree" disabled>
                                           </div>
                                     
                                           </div> 
@@ -530,10 +526,9 @@ session_start();
 
                       </div>
 
-
                       <div class="row">
-                          <div class="col-xl-6 col-lg-7">
-                              <div class="card shadow mb-6">
+                        <div class="col-xl-12 col-lg-12">
+                              <div class="card shadow mb-12">
                                 <span id="message"></span>
                                   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                          <!-- Card Header - Dropdown -->
@@ -547,7 +542,7 @@ session_start();
                                           <!-- Default input -->
                                           <div class="form-group col-md-10">
                                           <label for="inputAddress">Head of Office/Division Chief remarks</label>
-                                          <textarea class="form-control"  id="w3review" name="w3review" rows="4" cols="100"> </textarea>
+                                          <textarea class="form-control"  id="chiefremarks" name="chiefremarks" rows="4" cols="100"> </textarea>
                                       
                                           </div>
                                       </div>
@@ -556,17 +551,22 @@ session_start();
                                           <!-- Default input -->
                                           <div class="form-group col-md-10">
                                           <label for="inputAddress">Regional Director remarks</label>
-                                          <textarea class="form-control"  id="w3review" name="w3review" rows="4" cols="100"> </textarea>
+                                          <textarea class="form-control"  id="rdremarks" name="rdremarks" rows="4" cols="100" disabled> </textarea>
                                           </div>
                                       </div>
                                   </div>
                               </div>
                           </div>
 
+                      </div>
+                      
+                      <br>
 
-                          <div class="col-xl-6 col-lg-7">
+                      <div class="row">
+
+                          <div class="col-xl-12 col-lg-7">
                               <div class="card shadow mb-6">
-                                <span id="message"></span>
+
                                   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                          <!-- Card Header - Dropdown -->
                                     <h6 class="m-0 font-weight-bold text-primary">IV. Leave Balance</h6>
@@ -576,23 +576,78 @@ session_start();
                                   <!-- Card Body -->
                                   <div class="card-body">
                                       <div class="form-group row">
-                                        <label for="inputEmail3" class="col-lg-4 col-form-label">Vacation Leave Credits</label>
-                                        <div class="col-sm-8">
-                                          <input type="text" class="form-control" id="inputEmail3" placeholder="Email">
+                                        <label for="inputEmail3" class="col-lg-2 col-form-label">Vacation Leave Credits</label>
+                                        <div class="col-sm-2">
+                                          <input type="text" class="form-control" id="inputEmail3" disabled>
                                         </div>
                                       </div>
                                       <div class="form-group row">
-                                        <label for="inputEmail3" class="col-lg-4 col-form-label">Sick Leave Credits</label>
-                                        <div class="col-sm-8">
-                                          <input type="text" class="form-control" id="inputEmail3" placeholder="Email">
+                                        <label for="inputEmail3" class="col-lg-2 col-form-label">Sick Leave Credits</label>
+                                        <div class="col-sm-2">
+                                          <input type="text" class="form-control" id="inputEmail3"  disabled>
                                         </div>
                                       </div>
                                   </div>
                               </div>
                           </div>
+
+                          
                       </div>
+
+                      <br>
+                      <div class="row">
+
+                        <div class="col-xl-12 col-lg-7">
+                            <div class="card shadow mb-6">
+
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                      <!-- Card Header - Dropdown -->
+                                  <h6 class="m-0 font-weight-bold text-primary">IV. Leave History</h6>
+                              
+                                </div>
+
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                <div class="card-body">
+                                          <div class="table-responsive">
+                                              <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="leavehistory_data" width="100%" cellspacing="0">
+                                                  <thead class = "text-primary">
+                                                      <tr>
+                                                          <th data-column-id="work_date_from">DATE FROM</th>
+                                                          <th data-column-id="work_date_to">DATE TO</th>
+                                                          <th data-column-id="work_positon">POSTION</th>
+                                                          <th data-column-id="work_company">COMPANY</th>
+                                                          <th data-column-id="work_salary">MONTHLY SALARY</th>
+                                                          <th data-column-id="work_salary_grade">SALARY GRADE (If Applicable)</th>
+                                                          <th data-column-id="work_appointment_status">STATUS OF APPOINTMENT</th>
+                                                          <th data-column-id="work_govt">GOV'T SERVICE</th>
+                                                          <th >ACTION</th>
+                                                      </tr>
+                                                  </thead>
+                                                  <tfoot class = "text-primary">
+                                                      <tr>
+                                                          <th >DATE FROM</th>
+                                                          <th >DATE TO</th>
+                                                          <th >POSTION</th>
+                                                          <th >COMPANY</th>
+                                                          <th >MONTHLY SALARY</th>
+                                                          <th >SALARY GRADE (If Applicable)</th>
+                                                          <th >STATUS OF APPOINTMENT</th>
+                                                          <th >GOV'T SERVICE</th>
+                                                          <th >ACTION</th>
+                                                      </tr>
+                                                  </tfoot>
+                                              </table>
+                                          </div>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+
+
                    
-                  
+                  <br>
 
 
                       <!-- UPDATE OR CANCEL SECTION -->
@@ -606,16 +661,16 @@ session_start();
                           <input type="submit" name="submit" id="submit" class="btn btn-info" value="Submit" />-->
                         <!-- Card Body -->    
                         <input type="hidden" name="hidden_id" id="hidden_id" />
-                        <input type="hidden" name="empID" id="empID" value="<?php echo $_GET['id']; ?>">
-                        <input type="hidden" name="action" id="action" value="add_leave" />                           
+                        <input type="hidden" name="leaveID" id="leaveID" value="<?php echo $_GET['id']; ?>">
+                        <input type="hidden" name="action" id="action" value="add_leave" />                 
                             <div class="col-md-12">
                               <table class=" table">  
                                     <tr>
-                                        <td style="width: 100%;"  colspan="2" style = "align: left"><button  type="submit" name="submit" style="width: 100%;" class="btn btn-success" id = "submit">     Approve  </button></td>    
+                                        <td style="width: 100%;"  colspan="2" style = "align: left"><button  type="button" name="submit" style="width: 100%;" class="btn btn-success" id = "submit_approve_leave" >     Approve  </button></td>    
                                                                                     
                                     </tr>
                                     <tr>
-                                        <td style="width: 100%;"  colspan="2" style = "align: left"><button  type="submit" name="submit" style="width: 100%;" class="btn btn-danger" id = "submit">     Reject  </button></td>                                               
+                                        <td style="width: 100%;"  colspan="2" style = "align: left"><button  type="button" name="submit" style="width: 100%;" class="btn btn-danger" id = "submit_reject_leave" >     Reject  </button></td>                                               
                                     </tr> 
                                     <tr>
                                   
@@ -655,10 +710,6 @@ session_start();
     </a>
 
 
-
-
-   
-
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -697,7 +748,7 @@ session_start();
     <script src="../assets/js/demo/datatables-demo.js"></script>
     
     <!--JS FOR EMPLOYEE ACTIONS -->
-    <script type="text/javascript" src="applicant_leave_detail.js"></script>
+    <script type="text/javascript" src="approver_pfo_detail_view.js"></script>
 
     
 

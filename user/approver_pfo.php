@@ -483,7 +483,7 @@ if ($_SESSION['username'] == ""){
     }
     
   </style>
-   <script type="text/javascript">window.onload = date_time('date_time');</script>
+   <script type="text/javascript"></script>
 
   <!-- Bootstrap core JavaScript-->
   <script src="../vendor/jquery/jquery.min.js"></script>
