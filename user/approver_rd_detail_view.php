@@ -542,7 +542,7 @@ session_start();
                                           <!-- Default input -->
                                           <div class="form-group col-md-10">
                                           <label for="inputAddress">Head of Office/Division Chief remarks</label>
-                                          <textarea class="form-control"  id="chiefremarks" name="chiefremarks" rows="4" cols="100"> </textarea>
+                                          <textarea class="form-control"  id="chiefremarks" name="chiefremarks" rows="4" cols="100" > </textarea>
                                       
                                           </div>
                                       </div>
@@ -551,7 +551,7 @@ session_start();
                                           <!-- Default input -->
                                           <div class="form-group col-md-10">
                                           <label for="inputAddress">Regional Director remarks</label>
-                                          <textarea class="form-control"  id="rdremarks" name="rdremarks" rows="4" cols="100" disabled> </textarea>
+                                          <textarea class="form-control"  id="rdremarks" name="rdremarks" rows="4" cols="100" > </textarea>
                                           </div>
                                       </div>
                                   </div>
@@ -748,7 +748,7 @@ session_start();
     <script src="../assets/js/demo/datatables-demo.js"></script>
     
     <!--JS FOR EMPLOYEE ACTIONS -->
-    <script type="text/javascript" src="approver_pfo_detail_view.js"></script>
+    <script type="text/javascript" src="approver_rd_detail_view.js"></script>
 
     
 

@@ -267,7 +267,7 @@ include 'main_load_query.php';
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="serviceRecord">Service Records</a>
                             <a class="dropdown-item" href="#">Leave Credits</a>
-                            <a class="dropdown-item" href="#">Leave Applications</a>
+                            <a class="dropdown-item" href="user/applicant_leave">Leave Applications</a>
                             <a class="dropdown-item" href="#">Travel Order</a>
                             <a class="dropdown-item" href="#">Inspection Authority</a>
                           </div>

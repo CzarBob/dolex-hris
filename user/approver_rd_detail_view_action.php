@@ -222,9 +222,9 @@ if (isset($_POST['action'])){
         $dateAdded = date("Y-m-d H:i:s");
         $que = 'UPDATE tbl_leave
         SET 
-        CHIEFREMARKS =  "'.$chiefremarks.'",
+        RDREMARKS =  "'.$chiefremarks.'",
         DATEHEADUPDATED = "'.$dateNow.'",
-        HEADAPPROVESTATUS = "Y"
+        RDAPPROVESTATUS = "Y"
 
 
         WHERE ID = "'.$leaveID.'"';
@@ -233,7 +233,7 @@ if (isset($_POST['action'])){
 
       }
 
-      $message_final = 'LEAVE APPROVED';
+      $message_final = 'RD LEAVE APPROVED';
 
       /*if ($flag){
         $message_final = $message;

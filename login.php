@@ -25,6 +25,7 @@ if(isset($_POST['login'])){
 		  $_SESSION['loggedin']="Account_Logged";
 		  $_SESSION['username'] = $row['USERNAME'];
 		  $_SESSION['usernameid'] = $row['ID'];
+		  $_SESSION['type'] = $row['TYPE'];
 		  //echo "success";
 		  $message_final = 'success';
 	}

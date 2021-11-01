@@ -163,7 +163,7 @@ $(document).ready(function(){
         var messageValidate = "Confirm approval of leave?";
         if (confirm(messageValidate) == true) {
             $.ajax({
-                url:"approver_pfo_detail_view_action",
+                url:"approver_rd_detail_view_action",
                 method:"POST",
                 dataType:'JSON',
                 data:{
@@ -182,7 +182,7 @@ $(document).ready(function(){
                         $('#message2').html('');
                     }, 90000);*/
 
-                    window.location.href = 'approver_pfo';
+                    window.location.href = 'approver_rd';
                 }     
             }); 
         
@@ -199,7 +199,7 @@ $(document).ready(function(){
                 var messageValidate = "Confirm disapproval of leave?";
                 if (confirm(messageValidate) == true) {
                     $.ajax({
-                        url:"approver_pfo_detail_view_action",
+                        url:"approver_rd_detail_view_action",
                         method:"POST",
                         dataType:'JSON',
                         data:{
@@ -219,7 +219,7 @@ $(document).ready(function(){
                                     $('#message2').html('');
                                 }, 90000);*/
             
-                                window.location.href = 'approver_pfo';
+                                window.location.href = 'approver_rd';
                         }     
                     }); 
                 
