@@ -1,11 +1,11 @@
 <?php 
 session_start();
 include "../dbConnection.php";
-/*
-if ($_SESSION['username'] == ""){
-  header("Location: admin");
+
+if (($_SESSION['username'] == "") && ($_SESSION['type']!='CHIEF_APPROVER')){
+  header("Location: ../admin");
   exit;
-}*/
+}
  ?>
 
 <!DOCTYPE html>
@@ -39,7 +39,7 @@ if ($_SESSION['username'] == ""){
   <div id="wrapper">
     
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="main">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../main">
         <img class = "icon" src = "../img/dolelogogs.png" width = "60"></img>
         <div class="sidebar-brand-text mx-3">DOLE-X HRIS</div>
       </a>

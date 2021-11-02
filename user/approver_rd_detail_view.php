@@ -1,10 +1,10 @@
 <?php
 include "../dbConnection.php";
 session_start();
-/*if ($_SESSION['username'] == ""){
-  header("Location: admin");
+if (($_SESSION['username'] == "") && ($_SESSION['type']!='RD_APPROVER')){
+  header("Location: ../admin");
   exit;
-}*/
+}
 
 //include 'serviceRecordDetail_load_query.php';
 
@@ -46,7 +46,7 @@ session_start();
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="main">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../main">
                 <div class="sidebar-brand-icon">
                     <img src="../assets/img/AEP_icon.png" alt="" width="35px" height="35px">
                 </div>

@@ -1,10 +1,10 @@
 <?php
 include "../dbConnection.php";
 session_start();
-/*if ($_SESSION['username'] == ""){
-  header("Location: admin");
+if (($_SESSION['username'] == "") && ($_SESSION['type']!='CHIEF_APPROVER')){
+  header("Location: ../admin");
   exit;
-}*/
+}
 
 //include 'serviceRecordDetail_load_query.php';
 

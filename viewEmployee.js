@@ -300,20 +300,20 @@
                                 var dualchoiceDB = data.data_profile.dualcitizen;
                                 $("#dualchoice").val(dualchoiceDB).change();
 
-                                $('#res_blockno').val(data.data_profile.residentialaddress);
-                                $('#res_street').val(data.data_profile.residentialaddress);
-                                $('#res_subdivision').val(data.data_profile.residentialaddress);
-                                $('#res_barangay').val(data.data_profile.residentialaddress);
-                                $('#res_city').val(data.data_profile.residentialaddress);
-                                $('#res_province').val(data.data_profile.residentialaddress);
-                                $('#res_zipcode').val(data.data_profile.residentialaddress);
-                                $('#perm_blockno').val(data.data_profile.residentialaddress);
-                                $('#perm_street').val(data.data_profile.residentialaddress);
-                                $('#perm_subdivision').val(data.data_profile.residentialaddress);
-                                $('#perm_barangay').val(data.data_profile.residentialaddress);
-                                $('#perm_city').val(data.data_profile.residentialaddress);
-                                $('#perm_province').val(data.data_profile.residentialaddress);
-                                $('#perm_zipcode').val(data.data_profile.residentialaddress);
+                                $('#res_blockno').val(data.data_profile.res_blockno);
+                                $('#res_street').val(data.data_profile.res_street);
+                                $('#res_subdivision').val(data.data_profile.res_subdivision);
+                                $('#res_barangay').val(data.data_profile.res_barangay);
+                                $('#res_city').val(data.data_profile.res_city);
+                                $('#res_province').val(data.data_profile.res_province);
+                                $('#res_zipcode').val(data.data_profile.res_zipcode);
+                                $('#perm_blockno').val(data.data_profile.perm_blockno);
+                                $('#perm_street').val(data.data_profile.perm_street);
+                                $('#perm_subdivision').val(data.data_profile.perm_subdivision);
+                                $('#perm_barangay').val(data.data_profile.perm_barangay);
+                                $('#perm_city').val(data.data_profile.perm_city);
+                                $('#perm_province').val(data.data_profile.perm_province);
+                                $('#perm_zipcode').val(data.data_profile.perm_zipcode);
                                 
                                 $('#telephoneno').val(data.data_profile.telephoneno);
                                 $('#mobileno').val(data.data_profile.mobileno);

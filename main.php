@@ -97,13 +97,18 @@ include 'main_load_query.php';
           <span>VACANCIES</span>
         </a>
       </li>
+      
+      <?php if ($_SESSION['type']== 'ADMIN') {?>
+          <li class="nav-item ">
+          <a class="nav-link" href="serviceRecord">
+            <i class="fas fa-fw fa-lg fa-check-square"></i>
+            <span>PRIME HRM</span>
+          </a>
+          </li>
 
-      <li class="nav-item ">
-        <a class="nav-link" href="serviceRecord">
-          <i class="fas fa-fw fa-lg fa-check-square"></i>
-          <span>PRIME HRM</span>
-        </a>
-      </li>
+      <?php
+      } ?>
+         
 
       <li class="nav-item ">
         <a class="nav-link" href="serviceRecord">
@@ -267,7 +272,25 @@ include 'main_load_query.php';
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="serviceRecord">Service Records</a>
                             <a class="dropdown-item" href="#">Leave Credits</a>
-                            <a class="dropdown-item" href="user/applicant_leave">Leave Applications</a>
+
+                            <?php 
+
+                          
+                            $path = '';
+                            
+                            if ($_SESSION['type']=='CHIEF_APPROVER') {
+                              $path = 'user/approver_pfo';
+                            } else if ($_SESSION['type']=='RD_APPROVER'){
+                              $path = 'user/approver_rd';
+                            } else {
+                              $path = 'user/application_leave';
+
+                            }
+                            
+                            ?>
+                            <a class="dropdown-item" href="<?php echo $path;?>">Leave Applications</a>
+                           
+            
                             <a class="dropdown-item" href="#">Travel Order</a>
                             <a class="dropdown-item" href="#">Inspection Authority</a>
                           </div>

@@ -98,8 +98,20 @@ if (isset($_POST['action'])){
       $sub_array_query_profile['agencyemployeeno']    = $row['AGENCYEMPLOYEENO'];
       $sub_array_query_profile['citizenship']         = $row['CITIZENSHIP'];
       $sub_array_query_profile['dualcitizen']         = $row['DUALCITIZEN'];
-      $sub_array_query_profile['residentialaddress']  = $row['RESIDENTIALADDRESS'];
-      $sub_array_query_profile['permanentaddress']    = $row['PERMANENTADDRESS'];
+      $sub_array_query_profile['res_blockno']         = $row['RESBLOCKNO'];
+      $sub_array_query_profile['res_street']          = $row['RESSTREET'];
+      $sub_array_query_profile['res_subdivision']     = $row['RESSUBDIVISION'];
+      $sub_array_query_profile['res_barangay']        = $row['RESBARANGAY'];
+      $sub_array_query_profile['res_city']            = $row['RESCITY'];
+      $sub_array_query_profile['res_province']        = $row['RESPROVINCE'];
+      $sub_array_query_profile['res_zipcode']         = $row['RESZIPCODE'];
+      $sub_array_query_profile['perm_blockno']         = $row['PERMBLOCKNO'];
+      $sub_array_query_profile['perm_street']          = $row['PERMSTREET'];
+      $sub_array_query_profile['perm_subdivision']     = $row['PERMSUBDIVISION'];
+      $sub_array_query_profile['perm_barangay']        = $row['PERMBARANGAY'];
+      $sub_array_query_profile['perm_city']            = $row['PERMCITY'];
+      $sub_array_query_profile['perm_province']        = $row['PERMPROVINCE'];
+      $sub_array_query_profile['perm_zipcode']         = $row['PERMZIPCODE'];  
       $sub_array_query_profile['telephoneno']         = $row['TELEPHONENO'];
       $sub_array_query_profile['mobileno']            = $row['MOBILENO'];
       $sub_array_query_profile['email']               = $row['EMAIL'];
@@ -223,12 +235,14 @@ if (isset($_POST['action'])){
       }
 
       $query_profile = 'SELECT * FROM tbl_employee_profile WHERE EMPID = "'.$_POST["employeeiddb"].'" ';
+      
+      //var_dump($query_profile);
       $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query_profile));
       if($number_filter_row == 0){
         $queProfile = "INSERT INTO `tbl_employee_profile` SET 
         EMPID = '".$_POST["employeeiddb"]."'
         "; 
-        //var_dump($queProfile);
+        
         $query = $connect->query($queProfile) or die($connect->error); 
       }
 
@@ -257,9 +271,21 @@ if (isset($_POST['action'])){
         $sub_array_query_profile['agencyemployeeno']    = $row['AGENCYEMPLOYEENO'];
         $sub_array_query_profile['citizenship']         = $row['CITIZENSHIP'];
         $sub_array_query_profile['dualcitizen']         = $row['DUALCITIZEN'];
-        $sub_array_query_profile['residentialaddress']  = $row['RESIDENTIALADDRESS'];
-        $sub_array_query_profile['permanentaddress']    = $row['PERMANENTADDRESS'];
-        $sub_array_query_profile['telephoneno']         = $row['TELEPHONENO'];
+        $sub_array_query_profile['res_blockno']         = $row['RESBLOCKNO'];
+        $sub_array_query_profile['res_street']          = $row['RESSTREET'];
+        $sub_array_query_profile['res_subdivision']     = $row['RESSUBDIVISION'];
+        $sub_array_query_profile['res_barangay']        = $row['RESBARANGAY'];
+        $sub_array_query_profile['res_city']            = $row['RESCITY'];
+        $sub_array_query_profile['res_province']        = $row['RESPROVINCE'];
+        $sub_array_query_profile['res_zipcode']         = $row['RESZIPCODE'];
+        $sub_array_query_profile['perm_blockno']         = $row['PERMBLOCKNO'];
+        $sub_array_query_profile['perm_street']          = $row['PERMSTREET'];
+        $sub_array_query_profile['perm_subdivision']     = $row['PERMSUBDIVISION'];
+        $sub_array_query_profile['perm_barangay']        = $row['PERMBARANGAY'];
+        $sub_array_query_profile['perm_city']            = $row['PERMCITY'];
+        $sub_array_query_profile['perm_province']        = $row['PERMPROVINCE'];
+        $sub_array_query_profile['perm_zipcode']         = $row['PERMZIPCODE'];      
+        $sub_array_query_profile['telephoneno']            = $row['TELEPHONENO'];
         $sub_array_query_profile['mobileno']            = $row['MOBILENO'];
         $sub_array_query_profile['email']               = $row['EMAIL'];
         $data_profile[] = $sub_array_query_profile;

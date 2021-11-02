@@ -183,7 +183,7 @@ if (mysqli_connect_errno()) {
                         <div class="col-xl-12 col-lg-7">
                         <span id="message"></span>
                             <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
+                                <!-- Card Header - DropdownmodalEditPersonalDetailsForm -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                   <h6 class="m-0 font-weight-bold text-primary">I. Personal Data</h6>
                                   <div>

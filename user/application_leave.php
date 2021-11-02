@@ -1,11 +1,11 @@
 <?php 
 session_start();
 include "../dbConnection.php";
-/*
-if ($_SESSION['username'] == ""){
+
+if ($_SESSION['usernameid'] == ""){
   header("Location: admin");
   exit;
-}*/
+}
  ?>
 
 <!DOCTYPE html>
@@ -185,7 +185,8 @@ if ($_SESSION['username'] == ""){
                   <div class="card bg-primary  mb-4"> <!--id="totEmp"-->
                       <div class="card-body text-white" >Leave Application <span > </span></div>
                       <div class="card-footer d-flex align-items-center justify-content-between">
-                          <a class="large text-black stretched-link" data-toggle="modal" data-target="#applyLeaveForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i>Apply Here</a>
+                          <!--<a class="large text-black stretched-link" data-toggle="modal" data-target="#applyLeaveForm" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i>Apply Here</a>-->
+                          <a href='application_leave_detail.php?id=<?php echo $_SESSION['usernameid']?>'  aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i>Apply Here</a>
 
 
                     
@@ -247,7 +248,7 @@ if ($_SESSION['username'] == ""){
         <!--            <a class="btn btn-primary" href="logout.php">Logout</a> -->
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
-          <a class="btn btn-primary" href="logout">Logout</a> 
+          <a class="btn btn-primary" href="../logout">Logout</a> 
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
         </div>
       </div>
