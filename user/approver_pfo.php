@@ -316,21 +316,21 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='CHIEF_APPROVER')){
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="user_data" width="100%" cellspacing="0">
+                <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="leave_approved_data" width="100%" cellspacing="0">
                   <thead class = "text-primary">
                   <tr>
-                      <th>EMPLOYEE ID</th>
+                      <th>DATE OF FILLING</th>
+                      <th>LEAVE TYPE</th>
                       <th>FIRST NAME</th>
-                      <th>MIDDLE NAME</th>
                       <th>LAST NAME</th>
                       <th>ACTION</th>
                     </tr>
                   </thead>
                   <tfoot class = "text-primary">
                     <tr>
-                      <th>EMPLOYEE ID</th>
+                      <th>DATE OF FILLING</th>
+                      <th>LEAVE TYPE</th>
                       <th>FIRST NAME</th>
-                      <th>MIDDLE NAME</th>
                       <th>LAST NAME</th>
                       <th>ACTION</th>
                     </tr>
@@ -348,21 +348,21 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='CHIEF_APPROVER')){
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="user_data" width="100%" cellspacing="0">
+                <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="leave_denied_data" width="100%" cellspacing="0">
                   <thead class = "text-primary">
                   <tr>
-                      <th>EMPLOYEE ID</th>
+                      <th>DATE OF FILLING</th>
+                      <th>LEAVE TYPE</th>
                       <th>FIRST NAME</th>
-                      <th>MIDDLE NAME</th>
                       <th>LAST NAME</th>
                       <th>ACTION</th>
                     </tr>
                   </thead>
                   <tfoot class = "text-primary">
                     <tr>
-                      <th>EMPLOYEE ID</th>
+                      <th>DATE OF FILLING</th>
+                      <th>LEAVE TYPE</th>
                       <th>FIRST NAME</th>
-                      <th>MIDDLE NAME</th>
                       <th>LAST NAME</th>
                       <th>ACTION</th>
                     </tr>
@@ -507,10 +507,53 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='CHIEF_APPROVER')){
 
 
     fetch_data();
+    fetch_approved_data();
+    fetch_denied_data();
    
     function fetch_data(){
       var action = 'fetch_leave_data';
       var dataTable = $('#leave_data').DataTable({
+      /* "processing" : true,
+        "serverSide" : true,
+        "columnDefs": [{ "orderable": false, "targets":[0,1] }],
+        "order" : [],*/
+        "ajax" : {
+        url:"approver_pfo_action.php",
+        type:"POST",
+        data:{
+            action:action
+                  },
+        },
+        success:function(){
+        }
+      });
+    }
+
+
+
+    function fetch_approved_data(){
+      var action = 'fetch_leave_approved_data';
+      var dataTable = $('#leave_approved_data').DataTable({
+      /* "processing" : true,
+        "serverSide" : true,
+        "columnDefs": [{ "orderable": false, "targets":[0,1] }],
+        "order" : [],*/
+        "ajax" : {
+        url:"approver_pfo_action.php",
+        type:"POST",
+        data:{
+            action:action
+                  },
+        },
+        success:function(){
+        }
+      });
+    }
+
+
+    function fetch_denied_data(){
+      var action = 'fetch_leave_denied_data';
+      var dataTable = $('#leave_denied_data').DataTable({
       /* "processing" : true,
         "serverSide" : true,
         "columnDefs": [{ "orderable": false, "targets":[0,1] }],

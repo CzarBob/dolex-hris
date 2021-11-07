@@ -316,7 +316,7 @@ if (($_SESSION['username'] == "") || ($_SESSION['type']!='RD_APPROVER')){
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="user_data" width="100%" cellspacing="0">
+                <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="leave_approved_data" width="100%" cellspacing="0">
                   <thead class = "text-primary">
                   <tr>
                       <th>EMPLOYEE ID</th>
@@ -348,7 +348,7 @@ if (($_SESSION['username'] == "") || ($_SESSION['type']!='RD_APPROVER')){
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="user_data" width="100%" cellspacing="0">
+                <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="leave_denied_data" width="100%" cellspacing="0">
                   <thead class = "text-primary">
                   <tr>
                       <th>EMPLOYEE ID</th>

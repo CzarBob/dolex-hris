@@ -313,6 +313,8 @@ if (isset($_POST['action'])){
 
   if (isset($_POST['action'])){
     if ($_POST['action'] == 'add_leave'){
+
+
       $inclusive_date = implode(",", $_POST["inclusive_date"]);
       $empid  = $_POST['empID'];
 
@@ -348,19 +350,23 @@ if (isset($_POST['action'])){
         $result = mysqli_query($connect,$que); 
 
 
+        $message_final = 'LEAVE APPLIED';
 
-        /*
-        if ($flag){
+        /*if ($flag){
           $message_final = $message;
         } else {
           $message_final = $message_success;
-        }
-      
+        }*/
+       
+        
+        /*$output = array(
+          'status'    => $message_final
+          );*/
         $output = array(
         'status'    => $message_final
         );
 
-        echo json_encode($output);*/
+        echo json_encode($output);
 
 
     }

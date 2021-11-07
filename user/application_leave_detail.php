@@ -544,7 +544,7 @@ session_start();
                           <input type="submit" name="submit" id="submit" class="btn btn-info" value="Submit" />-->
                         <!-- Card Body -->    
                         <input type="hidden" name="hidden_id" id="hidden_id" />
-                        <input type="hidden" name="empID" id="empID" value="<?php echo $_GET['id']; ?>">
+                        <input type="hidden" name="empID" id="empID" value="<?php echo $_SESSION['usernameid']; ?>">
                         <input type="hidden" name="action" id="action" value="add_leave" />                           
                             <div class="col-md-12">
                               <table class=" table">  
@@ -632,7 +632,7 @@ session_start();
     <script src="../assets/js/demo/datatables-demo.js"></script>
     
     <!--JS FOR EMPLOYEE ACTIONS -->
-    <script type="text/javascript" src="applicant_leave_detail.js"></script>
+    <script type="text/javascript" src="application_leave_detail.js"></script>
 
     
 

@@ -272,11 +272,12 @@ include 'main_load_query.php';
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="serviceRecord">Service Records</a>
                             <a class="dropdown-item" href="#">Leave Credits</a>
-
+                          
                             <?php 
 
                           
                             $path = '';
+                            //echo $_SESSION['type'];
                             
                             if ($_SESSION['type']=='CHIEF_APPROVER') {
                               $path = 'user/approver_pfo';
@@ -288,7 +289,7 @@ include 'main_load_query.php';
                             }
                             
                             ?>
-                            <a class="dropdown-item" href="<?php echo $path;?>">Leave Applications</a>
+                            <a class="dropdown-item" href="<?php echo $path;?>"><?php echo $path;?>Leave Applications</a>
                            
             
                             <a class="dropdown-item" href="#">Travel Order</a>

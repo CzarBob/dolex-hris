@@ -116,15 +116,19 @@ $('#add_name').on('submit', function(event){
             var form_data = $(this).serialize();
 
             var action = $('#action').val();
+            //alert(action);
             $.ajax({
-                url:"applicant_leave_detail_action.php",
+                url:"application_leave_detail_action",
                 method:"POST",
                 data:form_data,
+                dataType: 'JSON',
                 success:function(data)
                 {
                     if(action == 'add_leave')
                     {
                         alert("Data Inserted");
+                        window.location.href = "application_leave";
+                        
 
                     }
                     if(action == 'edit')
