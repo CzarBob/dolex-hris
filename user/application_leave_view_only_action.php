@@ -59,7 +59,7 @@ if (isset($_POST['action'])){
     //$number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
 
     $result = mysqli_query($connect, $query);
-    
+    $message = '';
     $data = array();
     if($result){
       while($row = mysqli_fetch_array($result)){
@@ -97,6 +97,26 @@ if (isset($_POST['action'])){
         $sub_array['headapprovestatus']               = $row['HEADAPPROVESTATUS'];
         $sub_array['dateheadupdated']               = $row['DATEHEADUPDATED'];
 
+        if (($row['HEADAPPROVESTATUS'] == 'Y') && ($row['RDAPPROVESTATUS'] == 'PENDING')){
+          $sub_array['approvalstatus'] = '<p id="applicationstatus" class="text-warning h2"><strong>PENDING - FOR RD SIGNING</strong></p>';
+        
+        
+        } else if (($row['HEADAPPROVESTATUS'] == 'Y') &&($row['RDAPPROVESTATUS'] == 'N' )){
+          //$sub_array['approvalstatus'] = 'DISAPPROVED ';
+          $sub_array['approvalstatus'] = '<p id="applicationstatus" class="text-danger h2"><strong>DISAPPROVED</strong></p>';
+        } else if ($row['HEADAPPROVESTATUS'] == 'PENDING') {
+          //$sub_array['approvalstatus'] = 'PENDING ';
+          $sub_array['approvalstatus'] = '<p id="applicationstatus" class="text-warning h2"><strong>PENDING - FOR RD APPROVAL</strong></p>';
+        } else if ($row['HEADAPPROVESTATUS'] == 'N') {
+          //$sub_array['approvalstatus'] = 'DISAPPROVED ';
+          $sub_array['approvalstatus'] = '<p id="applicationstatus" class="text-danger h2"><strong>PENDING - FOR RD APPROVAL</strong></p>';
+        } else if (($row['HEADAPPROVESTATUS'] == 'Y') && ($row['RDAPPROVESTATUS'] == 'Y')  ){
+          $sub_array['approvalstatus'] = '<p id="applicationstatus" class="text-success h2"><strong>APPROVED</strong></p>';
+        
+        
+        }
+
+        
         $data[] = $sub_array;
         
       }
@@ -105,31 +125,19 @@ if (isset($_POST['action'])){
 
 
     $dateNow = date("Y-m-d H:i:s");
-    /*if($number_filter_row == 0){
-      $queProfile = "INSERT INTO `tbl_employee_profile` SET 
-      EMPID = '".$_POST["employeeiddb"]."',
-      UPDATEDBY = '".$usernameid."',
-      UPDATEDDATETIME = '".$dateNow."'
-      "; 
-
-      $query = $connect->query($queProfile) or die($connect->error); 
-    }*/
-
-    //var_dump($query_leave);
 
     $a = array();
 
 
 
-
     if(isset($sub_array)){
-      $a = $sub_array; //employee profile
+      $a = $sub_array;
     } 
-
-
     $output = array(
-    "data"    => $a
-    );
+      "data"    => $a
+      );
+
+    
 
     echo json_encode($output);
 

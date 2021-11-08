@@ -1176,10 +1176,7 @@
                                 $('#message2').html(data.status);
                                 setTimeout(function(){
                                     $('#message2').html('');
-                                }, 90000);
-                           
-                            
-                           
+                                }, 90000);                           
                             }     
                         }); 
             });

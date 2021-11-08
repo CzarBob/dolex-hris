@@ -223,8 +223,13 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='RD_APPROVER')){
                                           <input type="text" class="form-control" id="office" placeholder="Ex. CBTZ200116" disabled>
                                           </div>
                                           <div class="form-group col-md-4">
-                                          <label for="inputAddress">Division</label>
-                                          <input  type="text" class="form-control" id="division" placeholder="Ex. Labor Employment Officer I" disabled>
+                                            <label for="inputAddress">Division</label>
+                                            <input  type="text" class="form-control" id="division" placeholder="Ex. Labor Employment Officer I" disabled>
+                                          </div>
+
+                                          <div class="form-group col-md-4">
+                                            <label for="inputAddress">Division</label>
+                                            <input  type="text" class="form-control" id="division" placeholder="Ex. Labor Employment Officer I" disabled>
                                           </div>
                                       </div>
                                       <div class="form-row">
@@ -412,7 +417,7 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='RD_APPROVER')){
                                       </div>
 
                                       <!--PART 3-->
-                                      <div class="form-row">
+                                     <!-- <div class="form-row">
                                           <div class="form-group col-md-4">
                                           </div> 
                                       </div>
@@ -429,7 +434,7 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='RD_APPROVER')){
                                           </div>
                                     
                                           </div> 
-                                      </div>
+                                      </div> -->
 
 
                                       <!--PART 4-->
@@ -546,12 +551,24 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='RD_APPROVER')){
                                       
                                           </div>
                                       </div>
-
+                                      
                                       <div class="form-row">
                                           <!-- Default input -->
                                           <div class="form-group col-md-10">
                                           <label for="inputAddress">Regional Director remarks</label>
                                           <textarea class="form-control"  id="rdremarks" name="rdremarks" rows="4" cols="100" disabled> </textarea>
+                                          </div>
+                                      </div>
+
+                                      <div class="form-row">
+                                          <!-- Default input -->
+                                          <div class="form-group col-md-10">
+                                          <label for="inputAddress">Application Status: </label>
+
+                                        
+                                          
+
+                                          <span id="message2"></span>
                                           </div>
                                       </div>
                                   </div>
@@ -742,7 +759,7 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='RD_APPROVER')){
     <script src="../assets/js/demo/datatables-demo.js"></script>
     
     <!--JS FOR EMPLOYEE ACTIONS -->
-    <script type="text/javascript" src="approver_rd_detail_view.js"></script>
+    <script type="text/javascript" src="application_leave_view_only.js"></script>
 
     
 

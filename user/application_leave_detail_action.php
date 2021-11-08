@@ -26,7 +26,7 @@ if (isset($_POST['action'])){
       OR INCUSIVEDATE LIKE "%'.$_POST["search"]["value"].'%"  ) 
       ';
       }
-      $query .= ' ORDER BY ID DESC ';
+      $query .= ' ORDER BY DATEOFFILLING ASC ';
 
 
       //var_dump($query);
@@ -46,10 +46,33 @@ if (isset($_POST['action'])){
       while($row = mysqli_fetch_array($result)){
         
         $sub_array = array();
+        $sub_array[] = $row["ID"];
         $sub_array[] = $row["DATEOFFILLING"];
+        $sub_array[] = $row["LEAVETYPE"];
         $sub_array[] = $row["INCLUSIVEDATE"];
-        $sub_array[] = $row["CHIEFAPPROVESTATUS"];
-        $sub_array[] = $row["RDAPPROVESTATUS"];
+        //$sub_array[] = $row["HEADAPPROVESTATUS"];
+        //$sub_array[] = $row["RDAPPROVESTATUS"];
+
+
+        if (($row['HEADAPPROVESTATUS'] == 'Y') && ($row['RDAPPROVESTATUS'] == 'PENDING')){
+          $sub_array[] = '<p id="applicationstatus" class="text-warning h5"><strong>PENDING - FOR RD SIGNING</strong></p>';
+        } else if (($row['HEADAPPROVESTATUS'] == 'Y') &&($row['RDAPPROVESTATUS'] == 'N' )){
+          //$sub_array['approvalstatus'] = 'DISAPPROVED ';
+          $sub_array[] = '<p id="applicationstatus" class="text-danger h5"><strong>DISAPPROVED</strong></p>';
+        } else if ($row['HEADAPPROVESTATUS'] == 'PENDING') {
+          //$sub_array['approvalstatus'] = 'PENDING ';
+          $sub_array[] = '<p id="applicationstatus" class="text-warning h5"><strong>PENDING - FOR RD APPROVAL</strong></p>';
+        } else if ($row['HEADAPPROVESTATUS'] == 'N') {
+          //$sub_array['approvalstatus'] = 'DISAPPROVED ';
+          $sub_array[] = '<p id="applicationstatus" class="text-danger h5"><strong>PENDING - FOR RD APPROVAL</strong></p>';
+        } else if (($row['HEADAPPROVESTATUS'] == 'Y') && ($row['RDAPPROVESTATUS'] == 'Y')  ){
+          $sub_array[] = '<p id="applicationstatus" class="text-success h5"><strong>APPROVED</strong></p>';
+        
+        
+        } else {
+          $sub_array[] = '<p id="applicationstatus" class="text-danger h5"><strong>PENDING </strong></p>';
+        }
+
         
         //$sub_array[] = $row["EMPLOYEEID"];
         /*$sub_array[] = 
@@ -60,16 +83,12 @@ if (isset($_POST['action'])){
                 </form> ";*/
               /* $sub_array[] = "<a href='viewEmployee.php?id=".$row['ID']."' data-id='".$row['ID']."'> View</a> / 
                 <a href='#addEmployeeForm'  id='custId' data-toggle='modal' data-id='".$row['ID']."'>Delete</a>"; */
-                $sub_array[] = "<a href='applicant_leave_detail.php?id=".$row['ID']."' data-id='".$row['ID']."'> <button type='button' class='btn btn-info btn-sm'>View</button></a></a> ";  
+                $sub_array[] = "<a href='application_leave_view_only.php?id=".$row['ID']."' data-id='".$row['ID']."'> <button type='button' class='btn btn-info btn-sm'>View</button></a></a> ";  
 
         $data[] = $sub_array;
       }
 
-      function get_all_employee_data($connect){
-      $query = "SELECT * FROM tbl_leave where CANCELLED = 'N'";
-      $result = mysqli_query($connect, $query);
-      return mysqli_num_rows($result);
-      }
+
 
       $output = array(
       //"draw"    => intval($_POST["draw"]),
@@ -230,6 +249,9 @@ if (isset($_POST['action'])){
       echo json_encode($output);
     }
   }
+
+
+
 
 
   if (isset($_POST['action'])){

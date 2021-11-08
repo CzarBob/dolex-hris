@@ -118,9 +118,7 @@ if (isset($_POST['action'])){
           $data[] = $sub_array;
         }
       }
-      
-      //var_dump($data);
-      //$_SESSION['sr_date_dump'] = $data;
+
       
       //var_dump($_SESSION['query2']);
       $output = array(
@@ -135,51 +133,37 @@ if (isset($_POST['action'])){
   } 
 
   if (isset($_POST['action'])){
-    if ($_POST['action'] == 'fetch_pfo'){
+    if ($_POST['action'] == 'fetch_leave_approved'){
 
-      $query = 'SELECT * FROM tbl_leave WHERE EMPID = "'.$_POST['employeeiddb'].'" AND CANCELLED = "N" ';
+      
+      $query = 'SELECT tbl_leave.ID as ID,tbl_leave.DATEOFFILLING as DATEOFFILLING, tbl_employee.FIELDOFFICEID as FIELDOFFICEID, tbl_leave.LEAVETYPE as LEAVETYPE, tbl_employee.FIRSTNAME as FIRSTNAME, tbl_employee.LASTNAME as LASTNAME FROM `tbl_leave`
+      INNER JOIN tbl_employee ON tbl_leave.EMPID = tbl_employee.ID WHERE tbl_leave.CANCELLED = "N" AND tbl_leave.HEADAPPROVESTATUS ="Y" AND tbl_leave.RDAPPROVESTATUS = "Y" ';
 
       $result = mysqli_query($connect, $query );
       
-
       $data = array();
       if($result){
         while($row = mysqli_fetch_array($result)){
         
           $sub_array = array();
-          
-          $sub_array[] = $row["SERVICEFROM"];
-          $sub_array[] = $row["SERVICETO"];
-          $sub_array[] = $row["DESIGNATION"];
-          $sub_array[] = $row["STATUS"];
-          $sub_array[] = $row["SALARY"];
-          $sub_array[] = $row["OFFICE"];
-          $sub_array[] = $row["BRANCH"];
-          $sub_array[] = $row["ABS"];
-          $sub_array[] = $row["SEPARATIONDATE"];
-          $sub_array[] = $row["AMOUNTRECEIVED"];
-          $sub_array[] = $row["DETAILS"];
-          $sub_array[] = "
-          <button type='button' name='update_sr' class='btn btn-warning btn-sm update_sr'  data-id='".$row['ID']."'>View</button>
-          <button type='button' name='delete_sr' class='btn btn-danger btn-sm delete_sr' data-id='".$row['ID']."'>Delete</button>";  
-          $sub_array[] = $row["ID"];
-          $sub_array[] = $row["EMPID"];
+          $sub_array[] = $row["DATEOFFILLING"];
+          $sub_array[] = $row["LEAVETYPE"];
+          $sub_array[] = $row["FIRSTNAME"];
+          $sub_array[] = $row["LASTNAME"];
+          /*$sub_array[] = "
+          <button type='button' name='view_leave' class='btn btn-warning btn-sm view_leave'  data-id='".$row['ID']."'>View</button>";*/
+          $sub_array[] = "<a href='approver_rd_detail_view.php?id=".$row['ID']."' data-id='".$row['ID']."'> <button type='button' class='btn btn-info btn-sm'>Select</button></a> ";  
+          //<button type='button' name='delete_sr' class='btn btn-danger btn-sm delete_sr' data-id='".$row['ID']."'>Delete</button>";  
+       
           $data[] = $sub_array;
-          
-          $_SESSION['sr_data2'][] = $sub_array; 
-          
         }
       }
-      //$_SESSION['sr_data2'] = $data;
-
-      //$_SESSION['sr_date_dump'] = $data;
       
-      //var_dump($_SESSION['query2']);
+
       $output = array(
        //"draw"    => intval($_POST["draw"]),
        //"recordsTotal"  =>  get_all_data($connect),
        //"recordsFiltered" => $number_filter_row,
-       //"data"    => $_SESSION['sr_data2']
        "data"    => $data
       );
       
@@ -188,82 +172,46 @@ if (isset($_POST['action'])){
   }
 
 
+
   if (isset($_POST['action'])){
-    if ($_POST['action'] == 'add_service_record'){
-      $empid  = $_POST['employeeiddb'];
+    if ($_POST['action'] == 'fetch_leave_denied'){
 
-      $service_from = $_POST['service_from'];
-      $service_to = $_POST['service_to'];
-      $designation = mysqli_real_escape_string($connect,strtoupper($_POST['designation']));
-      $status = mysqli_real_escape_string($connect,strtoupper($_POST['status']));
-      $salary = mysqli_real_escape_string($connect,strtoupper($_POST['salary']));
-      $office = mysqli_real_escape_string($connect,strtoupper($_POST['office']));
-      $branch = mysqli_real_escape_string($connect,strtoupper($_POST['branch']));
-      $abs = mysqli_real_escape_string($connect,strtoupper($_POST['abs']));
-      $separation_date = $_POST['separation_date'];
-      $amount_received = mysqli_real_escape_string($connect,strtoupper($_POST['amount_received']));
-      $details = mysqli_real_escape_string($connect,strtoupper($_POST['details']));
+      
+      $query = 'SELECT tbl_leave.ID as ID,tbl_leave.DATEOFFILLING as DATEOFFILLING, tbl_employee.FIELDOFFICEID as FIELDOFFICEID, tbl_leave.LEAVETYPE as LEAVETYPE, tbl_employee.FIRSTNAME as FIRSTNAME, tbl_employee.LASTNAME as LASTNAME FROM `tbl_leave`
+      INNER JOIN tbl_employee ON tbl_leave.EMPID = tbl_employee.ID WHERE tbl_leave.CANCELLED = "N" AND tbl_leave.HEADAPPROVESTATUS ="Y" AND tbl_leave.RDAPPROVESTATUS = "N" ';
 
-      $usernameid = $_POST['usernameid'];
-
-      $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
-      <strong>Data Updated!</strong> 
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      </div>';
-      $message = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-      <strong>Please Check field/s:</strong> <br>
-      ';
-      $flag = false;
-
-      $currentDate = date("Y/m/d");
-
-      if (($designation == null) || ($designation == '')){
-        $flag = true;
-        $message .= 'Designation must not be blank <br>
-        ';
-      }
-
-      if (!$flag){
-        $dateAdded = date("Y-m-d H:i:s");
-        $que = 'INSERT INTO `tbl_service_record` SET 
-        EMPID =  "'.$empid.'",
-        SERVICEFROM =  "'.$service_from.'",
-        SERVICETO =  "'.$service_to.'",
-        DESIGNATION =  "'.$designation.'",
-        STATUS =  "'.$status.'",
-        SALARY =  "'.$salary.'",
-        OFFICE =  "'.$office.'",
-        BRANCH =  "'.$branch.'",
-        ABS =  "'.$abs.'",
-        SEPARATIONDATE =  "'.$separation_date.'",
-        AMOUNTRECEIVED =  "'.$amount_received.'",
-        DETAILS =  "'.$details.'",
-        CANCELLED = "N",
-        CREATEDBY = "'.$usernameid.'",
-        CREATEDDATETIME = "'.$dateAdded.'"
+      $result = mysqli_query($connect, $query );
+      
+      $data = array();
+      if($result){
+        while($row = mysqli_fetch_array($result)){
         
-        '; 
-        $result = mysqli_query($connect,$que); 
-
+          $sub_array = array();
+          $sub_array[] = $row["DATEOFFILLING"];
+          $sub_array[] = $row["LEAVETYPE"];
+          $sub_array[] = $row["FIRSTNAME"];
+          $sub_array[] = $row["LASTNAME"];
+          /*$sub_array[] = "
+          <button type='button' name='view_leave' class='btn btn-warning btn-sm view_leave'  data-id='".$row['ID']."'>View</button>";*/
+          $sub_array[] = "<a href='approver_rd_detail_view.php?id=".$row['ID']."' data-id='".$row['ID']."'> <button type='button' class='btn btn-info btn-sm'>Select</button></a> ";  
+          //<button type='button' name='delete_sr' class='btn btn-danger btn-sm delete_sr' data-id='".$row['ID']."'>Delete</button>";  
+       
+          $data[] = $sub_array;
+        }
       }
+      
 
-      $message_final = '';
-
-      if ($flag){
-        $message_final = $message;
-      } else {
-        $message_final = $message_success;
-      }
-     
       $output = array(
-      'status'    => $message_final
+       //"draw"    => intval($_POST["draw"]),
+       //"recordsTotal"  =>  get_all_data($connect),
+       //"recordsFiltered" => $number_filter_row,
+       "data"    => $data
       );
-
+      
       echo json_encode($output);
     }
   }
+
 
   
 
@@ -310,141 +258,7 @@ if (isset($_POST['action'])){
     }
   }
 
-  if (isset($_POST['action'])){
-    if ($_POST['action'] == 'update_employee old'){
-      //if ($_POST['action'] == 'update_employee'){
-       
-        $empid  = $_POST['employeeiddb'];
-
-        $employeeid              = $_POST['empid'];
-        $firstname               = $_POST['firstname'];
-        $middlename              = $_POST['middlename'];
-        $lastname                = $_POST['lastname'];
-        $extension               = $_POST['extension'];
-        $position                = $_POST['position'];
-        $datehired               = $_POST['datehired'];
-        $username                = $_POST['username'];
-        $password                = $_POST['password'];
-        $gender                  = $_POST['gender'];
-        $civilstatus             = $_POST['civilstatus'];
-
-        $profileid               = $_POST['profileid'];
-        $dob                     = $_POST['dob'];
-        $placeofbirth            = $_POST['placeofbirth'];
-        $height                  = $_POST['height'];
-        $weight                  = $_POST['weight'];
-        $gsisno                  = $_POST['gsisno'];
-        $pagibigno               = $_POST['pagibigno'];
-        $phicno                  = $_POST['phicno'];
-        $sssno                   = $_POST['sssno'];
-        $tinno                   = $_POST['tinno'];
-        $agencyemployeeno        = $_POST['agencyemployeeno'];
-        $dual                    = $_POST['dual'];
-        $filipino                = $_POST['filipino'];
-        $birth                   = $_POST['birth'];
-        $naturalization          = $_POST['naturalization'];
-        $residentialaddress      = $_POST['residentialaddress'];
-        $permanentaddress        = $_POST['permanentaddress'];
-        $telephoneno             = $_POST['telephoneno'];
-        $mobileno                = $_POST['mobileno'];
-        $emailprofile            = $_POST['emailprofile'];
-
-        $familyid                = $_POST['familyid'];
-        $spouselastname          = $_POST['spouselastname'];
-        $spousemiddlename        = $_POST['spousemiddlename'];
-        $spousefirstname         = $_POST['spousefirstname'];
-        $spouseextension         = $_POST['spouseextension'];
-        $occupation              = $_POST['occupation'];
-        $employername            = $_POST['employername' ];
-        $businessaddress         = $_POST['businessaddress'];
-        $spousetelno             = $_POST['spousetelno'];
-        $fathersurname           = $_POST['fathersurname'];
-        $fatherfirstname         = $_POST['fatherfirstname'];
-        $fathermiddlename        = $_POST['fathermiddlename'];
-        $fatherext               = $_POST['fatherext'];
-        $mothermaidenname        = $_POST['mothermaidenname'];
-        $mothersurname           = $_POST['mothersurname'];
-        $motherfirstname         = $_POST['motherfirstname'];
-        $mothermiddlename        = $_POST['mothermiddlename'];        
-
-        $dateAdded = date("Y-m-d H:i:s");
-        $sqlProfile = 'UPDATE tbl_employee
-        SET FIRSTNAME           = "'.$firstname.'",
-        MIDDLENAME              = "'.$middlename.'", 
-        LASTNAME                = "'.$lastname.'", 
-        EXTENSION               = "'.$extension.'", 
-        EMPLOYEEID              = "'.$employeeid.'", 
-        POSITION                = "'.$position.'", 
-        DATEHIRED               = "'.$datehired.'", 
-        USERNAME                = "'.$username.'", 
-        PASSWORD                = "'.$password.'"
-        
-       
-        WHERE ID = "'.$empid.'" ';
-        $result = mysqli_query($connect, $sqlProfile);
-
-        //var_dump($sqlProfile); 
-        /** */
-        
-        $sqlProfile = 'UPDATE tbl_employee_profile
-        SET DOB                 = "'.$dob.'", 
-        PLACEOFBIRTH            = "'.$placeofbirth.'", 
-        HEIGHT                  = "'.$height.'",
-        WEIGHT                  = "'.$weight.'", 
-        GENDER                  = "'.$gender.'", 
-        CIVILSTATUS             = "'.$civilstatus.'",
-        GSISNO                  = "'.$gsisno.'", 
-        PAGIBIGNO               = "'.$pagibigno.'", 
-        PHICNO                  = "'.$phicno.'", 
-        SSSNO                   = "'.$sssno.'", 
-        TINNO                   = "'.$tinno.'", 
-        AGENCYEMPLOYEENO        = "'.$agencyemployeeno.'", 
-        CITIZENSHIP                    = "'.$dual.'", 
-        DUALCITIZEN                   = "'.$birth.'", 
-        RESIDENTIALADDRESS      = "'.$residentialaddress.'", 
-        PERMANENTADDRESS        = "'.$permanentaddress.'", 
-        TELEPHONENO             = "'.$telephoneno.'", 
-        MOBILENO                = "'.$mobileno.'", 
-        EMAIL                   = "'.$emailprofile.'"
-        
-        WHERE 
-        ID = "'.$profileid.'" AND 
-        EMPID = "'.$empid.'"';
-        $result = mysqli_query($connect, $sqlProfile);
-
-        //var_dump($sqlProfile);
-
-        $sqlFamily = 'UPDATE tbl_employee_family
-        SET 
-        SPOUSELASTNAME            = "'.$spouselastname.'", 
-        SPOUSEFIRSTNAME           = "'.$spousefirstname.'", 
-        SPOUSEMIDDLENAME          = "'.$spousemiddlename.'", 
-        SPOUSEEXTENSION                  = "'.$spouseextension.'", 
-        OCCUPATION               = "'.$occupation.'", 
-        EMPLOYERNAME                  = "'.$employername.'", 
-        BUSINESSADDRESS                   = "'.$businessaddress.'", 
-        SPOUSETELNO                   = "'.$spousetelno.'", 
-        FATHERSURNAME        = "'.$fathersurname.'", 
-        FATHERFIRSTNAME                    = "'.$fatherfirstname.'", 
-        FATHERMIDDLENAME                   = "'.$fathermiddlename.'", 
-        FATHEREXT          = "'.$fatherext.'", 
-        MOTHERMAIDENNAME      = "'.$mothermaidenname.'", 
-        MOTHERSURNAME        = "'.$mothersurname.'", 
-        MOTHERFIRSTNAME             = "'.$motherfirstname.'", 
-        MOTHERMIDDLENAME                = "'.$mothermiddlename.'" 
-       
-        WHERE EMPID = "'.$_POST["employeeiddb"].'" AND ID = "'.$_POST["familyid"].'" ';
-        
-        //var_dump($sqlFamily);
-
-        $result = mysqli_query($connect, $sqlFamily);
-
-
-
-    }
-  }
-
-
+ 
 
   if (isset($_POST['action'])){
     if ($_POST['action'] == 'submit_update_sr'){

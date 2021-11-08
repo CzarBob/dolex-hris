@@ -43,6 +43,7 @@ if (($_SESSION['username'] == "") ){
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../main">
         <img class = "icon" src = "../img/dolelogogs.png" width = "60"></img>
         <div class="sidebar-brand-text mx-3">DOLE-X HRIS</div>
+        <input type="hidden" name="loginID" id="loginID" value="<?php echo $_SESSION['usernameid']; ?>">
       </a>
 
       <hr class="sidebar-divider my-0">
@@ -214,9 +215,7 @@ if (($_SESSION['username'] == "") ){
           </div>
           <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 class="m-0 font-weight-bold text-primary">Current Leave Applications</h6>
-             
-         
+              <h6 class="m-0 font-weight-bold text-primary">Overall Leave Applications</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -227,8 +226,8 @@ if (($_SESSION['username'] == "") ){
                       <th>DATE OF FILLING</th>
                       <th>LEAVE TYPE</th>
                       <th>INCLUSIVE DATE</th>
-                      <th>OFFICE HEAD APPROVAL STATUS</th>
-                      <th>DIRECTOR APPROVAL STATUS</th>
+                      <th>STATUS</th>
+
                       <th>ACTION</th>
                     </tr>
                   </thead>
@@ -238,8 +237,8 @@ if (($_SESSION['username'] == "") ){
                       <th>DATE OF FILLING</th>
                       <th>LEAVE TYPE</th>
                       <th>INCLUSIVE DATE</th>
-                      <th>OFFICE HEAD APPROVAL STATUS</th>
-                      <th>DIRECTOR APPROVAL STATUS</th>
+                      <th>STATUS</th>
+
                       <th>ACTION</th>
                     </tr>
                   </tfoot>
@@ -248,74 +247,8 @@ if (($_SESSION['username'] == "") ){
             </div>
           </div>
 
-
-          <div class="card shadow mb-4">
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 class="m-0 font-weight-bold text-primary">Past Leave Applications</h6>
-             
-         
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="user_data" width="100%" cellspacing="0">
-                  <thead class = "text-primary">
-                  <tr>
-                      <th>LEAVE ID</th>
-                      <th>DATE OF FILLING</th>
-                      <th>LEAVE TYPE</th>
-                      <th>INCLUSIVE DATE</th>
-                      <th>OFFICE HEAD APPROVAL STATUS</th>
-                      <th>DIRECTOR APPROVAL STATUS</th>
-                      <th>ACTION</th>
-                    </tr>
-                  </thead>
-                  <tfoot class = "text-primary">
-                    <tr>
-                      <th>LEAVE ID</th>
-                      <th>DATE OF FILLING</th>
-                      <th>LEAVE TYPE</th>
-                      <th>INCLUSIVE DATE</th>
-                      <th>OFFICE HEAD APPROVAL STATUS</th>
-                      <th>DIRECTOR APPROVAL STATUS</th>
-                      <th>ACTION</th>
-                    </tr>
-                  </tfoot>
-                </table>
-              </div>
-            </div>
-          </div>
         
-          <div class="card shadow mb-4">
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 class="m-0 font-weight-bold text-primary">Denied Leave Applications</h6>
-             
-         
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="user_data" width="100%" cellspacing="0">
-                  <thead class = "text-primary">
-                  <tr>
-                      <th>EMPLOYEE ID</th>
-                      <th>FIRST NAME</th>
-                      <th>MIDDLE NAME</th>
-                      <th>LAST NAME</th>
-                      <th>ACTION</th>
-                    </tr>
-                  </thead>
-                  <tfoot class = "text-primary">
-                    <tr>
-                      <th>EMPLOYEE ID</th>
-                      <th>FIRST NAME</th>
-                      <th>MIDDLE NAME</th>
-                      <th>LAST NAME</th>
-                      <th>ACTION</th>
-                    </tr>
-                  </tfoot>
-                </table>
-              </div>
-            </div>
-          </div>
+
         
         
         </div>
@@ -378,7 +311,7 @@ if (($_SESSION['username'] == "") ){
           </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="user_data" width="100%" cellspacing="0">
+                <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="leave_data" width="100%" cellspacing="0">
                   <thead class = "text-primary">
                   <tr>
                       <th>OFFICE</th>
@@ -455,16 +388,18 @@ if (($_SESSION['username'] == "") ){
    
     function fetch_data(){
       var action = 'fetch_leave_data';
+      var employeeiddb = document.getElementById("loginID").value;
       var dataTable = $('#leave_data').DataTable({
       /* "processing" : true,
         "serverSide" : true,
-        "columnDefs": [{ "orderable": false, "targets":[0,1] }],
-        "order" : [],*/
+        "columnDefs": [{ "orderable": false, "targets":[0,1] }],*/
+        "order" : [[ 3, "desc" ]],
         "ajax" : {
-        url:"approver_rd_action.php",
+        url:"application_leave_detail_action.php",
         type:"POST",
         data:{
-            action:action
+            action:action,
+            employeeiddb:employeeiddb
                   },
         },
         success:function(){

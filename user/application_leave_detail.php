@@ -221,11 +221,11 @@ session_start();
                                           <!-- Default input -->
                                           <div class="form-group col-md-4">
                                           <label for="inputAddress">Office</label>
-                                          <input type="text" class="form-control" id="office" placeholder="Ex. CBTZ200116" disabled>
+                                          <input type="text" class="form-control" id="office"  disabled>
                                           </div>
                                           <div class="form-group col-md-4">
                                           <label for="inputAddress">Division</label>
-                                          <input  type="text" class="form-control" id="division" placeholder="Ex. Labor Employment Officer I" disabled>
+                                          <input  type="text" class="form-control" id="division"  disabled>
                                           </div>
                                       </div>
                                       <div class="form-row">
@@ -358,66 +358,68 @@ session_start();
                                         </div>
                                       </div>
                                       <!--PART 1-->
-                                      <div class="form-row">
-                                          <div class="form-group col-md-4">
+                                      <div id="part1div" class="form-row" style="display:none;">
+                                          <div class="form-group col-md-2">
                                             <label for="inputAddress">In case of Vacation/Special Privilege Leave:</label>
                                           </div> 
-                                      </div>
-                                      <div class="form-row">
-                                          <div class="form-group col-md-4">
+
+                                          <div class="form-group col-md-2">
                                           <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="partone" id="partone1" value="PH" disabled>
+                                            <input class="form-check-input" type="radio" name="partone" id="partone1" value="PH" >
                                             <label class="form-check-label" for="partone1">
                                               Within the Philippines
                                             </label> 
-                                            <input  type="text" class="form-control" id="partone1Details" disabled>
+                                            <!--<input  type="text" class="form-control" id="partone1Details" disabled>-->
                                           </div>
                                           <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="partone" id="partone2" value="ABROAD"  disabled>
+                                            <input class="form-check-input" type="radio" name="partone" id="partone2" value="ABROAD"  >
                                             <label class="form-check-label" for="partone2">
-                                              Abroad (Specify)
+                                              Abroad 
                                             </label>
-                                            <input type="text" class="form-control" id="partone2Details"  disabled>
+                                            <!--<input type="text" class="form-control" id="partone2Details"  disabled> -->
                                           </div>
                                           </div> 
-
                                       </div>
+
 
                                       <!--PART 2-->
                                       <div class="form-row">
                                           <div class="form-group col-md-4">
                                           </div> 
                                       </div>
-                                      <div class="form-row">
-                                          <div class="form-group col-md-4">
+                                      <div id="part2div" class="form-row" style="display:none;">
+                                          <div class="form-group col-md-2">
                                             <label for="inputAddress">In case of Sick Leave:</label>
                                           </div> 
-                                      </div>
-                                      <div class="form-row">
-                                          <div class="form-group col-md-4">
-                                          <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="parttwo" id="parttwo1" value = "IPD" disabled>
-                                            <label class="form-check-label" for="parttwo1">
-                                              In Hospital (Specify Illness)
-                                            </label> 
-                                            <input  type="text" class="form-control" id="parttwo1details" disabled >
-                                          </div>
-                                          <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="parttwo" id="parttwo2"  value = "OPD" disabled>
-                                            <label class="form-check-label" for="parttwo2">
-                                              Out Patient (Specify Illness)
-                                            </label>
-                                            <input  type="text" class="form-control" id="parttwo2details" disabled>
-                                          </div>
+
+                                          <div class="form-group col-md-2">
+                                           
+                                            
+                                            <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="parttwo" id="parttwo1" value = "IPD" >
+                                              <label class="form-check-label" for="parttwo2">
+                                              In-Patient
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                            
+                                              <input class="form-check-input" type="radio" name="parttwo" id="parttwo2"  value = "OPD" >
+                                              <label class="form-check-label" for="parttwo2">
+                                                Out-Patient
+                                              </label>
+                                            
+                                            </div>
                                           </div> 
                                       </div>
+                                      
 
                                       <!--PART 3-->
-                                      <div class="form-row">
+                                      
+                                      <!--<div class="form-row">
                                           <div class="form-group col-md-4">
                                           </div> 
                                       </div>
-                                      <div class="form-row">
+                                      <div id="part3div" class="form-row">
                                           <div class="form-group col-md-4">
                                             <label for="inputAddress">In case of Special Leave Benefits for Women:</label>
                                           </div> 
@@ -433,7 +435,7 @@ session_start();
                                           </div>
                                     
                                           </div> 
-                                      </div>
+                                      </div> -->
 
 
                                       <!--PART 4-->
@@ -441,28 +443,30 @@ session_start();
                                           <div class="form-group col-md-4">
                                           </div> 
                                       </div>
-                                      <div class="form-row">
-                                          <div class="form-group col-md-4">
+                                      <div id="part4div" class="form-row" style="display:none;">
+                                          <div class="form-group col-md-2">
                                             <label for="inputAddress">In case of Study Leave:</label>
+                                          </div> 
+
+                                          <div class="form-group col-md-4">
+                                            <div class="form-check">
+                                              <input class="form-check-input" type="radio" name="partfour" id="partfour1" value="MASTERS" >
+                                              <label class="form-check-label" for="partfour1">
+                                                Completion of Master's Degree
+                                              </label> 
+                                            
+                                            </div>
+                                            <div class="form-check">
+                                              <input class="form-check-input" type="radio" name="partfour" id="partfour2" value="EXAM" >
+                                              <label class="form-check-label" for="partfour2">
+                                                BAR/Board Examination Review
+                                              </label>
+                                            
+                                            </div>
                                           </div> 
                                       </div>
                                       <div class="form-row">
-                                          <div class="form-group col-md-4">
-                                          <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="partfour" id="partfour1" value="MASTERS" disabled>
-                                            <label class="form-check-label" for="partfour1">
-                                              Completion of Master's Degree
-                                            </label> 
-                                          
-                                          </div>
-                                          <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="partfour" id="partfour2" value="EXAM" disabled>
-                                            <label class="form-check-label" for="partfour2">
-                                              BAR/Board Examination Review
-                                            </label>
-                                          
-                                          </div>
-                                          </div> 
+                                         
                                       </div>
 
                                       <!--PART 5-->
@@ -470,29 +474,27 @@ session_start();
                                           <div class="form-group col-md-4">
                                           </div> 
                                       </div>
-                                      <div class="form-row">
-                                          <div class="form-group col-md-4">
+                                      <div id="part5div" class="form-row" style="display:none;">
+                                          <div class="form-group col-md-2">
                                             <label for="inputAddress">Other Purpose:</label>
                                           </div> 
-                                      </div>
-                                      <div class="form-row">
+
                                           <div class="form-group col-md-4">
-                                          <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="partfive" id="partfive1" value="MONETIZATION" disabled>
-                                            <label class="form-check-label" for="partfive1">
-                                              Monetization of Leave Credits
-                                            </label> 
-                                          
-                                          </div>
-                                          <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="partfive" id="partfive2"  value="TERMINAL"  disabled>
-                                            <label class="form-check-label" for="partfive2">
-                                              Terminal Leave
-                                            </label>
-                                          
-                                          </div>
+                                            <div class="form-check">
+                                              <input class="form-check-input" type="radio" name="partfive" id="partfive1" value="MONETIZATION" >
+                                              <label class="form-check-label" for="partfive1">
+                                                Monetization of Leave Credits
+                                              </label>                                      
+                                            </div>
+                                            <div class="form-check">
+                                              <input class="form-check-input" type="radio" name="partfive" id="partfive2"  value="TERMINAL"  >
+                                              <label class="form-check-label" for="partfive2">
+                                                Terminal Leave
+                                              </label>
+                                            </div>
                                           </div> 
                                       </div>
+                                      
 
 
                                       <!--PART 6-->
@@ -500,12 +502,12 @@ session_start();
                                         <div class="form-group col-md-4">
                                         </div> 
                                       </div>
-                                      <div class="form-row">
-                                          <div class="form-group col-md-4">
+                                      <div id="part6div" class="form-row" >
+                                          <div class="form-group col-md-2">
                                             <label for="inputAddress">Commutation:</label>
                                           </div> 
-                                      </div>
-                                      <div class="form-row">
+
+
                                           <div class="form-group col-md-4">
                                           <div class="form-check">
                                             <input class="form-check-input" type="radio" name="partsix" id="partsix1" value="NOTREQUESTED">
@@ -521,8 +523,6 @@ session_start();
                                           </div>
                                           </div> 
                                       </div>
-
-
 
                                   </div>
                               </div>

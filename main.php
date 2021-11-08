@@ -289,7 +289,7 @@ include 'main_load_query.php';
                             }
                             
                             ?>
-                            <a class="dropdown-item" href="<?php echo $path;?>"><?php echo $path;?>Leave Applications</a>
+                            <a class="dropdown-item" href="<?php echo $path;?>">Leave Applications</a>
                            
             
                             <a class="dropdown-item" href="#">Travel Order</a>

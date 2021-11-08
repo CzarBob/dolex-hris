@@ -1,49 +1,122 @@
 function leaveChange() {
+   /*
+   
     document.getElementById("partone1").disabled = true;
     document.getElementById("partone2").disabled = true;
-    document.getElementById("partone1Details").disabled = true;
-    document.getElementById("partone2Details").disabled = true;
+    //document.getElementById("partone1Details").disabled = true;
+    //document.getElementById("partone2Details").disabled = true;
     document.getElementById("parttwo1").disabled = true;
     document.getElementById("parttwo2").disabled = true;
-    document.getElementById("parttwo1details").disabled = true;
-    document.getElementById("parttwo2details").disabled = true;
-    document.getElementById("partthree1").disabled = true;
-    document.getElementById("partthree1details").disabled = true;
+    //document.getElementById("parttwo1details").disabled = true;
+    //document.getElementById("parttwo2details").disabled = true;
+    //document.getElementById("partthree1").disabled = true;
+    //document.getElementById("partthree1details").disabled = true;
     document.getElementById("partfour1").disabled = true;
     document.getElementById("partfour2").disabled = true;
     document.getElementById("partfive1").disabled = true;
     document.getElementById("partfive2").disabled = true;
-    
 
+*/
+
+
+$('input[name=partone]').attr('checked',false);
+$('input[name=parttwo]').attr('checked',false);
+$('input[name=partfour]').attr('checked',false);
+$('input[name=partfive]').attr('checked',false);
 
 
     if ((document.getElementById("leave_type").value == "VACATION") || (document.getElementById("leave_type").value == "SPECIALPRIVILEGE")){
-        //document.getElementById("message").innerHTML = "Common message";
-        document.getElementById("partone1").disabled = false;
-        document.getElementById("partone2").disabled = false;
-        document.getElementById("partone1Details").disabled = false;
-        document.getElementById("partone2Details").disabled = false;
+        /*document.getElementById("partone1").disabled = false;
+        document.getElementById("partone2").disabled = false;*/
+        //document.getElementById("partone1Details").disabled = false;
+        //document.getElementById("partone2Details").disabled = false;
+        //alert('sfs');
+            
+        document.getElementById('part1div').style.display = "inline";
+        document.getElementById('part2div').style.display = "none";
+        document.getElementById('part4div').style.display = "none";
+        document.getElementById('part5div').style.display = "none";
+    
+
+        document.getElementById("parttwo1").checked = false;
+        document.getElementById("parttwo2").checked = false;
+        document.getElementById("partfour1").checked = false;
+        document.getElementById("partfour2").checked = false;
+        document.getElementById("partfive1").checked = false;
+        document.getElementById("partfive2").checked = false;
+       
         
     }     
     else if (document.getElementById("leave_type").value == "SICK"){
-        document.getElementById("parttwo1").disabled = false;
-        document.getElementById("parttwo2").disabled = false;
-        document.getElementById("parttwo1details").disabled = false;
-        document.getElementById("parttwo2details").disabled = false;
+        document.getElementById('part1div').style.display = "none";
+        document.getElementById('part2div').style.display = "inline";
+        document.getElementById('part4div').style.display = "none";
+        
+     
+
+        document.getElementById("partone1").checked = false;
+        document.getElementById("partone2").checked = false;
+        document.getElementById("partfour1").checked = false;
+        document.getElementById("partfour2").checked = false;
+        document.getElementById("partfive1").checked = false;
+        document.getElementById("partfive2").checked = false;
+                
+     
+    
     }
     else if (document.getElementById("leave_type").value == "WOMEN"){
-        document.getElementById("partthree1").disabled = false;
-        document.getElementById("partthree1details").disabled = false;
        
+        document.getElementById('part1div').style.display = "none";
+        document.getElementById('part2div').style.display = "none";
+        document.getElementById('part4div').style.display = "none";
+       
+        document.getElementById("partone1").checked = false;
+        document.getElementById("partone2").checked = false;
+        document.getElementById("parttwo1").checked = false;
+        document.getElementById("parttwo2").checked = false;
+        document.getElementById("partfour1").checked = false;
+        document.getElementById("partfour2").checked = false;
+        document.getElementById("partfive1").checked = false;
+        document.getElementById("partfive2").checked = false;
+
     }   
     else if (document.getElementById("leave_type").value == "STUDY"){
-        document.getElementById("partfour1").disabled = false;
-        document.getElementById("partfour2").disabled = false;
+        
+        document.getElementById('part1div').style.display = "none";
+        document.getElementById('part2div').style.display = "none";
+        document.getElementById('part4div').style.display = "inline";
+       
+    
+        document.getElementById("partone1").checked = false;
+        document.getElementById("partone2").checked = false;
+        document.getElementById("parttwo1").checked = false;
+        document.getElementById("parttwo2").checked = false;
+        //document.getElementById("partfour1").checked = false;
+        //document.getElementById("partfour2").checked = false;
+        document.getElementById("partfive1").checked = false;
+        document.getElementById("partfive2").checked = false;
+
 
     }   
     if ((document.getElementById("leave_type").value == "MONETIZATION") || (document.getElementById("leave_type").value == "TERMINAL")){
-        document.getElementById("partfive1").disabled = false;
-        document.getElementById("partfive2").disabled = false;
+        
+        document.getElementById('part1div').style.display = "none";
+        document.getElementById('part2div').style.display = "none";
+        document.getElementById('part4div').style.display = "none";
+        document.getElementById('part5div').style.display = "inline";
+       
+
+
+        document.getElementById("partone1").checked = false;
+        document.getElementById("partone2").checked = false;
+        document.getElementById("parttwo1").checked = false;
+        document.getElementById("parttwo2").checked = false;
+        document.getElementById("partfour1").checked = false;
+        document.getElementById("partfour2").checked = false;
+        //document.getElementById("partfive1").checked = false;
+        //document.getElementById("partfive2").checked = false;
+       
+
         
     }   
 }

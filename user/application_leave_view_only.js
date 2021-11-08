@@ -144,6 +144,10 @@ $(document).ready(function(){
 
                 $("#chiefremarks").val(data.data.chiefremarks);
                 $("#rdremarks").val(data.data.rdremarks);
+
+                //$("#applicationstatus").val(data.data.approvalstatus);
+                alert(data.data.approvalstatus)
+                $('#message2').html(data.data.approvalstatus);
             
                
                 
@@ -155,6 +159,14 @@ $(document).ready(function(){
 
 
   
+
+
+
+
+
+
+
+
 
 
 

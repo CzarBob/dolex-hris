@@ -158,7 +158,7 @@ $(document).ready(function(){
         var leaveID = document.getElementById("leaveID").value;
         alert('approve');
 
-        var chiefremarks = $('#chiefremarks').val();
+        var rdremarks = $('#rdremarks').val();
  
         var messageValidate = "Confirm approval of leave?";
         if (confirm(messageValidate) == true) {
@@ -167,7 +167,7 @@ $(document).ready(function(){
                 method:"POST",
                 dataType:'JSON',
                 data:{
-                    chiefremarks:chiefremarks, 
+                    rdremarks:rdremarks, 
                     leaveID:leaveID, 
                    
                     action:'approve_leave'
@@ -191,9 +191,9 @@ $(document).ready(function(){
 
 
     $(document).on('click', '#submit_reject_leave', function(){
-        var leaveID = document.getElementById("leaveID").value;
+
         alert('rejected');
-                var chiefremarks = $('#chiefremarks').val();
+                var rdremarks = $('#rdremarks').val();
                 var leaveID = document.getElementById("leaveID").value;
 
                 var messageValidate = "Confirm disapproval of leave?";
@@ -203,10 +203,9 @@ $(document).ready(function(){
                         method:"POST",
                         dataType:'JSON',
                         data:{
-                            fullname:fullname, 
-                            dob:dob, 
-                            employeeiddb:employeeiddb,
-                            id:hidden_id,
+                            rdremarks:rdremarks,
+                            leaveID:leaveID,
+
                             action:'reject_leave'
                         },
                         success:function(data){

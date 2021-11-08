@@ -196,7 +196,7 @@ if (isset($_POST['action'])){
     if ($_POST['action'] == 'approve_leave'){
       $leaveID  = $_POST['leaveID'];
 
-      $chiefremarks = mysqli_real_escape_string($connect,strtoupper($_POST['chiefremarks']));
+      $rdremarks = mysqli_real_escape_string($connect,strtoupper($_POST['rdremarks']));
 
       $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
       <strong>Data Updated!</strong> 
@@ -222,7 +222,7 @@ if (isset($_POST['action'])){
         $dateAdded = date("Y-m-d H:i:s");
         $que = 'UPDATE tbl_leave
         SET 
-        RDREMARKS =  "'.$chiefremarks.'",
+        RDREMARKS =  "'.$rdremarks.'",
         DATEHEADUPDATED = "'.$dateNow.'",
         RDAPPROVESTATUS = "Y"
 
@@ -233,7 +233,7 @@ if (isset($_POST['action'])){
 
       }
 
-      $message_final = 'RD LEAVE APPROVED';
+      $message_final = 'LEAVE APPROVED!';
 
       /*if ($flag){
         $message_final = $message;
@@ -258,7 +258,7 @@ if (isset($_POST['action'])){
     if ($_POST['action'] == 'reject_leave'){
       $leaveID  = $_POST['leaveID'];
 
-      $chiefremarks = mysqli_real_escape_string($connect,strtoupper($_POST['chiefremarks']));
+      $rdremarks = mysqli_real_escape_string($connect,strtoupper($_POST['rdremarks']));
 
       $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
       <strong>Data Updated!</strong> 
@@ -284,14 +284,14 @@ if (isset($_POST['action'])){
         $dateAdded = date("Y-m-d H:i:s");
         $que = 'UPDATE tbl_leave
         SET 
-        CHIEFREMARKS =  "'.$chiefremarks.'",
+        RDREMARKS =  "'.$rdremarks.'",
         DATEHEADUPDATED = "'.$dateNow.'",
-        HEADAPPROVESTATUS = "N"
+        RDAPPROVESTATUS = "N"
 
 
         WHERE ID = "'.$leaveID.'"';
 
-        //$result = mysqli_query($connect, $que);
+        $result = mysqli_query($connect, $que);
 
       }
 
