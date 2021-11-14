@@ -262,11 +262,14 @@
                                 $('#password').val(data.data.password);
                                 $('#confirmpassword').val(data.data.password);
 
-                                var officeValue =  data.data.office;
+                                var officeValue =  data.data.fieldofficeid;
                                 $("#office").val(officeValue).change();
                                
-                                var divisionValue =  data.data.division;
+                                var divisionValue =  data.data.divisionid;
                                 $("#division").val(divisionValue).change();
+
+                                $('#vlcredit').val(data.data.vlcredit);
+                                $('#slcredit').val(data.data.slcredit);
     
 
                                 var genderValue =  data.data_profile.gender;
@@ -557,12 +560,16 @@
                     $('#username_update').val(values.data.username);
                     $('#password_update').val(values.data.password);
                     $('#confirmpassword_update').val(values.data.password);
-                    
-                    var officeValue =  values.data.office;
+                   
+                    var officeValue =  values.data.fieldofficeid;
+                    //alert(officeValue);
                     $("#office_update").val(officeValue).change();
                    
-                    var divisionValue =  values.data.division;
+                    var divisionValue =  values.data.divisionid;
                     $("#division_update").val(divisionValue).change();
+                   
+                    $('#vlcredit_update').val(values.data.vlcredit);
+                    $('#slcredit_update').val(values.data.slcredit);
 
                     var genderValue =  values.data_profile.gender;
 
@@ -599,8 +606,22 @@
                         $("#dualchoice_update").prop("disabled", true);
                     }
                 
-                   // $('#residentialaddress_update').val(values.data_profile.residentialaddress);
-                   // $('#permanentaddress_update').val(values.data_profile.permanentaddress);
+                    $('#res_blockno_update').val(values.data_profile.res_blockno);
+                    $('#res_street_update').val(values.data_profile.res_street);
+                    $('#res_subdivision_update').val(values.data_profile.res_subdivision);
+                    $('#res_barangay_update').val(values.data_profile.res_barangay);
+                    $('#res_city_update').val(values.data_profile.res_city);
+                    $('#res_province_update').val(values.data_profile.res_province);
+                    $('#res_zipcode_update').val(values.data_profile.res_zipcode);
+                    $('#perm_blockno_update').val(values.data_profile.perm_blockno);
+                    $('#perm_street_update').val(values.data_profile.perm_street);
+                    $('#perm_subdivision_update').val(values.data_profile.perm_subdivision);
+                    $('#perm_barangay_update').val(values.data_profile.perm_barangay);
+                    $('#perm_city_update').val(values.data_profile.perm_city);
+                    $('#perm_province_update').val(values.data_profile.perm_province);
+                    $('#perm_zipcode_update').val(values.data_profile.perm_zipcode);
+
+                    
                     $('#telephoneno_update').val(values.data_profile.telephoneno);
                     $('#mobileno_update').val(values.data_profile.mobileno);
                     $('#emailprofile_update').val(values.data_profile.email);
@@ -736,8 +757,8 @@
             var lastname                = $('#lastname_update').val();
             var extension               = $('#extension_update').val();
             var position                = $('#position_update').val();
-            var division                = $('#division_update').val();
-            var office                  = $('#office_update').val();
+            var divisionid                = $('#division_update').val();
+            var fieldofficeid                  = $('#office_update').val();
             var datehired               = $('#datehired_update').val();
             var username                = $('#username_update').val();
             var password                = $('#password_update').val();
@@ -795,8 +816,8 @@
                     lastname:lastname,       
                     extension:extension,       
                     position:position,
-                    division:division,
-                    office:office,
+                    divisionid:divisionid,
+                    fieldofficeid:fieldofficeid,
                     datehired:datehired,       
                     username:username,       
                     password:password,        

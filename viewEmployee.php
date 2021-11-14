@@ -240,6 +240,18 @@ if (mysqli_connect_errno()) {
                                         <option value="MALSU">MALSU</option>
                                       </select>
                                     </div>
+
+                                    <!-- Default input -->
+                                    <div class="form-group col-md-2">
+                                      <label for="inputZip">Sick Leave Credits</label>
+                                      <input type="text" class="form-control" id="slcredit" disabled>
+                                    </div>
+
+                                      <!-- Default input -->
+                                      <div class="form-group col-md-2">
+                                      <label for="inputZip">Vacation Leave Credits</label>
+                                      <input type="text" class="form-control" id="vlcredit" disabled>
+                                    </div>
                                   </div>
                                   <div class="form-row">
                                     <hr>
@@ -2189,6 +2201,30 @@ if (mysqli_connect_errno()) {
                   <option value="MALSU">MALSU</option>
                 </select>
               </div>
+              <?php $dashboard_active = '';
+              
+              if($_SESSION['type']!='ADMIN' )
+              {
+                $dashboard_active = 'disabled';
+                //$dashboard_active = '';
+              }
+
+
+          
+              
+              ?>
+
+               <!-- Default input -->
+               <div class="form-group col-md-2">
+                  <label for="inputZip">Sick Leave Credits</label>
+                  <input type="text" class="form-control " id="slcredit_update" name="slcredit_update" <?php echo $dashboard_active; ?>>
+                </div>
+
+                  <!-- Default input -->
+                  <div class="form-group col-md-2">
+                  <label for="inputZip">Vacation Leave Credits</label>
+                  <input type="text" class="form-control " id="vlcredit_update" name="vlcredit_update" <?php echo $dashboard_active; ?>>
+                </div>
             </div>
             <div class="form-row">
               <hr>

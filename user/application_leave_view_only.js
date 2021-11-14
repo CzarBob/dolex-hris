@@ -78,6 +78,15 @@ $(document).on('click', '.remove', function(){
     $('#row'+row_id).remove();
 });
 
+$(document).on('click', '#generateReport', function(){
+    //alert('sd');
+    var leaveID = document.getElementById("leaveID").value;
+    //var id = document.getElementById("leaveID").value;
+    //alert(leaveID);
+    window.location.href="../export_leave_application.php?id="+leaveID, true;
+});
+
+
 
 $(document).ready(function(){
     count = 1;
@@ -146,7 +155,7 @@ $(document).ready(function(){
                 $("#rdremarks").val(data.data.rdremarks);
 
                 //$("#applicationstatus").val(data.data.approvalstatus);
-                alert(data.data.approvalstatus)
+                //alert(data.data.approvalstatus)
                 $('#message2').html(data.data.approvalstatus);
             
                

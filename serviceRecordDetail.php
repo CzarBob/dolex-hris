@@ -316,7 +316,6 @@ include 'serviceRecordDetail_load_query.php';
                                                           <th>SEPARATION DATE</th>
                                                           <th>AMOUNT RECEIVED</th>
                                                           <th>DETAILS</th>
-
                                                           <th>ACTION</th>
                                                         
                                                       </tr>

@@ -20,6 +20,8 @@ if (isset($_POST['action'])){
     tbl_employee.DATEHIRED as DATEHIRED,
     tbl_employee.PASSWORD as PASSWORD_ACCOUNT,
     tbl_employee.USERNAME as USERNAME,
+    tbl_employee.FIELDOFFICEID as FIELDOFFICEID,
+    tbl_employee.DIVISIONID as DIVISIONID,
     tbl_employee.SLCREDIT as SLCREDIT,
     tbl_employee.VLCREDIT as VLCREDIT
     FROM tbl_employee WHERE tbl_employee.ID = "'.$_POST["employeeiddb"].'" ';
@@ -43,6 +45,8 @@ if (isset($_POST['action'])){
         $sub_array['extension'] = $row['PROFILE_EXTENSION'];
         $sub_array['position'] = $row['POSITION'];
         $sub_array['datehired'] = $row['DATEHIRED'];
+        $sub_array['fieldofficeid'] = $row['FIELDOFFICEID'];
+        $sub_array['divisionid'] = $row['DIVISIONID'];
         $sub_array['username'] = $row['USERNAME'];
         $sub_array['password'] = $row['PASSWORD_ACCOUNT'];
         $sub_array['slcredit'] = $row['SLCREDIT'];
@@ -206,6 +210,8 @@ if (isset($_POST['action'])){
       tbl_employee.DATEHIRED as DATEHIRED,
       tbl_employee.PASSWORD as PASSWORD_ACCOUNT,
       tbl_employee.USERNAME as USERNAME,
+      tbl_employee.FIELDOFFICEID as FIELDOFFICEID,
+      tbl_employee.DIVISIONID as DIVISIONID,
       tbl_employee.SLCREDIT as SLCREDIT,
       tbl_employee.VLCREDIT as VLCREDIT
       FROM tbl_employee WHERE tbl_employee.ID = "'.$_POST["employeeiddb"].'" ';
@@ -227,6 +233,8 @@ if (isset($_POST['action'])){
         $sub_array['extension'] = $row['PROFILE_EXTENSION'];
         $sub_array['position'] = $row['POSITION'];
         $sub_array['datehired'] = $row['DATEHIRED'];
+        $sub_array['fieldofficeid'] = $row['FIELDOFFICEID'];
+        $sub_array['divisionid'] = $row['DIVISIONID'];
         $sub_array['username'] = $row['USERNAME'];
         $sub_array['password'] = $row['PASSWORD_ACCOUNT'];
         $sub_array['slcredit'] = $row['SLCREDIT'];
@@ -1453,6 +1461,8 @@ if (isset($_POST['action'])){
         $lastname                = mysqli_real_escape_string($connect, strtoupper($_POST['lastname']));
         $extension               = mysqli_real_escape_string($connect, strtoupper($_POST['extension']));
         $position                = mysqli_real_escape_string($connect, strtoupper($_POST['position']));
+        $fieldofficeid               = mysqli_real_escape_string($connect, strtoupper($_POST['fieldofficeid']));
+        $divisionid                = mysqli_real_escape_string($connect, strtoupper($_POST['divisionid']));
         $datehired               = mysqli_real_escape_string($connect, $_POST['datehired']);
         $username                = mysqli_real_escape_string($connect, strtoupper($_POST['username']));
         $password                = mysqli_real_escape_string($connect, $_POST['password']);
@@ -1473,12 +1483,30 @@ if (isset($_POST['action'])){
         $agencyemployeeno        = mysqli_real_escape_string($connect, strtoupper($_POST['agencyemployeeno']));
         $citizenship                    = mysqli_real_escape_string($connect, $_POST['citizenship']);
         $dualchoice                =mysqli_real_escape_string($connect,  $_POST['dualchoice']);
-        $residentialaddress      = mysqli_real_escape_string($connect, strtoupper($_POST['residentialaddress']));
-        $permanentaddress        = mysqli_real_escape_string($connect, strtoupper($_POST['permanentaddress']));
+        //$residentialaddress      = mysqli_real_escape_string($connect, strtoupper($_POST['residentialaddress']));
+        //$permanentaddress        = mysqli_real_escape_string($connect, strtoupper($_POST['permanentaddress']));
+        $res_blockno                    = mysqli_real_escape_string($connect, $_POST['res_blockno']);
+        $res_street                =mysqli_real_escape_string($connect,  $_POST['res_street']);
+        $res_subdivision                    = mysqli_real_escape_string($connect, $_POST['res_subdivision']);
+        $res_barangay                =mysqli_real_escape_string($connect,  $_POST['res_barangay']);
+        $res_city                    = mysqli_real_escape_string($connect, $_POST['res_city']);
+        $res_province                =mysqli_real_escape_string($connect,  $_POST['res_province']);
+        $res_zipcode                    = mysqli_real_escape_string($connect, $_POST['res_zipcode']);
+        $perm_blockno                =mysqli_real_escape_string($connect,  $_POST['perm_blockno']);
+        $perm_street                =mysqli_real_escape_string($connect,  $_POST['perm_street']);
+        $perm_subdivision                    = mysqli_real_escape_string($connect, $_POST['perm_subdivision']);
+        $perm_barangay                =mysqli_real_escape_string($connect,  $_POST['perm_barangay']);
+        $perm_city                    = mysqli_real_escape_string($connect, $_POST['perm_city']);
+        $perm_province                =mysqli_real_escape_string($connect,  $_POST['perm_province']);
+        $perm_zipcode                    = mysqli_real_escape_string($connect, $_POST['perm_zipcode']);
+
+
         $telephoneno             = mysqli_real_escape_string($connect, strtoupper($_POST['telephoneno']));
         $mobileno                = mysqli_real_escape_string($connect, strtoupper($_POST['mobileno']));
         $emailprofile            = mysqli_real_escape_string($connect, strtoupper($_POST['emailprofile']));
 
+
+   
         $usernameid = mysqli_real_escape_string($connect, $_POST['usernameid']);
         
 
@@ -1507,7 +1535,7 @@ if (isset($_POST['action'])){
           ';
         }
 
-        if (!$flag){
+        if (!$flag){    
 
           $dateNow = date("Y-m-d H:i:s");
           $sqlemployee = 'UPDATE tbl_employee
@@ -1518,6 +1546,8 @@ if (isset($_POST['action'])){
           EMPLOYEEID              = "'.$employeeid.'", 
           POSITION                = "'.$position.'", 
           DATEHIRED               = "'.$datehired.'", 
+          FIELDOFFICEID                = "'.$fieldofficeid.'", 
+          DIVISIONID               = "'.$divisionid.'", 
           USERNAME                = "'.$username.'", 
           PASSWORD                = "'.$password.'",
           UPDATEDBY               = "'.$usernameid.'",
@@ -1545,8 +1575,23 @@ if (isset($_POST['action'])){
           AGENCYEMPLOYEENO        = "'.$agencyemployeeno.'", 
           CITIZENSHIP                    = "'.$citizenship.'", 
           DUALCITIZEN                   = "'.$dualchoice.'", 
-          RESIDENTIALADDRESS      = "'.$residentialaddress.'", 
-          PERMANENTADDRESS        = "'.$permanentaddress.'", 
+         
+          
+          RESBLOCKNO              ="'.$res_blockno.'",
+          RESSTREET               ="'.$res_street.'",
+          RESSUBDIVISION          ="'.$res_subdivision.'",
+          RESBARANGAY             ="'.$res_barangay.'",
+          RESCITY                 ="'.$res_city.'",
+          RESPROVINCE             ="'.$res_province.'",
+          RESZIPCODE              ="'.$res_zipcode.'",
+          PERMBLOCKNO             ="'.$perm_blockno.'",
+          PERMSTREET              ="'.$perm_street.'",
+          PERMSUBDIVISION         ="'.$perm_subdivision.'",
+          PERMBARANGAY            ="'.$perm_barangay.'",
+          PERMCITY                ="'.$perm_city.'",
+          PERMPROVINCE            ="'.$perm_province.'",
+          PERMZIPCODE              ="'.$perm_zipcode.'", 
+
           TELEPHONENO             = "'.$telephoneno.'", 
           MOBILENO                = "'.$mobileno.'", 
           EMAIL                   = "'.$emailprofile.'",

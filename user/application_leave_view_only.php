@@ -685,8 +685,12 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='RD_APPROVER')){
                                    
                                     <tr>
                                   
-                                        <td style="width: 100%;"  colspan="2" style = "align: left"><button type="button" value="cancel"  style="width: 100%;" class="btn btn-info">     Close  </button></td>                                               
+                                        <td style="width: 100%;"  colspan="2" style = "align: left"> <button type="button" style="width: 100%;" name="generateReport" id="generateReport" class="btn btn-success btn-xs">Eport File</button></td>                                               
                                     </tr>  
+                                    <tr>
+                                  
+                                  <td style="width: 100%;"  colspan="2" style = "align: left"><button type="button" value="cancel"  style="width: 100%;" class="btn btn-info">     Close  </button></td>                                               
+                              </tr>  
                               </table> 
                             </div>                        
                         </div>
