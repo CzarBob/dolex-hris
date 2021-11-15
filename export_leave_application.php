@@ -10,12 +10,12 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 $spreadsheet = new Spreadsheet();
 $sheet = $spreadsheet->getActiveSheet();
 
-/*$drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
-//$drawing->setPath("../img/dolelogogs.png");
+$drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
+$drawing->setPath("img/dolelogogs.png");
 $drawing->setName('DOLE LOGO');
-$drawing->setCoordinates('C5');
+$drawing->setCoordinates('D2');
 $drawing->setWidthAndHeight(50,50);
-$drawing->setWorksheet($sheet); */ 
+$drawing->setWorksheet($sheet);  
 
 
 //$id = $_SESSION["usernameid"];
@@ -72,6 +72,11 @@ $query = 'SELECT
     $position = '';
     $fieldofficeID = '';
     $divisionID = '';
+    $slless = '';
+    $slbalance = '';
+    $vlless = '';
+    $vlbalance = '';
+    $inclusivedate = '';
 
 
 
@@ -94,7 +99,12 @@ $query = 'SELECT
     tbl_employee.EXTENSION as EXTENSION, 
     tbl_employee.POSITION as POSITION, 
     tbl_employee.FIELDOFFICEID as FIELDOFFICEID, 
-    tbl_employee.DIVISIONID as DIVISIONID
+    tbl_employee.DIVISIONID as DIVISIONID,
+    tbl_leave.SLLESS as SLLESS,
+    tbl_leave.SLBALANCE as SLBALANCE,
+    tbl_leave.VLLESS as VLLESS,
+    tbl_leave.VLBALANCE	as VLBALANCE,
+    tbl_leave.INCLUSIVEDATE as INCLUSIVEDATE
     
     
     FROM tbl_leave
@@ -127,6 +137,11 @@ $query = 'SELECT
             $position = $row['POSITION'];
             $fieldofficeID = $row['FIELDOFFICEID'];
             $divisionID = $row['DIVISIONID'];
+            $slless = $row['SLLESS'];
+            $slbalance = $row['SLBALANCE'];
+            $vlless = $row['vLLESS'];
+            $vlbalance = $row['vLBALANCE'];
+            $inclusivedate = $row['INCLUSIVEDATE'];
             //var_dump($leaveType);
        }
     }
@@ -145,50 +160,178 @@ $sheet->setCellValue('A6','3. DATE OF FILLING :'.$dateOfFilling)
 ->setCellValue('H6','5. SALARY :'.$salary);
 $sheet->setCellValue('A8','6. DETAILS OF APPLICATION');
 $sheet->setCellValue('A9','6.A  TYPE OF LEAVE TO BE AVAILED OF');
-$sheet->setCellValue('A11','[ ] Vacation Leave (Sec. 51, Rule XVI, Omnibus Rules Implementing E.O. No. 292)');
-$sheet->setCellValue('A13','[ ] Mandatory/Forced Leave(Sec. 25, Rule XVI, Omnibus Rules Implementing E.O. No. 292)');
-$sheet->setCellValue('A15','[ ] Sick Leave  (Sec. 43, Rule XVI, Omnibus Rules Implementing E.O. No. 292)');
-$sheet->setCellValue('A17','[ ] Maternity Leave (R.A. No. 11210 / IRR issued by CSC, DOLE and SSS)');
-$sheet->setCellValue('A19','[ ] Paternity Leave (R.A. No. 8187 / CSC MC No. 71, s. 1998, as amended)');
-$sheet->setCellValue('A21','[ ] Special Privilege Leave (Sec. 21, Rule XVI, Omnibus Rules Implementing E.O. No. 292)');
-$sheet->setCellValue('A23','[ ] Solo Parent Leave (RA No. 8972 / CSC MC No. 8, s. 2004)');
-$sheet->setCellValue('A25','[ ] Study Leave (Sec. 68, Rule XVI, Omnibus Rules Implementing E.O. No. 292)');
-$sheet->setCellValue('A27','[ ] 10-Day VAWC Leave (RA No. 9262 / CSC MC No. 15, s. 2005)');
-$sheet->setCellValue('A29','[ ] Rehabilitation Privilege (Sec. 55, Rule XVI, Omnibus Rules Implementing E.O. No. 292)');
-$sheet->setCellValue('A31','[ ] Special Leave Benefits for Women (RA No. 9710 / CSC MC No. 25, s. 2010)');
-$sheet->setCellValue('A33','[ ] Special Emergency (Calamity) Leave (CSC MC No. 2, s. 2012, as amended)');
-$sheet->setCellValue('A35','[ ] Adoption Leave (R.A. No. 8552)');
+if ($leaveType == "VACATION"){
+    $sheet->setCellValue('A11','[/] Vacation Leave (Sec. 51, Rule XVI, Omnibus Rules Implementing E.O. No. 292)');
+} else {
+    $sheet->setCellValue('A11','[ ] Vacation Leave (Sec. 51, Rule XVI, Omnibus Rules Implementing E.O. No. 292)');
+}
+
+if ($leaveType == "FORCED"){
+    $sheet->setCellValue('A13','[/] Mandatory/Forced Leave(Sec. 25, Rule XVI, Omnibus Rules Implementing E.O. No. 292)');
+} else {
+    $sheet->setCellValue('A13','[ ] Mandatory/Forced Leave(Sec. 25, Rule XVI, Omnibus Rules Implementing E.O. No. 292)');
+}
+
+if ($leaveType == "SICK"){
+    $sheet->setCellValue('A15','[/] Sick Leave  (Sec. 43, Rule XVI, Omnibus Rules Implementing E.O. No. 292)');
+} else {
+    $sheet->setCellValue('A15','[ ] Sick Leave  (Sec. 43, Rule XVI, Omnibus Rules Implementing E.O. No. 292)');
+}
+
+if ($leaveType == "MATERNITY"){
+    $sheet->setCellValue('A17','[/] Maternity Leave (R.A. No. 11210 / IRR issued by CSC, DOLE and SSS)');
+} else {
+    $sheet->setCellValue('A17','[ ] Maternity Leave (R.A. No. 11210 / IRR issued by CSC, DOLE and SSS)');
+}
+
+if ($leaveType == "PATERNITY"){
+    $sheet->setCellValue('A19','[/] Paternity Leave (R.A. No. 8187 / CSC MC No. 71, s. 1998, as amended)');
+} else {
+    $sheet->setCellValue('A19','[ ] Paternity Leave (R.A. No. 8187 / CSC MC No. 71, s. 1998, as amended)');
+}
+
+if ($leaveType == "SPECIALPRIVILEGE"){
+    $sheet->setCellValue('A21','[/] Special Privilege Leave (Sec. 21, Rule XVI, Omnibus Rules Implementing E.O. No. 292)');
+} else {
+    $sheet->setCellValue('A21','[ ] Special Privilege Leave (Sec. 21, Rule XVI, Omnibus Rules Implementing E.O. No. 292)');
+}
+
+if ($leaveType == "SOLOPARENT"){
+    $sheet->setCellValue('A23','[/] Solo Parent Leave (RA No. 8972 / CSC MC No. 8, s. 2004)');
+} else {
+    $sheet->setCellValue('A23','[ ] Solo Parent Leave (RA No. 8972 / CSC MC No. 8, s. 2004)');
+}
+
+if ($leaveType == "STUDY"){
+    $sheet->setCellValue('A25','[/] Study Leave (Sec. 68, Rule XVI, Omnibus Rules Implementing E.O. No. 292)');
+} else {
+    $sheet->setCellValue('A25','[ ] Study Leave (Sec. 68, Rule XVI, Omnibus Rules Implementing E.O. No. 292)');
+}
+
+if ($leaveType == "VAWC"){
+    $sheet->setCellValue('A27','[/] 10-Day VAWC Leave (RA No. 9262 / CSC MC No. 15, s. 2005)');
+} else {
+    $sheet->setCellValue('A27','[ ] 10-Day VAWC Leave (RA No. 9262 / CSC MC No. 15, s. 2005)');
+}
+
+if ($leaveType == "REHAB"){
+    $sheet->setCellValue('A29','[/] Rehabilitation Privilege (Sec. 55, Rule XVI, Omnibus Rules Implementing E.O. No. 292)');
+} else {
+    $sheet->setCellValue('A29','[ ] Rehabilitation Privilege (Sec. 55, Rule XVI, Omnibus Rules Implementing E.O. No. 292)');
+}
+
+if ($leaveType == "WOMEN"){
+    $sheet->setCellValue('A31','[/] Special Leave Benefits for Women (RA No. 9710 / CSC MC No. 25, s. 2010)');
+} else {
+    $sheet->setCellValue('A31','[ ] Special Leave Benefits for Women (RA No. 9710 / CSC MC No. 25, s. 2010)');
+}
+
+if ($leaveType == "EMERGENCY"){
+    $sheet->setCellValue('A33','[/] Special Emergency (Calamity) Leave (CSC MC No. 2, s. 2012, as amended)');
+} else {
+    $sheet->setCellValue('A33','[ ] Special Emergency (Calamity) Leave (CSC MC No. 2, s. 2012, as amended)');
+}
+
+if ($leaveType == "EMERGENCY"){
+    $sheet->setCellValue('A35','[/] Adoption Leave (R.A. No. 8552)');
+} else {
+    $sheet->setCellValue('A35','[ ] Adoption Leave (R.A. No. 8552)');
+}
+
+
+
 $sheet->setCellValue('A39','Others');
 $sheet->setCellValue('B41','__________________________');
 
 $sheet->setCellValue('G9',' 6.B  DETAILS OF LEAVE ');
 $sheet->setCellValue('H11',' In case of Vacation/Special Privilege Leave:');
-$sheet->setCellValue('H13','[ ] Within the Philippines');
-$sheet->setCellValue('H15','[ ] Abroad (Specify)');
+if($partOne == "PH"){
+    $sheet->setCellValue('H13','[/] Within the Philippines');
+    $sheet->setCellValue('H15','[ ] Abroad (Specify)');
+} else if ($partOne == "ABROAD"){
+    $sheet->setCellValue('H13','[ ] Within the Philippines');
+    $sheet->setCellValue('H15','[/] Abroad (Specify)');
+} else {
+    $sheet->setCellValue('H13','[ ] Within the Philippines');
+    $sheet->setCellValue('H15','[ ] Abroad (Specify)');
+}
 
-$sheet->setCellValue('H17','In case of Sick Leave:');
-$sheet->setCellValue('H19','[ ] In Hospital (Specify Illness) _____________________');
-$sheet->setCellValue('H21','[ ] Out Patient (Specify Illness)  ____________________');
+
+if($partTwo == "IPD"){
+    
+    $sheet->setCellValue('H17','In case of Sick Leave:');
+    $sheet->setCellValue('H19','[/] In Hospital (Specify Illness) _____________________');
+    $sheet->setCellValue('H21','[ ] Out Patient (Specify Illness)  ____________________');
+} else if ($partTwo == "OPD"){
+    
+    $sheet->setCellValue('H17','In case of Sick Leave:');
+    $sheet->setCellValue('H19','[ ] In Hospital (Specify Illness) _____________________');
+    $sheet->setCellValue('H21','[/] Out Patient (Specify Illness)  ____________________');
+} else {
+    
+    $sheet->setCellValue('H17','In case of Sick Leave:');
+    $sheet->setCellValue('H19','[ ] In Hospital (Specify Illness) _____________________');
+    $sheet->setCellValue('H21','[ ] Out Patient (Specify Illness)  ____________________');
+}
+       
 
 $sheet->setCellValue('H25','In case of Special Leave Benefits for Women:');
 $sheet->setCellValue('H27','(Specify Illness) ________________________________');
 
-$sheet->setCellValue('H31','In case of Study Leave:');
-$sheet->setCellValue('H33',"[ ] Completion of Master's Degree");
-$sheet->setCellValue('H35','[ ] BAR/Board Examination Review');
 
-$sheet->setCellValue('H37','Other purpose:');
-$sheet->setCellValue('H39',"[ ] Not Requested");
-$sheet->setCellValue('H41','[ ] Requested');
+if($partFour == "MASTERS"){
+    $sheet->setCellValue('H31','In case of Study Leave:');
+    $sheet->setCellValue('H33',"[/] Completion of Master's Degree");
+    $sheet->setCellValue('H35','[ ] BAR/Board Examination Review');
+} else if ($partFour == "EXAM"){
+    $sheet->setCellValue('H31','In case of Study Leave:');
+    $sheet->setCellValue('H33',"[ ] Completion of Master's Degree");
+    $sheet->setCellValue('H35','[/] BAR/Board Examination Review');
+} else {
+    $sheet->setCellValue('H31','In case of Study Leave:');
+    $sheet->setCellValue('H33',"[ ] Completion of Master's Degree");
+    $sheet->setCellValue('H35','[ ] BAR/Board Examination Review');
+}
+
+
+
+if($partFive == "MONETIZATION"){
+    $sheet->setCellValue('H37','Other purpose:');
+    $sheet->setCellValue('H39',"[/] Monetization of Leave Credits");
+    $sheet->setCellValue('H41','[ ] Terminal Leave');
+} else if ($partFive == "TERMINAL"){
+    $sheet->setCellValue('H37','Other purpose:');
+    $sheet->setCellValue('H39',"[ ] Monetization of Leave Credits");
+    $sheet->setCellValue('H41','[/] Terminal Leave');
+} else {
+    $sheet->setCellValue('H37','Other purpose:');
+    $sheet->setCellValue('H39',"[ ] Monetization of Leave Credits");
+    $sheet->setCellValue('H41','[ ] Terminal Leave');
+}
+
+
+
 
 $sheet->setCellValue('A43','6.C  NUMBER OF WORKING DAYS APPLIED FOR');
-$sheet->setCellValue('A45',"___________________________");
+$sheet->setCellValue('A45',$workingDays);
 $sheet->setCellValue('A47','INCLUSIVE DATES');
-$sheet->setCellValue('A48','___________________________');
+$sheet->setCellValue('A48',$inclusivedate);
 
-$sheet->setCellValue('G43','6.D  COMMUTATION ');
-$sheet->setCellValue('H45',"[ ] Not Requested");
-$sheet->setCellValue('H47','[ ] Requested');
+if($partSix == "NOTREQUESTED"){
+    $sheet->setCellValue('G43','6.D  COMMUTATION ');
+    $sheet->setCellValue('H45',"[/] Not Requested");
+    $sheet->setCellValue('H47','[ ] Requested');
+} else if ($partSix == "REQUESTED"){
+    $sheet->setCellValue('G43','6.D  COMMUTATION ');
+    $sheet->setCellValue('H45',"[ ] Not Requested");
+    $sheet->setCellValue('H47','[/] Requested');
+} else {
+    $sheet->setCellValue('G43','6.D  COMMUTATION ');
+    $sheet->setCellValue('H45',"[ ] Not Requested");
+    $sheet->setCellValue('H47','[ ] Requested');
+}
+
+
 
 $sheet->setCellValue('G48',"___________________________");
 $sheet->setCellValue('H49','(Signature of Applicant)');
@@ -199,16 +342,38 @@ $sheet->setCellValue('C53','As of __________________');
 $sheet->setCellValue('D55','Vacation Leave');
 $sheet->setCellValue('E55','Sick Leave');
 $sheet->setCellValue('C56','Total Earned');
+$sheet->setCellValue('D56',$vlcredit);
+$sheet->setCellValue('E56',$slcredit);
+$sheet->setCellValue('D57',$vlless);
+$sheet->setCellValue('D58',$vlbalance);
+$sheet->setCellValue('E57',$slless);
+$sheet->setCellValue('E58',$slbalance);
 $sheet->setCellValue('C57','Less this application');
 $sheet->setCellValue('C58','Balance');
 $sheet->setCellValue('C59','HAZEL S. UMBAL');
 $sheet->setCellValue('C60','HRMO III');
 
-$sheet->setCellValue('G51','7.B  RECOMMENDATION');
-$sheet->setCellValue('H53',"[ ] For Approval");
-$sheet->setCellValue('H55','[ ] For Disapproval due to');
-$sheet->setCellValue('H59','                     ');
-$sheet->setCellValue('H60','(Head of Division/Unit/P/FO or ARD)');
+if($headApproveStatus == "Y"){
+    $sheet->setCellValue('G51','7.B  RECOMMENDATION');
+    $sheet->setCellValue('H53',"[/] For Approval");
+    $sheet->setCellValue('H55','[ ] For Disapproval due to');
+    $sheet->setCellValue('H59','                     ');
+    $sheet->setCellValue('H60','(Head of Division/Unit/P/FO or ARD)');
+} else if ($partSix == "REQUESTED"){
+    $sheet->setCellValue('G51','7.B  RECOMMENDATION');
+    $sheet->setCellValue('H53',"[ ] For Approval");
+    $sheet->setCellValue('H55','[/] For Disapproval due to');
+    $sheet->setCellValue('H59','                     ');
+    $sheet->setCellValue('H60','(Head of Division/Unit/P/FO or ARD)');
+} else {
+    $sheet->setCellValue('G51','7.B  RECOMMENDATION');
+    $sheet->setCellValue('H53',"[ ] For Approval");
+    $sheet->setCellValue('H55','[ ] For Disapproval due to');
+    $sheet->setCellValue('H59','                     ');
+    $sheet->setCellValue('H60','(Head of Division/Unit/P/FO or ARD)');
+}
+
+
 
 $sheet->setCellValue('A61','7.C  APPROVED FOR:');
 $sheet->setCellValue('C62',"days with pay");
@@ -311,7 +476,7 @@ $sheet->getColumnDimension('I')->setWidth(40);
 
 $sheet->getColumnDimension('A')->setWidth(1);
 $sheet->getColumnDimension('I')->setWidth(40);
-$sheet->getRowDimension('2')->setRowHeight(40);
+$sheet->getRowDimension('2')->setRowHeight(60);
 $sheet->getRowDimension('10')->setRowHeight(5);
 $sheet->getRowDimension('12')->setRowHeight(5);
 $sheet->getRowDimension('14')->setRowHeight(5);
@@ -339,8 +504,12 @@ $sheet->getRowDimension('54')->setRowHeight(5);
 $sheet->getRowDimension('52')->setRowHeight(5);
 $sheet->getRowDimension('59')->setRowHeight(20);
 $sheet->getRowDimension('60')->setRowHeight(20);
+$sheet->getRowDimension('65')->setRowHeight(40);
 
 $sheet->getStyle('A2')->getAlignment()->setHorizontal('center');
+$sheet->getStyle('A3')->getAlignment()->setHorizontal('center');
+$sheet->getStyle('A8')->getAlignment()->setHorizontal('center');
+$sheet->getStyle('A50')->getAlignment()->setHorizontal('center');
 $sheet->getStyle('F9')->getAlignment()->setHorizontal('center');
 $sheet->getStyle('C60')->getAlignment()->setHorizontal('center');
 $sheet->getStyle('C59')->getAlignment()->setHorizontal('center');
@@ -354,7 +523,7 @@ $sheet->getStyle('A67')->getAlignment()->setHorizontal('center');
 $styleArrayHeaderFontStyle = [
     'font' => [
         'bold'  =>  true,
-        'size'  =>  8,
+        'size'  =>  10,
         'name'  =>  'Arial'
     ],
     'alignment' => [
@@ -364,6 +533,11 @@ $styleArrayHeaderFontStyle = [
 
 ];
 $styleArray = [
+    'font' => [
+        'bold'  =>  true,
+        'size'  =>  10,
+        'name'  =>  'Arial'
+    ],
     'borders' => [
         'outline' => [
             'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK,
@@ -375,6 +549,11 @@ $styleArray = [
 
 
 $styleArrayBox = [
+    'font' => [
+        'bold'  =>  true,
+        'size'  =>  8,
+        'name'  =>  'Arial'
+    ],
     'borders' => [
         'outline' => [
             'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
@@ -410,30 +589,25 @@ $styleArrayHorizontalBox = [
 
 
 $sheet->getStyle('A1:I67')->applyFromArray($styleArray);
-/*$sheet->getStyle('B13:H13')->applyFromArray($styleArray);
-$sheet->getStyle('H10:K11')->applyFromArray($styleArrayBox);
-$sheet->getStyle('I14:K15')->applyFromArray($styleArrayBox);
-$sheet->getStyle('C17:I19')->applyFromArray($styleArrayBox);
-$sheet->getStyle('A20:B21')->applyFromArray($styleArrayBox);
-$sheet->getStyle('C20:E21')->applyFromArray($styleArrayBox);
-$sheet->getStyle('A22')->applyFromArray($styleArrayBox);
-$sheet->getStyle('B22')->applyFromArray($styleArrayBox);
-$sheet->getStyle('C22')->applyFromArray($styleArrayBox);
-$sheet->getStyle('D22')->applyFromArray($styleArrayBox);
-$sheet->getStyle('E22')->applyFromArray($styleArrayBox);
-$sheet->getStyle('F20:F22')->applyFromArray($styleArrayBox);
-$sheet->getStyle('G20:G22')->applyFromArray($styleArrayBox);
-$sheet->getStyle('H20:H22')->applyFromArray($styleArrayBox);
-$sheet->getStyle('I20:J20')->applyFromArray($styleArrayBox);
-$sheet->getStyle('K20:K22')->applyFromArray($styleArrayBox);
-$sheet->getStyle('J21:J22')->applyFromArray($styleArrayBox);
-$sheet->getStyle('I22')->applyFromArray($styleArrayBox);
-
-$sheet->getStyle('A23:K'.$rowNum)->applyFromArray($styleArrayVerticalBox);
-$sheet->getStyle('A'.$rowNum.':K'.$rowNum)->applyFromArray($styleArrayAllBox);*/
+$sheet->getStyle('B50:I50')->applyFromArray($styleArrayAllBox);
+$sheet->getStyle('C55:E58')->applyFromArray($styleArrayAllBox);
+$sheet->getStyle('A4:D5')->applyFromArray($styleArrayBox);
+$sheet->getStyle('E4:I5')->applyFromArray($styleArrayBox);
+$sheet->getStyle('A3:I3')->applyFromArray($styleArray);
+$sheet->getStyle('A6:D7')->applyFromArray($styleArrayBox);
+$sheet->getStyle('E6:I7')->applyFromArray($styleArrayBox);
+$sheet->getStyle('A8:I8')->applyFromArray($styleArray);
+$sheet->getStyle('A9:F42')->applyFromArray($styleArrayBox);
+$sheet->getStyle('G9:I42')->applyFromArray($styleArrayBox);
+$sheet->getStyle('A43:F49')->applyFromArray($styleArrayBox);
+$sheet->getStyle('G43:I49')->applyFromArray($styleArrayBox);
+$sheet->getStyle('A50:I50')->applyFromArray($styleArray);
+$sheet->getStyle('A51:F60')->applyFromArray($styleArrayBox);
+$sheet->getStyle('G51:I60')->applyFromArray($styleArrayBox);
+$sheet->getStyle('A65:I67')->applyFromArray($styleArrayBox);
 
 
-
+$sheet->getStyle('A1:I67')->applyFromArray($styleArray);
 
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 header('Content-Disposition: attachment;filename="CS Form No 6 Rev 2020.xlsx"');

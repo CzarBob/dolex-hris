@@ -300,6 +300,7 @@ session_start();
                                               <option value="FORCED">MANDATORY/FORCED LEAVE</option>
                                               <option value="SICK">SICK LEAVE</option>
                                               <option value="MATERNITY">MATERNITY LEAVE</option>
+                                              <option value="PATERNITY">PATERNITY LEAVE</option>
                                               <option value="SPECIALPRIVILEGE">SPECIAL PRIVILEGE LEAVE</option>
                                               <option value="SOLOPARENT">SOLO PARENT LEAVE</option>
                                               <option value="STUDY">STUDY LEAVE</option>
