@@ -103,8 +103,8 @@ $(document).ready(function(){
             success:function(data)
             {
 
-                $('#office').val(data.data.firstname);
-                $('#division').val(data.data.middlename);
+                $('#office').val(data.data.fieldofficeid);
+                $('#division').val(data.data.divisionid);
                 $('#firstname').val(data.data.firstname);
                 $('#middlename').val(data.data.middlename);
                 $('#lastname').val(data.data.lastname);
@@ -144,7 +144,15 @@ $(document).ready(function(){
 
                 $("#chiefremarks").val(data.data.chiefremarks);
                 $("#rdremarks").val(data.data.rdremarks);
-            
+                $("#applicantremarks").val(data.data.applicantremarks);
+                $("#slcredit").val(data.data.slcredit);
+                $("#slless").val(data.data.slless);
+                $("#slbalance").val(data.data.slbalance);
+                $("#vlcredit").val(data.data.vlcredit);
+                $("#vlless").val(data.data.vlless);
+                $("#vlbalance").val(data.data.vlbalance);
+                $("#attachment").val(data.data.attachment);
+
                
                 
             }
@@ -156,7 +164,7 @@ $(document).ready(function(){
 
     $(document).on('click', '#submit_approve_leave', function(){
         var leaveID = document.getElementById("leaveID").value;
-        alert('approve');
+        //alert('approve');
 
         var chiefremarks = $('#chiefremarks').val();
  
@@ -192,7 +200,7 @@ $(document).ready(function(){
 
     $(document).on('click', '#submit_reject_leave', function(){
         var leaveID = document.getElementById("leaveID").value;
-        alert('rejected');
+        //alert('rejected');
                 var chiefremarks = $('#chiefremarks').val();
                 var leaveID = document.getElementById("leaveID").value;
 

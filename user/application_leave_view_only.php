@@ -524,6 +524,23 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='RD_APPROVER')){
                                       </div>
 
 
+                                      <div class="form-row">
+                                          <!-- Default input -->
+                                          <div class="form-group col-md-10">
+                                          <label for="inputEmail4">Google Drive Link Attachment</label>
+                                          <input type="text" name="attachment" id = "attachment" class="form-control validate" disabled>
+                                          </div>                                  
+                                      </div>
+
+                                      <div class="form-row">
+                                          <!-- Default input -->
+                                          <div class="form-group col-md-10">
+                                          <label for="inputAddress">Applicant Remarks</label>
+                                          <textarea class="form-control"  id="applicantremarks" name="applicantremarks" rows="4" cols="100" disabled> </textarea>
+                                      
+                                          </div>
+                                      </div>
+
 
                                   </div>
                               </div>
@@ -551,6 +568,15 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='RD_APPROVER')){
                                       
                                           </div>
                                       </div>
+                                      <div class="form-row">
+                                          <!-- Default input -->
+                                          <div class="form-group col-md-10">
+                                          <label for="inputAddress">IMSD Chief remarks</label>
+                                          <textarea class="form-control"  id="imsdremarks" name="imsdremarks" rows="4" cols="100" disabled> </textarea>
+                                      
+                                          </div>
+                                      </div>
+
                                       
                                       <div class="form-row">
                                           <!-- Default input -->
@@ -590,21 +616,42 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='RD_APPROVER')){
                                  
                                   </div>
 
-                                  <!-- Card Body -->
-                                  <div class="card-body">
-                                      <div class="form-group row">
-                                        <label for="inputEmail3" class="col-lg-2 col-form-label">Vacation Leave Credits</label>
-                                        <div class="col-sm-2">
-                                          <input type="text" class="form-control" id="inputEmail3" disabled>
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+                                        <div class="form-group row">
+                                          <label for="inputEmail3" class="col-lg-2 col-form-label">Vacation Leave Credits</label>
+                                          <div class="col-sm-2">
+                                            <input type="text" class="form-control" id="vlcredit" disabled>
+                                          
+                                          </div>
+                                          <label for="inputEmail3" class="col-lg-2 col-form-label">Less this application</label>
+                                            <div class="col-sm-2">
+                                              <input type="text" class="form-control" id="vlless" disabled>
+                                            </div>
+
+                                            <label for="inputEmail3" class="col-lg-2 col-form-label">Balance</label>
+                                            <div class="col-sm-2">
+                                              <input type="text" class="form-control" id="vlbalance" disabled>
+                                            </div>
+
                                         </div>
-                                      </div>
-                                      <div class="form-group row">
-                                        <label for="inputEmail3" class="col-lg-2 col-form-label">Sick Leave Credits</label>
-                                        <div class="col-sm-2">
-                                          <input type="text" class="form-control" id="inputEmail3"  disabled>
+                                        <div class="form-group row">
+                                          <label for="inputEmail3" class="col-lg-2 col-form-label">Sick Leave Credits</label>
+                                          <div class="col-sm-2">
+                                            <input type="text" class="form-control" id="slcredit" disabled>
+                                          
+                                          </div>
+                                          <label for="inputEmail3" class="col-lg-2 col-form-label">Less this application</label>
+                                            <div class="col-sm-2">
+                                              <input type="text" class="form-control" id="slless" disabled>
+                                            </div>
+
+                                            <label for="inputEmail3" class="col-lg-2 col-form-label">Balance</label>
+                                            <div class="col-sm-2">
+                                              <input type="text" class="form-control" id="slbalance" disabled>
+                                            </div>
                                         </div>
-                                      </div>
-                                  </div>
+                                    </div>
                               </div>
                           </div>
 
@@ -616,14 +663,14 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='RD_APPROVER')){
 
                         <div class="col-xl-12 col-lg-7">
                             <div class="card shadow mb-6">
-
+                              <!--  
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                      <!-- Card Header - Dropdown -->
+                                    
                                   <h6 class="m-0 font-weight-bold text-primary">IV. Leave History</h6>
                               
                                 </div>
 
-                                <!-- Card Body -->
+                                
                                 <div class="card-body">
                                 <div class="card-body">
                                           <div class="table-responsive">
@@ -657,7 +704,7 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='RD_APPROVER')){
                                               </table>
                                           </div>
                                   </div>
-                                </div>
+                                </div>-->
                             </div>
                         </div>
                       </div>
@@ -685,7 +732,7 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='RD_APPROVER')){
                                    
                                     <tr>
                                   
-                                        <td style="width: 100%;"  colspan="2" style = "align: left"> <button type="button" style="width: 100%;" name="generateReport" id="generateReport" class="btn btn-success btn-xs">Eport File</button></td>                                               
+                                        <td style="width: 100%;"  colspan="2" style = "align: left"> <button type="button" style="width: 100%;" name="generateReport" id="generateReport" class="btn btn-success btn-xs">Export File</button></td>                                               
                                     </tr>  
                                     <tr>
                                   

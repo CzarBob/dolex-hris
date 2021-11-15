@@ -535,8 +535,6 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='RD_APPROVER')){
                                           </div>
                                       </div>
 
-
-
                                   </div>
                               </div>
                           </div>
@@ -577,7 +575,7 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='RD_APPROVER')){
                                           <!-- Default input -->
                                           <div class="form-group col-md-10">
                                           <label for="inputAddress">Regional Director remarks</label>
-                                          <textarea class="form-control"  id="rdremarks" name="rdremarks" rows="4" cols="100" > </textarea>
+                                          <textarea class="form-control"  id="rdremarks" name="rdremarks" rows="4" cols="100" disabled> </textarea>
                                           </div>
                                       </div>
                                   </div>
@@ -599,42 +597,42 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='RD_APPROVER')){
                                  
                                   </div>
 
-                                      <!-- Card Body -->
-                                      <div class="card-body">
-                                        <div class="form-group row">
-                                          <label for="inputEmail3" class="col-lg-2 col-form-label">Vacation Leave Credits</label>
-                                          <div class="col-sm-2">
-                                            <input type="text" class="form-control" id="vlcredit" disabled>
-                                          
-                                          </div>
-                                          <label for="inputEmail3" class="col-lg-2 col-form-label">Less this application</label>
-                                            <div class="col-sm-2">
-                                              <input type="text" class="form-control" id="vlless" disabled>
-                                            </div>
-
-                                            <label for="inputEmail3" class="col-lg-2 col-form-label">Balance</label>
-                                            <div class="col-sm-2">
-                                              <input type="text" class="form-control" id="vlbalance" disabled>
-                                            </div>
-
+                                  <!-- Card Body -->
+                                  <div class="card-body">
+                                      <div class="form-group row">
+                                        <label for="inputEmail3" class="col-lg-2 col-form-label">Vacation Leave Credits</label>
+                                        <div class="col-sm-2">
+                                          <input type="text" class="form-control" id="vlcredit" >
+                                         
                                         </div>
-                                        <div class="form-group row">
-                                          <label for="inputEmail3" class="col-lg-2 col-form-label">Sick Leave Credits</label>
+                                        <label for="inputEmail3" class="col-lg-2 col-form-label">Less this application</label>
                                           <div class="col-sm-2">
-                                            <input type="text" class="form-control" id="slcredit" disabled>
-                                          
+                                            <input type="text" class="form-control" id="vlless" >
                                           </div>
-                                          <label for="inputEmail3" class="col-lg-2 col-form-label">Less this application</label>
-                                            <div class="col-sm-2">
-                                              <input type="text" class="form-control" id="slless" disabled>
-                                            </div>
 
-                                            <label for="inputEmail3" class="col-lg-2 col-form-label">Balance</label>
-                                            <div class="col-sm-2">
-                                              <input type="text" class="form-control" id="slbalance" disabled>
-                                            </div>
+                                          <label for="inputEmail3" class="col-lg-2 col-form-label">Balance</label>
+                                          <div class="col-sm-2">
+                                            <input type="text" class="form-control" id="vlbalance" >
+                                          </div>
+
+                                      </div>
+                                      <div class="form-group row">
+                                        <label for="inputEmail3" class="col-lg-2 col-form-label">Sick Leave Credits</label>
+                                        <div class="col-sm-2">
+                                          <input type="text" class="form-control" id="slcredit" >
+                                         
                                         </div>
-                                    </div>
+                                        <label for="inputEmail3" class="col-lg-2 col-form-label">Less this application</label>
+                                          <div class="col-sm-2">
+                                            <input type="text" class="form-control" id="slless" >
+                                          </div>
+
+                                          <label for="inputEmail3" class="col-lg-2 col-form-label">Balance</label>
+                                          <div class="col-sm-2">
+                                            <input type="text" class="form-control" id="slbalance" >
+                                          </div>
+                                      </div>
+                                  </div>
                               </div>
                           </div>
 
@@ -646,9 +644,9 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='RD_APPROVER')){
 
                         <div class="col-xl-12 col-lg-7">
                             <div class="card shadow mb-6">
-                                <!--
+<!--
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                   
+                                  
                                   <h6 class="m-0 font-weight-bold text-primary">IV. Leave History</h6>
                               
                                 </div>
@@ -687,7 +685,7 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='RD_APPROVER')){
                                               </table>
                                           </div>
                                   </div>
-                                </div>-->
+                                </div> -->
                             </div>
                         </div>
                       </div>
@@ -770,7 +768,7 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='RD_APPROVER')){
         <!--<a class="btn btn-primary" href="logout.php">Logout</a> -->
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
-          <a class="btn btn-primary" href="../logout">Logout</a> 
+          <a class="btn btn-primary" href="logout">Logout</a> 
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
         </div>
       </div>
@@ -795,7 +793,7 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='RD_APPROVER')){
     <script src="../assets/js/demo/datatables-demo.js"></script>
     
     <!--JS FOR EMPLOYEE ACTIONS -->
-    <script type="text/javascript" src="approver_rd_detail_view.js"></script>
+    <script type="text/javascript" src="approver_hr_detail_view.js"></script>
 
     
 

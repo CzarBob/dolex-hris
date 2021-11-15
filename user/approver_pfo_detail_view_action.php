@@ -26,6 +26,8 @@ if (isset($_POST['action'])){
     tbl_employee.USERNAME as USERNAME,
     tbl_employee.SLCREDIT as SLCREDIT,
     tbl_employee.VLCREDIT as VLCREDIT,
+    tbl_employee.FIELDOFFICEID as FIELDOFFICEID,
+    tbl_employee.DIVISIONID as DIVISIONID,
     tbl_leave.ID as LEAVEID,
     tbl_leave.LEAVETYPE as LEAVETYPE,
     tbl_leave.DATEOFFILLING as DATEOFFILLING,
@@ -47,7 +49,13 @@ if (isset($_POST['action'])){
     tbl_leave.DATERDUPDATED as DATERDUPDATED,
     tbl_leave.RDAPPROVESTATUS as RDAPPROVESTATUS,
     tbl_leave.HEADAPPROVESTATUS as HEADAPPROVESTATUS,
-    tbl_leave.DATEHEADUPDATED as DATEHEADUPDATED
+    tbl_leave.DATEHEADUPDATED as DATEHEADUPDATED,
+    tbl_leave.VLLESS as VLLESS,
+    tbl_leave.VLBALANCE as VLBALANCE,
+    tbl_leave.SLLESS as SLLESS,
+    tbl_leave.SLBALANCE as SLBALANCE,
+    tbl_leave.ATTACHMENT as ATTACHMENT
+    tbl_leave.IMSDREMARKS as IMSDREMARKS,
     
     
     FROM tbl_employee
@@ -75,6 +83,9 @@ if (isset($_POST['action'])){
         $sub_array['username'] = $row['USERNAME'];
         $sub_array['slcredit'] = $row['SLCREDIT'];
         $sub_array['vlcredit'] = $row['VLCREDIT'];
+        $sub_array['fieldofficeid'] = $row['FIELDOFFICEID'];
+        $sub_array['divisionid'] = $row['DIVISIONID'];
+
         $sub_array['leavetype']                 = $row['LEAVETYPE'];
         $sub_array['dateoffilling']        = $row['DATEOFFILLING'];
         $sub_array['salary']              = $row['SALARY'];
@@ -96,6 +107,13 @@ if (isset($_POST['action'])){
         $sub_array['rdapprovedstatus']              = $row['RDAPPROVESTATUS'];
         $sub_array['headapprovestatus']               = $row['HEADAPPROVESTATUS'];
         $sub_array['dateheadupdated']               = $row['DATEHEADUPDATED'];
+        $sub_array['slless']               = $row['SLLESS'];
+        $sub_array['slbalance']               = $row['slbalance'];
+        $sub_array['vlless']               = $row['VLLESS'];
+        $sub_array['vlbalance']               = $row['VLBALANCE'];
+        $sub_array['imsdremarks']                      = $row['IMSDREMARKS'];
+        $sub_array['attachment']                      = $row['ATTACHMENT'];
+
 
         $data[] = $sub_array;
         
@@ -217,20 +235,39 @@ if (isset($_POST['action'])){
         $message .= 'Designation must not be blank <br>
         ';
       }*/
+      
 
       if (!$flag){
-        $dateAdded = date("Y-m-d H:i:s");
-        $que = 'UPDATE tbl_leave
-        SET 
-        CHIEFREMARKS =  "'.$chiefremarks.'",
-        DATEHEADUPDATED = "'.$dateNow.'",
-        HEADAPPROVESTATUS = "Y",
-        RDAPPROVESTATUS = "PENDING"
+        if ($_SESSION['division']=='IMSD'){
+          
+          $dateAdded = date("Y-m-d H:i:s");
+          $que = 'UPDATE tbl_leave
+          SET 
+          CHIEFREMARKS =  "'.$chiefremarks.'",
+          DATEHEADUPDATED = "'.$dateNow.'",
+          HEADAPPROVESTATUS = "Y",
+          IMSDAPPROVESTATUS = "Y"
+  
+  
+          WHERE ID = "'.$leaveID.'"';
+  
+          $result = mysqli_query($connect, $que);
+        } else { 
+          
+          $dateAdded = date("Y-m-d H:i:s");
+          $que = 'UPDATE tbl_leave
+          SET 
+          CHIEFREMARKS =  "'.$chiefremarks.'",
+          DATEHEADUPDATED = "'.$dateNow.'",
+          HEADAPPROVESTATUS = "Y"
+  
+  
+          WHERE ID = "'.$leaveID.'"';
+  
+          $result = mysqli_query($connect, $que);
 
-
-        WHERE ID = "'.$leaveID.'"';
-
-        $result = mysqli_query($connect, $que);
+        }
+       
 
       }
 

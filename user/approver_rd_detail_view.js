@@ -93,7 +93,7 @@ $(document).ready(function(){
         //alert(action);
         $.ajax({
 
-            url:"approver_pfo_detail_view_action.php",
+            url:"approver_rd_detail_view_action.php",
             type:"POST",
             data:{
                 leaveID:leaveID, 
@@ -103,8 +103,8 @@ $(document).ready(function(){
             success:function(data)
             {
 
-                $('#office').val(data.data.firstname);
-                $('#division').val(data.data.middlename);
+                $('#office').val(data.data.office);
+                $('#division').val(data.data.division);
                 $('#firstname').val(data.data.firstname);
                 $('#middlename').val(data.data.middlename);
                 $('#lastname').val(data.data.lastname);
@@ -144,7 +144,16 @@ $(document).ready(function(){
 
                 $("#chiefremarks").val(data.data.chiefremarks);
                 $("#rdremarks").val(data.data.rdremarks);
-            
+                $("#applicantremarks").val(data.data.applicantremarks);
+                $("#imsdremarks").val(data.data.imsdremarks);
+                $("#attachment").val(data.data.attachment);
+                $("#slcredit").val(data.data.slcredit);
+                $("#vlcredit").val(data.data.vlcredit);
+                $("#slless").val(data.data.slless);
+                $("#slbalance").val(data.data.slbalance);
+                $("#vlless").val(data.data.vlless);
+                $("#vlbalance").val(data.data.vlbalance);
+                $("#imsdremarks").val(data.data.imsdremarks);
                
                 
             }
@@ -156,7 +165,7 @@ $(document).ready(function(){
 
     $(document).on('click', '#submit_approve_leave', function(){
         var leaveID = document.getElementById("leaveID").value;
-        alert('approve');
+        //alert('approve');
 
         var rdremarks = $('#rdremarks').val();
  
@@ -192,7 +201,7 @@ $(document).ready(function(){
 
     $(document).on('click', '#submit_reject_leave', function(){
 
-        alert('rejected');
+        //alert('rejected');
                 var rdremarks = $('#rdremarks').val();
                 var leaveID = document.getElementById("leaveID").value;
 

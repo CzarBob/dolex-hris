@@ -504,18 +504,36 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='CHIEF_APPROVER')){
                                       <div class="form-row">
                                           <div class="form-group col-md-4">
                                           <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="partsix" id="partsix1" value="NOTREQUESTED">
+                                            <input class="form-check-input" type="radio" name="partsix" id="partsix1" value="NOTREQUESTED" disabled>
                                             <label class="form-check-label" for="partsix1">
                                               Not Requested
                                             </label> 
                                           </div>
                                           <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="partsix" id="partsix2" value="REQUESTED">
+                                            <input class="form-check-input" type="radio" name="partsix" id="partsix2" value="REQUESTED" disabled>
                                             <label class="form-check-label" for="partsix2">
                                               Requested
                                             </label>
                                           </div>
                                           </div> 
+                                      </div>
+
+                                      
+                                      <div class="form-row">
+                                          <!-- Default input -->
+                                          <div class="form-group col-md-10">
+                                          <label for="inputEmail4">Google Drive Link Attachment</label>
+                                          <input type="text" name="attachment" id = "attachment" class="form-control validate" disabled>
+                                          </div>                                  
+                                      </div>
+
+                                      <div class="form-row">
+                                          <!-- Default input -->
+                                          <div class="form-group col-md-10">
+                                          <label for="inputAddress">Applicant Remarks</label>
+                                          <textarea class="form-control"  id="applicantremarks" name="applicantremarks" rows="4" cols="100" disabled > </textarea>
+                                      
+                                          </div>
                                       </div>
 
 
@@ -564,49 +582,70 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='CHIEF_APPROVER')){
 
                       <div class="row">
 
-                          <div class="col-xl-12 col-lg-7">
-                              <div class="card shadow mb-6">
+                            <div class="col-xl-12 col-lg-7">
+                                <div class="card shadow mb-6">
 
-                                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                         <!-- Card Header - Dropdown -->
-                                    <h6 class="m-0 font-weight-bold text-primary">IV. Leave Balance</h6>
-                                 
-                                  </div>
+                                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                          <!-- Card Header - Dropdown -->
+                                      <h6 class="m-0 font-weight-bold text-primary">IV. Leave Balance</h6>
+                                  
+                                    </div>
 
-                                  <!-- Card Body -->
-                                  <div class="card-body">
-                                      <div class="form-group row">
-                                        <label for="inputEmail3" class="col-lg-2 col-form-label">Vacation Leave Credits</label>
-                                        <div class="col-sm-2">
-                                          <input type="text" class="form-control" id="inputEmail3" disabled>
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+                                        <div class="form-group row">
+                                          <label for="inputEmail3" class="col-lg-2 col-form-label">Vacation Leave Credits</label>
+                                          <div class="col-sm-2">
+                                            <input type="text" class="form-control" id="vlcredit" disabled>
+                                          
+                                          </div>
+                                          <label for="inputEmail3" class="col-lg-2 col-form-label">Less this application</label>
+                                            <div class="col-sm-2">
+                                              <input type="text" class="form-control" id="vlless" disabled>
+                                            </div>
+
+                                            <label for="inputEmail3" class="col-lg-2 col-form-label">Balance</label>
+                                            <div class="col-sm-2">
+                                              <input type="text" class="form-control" id="vlbalance" disabled>
+                                            </div>
+
                                         </div>
-                                      </div>
-                                      <div class="form-group row">
-                                        <label for="inputEmail3" class="col-lg-2 col-form-label">Sick Leave Credits</label>
-                                        <div class="col-sm-2">
-                                          <input type="text" class="form-control" id="inputEmail3"  disabled>
-                                        </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
+                                        <div class="form-group row">
+                                          <label for="inputEmail3" class="col-lg-2 col-form-label">Sick Leave Credits</label>
+                                          <div class="col-sm-2">
+                                            <input type="text" class="form-control" id="slcredit" disabled>
+                                          
+                                          </div>
+                                          <label for="inputEmail3" class="col-lg-2 col-form-label">Less this application</label>
+                                            <div class="col-sm-2">
+                                              <input type="text" class="form-control" id="slless" disabled>
+                                            </div>
 
-                          
-                      </div>
+                                            <label for="inputEmail3" class="col-lg-2 col-form-label">Balance</label>
+                                            <div class="col-sm-2">
+                                              <input type="text" class="form-control" id="slbalance" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
 
                       <br>
                       <div class="row">
 
                         <div class="col-xl-12 col-lg-7">
                             <div class="card shadow mb-6">
-
+                                 <!--
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                      <!-- Card Header - Dropdown -->
+                                    
                                   <h6 class="m-0 font-weight-bold text-primary">IV. Leave History</h6>
                               
                                 </div>
-
-                                <!-- Card Body -->
+                               
+                              
                                 <div class="card-body">
                                 <div class="card-body">
                                           <div class="table-responsive">
@@ -640,7 +679,7 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='CHIEF_APPROVER')){
                                               </table>
                                           </div>
                                   </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                       </div>
@@ -723,7 +762,7 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='CHIEF_APPROVER')){
         <!--<a class="btn btn-primary" href="logout.php">Logout</a> -->
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
-          <a class="btn btn-primary" href="logout">Logout</a> 
+          <a class="btn btn-primary" href="../logout">Logout</a> 
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
         </div>
       </div>

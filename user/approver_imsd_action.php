@@ -95,7 +95,7 @@ if (isset($_POST['action'])){
     if ($_POST['action'] == 'fetch_leave_data'){
 
       $query = 'SELECT tbl_leave.ID as ID,tbl_leave.DATEOFFILLING as DATEOFFILLING, tbl_employee.FIELDOFFICEID as FIELDOFFICEID, tbl_leave.LEAVETYPE as LEAVETYPE, tbl_employee.FIRSTNAME as FIRSTNAME, tbl_employee.LASTNAME as LASTNAME FROM `tbl_leave`
-      INNER JOIN tbl_employee ON tbl_leave.EMPID = tbl_employee.ID WHERE tbl_leave.CANCELLED = "N" AND tbl_leave.HEADAPPROVESTATUS ="Y" AND tbl_leave.IMSDAPPROVESTATUS ="Y" AND tbl_leave.HRAPPROVESTATUS ="Y"  ';
+      INNER JOIN tbl_employee ON tbl_leave.EMPID = tbl_employee.ID WHERE tbl_leave.CANCELLED = "N" AND tbl_leave.HEADAPPROVESTATUS ="Y" AND tbl_leave.RDAPPROVESTATUS = "PENDING" ';
 
 
 
@@ -112,7 +112,7 @@ if (isset($_POST['action'])){
           $sub_array[] = $row["LASTNAME"];
           /*$sub_array[] = "
           <button type='button' name='view_leave' class='btn btn-warning btn-sm view_leave'  data-id='".$row['ID']."'>View</button>";*/
-          $sub_array[] = "<a href='approver_rd_detail_view.php?id=".$row['ID']."' data-id='".$row['ID']."'> <button type='button' class='btn btn-info btn-sm'>Select</button></a> ";  
+          $sub_array[] = "<a href='approver_imsd_detail_view.php?id=".$row['ID']."' data-id='".$row['ID']."'> <button type='button' class='btn btn-info btn-sm'>Select</button></a> ";  
           //<button type='button' name='delete_sr' class='btn btn-danger btn-sm delete_sr' data-id='".$row['ID']."'>Delete</button>";  
        
           $data[] = $sub_array;
@@ -137,7 +137,7 @@ if (isset($_POST['action'])){
 
       
       $query = 'SELECT tbl_leave.ID as ID,tbl_leave.DATEOFFILLING as DATEOFFILLING, tbl_employee.FIELDOFFICEID as FIELDOFFICEID, tbl_leave.LEAVETYPE as LEAVETYPE, tbl_employee.FIRSTNAME as FIRSTNAME, tbl_employee.LASTNAME as LASTNAME FROM `tbl_leave`
-      INNER JOIN tbl_employee ON tbl_leave.EMPID = tbl_employee.ID WHERE tbl_leave.CANCELLED = "N" AND tbl_leave.HEADAPPROVESTATUS ="Y" AND tbl_leave.RDAPPROVESTATUS = "Y" ';
+      INNER JOIN tbl_employee ON tbl_leave.EMPID = tbl_employee.ID WHERE tbl_leave.CANCELLED = "N" AND tbl_leave.HEADAPPROVESTATUS ="Y" AND tbl_leave.HRAPPROVESTATUS = "Y"  AND tbl_leave.RDAPPROVESTATUS != "Y" ';
 
       $result = mysqli_query($connect, $query );
       
@@ -152,7 +152,7 @@ if (isset($_POST['action'])){
           $sub_array[] = $row["LASTNAME"];
           /*$sub_array[] = "
           <button type='button' name='view_leave' class='btn btn-warning btn-sm view_leave'  data-id='".$row['ID']."'>View</button>";*/
-          $sub_array[] = "<a href='approver_rd_detail_view.php?id=".$row['ID']."' data-id='".$row['ID']."'> <button type='button' class='btn btn-info btn-sm'>Select</button></a> ";  
+          $sub_array[] = "<a href='approver_imsd_detail_view.php?id=".$row['ID']."' data-id='".$row['ID']."'> <button type='button' class='btn btn-info btn-sm'>Select</button></a> ";  
           //<button type='button' name='delete_sr' class='btn btn-danger btn-sm delete_sr' data-id='".$row['ID']."'>Delete</button>";  
        
           $data[] = $sub_array;
@@ -178,7 +178,7 @@ if (isset($_POST['action'])){
 
       
       $query = 'SELECT tbl_leave.ID as ID,tbl_leave.DATEOFFILLING as DATEOFFILLING, tbl_employee.FIELDOFFICEID as FIELDOFFICEID, tbl_leave.LEAVETYPE as LEAVETYPE, tbl_employee.FIRSTNAME as FIRSTNAME, tbl_employee.LASTNAME as LASTNAME FROM `tbl_leave`
-      INNER JOIN tbl_employee ON tbl_leave.EMPID = tbl_employee.ID WHERE tbl_leave.CANCELLED = "N" AND tbl_leave.HEADAPPROVESTATUS ="Y" AND tbl_leave.RDAPPROVESTATUS = "N" ';
+      INNER JOIN tbl_employee ON tbl_leave.EMPID = tbl_employee.ID WHERE tbl_leave.CANCELLED = "N" AND tbl_leave.HEADAPPROVESTATUS ="Y"  AND tbl_leave.HRAPPROVESTATUS = "Y" AND tbl_leave.RDAPPROVESTATUS != "Y"';
 
       $result = mysqli_query($connect, $query );
       
@@ -193,7 +193,7 @@ if (isset($_POST['action'])){
           $sub_array[] = $row["LASTNAME"];
           /*$sub_array[] = "
           <button type='button' name='view_leave' class='btn btn-warning btn-sm view_leave'  data-id='".$row['ID']."'>View</button>";*/
-          $sub_array[] = "<a href='approver_rd_detail_view.php?id=".$row['ID']."' data-id='".$row['ID']."'> <button type='button' class='btn btn-info btn-sm'>Select</button></a> ";  
+          $sub_array[] = "<a href='approver_imsd_detail_view.php?id=".$row['ID']."' data-id='".$row['ID']."'> <button type='button' class='btn btn-info btn-sm'>Select</button></a> ";  
           //<button type='button' name='delete_sr' class='btn btn-danger btn-sm delete_sr' data-id='".$row['ID']."'>Delete</button>";  
        
           $data[] = $sub_array;

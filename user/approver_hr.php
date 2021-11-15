@@ -2,8 +2,7 @@
 session_start();
 include "../dbConnection.php";
 
-
-if (($_SESSION['username'] == "") ){
+if (($_SESSION['username'] == "") || ($_SESSION['type']!='HR_APPROVER')){
   header("Location: ../admin");
   exit;
 }
@@ -43,7 +42,6 @@ if (($_SESSION['username'] == "") ){
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../main">
         <img class = "icon" src = "../img/dolelogogs.png" width = "60"></img>
         <div class="sidebar-brand-text mx-3">DOLE-X HRIS</div>
-        <input type="hidden" name="loginID" id="loginID" value="<?php echo $_SESSION['usernameid']; ?>">
       </a>
 
       <hr class="sidebar-divider my-0">
@@ -52,7 +50,7 @@ if (($_SESSION['username'] == "") ){
         <!--<a class="nav-link" href = "<?php echo $page; ?>"> -->
         <a class="nav-link" href="../main">
           <i class="fas fa-fw fa-lg fa-tachometer-alt"></i>
-          <span>Dashboard </span>
+          <span>Dashboard</span>
         </a>
       </li>
 
@@ -179,36 +177,99 @@ if (($_SESSION['username'] == "") ){
 
 
 
-        <h1 class="mt-4">LEAVE MODULE</h1>
+        <h1 class="mt-4">DOLEX-HRIS</h1>
           <ol class="breadcrumb mb-4">
-              <li class="breadcrumb-item active">User Leave Dashboard</li>
+              <li class="breadcrumb-item active">HR ADMIN Leave Dashboard</li>
           </ol>
           <div class="row">
 
               <div class="col-xl-2 col-md-6">
                   <div class="card bg-primary text-white mb-4"> <!--id="totEmp"-->
-                      <div class="card-body" >Apply for Leave <span > </span></div>
+                      <div class="card-body" >Recruitment, Selection and Promotion <span > </span></div>
                       <div class="card-footer d-flex align-items-center justify-content-between">
                           <!--<a class="large text-black stretched-link"  id="totEmp" href="employee_detail">View Details</a>-->
                           <div class="dropdown">
-                          <a class="dropdown-item" href="application_leave_detail">Click Here</a>
-                        
+                          <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            View Details 
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Process on RSP</a>
+                          </div>
                         </div>
                       </div>
                   </div>
               </div>
-              <!--
               <div class="col-xl-2 col-md-6">
                   <div class="card bg-warning text-white mb-4">
-                      <div class="card-body">Apply for Compensatory Time-Off (CTO)</div>
+                      <div class="card-body">Learning and Development</div>
                       <div class="card-footer d-flex align-items-center justify-content-between">
-                        <div class="dropdown">
-                          <a class="dropdown-item" href="serviceRecord">Click Here</a>
+                      <div class="dropdown">
+                          <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            View Details 
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Training Calendar for the year</a>
+                          </div>
                         </div>
                       </div>
                   </div>
-              </div> -->
-              
+              </div>
+              <div class="col-xl-2 col-md-6">
+                  <div class="card bg-success text-white mb-4">
+                      <div class="card-body">Rewards and Recognition </div>
+                      <div class="card-footer d-flex align-items-center justify-content-between">
+                      <div class="dropdown">
+                          <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            View Details 
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Schedule of annual PRAISE Ceremony</a>
+                            <a class="dropdown-item" href="#">Summary of PRAISE result by year</a>
+                            <a class="dropdown-item" href="#">Criteria</a>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xl-2 col-md-6">
+                  <div class="card bg-danger text-white mb-4">
+                      <div class="card-body">Performance Management</div>
+                      <div class="card-footer d-flex align-items-center justify-content-between">
+                      <div class="dropdown">
+                          <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            View Details 
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Validated OPCR per year</a>
+                            <a class="dropdown-item" href="#">DPCRs</a>
+                            <a class="dropdown-item" href="#">IPCRs</a>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="col-xl-2 col-md-6">
+                  <div class="card bg-primary text-white mb-4"> <!--id="totEmp"-->
+                      <div class="card-body" >Other Personnel Actions <span > </span>
+                    
+                    </div>
+                      <div class="card-footer d-flex align-items-center justify-content-between">
+                      <div class="dropdown">
+                          <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            View Details 
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="serviceRecord">Service Records</a>
+                            <a class="dropdown-item" href="#">Leave Credits</a>
+                            <a class="dropdown-item" href="#">Leave Applications</a>
+                            <a class="dropdown-item" href="#">Travel Order</a>
+                            <a class="dropdown-item" href="#">Inspection Authority</a>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+              </div>
               
 
 
@@ -216,30 +277,28 @@ if (($_SESSION['username'] == "") ){
           </div>
           <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 class="m-0 font-weight-bold text-primary">Overall Leave Applications</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Pending Leave Applications</h6>
+             
+         
             </div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="leave_data" width="100%" cellspacing="0">
-                <thead class = "text-primary">
+                  <thead class = "text-primary">
                   <tr>
-                      <th>LEAVE ID</th>
                       <th>DATE OF FILLING</th>
                       <th>LEAVE TYPE</th>
-                      <th>INCLUSIVE DATE</th>
-                      <th>STATUS</th>
-
+                      <th>FIRST NAME</th>
+                      <th>LAST NAME</th>
                       <th>ACTION</th>
                     </tr>
                   </thead>
                   <tfoot class = "text-primary">
                     <tr>
-                      <th>LEAVE ID</th>
                       <th>DATE OF FILLING</th>
                       <th>LEAVE TYPE</th>
-                      <th>INCLUSIVE DATE</th>
-                      <th>STATUS</th>
-
+                      <th>FIRST NAME</th>
+                      <th>LAST NAME</th>
                       <th>ACTION</th>
                     </tr>
                   </tfoot>
@@ -248,8 +307,70 @@ if (($_SESSION['username'] == "") ){
             </div>
           </div>
 
-        
 
+          <div class="card shadow mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+              <h6 class="m-0 font-weight-bold text-primary">Approved Leave Applications</h6>
+             
+         
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="leave_approved_data" width="100%" cellspacing="0">
+                  <thead class = "text-primary">
+                  <tr>
+                      <th>EMPLOYEE ID</th>
+                      <th>FIRST NAME</th>
+                      <th>MIDDLE NAME</th>
+                      <th>LAST NAME</th>
+                      <th>ACTION</th>
+                    </tr>
+                  </thead>
+                  <tfoot class = "text-primary">
+                    <tr>
+                      <th>EMPLOYEE ID</th>
+                      <th>FIRST NAME</th>
+                      <th>MIDDLE NAME</th>
+                      <th>LAST NAME</th>
+                      <th>ACTION</th>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+          </div>
+        
+          <div class="card shadow mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+              <h6 class="m-0 font-weight-bold text-primary">Denied Leave Applications</h6>
+             
+         
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="leave_denied_data" width="100%" cellspacing="0">
+                  <thead class = "text-primary">
+                  <tr>
+                      <th>EMPLOYEE ID</th>
+                      <th>FIRST NAME</th>
+                      <th>MIDDLE NAME</th>
+                      <th>LAST NAME</th>
+                      <th>ACTION</th>
+                    </tr>
+                  </thead>
+                  <tfoot class = "text-primary">
+                    <tr>
+                      <th>EMPLOYEE ID</th>
+                      <th>FIRST NAME</th>
+                      <th>MIDDLE NAME</th>
+                      <th>LAST NAME</th>
+                      <th>ACTION</th>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+          </div>
         
         
         </div>
@@ -312,7 +433,7 @@ if (($_SESSION['username'] == "") ){
           </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="leave_data" width="100%" cellspacing="0">
+                <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="user_data" width="100%" cellspacing="0">
                   <thead class = "text-primary">
                   <tr>
                       <th>OFFICE</th>
@@ -386,21 +507,61 @@ if (($_SESSION['username'] == "") ){
 
 
     fetch_data();
+    fetch_approved_data();
+    fetch_denied_data();
    
     function fetch_data(){
       var action = 'fetch_leave_data';
-      var employeeiddb = document.getElementById("loginID").value;
       var dataTable = $('#leave_data').DataTable({
       /* "processing" : true,
         "serverSide" : true,
-        "columnDefs": [{ "orderable": false, "targets":[0,1] }],*/
-        "order" : [[ 3, "desc" ]],
+        "columnDefs": [{ "orderable": false, "targets":[0,1] }],
+        "order" : [],*/
         "ajax" : {
-        url:"application_leave_detail_action.php",
+        url:"approver_hr_action.php",
         type:"POST",
         data:{
-            action:action,
-            employeeiddb:employeeiddb
+            action:action
+                  },
+        },
+        success:function(){
+        }
+      });
+    }
+
+    
+    function fetch_approved_data(){
+      var action = 'fetch_leave_approved';
+      var dataTable = $('#leave_approved_data').DataTable({
+      /* "processing" : true,
+        "serverSide" : true,
+        "columnDefs": [{ "orderable": false, "targets":[0,1] }],
+        "order" : [],*/
+        "ajax" : {
+        url:"approver_hr_action.php",
+        type:"POST",
+        data:{
+            action:action
+                  },
+        },
+        success:function(){
+        }
+      });
+    }
+
+    
+    function fetch_denied_data(){
+      var action = 'fetch_leave_denied';
+      var dataTable = $('#leave_denied_data').DataTable({
+      /* "processing" : true,
+        "serverSide" : true,
+        "columnDefs": [{ "orderable": false, "targets":[0,1] }],
+        "order" : [],*/
+        "ajax" : {
+        url:"approver_hr_action.php",
+        type:"POST",
+        data:{
+            action:action
                   },
         },
         success:function(){
@@ -409,24 +570,6 @@ if (($_SESSION['username'] == "") ){
     }
 
 
-    function fetch_dashboard_employee(){
-        var action = 'fetch_dashboard_employee';
-        var dataTable = $('#user_data').DataTable({
-        /* "processing" : true,
-          "serverSide" : true,
-          "columnDefs": [{ "orderable": false, "targets":[0,1] }],
-          "order" : [],*/
-          "ajax" : {
-          url:"main_load_query.php",
-          type:"POST",
-          data:{
-              action:action
-                    },
-          },
-          success:function(){
-          }
-        });
-      }  
 
 
 

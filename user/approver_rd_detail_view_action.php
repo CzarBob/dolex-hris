@@ -47,7 +47,16 @@ if (isset($_POST['action'])){
     tbl_leave.DATERDUPDATED as DATERDUPDATED,
     tbl_leave.RDAPPROVESTATUS as RDAPPROVESTATUS,
     tbl_leave.HEADAPPROVESTATUS as HEADAPPROVESTATUS,
-    tbl_leave.DATEHEADUPDATED as DATEHEADUPDATED
+    tbl_leave.DATEHEADUPDATED as DATEHEADUPDATED,
+    tbl_leave.IMSDREMARKS as IMSDREMARKS,
+    tbl_leave.ATTACHMENT as ATTACHMENT,
+    tbl_leave.APPLICANTREMARKS as APPLICANTREMARKS,
+    tbl_employee.FIELDOFFICEID as FIELDOFFICEID,
+    tbl_employee.DIVISIONID as DIVISIONID,
+    tbl_leave.VLLESS as VLLESS,
+    tbl_leave.VLBALANCE as VLBALANCE,
+    tbl_leave.SLLESS as SLLESS,
+    tbl_leave.SLBALANCE as SLBALANCE
     
     
     FROM tbl_employee
@@ -96,6 +105,18 @@ if (isset($_POST['action'])){
         $sub_array['rdapprovedstatus']              = $row['RDAPPROVESTATUS'];
         $sub_array['headapprovestatus']               = $row['HEADAPPROVESTATUS'];
         $sub_array['dateheadupdated']               = $row['DATEHEADUPDATED'];
+        $sub_array['imsdremarks']               = $row['IMSDREMARKS'];
+        $sub_array['attachment']                      = $row['ATTACHMENT'];
+
+        $sub_array['applicantremarks']               = $row['APPLICANTREMARKS'];
+        $sub_array['office']                          = $row['FIELDOFFICEID'];
+        $sub_array['division']                        = $row['DIVISIONID'];
+        $sub_array['slless']                          = $row['SLLESS'];
+        $sub_array['slbalance']                       = $row['SLBALANCE'];
+        $sub_array['vlless']                          = $row['VLLESS'];
+        $sub_array['vlbalance']                       = $row['VLBALANCE'];
+
+
 
         $data[] = $sub_array;
         

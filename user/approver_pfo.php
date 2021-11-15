@@ -405,7 +405,7 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='CHIEF_APPROVER')){
         <!--            <a class="btn btn-primary" href="logout.php">Logout</a> -->
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
-          <a class="btn btn-primary" href="logout">Logout</a> 
+          <a class="btn btn-primary" href="../logout">Logout</a> 
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
         </div>
       </div>

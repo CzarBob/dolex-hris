@@ -524,6 +524,26 @@ session_start();
                                           </div> 
                                       </div>
 
+                                      <div class="form-row">
+                                          <!-- Default input -->
+                                          <div class="form-group col-md-10">
+                                          <label for="inputEmail4">Google Drive Link Attachment</label>
+                                          <input type="text" name="attachment" id = "attachment" class="form-control validate" >
+                                          </div>                                  
+                                      </div>
+
+                                      <div class="form-row">
+                                          <!-- Default input -->
+                                          <div class="form-group col-md-10">
+                                          <label for="inputAddress">Applicant Remarks</label>
+                                          <textarea class="form-control"  id="applicantremarks" name="applicantremarks" rows="4" cols="100" > </textarea>
+                                          </div>
+                                      </div>
+
+
+
+
+
                                   </div>
                               </div>
                           </div>

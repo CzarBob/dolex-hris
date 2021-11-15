@@ -26,6 +26,8 @@ if (isset($_POST['action'])){
     tbl_employee.USERNAME as USERNAME,
     tbl_employee.SLCREDIT as SLCREDIT,
     tbl_employee.VLCREDIT as VLCREDIT,
+    tbl_employee.FIELDOFFICEID as FIELDOFFICEID,
+    tbl_employee.DIVISIONID as DIVISIONID,
     tbl_leave.ID as LEAVEID,
     tbl_leave.LEAVETYPE as LEAVETYPE,
     tbl_leave.DATEOFFILLING as DATEOFFILLING,
@@ -38,6 +40,7 @@ if (isset($_POST['action'])){
     tbl_leave.PARTFOUR as PARTFOUR,
     tbl_leave.PARTFIVE as PARTFIVE,
     tbl_leave.PARTSIX as PARTSIX,
+    tbl_leave.APPLICANTREMARKS as APPLICANTREMARKS,
     tbl_leave.CHIEFREMARKS as CHIEFREMARKS,
     tbl_leave.RDREMARKS as RDREMARKS,
     tbl_leave.APPROVEDDAYSWITHPAY as APPROVEDDAYSWITHPAY,
@@ -48,11 +51,8 @@ if (isset($_POST['action'])){
     tbl_leave.RDAPPROVESTATUS as RDAPPROVESTATUS,
     tbl_leave.HEADAPPROVESTATUS as HEADAPPROVESTATUS,
     tbl_leave.DATEHEADUPDATED as DATEHEADUPDATED,
-    tbl_leave.APPLICANTREMARKS as APPLICANTREMARKS,
     tbl_leave.IMSDREMARKS as IMSDREMARKS,
     tbl_leave.ATTACHMENT as ATTACHMENT,
-    tbl_employee.FIELDOFFICEID as FIELDOFFICEID,
-    tbl_employee.DIVISIONID as DIVISIONID,
     tbl_leave.VLLESS as VLLESS,
     tbl_leave.VLBALANCE as VLBALANCE,
     tbl_leave.SLLESS as SLLESS,
@@ -68,7 +68,7 @@ if (isset($_POST['action'])){
     //$number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
 
     $result = mysqli_query($connect, $query);
-    $message = '';
+    
     $data = array();
     if($result){
       while($row = mysqli_fetch_array($result)){
@@ -76,6 +76,9 @@ if (isset($_POST['action'])){
         $sub_array = array();
 
         $sub_array['employeeid'] = $row['EMPLOYEEID'];
+        $sub_array['office'] = $row['FIELDOFFICEID'];
+        $sub_array['division'] = $row['DIVISIONID'];
+
         $sub_array['firstname'] = $row['FIRSTNAME'];
         $sub_array['middlename'] = $row['MIDDLENAME'];
         $sub_array['lastname'] = $row['LASTNAME'];
@@ -106,37 +109,17 @@ if (isset($_POST['action'])){
         $sub_array['headapprovestatus']               = $row['HEADAPPROVESTATUS'];
         $sub_array['dateheadupdated']               = $row['DATEHEADUPDATED'];
         $sub_array['applicantremarks']               = $row['APPLICANTREMARKS'];
-        $sub_array['attachment']                    = $row['ATTACHMENT'];
-        $sub_array['imsdremarks']                    = $row['IMSDREMARKS'];
-        $sub_array['office']                        = $row['FIELDOFFICEID'];
-        $sub_array['division']                    = $row['DIVISIONID'];
-        $sub_array['vlless']                    = $row['VLLESS'];
-        $sub_array['vlbalance']                        = $row['VLBALANCE'];
-        $sub_array['slless']                    = $row['SLLESS'];
-        $sub_array['slbalance']                    = $row['SLBALANCE'];
-
-
-
-        if (($row['HEADAPPROVESTATUS'] == 'Y') && ($row['RDAPPROVESTATUS'] == 'PENDING')){
-          $sub_array['approvalstatus'] = '<p id="applicationstatus" class="text-warning h2"><strong>PENDING - FOR RD SIGNING</strong></p>';
-        
-        
-        } else if (($row['HEADAPPROVESTATUS'] == 'Y') &&($row['RDAPPROVESTATUS'] == 'N' )){
-          //$sub_array['approvalstatus'] = 'DISAPPROVED ';
-          $sub_array['approvalstatus'] = '<p id="applicationstatus" class="text-danger h2"><strong>DISAPPROVED</strong></p>';
-        } else if ($row['HEADAPPROVESTATUS'] == 'PENDING') {
-          //$sub_array['approvalstatus'] = 'PENDING ';
-          $sub_array['approvalstatus'] = '<p id="applicationstatus" class="text-warning h2"><strong>PENDING - FOR RD APPROVAL</strong></p>';
-        } else if ($row['HEADAPPROVESTATUS'] == 'N') {
-          //$sub_array['approvalstatus'] = 'DISAPPROVED ';
-          $sub_array['approvalstatus'] = '<p id="applicationstatus" class="text-danger h2"><strong>PENDING - FOR RD APPROVAL</strong></p>';
-        } else if (($row['HEADAPPROVESTATUS'] == 'Y') && ($row['RDAPPROVESTATUS'] == 'Y')  ){
-          $sub_array['approvalstatus'] = '<p id="applicationstatus" class="text-success h2"><strong>APPROVED</strong></p>';
-        
-        
-        }
+        $sub_array['slcredit']                      = $row['SLCREDIT'];
+        $sub_array['vlcredit']                      = $row['VLCREDIT'];
+        $sub_array['imsdremarks']                      = $row['IMSDREMARKS'];
+        $sub_array['attachment']                      = $row['ATTACHMENT'];
+        $sub_array['slless']               = $row['SLLESS'];
+        $sub_array['slbalance']               = $row['SLBALANCE'];
+        $sub_array['vlless']               = $row['VLLESS'];
+        $sub_array['vlbalance']               = $row['VLBALANCE'];
 
         
+
         $data[] = $sub_array;
         
       }
@@ -145,19 +128,31 @@ if (isset($_POST['action'])){
 
 
     $dateNow = date("Y-m-d H:i:s");
+    /*if($number_filter_row == 0){
+      $queProfile = "INSERT INTO `tbl_employee_profile` SET 
+      EMPID = '".$_POST["employeeiddb"]."',
+      UPDATEDBY = '".$usernameid."',
+      UPDATEDDATETIME = '".$dateNow."'
+      "; 
+
+      $query = $connect->query($queProfile) or die($connect->error); 
+    }*/
+
+    //var_dump($query_leave);
 
     $a = array();
 
 
 
-    if(isset($sub_array)){
-      $a = $sub_array;
-    } 
-    $output = array(
-      "data"    => $a
-      );
 
-    
+    if(isset($sub_array)){
+      $a = $sub_array; //employee profile
+    } 
+
+
+    $output = array(
+    "data"    => $a
+    );
 
     echo json_encode($output);
 
@@ -224,7 +219,7 @@ if (isset($_POST['action'])){
     if ($_POST['action'] == 'approve_leave'){
       $leaveID  = $_POST['leaveID'];
 
-      $chiefremarks = mysqli_real_escape_string($connect,strtoupper($_POST['chiefremarks']));
+      $rdremarks = mysqli_real_escape_string($connect,strtoupper($_POST['rdremarks']));
 
       $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
       <strong>Data Updated!</strong> 
@@ -250,18 +245,18 @@ if (isset($_POST['action'])){
         $dateAdded = date("Y-m-d H:i:s");
         $que = 'UPDATE tbl_leave
         SET 
-        RDREMARKS =  "'.$chiefremarks.'",
-        DATEHEADUPDATED = "'.$dateNow.'",
-        RDAPPROVESTATUS = "Y"
+        
+        
+        HRAPPROVESTATUS = "Y"
 
 
         WHERE ID = "'.$leaveID.'"';
-
+        //var_dump($que);
         $result = mysqli_query($connect, $que);
 
       }
 
-      $message_final = 'RD LEAVE APPROVED';
+      $message_final = 'LEAVE APPROVED!';
 
       /*if ($flag){
         $message_final = $message;
@@ -286,7 +281,7 @@ if (isset($_POST['action'])){
     if ($_POST['action'] == 'reject_leave'){
       $leaveID  = $_POST['leaveID'];
 
-      $chiefremarks = mysqli_real_escape_string($connect,strtoupper($_POST['chiefremarks']));
+      $rdremarks = mysqli_real_escape_string($connect,strtoupper($_POST['rdremarks']));
 
       $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
       <strong>Data Updated!</strong> 
@@ -312,14 +307,13 @@ if (isset($_POST['action'])){
         $dateAdded = date("Y-m-d H:i:s");
         $que = 'UPDATE tbl_leave
         SET 
-        CHIEFREMARKS =  "'.$chiefremarks.'",
-        DATEHEADUPDATED = "'.$dateNow.'",
-        HEADAPPROVESTATUS = "N"
+        
+        HRAPPROVESTATUS = "N"
 
 
         WHERE ID = "'.$leaveID.'"';
 
-        //$result = mysqli_query($connect, $que);
+        $result = mysqli_query($connect, $que);
 
       }
 
@@ -401,107 +395,9 @@ if (isset($_POST['action'])){
 
 
 
-  if (isset($_POST['action'])){
-    if ($_POST['action'] == 'submit_update_leave'){
-
-      $empid  = $_POST['employeeiddb'];
-      $srid  = $_POST['srid'];
-      $service_from = $_POST['service_from'];
-      $service_to = $_POST['service_to'];
-      $designation =  mysqli_real_escape_string($connect,strtoupper($_POST['designation']));
-      $status =  mysqli_real_escape_string($connect,strtoupper($_POST['status']));
-      $salary =  mysqli_real_escape_string($connect,strtoupper($_POST['salary']));
-      $office =  mysqli_real_escape_string($connect,strtoupper($_POST['office']));
-      $branch =  mysqli_real_escape_string($connect,strtoupper($_POST['branch']));
-      $abs =  mysqli_real_escape_string($connect,strtoupper($_POST['abs']));
-      $separation_date = $_POST['separation_date'];
-      $amount_received =  mysqli_real_escape_string($connect,strtoupper($_POST['amount_received']));
-      $details =  mysqli_real_escape_string($connect,strtoupper($_POST['details']));
-      $usernameid = $_POST['usernameid'];
-
-      
-      $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
-      <strong>Data Updated!</strong> 
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      </div>';
-      $message = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-      <strong>Please Check field/s:</strong> <br>
-      ';
-      $flag = false;
-
-
-      if (($designation == null) || ($designation == '')){
-        $flag = true;
-        $message .= 'Designation must not be blank <br>
-        ';
-      }
-
-      if (!$flag){
-        $dateNow = date("Y-m-d H:i:s");
-        $query = 'UPDATE tbl_service_record
-        SET 
-        SERVICEFROM =  "'.$service_from.'",
-        SERVICETO =  "'.$service_to.'",
-        DESIGNATION =  "'.$designation.'",
-        STATUS =  "'.$status.'",
-        SALARY =  "'.$salary.'",
-        OFFICE =  "'.$office.'",
-        BRANCH =  "'.$branch.'",
-        ABS =  "'.$abs.'",
-        SEPARATIONDATE =  "'.$separation_date.'",
-        AMOUNTRECEIVED =  "'.$amount_received.'",
-        DETAILS =  "'.$details.'",
-        UPDATEDBY = "'.$usernameid.'",
-        UPDATEDDATETIME = "'.$dateNow.'"
-
-        WHERE ID = "'.$srid.'"';
-
-        //var_dump($query);
-        $result = mysqli_query($connect, $query);
-
-      }
-
-      $message_final = '';
-
-      if ($flag){
-        $message_final = $message;
-      } else {
-        $message_final = $message_success;
-      }
-    
-      $output = array(
-      'status'    => $message_final
-      );
-
-      echo json_encode($output);
-
-
-    }
-  }
 
 
 
-  if (isset($_POST['action'])){
-    if ($_POST['action'] == 'delete_sr'){
-      $dateNow = date("Y-m-d H:i:s");
-      $usernameid = $_POST['usernameid'];
-      $query = 'UPDATE tbl_service_record
-        SET CANCELLED = "Y",
-        CANCELLEDBY = "'.$usernameid.'",
-        CANCELLEDDATETIME = "'.$dateNow.'"
-
-
-        WHERE ID = "'.$_POST["id"].'" AND CANCELLED = "N" ';
-
-      //echo $query;
-      //$number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
-      
-      $result = mysqli_query($connect, $query );
-
-    }
-  }
 
 
   

@@ -183,42 +183,49 @@ $('#add_name').on('submit', function(event){
                 total_dates = total_dates + 1;
             }
         });
+        
+        if (leave_type != "NA"){
 
-        if(total_dates > 0)
-        {
-            var form_data = $(this).serialize();
-
-            var action = $('#action').val();
-            //alert(action);
-            $.ajax({
-                url:"application_leave_detail_action",
-                method:"POST",
-                data:form_data,
-                dataType: 'JSON',
-                success:function(data)
-                {
-                    if(action == 'add_leave')
+            if((total_dates > 0) && (total_dates == workingdays))
+            {
+                var form_data = $(this).serialize();
+    
+                var action = $('#action').val();
+                //alert(action);
+                $.ajax({
+                    url:"application_leave_detail_action",
+                    method:"POST",
+                    data:form_data,
+                    dataType: 'JSON',
+                    success:function(data)
                     {
-                        alert("Data Inserted");
-                        window.location.href = "application_leave";
+                        if(action == 'add_leave')
+                        {
+                            alert("Data Inserted");
+                            window.location.href = "application_leave";
+                            
+    
+                        }
+                        if(action == 'edit')
+                        {
+                            alert("Data Edited");
+                        }
+                        add_dynamic_input_field(0);
                         
+                        $('#add_name')[0].reset();
+                        //$('#dynamic_field_modal').modal('hide');
+                    }
+                });
+            }
+            else
+            {
+                alert("Inclusive date is blank or is not equal to working days specified");
+            }
+        } else {
+            alert("Please indicate leave type");
+        }
+        
 
-                    }
-                    if(action == 'edit')
-                    {
-                        alert("Data Edited");
-                    }
-                    add_dynamic_input_field(0);
-                    
-                    $('#add_name')[0].reset();
-                    //$('#dynamic_field_modal').modal('hide');
-                }
-            });
-        }
-        else
-        {
-            alert("Please provide inclusive dates for leave");
-        }
     } 
     
 

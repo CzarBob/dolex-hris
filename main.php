@@ -283,7 +283,14 @@ include 'main_load_query.php';
                               $path = 'user/approver_pfo';
                             } else if ($_SESSION['type']=='RD_APPROVER'){
                               $path = 'user/approver_rd';
+                            } else if ($_SESSION['type']=='HR_APPROVER'){
+                              $path = 'user/approver_hr';
+                            } else if ($_SESSION['type']=='IMSD_APPROVER'){
+                              $path = 'user/approver_imsd';
                             } else {
+
+                            
+
                               $path = 'user/application_leave';
 
                             }

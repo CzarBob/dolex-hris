@@ -344,6 +344,8 @@ if (isset($_POST['action'])){
       $salary =  mysqli_real_escape_string($connect,strtoupper($_POST['salary']));
       $leave_type =  mysqli_real_escape_string($connect,strtoupper($_POST['leave_type']));
       $workingdays =  mysqli_real_escape_string($connect,strtoupper($_POST['workingdays']));
+      $attachment =  mysqli_real_escape_string($connect,strtoupper($_POST['attachment']));
+      $applicantremarks =  mysqli_real_escape_string($connect,strtoupper($_POST['applicantremarks']));
 
 
 
@@ -362,7 +364,8 @@ if (isset($_POST['action'])){
         SALARY =  "'.$salary.'",
         WORKINGDAYS =  "'.$workingdays.'",
         INCLUSIVEDATE =  "'.$inclusive_date.'",
-        HEADAPPROVESTATUS =  "PENDING",
+        APPLICANTREMARKS = "'.$applicantremarks.'",
+        ATTACHMENT = "'.$attachment.'",
         CANCELLED =  "N"
        
         
