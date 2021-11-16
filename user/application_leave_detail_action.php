@@ -254,83 +254,6 @@ if (isset($_POST['action'])){
 
 
 
-  if (isset($_POST['action'])){
-    if ($_POST['action'] == 'add_service_record'){
-      $empid  = $_POST['employeeiddb'];
-
-      $service_from = $_POST['service_from'];
-      $service_to = $_POST['service_to'];
-      $designation = mysqli_real_escape_string($connect,strtoupper($_POST['designation']));
-      $status = mysqli_real_escape_string($connect,strtoupper($_POST['status']));
-      $salary = mysqli_real_escape_string($connect,strtoupper($_POST['salary']));
-      $office = mysqli_real_escape_string($connect,strtoupper($_POST['office']));
-      $branch = mysqli_real_escape_string($connect,strtoupper($_POST['branch']));
-      $abs = mysqli_real_escape_string($connect,strtoupper($_POST['abs']));
-      $separation_date = $_POST['separation_date'];
-      $amount_received = mysqli_real_escape_string($connect,strtoupper($_POST['amount_received']));
-      $details = mysqli_real_escape_string($connect,strtoupper($_POST['details']));
-
-      $usernameid = $_POST['usernameid'];
-
-      $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
-      <strong>Data Updated!</strong> 
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      </div>';
-      $message = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-      <strong>Please Check field/s:</strong> <br>
-      ';
-      $flag = false;
-
-      $currentDate = date("Y/m/d");
-
-      if (($designation == null) || ($designation == '')){
-        $flag = true;
-        $message .= 'Designation must not be blank <br>
-        ';
-      }
-
-      if (!$flag){
-        $dateAdded = date("Y-m-d H:i:s");
-        $que = 'INSERT INTO `tbl_service_record` SET 
-        EMPID =  "'.$empid.'",
-        SERVICEFROM =  "'.$service_from.'",
-        SERVICETO =  "'.$service_to.'",
-        DESIGNATION =  "'.$designation.'",
-        STATUS =  "'.$status.'",
-        SALARY =  "'.$salary.'",
-        OFFICE =  "'.$office.'",
-        BRANCH =  "'.$branch.'",
-        ABS =  "'.$abs.'",
-        SEPARATIONDATE =  "'.$separation_date.'",
-        AMOUNTRECEIVED =  "'.$amount_received.'",
-        DETAILS =  "'.$details.'",
-        CANCELLED = "N",
-
-        CREATEDDATETIME = "'.$dateAdded.'"
-        
-        '; 
-        $result = mysqli_query($connect,$que); 
-
-      }
-
-      $message_final = '';
-
-      if ($flag){
-        $message_final = $message;
-      } else {
-        $message_final = $message_success;
-      }
-     
-      $output = array(
-      'status'    => $message_final
-      );
-
-      echo json_encode($output);
-    }
-  }
-
   
 
   if (isset($_POST['action'])){
@@ -346,7 +269,40 @@ if (isset($_POST['action'])){
       $workingdays =  mysqli_real_escape_string($connect,strtoupper($_POST['workingdays']));
       $attachment =  mysqli_real_escape_string($connect,strtoupper($_POST['attachment']));
       $applicantremarks =  mysqli_real_escape_string($connect,strtoupper($_POST['applicantremarks']));
+      
+      if(isset($_POST['partone'])){
+        $partone =  mysqli_real_escape_string($connect,strtoupper($_POST['partone']));
+      } else {
+        $partone= "";
+      }
+      if(isset($_POST['parttwo'])){
+        $parttwo =  mysqli_real_escape_string($connect,strtoupper($_POST['parttwo']));
+      } else {
+        $parttwo = "";
+      }
+      if(isset($_POST['partthree'])){
+        $partthree =  mysqli_real_escape_string($connect,strtoupper($_POST['partthree']));
+      } else {
+        $partthree = "";
+      }
+      if(isset($_POST['partfour'])){
+        $partfour =  mysqli_real_escape_string($connect,strtoupper($_POST['partfour']));
+      } else {
+        $partfour = "";
+      }
 
+      if(isset($_POST['partfive'])){
+        $partfive =  mysqli_real_escape_string($connect,strtoupper($_POST['partfive']));
+      } else {
+        $partfive = "";
+      }
+      if(isset($_POST['partsix'])){
+        $partsix =  mysqli_real_escape_string($connect,strtoupper($_POST['partsix']));
+      } else {
+        $partsix = "";
+      }
+      
+      
 
 
       //var_dump($inclusive_date);
@@ -366,6 +322,12 @@ if (isset($_POST['action'])){
         INCLUSIVEDATE =  "'.$inclusive_date.'",
         APPLICANTREMARKS = "'.$applicantremarks.'",
         ATTACHMENT = "'.$attachment.'",
+        PARTONE = "'.$partone.'",
+        PARTTWO = "'.$parttwo.'",
+        PARTTHREE = "'.$partthree.'",
+        PARTFOUR = "'.$partfour.'",
+        PARTFIVE = "'.$partfive.'",
+        PARTSIX = "'.$partsix.'",
         CANCELLED =  "N"
        
         

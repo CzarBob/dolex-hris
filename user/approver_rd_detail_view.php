@@ -196,6 +196,7 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='RD_APPROVER')){
                           <!-- Employee ID database-->
                           <input type="hidden" name="leaveID" id="leaveID" value="<?php echo $_GET['id']; ?>">
                           <input type="hidden" name="loginID" id="loginID" value="<?php echo $_SESSION['usernameid']; ?>">
+                          <input type="hidden" name="empID" id="empID" >
                           <input type="hidden" name="action" id="action" value="add_leave" />
                           <!-- Pending Requests Card Example -->
                       </div>

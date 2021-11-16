@@ -166,16 +166,17 @@ $(document).ready(function(){
         var leaveID = document.getElementById("leaveID").value;
         //alert('approve');
 
-        var rdremarks = $('#rdremarks').val();
+        var imsdremarks = $('#imsdremarks').val();
  
         var messageValidate = "Confirm approval of leave?";
         if (confirm(messageValidate) == true) {
+            alert('stes');
             $.ajax({
-                url:"approver_rd_detail_view_action",
+                url:"approver_imsd_detail_view_action",
                 method:"POST",
                 dataType:'JSON',
                 data:{
-                    rdremarks:rdremarks, 
+                    imsdremarks:imsdremarks, 
                     leaveID:leaveID, 
                    
                     action:'approve_leave'
@@ -201,17 +202,17 @@ $(document).ready(function(){
     $(document).on('click', '#submit_reject_leave', function(){
 
         //alert('rejected');
-                var rdremarks = $('#rdremarks').val();
+                var imsdremarks = $('#imsdremarks').val();
                 var leaveID = document.getElementById("leaveID").value;
 
                 var messageValidate = "Confirm disapproval of leave?";
                 if (confirm(messageValidate) == true) {
                     $.ajax({
-                        url:"approver_rd_detail_view_action",
+                        url:"approver_imsd_detail_view_action",
                         method:"POST",
                         dataType:'JSON',
                         data:{
-                            rdremarks:rdremarks,
+                            imsdremarks:imsdremarks,
                             leaveID:leaveID,
 
                             action:'reject_leave'

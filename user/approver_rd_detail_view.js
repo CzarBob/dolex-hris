@@ -103,6 +103,7 @@ $(document).ready(function(){
             success:function(data)
             {
 
+                $('#empID').val(data.data.employeeid);
                 $('#office').val(data.data.office);
                 $('#division').val(data.data.division);
                 $('#firstname').val(data.data.firstname);
@@ -165,7 +166,15 @@ $(document).ready(function(){
 
     $(document).on('click', '#submit_approve_leave', function(){
         var leaveID = document.getElementById("leaveID").value;
-        //alert('approve');
+        var empID = document.getElementById("empID").value;
+        var vlcredit = document.getElementById("vlcredit").value;
+        var vlless = document.getElementById("vlless").value;
+        var vlbalance = document.getElementById("vlbalance").value;
+        var slcredit = document.getElementById("slcredit").value;
+        var slless = document.getElementById("slless").value;
+        var slbalance = document.getElementById("slbalance").value;
+        var leave_type = document.getElementById("leave_type").value;
+
 
         var rdremarks = $('#rdremarks').val();
  
@@ -176,9 +185,16 @@ $(document).ready(function(){
                 method:"POST",
                 dataType:'JSON',
                 data:{
+                    empID:empID,
                     rdremarks:rdremarks, 
-                    leaveID:leaveID, 
-                   
+                    leaveID:leaveID,
+                    vlcredit:vlcredit,
+                    vlless:vlless,
+                    vlbalance:vlbalance,
+                    slcredit:slcredit,
+                    slless:slless,
+                    slbalance:slbalance,
+                    leave_type:leave_type,
                     action:'approve_leave'
                 },
                 success:function(data){

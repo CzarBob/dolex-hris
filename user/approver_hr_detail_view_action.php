@@ -219,7 +219,7 @@ if (isset($_POST['action'])){
     if ($_POST['action'] == 'approve_leave'){
       $leaveID  = $_POST['leaveID'];
 
-      $rdremarks = mysqli_real_escape_string($connect,strtoupper($_POST['rdremarks']));
+      //$rdremarks = mysqli_real_escape_string($connect,strtoupper($_POST['rdremarks']));
 
       $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
       <strong>Data Updated!</strong> 
@@ -242,12 +242,26 @@ if (isset($_POST['action'])){
       }*/
 
       if (!$flag){
+
+        $vlcredit = (float)$_POST['vlcredit'];
+        $vlless = (float)$_POST['vlless'];
+        $vlbalance = $vlcredit - $vlless;
+        $slcredit = (float)$_POST['slcredit'];
+        $slless = (float)$_POST['slless'];
+        $slbalance = $slcredit - $slless;
+        
         $dateAdded = date("Y-m-d H:i:s");
+        
         $que = 'UPDATE tbl_leave
         SET 
         
         
-        HRAPPROVESTATUS = "Y"
+        HRAPPROVESTATUS = "Y",
+        VLLESS = "'.$vlless.'",
+        VLBALANCE = "'.$vlbalance.'",
+        SLLESS = "'.$vlless.'",
+        SLBALANCE = "'.$slbalance.'"
+
 
 
         WHERE ID = "'.$leaveID.'"';
@@ -293,8 +307,13 @@ if (isset($_POST['action'])){
       <strong>Please Check field/s:</strong> <br>
       ';
       $flag = false;
+      $vlcredit = (float)$_POST['vlcredit'];
+      $vlless = (float)$_POST['vlless'];
+      $vlbalance = $vlcredit - $vlless;
+      $slcredit = (float)$_POST['slcredit'];
+      $slless = (float)$_POST['slless'];
+      $slbalance = $slcredit - $slless;
 
-      //$currentDate = date("Y/m/d");
       $dateNow = date("Y-m-d H:i:s");
 
       /*if (($designation == null) || ($designation == '')){
@@ -308,7 +327,12 @@ if (isset($_POST['action'])){
         $que = 'UPDATE tbl_leave
         SET 
         
-        HRAPPROVESTATUS = "N"
+        HRAPPROVESTATUS = "N",
+        VLLESS = "'.$vlless.'",
+        VLBALANCE = "'.$vlbalance.'",
+        SLLESS = "'.$vlless.'",
+        SLBALANCE = "'.$Slbalance.'"
+
 
 
         WHERE ID = "'.$leaveID.'"';

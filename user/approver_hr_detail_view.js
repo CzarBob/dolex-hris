@@ -103,6 +103,7 @@ $(document).ready(function(){
             success:function(data)
             {
 
+                $('#empID').val(data.data.employeeid);
                 $('#office').val(data.data.office);
                 $('#division').val(data.data.division);
                 $('#firstname').val(data.data.firstname);
@@ -164,9 +165,14 @@ $(document).ready(function(){
 
     $(document).on('click', '#submit_approve_leave', function(){
         var leaveID = document.getElementById("leaveID").value;
-        //alert('approve');
-
-        var rdremarks = $('#rdremarks').val();
+        var empID = document.getElementById("empID").value;
+        var vlcredit = document.getElementById("vlcredit").value;
+        var vlless = document.getElementById("vlless").value;
+        var vlbalance = document.getElementById("vlbalance").value;
+        var slcredit = document.getElementById("slcredit").value;
+        var slless = document.getElementById("slless").value;
+        var slbalance = document.getElementById("slbalance").value;
+        var leave_type = document.getElementById("leave_type").value;
  
         var messageValidate = "Confirm approval of leave?";
         if (confirm(messageValidate) == true) {
@@ -175,9 +181,15 @@ $(document).ready(function(){
                 method:"POST",
                 dataType:'JSON',
                 data:{
-                    rdremarks:rdremarks, 
+                    empID:empID,
                     leaveID:leaveID, 
-                   
+                    vlcredit:vlcredit,
+                    vlless:vlless,
+                    vlbalance:vlbalance,
+                    slcredit:slcredit,
+                    slless:slless,
+                    slbalance:slbalance,
+                    leave_type:leave_type,
                     action:'approve_leave'
                 },
                 success:function(data){
@@ -199,10 +211,18 @@ $(document).ready(function(){
 
 
     $(document).on('click', '#submit_reject_leave', function(){
+        var leaveID = document.getElementById("leaveID").value;
+        var empID = document.getElementById("empID").value;
+        var vlcredit = document.getElementById("vlcredit").value;
+        var vlless = document.getElementById("vlless").value;
+        var vlbalance = document.getElementById("vlbalance").value;
+        var slcredit = document.getElementById("slcredit").value;
+        var slless = document.getElementById("slless").value;
+        var slbalance = document.getElementById("slbalance").value;
+        var leave_type = document.getElementById("leave_type").value;
 
-        //alert('rejected');
                 var rdremarks = $('#rdremarks').val();
-                var leaveID = document.getElementById("leaveID").value;
+                
 
                 var messageValidate = "Confirm disapproval of leave?";
                 if (confirm(messageValidate) == true) {
@@ -211,8 +231,16 @@ $(document).ready(function(){
                         method:"POST",
                         dataType:'JSON',
                         data:{
+                            empID:empID,
                             rdremarks:rdremarks,
                             leaveID:leaveID,
+                            vlcredit:vlcredit,
+                            vlless:vlless,
+                            vlbalance:vlbalance,
+                            slcredit:slcredit,
+                            slless:slless,
+                            slbalance:slbalance,
+                            leave_type:leave_type,
 
                             action:'reject_leave'
                         },

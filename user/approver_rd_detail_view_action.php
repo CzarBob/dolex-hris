@@ -241,16 +241,56 @@ if (isset($_POST['action'])){
 
       if (!$flag){
         $dateAdded = date("Y-m-d H:i:s");
+        $slleavecredit = 0;
+        $vlleavecredit = 0;
+        $leave_type = '';
+
+
+        $query = 'SELECT 
+    
+        tbl_leave.EMPID as ID
+          
+        FROM tbl_leave 
+        where tbl_leave.ID = "'.$leaveID.'" ';
+
+        $result = mysqli_query($connect, $query);
+        $data = array();
+        if($result){
+          while($row = mysqli_fetch_array($result)){
+            $data['id'] =  $row['ID'];
+          }
+        }
+
+        $empID = mysqli_real_escape_string($connect,strtoupper($_POST['empID']));
+        $rdremarks = mysqli_real_escape_string($connect,strtoupper($_POST['rdremarks']));
+        $vlcredit = (float)$_POST['vlcredit'];
+        $vlless = (float)$_POST['vlless'];
+        $vlbalance = $vlcredit - $vlless;
+        $slcredit = (float)$_POST['slcredit'];
+        $slless = (float)$_POST['slless'];
+        $slbalance = $slcredit - $slless;
+
         $que = 'UPDATE tbl_leave
         SET 
         RDREMARKS =  "'.$rdremarks.'",
-        DATEHEADUPDATED = "'.$dateNow.'",
+        DATERDUPDATED = "'.$dateNow.'",
         RDAPPROVESTATUS = "Y"
 
 
         WHERE ID = "'.$leaveID.'"';
 
         $result = mysqli_query($connect, $que);
+
+        $que2 = 'UPDATE tbl_employee
+        SET 
+        SLCREDIT =  "'.$slbalance.'",
+        VLCREDIT = "'.$vlbalance.'"
+
+
+
+        WHERE ID = "'.$data['id'].'"';
+        //var_dump($que2);
+        $result = mysqli_query($connect, $que2);
 
       }
 
@@ -306,7 +346,7 @@ if (isset($_POST['action'])){
         $que = 'UPDATE tbl_leave
         SET 
         RDREMARKS =  "'.$rdremarks.'",
-        DATEHEADUPDATED = "'.$dateNow.'",
+        DATERDUPDATED = "'.$dateNow.'",
         RDAPPROVESTATUS = "N"
 
 

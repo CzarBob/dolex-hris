@@ -57,25 +57,23 @@ include 'main_load_query.php';
 
       <hr class="sidebar-divider">
       <li class="nav-item ">
+        <?php if ($_SESSION['type']== 'ADMIN') {?>
         <a class="nav-link" href="employee_detail">
           <i class="fas fa-fw fa-lg fa-check-square"></i>
-          <span>EMPLOYEES</span>
-        </a>
+          <span>EMPLOYEE PROFILE</span>
+        </a> <?php } else {?>
+        
+        <a class="nav-link" href="viewEmployee.php?id=<?php echo $_SESSION['usernameid'];?>">
+          <i class="fas fa-fw fa-lg fa-check-square"></i>
+          <span>EMPLOYEE PROFILE</span>
+        </a> <?php }?>
+        
+        
+        
+
       </li>
 
-     <!-- <li class="nav-item ">
-        <a class="nav-link" href="serviceRecord">
-          <i class="fas fa-fw fa-lg fa-check-square"></i>
-          <span>SERVICE RECORDS</span>
-        </a>
-      </li>
-
-      <li class="nav-item active">
-        <a class="nav-link" href="report_main">
-          <i class="fas fa-fw fa-lg fa-check-square"></i>
-          <span>Reports</span>
-        </a>
-      </li>-->
+    
 
       <li class="nav-item ">
         <a class="nav-link" href="serviceRecord">
@@ -85,7 +83,7 @@ include 'main_load_query.php';
       </li>
 
       <li class="nav-item ">
-        <a class="nav-link" href="serviceRecord">
+        <a class="nav-link" href="">
           <i class="fas fa-fw fa-lg fa-check-square"></i>
           <span>TRAINING CALENDAR</span>
         </a>
@@ -270,12 +268,16 @@ include 'main_load_query.php';
                             View Details 
                           </button>
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="serviceRecord">Service Records</a>
-                            <a class="dropdown-item" href="#">Leave Credits</a>
-                          
+                            <!--<a class="dropdown-item" href="#">Leave Credits</a>-->
                             <?php 
+                            //echo $_SESSION['type'];
+                            if ($_SESSION['type']=='ADMIN') {
+                             ?><a class="dropdown-item" href="serviceRecord">Service Records</a><?php
+                              }
+                            ?>
 
-                          
+
+                            <?php 
                             $path = '';
                             //echo $_SESSION['type'];
                             
@@ -288,11 +290,7 @@ include 'main_load_query.php';
                             } else if ($_SESSION['type']=='IMSD_APPROVER'){
                               $path = 'user/approver_imsd';
                             } else {
-
-                            
-
                               $path = 'user/application_leave';
-
                             }
                             
                             ?>

@@ -165,6 +165,7 @@ $('#add_name').on('submit', function(event){
 
     var leave_type          = $('#leave_type').val();
     var workingdays        = $('#workingdays').val();
+    
 
     var inclusive_date = document.getElementsByName('inclusive_date[]');
 
@@ -201,8 +202,8 @@ $('#add_name').on('submit', function(event){
                     {
                         if(action == 'add_leave')
                         {
-                            alert("Data Inserted");
-                            window.location.href = "application_leave";
+                            alert("Application Successfully Submitted");
+                            //window.location.href = "application_leave";
                             
     
                         }

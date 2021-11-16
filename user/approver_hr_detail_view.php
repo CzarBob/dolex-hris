@@ -707,6 +707,7 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='RD_APPROVER')){
                         <!-- Card Body -->    
                         <input type="hidden" name="hidden_id" id="hidden_id" />
                         <input type="hidden" name="leaveID" id="leaveID" value="<?php echo $_GET['id']; ?>">
+                        <input type="hidden" name="empID" id="empID" >
                         <input type="hidden" name="action" id="action" value="add_leave" />                 
                             <div class="col-md-12">
                               <table class=" table">  

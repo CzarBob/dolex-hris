@@ -54,8 +54,9 @@ if (isset($_POST['action'])){
     tbl_leave.VLBALANCE as VLBALANCE,
     tbl_leave.SLLESS as SLLESS,
     tbl_leave.SLBALANCE as SLBALANCE,
-    tbl_leave.ATTACHMENT as ATTACHMENT
+    tbl_leave.ATTACHMENT as ATTACHMENT,
     tbl_leave.IMSDREMARKS as IMSDREMARKS,
+    tbl_leave.APPLICANTREMARKS as APPLICANTREMARKS
     
     
     FROM tbl_employee
@@ -108,11 +109,14 @@ if (isset($_POST['action'])){
         $sub_array['headapprovestatus']               = $row['HEADAPPROVESTATUS'];
         $sub_array['dateheadupdated']               = $row['DATEHEADUPDATED'];
         $sub_array['slless']               = $row['SLLESS'];
-        $sub_array['slbalance']               = $row['slbalance'];
+        $sub_array['slbalance']               = $row['SLBALANCE'];
         $sub_array['vlless']               = $row['VLLESS'];
         $sub_array['vlbalance']               = $row['VLBALANCE'];
         $sub_array['imsdremarks']                      = $row['IMSDREMARKS'];
         $sub_array['attachment']                      = $row['ATTACHMENT'];
+        $sub_array['applicantremarks']                      = $row['APPLICANTREMARKS'];
+
+      
 
 
         $data[] = $sub_array;
@@ -235,10 +239,11 @@ if (isset($_POST['action'])){
         $message .= 'Designation must not be blank <br>
         ';
       }*/
+      //var_dump($_SESSION['divisionid']);
       
 
       if (!$flag){
-        if ($_SESSION['division']=='IMSD'){
+        if ($_SESSION['divisionid']=='IMSD'){
           
           $dateAdded = date("Y-m-d H:i:s");
           $que = 'UPDATE tbl_leave
@@ -251,7 +256,7 @@ if (isset($_POST['action'])){
   
           WHERE ID = "'.$leaveID.'"';
   
-          $result = mysqli_query($connect, $que);
+          //$result = mysqli_query($connect, $que);
         } else { 
           
           $dateAdded = date("Y-m-d H:i:s");
@@ -264,7 +269,7 @@ if (isset($_POST['action'])){
   
           WHERE ID = "'.$leaveID.'"';
   
-          $result = mysqli_query($connect, $que);
+          //$result = mysqli_query($connect, $que);
 
         }
        

@@ -6,10 +6,6 @@ if ($_SESSION['username'] == ""){
   exit;
 }
 
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -22,10 +18,10 @@ if ($_SESSION['username'] == ""){
     <title>Reports</title>
 
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
-  <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css" rel="stylesheet">
 
 
 
@@ -186,7 +182,7 @@ if ($_SESSION['username'] == ""){
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                  <h6 class="m-0 font-weight-bold text-primary">Generate Employee Data</h6>
+                                  <h6 class="m-0 font-weight-bold text-primary">Generate Leave Balance</h6>
                                   
                                 </div>
                                 <!-- Card Body -->
@@ -194,24 +190,28 @@ if ($_SESSION['username'] == ""){
                                     
                                 <div class="col-md-12">
                                   </div>
-                                  <div class="form-row">
-                                    
-
-                                    <!--<button class="btn btn-info generateEmployeeReport" class="generateEmployeeReport"> Generate Data </button> -->
-                                    <button class="btn btn-primary" id ="generateReport">Generate Report</button>
-                                  </div>
+                                    <div class="col-md-12">
+      
+                                      <table class=" table">
+                                          <tr>
+                                                <td style="width: 100%;" colspan="2" style = "align: center"><button  style="width: 100%;" class="btn btn-primary" id = "generate_leave_balance">    Generate Report </button></td> 
+                                                                                      
+                                            </tr>  
+                                            
+                                      </table>  
+                                    </div>  
                                                                        
                                 </div>
                             </div>
                         </div>
                          
-                           <!-- 
+                            
                            <div class="col-xl-12 col-lg-7">
                             <div class="card shadow mb-4">
                                
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                  <h6 class="m-0 font-weight-bold text-primary">II. Family Background</h6>
-                                  <button class="btn btn-info update_family_background" class="update_family_background"> Update Family Background </button>
+                                  <h6 class="m-0 font-weight-bold text-primary">Generate Employee Data</h6>
+                                  <!--<button class="btn btn-info update_family_background" class="update_family_background"> Update Family Background </button>-->
                                 </div>
                                 
                                 <div class="card-body">
@@ -221,33 +221,59 @@ if ($_SESSION['username'] == ""){
                                   
                                   <div class="form-row">
                                    
-                                    <div class="form-group col-md-3">
-                                      <input type="hidden" name="familyid" id="familyid">
-                                      <label for="inputEmail4">Spouse's Surname</label>
-                                      <input type="text" name="spouselastname" id="spouselastname" 
-                                        class="form-control validate" disabled>
+                                  <div class="form-group col-md-2">
+                                      <label for="inputCity">Office</label>
+                                      <select class="custom-select my-1 mr-sm-2" id="office" name="office" >
+                                        <option value='NA' selected>Choose...</option>
+                                        <option value="RO">REGIONAL OFFICE</option>
+                                        <option value="CDOFO">CAGAYAN DE ORO FIELD OFFICE</option>
+                                        <option value="BFO">BUKIDNON FIELD OFFICE</option>
+                                        <option value="CFO">CAMIGUIN FIELD OFFICE</option>
+                                        <option value="LDNFO">LANAO DEL NORTE FIELD OFFICE</option>
+                                        <option value="MISOCCFO">MISAMIS OCCIDENTAL FIELD OFFICE</option>
+                                        <option value="MISORFO">MISAMIS ORIENTAL FIELD OFFICE</option>
+                                      </select>
                                     </div>
-                                    <div class="form-group col-md-3">
-                                      <label for="inputEmail4">First Name</label>
-                                      <input type="text" name="spousefirstname" id="spousefirstname" 
-                                        class="form-control validate" disabled>
+                                    <div class="form-group col-md-2">
+                                      <label for="inputZip">Division</label>
+                                      <select class="custom-select my-1 mr-sm-2" id="division" name="division" >
+                                        <option value="NA" selected>Choose...</option>
+                                        <option value="TSSD">TSSD</option>
+                                        <option value="IMSD">IMSD</option>
+                                        <option value="MALSU">MALSU</option>
+                                      </select>
                                     </div>
-                                    <div class="form-group col-md-3">
-                                      <label for="inputEmail4">Middle Name</label>
-                                      <input type="text" name="spousemiddlename" id="spousemiddlename" 
-                                        class="form-control validate" disabled>
-                                    </div>
+                                  </div>
+                                  <div class="form-row"> 
+                                  <div class="form-group col-md-2">
+                                      <label for="inputCity">Gender</label>
+                                      <select class="custom-select my-1 mr-sm-2" id="gender" name="gender">
+                                        <option value='NA' selected>Choose...</option>
+                                        <option value="MALE">Male</option>
+                                        <option value="FEMALE">Female</option>
 
-                                    <div class="form-group col-md-1">
-                                      <label for="inputEmail4">Extension</label>
-                                      <input type="text" name="spouseextension" id="spouseextension" placeholder="Ex. Jr, II, III"
-                                        class="form-control validate" disabled>
+                                      </select>
                                     </div>
+                                  </div>
+                                  
+                                    <div class="col-md-12">
+     
+                                       <table class=" table">
+                                           <tr>
+                                                <td style="width: 100%;" colspan="2" style = "align: center"><button  style="width: 100%;" class="btn btn-primary" id = "generate_employee_record">    Generate Report </button></td> 
+                                                                                       
+                                            </tr>  
+                                            
+                                      </table>  
+                                    </div>         
+                         
+
+                                   
 
                                   </div>
                                 </div>
                             </div>
-                        </div> -->
+                        </div> 
                     <!-- END OF FAMILY BACKGROUND FORM -->
 
             
@@ -306,36 +332,43 @@ if ($_SESSION['username'] == ""){
 
 
 
-    <!-- ADD CHILDREN FORM -->
-    <div class="modal fade" id="modalChildrenForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <!-- GENERATE DATA FORM -->
+    <div class="modal fade" id="reportForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header text-center">
-            <h4 class="modal-title w-100 font-weight-bold" id="modal_title">Add Children</h4>
+            <h4 class="modal-title w-100 font-weight-bold" id="modal_title">Generate Data</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body mx-3">
-
-
             <div class="md-form mb-5">
-            
-              <label data-error="wrong" data-success="right" for="form34">Full name</label>
-              <input type="text" name="fullname" id = "fullname" class="form-control validate" required>
-           
+              <label data-error="wrong" data-success="right" for="form34">Office</label>
+              <label for="inputCity">Office</label>
+                <select class="custom-select my-1 mr-sm-2" id="office" name="office" disabled>
+                  <option value='NA' selected>Choose...</option>
+                  <option value="RO">REGIONAL OFFICE</option>
+                  <option value="CDOFO">CAGAYAN DE ORO FIELD OFFICE</option>
+                  <option value="BFO">BUKIDNON FIELD OFFICE</option>
+                  <option value="CFO">CAMIGUIN FIELD OFFICE</option>
+                  <option value="LDNFO">LANAO DEL NORTE FIELD OFFICE</option>
+                  <option value="MISOCCFO">MISAMIS OCCIDENTAL FIELD OFFICE</option>
+                  <option value="MISORFO">MISAMIS ORIENTAL FIELD OFFICE</option>
+                </select>
             </div>
-
-            <div class="md-form mb-5">
-       
-              <label data-error="wrong" data-success="right" for="form29">Date of Birth</label>
-              <input type="date" name="dob_add" id = "dob_add" class="form-control validate" required>
-             
+            <div class="form-group col-md-2">
+              <label for="inputZip">Division</label>
+              <select class="custom-select my-1 mr-sm-2" id="division" name="division" disabled>
+                <option value="NA" selected>Choose...</option>
+                <option value="TSSD">TSSD</option>
+                <option value="IMSD">IMSD</option>
+                <option value="MALSU">MALSU</option>
+              </select>
             </div>
           </div>
           <div class="modal-footer d-flex justify-content-center">
-         
-          <button class="btn btn-primary" id = "add_children">Add data</button>
+          <button class="btn btn-primary" id = "add_children">Generate Data</button>
           <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
           </div>
         </div>
