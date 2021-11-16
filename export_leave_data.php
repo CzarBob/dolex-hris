@@ -317,7 +317,7 @@ tbl_employee.VLCREDIT as VLCREDIT
 
 FROM tbl_employee';
 $result = mysqli_query($connect, $query);
-$rowNum=5;
+$rowNum=5; //test
 if($result){
     while($row = mysqli_fetch_array($result)){
         $sheet->mergeCells('I'.((int)$rowNum).':L'.((int)$rowNum));
