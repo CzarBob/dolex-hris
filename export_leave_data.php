@@ -9,305 +9,17 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 
 $spreadsheet = new Spreadsheet();
 $sheet = $spreadsheet->getActiveSheet();
-$spreadsheet->getActiveSheet()->setTitle('C1');
-$spreadsheet->getActiveSheet()->getDefaultRowDimension()->setRowHeight(30);
-$spreadsheet->getDefaultStyle()->getFont()->setName('Arial Narrow');
-$spreadsheet->getDefaultStyle()->getFont()->setSize('9');
-
-/*$drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
+/*
+$drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
 $drawing->setPath("img/dolelogogs.png");
 $drawing->setName('DOLE LOGO');
-$drawing->setCoordinates('C5');
+$drawing->setCoordinates('D2');
 $drawing->setWidthAndHeight(50,50);
-$drawing->setWorksheet($sheet);  */
-
-
-//$id = $_POST['employeeiddb'];
-$id = $_GET["id"];
+$drawing->setWorksheet($sheet); */ 
 
 
 
 
-
-
-   
-
-
-
-    
-
-
-/*
-$sheet->getColumnDimension('A')->setWidth(3);
-$sheet->getColumnDimension('B')->setWidth(20);
-$sheet->getColumnDimension('C')->setWidth(9);
-$sheet->getColumnDimension('D')->setWidth(30);
-$sheet->getColumnDimension('E')->setWidth(9);
-$sheet->getColumnDimension('F')->setWidth(9);
-$sheet->getColumnDimension('G')->setWidth(12);
-$sheet->getColumnDimension('H')->setWidth(13);
-$sheet->getColumnDimension('I')->setWidth(12);
-$sheet->getColumnDimension('J')->setWidth(11);
-$sheet->getColumnDimension('K')->setWidth(12);
-$sheet->getColumnDimension('L')->setWidth(15);
-$sheet->getColumnDimension('M')->setWidth(12);
-$sheet->getColumnDimension('N')->setWidth(12);
-
-
-$spreadsheet->getActiveSheet()->getRowDimension('6')->setRowHeight(1);
-$spreadsheet->getActiveSheet()->getRowDimension('7')->setRowHeight(12);
-$spreadsheet->getActiveSheet()->getRowDimension('8')->setRowHeight(1);
-*/
-
-
-/*
-$sheet->setCellValue('A1', 'CS Form No. 212');
-$sheet->setCellValue('A2', 'Revised 2017');
-$sheet->setCellValue('A3', 'PERSONAL DATA SHEET');
-$sheet->setCellValue('A4', 'WARNING: Any misrepresentation made in the Personal Data Sheet and the Work Experience Sheet shall cause the filing of administrative/criminal case/s against the person concerned.');
-$sheet->setCellValue('A5', 'READ THE ATTACHED GUIDE TO FILLING OUT THE PERSONAL DATA SHEET (PDS) BEFORE ACCOMPLISHING THE PDS FORM.');
-$sheet->setCellValue('A7', 'Print legibly. Tick appropriate boxes (     ) and use separate sheet if necessary. Indicate N/A if not applicable.  DO NOT ABBREVIATE.');
-$sheet->setCellValue('K7', '1. CS ID No.')->getStyle('K7')->getFill()
-->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
-->getStartColor()->setARGB('828583');
-$sheet->setCellValue('L7', ' (Do not fill up. For CSC use only)');
-$sheet->setCellValue('A9', 'I. PERSONAL INFORMATION');
-$sheet->setCellValue('A10', '2.');
-$sheet->setCellValue('B10', 'SURNAME');
-$sheet->setCellValue('D10', $lastname);//
-$sheet->setCellValue('B11', 'FIRST NAME');
-$sheet->setCellValue('D11',  $firstname);//
-$sheet->setCellValue('L11', 'NAME EXTENSION (JR., SR)    ')->getStyle('L11')->getFill()
-->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
-->getStartColor()->setARGB('cfcfcf');//
-$sheet->setCellValue('B12', 'MIDDLE NAME');
-$sheet->setCellValue('D12', $middlename);//
-$sheet->setCellValue('A13', '3.');
-$sheet->setCellValue('B13', 'DATE OF BIRTH 
-(mm/dd/yyyy)  ');
-$sheet->setCellValue('D13', $dob);//
-$sheet->setCellValue('G13', '16. CITIZENSHIP
-If holder of  dual citizenship, please indicate the details.');
-$citizenValue = '[ ] Filipino    [ ]Dual Citizen';
-if ($citizenship == 'filipino'){
-    $citizenValue = '[/] Filipino    [ ]Dual Citizen';
-} else if ($citizenship == 'dual'){
-    $citizenValue = '[ ] Filipino    [/]Dual Citizen';
-}
-$sheet->setCellValue('J13', $citizenValue);
-
-
-$dualValue = '[ ] by birth     [ ] naturalization';
-if ($dualchoice == 'birth'){
-    $dualValue = '[/]by birth    [ ]naturalization';
-} else if ($dualchoice == 'naturalization'){
-    $dualValue = '[ ] by birth    [/] naturalization';
-}
-$sheet->setCellValue('J14', $dualValue);
-
-$sheet->setCellValue('A15', '4.');
-$sheet->setCellValue('B15', 'PLACE OF BIRTH');
-$sheet->setCellValue('D15', $placeofbirth);//
-$sheet->setCellValue('G15', ' ');
-$sheet->setCellValue('J15', 'Pls. indicate country:');
-$sheet->setCellValue('A16', '5.');
-$sheet->setCellValue('B16', 'SEX');
-
-$genderValue = '[ ] Male  [ ] Female';
-if ($gender == 'MALE'){
-    $genderValue = '[/] Male  [ ] Female';
-} else if ($gender == 'FEMALE'){
-    $genderValue = '[ ] Male  [/] Female';
-}
-$sheet->setCellValue('D16', $genderValue);
-//$sheet->setCellValue('E16', 'BOX Female');
-//$sheet->setCellValue('G16', 'If holder of  dual citizenship, ');
-$sheet->setCellValue('J16', 'PHILIPPINES');
-$sheet->setCellValue('A17', '6.');
-$sheet->setCellValue('B17', 'CIVIL STATUS');
-
-$civilStatusValue = '[ ] Single     [ ] Married
-[ ] Widowed     [ ] Separated
-[ ] Others ';
-if ($civilstatus == 'SINGLE'){
-    $civilStatusValue = '[/] Single     [ ] Married
-    [ ] Widowed     [ ] Separated
-    [ ] Others ';
-} else if ($civilstatus == 'MARRIED'){
-    $civilStatusValue = '[ ] Single     [/] Married
-    [ ] Widowed     [ ] Separated
-    [ ] Others ';
-} else if ($civilstatus == 'WIDOWED'){
-    $civilStatusValue = '[ ] Single     [ ] Married
-    [/] Widowed     [ ] Separated
-    [ ] Others ';
-} else if ($civilstatus == 'SEPARATED'){
-    $civilStatusValue = '[ ] Single     [ ] Married
-    [ ] Widowed     [/] Separated
-    [ ] Others ';
-} else if ($civilstatus == 'OTHERS'){
-    $civilStatusValue = '[ ] Single     [ ] Married
-    [ ] Widowed     [ ] Separated
-    [/] Others ';
-}
-
-$sheet->setCellValue('D17', $civilStatusValue);//
-//$sheet->setCellValue('E17', 'BOX Married');
-$sheet->setCellValue('G17', '17. RESIDENTIAL ADDRESS');
-$sheet->setCellValue('I17', ' ');
-$sheet->setCellValue('L17', ' ');
-//$sheet->setCellValue('D18', 'BOX Widowed');//
-//$sheet->setCellValue('E17', 'BOX Separated');
-
-$sheet->setCellValue('I18', 'House/Block/Lot No.');
-$sheet->setCellValue('L18', 'Street');
-
-$sheet->setCellValue('I19', ' ');
-$sheet->setCellValue('L19', ' ');
-
-$sheet->setCellValue('I20', 'Subdivision/Village');
-$sheet->setCellValue('L20', 'Barangay');
-
-$sheet->setCellValue('A21', '7.');
-$sheet->setCellValue('B21', 'HEIGHT(m)');
-$sheet->setCellValue('D21', $height);
-//$sheet->setCellValue('I21', $residentialaddress);
-$sheet->setCellValue('I22', 'City/Municipality');
-$sheet->setCellValue('L22', 'Province');
-
-$sheet->setCellValue('A23', '8.');
-$sheet->setCellValue('B23', 'WEIGHT(kg)');
-$sheet->setCellValue('D23', $weight);
-$sheet->setCellValue('G23', 'ZIP CODE');
-$sheet->setCellValue('I23', ' ');
-
-$sheet->setCellValue('A24', '9.');
-$sheet->setCellValue('B24', 'BLOOD TYPE');
-$sheet->setCellValue('D24', $bloodtype );
-$sheet->setCellValue('G24', '18. PERMANENT ADDRESS');
-$sheet->setCellValue('I24', ' ');
-$sheet->setCellValue('L24', ' ');
-$sheet->setCellValue('I25', 'House/Block/Lot No.');
-$sheet->setCellValue('L25', 'Street');
-
-$sheet->setCellValue('A26', '10.');
-$sheet->setCellValue('B26', 'GSIS ID NO.');
-$sheet->setCellValue('D26', $gsisno);
-$sheet->setCellValue('I26', ' ');
-$sheet->setCellValue('L26', ' ');
-$sheet->setCellValue('I27', 'Subdivision/Village');
-$sheet->setCellValue('L27', 'Barangay');
-
-$sheet->setCellValue('A28', '11.');
-$sheet->setCellValue('B28', 'PAG-IBIG ID NO.');
-$sheet->setCellValue('D28', $pagibigno);
-//$sheet->setCellValue('I28', $permanentaddress);
-$sheet->setCellValue('L28', ' ');
-$sheet->setCellValue('I29', 'City/Municipality');
-$sheet->setCellValue('L29', 'Province');
-
-$sheet->setCellValue('A30', '12.');
-$sheet->setCellValue('B30', 'PHILHEALTH NO.');
-$sheet->setCellValue('D30', $phicno);
-$sheet->setCellValue('G30', 'ZIP CODE');
-$sheet->setCellValue('I30', ' ');
-
-$sheet->setCellValue('A31', '13.');
-$sheet->setCellValue('B31', 'SSS NO.');
-$sheet->setCellValue('D31', $sssno);
-$sheet->setCellValue('G31', '19. TELEPHONE NO.');
-$sheet->setCellValue('I31', $telephoneno);
-
-$sheet->setCellValue('A32', '14.');
-$sheet->setCellValue('B32', 'TIN NO.');
-$sheet->setCellValue('D32', $tinno);
-$sheet->setCellValue('G32', '20. MOBILE NO.');
-$sheet->setCellValue('I32', $mobileno);
-
-$sheet->setCellValue('A33', '15.');
-$sheet->setCellValue('B33', 'AGENCY EMPLOYEE NO.');
-$sheet->setCellValue('D33', $agencyemployeeno);
-$sheet->setCellValue('G33', '21. E-MAIL ADDRESS (if any)');
-$sheet->setCellValue('I33', $emailprofile);
-
-$sheet->setCellValue('A34', 'II.  FAMILY BACKGROUND');
-
-$sheet->setCellValue('A35', '22.');
-$sheet->setCellValue('B35', 'SPOUSE SURNAME');
-$sheet->setCellValue('D35', $spouselastname);
-$sheet->setCellValue('I35', '23. NAME of CHILDREN  (Write full name and list all)')->getStyle('I35')->getFill()
-->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
-->getStartColor()->setARGB('cfcfcf');;
-$sheet->setCellValue('M35', 'DATE OF BIRTH (mm/dd/yyyy) ')->getStyle('M35')->getFill()
-->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
-->getStartColor()->setARGB('cfcfcf');
-
-$sheet->setCellValue('B36', 'FIRST NAME');
-$sheet->setCellValue('D36', $spousefirstname);
-$sheet->setCellValue('G36', 'NAME EXTENSION (JR., SR) '.$spouseextension)->getStyle('G36')->getFill()
-->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
-->getStartColor()->setARGB('cfcfcf');
-
-$sheet->setCellValue('B37', 'MIDDLE NAME');
-$sheet->setCellValue('D37', $spousemiddlename);
-
-$sheet->setCellValue('B38', 'OCCUPATION');
-$sheet->setCellValue('D38', $occupation);
-
-$sheet->setCellValue('B39', 'EMPLOYER/BUSINESS NAME');
-$sheet->setCellValue('D39', $employername);
-
-$sheet->setCellValue('B40', 'BUSINESS ADDRESS');
-$sheet->setCellValue('D40', $businessaddress);
-
-$sheet->setCellValue('B41', 'TELEPHONE NO.');
-$sheet->setCellValue('D41', $spousetelno);
-
-$sheet->setCellValue('A42', '24.');
-$sheet->setCellValue('B42', 'FATHER SURNAME');
-$sheet->setCellValue('D42', $fathersurname);
-
-$sheet->setCellValue('B43', 'FIRST NAME');
-$sheet->setCellValue('D43', $fatherfirstname);
-$sheet->setCellValue('G43', 'NAME EXTENSION (JR., SR) '.$fatherext)->getStyle('G43')->getFill()
-->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
-->getStartColor()->setARGB('cfcfcf');
-
-$sheet->setCellValue('B44', 'MIDDLE NAME');
-$sheet->setCellValue('D44', $fathermiddlename);
-
-$sheet->setCellValue('A45', '25.');
-$sheet->setCellValue('B45', "MOTHER'S MAIDEN NAME");
-$sheet->setCellValue('D45', $mothermaidenname);
-
-$sheet->setCellValue('B46', 'SURNAME');
-$sheet->setCellValue('D46', $mothersurname );
-
-$sheet->setCellValue('B47', 'FIRST NAME');
-$sheet->setCellValue('D47', $motherfirstname);
-
-$sheet->setCellValue('B48', 'MIDDLE NAME');
-$sheet->setCellValue('D48', $mothermiddlename);
-$sheet->setCellValue('I48', '(Continue on separate sheet if necessary)')->getStyle('I48')->getFill()
-->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
-->getStartColor()->setARGB('cfcfcf');
-
-$sheet->setCellValue('A49', 'III.  EDUCATIONAL BACKGROUND');
-
-$sheet->setCellValue('A50', '26.');
-$sheet->setCellValue('B50', 'LEVEL');
-$sheet->setCellValue('D50', 'NAME OF SCHOOL                                                                                                                                         (Write in full)');
-$sheet->setCellValue('G50', 'BASIC EDUCATION/DEGREE/COURSE                                                             (Write in full)                     ');
-$sheet->setCellValue('J50', 'PERIOD OF ATTENDANCE');
-$sheet->setCellValue('L50', 'HIGHEST LEVEL/                     UNITS EARNED       ');
-$sheet->setCellValue('M50', 'YEAR GRADUATED ');
-$sheet->setCellValue('N50', 'SCHOLARSHIP/ ACADEMIC HONORS RECEIVED');
-
-$sheet->setCellValue('J52', 'From');
-$sheet->setCellValue('K52', 'To');*/
-
-
-//$query = 'SELECT * FROM tbl_service_record  WHERE EMPID = "'.$_POST['employeeiddb'].'" AND CANCELLED = "N" ';
 
 $query = 'SELECT tbl_employee.LASTNAME as LASTNAME,
 tbl_employee.MIDDLENAME as MIDDLENAME,
@@ -316,36 +28,27 @@ tbl_employee.SLCREDIT as SLCREDIT,
 tbl_employee.VLCREDIT as VLCREDIT
 
 FROM tbl_employee';
+$dateNow = date("Y-m-d H:i:s");
 $result = mysqli_query($connect, $query);
 $rowNum=5; //test
-if($result){
-    while($row = mysqli_fetch_array($result)){
-        $sheet->mergeCells('I'.((int)$rowNum).':L'.((int)$rowNum));
-        $sheet->mergeCells('M'.((int)$rowNum).':N'.((int)$rowNum));
-        $sheet->setCellValue('I'.$rowNum,$row['FULLNAME'])
-        ->setCellValue('M'.$rowNum, $row['DOB']);
-        $rowNum++;
-    }
-}
+$sheet->setCellValue('A1', 'DOLE-X EMPLOYEE LEAVE BALANCE');
+$sheet->setCellValue('A2', 'DATE GENERATED:'.$dateNow);
 
-
-$query = "SELECT * FROM tbl_employee_educ_background WHERE EMPID = '5' AND CANCELLED = 'N'  
-ORDER BY  `tbl_employee_educ_background`.`LEVEL`= 'GRADSTUD', `tbl_employee_educ_background`.`LEVEL`= 'COLLEGE',`tbl_employee_educ_background`.`LEVEL`= 'VOC',`tbl_employee_educ_background`.`LEVEL`= 'SEC',`tbl_employee_educ_background`.`LEVEL`= 'ELEM' DESC";
-$result = mysqli_query($connect, $query);
-$rowNum=53;
 if($result){
+    $sheet->setCellValue('A4', 'VLCREDIT')
+    ->setCellValue('B4','LASTNAME')
+    ->setCellValue('C4', 'MIDDLENAME')
+    ->setCellValue('D4', 'FIRSTNAME')
+    ->setCellValue('E4','SLCREDIT');
     while($row = mysqli_fetch_array($result)){
-        $sheet->mergeCells('B'.((int)$rowNum).':C'.((int)$rowNum));
-        $sheet->mergeCells('D'.((int)$rowNum).':F'.((int)$rowNum));
-        $sheet->mergeCells('G'.((int)$rowNum).':I'.((int)$rowNum));
-        $sheet->setCellValue('B'.$rowNum,$row['LEVEL'])
-        ->setCellValue('D'.$rowNum, $row['SCHOOLNAME'])
-        ->setCellValue('G'.$rowNum, $row['BASICEDUCATION'])
-        ->setCellValue('J'.$rowNum, $row['PERIODFROM'])
-        ->setCellValue('K'.$rowNum, $row['PERIODTO'])
-        ->setCellValue('L'.$rowNum, $row['HIGHESTLEVEL'])
-        ->setCellValue('M'.$rowNum, $row['YEARGRADUATED'])
-        ->setCellValue('N'.$rowNum, $row['HONORRECEIVED']);
+        //$sheet->mergeCells('I'.((int)$rowNum).':L'.((int)$rowNum));
+        //$sheet->mergeCells('M'.((int)$rowNum).':N'.((int)$rowNum));
+        $sheet->setCellValue('A'.$rowNum, $row['VLCREDIT'])
+        ->setCellValue('B'.$rowNum,$row['LASTNAME'])
+        ->setCellValue('C'.$rowNum, $row['MIDDLENAME'])
+        ->setCellValue('D'.$rowNum, $row['FIRSTNAME'])
+        ->setCellValue('E'.$rowNum, $row['SLCREDIT'])
+        ;
         $rowNum++;
     }
 }
@@ -353,60 +56,399 @@ if($result){
 
 
 
+     /*
+$sheet->setCellValue('A1', 'Civil Service Form No.6 (Revised 2020)');
+$sheet->setCellValue('A2', "Republic of the Philippines\rDepartment of Labor and Employment\rNorthern Mindanao");
+
+$sheet->setCellValue('A3', 'APPLICATION FOR LEAVE');
+$sheet->setCellValue('A4', '1. OFFICE/DEPARTMENT');
+$sheet->setCellValue('E4', '2.  NAME :            (Last)                               (First)                         (Middle)');
+$sheet->setCellValue('B5', $fieldofficeID)
+->setCellValue('E5',$lastname.', '.$firstname.' '.$middlename);
+
+$sheet->setCellValue('A6','3. DATE OF FILLING :'.$dateOfFilling)
+->setCellValue('E6','4. POSITION :'.$position)
+->setCellValue('H6','5. SALARY :'.$salary);
+$sheet->setCellValue('A8','6. DETAILS OF APPLICATION');
+$sheet->setCellValue('A9','6.A  TYPE OF LEAVE TO BE AVAILED OF');
+if ($leaveType == "VACATION"){
+    $sheet->setCellValue('A11','[/] Vacation Leave (Sec. 51, Rule XVI, Omnibus Rules Implementing E.O. No. 292)');
+} else {
+    $sheet->setCellValue('A11','[ ] Vacation Leave (Sec. 51, Rule XVI, Omnibus Rules Implementing E.O. No. 292)');
+}
+
+if ($leaveType == "FORCED"){
+    $sheet->setCellValue('A13','[/] Mandatory/Forced Leave(Sec. 25, Rule XVI, Omnibus Rules Implementing E.O. No. 292)');
+} else {
+    $sheet->setCellValue('A13','[ ] Mandatory/Forced Leave(Sec. 25, Rule XVI, Omnibus Rules Implementing E.O. No. 292)');
+}
+
+if ($leaveType == "SICK"){
+    $sheet->setCellValue('A15','[/] Sick Leave  (Sec. 43, Rule XVI, Omnibus Rules Implementing E.O. No. 292)');
+} else {
+    $sheet->setCellValue('A15','[ ] Sick Leave  (Sec. 43, Rule XVI, Omnibus Rules Implementing E.O. No. 292)');
+}
+
+if ($leaveType == "MATERNITY"){
+    $sheet->setCellValue('A17','[/] Maternity Leave (R.A. No. 11210 / IRR issued by CSC, DOLE and SSS)');
+} else {
+    $sheet->setCellValue('A17','[ ] Maternity Leave (R.A. No. 11210 / IRR issued by CSC, DOLE and SSS)');
+}
+
+if ($leaveType == "PATERNITY"){
+    $sheet->setCellValue('A19','[/] Paternity Leave (R.A. No. 8187 / CSC MC No. 71, s. 1998, as amended)');
+} else {
+    $sheet->setCellValue('A19','[ ] Paternity Leave (R.A. No. 8187 / CSC MC No. 71, s. 1998, as amended)');
+}
+
+if ($leaveType == "SPECIALPRIVILEGE"){
+    $sheet->setCellValue('A21','[/] Special Privilege Leave (Sec. 21, Rule XVI, Omnibus Rules Implementing E.O. No. 292)');
+} else {
+    $sheet->setCellValue('A21','[ ] Special Privilege Leave (Sec. 21, Rule XVI, Omnibus Rules Implementing E.O. No. 292)');
+}
+
+if ($leaveType == "SOLOPARENT"){
+    $sheet->setCellValue('A23','[/] Solo Parent Leave (RA No. 8972 / CSC MC No. 8, s. 2004)');
+} else {
+    $sheet->setCellValue('A23','[ ] Solo Parent Leave (RA No. 8972 / CSC MC No. 8, s. 2004)');
+}
+
+if ($leaveType == "STUDY"){
+    $sheet->setCellValue('A25','[/] Study Leave (Sec. 68, Rule XVI, Omnibus Rules Implementing E.O. No. 292)');
+} else {
+    $sheet->setCellValue('A25','[ ] Study Leave (Sec. 68, Rule XVI, Omnibus Rules Implementing E.O. No. 292)');
+}
+
+if ($leaveType == "VAWC"){
+    $sheet->setCellValue('A27','[/] 10-Day VAWC Leave (RA No. 9262 / CSC MC No. 15, s. 2005)');
+} else {
+    $sheet->setCellValue('A27','[ ] 10-Day VAWC Leave (RA No. 9262 / CSC MC No. 15, s. 2005)');
+}
+
+if ($leaveType == "REHAB"){
+    $sheet->setCellValue('A29','[/] Rehabilitation Privilege (Sec. 55, Rule XVI, Omnibus Rules Implementing E.O. No. 292)');
+} else {
+    $sheet->setCellValue('A29','[ ] Rehabilitation Privilege (Sec. 55, Rule XVI, Omnibus Rules Implementing E.O. No. 292)');
+}
+
+if ($leaveType == "WOMEN"){
+    $sheet->setCellValue('A31','[/] Special Leave Benefits for Women (RA No. 9710 / CSC MC No. 25, s. 2010)');
+} else {
+    $sheet->setCellValue('A31','[ ] Special Leave Benefits for Women (RA No. 9710 / CSC MC No. 25, s. 2010)');
+}
+
+if ($leaveType == "EMERGENCY"){
+    $sheet->setCellValue('A33','[/] Special Emergency (Calamity) Leave (CSC MC No. 2, s. 2012, as amended)');
+} else {
+    $sheet->setCellValue('A33','[ ] Special Emergency (Calamity) Leave (CSC MC No. 2, s. 2012, as amended)');
+}
+
+if ($leaveType == "EMERGENCY"){
+    $sheet->setCellValue('A35','[/] Adoption Leave (R.A. No. 8552)');
+} else {
+    $sheet->setCellValue('A35','[ ] Adoption Leave (R.A. No. 8552)');
+}
 
 
+
+$sheet->setCellValue('A39','Others');
+$sheet->setCellValue('B41','__________________________');
+
+$sheet->setCellValue('G9',' 6.B  DETAILS OF LEAVE ');
+$sheet->setCellValue('H11',' In case of Vacation/Special Privilege Leave:');
+if($partOne == "PH"){
+    $sheet->setCellValue('H13','[/] Within the Philippines');
+    $sheet->setCellValue('H15','[ ] Abroad (Specify)');
+} else if ($partOne == "ABROAD"){
+    $sheet->setCellValue('H13','[ ] Within the Philippines');
+    $sheet->setCellValue('H15','[/] Abroad (Specify)');
+} else {
+    $sheet->setCellValue('H13','[ ] Within the Philippines');
+    $sheet->setCellValue('H15','[ ] Abroad (Specify)');
+}
+
+
+if($partTwo == "IPD"){
+    
+    $sheet->setCellValue('H17','In case of Sick Leave:');
+    $sheet->setCellValue('H19','[/] In Hospital (Specify Illness) _____________________');
+    $sheet->setCellValue('H21','[ ] Out Patient (Specify Illness)  ____________________');
+} else if ($partTwo == "OPD"){
+    
+    $sheet->setCellValue('H17','In case of Sick Leave:');
+    $sheet->setCellValue('H19','[ ] In Hospital (Specify Illness) _____________________');
+    $sheet->setCellValue('H21','[/] Out Patient (Specify Illness)  ____________________');
+} else {
+    
+    $sheet->setCellValue('H17','In case of Sick Leave:');
+    $sheet->setCellValue('H19','[ ] In Hospital (Specify Illness) _____________________');
+    $sheet->setCellValue('H21','[ ] Out Patient (Specify Illness)  ____________________');
+}
+       
+
+$sheet->setCellValue('H25','In case of Special Leave Benefits for Women:');
+$sheet->setCellValue('H27','(Specify Illness) ________________________________');
+
+
+if($partFour == "MASTERS"){
+    $sheet->setCellValue('H31','In case of Study Leave:');
+    $sheet->setCellValue('H33',"[/] Completion of Master's Degree");
+    $sheet->setCellValue('H35','[ ] BAR/Board Examination Review');
+} else if ($partFour == "EXAM"){
+    $sheet->setCellValue('H31','In case of Study Leave:');
+    $sheet->setCellValue('H33',"[ ] Completion of Master's Degree");
+    $sheet->setCellValue('H35','[/] BAR/Board Examination Review');
+} else {
+    $sheet->setCellValue('H31','In case of Study Leave:');
+    $sheet->setCellValue('H33',"[ ] Completion of Master's Degree");
+    $sheet->setCellValue('H35','[ ] BAR/Board Examination Review');
+}
+
+
+
+if($partFive == "MONETIZATION"){
+    $sheet->setCellValue('H37','Other purpose:');
+    $sheet->setCellValue('H39',"[/] Monetization of Leave Credits");
+    $sheet->setCellValue('H41','[ ] Terminal Leave');
+} else if ($partFive == "TERMINAL"){
+    $sheet->setCellValue('H37','Other purpose:');
+    $sheet->setCellValue('H39',"[ ] Monetization of Leave Credits");
+    $sheet->setCellValue('H41','[/] Terminal Leave');
+} else {
+    $sheet->setCellValue('H37','Other purpose:');
+    $sheet->setCellValue('H39',"[ ] Monetization of Leave Credits");
+    $sheet->setCellValue('H41','[ ] Terminal Leave');
+}
+
+
+
+
+$sheet->setCellValue('A43','6.C  NUMBER OF WORKING DAYS APPLIED FOR');
+$sheet->setCellValue('A45',$workingDays);
+$sheet->setCellValue('A47','INCLUSIVE DATES');
+$sheet->setCellValue('A48',$inclusivedate);
+
+if($partSix == "NOTREQUESTED"){
+    $sheet->setCellValue('G43','6.D  COMMUTATION ');
+    $sheet->setCellValue('H45',"[/] Not Requested");
+    $sheet->setCellValue('H47','[ ] Requested');
+} else if ($partSix == "REQUESTED"){
+    $sheet->setCellValue('G43','6.D  COMMUTATION ');
+    $sheet->setCellValue('H45',"[ ] Not Requested");
+    $sheet->setCellValue('H47','[/] Requested');
+} else {
+    $sheet->setCellValue('G43','6.D  COMMUTATION ');
+    $sheet->setCellValue('H45',"[ ] Not Requested");
+    $sheet->setCellValue('H47','[ ] Requested');
+}
+
+
+
+$sheet->setCellValue('G48',"___________________________");
+$sheet->setCellValue('H49','(Signature of Applicant)');
+
+$sheet->setCellValue('A50',"7.  DETAILS OF ACTION ON APPLICATION");
+$sheet->setCellValue('A51','7.A  CERTIFICATION OF LEAVE CREDITS');
+$sheet->setCellValue('C53','As of __________________');
+$sheet->setCellValue('D55','Vacation Leave');
+$sheet->setCellValue('E55','Sick Leave');
+$sheet->setCellValue('C56','Total Earned');
+$sheet->setCellValue('D56',$vlcredit);
+$sheet->setCellValue('E56',$slcredit);
+$sheet->setCellValue('D57',$vlless);
+$sheet->setCellValue('D58',$vlbalance);
+$sheet->setCellValue('E57',$slless);
+$sheet->setCellValue('E58',$slbalance);
+$sheet->setCellValue('C57','Less this application');
+$sheet->setCellValue('C58','Balance');
+$sheet->setCellValue('C59','HAZEL S. UMBAL');
+$sheet->setCellValue('C60','HRMO III');
+
+if($headApproveStatus == "Y"){
+    $sheet->setCellValue('G51','7.B  RECOMMENDATION');
+    $sheet->setCellValue('H53',"[/] For Approval");
+    $sheet->setCellValue('H55','[ ] For Disapproval due to');
+    $sheet->setCellValue('H59','                     ');
+    $sheet->setCellValue('H60','(Head of Division/Unit/P/FO or ARD)');
+} else if ($partSix == "REQUESTED"){
+    $sheet->setCellValue('G51','7.B  RECOMMENDATION');
+    $sheet->setCellValue('H53',"[ ] For Approval");
+    $sheet->setCellValue('H55','[/] For Disapproval due to');
+    $sheet->setCellValue('H59','                     ');
+    $sheet->setCellValue('H60','(Head of Division/Unit/P/FO or ARD)');
+} else {
+    $sheet->setCellValue('G51','7.B  RECOMMENDATION');
+    $sheet->setCellValue('H53',"[ ] For Approval");
+    $sheet->setCellValue('H55','[ ] For Disapproval due to');
+    $sheet->setCellValue('H59','                     ');
+    $sheet->setCellValue('H60','(Head of Division/Unit/P/FO or ARD)');
+}
+
+
+
+$sheet->setCellValue('A61','7.C  APPROVED FOR:');
+$sheet->setCellValue('C62',"days with pay");
+$sheet->setCellValue('C63','days without pay');
+$sheet->setCellValue('C64','others (Specify)');
+
+$sheet->setCellValue('G61','7.D   DISAPPROVED DUE TO:');
+
+$sheet->setCellValue('A65','ALBERT E. GUTIB');
+$sheet->setCellValue('A66','_____________________');
+$sheet->setCellValue('A67','REGIONAL DIRECTOR');
+
+$sheet->mergeCells('A1:I1');
+$sheet->mergeCells('A2:I2');
+$sheet->mergeCells('A3:I3');
+$sheet->mergeCells('A4:D4');
+$sheet->mergeCells('E4:I4');
+$sheet->mergeCells('A8:I8');
+$sheet->mergeCells('E5:I5');
+$sheet->mergeCells('B5:D5');
+$sheet->mergeCells('A8:I8');
+$sheet->mergeCells('A6:D6');
+$sheet->mergeCells('E6:G6');
+$sheet->mergeCells('H6:I6');
+$sheet->mergeCells('A9:F9');
+$sheet->mergeCells('A11:F11');
+$sheet->mergeCells('A13:F13');
+$sheet->mergeCells('A15:F15');
+$sheet->mergeCells('A17:F17');
+$sheet->mergeCells('A19:F19');
+$sheet->mergeCells('A21:F21');
+$sheet->mergeCells('A23:F23');
+$sheet->mergeCells('A25:F25');
+$sheet->mergeCells('A27:F27');
+$sheet->mergeCells('A29:F29');
+$sheet->mergeCells('A31:F31');
+$sheet->mergeCells('A33:F33');
+$sheet->mergeCells('A35:F35');
+$sheet->mergeCells('A39:F39');
+$sheet->mergeCells('B41:F41');
+$sheet->mergeCells('A43:F43');
+$sheet->mergeCells('A45:F45');
+$sheet->mergeCells('A47:F47');
+$sheet->mergeCells('A48:F48');
+$sheet->mergeCells('A50:I50');
+$sheet->mergeCells('C53:F53');
+$sheet->mergeCells('G9:I9');
+$sheet->mergeCells('A51:F51');
+$sheet->mergeCells('A61:C61');
+$sheet->mergeCells('G61:I61');
+$sheet->mergeCells('C59:F59');
+$sheet->mergeCells('C60:F60');
+$sheet->mergeCells('C62:D62');
+$sheet->mergeCells('C63:D63');
+$sheet->mergeCells('C64:D64');
+$sheet->mergeCells('H11:I11');
+$sheet->mergeCells('H13:I13');
+$sheet->mergeCells('H15:I15');
+$sheet->mergeCells('H17:I17');
+$sheet->mergeCells('H19:I19');
+$sheet->mergeCells('H21:I21');
+$sheet->mergeCells('H25:I25');
+$sheet->mergeCells('H27:I27');
+$sheet->mergeCells('H31:I31');
+$sheet->mergeCells('H33:I33');
+$sheet->mergeCells('H35:I35');
+$sheet->mergeCells('H37:I37');
+$sheet->mergeCells('H41:I41');
+$sheet->mergeCells('G43:I43');
+$sheet->mergeCells('H45:I45');
+$sheet->mergeCells('H47:I47');
+$sheet->mergeCells('G48:I48');
+$sheet->mergeCells('H49:I49');
+$sheet->mergeCells('G51:I51');
+$sheet->mergeCells('H53:I53');
+$sheet->mergeCells('H55:I55');
+$sheet->mergeCells('H60:I60');
+$sheet->mergeCells('A65:I65');
+$sheet->mergeCells('A66:I66');
+$sheet->mergeCells('A67:I67');
+$sheet->mergeCells('H39:I39');
+
+*/
+
+/*
 
 
 
 $sheet->getStyle('A1:N999')
     ->getAlignment()->setWrapText(true); 
+$sheet->getColumnDimension('B')->setWidth(3);
+$sheet->getColumnDimension('C')->setWidth(20);
+$sheet->getColumnDimension('D')->setWidth(18);
+$sheet->getColumnDimension('E')->setWidth(18);
+$sheet->getColumnDimension('F')->setWidth(15);
+$sheet->getColumnDimension('G')->setWidth(2);
+$sheet->getColumnDimension('H')->setWidth(2);
+$sheet->getColumnDimension('I')->setWidth(40);
 
-$styleArraySample = [
+
+$sheet->getColumnDimension('A')->setWidth(1);
+$sheet->getColumnDimension('I')->setWidth(40);
+$sheet->getRowDimension('2')->setRowHeight(60);
+$sheet->getRowDimension('10')->setRowHeight(5);
+$sheet->getRowDimension('12')->setRowHeight(5);
+$sheet->getRowDimension('14')->setRowHeight(5);
+$sheet->getRowDimension('16')->setRowHeight(5);
+$sheet->getRowDimension('18')->setRowHeight(5);
+$sheet->getRowDimension('20')->setRowHeight(5);
+$sheet->getRowDimension('22')->setRowHeight(5);
+$sheet->getRowDimension('24')->setRowHeight(5);
+$sheet->getRowDimension('26')->setRowHeight(5);
+$sheet->getRowDimension('28')->setRowHeight(5);
+$sheet->getRowDimension('30')->setRowHeight(5);
+$sheet->getRowDimension('32')->setRowHeight(5);
+$sheet->getRowDimension('34')->setRowHeight(5);
+$sheet->getRowDimension('36')->setRowHeight(5);
+$sheet->getRowDimension('38')->setRowHeight(5);
+$sheet->getRowDimension('40')->setRowHeight(5);
+$sheet->getRowDimension('36')->setRowHeight(5);
+$sheet->getRowDimension('38')->setRowHeight(5);
+$sheet->getRowDimension('40')->setRowHeight(5);
+$sheet->getRowDimension('42')->setRowHeight(5);
+$sheet->getRowDimension('44')->setRowHeight(5);
+$sheet->getRowDimension('46')->setRowHeight(5);
+$sheet->getRowDimension('52')->setRowHeight(5);
+$sheet->getRowDimension('54')->setRowHeight(5);
+$sheet->getRowDimension('52')->setRowHeight(5);
+$sheet->getRowDimension('59')->setRowHeight(20);
+$sheet->getRowDimension('60')->setRowHeight(20);
+$sheet->getRowDimension('65')->setRowHeight(40);
+
+$sheet->getStyle('A2')->getAlignment()->setHorizontal('center');
+$sheet->getStyle('A3')->getAlignment()->setHorizontal('center');
+$sheet->getStyle('A8')->getAlignment()->setHorizontal('center');
+$sheet->getStyle('A50')->getAlignment()->setHorizontal('center');
+$sheet->getStyle('F9')->getAlignment()->setHorizontal('center');
+$sheet->getStyle('C60')->getAlignment()->setHorizontal('center');
+$sheet->getStyle('C59')->getAlignment()->setHorizontal('center');
+$sheet->getStyle('A65')->getAlignment()->setHorizontal('center');
+$sheet->getStyle('A66')->getAlignment()->setHorizontal('center');
+$sheet->getStyle('A67')->getAlignment()->setHorizontal('center');
+
+
+
+
+$styleArrayHeaderFontStyle = [
     'font' => [
         'bold'  =>  true,
-        'size'  =>  14,
+        'size'  =>  10,
         'name'  =>  'Arial'
     ],
     'alignment' => [
-        'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+        'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT,
         'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER
-    ],
-    'borders' => [
-        'allBorders' => [
-            'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
-            'color' => ['rgb' => '000000']
-        ]
     ]
+
 ];
-
-
 $styleArray = [
     'font' => [
-        'bold' => true,
+        'bold'  =>  true,
+        'size'  =>  10,
+        'name'  =>  'Arial'
     ],
-    'alignment' => [
-        'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT,
-    ],
-    'borders' => [
-        'top' => [
-            'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
-        ],
-    ],
-    'fill' => [
-        'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_GRADIENT_LINEAR,
-        'rotation' => 90,
-        'startColor' => [
-            'argb' => 'FFA0A0A0',
-        ],
-        'endColor' => [
-            'argb' => 'FFFFFFFF',
-        ],
-    ],
-];
-
-
-
-$styleArrayBorder = [
     'borders' => [
         'outline' => [
             'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK,
@@ -415,16 +457,14 @@ $styleArrayBorder = [
     ],
 ];
 
-$styleArrayBox = [
-    'borders' => [
-        'outline' => [
-            'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
-            'color' => ['argb' => '000000'],
-        ],
-    ],
-];
 
-$styleArrayBoxThick = [
+
+$styleArrayBox = [
+    'font' => [
+        'bold'  =>  true,
+        'size'  =>  8,
+        'name'  =>  'Arial'
+    ],
     'borders' => [
         'outline' => [
             'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
@@ -436,14 +476,6 @@ $styleArrayBoxThick = [
 $styleArrayAllBox = [
     'borders' => [
   		'allBorders' => [
-            'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN //fine border
-        ]
-   	 ]
-];
-
-$styleArrayInsideBox = [
-    'borders' => [
-  		'inside' => [
             'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN //fine border
         ]
    	 ]
@@ -465,76 +497,31 @@ $styleArrayHorizontalBox = [
    	 ]
 ];
 
-$styleArrayHeader = [
-    'font' => [
-        'bold'  =>  false,
-        'size'  =>  22,
-        'name'  =>  'Arial Black'
-    ],
-    'alignment' => [
-        'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
-        'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER
-    ],
-    'borders' => [
-        'vertical' => [
-            'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
-            'color' => ['rgb' => '000000']
-        ]
-    ]
-];
-
-$styleArrayHeaderFontStyle = [
-    'font' => [
-        'bold'  =>  true,
-        'size'  =>  8,
-        'name'  =>  'Arial',
-        'italic' =>  true
-    ],
-    'alignment' => [
-        'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT,
-        'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER
-    ]
-
-];
-
-$styleArrayLightGrayFill = [
-
-    'fill' => [
-        'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
-        'rotation' => 90,
-        'startColor' => [
-            'argb' => 'cfcfcf',
-        ]
-    ]
-    
-];
-/*
-$sheet->getStyle('A1:N'.((int)$rowNum+3))->applyFromArray($styleArrayBorder);
-$sheet->getStyle('A3:N3')->applyFromArray($styleArrayHeader);
-$sheet->getStyle('A1:A2')->applyFromArray($styleArrayHeaderFontStyle);
-$sheet->getStyle('A4:A5')->applyFromArray($styleArrayHeaderFontStyle);
-$sheet->getStyle('A50:N55')->applyFromArray($styleArrayInsideBox);
-$sheet->getStyle('A50:N55')->applyFromArray($styleArrayInsideBox);
-$sheet->getStyle('A10:N33')->applyFromArray($styleArrayInsideBox);
-$sheet->getStyle('A22:N48')->applyFromArray($styleArrayInsideBox);
-$sheet->getStyle('A10:C33')->applyFromArray($styleArrayLightGrayFill);
-$sheet->getStyle('A10:C33')->applyFromArray($styleArrayLightGrayFill);
-$sheet->getStyle('A35:C48')->applyFromArray($styleArrayLightGrayFill);
-$sheet->getStyle('A50:N52')->applyFromArray($styleArrayLightGrayFill);
-$sheet->getStyle('A50:C'.((int)$rowNum+1))->applyFromArray($styleArrayLightGrayFill);
-
-*/
 
 
+$sheet->getStyle('A1:I67')->applyFromArray($styleArray);
+$sheet->getStyle('B50:I50')->applyFromArray($styleArrayAllBox);
+$sheet->getStyle('C55:E58')->applyFromArray($styleArrayAllBox);
+$sheet->getStyle('A4:D5')->applyFromArray($styleArrayBox);
+$sheet->getStyle('E4:I5')->applyFromArray($styleArrayBox);
+$sheet->getStyle('A3:I3')->applyFromArray($styleArray);
+$sheet->getStyle('A6:D7')->applyFromArray($styleArrayBox);
+$sheet->getStyle('E6:I7')->applyFromArray($styleArrayBox);
+$sheet->getStyle('A8:I8')->applyFromArray($styleArray);
+$sheet->getStyle('A9:F42')->applyFromArray($styleArrayBox);
+$sheet->getStyle('G9:I42')->applyFromArray($styleArrayBox);
+$sheet->getStyle('A43:F49')->applyFromArray($styleArrayBox);
+$sheet->getStyle('G43:I49')->applyFromArray($styleArrayBox);
+$sheet->getStyle('A50:I50')->applyFromArray($styleArray);
+$sheet->getStyle('A51:F60')->applyFromArray($styleArrayBox);
+$sheet->getStyle('G51:I60')->applyFromArray($styleArrayBox);
+$sheet->getStyle('A65:I67')->applyFromArray($styleArrayBox);*/
 
 
-
-
-
-$spreadsheet->setActiveSheetIndex(0);
+//$sheet->getStyle('A1:I67')->applyFromArray($styleArray);
 
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header('Content-Disposition: attachment;filename="DOLE X Employee Data.xlsx"');
+header('Content-Disposition: attachment;filename="LEAVE DATA.xlsx"');
 
 $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
 $writer->save('php://output');

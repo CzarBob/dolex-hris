@@ -76,7 +76,7 @@ include 'main_load_query.php';
     
 
       <li class="nav-item ">
-        <a class="nav-link" href="serviceRecord">
+        <a class="nav-link" href="issuance">
           <i class="fas fa-fw fa-lg fa-check-square"></i>
           <span>ISSUANCES</span>
         </a>
@@ -90,7 +90,7 @@ include 'main_load_query.php';
       </li>
 
       <li class="nav-item ">
-        <a class="nav-link" href="serviceRecord">
+        <a class="nav-link" href="http://ro10.dole.gov.ph/">
           <i class="fas fa-fw fa-lg fa-check-square"></i>
           <span>VACANCIES</span>
         </a>
@@ -98,7 +98,7 @@ include 'main_load_query.php';
       
       <?php if ($_SESSION['type']== 'ADMIN') {?>
           <li class="nav-item ">
-          <a class="nav-link" href="serviceRecord">
+          <a class="nav-link" href="primehrm">
             <i class="fas fa-fw fa-lg fa-check-square"></i>
             <span>PRIME HRM</span>
           </a>
@@ -109,7 +109,7 @@ include 'main_load_query.php';
          
 
       <li class="nav-item ">
-        <a class="nav-link" href="serviceRecord">
+        <a class="nav-link" href="about_hris">
           <i class="fas fa-fw fa-lg fa-check-square"></i>
           <span>ABOUT DOLE 10 HRIS</span>
         </a>
@@ -201,7 +201,7 @@ include 'main_load_query.php';
                             View Details 
                           </button>
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Process on RSP</a>
+                            <!--<a class="dropdown-item" href="#">Process on RSP</a>-->
                           </div>
                         </div>
                       </div>
@@ -216,7 +216,7 @@ include 'main_load_query.php';
                             View Details 
                           </button>
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Training Calendar for the year</a>
+                           <!-- <a class="dropdown-item" href="#">Training Calendar for the year</a>-->
                           </div>
                         </div>
                       </div>
@@ -231,9 +231,9 @@ include 'main_load_query.php';
                             View Details 
                           </button>
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Schedule of annual PRAISE Ceremony</a>
+                            <!--<a class="dropdown-item" href="#">Schedule of annual PRAISE Ceremony</a>
                             <a class="dropdown-item" href="#">Summary of PRAISE result by year</a>
-                            <a class="dropdown-item" href="#">Criteria</a>
+                            <a class="dropdown-item" href="#">Criteria</a>-->
                           </div>
                         </div>
                       </div>
@@ -248,9 +248,9 @@ include 'main_load_query.php';
                             View Details 
                           </button>
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Validated OPCR per year</a>
+                           <!-- <a class="dropdown-item" href="#">Validated OPCR per year</a>
                             <a class="dropdown-item" href="#">DPCRs</a>
-                            <a class="dropdown-item" href="#">IPCRs</a>
+                            <a class="dropdown-item" href="#">IPCRs</a>-->
                           </div>
                         </div>
                       </div>
@@ -297,8 +297,8 @@ include 'main_load_query.php';
                             <a class="dropdown-item" href="<?php echo $path;?>">Leave Applications</a>
                            
             
-                            <a class="dropdown-item" href="#">Travel Order</a>
-                            <a class="dropdown-item" href="#">Inspection Authority</a>
+                            <!--<a class="dropdown-item" href="#">Travel Order</a>
+                            <a class="dropdown-item" href="#">Inspection Authority</a>-->
                           </div>
                         </div>
                       </div>
