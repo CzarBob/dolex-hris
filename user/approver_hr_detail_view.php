@@ -226,6 +226,10 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='RD_APPROVER')){
                                           <label for="inputAddress">Division</label>
                                           <input  type="text" class="form-control" id="division" placeholder="Ex. Labor Employment Officer I" disabled>
                                           </div>
+                                          <div class="form-group col-md-4">
+                                            <label for="inputAddress">Position</label>
+                                            <input  type="text" class="form-control" id="position" placeholder="Ex. Labor Employment Officer I" disabled>
+                                          </div>
                                       </div>
                                       <div class="form-row">
                                         <hr>
@@ -250,7 +254,6 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='RD_APPROVER')){
                                           <label for="inputEmail4">Extension</label>
                                           <input type="text" name="extension" id = "extension"  placeholder="Ex. Jr, II, III" class="form-control validate" disabled>
                                           </div>
-                                        
                                       </div>
                                       <div class="form-row">
                                           <!-- Default input -->

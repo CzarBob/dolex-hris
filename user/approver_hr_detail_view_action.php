@@ -327,11 +327,8 @@ if (isset($_POST['action'])){
         $que = 'UPDATE tbl_leave
         SET 
         
-        HRAPPROVESTATUS = "N",
-        VLLESS = "'.$vlless.'",
-        VLBALANCE = "'.$vlbalance.'",
-        SLLESS = "'.$vlless.'",
-        SLBALANCE = "'.$Slbalance.'"
+        HRAPPROVESTATUS = "N"
+
 
 
 

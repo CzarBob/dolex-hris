@@ -153,6 +153,7 @@ $(document).ready(function(){
                 $("#vlless").val(data.data.vlless);
                 $("#vlbalance").val(data.data.vlbalance);
                 $("#imsdremarks").val(data.data.imsdremarks);
+                $("#position").val(data.data.position);
                
                 
             }
@@ -170,7 +171,7 @@ $(document).ready(function(){
  
         var messageValidate = "Confirm approval of leave?";
         if (confirm(messageValidate) == true) {
-            alert('stes');
+            //alert('stes');
             $.ajax({
                 url:"approver_imsd_detail_view_action",
                 method:"POST",

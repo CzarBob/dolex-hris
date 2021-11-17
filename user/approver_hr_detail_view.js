@@ -154,6 +154,7 @@ $(document).ready(function(){
                 $("#slbalance").val(data.data.slbalance);
                 $("#vlless").val(data.data.vlless);
                 $("#vlbalance").val(data.data.vlbalance);
+                $("#position").val(data.data.position);
 
                 
             }

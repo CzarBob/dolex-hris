@@ -156,6 +156,43 @@ $(document).ready(function(){
     count = 1;
     add_dynamic_input_field(count);
 
+
+
+    fetch_employee_data();   
+    
+    function fetch_employee_data(){
+        //alert('zz');
+        var loginID = document.getElementById("loginID").value;
+        //alert(leaveID);
+        var action = 'fetch_leave_application';
+        //alert(action);
+        $.ajax({
+
+            url:"application_leave_detail_action.php",
+            type:"POST",
+            data:{
+                loginID:loginID, 
+                action:action},
+          
+            dataType:'JSON',
+            success:function(data)
+            {
+
+                $('#office').val(data.data.office);
+                $('#division').val(data.data.division);
+                $('#firstname').val(data.data.firstname);
+                $('#middlename').val(data.data.middlename);
+                $('#lastname').val(data.data.lastname);
+                $('#extension').val(data.data.extension);
+                $('#dateoffilling').val(data.data.dateoffilling);
+                //$('#salary').val(data.data.salary);
+                $("#position").val(data.data.position);
+               
+                
+            }
+        });
+    }
+
 });
 
 $('#add_name').on('submit', function(event){
@@ -203,7 +240,7 @@ $('#add_name').on('submit', function(event){
                         if(action == 'add_leave')
                         {
                             alert("Application Successfully Submitted");
-                            //window.location.href = "application_leave";
+                            window.location.href = "application_leave";
                             
     
                         }

@@ -36,7 +36,7 @@ $(document).ready(function(){
      $('#generate_employee_record').click(function(){
 
       //var to_date = '';
-      alert('generate employee');
+      //alert('generate employee');
       //window.location.href="export?from_date="+from_date+"&to_date="+to_date+"";
       //window.location.href="export.php", true;
 

@@ -224,8 +224,12 @@ session_start();
                                           <input type="text" class="form-control" id="office"  disabled>
                                           </div>
                                           <div class="form-group col-md-4">
-                                          <label for="inputAddress">Division</label>
-                                          <input  type="text" class="form-control" id="division"  disabled>
+                                            <label for="inputAddress">Division</label>
+                                            <input  type="text" class="form-control" id="division"  disabled>
+                                          </div>
+                                          <div class="form-group col-md-4">
+                                            <label for="inputAddress">Position</label>
+                                            <input  type="text" class="form-control" id="position"  disabled>
                                           </div>
                                       </div>
                                       <div class="form-row">
@@ -258,15 +262,14 @@ session_start();
                                           <div class="form-group col-md-3">
                                           <label for="inputEmail4">Date of Filing</label>
                                           <input type="date" name="dateoffilling" id = "dateoffilling"   value="<?php echo date("Y-m-d"); ?>" class="form-control validate" >  
-                                        </div>                                  
-                                      </div>
-                                      <div class="form-row">
-                                          <!-- Default input -->
-                                          <div class="form-group col-md-3">
+                                        </div>   
+                                         <!-- Default input -->
+                                         <div class="form-group col-md-3">
                                           <label for="inputEmail4">Salary</label>
                                           <input type="text" name="salary" id = "salary" class="form-control validate" >
-                                          </div>                                  
+                                          </div>                                     
                                       </div>
+  
                                   </div>
                               </div>
                           </div>

@@ -55,22 +55,22 @@ if (isset($_POST['action'])){
 
 
         if (($row['HEADAPPROVESTATUS'] == 'Y') && ($row['RDAPPROVESTATUS'] == 'PENDING')){
-          $sub_array[] = '<p id="applicationstatus" class="text-warning h5"><strong>PENDING - FOR RD SIGNING</strong></p>';
+          $sub_array[] = '<p id="applicationstatus" class="text-warning h6"><strong>PENDING</strong></p>';
         } else if (($row['HEADAPPROVESTATUS'] == 'Y') &&($row['RDAPPROVESTATUS'] == 'N' )){
           //$sub_array['approvalstatus'] = 'DISAPPROVED ';
-          $sub_array[] = '<p id="applicationstatus" class="text-danger h5"><strong>DISAPPROVED</strong></p>';
+          $sub_array[] = '<p id="applicationstatus" class="text-danger h6"><strong>DISAPPROVED</strong></p>';
         } else if ($row['HEADAPPROVESTATUS'] == 'PENDING') {
           //$sub_array['approvalstatus'] = 'PENDING ';
-          $sub_array[] = '<p id="applicationstatus" class="text-warning h5"><strong>PENDING - FOR RD APPROVAL</strong></p>';
+          $sub_array[] = '<p id="applicationstatus" class="text-warning h6"><strong>PENDING</strong></p>';
         } else if ($row['HEADAPPROVESTATUS'] == 'N') {
           //$sub_array['approvalstatus'] = 'DISAPPROVED ';
-          $sub_array[] = '<p id="applicationstatus" class="text-danger h5"><strong>PENDING - FOR RD APPROVAL</strong></p>';
+          $sub_array[] = '<p id="applicationstatus" class="text-danger h6"><strong>DISAPPROVED</strong></p>';
         } else if (($row['HEADAPPROVESTATUS'] == 'Y') && ($row['RDAPPROVESTATUS'] == 'Y')  ){
-          $sub_array[] = '<p id="applicationstatus" class="text-success h5"><strong>APPROVED</strong></p>';
+          $sub_array[] = '<p id="applicationstatus" class="text-success h6"><strong>APPROVED</strong></p>';
         
         
         } else {
-          $sub_array[] = '<p id="applicationstatus" class="text-danger h5"><strong>PENDING </strong></p>';
+          $sub_array[] = '<p id="applicationstatus" class="text-danger h6"><strong>PENDING </strong></p>';
         }
 
         
@@ -119,24 +119,9 @@ if (isset($_POST['action'])){
 
 
 
-$query = '';
-
 if (isset($_POST['action'])){
-  if ($_POST['action'] == 'fetch_single'){
-    $query = 'SELECT 
-    tbl_employee.EMPLOYEEID as EMPLOYEEID,
-    tbl_employee.FIRSTNAME as FIRSTNAME,
-    tbl_employee.MIDDLENAME as MIDDLENAME,
-    tbl_employee.LASTNAME as LASTNAME,
-    tbl_employee.EXTENSION as PROFILE_EXTENSION,
-    tbl_employee.POSITION as POSITION,
-    tbl_employee.DATEHIRED as DATEHIRED,
-    tbl_employee.PASSWORD as PASSWORD_ACCOUNT,
-    tbl_employee.USERNAME as USERNAME,
-    tbl_employee.SLCREDIT as SLCREDIT,
-    tbl_employee.VLCREDIT as VLCREDIT
-    FROM tbl_employee WHERE tbl_employee.ID = "'.$_POST["employeeiddb"].'" ';
-
+  if ($_POST['action'] == 'fetch_leave_application'){
+    $query = 'SELECT tbl_employee.EMPLOYEEID as EMPLOYEEID, tbl_employee.FIRSTNAME as FIRSTNAME, tbl_employee.MIDDLENAME as MIDDLENAME, tbl_employee.LASTNAME as LASTNAME, tbl_employee.EXTENSION as PROFILE_EXTENSION, tbl_employee.POSITION as POSITION,  tbl_employee.FIELDOFFICEID as FIELDOFFICEID, tbl_employee.DIVISIONID as DIVISIONID FROM tbl_employee where tbl_employee.ID = "'.$_POST["loginID"].'" ';
 
     //var_dump($query);
 
@@ -150,49 +135,39 @@ if (isset($_POST['action'])){
         
         $sub_array = array();
 
-
-          $sub_array['employeeid'] = $row['EMPLOYEEID'];
-          $sub_array['firstname'] = $row['FIRSTNAME'];
-          $sub_array['middlename'] = $row['MIDDLENAME'];
-          $sub_array['lastname'] = $row['LASTNAME'];
-          $sub_array['extension'] = $row['PROFILE_EXTENSION'];
-          $sub_array['position'] = $row['POSITION'];
-          $sub_array['datehired'] = $row['DATEHIRED'];
-          $sub_array['username'] = $row['USERNAME'];
-          $sub_array['password'] = $row['PASSWORD_ACCOUNT'];
-          $sub_array['slcredit'] = $row['SLCREDIT'];
-          $sub_array['vlcredit'] = $row['VLCREDIT'];
-
+        $sub_array['employeeid'] = $row['EMPLOYEEID'];
+        $sub_array['office'] = $row['FIELDOFFICEID'];
+        $sub_array['division'] = $row['DIVISIONID'];
+        $sub_array['firstname'] = $row['FIRSTNAME'];
+        $sub_array['middlename'] = $row['MIDDLENAME'];
+        $sub_array['lastname'] = $row['LASTNAME'];
+        $sub_array['extension'] = $row['PROFILE_EXTENSION'];
+        $sub_array['position'] = $row['POSITION'];
 
         
+
+
         $data[] = $sub_array;
         
       }
     }
 
-    $a = array();
-    $b = array();
-    $c = array();
 
+
+    $dateNow = date("Y-m-d H:i:s");
+
+    $a = array();
 
     if(isset($sub_array)){
-      $a = $sub_array;
+      $a = $sub_array; //employee profile
     } 
-    if(isset($sub_array_query_profile)){
-      $b = $sub_array_query_profile;
-    } 
-    if(isset($sub_array_query_family)){
-      $c = $sub_array_query_family;
-    } 
+
+
     $output = array(
-    "data"    => $a,
-    "data_profile"    => $b,
-    "data_family"    => $c
+    "data"    => $a
     );
 
     echo json_encode($output);
-
-
   }
 }
 

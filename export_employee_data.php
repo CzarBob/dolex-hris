@@ -54,8 +54,8 @@ FROM tbl_employee
 INNER JOIN tbl_employee_profile on tbl_employee_profile.EMPID = tbl_employee.ID
 WHERE tbl_employee.CANCELLED = "N"';
 
-//var_dump($query.$que2);
-$result = mysqli_query($connect, $query);
+//echo $query.$que2;
+$result = mysqli_query($connect, $query.$que2);
 $dateNow = date("Y-m-d H:i:s");
 $rowNum=5; //test
 $sheet->setCellValue('A1', 'DOLE-X EMPLOYEE REPORT');

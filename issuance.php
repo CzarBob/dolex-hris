@@ -185,23 +185,7 @@ if ($_SESSION['username'] == ""){
                                   <h6 class="m-0 font-weight-bold text-primary">REGIONAL ISSUANCE</h6>
                                   
                                 </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    
-                                <div class="col-md-12">
-                                  </div>
-                                    <div class="col-md-12">
-      
-                                      <table class=" table">
-                                          <tr>
-                                                <td style="width: 100%;" colspan="2" style = "align: center"><button  style="width: 100%;" class="btn btn-primary" id = "generate_leave_balance">    Generate Report </button></td> 
-                                                                                      
-                                            </tr>  
-                                            
-                                      </table>  
-                                    </div>  
-                                                                       
-                                </div>
+                    
                             </div>
                         </div>
                          

@@ -57,7 +57,7 @@ include 'main_load_query.php';
 
       <hr class="sidebar-divider">
       <li class="nav-item ">
-        <?php if ($_SESSION['type']== 'ADMIN') {?>
+        <?php if (($_SESSION['type']== 'ADMIN') || ($_SESSION['type']== 'HR_APPROVER')) {?>
         <a class="nav-link" href="employee_detail">
           <i class="fas fa-fw fa-lg fa-check-square"></i>
           <span>EMPLOYEE PROFILE</span>

@@ -226,6 +226,10 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='IMSD_APPROVER')){
                                           <label for="inputAddress">Division</label>
                                           <input  type="text" class="form-control" id="division" placeholder="Ex. Labor Employment Officer I" disabled>
                                           </div>
+                                          <div class="form-group col-md-4">
+                                            <label for="inputAddress">Position</label>
+                                            <input  type="text" class="form-control" id="position" placeholder="Ex. Labor Employment Officer I" disabled>
+                                          </div>
                                       </div>
                                       <div class="form-row">
                                         <hr>

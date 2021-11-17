@@ -820,6 +820,38 @@ if (isset($_POST['action'])){
   }
 
   if (isset($_POST['action'])){
+    if ($_POST['action'] == 'fetch_signature'){
+
+      $query = 'SELECT * FROM tbl_employee_signature WHERE EMPID = "'.$_POST['employeeiddb'].'" AND CANCELLED = "N" LIMIT 1';
+      //$query = 'SELECT * FROM tbl_employee_attachment ';
+
+      //var_dump($query);
+      //$number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
+      
+      $result = mysqli_query($connect, $query );
+      
+      $data = array();
+      if($result){ 
+        while($row = mysqli_fetch_array($result)){
+          
+          $sub_array = array();
+          $sub_array[] = $row["FILENAME"];
+          $sub_array[] = "
+          <a href='".$row['LOCATION']."'><button type='button' class='btn btn-info btn-sm'>Download</button></a>"; 
+        
+          
+          $data[] = $sub_array;
+        }
+      }
+      
+      $output = array(
+       "data"    => $data
+      );
+      echo json_encode($output);
+    }
+  }
+
+  if (isset($_POST['action'])){
     if ($_POST['action'] == 'add_children'){
 
         $fullname = mysqli_real_escape_string($connect, strtoupper($_POST['fullname']));
@@ -1392,7 +1424,67 @@ if (isset($_POST['action'])){
        
         if (!$flag){
 
+
           $sqli = "INSERT INTO `tbl_employee_attachment` SET 
+          EMPID = '".$empid."',
+          FILENAME = '".$filename."',
+          LOCATION = '".$admin_profile."',
+          CANCELLED = 'N'";
+          $query = $connect->query($sqli) or die($connect->error); 
+        }
+
+        $message_final = '';
+
+        if ($flag){
+          $message_final = $message;
+        } else {
+          $message_final = $message_success;
+        }
+      
+        $output = array(
+        'status'    => $message_final
+        );
+
+        echo json_encode($output);
+    }
+  }
+
+  if (isset($_POST['action'])){
+    if ($_POST['action'] == 'add_signature'){
+        
+      $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>Data Updated!</strong> 
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      </div>';
+      $message = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>File Exceed Upload limit of 1Mb</strong> <br>
+      ';
+      $flag = false;
+
+				$user_image = upload_sign();
+			
+        $empid  = mysqli_real_escape_string($connect, $_POST['empID']);
+			  $filename = mysqli_real_escape_string($connect, strtoupper($_POST["filename"]));
+
+			  $admin_profile = $user_image;
+
+        if ($admin_profile != ''){
+          $flag = false;
+        } else {
+          $flag = true;
+        }
+       
+        if (!$flag){
+
+          $sqli = "UPDATE tbl_employee_signature
+          SET CANCELLED =  'Y' 
+          WHERE EMPID = '".$empid."'";
+
+          $query = $connect->query($sqli) or die($connect->error); 
+
+          $sqli = "INSERT INTO `tbl_employee_signature` SET 
           EMPID = '".$empid."',
           FILENAME = '".$filename."',
           LOCATION = '".$admin_profile."',
@@ -1429,6 +1521,27 @@ if (isset($_POST['action'])){
         $new_name =  $filename . '.' . $extension[1];
         $destination = 'Uploaded_Files/' . $new_name;
         move_uploaded_file($_FILES['user_image']['tmp_name'], $destination);
+      } else {
+        $destination = '';
+      }
+
+      return $destination;
+    }
+  }
+
+  function upload_sign()
+  {
+    include "dbConnection.php";
+    if(isset($_FILES["user_sign"]))
+    {
+      $filename = mysqli_real_escape_string($connect, strtoupper($_POST["filename"]));
+      $extension = explode('.', $_FILES['user_sign']['name']);
+      $fileSize = $_FILES['user_sign']['size'];
+      $destination = '';
+      if ($fileSize < 1000000){
+        $new_name =  $filename . '.' . $extension[1];
+        $destination = 'Uploaded_Files/' . $new_name;
+        move_uploaded_file($_FILES['user_sign']['tmp_name'], $destination);
       } else {
         $destination = '';
       }

@@ -77,6 +77,8 @@ $query = 'SELECT
     $vlless = '';
     $vlbalance = '';
     $inclusivedate = '';
+    $slcredit = '';
+    $vlcredit = '';
 
 
 
@@ -104,7 +106,9 @@ $query = 'SELECT
     tbl_leave.SLBALANCE as SLBALANCE,
     tbl_leave.VLLESS as VLLESS,
     tbl_leave.VLBALANCE	as VLBALANCE,
-    tbl_leave.INCLUSIVEDATE as INCLUSIVEDATE
+    tbl_leave.INCLUSIVEDATE as INCLUSIVEDATE,
+    tbl_employee.SLCREDIT as SLCREDIT,
+    tbl_employee.VLCREDIT as VLCREDIT
     
     
     FROM tbl_leave
@@ -139,9 +143,11 @@ $query = 'SELECT
             $divisionID = $row['DIVISIONID'];
             $slless = $row['SLLESS'];
             $slbalance = $row['SLBALANCE'];
-            $vlless = $row['vLLESS'];
-            $vlbalance = $row['vLBALANCE'];
+            $vlless = $row['VLLESS'];
+            $vlbalance = $row['VLBALANCE'];
             $inclusivedate = $row['INCLUSIVEDATE'];
+            $slcredit = $row['SLCREDIT'];
+            $vlcredit = $row['VLCREDIT'];
             //var_dump($leaveType);
        }
     }
@@ -260,18 +266,18 @@ if($partOne == "PH"){
 if($partTwo == "IPD"){
     
     $sheet->setCellValue('H17','In case of Sick Leave:');
-    $sheet->setCellValue('H19','[/] In Hospital (Specify Illness) _____________________');
-    $sheet->setCellValue('H21','[ ] Out Patient (Specify Illness)  ____________________');
+    $sheet->setCellValue('H19','[/] In Hospital (Specify Illness) ____________');
+    $sheet->setCellValue('H21','[ ] Out Patient (Specify Illness)  ____________');
 } else if ($partTwo == "OPD"){
     
     $sheet->setCellValue('H17','In case of Sick Leave:');
-    $sheet->setCellValue('H19','[ ] In Hospital (Specify Illness) _____________________');
-    $sheet->setCellValue('H21','[/] Out Patient (Specify Illness)  ____________________');
+    $sheet->setCellValue('H19','[ ] In Hospital (Specify Illness) ___________');
+    $sheet->setCellValue('H21','[/] Out Patient (Specify Illness)  ___________');
 } else {
     
     $sheet->setCellValue('H17','In case of Sick Leave:');
-    $sheet->setCellValue('H19','[ ] In Hospital (Specify Illness) _____________________');
-    $sheet->setCellValue('H21','[ ] Out Patient (Specify Illness)  ____________________');
+    $sheet->setCellValue('H19','[ ] In Hospital (Specify Illness) ___________');
+    $sheet->setCellValue('H21','[ ] Out Patient (Specify Illness)  ___________');
 }
        
 
@@ -333,7 +339,7 @@ if($partSix == "NOTREQUESTED"){
 
 
 
-$sheet->setCellValue('G48',"___________________________");
+$sheet->setCellValue('G48',$firstname." ".$middlename." ".$lastname);
 $sheet->setCellValue('H49','(Signature of Applicant)');
 
 $sheet->setCellValue('A50',"7.  DETAILS OF ACTION ON APPLICATION");

@@ -256,7 +256,7 @@ if (isset($_POST['action'])){
   
           WHERE ID = "'.$leaveID.'"';
   
-          //$result = mysqli_query($connect, $que);
+          $result = mysqli_query($connect, $que);
         } else { 
           
           $dateAdded = date("Y-m-d H:i:s");
@@ -269,7 +269,7 @@ if (isset($_POST['action'])){
   
           WHERE ID = "'.$leaveID.'"';
   
-          //$result = mysqli_query($connect, $que);
+          $result = mysqli_query($connect, $que);
 
         }
        

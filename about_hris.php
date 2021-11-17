@@ -191,14 +191,7 @@ if ($_SESSION['username'] == ""){
                                 <div class="col-md-12">
                                   </div>
                                     <div class="col-md-12">
-      
-                                      <table class=" table">
-                                          <tr>
-                                                <td style="width: 100%;" colspan="2" style = "align: center"><button  style="width: 100%;" class="btn btn-primary" id = "generate_leave_balance">    Generate Report </button></td> 
-                                                                                      
-                                            </tr>  
-                                            
-                                      </table>  
+ 
                                     </div>  
                                                                        
                                 </div>
@@ -206,73 +199,7 @@ if ($_SESSION['username'] == ""){
                         </div>
                          
                             
-                           <div class="col-xl-12 col-lg-7">
-                            <div class="card shadow mb-4">
-                               
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                  <h6 class="m-0 font-weight-bold text-primary">Generate Employee Data</h6>
-                                  <!--<button class="btn btn-info update_family_background" class="update_family_background"> Update Family Background </button>-->
-                                </div>
-                                
-                                <div class="card-body">
-                                  <div class="col-md-12">
-                                  </div>
-
-                                  
-                                  <div class="form-row">
-                                   
-                                  <div class="form-group col-md-2">
-                                      <label for="inputCity">Office</label>
-                                      <select class="custom-select my-1 mr-sm-2" id="office" name="office" >
-                                        <option value='NA' selected>Choose...</option>
-                                        <option value="RO">REGIONAL OFFICE</option>
-                                        <option value="CDOFO">CAGAYAN DE ORO FIELD OFFICE</option>
-                                        <option value="BFO">BUKIDNON FIELD OFFICE</option>
-                                        <option value="CFO">CAMIGUIN FIELD OFFICE</option>
-                                        <option value="LDNFO">LANAO DEL NORTE FIELD OFFICE</option>
-                                        <option value="MISOCCFO">MISAMIS OCCIDENTAL FIELD OFFICE</option>
-                                        <option value="MISORFO">MISAMIS ORIENTAL FIELD OFFICE</option>
-                                      </select>
-                                    </div>
-                                    <div class="form-group col-md-2">
-                                      <label for="inputZip">Division</label>
-                                      <select class="custom-select my-1 mr-sm-2" id="division" name="division" >
-                                        <option value="NA" selected>Choose...</option>
-                                        <option value="TSSD">TSSD</option>
-                                        <option value="IMSD">IMSD</option>
-                                        <option value="MALSU">MALSU</option>
-                                      </select>
-                                    </div>
-                                  </div>
-                                  <div class="form-row"> 
-                                  <div class="form-group col-md-2">
-                                      <label for="inputCity">Gender</label>
-                                      <select class="custom-select my-1 mr-sm-2" id="gender" name="gender">
-                                        <option value='NA' selected>Choose...</option>
-                                        <option value="MALE">Male</option>
-                                        <option value="FEMALE">Female</option>
-
-                                      </select>
-                                    </div>
-                                  </div>
-                                  
-                                    <div class="col-md-12">
-     
-                                       <table class=" table">
-                                           <tr>
-                                                <td style="width: 100%;" colspan="2" style = "align: center"><button  style="width: 100%;" class="btn btn-primary" id = "generate_employee_record">    Generate Report </button></td> 
-                                                                                       
-                                            </tr>  
-                                            
-                                      </table>  
-                                    </div>         
-                         
-
-                                   
-
-                                  </div>
-                                </div>
-                            </div>
+                   
                         </div> 
                     <!-- END OF FAMILY BACKGROUND FORM -->
 

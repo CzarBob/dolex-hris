@@ -152,6 +152,7 @@ $(document).ready(function(){
                 $("#vlless").val(data.data.vlless);
                 $("#vlbalance").val(data.data.vlbalance);
                 $("#attachment").val(data.data.attachment);
+                $("#position").val(data.data.position);
 
                
                 

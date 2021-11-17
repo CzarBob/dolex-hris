@@ -233,6 +233,24 @@
 
             }
 
+            function fetch_signature_data(){
+                    //alert('sdasdoigieij');
+                var employeeiddb = document.getElementById("empID").value;
+           
+
+                var dataTable = $('#signature_data').DataTable({
+                "columnDefs": [{ "orderable": false, "targets":[1] }],
+                "ajax" : {
+                url:"view_employee_action.php",
+                type:"POST",
+                data:{
+                                employeeiddb:employeeiddb, 
+                                action:'fetch_signature'},
+                }
+                });
+
+            }
+
             
             function fetch_single() {
                     var employeeiddb = document.getElementById("empID").value;
@@ -353,6 +371,8 @@
                         fetch_other_recognition_data();
                         fetch_other_membership_data();
                         fetch_attachment_data();
+                        fetch_signature_data();
+                        alert('asdasd');
             }  
 
 
@@ -1848,7 +1868,7 @@
 
         });
 
-                    //ADD OTHER RECOGNITION
+                    //ADD ATTACHMENT
                     $(document).on('click', '#add_attachment', function(){
                         var employeeiddb = document.getElementById("empID").value;
                     
@@ -1910,6 +1930,48 @@
                                 {
                                         $('#attachment_data').DataTable().ajax.reload();
                                         $('#attachmentForm').modal('hide');
+                                        $('#filename').val('');
+        
+                                        $('#message2').html(data.status);
+                                        setTimeout(function(){
+                                            $('#message2').html('');
+                                        }, 90000);
+                                }
+                            })
+                        
+                    });
+
+                    //add electronic signature
+                    $('#addsignature_form').on('submit', function(){
+                        event.preventDefault();
+                        //alert('sdsd');
+	
+                            var extension = $('#user_image').val().split('.').pop().toLowerCase();
+                            if(extension != '')
+                            {
+                                if(jQuery.inArray(extension, ['pdf','png','jpg','jpeg']) == -1)
+                                {
+                                    alert("Invalid File");
+                                    $('#user_image').val('');
+                                    return false;
+                                }
+                            }
+                            $.ajax({
+                                url:"view_employee_action.php",
+                                method:"POST",
+                                data:new FormData(this),
+                                contentType:false,
+                                processData:false,
+                                dataType:"JSON",
+                                /*beforeSend:function()
+                                {
+                                    $('#submit_button').attr('disabled', 'disabled');
+                                    $('#submit_button').html('wait...');
+                                },*/
+                                success:function(data)
+                                {
+                                        $('#signature_data').DataTable().ajax.reload();
+                                        $('#signatureForm').modal('hide');
                                         $('#filename').val('');
         
                                         $('#message2').html(data.status);

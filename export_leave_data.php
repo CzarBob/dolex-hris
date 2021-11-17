@@ -43,11 +43,12 @@ if($result){
     while($row = mysqli_fetch_array($result)){
         //$sheet->mergeCells('I'.((int)$rowNum).':L'.((int)$rowNum));
         //$sheet->mergeCells('M'.((int)$rowNum).':N'.((int)$rowNum));
-        $sheet->setCellValue('A'.$rowNum, $row['VLCREDIT'])
-        ->setCellValue('B'.$rowNum,$row['LASTNAME'])
-        ->setCellValue('C'.$rowNum, $row['MIDDLENAME'])
-        ->setCellValue('D'.$rowNum, $row['FIRSTNAME'])
-        ->setCellValue('E'.$rowNum, $row['SLCREDIT'])
+        $sheet
+        ->setCellValue('A'.$rowNum,$row['LASTNAME'])
+        ->setCellValue('B'.$rowNum, $row['MIDDLENAME'])
+        ->setCellValue('C'.$rowNum, $row['FIRSTNAME'])
+        ->setCellValue('D'.$rowNum, $row['SLCREDIT'])
+        ->setCellValue('E'.$rowNum, $row['VLCREDIT'])
         ;
         $rowNum++;
     }

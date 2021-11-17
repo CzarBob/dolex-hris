@@ -755,6 +755,9 @@ if (mysqli_connect_errno()) {
                                 <li class="nav-item">
                                     <a class="nav-link" id="attachment-tab" data-toggle="tab" href="#attachmenttab" role="tab" aria-controls="contact" aria-selected="false">Supporting Documents</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="signature-tab" data-toggle="tab" href="#signaturetab" role="tab" aria-controls="contact" aria-selected="false">Electronic Signature</a>
+                                </li>
                                 </ul>
                                 <div class="tab-content" id="myTabContent">
                                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -1100,7 +1103,7 @@ if (mysqli_connect_errno()) {
                                     </div> <!--END OF OTHERS TAB -->
 
                                     
-                                    <!-- LEARNING AND DEVELOPMENT TAB-->
+                                    <!-- ATTACHMENT TAB-->
                                     <div class="tab-pane fade" id="attachmenttab" role="tabpanel" aria-labelledby="work-tab">
                                         <div class="container-fluid">
                                             <div class="card shadow mb-4">
@@ -1131,7 +1134,39 @@ if (mysqli_connect_errno()) {
                                             </div>
                                         </div>
                                                                           
-                                    </div> <!--END OF LEARNING AND DEVELOPMENT TAB -->
+                                    </div> <!--END OF ATTACHMENT TAB -->
+
+                                     <!-- SIGNATURE TAB-->
+                                     <div class="tab-pane fade" id="signaturetab" role="tabpanel" aria-labelledby="signature-tab">
+                                        <div class="container-fluid">
+                                            <div class="card shadow mb-4">
+                                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                                    <h6 class="m-0 font-weight-bold text-primary"></h6>  
+                                                    <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#signatureForm">
+                                                   Upload Electronic Signature </button>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="table-responsive">
+                                                    <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="signature_data" width="100%" cellspacing="0">
+                                                              <thead class = "text-primary">
+                                                                  <tr>
+                                                                      <th data-column-id="other_membership">FILENAME</th>
+                                                                      <th >ACTION</th>
+                                                                  </tr>
+                                                              </thead>
+                                                              <tfoot class = "text-primary">
+                                                                  <tr>
+                                                                      <th>FILENAME</th>
+                                                                      <th>ACTION</th>
+                                                                  </tr>
+                                                              </tfoot>
+                                                          </table>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>                             
+                                    </div> <!--END OF ATTACHMENT TAB -->
 
 
                                     </div>
@@ -2012,6 +2047,42 @@ if (mysqli_connect_errno()) {
             </button>
           </div>
           <form class="form" method="post"  id="addattachment_form" enctype="multipart/form-data">
+            <div class="modal-body mx-3">
+            
+            <div class="md-form mb-5"> 
+              <label data-error="wrong" data-success="right" for="form34">File Name</label>
+              <input type="text" style="text-transform: uppercase;" name="filename" id = "filename" class="form-control validate" required>        
+            </div>
+            <div class="md-form mb-5"> 
+              <label data-error="wrong" data-success="right" for="form34">Document</label>
+              <input type="file" name="user_image" id="user_image" />       
+            </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+              <!--<input type="hidden" name="eligibility_action_id" id = "eligibility_action_id" class="form-control validate" > 
+              <button  class="btn btn-primary" id = "add_attachment">Submit data</button> -->
+              <input type="hidden" name="empID" id="empID" value="<?php echo $_GET['id']; ?>">
+              <input type="hidden" name="action" id="action" value="add_attachment">
+              <!--<button type="submit" name="save" id="save" class="btn"><i class="fa fa-upload fw-fa"></i> Upload</button>-->
+              <button type="submit" name="submit" id="submit_button" class="btn btn-success"><i class="far fa-save"></i> Add data</button>
+              <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+     <!-- ADD eSIGNATURE FORM -->
+     <div class="modal fade" id="signatureForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold" id="modal_title">Add Electronic Signature</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form class="form" method="post"  id="addsignature_form" enctype="multipart/form-data">
           <div class="modal-body mx-3">
           
           <div class="md-form mb-5"> 
@@ -2019,18 +2090,18 @@ if (mysqli_connect_errno()) {
             <input type="text" style="text-transform: uppercase;" name="filename" id = "filename" class="form-control validate" required>        
           </div>
           <div class="md-form mb-5"> 
-            <label data-error="wrong" data-success="right" for="form34">Document</label>
-            <input type="file" name="user_image" id="user_image" />       
+            <label data-error="wrong" data-success="right" for="form34">Upload Electronic Signature</label>
+            <input type="file" name="user_sign" id="user_sign" />       
           </div>
           </div>
           <div class="modal-footer d-flex justify-content-center">
           <!--<input type="hidden" name="eligibility_action_id" id = "eligibility_action_id" class="form-control validate" > 
           <button  class="btn btn-primary" id = "add_attachment">Submit data</button> -->
-          <input type="hidden" name="empID" id="empID" value="<?php echo $_GET['id']; ?>">
-          <input type="hidden" name="action" id="action" value="add_attachment">
+            <input type="hidden" name="empID" id="empID" value="<?php echo $_GET['id']; ?>">
+            <input type="hidden" name="action" id="action" value="add_signature">
           <!--<button type="submit" name="save" id="save" class="btn"><i class="fa fa-upload fw-fa"></i> Upload</button>-->
-          <button type="submit" name="submit" id="submit_button" class="btn btn-success"><i class="far fa-save"></i> Add data</button>
-          <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
+            <button type="submit" name="submit" id="submit_button" class="btn btn-success"><i class="far fa-save"></i> Add data</button>
+            <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
           </div>
           </form>
         </div>
