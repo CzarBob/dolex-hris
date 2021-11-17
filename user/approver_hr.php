@@ -277,7 +277,7 @@ if (($_SESSION['username'] == "") || ($_SESSION['type']!='HR_APPROVER')){
           </div>
           <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 class="m-0 font-weight-bold text-primary">Pending Leave Applications</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Current Leave Applications</h6>
              
          
             </div>
@@ -310,28 +310,34 @@ if (($_SESSION['username'] == "") || ($_SESSION['type']!='HR_APPROVER')){
 
           <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 class="m-0 font-weight-bold text-primary">Approved Leave Applications</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Employee Leave Applications</h6>
              
          
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="leave_approved_data" width="100%" cellspacing="0">
+                <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="leave_employee_data" width="100%" cellspacing="0">
                   <thead class = "text-primary">
                   <tr>
+                      <th>LEAVE TYPE</th>
+                      <th>INCLUSIVE DATE</th>
                       <th>EMPLOYEE ID</th>
                       <th>FIRST NAME</th>
-                      <th>MIDDLE NAME</th>
                       <th>LAST NAME</th>
+                      <th>FIELD OFFICE</th>
+                      
                       <th>ACTION</th>
                     </tr>
                   </thead>
                   <tfoot class = "text-primary">
                     <tr>
+                      <th>LEAVE TYPE</th>
+                      <th>INCLUSIVE DATE</th>
                       <th>EMPLOYEE ID</th>
                       <th>FIRST NAME</th>
-                      <th>MIDDLE NAME</th>
                       <th>LAST NAME</th>
+                      <th>FIELD OFFICE</th>
+                      
                       <th>ACTION</th>
                     </tr>
                   </tfoot>
@@ -340,37 +346,7 @@ if (($_SESSION['username'] == "") || ($_SESSION['type']!='HR_APPROVER')){
             </div>
           </div>
         
-          <div class="card shadow mb-4">
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 class="m-0 font-weight-bold text-primary">Denied Leave Applications</h6>
-             
-         
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="leave_denied_data" width="100%" cellspacing="0">
-                  <thead class = "text-primary">
-                  <tr>
-                      <th>EMPLOYEE ID</th>
-                      <th>FIRST NAME</th>
-                      <th>MIDDLE NAME</th>
-                      <th>LAST NAME</th>
-                      <th>ACTION</th>
-                    </tr>
-                  </thead>
-                  <tfoot class = "text-primary">
-                    <tr>
-                      <th>EMPLOYEE ID</th>
-                      <th>FIRST NAME</th>
-                      <th>MIDDLE NAME</th>
-                      <th>LAST NAME</th>
-                      <th>ACTION</th>
-                    </tr>
-                  </tfoot>
-                </table>
-              </div>
-            </div>
-          </div>
+
         
         
         </div>
@@ -507,8 +483,8 @@ if (($_SESSION['username'] == "") || ($_SESSION['type']!='HR_APPROVER')){
 
 
     fetch_data();
-    fetch_approved_data();
-    fetch_denied_data();
+    fetch_employee_leave_data();
+
    
     function fetch_data(){
       var action = 'fetch_leave_data';
@@ -530,9 +506,9 @@ if (($_SESSION['username'] == "") || ($_SESSION['type']!='HR_APPROVER')){
     }
 
     
-    function fetch_approved_data(){
-      var action = 'fetch_leave_approved';
-      var dataTable = $('#leave_approved_data').DataTable({
+    function fetch_employee_leave_data(){
+      var action = 'leave_employee_records';
+      var dataTable = $('#leave_employee_data').DataTable({
       /* "processing" : true,
         "serverSide" : true,
         "columnDefs": [{ "orderable": false, "targets":[0,1] }],
@@ -550,24 +526,6 @@ if (($_SESSION['username'] == "") || ($_SESSION['type']!='HR_APPROVER')){
     }
 
     
-    function fetch_denied_data(){
-      var action = 'fetch_leave_denied';
-      var dataTable = $('#leave_denied_data').DataTable({
-      /* "processing" : true,
-        "serverSide" : true,
-        "columnDefs": [{ "orderable": false, "targets":[0,1] }],
-        "order" : [],*/
-        "ajax" : {
-        url:"approver_hr_action.php",
-        type:"POST",
-        data:{
-            action:action
-                  },
-        },
-        success:function(){
-        }
-      });
-    }
 
 
 

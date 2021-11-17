@@ -95,7 +95,7 @@ if (isset($_POST['action'])){
     if ($_POST['action'] == 'fetch_leave_data'){
 
       $query = 'SELECT tbl_leave.ID as ID,tbl_leave.DATEOFFILLING as DATEOFFILLING, tbl_employee.FIELDOFFICEID as FIELDOFFICEID, tbl_leave.LEAVETYPE as LEAVETYPE, tbl_employee.FIRSTNAME as FIRSTNAME, tbl_employee.LASTNAME as LASTNAME FROM `tbl_leave`
-      INNER JOIN tbl_employee ON tbl_leave.EMPID = tbl_employee.ID WHERE tbl_leave.CANCELLED = "N" AND tbl_leave.HEADAPPROVESTATUS ="Y" AND tbl_leave.HRAPPROVESTATUS != "Y" AND tbl_leave.IMSDAPPROVESTATUS != "Y" AND tbl_leave.RDAPPROVESTATUS != "Y" ';
+      INNER JOIN tbl_employee ON tbl_leave.EMPID = tbl_employee.ID WHERE tbl_leave.CANCELLED = "N" AND tbl_leave.HEADAPPROVESTATUS ="Y" AND tbl_leave.HRAPPROVESTATUS != "Y"  AND tbl_leave.RDAPPROVESTATUS != "Y" ';
 
 
 
@@ -133,23 +133,36 @@ if (isset($_POST['action'])){
   } 
 
   if (isset($_POST['action'])){
-    if ($_POST['action'] == 'fetch_leave_approved'){
+    if ($_POST['action'] == 'leave_employee_records'){
 
       
-      $query = 'SELECT tbl_leave.ID as ID,tbl_leave.DATEOFFILLING as DATEOFFILLING, tbl_employee.FIELDOFFICEID as FIELDOFFICEID, tbl_leave.LEAVETYPE as LEAVETYPE, tbl_employee.FIRSTNAME as FIRSTNAME, tbl_employee.LASTNAME as LASTNAME FROM `tbl_leave`
-      INNER JOIN tbl_employee ON tbl_leave.EMPID = tbl_employee.ID WHERE tbl_leave.CANCELLED = "N" AND tbl_leave.HEADAPPROVESTATUS ="Y" AND tbl_leave.HRAPPROVESTATUS = "Y" AND tbl_leave.IMSDAPPROVESTATUS != "Y" AND tbl_leave.RDAPPROVESTATUS != "Y"';
+      $query = 'SELECT 
+      tbl_leave.ID as ID,tbl_leave.DATEOFFILLING as DATEOFFILLING, tbl_employee.FIELDOFFICEID as FIELDOFFICEID, tbl_leave.LEAVETYPE as LEAVETYPE, tbl_employee.FIRSTNAME as FIRSTNAME, tbl_employee.LASTNAME as LASTNAME, tbl_leave.RDAPPROVESTATUS as RDAPPROVESTATUS  FROM `tbl_leave`
+              INNER JOIN tbl_employee ON tbl_leave.EMPID = tbl_employee.ID WHERE tbl_leave.CANCELLED = "N"';
 
       $result = mysqli_query($connect, $query );
-      
+      //var_dump($query);
       $data = array();
       if($result){
         while($row = mysqli_fetch_array($result)){
         
           $sub_array = array();
           $sub_array[] = $row["DATEOFFILLING"];
+          $sub_array[] = $row["FIELDOFFICEID"];
           $sub_array[] = $row["LEAVETYPE"];
-          $sub_array[] = $row["FIRSTNAME"];
           $sub_array[] = $row["LASTNAME"];
+          $sub_array[] = $row["FIRSTNAME"];
+
+          if ($row["RDAPPROVESTATUS"] == 'Y'){
+            $sub_array[] = 'APPROVED';
+          } else if ($row["RDAPPROVESTATUS"] == 'N'){
+            $sub_array[] = 'DISAPPROVED';
+          }
+          else {
+            $sub_array[] = 'PENDING';
+          }
+         
+
           /*$sub_array[] = "
           <button type='button' name='view_leave' class='btn btn-warning btn-sm view_leave'  data-id='".$row['ID']."'>View</button>";*/
           $sub_array[] = "<a href='application_leave_view_only.php?id=".$row['ID']."' data-id='".$row['ID']."'> <button type='button' class='btn btn-info btn-sm'>Select</button></a> ";  
@@ -178,7 +191,7 @@ if (isset($_POST['action'])){
 
       
       $query = 'SELECT tbl_leave.ID as ID,tbl_leave.DATEOFFILLING as DATEOFFILLING, tbl_employee.FIELDOFFICEID as FIELDOFFICEID, tbl_leave.LEAVETYPE as LEAVETYPE, tbl_employee.FIRSTNAME as FIRSTNAME, tbl_employee.LASTNAME as LASTNAME FROM `tbl_leave`
-      INNER JOIN tbl_employee ON tbl_leave.EMPID = tbl_employee.ID WHERE tbl_leave.CANCELLED = "N" AND tbl_leave.HEADAPPROVESTATUS ="Y" AND tbl_leave.HRAPPROVESTATUS = "N" AND tbl_leave.IMSDAPPROVESTATUS != "Y" AND tbl_leave.RDAPPROVESTATUS != "Y"';
+      INNER JOIN tbl_employee ON tbl_leave.EMPID = tbl_employee.ID WHERE tbl_leave.CANCELLED = "N" AND tbl_leave.HEADAPPROVESTATUS ="Y" AND tbl_leave.HRAPPROVESTATUS = "N" ';
 
       $result = mysqli_query($connect, $query );
       

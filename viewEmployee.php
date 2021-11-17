@@ -235,6 +235,7 @@ if (mysqli_connect_errno()) {
                                       <label for="inputZip">Division</label>
                                       <select class="custom-select my-1 mr-sm-2" id="division" name="division" disabled>
                                         <option value="NA" selected>Choose...</option>
+                                        <option value="ORD">ORD</option>
                                         <option value="TSSD">TSSD</option>
                                         <option value="IMSD">IMSD</option>
                                         <option value="MALSU">MALSU</option>

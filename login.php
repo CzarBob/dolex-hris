@@ -26,7 +26,7 @@ if(isset($_POST['login'])){
 		  $_SESSION['username'] = $row['USERNAME'];
 		  $_SESSION['usernameid'] = $row['ID'];
 		  $_SESSION['type'] = $row['TYPE'];
-		  $_SESSION['fielofficeid'] = $row['FIELDOFFICEID'];
+		  $_SESSION['fieldofficeid'] = $row['FIELDOFFICEID'];
 		  $_SESSION['divisionid'] = $row['DIVISIONID'];
 		  //echo "success";
 		  $message_final = 'success';

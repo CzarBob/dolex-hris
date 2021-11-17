@@ -286,6 +286,8 @@
                                 var divisionValue =  data.data.divisionid;
                                 $("#division").val(divisionValue).change();
 
+                               // alert($("#division").val());
+
                                 $('#vlcredit').val(data.data.vlcredit);
                                 $('#slcredit').val(data.data.slcredit);
     
@@ -372,7 +374,7 @@
                         fetch_other_membership_data();
                         fetch_attachment_data();
                         fetch_signature_data();
-                        alert('asdasd');
+                        //alert('asdasd');
             }  
 
 

@@ -79,6 +79,7 @@ $query = 'SELECT
     $inclusivedate = '';
     $slcredit = '';
     $vlcredit = '';
+    $esig = '';
 
 
 
@@ -108,11 +109,13 @@ $query = 'SELECT
     tbl_leave.VLBALANCE	as VLBALANCE,
     tbl_leave.INCLUSIVEDATE as INCLUSIVEDATE,
     tbl_employee.SLCREDIT as SLCREDIT,
-    tbl_employee.VLCREDIT as VLCREDIT
+    tbl_employee.VLCREDIT as VLCREDIT,
+    tbl_employee_signature.LOCATION as ESIG
     
     
     FROM tbl_leave
     INNER JOIN tbl_employee on tbl_leave.EMPID = tbl_employee.ID
+    LEFT JOIN tbl_employee_signature on tbl_employee.ID = tbl_employee_signature.EMPID
     
     WHERE tbl_leave.ID = "'.$leaveID.'"  AND tbl_leave.CANCELLED = "N"';
 
@@ -148,9 +151,20 @@ $query = 'SELECT
             $inclusivedate = $row['INCLUSIVEDATE'];
             $slcredit = $row['SLCREDIT'];
             $vlcredit = $row['VLCREDIT'];
+            $esig = $row['ESIG'];
             //var_dump($leaveType);
        }
     }
+
+if(isset($esig)){
+    $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
+    $drawing->setPath($esig);
+    $drawing->setName('DOLE LOGO');
+    $drawing->setCoordinates('G48');
+    $drawing->setWidthAndHeight(50,50);
+    $drawing->setWorksheet($sheet); 
+}
+ 
      
 $sheet->setCellValue('A1', 'Civil Service Form No.6 (Revised 2020)');
 $sheet->setCellValue('A2', "Republic of the Philippines\rDepartment of Labor and Employment\rNorthern Mindanao");

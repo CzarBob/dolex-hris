@@ -307,7 +307,7 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='CHIEF_APPROVER')){
             </div>
           </div>
 
-
+<!--
           <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
               <h6 class="m-0 font-weight-bold text-primary">Approved Leave Applications</h6>
@@ -338,8 +338,8 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='CHIEF_APPROVER')){
                 </table>
               </div>
             </div>
-          </div>
-        
+          </div> -->
+        <!--
           <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
               <h6 class="m-0 font-weight-bold text-primary">Denied Leave Applications</h6>
@@ -370,7 +370,7 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='CHIEF_APPROVER')){
                 </table>
               </div>
             </div>
-          </div>
+          </div> -->
         
         
         </div>
@@ -513,10 +513,7 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='CHIEF_APPROVER')){
     function fetch_data(){
       var action = 'fetch_leave_data';
       var dataTable = $('#leave_data').DataTable({
-      /* "processing" : true,
-        "serverSide" : true,
-        "columnDefs": [{ "orderable": false, "targets":[0,1] }],
-        "order" : [],*/
+     
         "ajax" : {
         url:"approver_pfo_action.php",
         type:"POST",
@@ -530,14 +527,11 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='CHIEF_APPROVER')){
     }
 
 
-
+/*
     function fetch_approved_data(){
       var action = 'fetch_leave_approved_data';
       var dataTable = $('#leave_approved_data').DataTable({
-      /* "processing" : true,
-        "serverSide" : true,
-        "columnDefs": [{ "orderable": false, "targets":[0,1] }],
-        "order" : [],*/
+     
         "ajax" : {
         url:"approver_pfo_action.php",
         type:"POST",
@@ -554,10 +548,7 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='CHIEF_APPROVER')){
     function fetch_denied_data(){
       var action = 'fetch_leave_denied_data';
       var dataTable = $('#leave_denied_data').DataTable({
-      /* "processing" : true,
-        "serverSide" : true,
-        "columnDefs": [{ "orderable": false, "targets":[0,1] }],
-        "order" : [],*/
+   
         "ajax" : {
         url:"approver_pfo_action.php",
         type:"POST",
@@ -574,10 +565,7 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='CHIEF_APPROVER')){
     function fetch_dashboard_employee(){
         var action = 'fetch_dashboard_employee';
         var dataTable = $('#user_data').DataTable({
-        /* "processing" : true,
-          "serverSide" : true,
-          "columnDefs": [{ "orderable": false, "targets":[0,1] }],
-          "order" : [],*/
+       
           "ajax" : {
           url:"main_load_query.php",
           type:"POST",
@@ -590,7 +578,7 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='CHIEF_APPROVER')){
         });
       }  
 
-
+*/
 
 
 

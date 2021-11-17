@@ -162,10 +162,12 @@ $(document).ready(function(){
                 $("#vlless").val(data.data.vlless);
                 $("#vlbalance").val(data.data.vlbalance);
                 $("#imsdremarks").val(data.data.imsdremarks);
-
+                $('#position').html(data.data.position);
                 //$("#applicationstatus").val(data.data.approvalstatus);
-                //alert(data.data.approvalstatus)
+                //alert(data.data.position)
                 $('#message2').html(data.data.approvalstatus);
+                
+            
             
                
                 

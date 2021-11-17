@@ -243,7 +243,7 @@ if (isset($_POST['action'])){
       
 
       if (!$flag){
-        if ($_SESSION['divisionid']=='IMSD'){
+        if (($_SESSION['divisionid']=='IMSD') || ($_SESSION['divisionid']=='ORD')){
           
           $dateAdded = date("Y-m-d H:i:s");
           $que = 'UPDATE tbl_leave

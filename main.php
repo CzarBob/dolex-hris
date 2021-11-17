@@ -310,13 +310,12 @@ include 'main_load_query.php';
               
           </div>
 
-
+<!--
           <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
               <h6 class="m-0 font-weight-bold text-primary">Employee List</h6>
               <t>
-              <!--<a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" href = "export.php" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Add Employee</a> 
-              <a class = "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#dateRangeModal" aria-expanded="false"><i class="fas fa-plus fa-sm text-white-50"></i> Generate Report</a> -->
+             
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -341,7 +340,7 @@ include 'main_load_query.php';
               </div>
             </div>
           </div>
-        </div>
+        </div>-->
         <!-- /.container-fluid -->
       </div>
       <!-- End of Main Content -->
@@ -350,7 +349,7 @@ include 'main_load_query.php';
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2019</span>
+           
           </div>
         </div>
       </footer>
