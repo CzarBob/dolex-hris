@@ -568,15 +568,15 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='RD_APPROVER')){
                                       
                                           </div>
                                       </div>
-
+                                      <!--
                                       <div class="form-row">
-                                          <!-- Default input -->
+                                          
                                           <div class="form-group col-md-10">
                                           <label for="inputAddress">IMSD Chief remarks</label>
                                           <textarea class="form-control"  id="imsdremarks" name="imsdremarks" rows="4" cols="100" disabled> </textarea>
                                       
                                           </div>
-                                      </div>
+                                      </div>-->
 
                                       <div class="form-row">
                                           <!-- Default input -->

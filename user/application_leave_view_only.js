@@ -161,7 +161,7 @@ $(document).ready(function(){
                 $("#slbalance").val(data.data.slbalance);
                 $("#vlless").val(data.data.vlless);
                 $("#vlbalance").val(data.data.vlbalance);
-                $("#imsdremarks").val(data.data.imsdremarks);
+                //$("#imsdremarks").val(data.data.imsdremarks);
                 $('#position').html(data.data.position);
                 //$("#applicationstatus").val(data.data.approvalstatus);
                 //alert(data.data.position)

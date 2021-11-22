@@ -53,7 +53,7 @@ if(isset($_SESSION["loggedin"])){
                   <div class="text-center">
                     <h1 class="h4 text-black-800 mb-5">DOLE-X HRIS</h1>
                   </div>
-                  <form class="user" method = "post">
+                  <!--<form class="user" method = "post">-->
                     <div class="form-group">
                       <input type="text" class="form-control form-control-user" id="username" name = "username" placeholder="Username" autocomplete = "on">
                     </div>
@@ -66,12 +66,15 @@ if(isset($_SESSION["loggedin"])){
                         <label class="custom-control-label" for="customCheck">Remember Me</label>
                       </div>
                     </div>
-                    <a class="btn btn-info btn-user btn-block text-white" id ="login"><b style = "font-size: 18px;">Login</b></a>
+                    <!--<a class="btn btn-info btn-user btn-block text-white" id ="login"><b style = "font-size: 18px;">Login</b></a>
+                    <a class="btn btn-info btn-user btn-block text-white" data-target="#privacyNoticeModal" id ="privacy_notice"><b style = "font-size: 18px;">Login</b></a>-->
+                    <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#privacyNoticeModal"
+                                                    aria-expanded="false">Add Children</button>
                     <hr>
                     <div class="text-center">
-                      <a class="small" href="pages/forgot_password">Forgot Password?</a>
+                     
                     </div>
-                  </form>
+                  <!--</form>-->
                 </div>
               </div>
             </div>
@@ -110,6 +113,44 @@ if(isset($_SESSION["loggedin"])){
     </div>
     </div>
   </div>
+
+
+
+  <!-- ADD CHILDREN FORM -->
+  <div class="modal fade" id="privacyNoticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold" id="modal_title">Add Children</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-3">
+
+
+            <div class="md-form mb-5">
+            
+              <label data-error="wrong" data-success="right" for="form34">Full name</label>
+              <input type="text" style="text-transform: uppercase;"  name="fullname" id = "fullname" class="form-control validate" required>
+           
+            </div>
+
+            <div class="md-form mb-5">
+       
+              <label data-error="wrong" data-success="right" for="form29">Date of Birth</label>
+              <input type="date" name="dob_add" id = "dob_add" class="form-control validate" required>
+             
+            </div>
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+         
+          <button class="btn btn-primary" id = "add_children">Add data</button>
+          <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
   
 <style type="text/css">
 .imagelogin{
@@ -174,6 +215,8 @@ $(document).ready(function(){
   $('#login').click(function(){
     loginConfirm();
   }); 
+
+
 
 }); 
 </script> 

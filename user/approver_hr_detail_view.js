@@ -149,7 +149,7 @@ $(document).ready(function(){
                 $("#slcredit").val(data.data.slcredit);
                 $("#vlcredit").val(data.data.vlcredit);
                 $("#attachment").val(data.data.attachment);
-                $("#imsdremarks").val(data.data.imsdremarks);
+                //$("#imsdremarks").val(data.data.imsdremarks);
                 $("#slless").val(data.data.slless);
                 $("#slbalance").val(data.data.slbalance);
                 $("#vlless").val(data.data.vlless);
