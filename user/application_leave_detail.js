@@ -114,10 +114,7 @@ $('input[name=partfive]').attr('checked',false);
         document.getElementById("partfour1").checked = false;
         document.getElementById("partfour2").checked = false;
         //document.getElementById("partfive1").checked = false;
-        //document.getElementById("partfive2").checked = false;
-       
-
-        
+        //document.getElementById("partfive2").checked = false;   
     }   
 }
 
@@ -125,7 +122,7 @@ $('input[name=partfive]').attr('checked',false);
 
 function add_dynamic_input_field(count)
 {
-    //alert('pota');
+
     var button = '';
     if(count > 1)
     {
@@ -155,55 +152,93 @@ $(document).on('click', '.remove', function(){
 $(document).ready(function(){
     count = 1;
     add_dynamic_input_field(count);
-
+    //document.getElementById('dateoffilling').value = new Date().toDateInputValue();
 
 
     fetch_employee_data();   
     
-    function fetch_employee_data(){
-        //alert('zz');
-        var loginID = document.getElementById("loginID").value;
-        //alert(leaveID);
-        var action = 'fetch_leave_application';
-        //alert(action);
-        $.ajax({
-
-            url:"application_leave_detail_action.php",
-            type:"POST",
-            data:{
-                loginID:loginID, 
-                action:action},
-          
-            dataType:'JSON',
-            success:function(data)
-            {
-
-                $('#office').val(data.data.office);
-                $('#division').val(data.data.division);
-                $('#firstname').val(data.data.firstname);
-                $('#middlename').val(data.data.middlename);
-                $('#lastname').val(data.data.lastname);
-                $('#extension').val(data.data.extension);
-                $('#dateoffilling').val(data.data.dateoffilling);
-                //$('#salary').val(data.data.salary);
-                $("#position").val(data.data.position);
-               
-                
-            }
-        });
-    }
+    
 
 });
+
+function fetch_employee_data(){
+    //alert('zz');
+    var loginID = document.getElementById("loginID").value;
+    //alert(leaveID);
+    var action = 'fetch_leave_application';
+    //alert(action);
+    $.ajax({
+
+        url:"application_leave_detail_action.php",
+        type:"POST",
+        data:{
+            loginID:loginID, 
+            action:action},
+      
+        dataType:'JSON',
+        success:function(data)
+        {
+
+            $('#office').val(data.data.office);
+            $('#division').val(data.data.division);
+            $('#firstname').val(data.data.firstname);
+            $('#middlename').val(data.data.middlename);
+            $('#lastname').val(data.data.lastname);
+            $('#extension').val(data.data.extension);
+            //$('#dateoffilling').val(data.data.dateoffilling);
+            //$('#salary').val(data.data.salary);
+            $("#position").val(data.data.position);
+           
+            
+        }
+    });
+}
+
+function validateLeave(){
+    var leaveType        =    $('#leavetype').val();
+    var fillingdate        =    document.getElementById("dateoffilling").value;
+    var dataArr = [];
+
+    var inclusive_date = document.getElementsByName('inclusive_date[]');
+    //alert(inclusive_date[0].value);
+    
+     // The number of milliseconds in one day
+     var date1, date2;  
+     //define two date object variables with dates inside it  
+     date1 = new Date(fillingdate);  
+     date2 = new Date(inclusive_date[0].value);  
+
+     //calculate time difference  
+     var time_difference = date2.getTime() - date1.getTime();  
+
+     //calculate days difference by dividing total milliseconds in a day  
+     var days_difference = time_difference / (1000 * 60 * 60 * 24);  
+       
+     /*document.write("Number of days between dates <br>" +   
+                     date1 + " and <br>" + date2 + " are: <br>"   
+                     + days_difference + " days");*/
+
+    
+        return days_difference;
+    
+    
+}
+
+
 
 $('#add_name').on('submit', function(event){
     //alert('etst');
     event.preventDefault();
     var dataArr = [];
-
+    var daysdifference = validateLeave();
     var leave_type          = $('#leave_type').val();
     var workingdays        = $('#workingdays').val();
-    
+    alert($('#dateoffilling').val());
+    //alert(daysdifference);
+    if ((leave_type == 'SICK') && (daysdifference + 1 < 0)){
+        alert('Application is '+ Math.abs(daysdifference+1)+' days late upon filling of leave application');
 
+    }
     var inclusive_date = document.getElementsByName('inclusive_date[]');
 
     for(key=0; key < inclusive_date.length; key++)  {
@@ -229,7 +264,7 @@ $('#add_name').on('submit', function(event){
                 var form_data = $(this).serialize();
     
                 var action = $('#action').val();
-                //alert(action);
+
                 $.ajax({
                     url:"application_leave_detail_action",
                     method:"POST",
@@ -251,7 +286,6 @@ $('#add_name').on('submit', function(event){
                         add_dynamic_input_field(0);
                         
                         $('#add_name')[0].reset();
-                        //$('#dynamic_field_modal').modal('hide');
                     }
                 });
             }

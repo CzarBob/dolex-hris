@@ -152,7 +152,7 @@ if (isset($_POST['action'])){
           $sub_array[] = $row["LASTNAME"];
           /*$sub_array[] = "
           <button type='button' name='view_leave' class='btn btn-warning btn-sm view_leave'  data-id='".$row['ID']."'>View</button>";*/
-          $sub_array[] = "<a href='approver_rd_detail_view.php?id=".$row['ID']."' data-id='".$row['ID']."'> <button type='button' class='btn btn-info btn-sm'>Select</button></a> ";  
+          $sub_array[] = "<a href='application_leave_view_only.php?id=".$row['ID']."' data-id='".$row['ID']."'> <button type='button' class='btn btn-info btn-sm'>Select</button></a> ";  
           //<button type='button' name='delete_sr' class='btn btn-danger btn-sm delete_sr' data-id='".$row['ID']."'>Delete</button>";  
        
           $data[] = $sub_array;
@@ -193,7 +193,7 @@ if (isset($_POST['action'])){
           $sub_array[] = $row["LASTNAME"];
           /*$sub_array[] = "
           <button type='button' name='view_leave' class='btn btn-warning btn-sm view_leave'  data-id='".$row['ID']."'>View</button>";*/
-          $sub_array[] = "<a href='approver_rd_detail_view.php?id=".$row['ID']."' data-id='".$row['ID']."'> <button type='button' class='btn btn-info btn-sm'>Select</button></a> ";  
+          $sub_array[] = "<a href='application_leave_view_only.php?id=".$row['ID']."' data-id='".$row['ID']."'> <button type='button' class='btn btn-info btn-sm'>Select</button></a> ";  
           //<button type='button' name='delete_sr' class='btn btn-danger btn-sm delete_sr' data-id='".$row['ID']."'>Delete</button>";  
        
           $data[] = $sub_array;

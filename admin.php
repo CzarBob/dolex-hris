@@ -60,16 +60,11 @@ if(isset($_SESSION["loggedin"])){
                     <div class="form-group">
                       <input type="password" class="form-control form-control-user" id="password" name = "password" placeholder="Password" onkeydown="handleEnter(event)">
                     </div>
-                    <div class="form-group">
-                      <div class="custom-control custom-checkbox small">
-                        <input type="checkbox" class="custom-control-input" id="customCheck">
-                        <label class="custom-control-label" for="customCheck">Remember Me</label>
-                      </div>
-                    </div>
+            
                     <!--<a class="btn btn-info btn-user btn-block text-white" id ="login"><b style = "font-size: 18px;">Login</b></a>
                     <a class="btn btn-info btn-user btn-block text-white" data-target="#privacyNoticeModal" id ="privacy_notice"><b style = "font-size: 18px;">Login</b></a>-->
-                    <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#privacyNoticeModal"
-                                                    aria-expanded="false">Add Children</button>
+                    <button id = "loginButton" class="btn btn-success btn-sm" data-toggle="modal" data-target="#privacyNoticeModal"
+                                                    aria-expanded="false">Login</button>
                     <hr>
                     <div class="text-center">
                      
@@ -116,37 +111,27 @@ if(isset($_SESSION["loggedin"])){
 
 
 
-  <!-- ADD CHILDREN FORM -->
-  <div class="modal fade" id="privacyNoticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <!-- PRIVACY NOTICE FORM -->
+  <div class="modal fade bd-example-modal-lg" id="privacyNoticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header text-center">
-            <h4 class="modal-title w-100 font-weight-bold" id="modal_title">Add Children</h4>
+            <h4 class="modal-title w-100 font-weight-bold" id="modal_title">Privacy Policy</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body mx-3">
+          <div class="modal-body mx-3 text-center">
 
+            <p class="card-text"> Please be informed that as an applicant of the various programs of the DOLE-X Regional Office, this office will require your personal information that is protected under the Data Privacy Act of 2012</p>
+            <p class="card-text">For this purpose, upon entering this DOLE-X Regional Office Online Portal you hereby freely give your iformal consent to allow this office to collect and process your personal information.</p>
+            <p class="card-text">Upon agreeing to the terms of this portal, and thus giving your consent, the regional office, including its authorized personnel will not be held accountable or liable for the collection and processing of your personal information, to the extent that it is allowed by the existing laws and guidelines.</p>
 
-            <div class="md-form mb-5">
-            
-              <label data-error="wrong" data-success="right" for="form34">Full name</label>
-              <input type="text" style="text-transform: uppercase;"  name="fullname" id = "fullname" class="form-control validate" required>
-           
-            </div>
-
-            <div class="md-form mb-5">
-       
-              <label data-error="wrong" data-success="right" for="form29">Date of Birth</label>
-              <input type="date" name="dob_add" id = "dob_add" class="form-control validate" required>
-             
-            </div>
           </div>
           <div class="modal-footer d-flex justify-content-center">
          
-          <button class="btn btn-primary" id = "add_children">Add data</button>
-          <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
+            <button class="btn btn-primary" id = "login">Yes, I agree</button>
+         
           </div>
         </div>
       </div>
@@ -167,7 +152,7 @@ $(document).ready(function(){
   inputPass.addEventListener("keyup", function(event) {
       if (event.keyCode === 13) {
           event.preventDefault();
-          document.getElementById("login").click();
+          document.getElementById("loginButton").click();
       }
   });
 
@@ -175,7 +160,7 @@ $(document).ready(function(){
   inputUser.addEventListener("keyup", function(event) {
       if (event.keyCode === 13) {
           event.preventDefault();
-          document.getElementById("login").click();
+          document.getElementById("loginButton").click();
       }
   });
 
@@ -196,6 +181,7 @@ $(document).ready(function(){
       success:function(data){
         //alert(data.status);
         if(data.status=="success"){
+            $('#privacyNoticeModal').modal('hide');
             window.location.href="main.php", true;
         }
         /*if(response=="others"){

@@ -526,7 +526,8 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='RD_APPROVER')){
                                           <div class="form-group col-md-10">
                                           <label for="inputEmail4">Google Drive Link Attachment</label>
                                           <input type="text" name="attachment" id = "attachment" class="form-control validate" disabled>
-                                          </div>                                  
+                                          <div id="link-attach"><a href="https://dole10.net/" target="_blank">Click here to view</a></div> 
+                                        </div>                                  
                                       </div>
 
                                       <div class="form-row">
@@ -565,15 +566,15 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='RD_APPROVER')){
                                           </div>
                                       </div>
 
-                                      <!--
+                                    
                                       <div class="form-row">
                                        
                                           <div class="form-group col-md-10">
-                                          <label for="inputAddress">IMSD Chief remarks</label>
-                                          <textarea class="form-control"  id="imsdremarks" name="imsdremarks" rows="4" cols="100" disabled> </textarea>
+                                          <label for="inputAddress">Human Resource Officer Remarks</label>
+                                          <textarea class="form-control"  id="imsdremarks" name="imsdremarks" rows="4" cols="100" > </textarea>
                                       
                                           </div>
-                                      </div> -->
+                                      </div> 
 
                                       <div class="form-row">
                                           <!-- Default input -->

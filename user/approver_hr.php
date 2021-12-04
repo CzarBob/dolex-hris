@@ -310,7 +310,7 @@ if (($_SESSION['username'] == "") || ($_SESSION['type']!='HR_APPROVER')){
 
           <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 class="m-0 font-weight-bold text-primary">Employee Leave Applications</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Overall Employee Leave Applications</h6>
              
          
             </div>
@@ -319,25 +319,25 @@ if (($_SESSION['username'] == "") || ($_SESSION['type']!='HR_APPROVER')){
                 <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="leave_employee_data" width="100%" cellspacing="0">
                   <thead class = "text-primary">
                   <tr>
-                      <th>LEAVE TYPE</th>
-                      <th>INCLUSIVE DATE</th>
-                      <th>EMPLOYEE ID</th>
-                      <th>FIRST NAME</th>
-                      <th>LAST NAME</th>
+                      <th>DATE OF FILLING</th>
+                      <th>INCLUSIVE DATE/S</th>
                       <th>FIELD OFFICE</th>
-                      
+                      <th>LEAVE TYPE</th>
+                      <th>LAST NAME</th>
+                      <th>FIRST NAME</th>
+                      <th>DIRECTOR APPROVAL STATUS</th>
                       <th>ACTION</th>
                     </tr>
                   </thead>
                   <tfoot class = "text-primary">
                     <tr>
-                      <th>LEAVE TYPE</th>
-                      <th>INCLUSIVE DATE</th>
-                      <th>EMPLOYEE ID</th>
-                      <th>FIRST NAME</th>
-                      <th>LAST NAME</th>
+                      <th>DATE OF FILLING</th>
+                      <th>INCLUSIVE DATE/S</th>
                       <th>FIELD OFFICE</th>
-                      
+                      <th>LEAVE TYPE</th>
+                      <th>LAST NAME</th>
+                      <th>FIRST NAME</th>
+                      <th>DIRECTOR APPROVAL STATUS</th>
                       <th>ACTION</th>
                     </tr>
                   </tfoot>

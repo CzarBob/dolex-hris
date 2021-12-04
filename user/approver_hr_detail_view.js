@@ -149,13 +149,14 @@ $(document).ready(function(){
                 $("#slcredit").val(data.data.slcredit);
                 $("#vlcredit").val(data.data.vlcredit);
                 $("#attachment").val(data.data.attachment);
-                //$("#imsdremarks").val(data.data.imsdremarks);
+                $("#imsdremarks").val(data.data.imsdremarks);
                 $("#slless").val(data.data.slless);
                 $("#slbalance").val(data.data.slbalance);
                 $("#vlless").val(data.data.vlless);
                 $("#vlbalance").val(data.data.vlbalance);
                 $("#position").val(data.data.position);
-
+                
+                $("#link-attach a").attr('href', data.data.attachment);
                 
             }
         });
@@ -221,6 +222,7 @@ $(document).ready(function(){
         var slless = document.getElementById("slless").value;
         var slbalance = document.getElementById("slbalance").value;
         var leave_type = document.getElementById("leave_type").value;
+        var hrremarks = document.getElementById("imsdremarks").value;
 
                 var rdremarks = $('#rdremarks').val();
                 
@@ -242,6 +244,7 @@ $(document).ready(function(){
                             slless:slless,
                             slbalance:slbalance,
                             leave_type:leave_type,
+                            hrremarks:hrremarks,
 
                             action:'reject_leave'
                         },

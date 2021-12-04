@@ -13,6 +13,8 @@ function leaveChange() {
     document.getElementById("partfour2").disabled = true;
     document.getElementById("partfive1").disabled = true;
     document.getElementById("partfive2").disabled = true;
+
+    
     
 
 /*
@@ -88,11 +90,16 @@ $(document).on('click', '#generateReport', function(){
 
 
 
+
 $(document).ready(function(){
     count = 1;
+    document.getElementById('generateReport').style.display = "none";
     add_dynamic_input_field(count);
+    layoutStyle();
+    fetch_leave_data();  
+    //alert('serhe');
 
-    fetch_leave_data();   
+    
     
     function fetch_leave_data(){
         
@@ -161,7 +168,7 @@ $(document).ready(function(){
                 $("#slbalance").val(data.data.slbalance);
                 $("#vlless").val(data.data.vlless);
                 $("#vlbalance").val(data.data.vlbalance);
-                //$("#imsdremarks").val(data.data.imsdremarks);
+                $("#imsdremarks").val(data.data.imsdremarks);
                 $('#position').html(data.data.position);
                 //$("#applicationstatus").val(data.data.approvalstatus);
                 //alert(data.data.position)
@@ -173,6 +180,16 @@ $(document).ready(function(){
                 
             }
         });
+    }
+
+    function layoutStyle(){
+        var usertype = document.getElementById("usertype").value;
+        
+        if (usertype == 'HR_APPROVER'){
+            //alert(usertype);
+            document.getElementById('generateReport').style.display = "inline";
+        }    
+    
     }
 
 

@@ -66,6 +66,7 @@ if (isset($_POST['action'])){
     $query_profile = 'SELECT * FROM tbl_employee_profile WHERE EMPID = "'.$_POST["employeeiddb"].'" ';
     $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query_profile));
     //var_dump($number_filter_row);
+    $usernameid = $_SESSION['usernameid'];
     $dateNow = date("Y-m-d H:i:s");
     if($number_filter_row == 0){
       $queProfile = "INSERT INTO `tbl_employee_profile` SET 
@@ -806,7 +807,7 @@ if (isset($_POST['action'])){
           $sub_array = array();
           $sub_array[] = $row["FILENAME"];
           $sub_array[] = "
-          <a href='".$row['LOCATION']."'><button type='button' class='btn btn-info btn-sm'>Download</button></a>
+          <a href='".$row['LOCATION']."'  target='_blank'><button type='button' class='btn btn-info btn-sm'>Download</button></a>
           <button type='button' name='delete_attachment' class='btn btn-danger btn-sm delete_attachment' data-id='".$row['ID']."'>Delete</button>";  
           $data[] = $sub_array;
         }
@@ -837,7 +838,71 @@ if (isset($_POST['action'])){
           $sub_array = array();
           $sub_array[] = $row["FILENAME"];
           $sub_array[] = "
-          <a href='".$row['LOCATION']."'><button type='button' class='btn btn-info btn-sm'>Download</button></a>"; 
+          <a href='".$row['LOCATION']."'  target='_blank'><button type='button' class='btn btn-info btn-sm'>Download</button></a>"; 
+        
+          
+          $data[] = $sub_array;
+        }
+      }
+      
+      $output = array(
+       "data"    => $data
+      );
+      echo json_encode($output);
+    }
+  }
+
+  if (isset($_POST['action'])){
+    if ($_POST['action'] == 'fetch_passport'){
+
+      $query = 'SELECT * FROM tbl_employee_passport WHERE EMPID = "'.$_POST['employeeiddb'].'" AND CANCELLED = "N" LIMIT 1';
+      //$query = 'SELECT * FROM tbl_employee_attachment ';
+
+      //var_dump($query);
+      //$number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
+      
+      $result = mysqli_query($connect, $query );
+      
+      $data = array();
+      if($result){ 
+        while($row = mysqli_fetch_array($result)){
+          
+          $sub_array = array();
+          $sub_array[] = $row["FILENAME"];
+          $sub_array[] = "
+          <a href='".$row['LOCATION']."'  target='_blank'><button type='button' class='btn btn-info btn-sm'>Download</button></a>"; 
+        
+          
+          $data[] = $sub_array;
+        }
+      }
+      
+      $output = array(
+       "data"    => $data
+      );
+      echo json_encode($output);
+    }
+  }
+
+  if (isset($_POST['action'])){
+    if ($_POST['action'] == 'fetch_fingerprint'){
+
+      $query = 'SELECT * FROM tbl_employee_fingerprint WHERE EMPID = "'.$_POST['employeeiddb'].'" AND CANCELLED = "N" LIMIT 1';
+      //$query = 'SELECT * FROM tbl_employee_attachment ';
+
+      //var_dump($query);
+      //$number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
+      
+      $result = mysqli_query($connect, $query );
+      
+      $data = array();
+      if($result){ 
+        while($row = mysqli_fetch_array($result)){
+          
+          $sub_array = array();
+          $sub_array[] = $row["FILENAME"];
+          $sub_array[] = "
+          <a href='".$row['LOCATION']."'  target='_blank'><button type='button' class='btn btn-info btn-sm'>Download</button></a>"; 
         
           
           $data[] = $sub_array;
@@ -1466,7 +1531,7 @@ if (isset($_POST['action'])){
 				$user_image = upload_sign();
 			
         $empid  = mysqli_real_escape_string($connect, $_POST['empID']);
-			  $filename = mysqli_real_escape_string($connect, strtoupper($_POST["filename"]));
+			  $filename = $_SESSION['username'].'_'.mysqli_real_escape_string($connect, strtoupper($_POST["filename"]));
 
 			  $admin_profile = $user_image;
 
@@ -1507,13 +1572,132 @@ if (isset($_POST['action'])){
         echo json_encode($output);
     }
   }
+
+  if (isset($_POST['action'])){
+    if ($_POST['action'] == 'add_passport'){
+        
+      $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>Data Updated!</strong> 
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      </div>';
+      $message = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>File Exceed Upload limit of 1Mb</strong> <br>
+      ';
+      $flag = false;
+
+				$user_image = upload_passport();
+			
+        $empid  = mysqli_real_escape_string($connect, $_POST['empID']);
+			  $filename = $_SESSION['username'].'_'.mysqli_real_escape_string($connect, strtoupper($_POST["filename"]));
+
+			  $admin_profile = $user_image;
+
+        if ($admin_profile != ''){
+          $flag = false;
+        } else {
+          $flag = true;
+        }
+       
+        if (!$flag){
+
+          $sqli = "UPDATE tbl_employee_passport
+          SET CANCELLED =  'Y' 
+          WHERE EMPID = '".$empid."'";
+
+          $query = $connect->query($sqli) or die($connect->error); 
+
+          $sqli = "INSERT INTO `tbl_employee_passport` SET 
+          EMPID = '".$empid."',
+          FILENAME = '".$filename."',
+          LOCATION = '".$admin_profile."',
+          CANCELLED = 'N'";
+          $query = $connect->query($sqli) or die($connect->error); 
+        }
+
+        $message_final = '';
+
+        if ($flag){
+          $message_final = $message;
+        } else {
+          $message_final = $message_success;
+        }
+      
+        $output = array(
+        'status'    => $message_final
+        );
+
+        echo json_encode($output);
+    }
+  }
+
+  if (isset($_POST['action'])){
+    if ($_POST['action'] == 'add_fingerprint'){
+        
+      $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>Data Updated!</strong> 
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      </div>';
+      $message = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>File Exceed Upload limit of 1Mb</strong> <br>
+      ';
+      $flag = false;
+
+				$user_image = upload_fingerprint();
+			
+        $empid  = mysqli_real_escape_string($connect, $_POST['empID']);
+			  $filename = $_SESSION['username'].'_'.mysqli_real_escape_string($connect, strtoupper($_POST["filename"]));
+
+			  $admin_profile = $user_image;
+
+        if ($admin_profile != ''){
+          $flag = false;
+        } else {
+          $flag = true;
+        }
+       
+        if (!$flag){
+
+          $sqli = "UPDATE tbl_employee_fingerprint
+          SET CANCELLED =  'Y' 
+          WHERE EMPID = '".$empid."'";
+
+          $query = $connect->query($sqli) or die($connect->error); 
+
+          $sqli = "INSERT INTO `tbl_employee_fingerprint` SET 
+          EMPID = '".$empid."',
+          FILENAME = '".$filename."',
+          LOCATION = '".$admin_profile."',
+          CANCELLED = 'N'";
+          //var_dump($sqli);
+          $query = $connect->query($sqli) or die($connect->error); 
+        }
+
+        $message_final = '';
+
+        if ($flag){
+          $message_final = $message;
+        } else {
+          $message_final = $message_success;
+        }
+      
+        $output = array(
+        'status'    => $message_final
+        );
+
+        echo json_encode($output);
+    }
+  }
   
   function upload_image()
   {
     include "dbConnection.php";
     if(isset($_FILES["user_image"]))
     {
-      $filename = mysqli_real_escape_string($connect, strtoupper($_POST["filename"]));
+      $filename = $_SESSION['username'].'_'.mysqli_real_escape_string($connect, strtoupper($_POST["filename"]));
       $extension = explode('.', $_FILES['user_image']['name']);
       $fileSize = $_FILES['user_image']['size'];
       $destination = '';
@@ -1534,7 +1718,7 @@ if (isset($_POST['action'])){
     include "dbConnection.php";
     if(isset($_FILES["user_sign"]))
     {
-      $filename = mysqli_real_escape_string($connect, strtoupper($_POST["filename"]));
+      $filename = $_SESSION['username'].'_'.mysqli_real_escape_string($connect, strtoupper($_POST["filename"]));
       $extension = explode('.', $_FILES['user_sign']['name']);
       $fileSize = $_FILES['user_sign']['size'];
       $destination = '';
@@ -1542,6 +1726,48 @@ if (isset($_POST['action'])){
         $new_name =  $filename . '.' . $extension[1];
         $destination = 'Uploaded_Files/' . $new_name;
         move_uploaded_file($_FILES['user_sign']['tmp_name'], $destination);
+      } else {
+        $destination = '';
+      }
+
+      return $destination;
+    }
+  }
+
+  function upload_passport()
+  {
+    include "dbConnection.php";
+    if(isset($_FILES["user_passport"]))
+    {
+      $filename = $_SESSION['username'].'_'.mysqli_real_escape_string($connect, strtoupper($_POST["filename"]));
+      $extension = explode('.', $_FILES['user_passport']['name']);
+      $fileSize = $_FILES['user_passport']['size'];
+      $destination = '';
+      if ($fileSize < 1000000){
+        $new_name =  $filename . '.' . $extension[1];
+        $destination = 'Uploaded_Files/' . $new_name;
+        move_uploaded_file($_FILES['user_passport']['tmp_name'], $destination);
+      } else {
+        $destination = '';
+      }
+
+      return $destination;
+    }
+  }
+
+  function upload_fingerprint()
+  {
+    include "dbConnection.php";
+    if(isset($_FILES["user_fingerprint"]))
+    {
+      $filename = $_SESSION['username'].'_'.mysqli_real_escape_string($connect, strtoupper($_POST["filename"]));
+      $extension = explode('.', $_FILES['user_fingerprint']['name']);
+      $fileSize = $_FILES['user_fingerprint']['size'];
+      $destination = '';
+      if ($fileSize < 1000000){
+        $new_name =  $filename . '.' . $extension[1];
+        $destination = 'Uploaded_Files/' . $new_name;
+        move_uploaded_file($_FILES['user_fingerprint']['tmp_name'], $destination);
       } else {
         $destination = '';
       }

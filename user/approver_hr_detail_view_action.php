@@ -219,7 +219,7 @@ if (isset($_POST['action'])){
     if ($_POST['action'] == 'approve_leave'){
       $leaveID  = $_POST['leaveID'];
 
-      //$rdremarks = mysqli_real_escape_string($connect,strtoupper($_POST['rdremarks']));
+      $hrremarks = mysqli_real_escape_string($connect,strtoupper($_POST['hrremarks']));
 
       $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
       <strong>Data Updated!</strong> 
@@ -260,7 +260,11 @@ if (isset($_POST['action'])){
         VLLESS = "'.$vlless.'",
         VLBALANCE = "'.$vlbalance.'",
         SLLESS = "'.$vlless.'",
-        SLBALANCE = "'.$slbalance.'"
+        SLBALANCE = "'.$slbalance.'",
+        DATEIMSDUPDATED = "'.$dateAdded.'",
+        IMSDREMARKS = "'.$hrremarks.'"
+        
+      
 
 
 
@@ -327,7 +331,9 @@ if (isset($_POST['action'])){
         $que = 'UPDATE tbl_leave
         SET 
         
-        HRAPPROVESTATUS = "N"
+        HRAPPROVESTATUS = "N",
+        DATEIMSDUPDATED = "'.$dateAdded.'",
+        IMSDREMARKS = "'.$hrremarks.'"
 
 
 

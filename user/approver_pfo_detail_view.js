@@ -154,6 +154,8 @@ $(document).ready(function(){
                 $("#attachment").val(data.data.attachment);
                 $("#position").val(data.data.position);
 
+                $("#link-attach a").attr('href', data.data.attachment);
+
                
                 
             }
@@ -212,10 +214,8 @@ $(document).ready(function(){
                         method:"POST",
                         dataType:'JSON',
                         data:{
-                            fullname:fullname, 
-                            dob:dob, 
-                            employeeiddb:employeeiddb,
-                            id:hidden_id,
+                            chiefremarks:chiefremarks, 
+                            leaveID:leaveID, 
                             action:'reject_leave'
                         },
                         success:function(data){

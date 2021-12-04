@@ -525,9 +525,10 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='CHIEF_APPROVER')){
                                       
                                       <div class="form-row">
                                           <!-- Default input -->
-                                          <div class="form-group col-md-10">
+                                          <div class="form-group col-md-6">
                                           <label for="inputEmail4">Google Drive Link Attachment</label>
                                           <input type="text" name="attachment" id = "attachment" class="form-control validate" disabled>
+                                          <div id="link-attach"><a href="https://dole10.net/" target="_blank">Click here to view</a></div>
                                           </div>                                  
                                       </div>
 
@@ -565,9 +566,10 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='CHIEF_APPROVER')){
                                           <div class="form-group col-md-10">
                                           <label for="inputAddress">Head of Office/Division Chief remarks</label>
                                           <textarea class="form-control"  id="chiefremarks" name="chiefremarks" rows="4" cols="100"> </textarea>
-                                      
                                           </div>
                                       </div>
+
+                                      
 
                                       <div class="form-row">
                                           <!-- Default input -->

@@ -251,6 +251,44 @@
 
             }
 
+            function fetch_passport_data(){
+                //alert('sdasdoigieij');
+                var employeeiddb = document.getElementById("empID").value;
+        
+
+                var dataTable = $('#passport_data').DataTable({
+                "columnDefs": [{ "orderable": false, "targets":[1] }],
+                "ajax" : {
+                url:"view_employee_action.php",
+                type:"POST",
+                data:{
+                                employeeiddb:employeeiddb, 
+                                action:'fetch_passport'},
+                }
+                });
+
+            }
+
+            function fetch_fingerprint_data(){
+                //alert('sdasdoigieij');
+                var employeeiddb = document.getElementById("empID").value;
+        
+
+                var dataTable = $('#fingerprint_data').DataTable({
+                "columnDefs": [{ "orderable": false, "targets":[1] }],
+                "ajax" : {
+                url:"view_employee_action.php",
+                type:"POST",
+                data:{
+                                employeeiddb:employeeiddb, 
+                                action:'fetch_fingerprint'},
+                }
+                });
+
+            }
+
+            
+
             
             function fetch_single() {
                     var employeeiddb = document.getElementById("empID").value;
@@ -374,6 +412,8 @@
                         fetch_other_membership_data();
                         fetch_attachment_data();
                         fetch_signature_data();
+                        fetch_passport_data();
+                        fetch_fingerprint_data();
                         //alert('asdasd');
             }  
 
@@ -1948,13 +1988,13 @@
                         event.preventDefault();
                         //alert('sdsd');
 	
-                            var extension = $('#user_image').val().split('.').pop().toLowerCase();
+                            var extension = $('#user_sign').val().split('.').pop().toLowerCase();
                             if(extension != '')
                             {
                                 if(jQuery.inArray(extension, ['pdf','png','jpg','jpeg']) == -1)
                                 {
                                     alert("Invalid File");
-                                    $('#user_image').val('');
+                                    $('#user_sign').val('');
                                     return false;
                                 }
                             }
@@ -1974,6 +2014,91 @@
                                 {
                                         $('#signature_data').DataTable().ajax.reload();
                                         $('#signatureForm').modal('hide');
+                                        $('#filename').val('');
+        
+                                        $('#message2').html(data.status);
+                                        setTimeout(function(){
+                                            $('#message2').html('');
+                                        }, 90000);
+                                }
+                            })
+                        
+                    });
+
+
+                    //add 2x2 passport
+                    $('#addpassport_form').on('submit', function(){
+                        event.preventDefault();
+                        //alert('sdsd');
+	
+                            var extension = $('#user_passport').val().split('.').pop().toLowerCase();
+                            if(extension != '')
+                            {
+                                if(jQuery.inArray(extension, ['pdf','png','jpg','jpeg']) == -1)
+                                {
+                                    alert("Invalid File");
+                                    $('#user_passport').val('');
+                                    return false;
+                                }
+                            }
+                            $.ajax({
+                                url:"view_employee_action.php",
+                                method:"POST",
+                                data:new FormData(this),
+                                contentType:false,
+                                processData:false,
+                                dataType:"JSON",
+                                /*beforeSend:function()
+                                {
+                                    $('#submit_button').attr('disabled', 'disabled');
+                                    $('#submit_button').html('wait...');
+                                },*/
+                                success:function(data)
+                                {
+                                        $('#passport_data').DataTable().ajax.reload();
+                                        $('#passportForm').modal('hide');
+                                        $('#filename').val('');
+        
+                                        $('#message2').html(data.status);
+                                        setTimeout(function(){
+                                            $('#message2').html('');
+                                        }, 90000);
+                                }
+                            })
+                        
+                    });
+
+                    //add fingerprint passport
+                    $('#addfingerprint_form').on('submit', function(){
+                        event.preventDefault();
+                        //alert('sdsd');
+	
+                            var extension = $('#user_fingerprint').val().split('.').pop().toLowerCase();
+                            if(extension != '')
+                            {
+                                if(jQuery.inArray(extension, ['pdf','png','jpg','jpeg']) == -1)
+                                {
+                                    alert("Invalid File");
+                                    $('#user_fingerprint').val('');
+                                    return false;
+                                }
+                            }
+                            $.ajax({
+                                url:"view_employee_action.php",
+                                method:"POST",
+                                data:new FormData(this),
+                                contentType:false,
+                                processData:false,
+                                dataType:"JSON",
+                                /*beforeSend:function()
+                                {
+                                    $('#submit_button').attr('disabled', 'disabled');
+                                    $('#submit_button').html('wait...');
+                                },*/
+                                success:function(data)
+                                {
+                                        $('#fingerprint_data').DataTable().ajax.reload();
+                                        $('#fingerprintForm').modal('hide');
                                         $('#filename').val('');
         
                                         $('#message2').html(data.status);

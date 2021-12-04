@@ -196,6 +196,7 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='RD_APPROVER')){
                           <!-- Employee ID database-->
                           <input type="hidden" name="leaveID" id="leaveID" value="<?php echo $_GET['id']; ?>">
                           <input type="hidden" name="loginID" id="loginID" value="<?php echo $_SESSION['usernameid']; ?>">
+                          <input type="hidden" name="usertype" id="usertype" value="<?php echo $_SESSION['type']; ?>">
                           <input type="hidden" name="action" id="action" value="add_leave" />
                           <!-- Pending Requests Card Example -->
                       </div>
@@ -568,14 +569,14 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='RD_APPROVER')){
                                       
                                           </div>
                                       </div>
-                                      <!--<div class="form-row">
+                                      <div class="form-row">
                                          
                                           <div class="form-group col-md-10">
-                                          <label for="inputAddress">IMSD Chief remarks</label>
+                                          <label for="inputAddress">Human Resource remarks</label>
                                           <textarea class="form-control"  id="imsdremarks" name="imsdremarks" rows="4" cols="100" disabled> </textarea>
                                       
                                           </div>
-                                      </div> -->
+                                      </div> 
 
                                       
                                       <div class="form-row">
@@ -785,7 +786,7 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='RD_APPROVER')){
         <!--<a class="btn btn-primary" href="logout.php">Logout</a> -->
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
-          <a class="btn btn-primary" href="logout">Logout</a> 
+          <a class="btn btn-primary" href="../logout">Logout</a> 
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
         </div>
       </div>

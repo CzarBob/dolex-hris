@@ -137,7 +137,7 @@ if (isset($_POST['action'])){
 
       
       $query = 'SELECT 
-      tbl_leave.ID as ID,tbl_leave.DATEOFFILLING as DATEOFFILLING, tbl_employee.FIELDOFFICEID as FIELDOFFICEID, tbl_leave.LEAVETYPE as LEAVETYPE, tbl_employee.FIRSTNAME as FIRSTNAME, tbl_employee.LASTNAME as LASTNAME, tbl_leave.RDAPPROVESTATUS as RDAPPROVESTATUS  FROM `tbl_leave`
+      tbl_leave.ID as ID,tbl_leave.INCLUSIVEDATE as INCLUSIVEDATE, tbl_leave.DATEOFFILLING as DATEOFFILLING, tbl_employee.FIELDOFFICEID as FIELDOFFICEID, tbl_leave.LEAVETYPE as LEAVETYPE, tbl_employee.FIRSTNAME as FIRSTNAME, tbl_employee.LASTNAME as LASTNAME, tbl_leave.RDAPPROVESTATUS as RDAPPROVESTATUS  FROM `tbl_leave`
               INNER JOIN tbl_employee ON tbl_leave.EMPID = tbl_employee.ID WHERE tbl_leave.CANCELLED = "N"';
 
       $result = mysqli_query($connect, $query );
@@ -148,6 +148,7 @@ if (isset($_POST['action'])){
         
           $sub_array = array();
           $sub_array[] = $row["DATEOFFILLING"];
+          $sub_array[] = $row["INCLUSIVEDATE"];
           $sub_array[] = $row["FIELDOFFICEID"];
           $sub_array[] = $row["LEAVETYPE"];
           $sub_array[] = $row["LASTNAME"];

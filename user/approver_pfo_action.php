@@ -95,14 +95,25 @@ if (isset($_POST['action'])){
     if ($_POST['action'] == 'fetch_leave_data'){
 
       //var_dump($query);
-      if (($_SESSION['fieldofficeid'] == 'RO') && ($_SESSION['divisionid'] == 'IMSD')){
-        $query = 'SELECT tbl_leave.ID as ID,tbl_leave.DATEOFFILLING as DATEOFFILLING, tbl_employee.FIELDOFFICEID as FIELDOFFICEID, tbl_leave.LEAVETYPE as LEAVETYPE, tbl_employee.FIRSTNAME as FIRSTNAME, tbl_employee.LASTNAME as LASTNAME FROM `tbl_leave`
-        INNER JOIN tbl_employee ON tbl_leave.EMPID = tbl_employee.ID WHERE tbl_leave.CANCELLED = "N" AND tbl_leave.HEADAPPROVESTATUS !="Y"  AND tbl_employee.FIELDOFFICEID =  "RO" AND ((tbl_employee.DIVISIONID = "IMSD") OR (tbl_employee.DIVISIONID = "ORD"))';
-      } else { 
-        $query = 'SELECT tbl_leave.ID as ID,tbl_leave.DATEOFFILLING as DATEOFFILLING, tbl_employee.FIELDOFFICEID as FIELDOFFICEID, tbl_leave.LEAVETYPE as LEAVETYPE, tbl_employee.FIRSTNAME as FIRSTNAME, tbl_employee.LASTNAME as LASTNAME FROM `tbl_leave`
-        INNER JOIN tbl_employee ON tbl_leave.EMPID = tbl_employee.ID WHERE tbl_leave.CANCELLED = "N" AND tbl_leave.HEADAPPROVESTATUS !="Y"  AND tbl_employee.FIELDOFFICEID =  "'.$_SESSION['fieldofficeid'].'" ';
+
+      if ($_SESSION['fieldofficeid'] == 'RO') {
+        if ($_SESSION['divisionid'] == 'IMSD'){
+          $query = 'SELECT tbl_leave.ID as ID,tbl_leave.DATEOFFILLING as DATEOFFILLING, tbl_employee.FIELDOFFICEID as FIELDOFFICEID, tbl_leave.LEAVETYPE as LEAVETYPE, tbl_employee.FIRSTNAME as FIRSTNAME, tbl_employee.LASTNAME as LASTNAME FROM `tbl_leave`
+          INNER JOIN tbl_employee ON tbl_leave.EMPID = tbl_employee.ID WHERE tbl_leave.CANCELLED = "N" AND (tbl_leave.HEADAPPROVESTATUS !="Y" && tbl_leave.HEADAPPROVESTATUS !="N") AND tbl_employee.FIELDOFFICEID =  "RO" AND ((tbl_employee.DIVISIONID = "IMSD") OR (tbl_employee.DIVISIONID = "ORD"))';
+        } else if ($_SESSION['divisionid'] == 'MALSU') {
+          $query = 'SELECT tbl_leave.ID as ID,tbl_leave.DATEOFFILLING as DATEOFFILLING, tbl_employee.FIELDOFFICEID as FIELDOFFICEID, tbl_leave.LEAVETYPE as LEAVETYPE, tbl_employee.FIRSTNAME as FIRSTNAME, tbl_employee.LASTNAME as LASTNAME FROM `tbl_leave`
+          INNER JOIN tbl_employee ON tbl_leave.EMPID = tbl_employee.ID WHERE tbl_leave.CANCELLED = "N" AND (tbl_leave.HEADAPPROVESTATUS !="Y" && tbl_leave.HEADAPPROVESTATUS !="N")  AND tbl_employee.FIELDOFFICEID =  "RO" AND tbl_employee.DIVISIONID = "MALSU"';
+        } else if ($_SESSION['divisionid'] == 'TSSD'){
+          $query = 'SELECT tbl_leave.ID as ID,tbl_leave.DATEOFFILLING as DATEOFFILLING, tbl_employee.FIELDOFFICEID as FIELDOFFICEID, tbl_leave.LEAVETYPE as LEAVETYPE, tbl_employee.FIRSTNAME as FIRSTNAME, tbl_employee.LASTNAME as LASTNAME FROM `tbl_leave`
+          INNER JOIN tbl_employee ON tbl_leave.EMPID = tbl_employee.ID WHERE tbl_leave.CANCELLED = "N" AND (tbl_leave.HEADAPPROVESTATUS !="Y" && tbl_leave.HEADAPPROVESTATUS !="N")  AND tbl_employee.FIELDOFFICEID =  "RO" AND tbl_employee.DIVISIONID = "TSSD"';
         }
      
+      } else { 
+        $query = 'SELECT tbl_leave.ID as ID,tbl_leave.DATEOFFILLING as DATEOFFILLING, tbl_employee.FIELDOFFICEID as FIELDOFFICEID, tbl_leave.LEAVETYPE as LEAVETYPE, tbl_employee.FIRSTNAME as FIRSTNAME, tbl_employee.LASTNAME as LASTNAME FROM `tbl_leave`
+        INNER JOIN tbl_employee ON tbl_leave.EMPID = tbl_employee.ID WHERE tbl_leave.CANCELLED = "N" AND (tbl_leave.HEADAPPROVESTATUS !="Y" && tbl_leave.HEADAPPROVESTATUS !="N")  AND tbl_employee.FIELDOFFICEID =  "'.$_SESSION['fieldofficeid'].'" ';
+      }
+
+      
 
       //var_dump($query);
 

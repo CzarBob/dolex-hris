@@ -243,7 +243,7 @@ if (isset($_POST['action'])){
       
 
       if (!$flag){
-        if (($_SESSION['divisionid']=='IMSD') || ($_SESSION['divisionid']=='ORD')){
+       /* if (($_SESSION['divisionid']=='IMSD') || ($_SESSION['divisionid']=='ORD')){
           
           $dateAdded = date("Y-m-d H:i:s");
           $que = 'UPDATE tbl_leave
@@ -257,7 +257,7 @@ if (isset($_POST['action'])){
           WHERE ID = "'.$leaveID.'"';
   
           $result = mysqli_query($connect, $que);
-        } else { 
+        } else { */
           
           $dateAdded = date("Y-m-d H:i:s");
           $que = 'UPDATE tbl_leave
@@ -271,7 +271,7 @@ if (isset($_POST['action'])){
   
           $result = mysqli_query($connect, $que);
 
-        }
+        //}
        
 
       }
@@ -334,7 +334,7 @@ if (isset($_POST['action'])){
 
         WHERE ID = "'.$leaveID.'"';
 
-        //$result = mysqli_query($connect, $que);
+        $result = mysqli_query($connect, $que);
 
       }
 

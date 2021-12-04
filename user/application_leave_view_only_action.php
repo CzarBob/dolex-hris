@@ -47,6 +47,7 @@ if (isset($_POST['action'])){
     tbl_leave.DATERDUPDATED as DATERDUPDATED,
     tbl_leave.RDAPPROVESTATUS as RDAPPROVESTATUS,
     tbl_leave.HEADAPPROVESTATUS as HEADAPPROVESTATUS,
+    tbl_leave.HRAPPROVESTATUS as HRAPPROVESTATUS,
     tbl_leave.DATEHEADUPDATED as DATEHEADUPDATED,
     tbl_leave.APPLICANTREMARKS as APPLICANTREMARKS,
     tbl_leave.IMSDREMARKS as IMSDREMARKS,
@@ -104,6 +105,7 @@ if (isset($_POST['action'])){
         $sub_array['daterdupdated']                 = $row['DATERDUPDATED'];
         $sub_array['rdapprovedstatus']              = $row['RDAPPROVESTATUS'];
         $sub_array['headapprovestatus']               = $row['HEADAPPROVESTATUS'];
+        $sub_array['hrapprovestatus']               = $row['HRAPPROVESTATUS'];
         $sub_array['dateheadupdated']               = $row['DATEHEADUPDATED'];
         $sub_array['applicantremarks']               = $row['APPLICANTREMARKS'];
         $sub_array['attachment']                    = $row['ATTACHMENT'];
@@ -115,26 +117,49 @@ if (isset($_POST['action'])){
         $sub_array['slless']                    = $row['SLLESS'];
         $sub_array['slbalance']                    = $row['SLBALANCE'];
 
+/*
 
-
-        if (($row['HEADAPPROVESTATUS'] == 'Y') && ($row['RDAPPROVESTATUS'] == 'PENDING')){
+        if (($row['HEADAPPROVESTATUS'] == 'Y') &&  ($row['RDAPPROVESTATUS'] == '')){
           $sub_array['approvalstatus'] = '<p id="applicationstatus" class="text-warning h2"><strong>PENDING - FOR RD SIGNING</strong></p>';
-        
-        
+
         } else if (($row['HEADAPPROVESTATUS'] == 'Y') &&($row['RDAPPROVESTATUS'] == 'N' )){
-          //$sub_array['approvalstatus'] = 'DISAPPROVED ';
+
           $sub_array['approvalstatus'] = '<p id="applicationstatus" class="text-danger h2"><strong>DISAPPROVED</strong></p>';
-        } else if ($row['HEADAPPROVESTATUS'] == 'PENDING') {
-          //$sub_array['approvalstatus'] = 'PENDING ';
-          $sub_array['approvalstatus'] = '<p id="applicationstatus" class="text-warning h2"><strong>PENDING - FOR RD APPROVAL</strong></p>';
+        } else if ($row['HEADAPPROVESTATUS'] == '') {
+
+          $sub_array['approvalstatus'] = '<p id="applicationstatus" class="text-warning h2"><strong>PENDING</strong></p>';
         } else if ($row['HEADAPPROVESTATUS'] == 'N') {
-          //$sub_array['approvalstatus'] = 'DISAPPROVED ';
+
           $sub_array['approvalstatus'] = '<p id="applicationstatus" class="text-danger h2"><strong>PENDING - FOR RD APPROVAL</strong></p>';
         } else if (($row['HEADAPPROVESTATUS'] == 'Y') && ($row['RDAPPROVESTATUS'] == 'Y')  ){
           $sub_array['approvalstatus'] = '<p id="applicationstatus" class="text-success h2"><strong>APPROVED</strong></p>';
-        
-        
+
+        }*/
+
+
+        if ($row['HEADAPPROVESTATUS'] == 'Y'){
+          if ($row['HRAPPROVESTATUS'] == 'Y'){
+            if ($row['RDAPPROVESTATUS']== 'Y'){
+              $sub_array['approvalstatus'] = '<p id="applicationstatus" class="text-success h2"><strong>APPROVED</strong></p>';
+            } else if ($row['RDAPPROVESTATUS'] == 'N') {
+              $sub_array['approvalstatus'] = '<p id="applicationstatus" class="text-danger h2"><strong>DISAPPROVED</strong></p>';
+            } else {
+              $sub_array['approvalstatus'] = '<p id="applicationstatus" class="text-warning h2"><strong>PENDING - FOR RD APPROVAL</strong></p>';
+            }
+          } else if ($row['HRAPPROVESTATUS'] == 'N') {
+            $sub_array['approvalstatus'] = '<p id="applicationstatus" class="text-danger h2"><strong>DISAPPROVED - HR</strong></p>';
+          } else {
+            $sub_array['approvalstatus'] = '<p id="applicationstatus" class="text-warning h2"><strong>PENDING - FOR HR EVALUATION</strong></p>';
+          }
+          //var_dump($row['HEADAPPROVESTATUS']);
+        } else if ($row['HEADAPPROVESTATUS'] == 'N') {
+          $sub_array['approvalstatus'] = '<p id="applicationstatus" class="text-danger h2"><strong>DISAPPROVED</strong></p>';
+        } else {
+          $sub_array['approvalstatus'] = '<p id="applicationstatus" class="text-warning h2"><strong>PENDING - FOR RD APPROVAL</strong></p>';
         }
+
+
+
 
         
         $data[] = $sub_array;
