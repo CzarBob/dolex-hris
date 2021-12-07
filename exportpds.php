@@ -12,7 +12,7 @@ $sheet = $spreadsheet->getActiveSheet();
 $spreadsheet->getActiveSheet()->setTitle('C1');
 $spreadsheet->getActiveSheet()->getDefaultRowDimension()->setRowHeight(30);
 $spreadsheet->getDefaultStyle()->getFont()->setName('Arial Narrow');
-$spreadsheet->getDefaultStyle()->getFont()->setSize('9');
+$spreadsheet->getDefaultStyle()->getFont()->setSize('8');
 
 /*$drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
 $drawing->setPath("img/dolelogogs.png");
@@ -20,6 +20,9 @@ $drawing->setName('DOLE LOGO');
 $drawing->setCoordinates('C5');
 $drawing->setWidthAndHeight(50,50);
 $drawing->setWorksheet($sheet);  */
+
+$sheet->getColumnDimension('C')->setWidth(9);
+
 
 
 //$id = $_POST['employeeiddb'];
@@ -190,6 +193,42 @@ $sheet->getColumnDimension('N')->setWidth(12);
 $spreadsheet->getActiveSheet()->getRowDimension('6')->setRowHeight(1);
 $spreadsheet->getActiveSheet()->getRowDimension('7')->setRowHeight(12);
 $spreadsheet->getActiveSheet()->getRowDimension('8')->setRowHeight(1);
+$spreadsheet->getActiveSheet()->getRowDimension('9')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('10')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('11')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('12')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('13')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('14')->setRowHeight(12);
+$spreadsheet->getActiveSheet()->getRowDimension('15')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('16')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('17')->setRowHeight(12);
+$spreadsheet->getActiveSheet()->getRowDimension('18')->setRowHeight(12);
+$spreadsheet->getActiveSheet()->getRowDimension('19')->setRowHeight(12);
+$spreadsheet->getActiveSheet()->getRowDimension('20')->setRowHeight(12);
+$spreadsheet->getActiveSheet()->getRowDimension('23')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('30')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('31')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('32')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('33')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('34')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('35')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('36')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('37')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('38')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('39')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('40')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('41')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('42')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('40')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('41')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('42')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('43')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('44')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('45')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('46')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('47')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('48')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('49')->setRowHeight(20);
 
 
 
@@ -448,7 +487,7 @@ $sheet->setCellValue('K52', 'To');
 
 
 //$query = 'SELECT * FROM tbl_service_record  WHERE EMPID = "'.$_POST['employeeiddb'].'" AND CANCELLED = "N" ';
-$query = "SELECT * FROM tbl_employee_children WHERE EMPID = '5' AND CANCELLED = 'N'  
+$query = "SELECT * FROM tbl_employee_children WHERE EMPID = '".$id."' AND CANCELLED = 'N'  
 ORDER BY `DOB` ASC";
 $result = mysqli_query($connect, $query);
 $rowNum=36;
@@ -463,8 +502,9 @@ if($result){
 }
 
 
-$query = "SELECT * FROM tbl_employee_educ_background WHERE EMPID = '5' AND CANCELLED = 'N'  
+$query = "SELECT * FROM tbl_employee_educ_background WHERE EMPID = '".$id."' AND CANCELLED = 'N'  
 ORDER BY  `tbl_employee_educ_background`.`LEVEL`= 'GRADSTUD', `tbl_employee_educ_background`.`LEVEL`= 'COLLEGE',`tbl_employee_educ_background`.`LEVEL`= 'VOC',`tbl_employee_educ_background`.`LEVEL`= 'SEC',`tbl_employee_educ_background`.`LEVEL`= 'ELEM' DESC";
+//var_dump($query);
 $result = mysqli_query($connect, $query);
 $rowNum=53;
 if($result){
@@ -880,6 +920,57 @@ $sheet->getColumnDimension('J')->setWidth(11);
 $sheet->getColumnDimension('K')->setWidth(12);
 $sheet->getColumnDimension('L')->setWidth(15);
 $sheet->getColumnDimension('M')->setWidth(12);
+
+$spreadsheet->getActiveSheet()->getRowDimension('1')->setRowHeight(7);
+$spreadsheet->getActiveSheet()->getRowDimension('2')->setRowHeight(12);
+$spreadsheet->getActiveSheet()->getRowDimension('3')->setRowHeight(12);
+$spreadsheet->getActiveSheet()->getRowDimension('4')->setRowHeight(15);
+$spreadsheet->getActiveSheet()->getRowDimension('5')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('6')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('7')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('8')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('9')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('10')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('11')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('12')->setRowHeight(7);
+$spreadsheet->getActiveSheet()->getRowDimension('13')->setRowHeight(12);
+$spreadsheet->getActiveSheet()->getRowDimension('14')->setRowHeight(12);
+$spreadsheet->getActiveSheet()->getRowDimension('15')->setRowHeight(12);
+$spreadsheet->getActiveSheet()->getRowDimension('16')->setRowHeight(12);
+$spreadsheet->getActiveSheet()->getRowDimension('17')->setRowHeight(12);
+$spreadsheet->getActiveSheet()->getRowDimension('18')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('19')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('20')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('21')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('22')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('23')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('24')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('25')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('26')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('27')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('28')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('29')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('30')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('31')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('32')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('33')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('34')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('35')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('36')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('37')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('38')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('39')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('40')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('41')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('42')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('43')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('44')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('45')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('47')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('48')->setRowHeight(20);
+
+
+
 
 
 $sheet->setCellValue('A2', 'IV.  CIVIL SERVICE ELIGIBILITY');

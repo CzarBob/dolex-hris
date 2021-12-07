@@ -737,7 +737,7 @@ if (($_SESSION['username'] == "") && ($_SESSION['type']!='RD_APPROVER')){
                                     </tr>  
                                     <tr>
                                   
-                                  <td style="width: 100%;"  colspan="2" style = "align: left"><button type="button" value="cancel"  style="width: 100%;" class="btn btn-info">     Close  </button></td>                                               
+                                  <!--<td style="width: 100%;"  colspan="2" style = "align: left"><button type="button" value="cancel"  style="width: 100%;" class="btn btn-info">     Close  </button></td> -->                                               
                               </tr>  
                               </table> 
                             </div>                        
