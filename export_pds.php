@@ -46,7 +46,7 @@ $export->getActiveSheet()->getColumnDimension('F')->setwidth(40);
 $export->getActiveSheet()->getColumnDimension('G')->setwidth(20);
 $export->getActiveSheet()->getColumnDimension('H')->setwidth(20);
 $export->getActiveSheet()->getColumnDimension('I')->setwidth(30);
-$export->getActiveSheet()->getColumnDimension('J')->setwidth(20);
+$export->getActiveSheet()->getColumnDimension('J')->setwidth(5);
 $export->getActiveSheet()->getColumnDimension('K')->setwidth(40);
 $export->getActiveSheet()->getColumnDimension('L')->setwidth(20);
 $export->getActiveSheet()->getColumnDimension('M')->setwidth(20);

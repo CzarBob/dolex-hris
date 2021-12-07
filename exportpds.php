@@ -13,6 +13,8 @@ $spreadsheet->getActiveSheet()->setTitle('C1');
 $spreadsheet->getActiveSheet()->getDefaultRowDimension()->setRowHeight(30);
 $spreadsheet->getDefaultStyle()->getFont()->setName('Arial Narrow');
 $spreadsheet->getDefaultStyle()->getFont()->setSize('8');
+$spreadsheet->getActiveSheet()->getPageSetup()
+    ->setPaperSize(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::PAPERSIZE_LEGAL);
 
 /*$drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
 $drawing->setPath("img/dolelogogs.png");
@@ -175,16 +177,16 @@ WHERE tbl_employee.ID = "'.$id.'" ';
 
 
 $sheet->getColumnDimension('A')->setWidth(3);
-$sheet->getColumnDimension('B')->setWidth(20);
+$sheet->getColumnDimension('B')->setWidth(15);
 $sheet->getColumnDimension('C')->setWidth(9);
-$sheet->getColumnDimension('D')->setWidth(30);
-$sheet->getColumnDimension('E')->setWidth(9);
-$sheet->getColumnDimension('F')->setWidth(9);
-$sheet->getColumnDimension('G')->setWidth(12);
+$sheet->getColumnDimension('D')->setWidth(15);
+$sheet->getColumnDimension('E')->setWidth(7);
+$sheet->getColumnDimension('F')->setWidth(7);
+$sheet->getColumnDimension('G')->setWidth(5);
 $sheet->getColumnDimension('H')->setWidth(13);
 $sheet->getColumnDimension('I')->setWidth(12);
 $sheet->getColumnDimension('J')->setWidth(11);
-$sheet->getColumnDimension('K')->setWidth(12);
+$sheet->getColumnDimension('K')->setWidth(8);
 $sheet->getColumnDimension('L')->setWidth(15);
 $sheet->getColumnDimension('M')->setWidth(12);
 $sheet->getColumnDimension('N')->setWidth(12);
@@ -194,41 +196,41 @@ $spreadsheet->getActiveSheet()->getRowDimension('6')->setRowHeight(1);
 $spreadsheet->getActiveSheet()->getRowDimension('7')->setRowHeight(12);
 $spreadsheet->getActiveSheet()->getRowDimension('8')->setRowHeight(1);
 $spreadsheet->getActiveSheet()->getRowDimension('9')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('10')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('11')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('12')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('13')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('10')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('11')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('12')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('13')->setRowHeight(25);
 $spreadsheet->getActiveSheet()->getRowDimension('14')->setRowHeight(12);
-$spreadsheet->getActiveSheet()->getRowDimension('15')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('16')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('15')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('16')->setRowHeight(25);
 $spreadsheet->getActiveSheet()->getRowDimension('17')->setRowHeight(12);
 $spreadsheet->getActiveSheet()->getRowDimension('18')->setRowHeight(12);
 $spreadsheet->getActiveSheet()->getRowDimension('19')->setRowHeight(12);
 $spreadsheet->getActiveSheet()->getRowDimension('20')->setRowHeight(12);
-$spreadsheet->getActiveSheet()->getRowDimension('23')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('30')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('31')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('32')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('33')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('34')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('35')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('36')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('37')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('38')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('39')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('40')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('41')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('42')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('40')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('41')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('42')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('43')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('44')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('45')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('46')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('47')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('48')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('49')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('23')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('30')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('31')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('32')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('33')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('34')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('35')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('36')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('37')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('38')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('39')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('40')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('41')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('42')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('40')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('41')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('42')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('43')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('44')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('45')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('46')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('47')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('48')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('49')->setRowHeight(25);
 
 
 
@@ -905,69 +907,74 @@ $spreadsheet->getActiveSheet()->setTitle('C2');
 $sheet = $spreadsheet->getActiveSheet();
 $sheet->getStyle('A1:N999')
     ->getAlignment()->setWrapText(true); 
+$spreadsheet->getActiveSheet()->getPageSetup()
+->setPaperSize(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::PAPERSIZE_LEGAL);
 // Set active sheet index to the first sheet, so Excel opens this as the first sheet
 
-$sheet->getColumnDimension('A')->setWidth(3);
-$sheet->getColumnDimension('B')->setWidth(20);
-$sheet->getColumnDimension('C')->setWidth(9);
-$sheet->getColumnDimension('D')->setWidth(30);
+$sheet->getColumnDimension('A')->setWidth(6);
+$sheet->getColumnDimension('B')->setWidth(9);
+$sheet->getColumnDimension('C')->setWidth(15);
+$sheet->getColumnDimension('D')->setWidth(15);
 $sheet->getColumnDimension('E')->setWidth(9);
-$sheet->getColumnDimension('F')->setWidth(9);
-$sheet->getColumnDimension('G')->setWidth(12);
-$sheet->getColumnDimension('H')->setWidth(13);
-$sheet->getColumnDimension('I')->setWidth(12);
-$sheet->getColumnDimension('J')->setWidth(11);
-$sheet->getColumnDimension('K')->setWidth(12);
+$sheet->getColumnDimension('F')->setWidth(18);
+$sheet->getColumnDimension('G')->setWidth(6);
+$sheet->getColumnDimension('H')->setWidth(6);
+$sheet->getColumnDimension('I')->setWidth(25);
+$sheet->getColumnDimension('J')->setWidth(9);
+$sheet->getColumnDimension('K')->setWidth(9);
 $sheet->getColumnDimension('L')->setWidth(15);
-$sheet->getColumnDimension('M')->setWidth(12);
+$sheet->getColumnDimension('M')->setWidth(11);
 
 $spreadsheet->getActiveSheet()->getRowDimension('1')->setRowHeight(7);
 $spreadsheet->getActiveSheet()->getRowDimension('2')->setRowHeight(12);
 $spreadsheet->getActiveSheet()->getRowDimension('3')->setRowHeight(12);
 $spreadsheet->getActiveSheet()->getRowDimension('4')->setRowHeight(15);
-$spreadsheet->getActiveSheet()->getRowDimension('5')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('6')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('7')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('8')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('9')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('10')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('11')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('5')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('6')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('7')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('8')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('9')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('10')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('11')->setRowHeight(25);
 $spreadsheet->getActiveSheet()->getRowDimension('12')->setRowHeight(7);
-$spreadsheet->getActiveSheet()->getRowDimension('13')->setRowHeight(12);
-$spreadsheet->getActiveSheet()->getRowDimension('14')->setRowHeight(12);
-$spreadsheet->getActiveSheet()->getRowDimension('15')->setRowHeight(12);
-$spreadsheet->getActiveSheet()->getRowDimension('16')->setRowHeight(12);
+$spreadsheet->getActiveSheet()->getRowDimension('13')->setRowHeight(15);
+$spreadsheet->getActiveSheet()->getRowDimension('14')->setRowHeight(15);
+$spreadsheet->getActiveSheet()->getRowDimension('15')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('16')->setRowHeight(20);
 $spreadsheet->getActiveSheet()->getRowDimension('17')->setRowHeight(12);
-$spreadsheet->getActiveSheet()->getRowDimension('18')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('19')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('20')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('21')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('22')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('23')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('24')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('25')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('26')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('27')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('28')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('29')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('30')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('31')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('32')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('33')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('34')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('35')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('36')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('37')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('38')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('39')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('40')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('41')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('42')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('43')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('44')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('45')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('47')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('48')->setRowHeight(20);
+$spreadsheet->getActiveSheet()->getRowDimension('18')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('19')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('20')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('21')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('22')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('23')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('24')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('25')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('26')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('27')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('28')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('29')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('30')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('31')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('32')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('33')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('34')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('35')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('36')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('37')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('38')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('39')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('40')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('41')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('42')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('43')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('44')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('45')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('47')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('48')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('53')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('55')->setRowHeight(25);
+
 
 
 
@@ -1123,18 +1130,76 @@ $sheet = $spreadsheet->getActiveSheet();
 $sheet->getStyle('A1:N999')
     ->getAlignment()->setWrapText(true); 
 
+$spreadsheet->getActiveSheet()->getPageSetup()
+->setPaperSize(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::PAPERSIZE_LEGAL);
+// Set active sheet index to the first sheet, so Excel opens this as the first sheet
 
-    $sheet->getColumnDimension('A')->setWidth(3);
-    $sheet->getColumnDimension('B')->setWidth(20);
-    $sheet->getColumnDimension('C')->setWidth(9);
-    $sheet->getColumnDimension('D')->setWidth(30);
+
+    $sheet->getColumnDimension('A')->setWidth(4);
+    $sheet->getColumnDimension('B')->setWidth(35);
+    $sheet->getColumnDimension('C')->setWidth(3);
+    $sheet->getColumnDimension('D')->setWidth(25);
     $sheet->getColumnDimension('E')->setWidth(9);
     $sheet->getColumnDimension('F')->setWidth(9);
-    $sheet->getColumnDimension('G')->setWidth(12);
-    $sheet->getColumnDimension('H')->setWidth(13);
-    $sheet->getColumnDimension('I')->setWidth(12);
-    $sheet->getColumnDimension('J')->setWidth(11);
-    $sheet->getColumnDimension('K')->setWidth(12);
+    $sheet->getColumnDimension('G')->setWidth(11);
+    $sheet->getColumnDimension('H')->setWidth(11);
+    $sheet->getColumnDimension('I')->setWidth(3);
+    $sheet->getColumnDimension('J')->setWidth(4);
+    $sheet->getColumnDimension('K')->setWidth(25);
+
+    $spreadsheet->getActiveSheet()->getRowDimension('1')->setRowHeight(2);
+    $spreadsheet->getActiveSheet()->getRowDimension('2')->setRowHeight(20);
+    $spreadsheet->getActiveSheet()->getRowDimension('3')->setRowHeight(12);
+    $spreadsheet->getActiveSheet()->getRowDimension('4')->setRowHeight(12);
+    $spreadsheet->getActiveSheet()->getRowDimension('5')->setRowHeight(12);
+    $spreadsheet->getActiveSheet()->getRowDimension('6')->setRowHeight(25);
+    $spreadsheet->getActiveSheet()->getRowDimension('7')->setRowHeight(25);
+    $spreadsheet->getActiveSheet()->getRowDimension('8')->setRowHeight(25);
+    $spreadsheet->getActiveSheet()->getRowDimension('9')->setRowHeight(25);
+    $spreadsheet->getActiveSheet()->getRowDimension('10')->setRowHeight(25);
+    $spreadsheet->getActiveSheet()->getRowDimension('11')->setRowHeight(25);
+    $spreadsheet->getActiveSheet()->getRowDimension('12')->setRowHeight(25);
+    $spreadsheet->getActiveSheet()->getRowDimension('13')->setRowHeight(9);
+    $spreadsheet->getActiveSheet()->getRowDimension('14')->setRowHeight(12);
+    $spreadsheet->getActiveSheet()->getRowDimension('15')->setRowHeight(12);
+    $spreadsheet->getActiveSheet()->getRowDimension('16')->setRowHeight(12);
+    $spreadsheet->getActiveSheet()->getRowDimension('17')->setRowHeight(13);
+    $spreadsheet->getActiveSheet()->getRowDimension('18')->setRowHeight(9);
+    $spreadsheet->getActiveSheet()->getRowDimension('19')->setRowHeight(25);
+    $spreadsheet->getActiveSheet()->getRowDimension('20')->setRowHeight(25);
+    $spreadsheet->getActiveSheet()->getRowDimension('21')->setRowHeight(25);
+    $spreadsheet->getActiveSheet()->getRowDimension('22')->setRowHeight(25);
+    $spreadsheet->getActiveSheet()->getRowDimension('23')->setRowHeight(25);
+    $spreadsheet->getActiveSheet()->getRowDimension('24')->setRowHeight(25);
+    $spreadsheet->getActiveSheet()->getRowDimension('25')->setRowHeight(25);
+    $spreadsheet->getActiveSheet()->getRowDimension('26')->setRowHeight(25);
+    $spreadsheet->getActiveSheet()->getRowDimension('27')->setRowHeight(25);
+    $spreadsheet->getActiveSheet()->getRowDimension('28')->setRowHeight(25);
+    $spreadsheet->getActiveSheet()->getRowDimension('29')->setRowHeight(25);
+    $spreadsheet->getActiveSheet()->getRowDimension('30')->setRowHeight(25);
+    $spreadsheet->getActiveSheet()->getRowDimension('31')->setRowHeight(25);
+    $spreadsheet->getActiveSheet()->getRowDimension('32')->setRowHeight(25);
+    $spreadsheet->getActiveSheet()->getRowDimension('33')->setRowHeight(25);
+    $spreadsheet->getActiveSheet()->getRowDimension('34')->setRowHeight(25);
+    $spreadsheet->getActiveSheet()->getRowDimension('35')->setRowHeight(25);
+    $spreadsheet->getActiveSheet()->getRowDimension('36')->setRowHeight(25);
+    $spreadsheet->getActiveSheet()->getRowDimension('37')->setRowHeight(25);
+    $spreadsheet->getActiveSheet()->getRowDimension('38')->setRowHeight(25);
+    $spreadsheet->getActiveSheet()->getRowDimension('39')->setRowHeight(25);
+    $spreadsheet->getActiveSheet()->getRowDimension('40')->setRowHeight(9);
+    $spreadsheet->getActiveSheet()->getRowDimension('41')->setRowHeight(20);
+    $spreadsheet->getActiveSheet()->getRowDimension('42')->setRowHeight(30);
+    $spreadsheet->getActiveSheet()->getRowDimension('43')->setRowHeight(25);
+    $spreadsheet->getActiveSheet()->getRowDimension('44')->setRowHeight(25);
+    $spreadsheet->getActiveSheet()->getRowDimension('45')->setRowHeight(25);
+    $spreadsheet->getActiveSheet()->getRowDimension('46')->setRowHeight(25);
+    $spreadsheet->getActiveSheet()->getRowDimension('47')->setRowHeight(25);
+    $spreadsheet->getActiveSheet()->getRowDimension('48')->setRowHeight(25);
+    $spreadsheet->getActiveSheet()->getRowDimension('49')->setRowHeight(25);
+    $spreadsheet->getActiveSheet()->getRowDimension('50')->setRowHeight(9);
+    $spreadsheet->getActiveSheet()->getRowDimension('51')->setRowHeight(30);
+    $spreadsheet->getActiveSheet()->getRowDimension('52')->setRowHeight(9);
+
 
 
     $sheet->setCellValue('A2', 'VI. VOLUNTARY WORK OR INVOLVEMENT IN CIVIC / NON-GOVERNMENT / PEOPLE / VOLUNTARY ORGANIZATION/S');
@@ -1389,22 +1454,28 @@ $spreadsheet->setActiveSheetIndex(3);//->setCellValue('A1', 'world!');
 $spreadsheet->getActiveSheet()->setTitle('C4');
 $sheet = $spreadsheet->getActiveSheet();
 $sheet->getStyle('A1:N999')
-    ->getAlignment()->setWrapText(true); 
+    ->getAlignment()->setWrapText(true);
+    
+$spreadsheet->getActiveSheet()->getPageSetup()
+->setPaperSize(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::PAPERSIZE_LEGAL);
+// Set active sheet index to the first sheet, so Excel opens this as the first sheet
 
 
-    $sheet->getColumnDimension('A')->setWidth(3);
-    $sheet->getColumnDimension('B')->setWidth(3);
-    $sheet->getColumnDimension('C')->setWidth(20);
+    $sheet->getColumnDimension('A')->setWidth(2);
+    $sheet->getColumnDimension('B')->setWidth(2);
+    $sheet->getColumnDimension('C')->setWidth(15);
     $sheet->getColumnDimension('D')->setWidth(30);
     $sheet->getColumnDimension('E')->setWidth(5);
-    $sheet->getColumnDimension('F')->setWidth(40);
-    $sheet->getColumnDimension('G')->setWidth(7);
+    $sheet->getColumnDimension('F')->setWidth(35);
+    $sheet->getColumnDimension('G')->setWidth(5);
     $sheet->getColumnDimension('H')->setWidth(8);
     $sheet->getColumnDimension('I')->setWidth(3);
     $sheet->getColumnDimension('J')->setWidth(3);
-    $sheet->getColumnDimension('K')->setWidth(12);
+    $sheet->getColumnDimension('K')->setWidth(9);
     $sheet->getColumnDimension('L')->setWidth(20);
     $sheet->getColumnDimension('M')->setWidth(3);
+
+    $spreadsheet->getActiveSheet()->getRowDimension('1')->setRowHeight(2);
 
 
    
@@ -1599,12 +1670,107 @@ $sheet->getStyle('E68:I69')->applyFromArray($styleArrayBorder);
 $sheet->getStyle('A71:M71')->applyFromArray($styleArrayBorder);
 
 
+
+$query_passport = 'SELECT * FROM tbl_employee_passport WHERE EMPID = "'.$id.'" AND CANCELLED = "N"';
+$number_filter_row = mysqli_num_rows(mysqli_query($connect, $query_passport));
+
+$result_query_passport = mysqli_query($connect, $query_passport);
+
+
+   $filename_passport                         = '';
+   $location_passport             = '';
+   
+   if ($query_passport){
+    while($row = mysqli_fetch_array($result_query_passport)){
+
+        $filename_passport                   = $row['FILENAME'];
+        $location_passport                  = $row['LOCATION'];
+    }
+  }
+
+
 $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
-$drawing->setPath("2x2.jpg");
+
+$loc = '';
+if ($location_passport != ''){
+    $loc = $location_passport;
+  } else {
+    $loc = "2x2.jpg";
+  } 
+
+$drawing->setPath($loc);
 $drawing->setName('2x2');
 $drawing->setCoordinates('k51');
 $drawing->setWidthAndHeight(132,170);
 $drawing->setWorksheet($sheet); 
+
+
+
+
+$query_fingerprint = 'SELECT * FROM tbl_employee_fingerprint WHERE EMPID = "'.$id.'" AND CANCELLED = "N"';
+$number_filter_row = mysqli_num_rows(mysqli_query($connect, $query_fingerprint));
+
+$result_query_fingerprint = mysqli_query($connect, $query_fingerprint);
+
+
+   $filename_fingerprint                         = '';
+   $location_fingerprint             = '';
+   
+   if ($query_fingerprint){
+    while($row = mysqli_fetch_array($result_query_fingerprint)){
+
+        $filename_fingerprint                   = $row['FILENAME'];
+        $location_fingerprint                  = $row['LOCATION'];
+    }
+  }
+
+
+$drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
+
+$loc = '';
+if ($location_fingerprint != ''){
+    $loc = $location_fingerprint;
+    $drawing->setPath($loc);
+    $drawing->setName('fingerprint');
+    $drawing->setCoordinates('k58');
+    $drawing->setWidthAndHeight(140,140);
+    $drawing->setWorksheet($sheet);
+  } 
+
+
+  
+$query_signature = 'SELECT * FROM tbl_employee_signature WHERE EMPID = "'.$id.'" AND CANCELLED = "N"';
+$number_filter_row = mysqli_num_rows(mysqli_query($connect, $query_signature));
+
+$result_query_signature = mysqli_query($connect, $query_signature);
+
+
+   $filename_signature                         = '';
+   $location_signature            = '';
+   
+   if ($query_signature){
+    while($row = mysqli_fetch_array($result_query_signature)){
+
+        $filename_signature                   = $row['FILENAME'];
+        $location_signature                  = $row['LOCATION'];
+    }
+  }
+
+
+$drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
+
+$loc = '';
+if ($location_signature != ''){
+    $loc = $location_signature;
+    $drawing->setPath($loc);
+    $drawing->setName('signature');
+    $drawing->setCoordinates('f60');
+    $drawing->setWidthAndHeight(170,132);
+    $drawing->setWorksheet($sheet);
+  } 
+
+
+
 
 $spreadsheet->setActiveSheetIndex(0);
 
