@@ -1697,7 +1697,8 @@ if (isset($_POST['action'])){
     include "dbConnection.php";
     if(isset($_FILES["user_image"]))
     {
-      $filename = $_SESSION['username'].'_'.mysqli_real_escape_string($connect, strtoupper($_POST["filename"]));
+      $timestamp = time();
+      $filename = $_SESSION['username'].'_'.mysqli_real_escape_string($connect, strtoupper($_POST["filename"])).'_'.$timestamp;
       $extension = explode('.', $_FILES['user_image']['name']);
       $fileSize = $_FILES['user_image']['size'];
       $destination = '';
@@ -1718,7 +1719,8 @@ if (isset($_POST['action'])){
     include "dbConnection.php";
     if(isset($_FILES["user_sign"]))
     {
-      $filename = $_SESSION['username'].'_'.mysqli_real_escape_string($connect, strtoupper($_POST["filename"]));
+      $timestamp = time();
+      $filename = $_SESSION['username'].'_'.mysqli_real_escape_string($connect, strtoupper($_POST["filename"])).'_'.$timestamp;
       $extension = explode('.', $_FILES['user_sign']['name']);
       $fileSize = $_FILES['user_sign']['size'];
       $destination = '';
@@ -1739,7 +1741,8 @@ if (isset($_POST['action'])){
     include "dbConnection.php";
     if(isset($_FILES["user_passport"]))
     {
-      $filename = $_SESSION['username'].'_'.mysqli_real_escape_string($connect, strtoupper($_POST["filename"]));
+      $timestamp = time();
+      $filename = $_SESSION['username'].'_'.mysqli_real_escape_string($connect, strtoupper($_POST["filename"])).'_'.$timestamp;
       $extension = explode('.', $_FILES['user_passport']['name']);
       $fileSize = $_FILES['user_passport']['size'];
       $destination = '';
@@ -1760,7 +1763,8 @@ if (isset($_POST['action'])){
     include "dbConnection.php";
     if(isset($_FILES["user_fingerprint"]))
     {
-      $filename = $_SESSION['username'].'_'.mysqli_real_escape_string($connect, strtoupper($_POST["filename"]));
+      $timestamp = time();
+      $filename = $_SESSION['username'].'_'.mysqli_real_escape_string($connect, strtoupper($_POST["filename"])).'_'.$timestamp;
       $extension = explode('.', $_FILES['user_fingerprint']['name']);
       $fileSize = $_FILES['user_fingerprint']['size'];
       $destination = '';
