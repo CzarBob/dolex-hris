@@ -1748,7 +1748,7 @@ if (isset($_POST['action'])){
       $destination = '';
       if ($fileSize < 1000000){
         $new_name =  $filename . '.' . $extension[1];
-        $destination = 'Uploaded_Files/' . $new_name;
+        $destination = '../attach-eis/' . $new_name;
         move_uploaded_file($_FILES['user_passport']['tmp_name'], $destination);
       } else {
         $destination = '';
