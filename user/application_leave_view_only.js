@@ -173,6 +173,7 @@ $(document).ready(function(){
                 //$("#applicationstatus").val(data.data.approvalstatus);
                 //alert(data.data.position)
                 $('#message2').html(data.data.approvalstatus);
+                $("#link-attach a").attr('href', data.data.attachment);
                 
             
             

@@ -175,6 +175,7 @@ $(document).ready(function(){
         var slless = document.getElementById("slless").value;
         var slbalance = document.getElementById("slbalance").value;
         var leave_type = document.getElementById("leave_type").value;
+        var hrremarks = document.getElementById("imsdremarks").value;
  
         var messageValidate = "Confirm approval of leave?";
         if (confirm(messageValidate) == true) {
@@ -192,6 +193,7 @@ $(document).ready(function(){
                     slless:slless,
                     slbalance:slbalance,
                     leave_type:leave_type,
+                    hrremarks:hrremarks,
                     action:'approve_leave'
                 },
                 success:function(data){
