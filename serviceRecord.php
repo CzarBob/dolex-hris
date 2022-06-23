@@ -89,7 +89,6 @@ if ($_SESSION['username'] == ""){
             <i class="fa fa-bars"></i>
           </button>
           <div class="d-none d-md-inline-block div-inline mr-auto ml-md-3 my-2 my-md-0 mw-100">
-           <!-- <h2><?php// echo $_SESSION['received_by'] . " Department";?></h2>-->
           </div>
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">

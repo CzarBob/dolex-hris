@@ -89,7 +89,7 @@ if ($_SESSION['username'] == ""){
             <i class="fa fa-bars"></i>
           </button>
           <div class="d-none d-md-inline-block div-inline mr-auto ml-md-3 my-2 my-md-0 mw-100">
-           <!-- <h2><?php// echo $_SESSION['received_by'] . " Department";?></h2>-->
+          
             <input type="hidden" name="loginID" id="loginID" value="<?php echo $_SESSION['usernameid']; ?>">
           </div>
           <!-- Topbar Navbar -->
@@ -302,7 +302,7 @@ if ($_SESSION['username'] == ""){
               <input type="text" name="lastname" id = "lastname" class="form-control validate" required>
             </div>
 
-            <!--
+        
             
             <div class="md-form mb-5">
             
@@ -323,7 +323,7 @@ if ($_SESSION['username'] == ""){
               <label data-error="wrong" data-success="right" for="form29">*Date Hired</label>
               <input type="date" name="datehired" id = "datehired" class="form-control validate" required>
              
-            </div>-->
+            </div>
 
 
 

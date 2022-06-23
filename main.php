@@ -60,7 +60,7 @@ include 'main_load_query.php';
         <?php if (($_SESSION['type']== 'ADMIN') || ($_SESSION['type']== 'HR_APPROVER')) {?>
         <a class="nav-link" href="employee_detail">
           <i class="fas fa-fw fa-lg fa-check-square"></i>
-          <span>EMPLOYEE PROFILE</span>
+          <span>ALL EMPLOYEE PROFILE</span>
         </a> <?php } else {?>
         
         <a class="nav-link" href="viewEmployee.php?id=<?php echo $_SESSION['usernameid'];?>">
@@ -130,7 +130,7 @@ include 'main_load_query.php';
             <i class="fa fa-bars"></i>
           </button>
           <div class="d-none d-md-inline-block div-inline mr-auto ml-md-3 my-2 my-md-0 mw-100">
-           <!-- <h2><?php// echo $_SESSION['received_by'] . " Department";?></h2>-->
+        
           </div>
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">

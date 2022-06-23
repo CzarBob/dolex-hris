@@ -44,7 +44,7 @@
             
 
             $(document).ready(function(){
-                fetch_single();   
+                fetch_service_record_data();   
                 
                 function fetch_service_record_data(){
                     

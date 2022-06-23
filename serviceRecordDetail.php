@@ -276,7 +276,7 @@ include 'serviceRecordDetail_load_query.php';
                                            
                                             <div>
                                               <button class="btn btn-info generateReport" name='generateReport' id= "generateReport" > Generate Excel File </button>
-                                              <a data-toggle="modal" data-target="#modalServiceRecordForm" ><button class="btn btn-success"  > Add Service Record </button></a>
+                                              <a data-toggle="modal" data-target="#modalServiceRecordForm" > Add Service Record</a>
                                              
                                             </div>
                                         </div>

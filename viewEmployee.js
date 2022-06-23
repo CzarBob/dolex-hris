@@ -306,7 +306,7 @@
                             dataType:'JSON',
                             success:function(data)
                             {   
-                                $('#employeeid').val(data.data.employeeid);
+                                //$('#employeeid').val(data.data.employeeid);
                                 $('#employeeid').val(data.data.employeeid);
                                 $('#firstname').val(data.data.firstname);
                                 $('#middlename').val(data.data.middlename);
