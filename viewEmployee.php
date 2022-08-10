@@ -211,8 +211,8 @@ if (mysqli_connect_errno()) {
                                         placeholder="Ex. Labor Employment Officer I" disabled>
                                     </div>
                                     <div class="form-group col-md-4">
-                                      <label for="inputAddress">Date Hired</label>
-                                      <input type="date" class="form-control" id="datehired" disabled>
+                                      <label for="inputAddress">Date Hired (YYYY-MM-DD)</label>
+                                      <input type="text" class="form-control" id="datehired" disabled >
                                     </div>
                                   </div>
                                   <div class="form-row">
@@ -252,6 +252,12 @@ if (mysqli_connect_errno()) {
                                       <div class="form-group col-md-2">
                                       <label for="inputZip">Vacation Leave Credits</label>
                                       <input type="text" class="form-control" id="vlcredit" disabled>
+                                    </div>
+
+                                     <!-- Default input -->
+                                     <div class="form-group col-md-2">
+                                      <label for="inputZip">Salary</label>
+                                      <input type="text" class="form-control" id="salary" disabled>
                                     </div>
                                   </div>
                                   <div class="form-row">
@@ -305,10 +311,10 @@ if (mysqli_connect_errno()) {
                                   <div class="form-row">
                                     <input type="hidden" name="profileid" id="profileid">
                                     <!-- Default input -->
-                                    <div class="form-group col-md-2">
+                                    <div class="form-group col-md-3">
 
-                                      <label for="inputCity">Date of Birth</label>
-                                      <input type="date" class="form-control" id="dob" disabled>
+                                      <label for="inputCity">Date of Birth (YYYY-MM-DD)</label>
+                                      <input type="text" class="form-control" id="dob" disabled>
                                     </div>
                                     <!-- Default input -->
                                     <div class="form-group col-md-8">
@@ -1223,7 +1229,7 @@ if (mysqli_connect_errno()) {
                                                     <table class="table table-bordered nowrap dt-responsive nowrap dataTables" id="fingerprint_data" width="100%" cellspacing="0">
                                                               <thead class = "text-primary">
                                                                   <tr>
-                                                                      <th data-column-id="other_membership">FILENAME</th>
+                                                                      <th data-column-id="other_fingerprint">FILENAME</th>
                                                                       <th >ACTION</th>
                                                                   </tr>
                                                               </thead>
@@ -1239,7 +1245,6 @@ if (mysqli_connect_errno()) {
                                             </div>
                                         </div>                             
                                     </div> <!--END OF FINGERPRINT TAB -->
-
 
                                     </div>
                                 </div>
@@ -2252,6 +2257,7 @@ if (mysqli_connect_errno()) {
       </div>
     </div>
 
+
     <!-- Logout Modal
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -2436,9 +2442,14 @@ if (mysqli_connect_errno()) {
                 </div>
 
                   <!-- Default input -->
-                  <div class="form-group col-md-2">
+                <div class="form-group col-md-2">
                   <label for="inputZip">Vacation Leave Credits</label>
                   <input type="text" class="form-control " id="vlcredit_update" name="vlcredit_update" <?php echo $dashboard_active; ?>>
+                </div>
+
+                <div class="form-group col-md-2">
+                  <label for="inputZip">Salary</label>
+                  <input type="text" class="form-control " id="salary_update" name="salary_update" <?php echo $dashboard_active; ?>>
                 </div>
             </div>
             <div class="form-row">

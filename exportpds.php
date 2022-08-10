@@ -7,14 +7,18 @@ date_default_timezone_set('Asia/Manila');
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
+//use PhpOffice\PhpSpreadsheet\Style\Border;
+//use PhpOffice\PhpSpreadsheet\Style\Color;
+
 $spreadsheet = new Spreadsheet();
 $sheet = $spreadsheet->getActiveSheet();
-$spreadsheet->getActiveSheet()->setTitle('C1');
+$spreadsheet->getActiveSheet()->setTitle('C1')->getPageSetup()->setFitToPage(true);
 $spreadsheet->getActiveSheet()->getDefaultRowDimension()->setRowHeight(30);
 $spreadsheet->getDefaultStyle()->getFont()->setName('Arial Narrow');
 $spreadsheet->getDefaultStyle()->getFont()->setSize('8');
 $spreadsheet->getActiveSheet()->getPageSetup()
     ->setPaperSize(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::PAPERSIZE_LEGAL);
+
 
 /*$drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
 $drawing->setPath("img/dolelogogs.png");
@@ -116,6 +120,20 @@ WHERE tbl_employee.ID = "'.$id.'" ';
       $dualchoice            = $row['DUALCITIZEN'];
       //$residentialaddress    = $row['RESIDENTIALADDRESS'];
       //$permanentaddress      = $row['PERMANENTADDRESS'];
+      $res_blockno           = $row['RESBLOCKNO'];
+      $res_street            = $row['RESSTREET'];
+      $res_subdivision       = $row['RESSUBDIVISION'];
+      $res_barangay          = $row['RESBARANGAY'];
+      $res_city              = $row['RESCITY'];
+      $res_province          = $row['RESPROVINCE'];
+      $res_zipcode           = $row['RESZIPCODE'];
+      $perm_blockno          = $row['PERMBLOCKNO'];
+      $perm_street           = $row['PERMSTREET'];
+      $perm_subdivision      = $row['PERMSUBDIVISION'];
+      $perm_barangay         = $row['PERMBARANGAY'];
+      $perm_city             = $row['PERMCITY'];
+      $perm_province         = $row['PERMPROVINCE'];
+      $perm_zipcode          = $row['PERMZIPCODE'];  
       $telephoneno           = $row['TELEPHONENO'];
       $mobileno              = $row['MOBILENO'];
       $emailprofile          = $row['EMAIL'];
@@ -176,17 +194,17 @@ WHERE tbl_employee.ID = "'.$id.'" ';
     }
 
 
-$sheet->getColumnDimension('A')->setWidth(3);
-$sheet->getColumnDimension('B')->setWidth(15);
-$sheet->getColumnDimension('C')->setWidth(9);
-$sheet->getColumnDimension('D')->setWidth(15);
-$sheet->getColumnDimension('E')->setWidth(7);
-$sheet->getColumnDimension('F')->setWidth(7);
-$sheet->getColumnDimension('G')->setWidth(5);
+$sheet->getColumnDimension('A')->setWidth(4);
+$sheet->getColumnDimension('B')->setWidth(18);
+$sheet->getColumnDimension('C')->setWidth(8);
+$sheet->getColumnDimension('D')->setWidth(25);
+$sheet->getColumnDimension('E')->setWidth(8);
+$sheet->getColumnDimension('F')->setWidth(8);
+$sheet->getColumnDimension('G')->setWidth(10);
 $sheet->getColumnDimension('H')->setWidth(13);
-$sheet->getColumnDimension('I')->setWidth(12);
+$sheet->getColumnDimension('I')->setWidth(13);
 $sheet->getColumnDimension('J')->setWidth(11);
-$sheet->getColumnDimension('K')->setWidth(8);
+$sheet->getColumnDimension('K')->setWidth(11);
 $sheet->getColumnDimension('L')->setWidth(15);
 $sheet->getColumnDimension('M')->setWidth(12);
 $sheet->getColumnDimension('N')->setWidth(12);
@@ -231,7 +249,14 @@ $spreadsheet->getActiveSheet()->getRowDimension('46')->setRowHeight(25);
 $spreadsheet->getActiveSheet()->getRowDimension('47')->setRowHeight(25);
 $spreadsheet->getActiveSheet()->getRowDimension('48')->setRowHeight(25);
 $spreadsheet->getActiveSheet()->getRowDimension('49')->setRowHeight(25);
-
+$spreadsheet->getActiveSheet()->getRowDimension('53')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('54')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('55')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('56')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('57')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('58')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('59')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('61')->setRowHeight(25);
 
 
 /*$spreadsheet->getActiveSheet()->getStyle('A9:N9')->getFill()
@@ -247,16 +272,26 @@ $sheet->setCellValue('A7', 'Print legibly. Tick appropriate boxes (     ) and us
 $sheet->setCellValue('K7', '1. CS ID No.')->getStyle('K7')->getFill()
 ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
 ->getStartColor()->setARGB('828583');
+$sheet->getStyle('K7')->getBorders()->getOutline()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
 $sheet->setCellValue('L7', ' (Do not fill up. For CSC use only)');
+
 $sheet->setCellValue('A9', 'I. PERSONAL INFORMATION');
+
+$sheet->getStyle('A9')
+->getFont()
+            ->getColor()
+            ->setRGB ('ffffff');
 $sheet->setCellValue('A10', '2.');
 $sheet->setCellValue('B10', 'SURNAME');
+$sheet->getStyle('B10')
+    ->getAlignment()->setHorizontal('center'); 
+  
 $sheet->setCellValue('D10', $lastname);//
 $sheet->setCellValue('B11', 'FIRST NAME');
 $sheet->setCellValue('D11',  $firstname);//
 $sheet->setCellValue('L11', 'NAME EXTENSION (JR., SR)    ')->getStyle('L11')->getFill()
 ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
-->getStartColor()->setARGB('cfcfcf');//
+->getStartColor()->setARGB('ebebeb');//
 $sheet->setCellValue('B12', 'MIDDLE NAME');
 $sheet->setCellValue('D12', $middlename);//
 $sheet->setCellValue('A13', '3.');
@@ -335,16 +370,16 @@ if ($civilstatus == 'SINGLE'){
 $sheet->setCellValue('D17', $civilStatusValue);//
 //$sheet->setCellValue('E17', 'BOX Married');
 $sheet->setCellValue('G17', '17. RESIDENTIAL ADDRESS');
-$sheet->setCellValue('I17', ' ');
-$sheet->setCellValue('L17', ' ');
+$sheet->setCellValue('I17', $res_blockno);
+$sheet->setCellValue('L17', $res_street);
 //$sheet->setCellValue('D18', 'BOX Widowed');//
 //$sheet->setCellValue('E17', 'BOX Separated');
 
 $sheet->setCellValue('I18', 'House/Block/Lot No.');
 $sheet->setCellValue('L18', 'Street');
 
-$sheet->setCellValue('I19', ' ');
-$sheet->setCellValue('L19', ' ');
+$sheet->setCellValue('I19', $res_subdivision);
+$sheet->setCellValue('L19', $res_barangay);
 
 $sheet->setCellValue('I20', 'Subdivision/Village');
 $sheet->setCellValue('L20', 'Barangay');
@@ -352,7 +387,8 @@ $sheet->setCellValue('L20', 'Barangay');
 $sheet->setCellValue('A21', '7.');
 $sheet->setCellValue('B21', 'HEIGHT(m)');
 $sheet->setCellValue('D21', $height);
-//$sheet->setCellValue('I21', $residentialaddress);
+$sheet->setCellValue('I21', $res_city);
+$sheet->setCellValue('L21', $res_province);
 $sheet->setCellValue('I22', 'City/Municipality');
 $sheet->setCellValue('L22', 'Province');
 
@@ -360,30 +396,30 @@ $sheet->setCellValue('A23', '8.');
 $sheet->setCellValue('B23', 'WEIGHT(kg)');
 $sheet->setCellValue('D23', $weight);
 $sheet->setCellValue('G23', 'ZIP CODE');
-$sheet->setCellValue('I23', ' ');
+$sheet->setCellValue('I23', $res_zipcode);
 
 $sheet->setCellValue('A24', '9.');
 $sheet->setCellValue('B24', 'BLOOD TYPE');
 $sheet->setCellValue('D24', $bloodtype );
 $sheet->setCellValue('G24', '18. PERMANENT ADDRESS');
-$sheet->setCellValue('I24', ' ');
-$sheet->setCellValue('L24', ' ');
+$sheet->setCellValue('I24', $perm_blockno);
+$sheet->setCellValue('L24', $perm_street );
 $sheet->setCellValue('I25', 'House/Block/Lot No.');
 $sheet->setCellValue('L25', 'Street');
 
 $sheet->setCellValue('A26', '10.');
 $sheet->setCellValue('B26', 'GSIS ID NO.');
 $sheet->setCellValue('D26', $gsisno);
-$sheet->setCellValue('I26', ' ');
-$sheet->setCellValue('L26', ' ');
+$sheet->setCellValue('I26', $perm_subdivision);
+$sheet->setCellValue('L26',  $perm_barangay);
 $sheet->setCellValue('I27', 'Subdivision/Village');
 $sheet->setCellValue('L27', 'Barangay');
 
 $sheet->setCellValue('A28', '11.');
 $sheet->setCellValue('B28', 'PAG-IBIG ID NO.');
 $sheet->setCellValue('D28', $pagibigno);
-//$sheet->setCellValue('I28', $permanentaddress);
-$sheet->setCellValue('L28', ' ');
+$sheet->setCellValue('I28', $perm_city);
+$sheet->setCellValue('L28', $perm_province);
 $sheet->setCellValue('I29', 'City/Municipality');
 $sheet->setCellValue('L29', 'Province');
 
@@ -391,7 +427,7 @@ $sheet->setCellValue('A30', '12.');
 $sheet->setCellValue('B30', 'PHILHEALTH NO.');
 $sheet->setCellValue('D30', $phicno);
 $sheet->setCellValue('G30', 'ZIP CODE');
-$sheet->setCellValue('I30', ' ');
+$sheet->setCellValue('I30', $perm_zipcode);
 
 $sheet->setCellValue('A31', '13.');
 $sheet->setCellValue('B31', 'SSS NO.');
@@ -412,22 +448,26 @@ $sheet->setCellValue('G33', '21. E-MAIL ADDRESS (if any)');
 $sheet->setCellValue('I33', $emailprofile);
 
 $sheet->setCellValue('A34', 'II.  FAMILY BACKGROUND');
+$sheet->getStyle('A34')
+->getFont()
+            ->getColor()
+            ->setRGB ('ffffff');
 
 $sheet->setCellValue('A35', '22.');
 $sheet->setCellValue('B35', 'SPOUSE SURNAME');
 $sheet->setCellValue('D35', $spouselastname);
 $sheet->setCellValue('I35', '23. NAME of CHILDREN  (Write full name and list all)')->getStyle('I35')->getFill()
 ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
-->getStartColor()->setARGB('cfcfcf');;
+->getStartColor()->setARGB('ebebeb');;
 $sheet->setCellValue('M35', 'DATE OF BIRTH (mm/dd/yyyy) ')->getStyle('M35')->getFill()
 ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
-->getStartColor()->setARGB('cfcfcf');
+->getStartColor()->setARGB('ebebeb');
 
 $sheet->setCellValue('B36', 'FIRST NAME');
 $sheet->setCellValue('D36', $spousefirstname);
 $sheet->setCellValue('G36', 'NAME EXTENSION (JR., SR) '.$spouseextension)->getStyle('G36')->getFill()
 ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
-->getStartColor()->setARGB('cfcfcf');
+->getStartColor()->setARGB('ebebeb');
 
 $sheet->setCellValue('B37', 'MIDDLE NAME');
 $sheet->setCellValue('D37', $spousemiddlename);
@@ -452,7 +492,7 @@ $sheet->setCellValue('B43', 'FIRST NAME');
 $sheet->setCellValue('D43', $fatherfirstname);
 $sheet->setCellValue('G43', 'NAME EXTENSION (JR., SR) '.$fatherext)->getStyle('G43')->getFill()
 ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
-->getStartColor()->setARGB('cfcfcf');
+->getStartColor()->setARGB('ebebeb');
 
 $sheet->setCellValue('B44', 'MIDDLE NAME');
 $sheet->setCellValue('D44', $fathermiddlename);
@@ -471,9 +511,13 @@ $sheet->setCellValue('B48', 'MIDDLE NAME');
 $sheet->setCellValue('D48', $mothermiddlename);
 $sheet->setCellValue('I48', '(Continue on separate sheet if necessary)')->getStyle('I48')->getFill()
 ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
-->getStartColor()->setARGB('cfcfcf');
+->getStartColor()->setARGB('ebebeb');
 
 $sheet->setCellValue('A49', 'III.  EDUCATIONAL BACKGROUND');
+$sheet->getStyle('A49')
+->getFont()
+            ->getColor()
+            ->setRGB ('ffffff');
 
 $sheet->setCellValue('A50', '26.');
 $sheet->setCellValue('B50', 'LEVEL');
@@ -557,11 +601,13 @@ $sheet->mergeCells('A7:J7');
 $sheet->mergeCells('A9:N9')->getStyle('A9:N9')->getFill()
 ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
 ->getStartColor()->setARGB('828583');
+$sheet->getStyle('A9:N9')->getBorders()->getOutline()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
 $sheet->mergeCells('L7:N7');
+$sheet->getStyle('L7:N7')->getBorders()->getOutline()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
 $sheet->mergeCells('D12:N12');
 $sheet->mergeCells('B10:C10')->getStyle('B10:C10')->getFill()
 ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
-->getStartColor()->setARGB('cfcfcf');
+->getStartColor()->setARGB('ebebeb');
 $sheet->mergeCells('D10:N10');
 $sheet->mergeCells('B11:C11');
 $sheet->mergeCells('D11:K11');
@@ -577,8 +623,6 @@ $sheet->mergeCells('J14:N14');
 $sheet->mergeCells('B15:C15');
 $sheet->mergeCells('D15:F15');
 $sheet->mergeCells('J15:N15');
-
-
 
 $sheet->mergeCells('B16:C16');
 $sheet->mergeCells('D16:F16');
@@ -873,7 +917,7 @@ $styleArrayLightGrayFill = [
         'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
         'rotation' => 90,
         'startColor' => [
-            'argb' => 'cfcfcf',
+            'argb' => 'ebebeb',
         ]
     ]
     
@@ -893,9 +937,16 @@ $sheet->getStyle('A35:C48')->applyFromArray($styleArrayLightGrayFill);
 $sheet->getStyle('A50:N52')->applyFromArray($styleArrayLightGrayFill);
 $sheet->getStyle('A50:C'.((int)$rowNum+1))->applyFromArray($styleArrayLightGrayFill);
 
-
-
-
+//STYLING 
+$sheet->getStyle('A9')->getAlignment()->setVertical('center'); 
+$sheet->getStyle('A10:H33')->getAlignment()->setVertical('center'); 
+$sheet->getStyle('I17:N33')->getAlignment()->setVertical('center')->setHorizontal('center'); 
+$sheet->getStyle('A34')->getAlignment()->setVertical('center');
+$sheet->getStyle('G13:G33')->applyFromArray($styleArrayLightGrayFill);
+//$sheet->getStyle('G13:G33')->getFill()->getStartColor()->setARGB('ebebeb'); 
+$sheet->getStyle('A35:N48')->getAlignment()->setVertical('center'); 
+$sheet->getStyle('A49')->getAlignment()->setVertical('center'); 
+$sheet->getStyle('A50:N59')->getAlignment()->setVertical('center')->setHorizontal('center'); 
 
 
 
@@ -903,7 +954,7 @@ $spreadsheet->createSheet();
 // Add some data
 $spreadsheet->setActiveSheetIndex(1);//->setCellValue('A1', 'world!');
 // Rename worksheet
-$spreadsheet->getActiveSheet()->setTitle('C2');
+$spreadsheet->getActiveSheet()->setTitle('C2')->getPageSetup()->setFitToPage(true);;
 $sheet = $spreadsheet->getActiveSheet();
 $sheet->getStyle('A1:N999')
     ->getAlignment()->setWrapText(true); 
@@ -911,69 +962,67 @@ $spreadsheet->getActiveSheet()->getPageSetup()
 ->setPaperSize(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::PAPERSIZE_LEGAL);
 // Set active sheet index to the first sheet, so Excel opens this as the first sheet
 
-$sheet->getColumnDimension('A')->setWidth(6);
+$sheet->getColumnDimension('A')->setWidth(8);
 $sheet->getColumnDimension('B')->setWidth(9);
 $sheet->getColumnDimension('C')->setWidth(15);
 $sheet->getColumnDimension('D')->setWidth(15);
-$sheet->getColumnDimension('E')->setWidth(9);
+$sheet->getColumnDimension('E')->setWidth(10);
 $sheet->getColumnDimension('F')->setWidth(18);
-$sheet->getColumnDimension('G')->setWidth(6);
-$sheet->getColumnDimension('H')->setWidth(6);
+$sheet->getColumnDimension('G')->setWidth(10);
+$sheet->getColumnDimension('H')->setWidth(10);
 $sheet->getColumnDimension('I')->setWidth(25);
 $sheet->getColumnDimension('J')->setWidth(9);
 $sheet->getColumnDimension('K')->setWidth(9);
 $sheet->getColumnDimension('L')->setWidth(15);
 $sheet->getColumnDimension('M')->setWidth(11);
 
-$spreadsheet->getActiveSheet()->getRowDimension('1')->setRowHeight(7);
-$spreadsheet->getActiveSheet()->getRowDimension('2')->setRowHeight(12);
-$spreadsheet->getActiveSheet()->getRowDimension('3')->setRowHeight(12);
-$spreadsheet->getActiveSheet()->getRowDimension('4')->setRowHeight(15);
-$spreadsheet->getActiveSheet()->getRowDimension('5')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('6')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('7')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('8')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('9')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('10')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('11')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('12')->setRowHeight(7);
+$spreadsheet->getActiveSheet()->getRowDimension('1')->setRowHeight(2);
+$spreadsheet->getActiveSheet()->getRowDimension('2')->setRowHeight(15);
+$spreadsheet->getActiveSheet()->getRowDimension('3')->setRowHeight(15);
+$spreadsheet->getActiveSheet()->getRowDimension('4')->setRowHeight(18);
+$spreadsheet->getActiveSheet()->getRowDimension('5')->setRowHeight(28);
+$spreadsheet->getActiveSheet()->getRowDimension('6')->setRowHeight(28);
+$spreadsheet->getActiveSheet()->getRowDimension('7')->setRowHeight(28);
+$spreadsheet->getActiveSheet()->getRowDimension('8')->setRowHeight(28);
+$spreadsheet->getActiveSheet()->getRowDimension('9')->setRowHeight(28);
+$spreadsheet->getActiveSheet()->getRowDimension('10')->setRowHeight(28);
+$spreadsheet->getActiveSheet()->getRowDimension('11')->setRowHeight(28);
+$spreadsheet->getActiveSheet()->getRowDimension('12')->setRowHeight(10);
 $spreadsheet->getActiveSheet()->getRowDimension('13')->setRowHeight(15);
-$spreadsheet->getActiveSheet()->getRowDimension('14')->setRowHeight(15);
+$spreadsheet->getActiveSheet()->getRowDimension('14')->setRowHeight(18);
 $spreadsheet->getActiveSheet()->getRowDimension('15')->setRowHeight(20);
 $spreadsheet->getActiveSheet()->getRowDimension('16')->setRowHeight(20);
-$spreadsheet->getActiveSheet()->getRowDimension('17')->setRowHeight(12);
-$spreadsheet->getActiveSheet()->getRowDimension('18')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('19')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('20')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('21')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('22')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('23')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('24')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('25')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('26')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('27')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('28')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('29')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('30')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('31')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('32')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('33')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('34')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('35')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('36')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('37')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('38')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('39')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('40')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('41')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('42')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('43')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('44')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('45')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('47')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('48')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('53')->setRowHeight(25);
-$spreadsheet->getActiveSheet()->getRowDimension('55')->setRowHeight(25);
+$spreadsheet->getActiveSheet()->getRowDimension('17')->setRowHeight(15);
+$spreadsheet->getActiveSheet()->getRowDimension('18')->setRowHeight(28);
+$spreadsheet->getActiveSheet()->getRowDimension('19')->setRowHeight(28);
+$spreadsheet->getActiveSheet()->getRowDimension('20')->setRowHeight(28);
+$spreadsheet->getActiveSheet()->getRowDimension('21')->setRowHeight(28);
+$spreadsheet->getActiveSheet()->getRowDimension('22')->setRowHeight(28);
+$spreadsheet->getActiveSheet()->getRowDimension('23')->setRowHeight(28);
+$spreadsheet->getActiveSheet()->getRowDimension('24')->setRowHeight(28);
+$spreadsheet->getActiveSheet()->getRowDimension('25')->setRowHeight(28);
+$spreadsheet->getActiveSheet()->getRowDimension('26')->setRowHeight(28);
+$spreadsheet->getActiveSheet()->getRowDimension('27')->setRowHeight(28);
+$spreadsheet->getActiveSheet()->getRowDimension('28')->setRowHeight(28);
+$spreadsheet->getActiveSheet()->getRowDimension('29')->setRowHeight(28);
+$spreadsheet->getActiveSheet()->getRowDimension('30')->setRowHeight(28);
+$spreadsheet->getActiveSheet()->getRowDimension('31')->setRowHeight(28);
+$spreadsheet->getActiveSheet()->getRowDimension('32')->setRowHeight(28);
+$spreadsheet->getActiveSheet()->getRowDimension('33')->setRowHeight(28);
+$spreadsheet->getActiveSheet()->getRowDimension('34')->setRowHeight(28);
+$spreadsheet->getActiveSheet()->getRowDimension('35')->setRowHeight(28);
+$spreadsheet->getActiveSheet()->getRowDimension('36')->setRowHeight(28);
+$spreadsheet->getActiveSheet()->getRowDimension('37')->setRowHeight(28);
+$spreadsheet->getActiveSheet()->getRowDimension('38')->setRowHeight(28);
+$spreadsheet->getActiveSheet()->getRowDimension('39')->setRowHeight(28);
+$spreadsheet->getActiveSheet()->getRowDimension('40')->setRowHeight(28);
+$spreadsheet->getActiveSheet()->getRowDimension('41')->setRowHeight(28);
+$spreadsheet->getActiveSheet()->getRowDimension('42')->setRowHeight(28);
+$spreadsheet->getActiveSheet()->getRowDimension('43')->setRowHeight(28);
+$spreadsheet->getActiveSheet()->getRowDimension('44')->setRowHeight(28);
+$spreadsheet->getActiveSheet()->getRowDimension('45')->setRowHeight(28);
+$spreadsheet->getActiveSheet()->getRowDimension('47')->setRowHeight(28);
+
 
 
 
@@ -1017,6 +1066,24 @@ if ($result){
         ->setCellValue('M'.$rowNum, $row['LICENSEDATEOFVALIDITY']);
         $rowNum++;
     }
+
+    $rowcount=mysqli_num_rows($result)+5;
+    while($rowcount < 12){
+        
+        $sheet->mergeCells('A'.((int)$rowcount).':E'.((int)$rowcount))->getStyle('A'.((int)$rowcount).':K'.((int)$rowcount))->getFont()->setSize('11');
+        $sheet->mergeCells('G'.((int)$rowcount).':H'.((int)$rowcount));
+        $sheet->mergeCells('I'.((int)$rowcount).':K'.((int)$rowcount));
+
+
+
+        $sheet->setCellValue('A'.$rowcount,'')
+        ->setCellValue('F'.$rowcount,'')
+        ->setCellValue('G'.$rowcount, '')
+        ->setCellValue('I'.$rowcount, '')
+        ->setCellValue('L'.$rowcount, '')
+        ->setCellValue('M'.$rowcount,'');
+        $rowcount++;
+    }
 }
 
 $sheet->setCellValue('A12', '(Continue on separate sheet if necessary)')->getStyle('A12')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
@@ -1044,12 +1111,9 @@ $rowNum=18;
 if ($result){
     while(($row = mysqli_fetch_array($result)) && ($rowNum < 46)){
 
-        $sheet->mergeCells('A'.((int)$rowNum).':B'.((int)$rowNum));
+        $sheet->mergeCells('A'.((int)$rowNum).':B'.((int)$rowNum))->getStyle('A'.((int)$rowNum).':M'.((int)$rowNum))->getFont()->setSize('11');
         $sheet->mergeCells('D'.((int)$rowNum).':F'.((int)$rowNum));
         $sheet->mergeCells('G'.((int)$rowNum).':I'.((int)$rowNum));
-
-
-
 
         $sheet->setCellValue('A'.$rowNum,$row['DATEFROM'])
         ->setCellValue('C'.$rowNum, $row['DATETO'])
@@ -1061,13 +1125,31 @@ if ($result){
         ->setCellValue('M'.$rowNum, $row['GOVTSERVICE']);
         $rowNum++;
     }
+    
+    $rowcount=mysqli_num_rows($result)+18;
+    while($rowcount < 46){
+        
+        $sheet->mergeCells('A'.((int)$rowcount).':B'.((int)$rowcount));
+        $sheet->mergeCells('D'.((int)$rowcount).':F'.((int)$rowcount));
+        $sheet->mergeCells('G'.((int)$rowcount).':I'.((int)$rowcount));
+
+        $sheet->setCellValue('A'.$rowcount,'')
+        ->setCellValue('C'.$rowcount, '')
+        ->setCellValue('D'.$rowcount, '')
+        ->setCellValue('G'.$rowcount, '')
+        ->setCellValue('J'.$rowcount,'')
+        ->setCellValue('K'.$rowcount, '')
+        ->setCellValue('L'.$rowcount,'')
+        ->setCellValue('M'.$rowcount, '');
+        $rowcount++;
+    }
 }
 
 
 $sheet->setCellValue('A46', "(Continue on separate sheet if necessary)")->getStyle('A46')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 $sheet->setCellValue('A47', 'SIGNATURE');
 $sheet->setCellValue('D47', ' ');
-$sheet->setCellValue('J47', 'DATE');
+$sheet->setCellValue('I47', 'DATE');
 $sheet->setCellValue('L47', ' ');
 
 $sheet->setCellValue('A48', '(CS FORM 212 (Revised 2017), Page 2 of 4)');
@@ -1104,6 +1186,8 @@ $sheet->mergeCells('M15:M17');
 $sheet->mergeCells('A46:M46');
 $sheet->mergeCells('A47:C47');
 $sheet->mergeCells('A48:M48');
+$sheet->mergeCells('D47:H47');
+$sheet->mergeCells('J47:M47');
 
 $sheet->getStyle('A3:M4')->applyFromArray($styleArrayLightGrayFill);
 $sheet->getStyle('A12:M12')->applyFromArray($styleArrayLightGrayFill);
@@ -1117,7 +1201,16 @@ $sheet->getStyle('A3:M11')->applyFromArray($styleArrayInsideBox);
 $sheet->getStyle('A15:M45')->applyFromArray($styleArrayInsideBox);
 $sheet->getStyle('A46:M48')->applyFromArray($styleArrayInsideBox);
 
-
+//ADDED STYLE
+$sheet->getStyle('A2')->getAlignment()->setVertical('center'); 
+$sheet->getStyle('A10:H33')->getAlignment()->setVertical('center'); 
+$sheet->getStyle('I17:N33')->getAlignment()->setVertical('center')->setHorizontal('center'); 
+$sheet->getStyle('A34')->getAlignment()->setVertical('center');
+//$sheet->getStyle('G13:G33')->applyFromArray($styleArrayLightGrayFill);
+//$sheet->getStyle('G13:G33')->getFill()->getStartColor()->setARGB('ebebeb'); 
+$sheet->getStyle('A35:N48')->getAlignment()->setVertical('center'); 
+$sheet->getStyle('A49')->getAlignment()->setVertical('center'); 
+$sheet->getStyle('A50:N59')->getAlignment()->setVertical('center')->setHorizontal('center'); 
 
 
 
@@ -1229,6 +1322,20 @@ $spreadsheet->getActiveSheet()->getPageSetup()
             ->setCellValue('H'.$rowNum, $row['POSITION']);
             $rowNum++;
         }
+
+        $rowcount=mysqli_num_rows($result)+6;
+        while($rowcount < 13){
+            
+            $sheet->mergeCells('A'.((int)$rowcount).':D'.((int)$rowcount));
+            $sheet->mergeCells('H'.((int)$rowcount).':K'.((int)$rowcount));
+    
+            $sheet->setCellValue('A'.$rowcount,'')
+            ->setCellValue('E'.$rowcount, '')
+            ->setCellValue('F'.$rowcount,'')
+            ->setCellValue('G'.$rowcount,'')
+            ->setCellValue('H'.$rowcount,'');
+            $rowcount++;
+        }
     }
     $sheet->setCellValue('A13', '(Continue on separate sheet if necessary)')->getStyle('A13')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 
@@ -1269,6 +1376,21 @@ $spreadsheet->getActiveSheet()->getPageSetup()
             ->setCellValue('I'.$rowNum, $row['SPONSOREDBY']);
             $rowNum++;
         }
+
+        $rowcount=mysqli_num_rows($result)+19;
+        while($rowcount < 40){
+            
+            $sheet->mergeCells('A'.((int)$rowcount).':D'.((int)$rowcount));
+            $sheet->mergeCells('I'.((int)$rowcount).':K'.((int)$rowcount));
+    
+            $sheet->setCellValue('A'.$rowcount,'')
+            ->setCellValue('E'.$rowcount, '')
+            ->setCellValue('F'.$rowcount,'')
+            ->setCellValue('G'.$rowcount,'')
+            ->setCellValue('H'.$rowcount,'')
+            ->setCellValue('I'.$rowcount,'');
+            $rowcount++;
+        }
     }
     $sheet->setCellValue('A40', '(Continue on separate sheet if necessary)')->getStyle('A50')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 
@@ -1291,6 +1413,15 @@ $spreadsheet->getActiveSheet()->getPageSetup()
             $sheet->setCellValue('A'.$rowNum,$row['SKILLS']);
             $rowNum++;
         }
+
+        $rowcount=mysqli_num_rows($result)+43;
+        while($rowcount < 50){
+            
+            $sheet->mergeCells('A'.((int)$rowcount).':B'.((int)$rowcount));
+    
+            $sheet->setCellValue('A'.$rowcount,'');
+            $rowcount++;
+        }
     }
 
     $query = 'SELECT * FROM tbl_employee_other_recognition WHERE EMPID = "'.$id.'" AND CANCELLED = "N" ';
@@ -1305,6 +1436,15 @@ $spreadsheet->getActiveSheet()->getPageSetup()
             $sheet->setCellValue('C'.$rowNum,$row['RECOGNITION']);
             $rowNum++;
         }
+
+        $rowcount=mysqli_num_rows($result)+43;
+        while($rowcount < 50){
+            
+            $sheet->mergeCells('C'.((int)$rowcount).':H'.((int)$rowcount));
+    
+            $sheet->setCellValue('C'.$rowcount,'');
+            $rowcount++;
+        }
     }
 
     $query = 'SELECT * FROM tbl_employee_other_membership WHERE EMPID = "'.$id.'" AND CANCELLED = "N" ';
@@ -1318,6 +1458,16 @@ $spreadsheet->getActiveSheet()->getPageSetup()
 
             $sheet->setCellValue('I'.$rowNum,$row['MEMBERSHIP']);
             $rowNum++;
+        }
+
+        
+        $rowcount=mysqli_num_rows($result)+43;
+        while($rowcount < 50){
+            
+            $sheet->mergeCells('I'.((int)$rowcount).':K'.((int)$rowcount));
+    
+            $sheet->setCellValue('I'.$rowcount,'');
+            $rowcount++;
         }
     }
 

@@ -233,7 +233,7 @@ $('#add_name').on('submit', function(event){
     var daysdifference = validateLeave();
     var leave_type          = $('#leave_type').val();
     var workingdays        = $('#workingdays').val();
-    alert($('#dateoffilling').val());
+    //alert($('#dateoffilling').val());
     //alert(daysdifference);
     if ((leave_type == 'SICK') && (daysdifference + 1 < 0)){
         alert('Application is '+ Math.abs(daysdifference+1)+' days late upon filling of leave application');

@@ -328,6 +328,7 @@
 
                                 $('#vlcredit').val(data.data.vlcredit);
                                 $('#slcredit').val(data.data.slcredit);
+                                $('#salary').val(data.data.salary);
     
 
                                 var genderValue =  data.data_profile.gender;
@@ -633,6 +634,8 @@
                     $('#vlcredit_update').val(values.data.vlcredit);
                     $('#slcredit_update').val(values.data.slcredit);
 
+                    $('#salary_update').val(values.data.salary);
+
                     var genderValue =  values.data_profile.gender;
 
                     if (genderValue == 'MALE'){
@@ -826,6 +829,10 @@
             var password                = $('#password_update').val();
             var gender                  = $('#gender_update').val();
             var civilstatus             = $('#civilstatus_update').val();
+
+            var slcredit             = $('#slcredit_update').val();
+            var vlcredit             = $('#vlcredit_update').val();
+            var salary             = $('#salary_update').val();
             
             var profileid               = $('#profileid').val();
             var dob                     = $('#dobprofile_update').val();
@@ -882,7 +889,10 @@
                     fieldofficeid:fieldofficeid,
                     datehired:datehired,       
                     username:username,       
-                    password:password,        
+                    password:password,
+                    slcredit:slcredit,
+                    vlcredit:vlcredit,
+                    salary: salary,       
                     gender:gender,          
                     civilstatus:civilstatus,     
                     profileid:profileid,       
@@ -941,11 +951,14 @@
 
         //function for reloading main data after update
         function fetch_single_input() {
+
+       
             var employeeiddb = document.getElementById("empID").value;
             
             //var email_hidden = $(this).data('email_hidden'); //data id in database
             //var admin_id = $(this).data('id');
             //$('#user_form').parsley().reset();
+
 
             $.ajax({
                     url:"view_employee_action.php",
@@ -967,8 +980,9 @@
                         $('#password').val(data.data.password);
                         $('#confirmpassword').val(data.data.password);
 
-                        /*$('#slcredit').val(data.data.slcredit);
-                        $('#vlcredit').val(data.data.vlcredit);*/
+                        $('#slcredit').val(data.data.slcredit);
+                        $('#vlcredit').val(data.data.vlcredit);
+                        $('#salary').val(data.data.salary);
 
                         var genderValue =  data.data_profile.gender;
 
@@ -1888,7 +1902,7 @@
             //DELETE ATTACHMENT
             $(document).on('click', '.delete_attachment', function(){
                 var id = $(this).data('id');
-                // alert(id);
+                //alert(id);
                 var employeeiddb = document.getElementById("empID").value;
                 $.ajax({
                     url:"view_employee_action",

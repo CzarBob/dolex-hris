@@ -23,7 +23,8 @@ if (isset($_POST['action'])){
     tbl_employee.FIELDOFFICEID as FIELDOFFICEID,
     tbl_employee.DIVISIONID as DIVISIONID,
     tbl_employee.SLCREDIT as SLCREDIT,
-    tbl_employee.VLCREDIT as VLCREDIT
+    tbl_employee.VLCREDIT as VLCREDIT,
+    tbl_employee.SALARY as SALARY
     FROM tbl_employee WHERE tbl_employee.ID = "'.$_POST["employeeiddb"].'" ';
 
 
@@ -44,13 +45,17 @@ if (isset($_POST['action'])){
         $sub_array['lastname'] = $row['LASTNAME'];
         $sub_array['extension'] = $row['PROFILE_EXTENSION'];
         $sub_array['position'] = $row['POSITION'];
-        $sub_array['datehired'] = $row['DATEHIRED'];
+
+        $sub_array['datehired'] = $row['DATEHIRED'] ;
+
+
         $sub_array['fieldofficeid'] = $row['FIELDOFFICEID'];
         $sub_array['divisionid'] = $row['DIVISIONID'];
         $sub_array['username'] = $row['USERNAME'];
         $sub_array['password'] = $row['PASSWORD_ACCOUNT'];
         $sub_array['slcredit'] = $row['SLCREDIT'];
         $sub_array['vlcredit'] = $row['VLCREDIT'];
+        $sub_array['salary'] = $row['SALARY'];
 
 
       $data[] = $sub_array;
@@ -100,6 +105,7 @@ if (isset($_POST['action'])){
       $sub_array_query_profile['phicno']              = $row['PHICNO'];
       $sub_array_query_profile['sssno']               = $row['SSSNO'];
       $sub_array_query_profile['tinno']               = $row['TINNO'];
+
       $sub_array_query_profile['agencyemployeeno']    = $row['AGENCYEMPLOYEENO'];
       $sub_array_query_profile['citizenship']         = $row['CITIZENSHIP'];
       $sub_array_query_profile['dualcitizen']         = $row['DUALCITIZEN'];
@@ -214,7 +220,9 @@ if (isset($_POST['action'])){
       tbl_employee.FIELDOFFICEID as FIELDOFFICEID,
       tbl_employee.DIVISIONID as DIVISIONID,
       tbl_employee.SLCREDIT as SLCREDIT,
-      tbl_employee.VLCREDIT as VLCREDIT
+      tbl_employee.VLCREDIT as VLCREDIT,
+      tbl_employee.SALARY as SALARY
+
       FROM tbl_employee WHERE tbl_employee.ID = "'.$_POST["employeeiddb"].'" ';
 
       $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
@@ -240,6 +248,7 @@ if (isset($_POST['action'])){
         $sub_array['password'] = $row['PASSWORD_ACCOUNT'];
         $sub_array['slcredit'] = $row['SLCREDIT'];
         $sub_array['vlcredit'] = $row['VLCREDIT'];
+        $sub_array['salary'] = $row['SALARY'];
         $data[] = $sub_array;
       }
 
@@ -1811,6 +1820,10 @@ if (isset($_POST['action'])){
         $password                = mysqli_real_escape_string($connect, $_POST['password']);
         $gender                  = mysqli_real_escape_string($connect, $_POST['gender']);
         $civilstatus             = mysqli_real_escape_string($connect, $_POST['civilstatus']);
+        $slcredit               = mysqli_real_escape_string($connect, $_POST['slcredit']);
+        $vlcredit               = mysqli_real_escape_string($connect, $_POST['vlcredit']);
+        $salary               = mysqli_real_escape_string($connect, $_POST['salary']);
+
 
         $profileid               = mysqli_real_escape_string($connect, $_POST['profileid']);
         $dob                     = mysqli_real_escape_string($connect, $_POST['dob']);
@@ -1894,7 +1907,10 @@ if (isset($_POST['action'])){
           USERNAME                = "'.$username.'", 
           PASSWORD                = "'.$password.'",
           UPDATEDBY               = "'.$usernameid.'",
-          UPDATEDDATETIME          = "'.$dateNow.'"
+          UPDATEDDATETIME          = "'.$dateNow.'",
+          SLCREDIT                = "'.$slcredit.'",
+          VLCREDIT                = "'.$vlcredit.'",
+          SALARY                = "'.$salary.'"
           
           WHERE ID = "'.$empid.'" ';
 

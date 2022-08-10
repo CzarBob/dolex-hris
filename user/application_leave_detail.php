@@ -46,7 +46,7 @@ session_start();
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="main">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../main">
                 <div class="sidebar-brand-icon">
                     <img src="../assets/img/AEP_icon.png" alt="" width="35px" height="35px">
                 </div>
@@ -183,7 +183,7 @@ session_start();
                     </div>
                     <div >
                       <input type="hidden" name="hidden_id" id="hidden_id" />
-                      <input type="hidden" name="empID" id="empID" value="<?php echo $_GET['id']; ?>">
+                      <input type="hidden" name="empID" id="empID" value="
                       <input type="hidden" name="action" id="action" value="add_leave" />
                       <input type="submit" name="submit" id="submit" class="btn btn-info" value="Submit" />
                     </div>
@@ -195,7 +195,7 @@ session_start();
                     <form method="post" id="add_name">
                       <div class="row">
                           <!-- Employee ID database-->
-                          <input type="hidden" name="empID" id="empID" value="<?php echo $_GET['id']; ?>">
+                          <!--<input type="hidden" name="empID" id="empID" value="<?php echo $_GET['id']; ?>">-->
                           <input type="hidden" name="loginID" id="loginID" value="<?php echo $_SESSION['usernameid']; ?>">
                           <input type="hidden" name="action" id="action" value="add_leave" />
                           <!-- Pending Requests Card Example -->

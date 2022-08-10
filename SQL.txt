@@ -57,3 +57,38 @@ ALTER TABLE `tbl_employee_profile` ADD `PERMCITY` VARCHAR(255) NOT NULL AFTER `P
 ALTER TABLE `tbl_employee_profile` ADD `PERMPROVINCE` VARCHAR(255) NOT NULL AFTER `PERMCITY`;
 ALTER TABLE `tbl_employee_profile` ADD `PERMZIPCODE` VARCHAR(255) NOT NULL AFTER `PERMPROVINCE`;
 ALTER TABLE `tbl_employee_profile` ADD `PERMSTREET` VARCHAR(255) NOT NULL AFTER `PERMZIPCODE`;
+
+
+
+//07-29-2022
+ALTER TABLE `tbl_employee_attachment` CHANGE `ID` `ID` INT(100) NOT NULL AUTO_INCREMENT, add PRIMARY KEY (`ID`);
+ALTER TABLE `tbl_employee_attachment` ADD PRIMARY KEY(`ID`);
+ALTER TABLE `tbl_employee` ADD `SALARY` VARCHAR(255) NOT NULL AFTER `PASSWORD`;
+
+
+//NeW METHOD ADDING VIEW INSTEAD OF USING GET METHOD
+
+while ($row = mysqli_fetch_array($result)) {
+
+    $status = $row["ua_status"];
+    if ($status = 'PENDING') {
+        $status = " ";
+        $tag = "PENDING";
+        $color = "#ffd044";
+    }
+
+
+    $sub_array = array();
+    $sub_array[] = $row["ud_id"];
+    $sub_array[] = $row["ud_est_name"];
+    $sub_array[] = $row["ud_email"];
+    $sub_array[] = $row["ud_contact"];
+    $sub_array[] = $row["uad_date_filed"];
+    $sub_array[] = "<b style='color:" . $color . "'><i style='color:#ffd044;' class='mdi mdi-alert-circle m-r-5'></i> " . $tag . "</b>";
+    $sub_array[] =
+        "<form action='../pages/dashboard-pfo-view' method='POST'>
+                      <input type='hidden' name='id' value='" . $row["id_diff"] . "'>
+					  <input type='submit' class ='btn btn-sm btn-info btn-block' name ='view' id = 'submit' value ='VIEW (?)'>
+					</form> ";
+    $data[] = $sub_array;
+}
