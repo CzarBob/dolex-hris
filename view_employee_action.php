@@ -1796,7 +1796,7 @@ if (isset($_POST['action'])){
         $empid  = $_POST['employeeiddb'];
 
         $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong>Data Updated!</strong> 
+        <strong>Data Updated! Please refresh this page</strong> 
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -1997,7 +1997,7 @@ if (isset($_POST['action'])){
         $empid  = $_POST['employeeiddb'];
 
         $message_success = '<div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong>Data Updated!</strong> 
+        <strong>Data Updated! Please refresh this page</strong> 
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
